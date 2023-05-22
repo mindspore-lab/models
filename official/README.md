@@ -5,7 +5,7 @@ Accuracies are reported on ImageNet-1K
 
 | model | acc@1 | bs | num_cards | ms/step | amp | device | config | 
 :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-| vgg11| 71.86 | 32 | 8 |  61.63  |  O2 |    | [mindcv_vgg](https://github.com/mindspore-lab/mindcv/blob/main/configs/vgg) | 
+| vgg11| 71.86 | 32 | 8 |  61.63  |  O2 |  Ascend_910A  | [mindcv_vgg](https://github.com/mindspore-lab/mindcv/blob/main/configs/vgg) | 
 | vgg13| 72.87 | 32 | 8 |  66.47  |  O2 |  Ascend_910A  | [mindcv_vgg](https://github.com/mindspore-lab/mindcv/blob/main/configs/vgg) |
 | vgg16| 74.53 | 32 | 8 |  73.68  |  O2 |  Ascend_910A  | [mindcv_vgg](https://github.com/mindspore-lab/mindcv/blob/main/configs/vgg) |
 | vgg19| 75.21 | 32 | 8 |  81.13  |  O2 |  Ascend_910A  | [mindcv_vgg](https://github.com/mindspore-lab/mindcv/blob/main/configs/vgg) |
