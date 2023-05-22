@@ -1,7 +1,3 @@
-## Table of Contents
-
-## Models and Implementations
-
 ### [Computer Vision]
 
 #### Image Classification
