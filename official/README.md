@@ -161,7 +161,7 @@ Accuracies are reported on COCO2017
 | yolov8_s | 44.6 | 16 | 8 |  uploading  |  O0 |  Ascend_910A  | [mindyolo_yolov8](https://github.com/mindspore-lab/mindyolo/tree/master/configs/yolov8) |
 | yolov8_m | 50.5 | 16 | 8 |  454  |  O0 |  Ascend_910A  | [mindyolo_yolov8](https://github.com/mindspore-lab/mindyolo/tree/master/configs/yolov8) |
 | yolov8_l | 52.8 | 16 | 8 |  536  |  O0 |  Ascend_910A  | [mindyolo_yolov8](https://github.com/mindspore-lab/mindyolo/tree/master/configs/yolov8) |
-| yolov8_m | 53.7 | 16 | 8 |  636  |  O0 |  Ascend_910A  | [mindyolo_yolov8](https://github.com/mindspore-lab/mindyolo/tree/master/configs/yolov8) |
+| yolov8_x | 53.7 | 16 | 8 |  636  |  O0 |  Ascend_910A  | [mindyolo_yolov8](https://github.com/mindspore-lab/mindyolo/tree/master/configs/yolov8) |
 | yolov7_t| 37.5 | 16 | 8 |  594.91  |  O0 |  Ascend_910A  | [mindyolo_yolov7](https://github.com/mindspore-lab/mindyolo/tree/master/configs/yolov7) | 
 | yolov7_l| 50.8 | 16 | 8 |  905.26  |  O0 |  Ascend_910A  | [mindyolo_yolov7](https://github.com/mindspore-lab/mindyolo/tree/master/configs/yolov7) |
 | yolov7_x|  52.4| 16 | 8 |  819.36  |  O0 |  Ascend_910A  | [mindyolo_yolov7](https://github.com/mindspore-lab/mindyolo/tree/master/configs/yolov7) |
@@ -189,4 +189,4 @@ Accuracies are reported on COCO2017
 | dbnet_resnet50 | msra-td500 | 85.03 | 20 | 8 |  51  |  O0 |  Ascend_910A  | [mindocr_dbnet](https://github.com/mindspore-lab/mindocr/tree/main/configs/det/dbnet) |
 | crnn_vgg7 | IC03,13,15,IIT,etc | 82.03 | 16 | 8 |  uploading  |  O3 |  Ascend_910A  | [mindocr_crnn](https://github.com/mindspore-lab/mindocr/tree/main/configs/rec/crnn) |
 | crnn_resnet34_vd | IC03,13,15,IIT,etc | 84.45 | 64 | 8 |  uploading  |  O3 |  Ascend_910A  | [mindocr_crnn](https://github.com/mindspore-lab/mindocr/tree/main/configs/rec/crnn) |
-| rare(crnn_seq2seq)_resnet34vd | IC03,13,15,IIT,etc | 85.19 | 512 | 8 |  uploading  |  O2 |  Ascend_910A  | [mindocr_rare](https://github.com/mindspore-lab/mindocr/tree/main/configs/rec/rare) |
+| rare_resnet34_vd | IC03,13,15,IIT,etc | 85.19 | 512 | 8 |  uploading  |  O2 |  Ascend_910A  | [mindocr_rare](https://github.com/mindspore-lab/mindocr/tree/main/configs/rec/rare) |
