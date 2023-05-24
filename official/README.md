@@ -1,5 +1,5 @@
 ### Computer Vision
-##### Currently all results are tested on Ascend 910, RTX 3090 is coming soon
+##### Currently all results are tested on Ascend 910, RTX 3090 version is coming soon
 ###
 ### Image Classification
 #### Accuracies are reported on ImageNet-1K
