@@ -171,13 +171,13 @@
 | yolov5_m | 44.9 | 32 | 8 |  646.75  |  O3 |   [mindyolo_yolov5](https://github.com/mindspore-lab/mindyolo/tree/master/configs/yolov5) |
 | yolov5_l | 48.5 | 32 | 8 |  684.81  |  O3 |   [mindyolo_yolov5](https://github.com/mindspore-lab/mindyolo/tree/master/configs/yolov5) |
 | yolov5_x | 50.5 | 16 | 8 |  613.81  |  O0 |   [mindyolo_yolov5](https://github.com/mindspore-lab/mindyolo/tree/master/configs/yolov5) |
-| yolov4_csp | 45.4 | 16 | 8 |  uploading  |  O0 |   [mindyolo_yolov4](https://github.com/mindspore-lab/mindyolo/tree/master/configs/yolov4) |
-| yolov4_csp(silu) | 45.8 | 16 | 8 |  uploading  |  O0 |   [mindyolo_yolov4](https://github.com/mindspore-lab/mindyolo/tree/master/configs/yolov4) |
+| yolov4_csp | 45.4 | 16 | 8 |  709.70  |  O0 |   [mindyolo_yolov4](https://github.com/mindspore-lab/mindyolo/tree/master/configs/yolov4) |
+| yolov4_csp(silu) | 45.8 | 16 | 8 |  594.97  |  O0 |   [mindyolo_yolov4](https://github.com/mindspore-lab/mindyolo/tree/master/configs/yolov4) |
 | yolov3_darknet53| 45.5 | 16 | 8 |  481.37  |  O0 |   [mindyolo_yolov3](https://github.com/mindspore-lab/mindyolo/tree/master/configs/yolov3) |
-| yolox_n | 24.1 | 8 | 8 |  uploading  |  O0 |   [mindyolo_yolox](https://github.com/mindspore-lab/mindyolo/tree/master/configs/yolox) |
-| yolox_t | 33.3 | 8 | 8 |  uploading  |  O0 |   [mindyolo_yolox](https://github.com/mindspore-lab/mindyolo/tree/master/configs/yolox) |
-| yolox_s | 40.7 | 8 | 8 |  uploading  |  O0 |   [mindyolo_yolox](https://github.com/mindspore-lab/mindyolo/tree/master/configs/yolox) |
-| yolox_m | 46.7 | 8 | 8 |  uploading  |  O0 |   [mindyolo_yolox](https://github.com/mindspore-lab/mindyolo/tree/master/configs/yolox) |
+| yolox_n | 24.1 | 8 | 8 |  201  |  O0 |   [mindyolo_yolox](https://github.com/mindspore-lab/mindyolo/tree/master/configs/yolox) |
+| yolox_t | 33.3 | 8 | 8 |  190  |  O0 |   [mindyolo_yolox](https://github.com/mindspore-lab/mindyolo/tree/master/configs/yolox) |
+| yolox_s | 40.7 | 8 | 8 |  270  |  O0 |   [mindyolo_yolox](https://github.com/mindspore-lab/mindyolo/tree/master/configs/yolox) |
+| yolox_m | 46.7 | 8 | 8 |  311  |  O0 |   [mindyolo_yolox](https://github.com/mindspore-lab/mindyolo/tree/master/configs/yolox) |
 
 ### 
 ### OCR
