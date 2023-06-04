@@ -1,8 +1,24 @@
-## 欢迎来到MindSpore 新版 ModelZoo
+# ![MindSpore Logo](https://gitee.com/mindspore/mindspore/raw/master/docs/MindSpore-logo.png)
 
-如果您对MindSpore模型库有需求，请通过[mindspore-lab/models/issue](https://github.com/mindspore-lab/models/issues)与我们联系。
+## Welcome to the Model Zoo for MindSpore
 
-| 目录                     | 描述                                                         |
-|------------------------| ------------------------------------------------------------ |
-| [official](official)   | • 官方模型：包含CV/NLP/Audio各类经典基础算法模型，使用最新的MindSpore套件构建，提供可读性高的模型文件和高精度预训练权重|
-| [research](research)   | • 预研类模型：前沿SOTA模型的codebase，生态伙伴参与贡献 |
+The MindSpore models repository provides classic SOTA models implmentation to help researchers and engineers to do their R&D work.
+
+| Directory               | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+|-------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [official](official)    | • A collections of SOTA models implemented by MindSpore Latest API<br/>• Maintained by MindSpore Team        |
+| [research](research)    | • A collections of research models implemented by researchers and institution<br/>• Maintained by researchers and institution      |
+| [community](community)  | • A list of github/gitee repos of toolkit/models powered by MindSpore versions in the README<br/>• Model file is not necessarily provided                                                                                                                                                                                                                                                                                                                                                                         |
+
+
+## Disclaimers
+
+Mindspore only provides scripts that downloads and preprocesses public datasets. We do not own these datasets and are not responsible for their quality or maintenance. Please make sure you have permission to use the dataset under the dataset’s license. The models trained on these dataset are for non-commercial research and educational purpose only.
+
+To dataset owners: we will remove or update all public content upon request if you don’t want your dataset included on Mindspore, or wish to update it in any way. Please contact us through a Github/Gitee issue. Your understanding and contribution to this community is greatly appreciated.
+
+MindSpore is Apache 2.0 licensed. Please see the LICENSE file.
+
+## License
+
+[Apache License 2.0](https://gitee.com/mindspore/mindspore/blob/master/LICENSE)

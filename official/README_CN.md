@@ -1,15 +1,15 @@
 ### WHAT IS NEW:
-- We've done code refactoring for classic SOTA models,modularized data processing, model definition&creation, training process and other common components with new lanched MindSpore CV/NLP/Audio/Yolo/OCR Series toolbox
-- Old models were implemented by original MindSpore API with some tricks for training process speedup
-- More information for model performance, please check [benchmark](benchmark)
+- 我们对经典SOTA模型进行了重构，模块化数据处理，模型定义，训练流程等常用组件，推出MindSpore CV/NLP/Audio/Yolo/OCR等系列
+- 原models仓模型实现是基于MindSpore原生API，并且有一定训练推理加速优化
+- 更多关于模型精度性能信息，请查阅[benchmark](benchmark)
 
-### Standard Models
+### 官方标准模型
 #### 
 ****
 ####
 
-### Computer Vision
-#### Image Classification（backbone）
+### 计算机视觉
+#### 图像分类（骨干类)
 
 | model | acc@1 | mindcv recipe | vanilla mindspore |
 :-:     | :-:        | :-:    | :-:  
@@ -76,7 +76,7 @@
 | xception               | 79.01 | [config](https://github.com/mindspore-lab/mindcv/tree/main/configs/xception)         | [link](https://gitee.com/mindspore/models/tree/r2.0/official/cv/Inception/xception) |
 | ghostnet_50            | 66.03 | [config](https://github.com/mindspore-lab/mindcv/tree/main/configs/ghostnet)         |
 | ghostnet_100           | 73.78 | [config](https://github.com/mindspore-lab/mindcv/tree/main/configs/ghostnet)         |
-| ghostnet_130           | 75.50 | [config](https://github.com/mindspore-lab/mindcv/tree/main/configs/ghostnet)         |
+| ghostnet_130           | 75.50 | [config](https://github.com/mindspore-lab/imindcv/tree/main/configs/ghostnet)         |
 | nasnet_a_4x1056        | 73.65 | [config](https://github.com/mindspore-lab/mindcv/tree/main/configs/nasnet)           |
 | mnasnet_0.5            | 68.07 | [config](https://github.com/mindspore-lab/mindcv/tree/main/configs/mnasnet)          |
 | mnasnet_0.75           | 71.81 | [config](https://github.com/mindspore-lab/mindcv/tree/main/configs/mnasnet)          |
@@ -125,11 +125,11 @@
 | pvt_small           | 79.66 | [config](https://github.com/mindspore-lab/mindcv/tree/main/configs/pvt)           |
 | pvt_medium          | 81.82 | [config](https://github.com/mindspore-lab/mindcv/tree/main/configs/pvt)           |
 | pvt_large           | 81.75 | [config](https://github.com/mindspore-lab/mindcv/tree/main/configs/pvt)           |
-| pvt_v2_b0           | 71.50 | [config](https://github.com/mindspore-lab/mindcv/tree/main/configs/pvtv2)         |
-| pvt_v2_b1           | 78.91 | [config](https://github.com/mindspore-lab/mindcv/tree/main/configs/pvtv2)         |
-| pvt_v2_b2           | 81.99 | [config](https://github.com/mindspore-lab/mindcv/tree/main/configs/pvtv2)         |
-| pvt_v2_b3           | 82.84 | [config](https://github.com/mindspore-lab/mindcv/tree/main/configs/pvtv2)         |
-| pvt_v2_b4           | 83.14 | [config](https://github.com/mindspore-lab/mindcv/tree/main/configs/pvtv2)         |
+| pvt_v2_b0           | 71.50 | [config](https://github.com/mindspore-lab/mindcv/tree/main/configs/pvt_v2)         |
+| pvt_v2_b1           | 78.91 | [config](https://github.com/mindspore-lab/mindcv/tree/main/configs/pvt_v2)         |
+| pvt_v2_b2           | 81.99 | [config](https://github.com/mindspore-lab/mindcv/tree/main/configs/pvt_v2)         |
+| pvt_v2_b3           | 82.84 | [config](https://github.com/mindspore-lab/mindcv/tree/main/configs/pvt_v2)         |
+| pvt_v2_b4           | 83.14 | [config](https://github.com/mindspore-lab/mindcv/tree/main/configs/pvt_v2)         |
 | pit_ti              | 72.96 | [config](https://github.com/mindspore-lab/mindcv/tree/main/configs/pit)           |
 | pit_xs              | 78.41 | [config](https://github.com/mindspore-lab/mindcv/tree/main/configs/pit)           |
 | pit_s               | 80.56 | [config](https://github.com/mindspore-lab/mindcv/tree/main/configs/pit)           |
@@ -160,7 +160,7 @@
 | poolformer_s12      | 77.33 | [config](https://github.com/mindspore-lab/mindcv/tree/main/configs/poolformer)    |
 | xcit_tiny_12_p16    | 77.67 | [config](https://github.com/mindspore-lab/mindcv/tree/main/configs/xcit)          |
 
-### Object Detection
+### 目标检测
 
 #### yolo
 
@@ -190,7 +190,7 @@
 | yolox_x | 51.6 |[ config](https://github.com/mindspore-lab/mindyolo/tree/master/configs/yolox) |
 | yolox_darknet53 | 47.7 | [config](https://github.com/mindspore-lab/mindyolo/tree/master/configs/yolox) |
 
-#### Classic
+#### 经典
 | model |  map | mind_series recipe | vanilla mindspore
 :-:     |  :-:            | :-:        |  :-:   
 |  ssd_vgg16                 | 23.2  |   | [link](https://gitee.com/mindspore/models/tree/r2.0/official/cv/SSD)|
@@ -201,7 +201,7 @@
 |  maskrcnn_mobilenetv1      | coming soon   |   | [link](https://gitee.com/mindspore/models/tree/r2.0/official/cv/MaskRCNN/maskrcnn_mobilenetv1) |
 |  maskrcnn_resnet50         | coming soon   |   | [link](https://gitee.com/mindspore/models/tree/r2.0/official/cv/MaskRCNN/maskrcnn_resnet50) |
 
-### Semantic Segmentation
+### 语义分割
 
 | model |  mind_series recipe | vanilla mindspore
 :-:     |  :-:            | :-:        
@@ -226,21 +226,15 @@
 | crnn_resnet34_vd   | IC03,13,15,IIT,etc | 84.45 | [config](https://github.com/mindspore-lab/mindocr/tree/main/configs/rec/crnn)   |
 | rare_resnet34_vd   | IC03,13,15,IIT,etc | 85.19 | [config](https://github.com/mindspore-lab/mindocr/tree/main/configs/rec/rare)   |
 
-#### 
-****
-####
-### More models are comming
-#### 
-****
-####
-## Disclaimers
 
-Mindspore only provides scripts that downloads and preprocesses public datasets. We do not own these datasets and are not responsible for their quality or maintenance. Please make sure you have permission to use the dataset under the dataset’s license. The models trained on these dataset are for non-commercial research and educational purpose only.
+## 免责声明
 
-To dataset owners: we will remove or update all public content upon request if you don’t want your dataset included on Mindspore, or wish to update it in any way. Please contact us through a Github/Gitee issue. Your understanding and contribution to this community is greatly appreciated.
+MindSpore仅提供下载和预处理公共数据集的脚本。我们不拥有这些数据集，也不对它们的质量负责或维护。请确保您具有在数据集许可下使用该数据集的权限。在这些数据集上训练的模型仅用于非商业研究和教学目的。
 
-MindSpore is Apache 2.0 licensed. Please see the LICENSE file.
+致数据集拥有者：如果您不希望将数据集包含在MindSpore中，或者希望以任何方式对其进行更新，我们将根据要求删除或更新所有公共内容。请通过GitHub或Gitee与我们联系。非常感谢您对这个社区的理解和贡献。
 
-## License
+MindSpore已获得Apache 2.0许可，请参见LICENSE文件。
 
-[Apache License 2.0](https://gitee.com/mindspore/mindspore/blob/master/LICENSE)
+## 许可证
+
+[Apache 2.0许可证](https://gitee.com/mindspore/mindspore/blob/master/LICENSE)
