@@ -1,7 +1,7 @@
 ### WHAT IS NEW:
 - 我们对经典SOTA模型进行了重构，模块化数据处理，模型定义，训练流程等常用组件，推出MindSpore CV/NLP/Audio/Yolo/OCR等系列
 - 原models仓模型实现是基于MindSpore原生API，并且有一定训练推理加速优化
-- 更多关于模型精度性能信息，请查阅[benchmark](benchmark)
+- 更多关于模型精度性能信息，请查阅[benchmark](benchmark_CN.md)
 
 ### 官方标准模型
 #### 

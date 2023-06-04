@@ -1,14 +1,17 @@
 # ![MindSpore Logo](https://gitee.com/mindspore/mindspore/raw/master/docs/MindSpore-logo.png)
 
-## Welcome to the Model Zoo for MindSpore
+## Welcome to the MindSpore Model Zoo
+### WHAT IS NEW:
 
-The MindSpore models repository provides classic SOTA models implmentation to help researchers and engineers to do their R&D work.
+- We've done code refactoring for classic SOTA models,modularized data processing, model definition&creation, training process and other common components with new lanched MindSpore CV/NLP/Audio/Yolo/OCR Series toolbox
+- Old models were implemented by original MindSpore API with tricks for model training speedup
+
 
 | Directory               | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 |-------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | [official](official)    | • A collections of SOTA models implemented by MindSpore Latest API<br/>• Maintained by MindSpore Team        |
 | [research](research)    | • A collections of research models implemented by researchers and institution<br/>• Maintained by researchers and institution      |
-| [community](community)  | • A list of github/gitee repos of toolkit/models powered by MindSpore versions in the README<br/>• Model file is not necessarily provided                                                                                                                                                                                                                                                                                                                                                                         |
+| [community](community)  | • A list of github/gitee repos of toolkit/models powered by MindSpore |                                                                                                                                                                                                                                                                                                                                                                         |
 
 
 ## Disclaimers

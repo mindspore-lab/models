@@ -1,8 +1,9 @@
 # ![MindSpore Logo](https://gitee.com/mindspore/mindspore/raw/master/docs/MindSpore-logo.png)
 
 ## 欢迎来到MindSpore ModelZoo
-
-MindSpore models仓提供了经典的SOTA模型实现帮助研究人员和工程师开展研发工作。
+### WHAT IS NEW:
+- 我们对经典SOTA模型进行了重构，模块化数据处理，模型定义，训练流程等常用组件，推出MindSpore CV/NLP/Audio/Yolo/OCR等系列
+- 原models仓模型实现是基于MindSpore原生API，并且有一定训练推理加速优化
 
 | 目录                     | 描述                                                         |
 |------------------------| ------------------------------------------------------------ |

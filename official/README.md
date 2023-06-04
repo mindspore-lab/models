@@ -1,7 +1,7 @@
 ### WHAT IS NEW:
 - We've done code refactoring for classic SOTA models,modularized data processing, model definition&creation, training process and other common components with new lanched MindSpore CV/NLP/Audio/Yolo/OCR Series toolbox
 - Old models were implemented by original MindSpore API with some tricks for training process speedup
-- More information for model performance, please check [benchmark](benchmark)
+- More information for model performance, please check [benchmark](benchmark.md)
 
 ### Standard Models
 #### 
