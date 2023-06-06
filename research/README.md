@@ -4,7 +4,7 @@
 ### 计算机视觉
 #### 图像分类
 | model | paper | vanilla mindspore | 
-:-:     | :-:       | :-:   
+:-     | :-      | :-:  
 | lenet | [Gradient-Based Learning Applied to Document Recognition](https://ieeexplore.ieee.org/document/726791) | [link](https://gitee.com/mindspore/models/tree/master/research/cv/lenet)
 | alexnet | [ImageNet Classification with Deep ConvolutionalNeural Networks](https://papers.nips.cc/paper_files/paper/2012/hash/c399862d3b9d6b76c8436e924a68c45b-Abstract.html) | [link](https://gitee.com/mindspore/models/tree/master/research/cv/Alexnet)
 | repvgg         |   [RepVGG: Making VGG-style ConvNets Great Again](https://arxiv.org/abs/2101.03697)  |  [link](https://gitee.com/mindspore/models/tree/master/research/cv/repvgg)           |
@@ -13,13 +13,13 @@
 
 #### 检测
 | model | paper | vanilla mindspore | 
-:-:     | :-:       | :-:   
+:-     | :-      | :-:  
 | rcnn | [Rich feature hierarchies for accurate object detection and semantic segmentation](https://arxiv.org/abs/1311.2524) | [link](https://gitee.com/mindspore/models/tree/master/research/cv/rcnn)
 
 
 #### 分割
 | model | paper | vanilla mindspore | 
-:-:     | :-:       | :-:   
+:-     | :-      | :-:  
 | 3d densenet         |   [Skip-connected 3D DenseNet for volumetric infant brain MRI segmentation](https://www.sciencedirect.com/science/article/abs/pii/S1746809419301946)  |  [link](https://gitee.com/mindspore/models/tree/master/research/cv/3D_DenseNet)           |
 | 3d cnn         |   [MRI tumor segmentation with densely connected 3D CNN](https://arxiv.org/abs/1802.02427)  |  [link](https://gitee.com/mindspore/models/tree/master/research/cv/3dcnn)           |   
 | pspnet | [Pyramid Scene Parsing Network](https://arxiv.org/abs/1612.01105) | [link](https://gitee.com/mindspore/models/tree/master/research/cv/PSPNet) |
@@ -43,20 +43,20 @@
 
 #### 人脸
 | model | paper | vanilla mindspore | 
-:-:     | :-:       | :-:   
+:-     | :-      | :-:  
 | faceboxes        |   [FaceBoxes: A CPU Real-time Face Detector with High Accuracy](https://arxiv.org/abs/1708.05234)  |  [link](https://gitee.com/mindspore/models/tree/master/research/cv/faceboxes)           |
 
 
 #### OCR
 | model | paper | vanilla mindspore | 
-:-:     | :-:       | :-:   
+:-     | :-      | :-:  
 | east        |   [EAST: An Efficient and Accurate Scene Text Detector.](https://arxiv.org/abs/1704.03155)  |  [link](https://gitee.com/mindspore/models/tree/master/research/cv/east)           |
 
 
 #### 视频
 
 | model | paper | vanilla mindspore | 
-:-:     | :-:       | :-:   
+:-     | :-      | :-: 
 | adnet         |   [Action-Decision Networks for Visual Tracking with Deep Reinforcement Learning](https://openaccess.thecvf.com/content_cvpr_2017/papers/Yun_Action-Decision_Networks_for_CVPR_2017_paper.pdf)  |  [link](https://gitee.com/mindspore/models/tree/master/research/cv/ADNet)           |
 
 
@@ -64,7 +64,7 @@
 
 
 | model | paper | vanilla mindspore | 
-:-:     | :-:       | :-:    
+:-     | :-      | :-: 
 | ap drawing gan         |   [APDrawingGAN: Generating Artistic Portrait Drawings from Face Photos with Hierarchical GANs](https://openaccess.thecvf.com/content_CVPR_2019/html/Yi_APDrawingGAN_Generating_Artistic_Portrait_Drawings_From_Face_Photos_With_Hierarchical_CVPR_2019_paper.html)  |  [link](https://gitee.com/mindspore/models/tree/master/research/cv/APDrawingGAN)  
 
 
