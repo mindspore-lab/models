@@ -211,9 +211,8 @@
 | flownet2         | [FlowNet 2.0: Evolution of Optical Flow Estimation with Deep Networks](https://arxiv.org/abs/1612.01925) | [link](https://gitee.com/mindspore/models/tree/master/research/cv/flownet2) |
 | ArtTrack         | [Arttrack: articulated multi-person tracking in the wild](https://arxiv.org/abs/1612.01465) | [link](https://gitee.com/mindspore/models/tree/master/research/cv/ArtTrack)|
 | osvos            | [One-Shot Video Object Segmentation](https://arxiv.org/abs/1611.05198) | [link](https://gitee.com/mindspore/models/tree/master/research/cv/OSVOS) |
-#### 图像编辑
 
-
+#### Image Editing
 | model                       | paper                                                        |                      vanilla mindspore                       |
 | :-------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------: |
 | learning to see in the dark | [Learning to See in the Dark](https://arxiv.org/abs/1805.01934) | [link](https://gitee.com/mindspore/models/tree/master/research/cv/LearningToSeeInTheDark) |
