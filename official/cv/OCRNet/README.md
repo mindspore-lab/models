@@ -45,30 +45,35 @@ your directory tree should be look like this:：
 ### Training
 
 ```shell
-# standalone training
+# single card
 python train.py --config config/ocrnet/config_ocrnet_hrw32_16k.yaml
 ```
 ```shell
-# distributed training
+# multiple cards using openmpi
 mpirun --allow-run-as-root -n 8 
     python train.py --config config/ocrnet/config_ocrnet_hrw32_16k.yaml
+```
+
+```shell
+# training on modelarts
+to do
 ```
 
 ### evaluation
 
 ```shell
-# evaluate on single card
-python eval.py --config config/ocrnet/config_ocrnet_hrw32_16k.yml --ckpt_path [downloaded_ckpt]
+# single card
+python eval.py --config config/ocrnet/config_ocrnet_hrw32_16k.yaml --ckpt_path [downloaded_ckpt]
 
-# evaluate on 8 cards
+# multiple cards using openmpi
 mpirun --allow-run-as-root -n 8 
-    python eval.py --config config/ocrnet/config_ocrnet_hrw32_16k.yml --ckpt_path [downloaded_ckpt]
+    python eval.py --config config/ocrnet/config_ocrnet_hrw32_16k.yaml --ckpt_path [downloaded_ckpt]
 ```
 
 ### resume training
 
 ```shell
-python train.py --config config/ocrnet/config_ocrnet_hrw32_16k.yml --resume_ckpt [ckpt_to_resume]
+python train.py --config config/ocrnet/config_ocrnet_hrw32_16k.yaml --resume_ckpt [ckpt_to_resume]
 ```
 
 ## Citation
