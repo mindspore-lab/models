@@ -1,5 +1,5 @@
 # Base
 mindspore>=2.0
-mindcv
+mindcv>=0.2
 opencv-python>=4.7.0.
 opencv-python-headles

@@ -29,7 +29,7 @@ def get_args_train(parents=None):
         "--ms_mode", type=int, default=0, help="Running in GRAPH_MODE(0) or PYNATIVE_MODE(1) (default=0)"
     )
     parser.add_argument("--device_target", type=str, default="Ascend", help="device target, Ascend/GPU/CPU")
-    parser.add_argument("--checkpoint_path", type=str, default="", help="pre trained weights path")
+    parser.add_argument("--ckpt_path", type=str, default="", help="pre trained weights path")
     parser.add_argument("--visualize", type=ast.literal_eval, default=False, help="visualize when eval")
     parser.add_argument("--save_dir", type=str, default="output", help="save dir")
     parser.add_argument("--mix", type=ast.literal_eval, default=True, help="Mix Precision")
