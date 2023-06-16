@@ -1,0 +1,42 @@
+import mindspore as ms
+from mindspore import ops, nn
+
+
+def train_one(network, optimizer, loss_scaler, grad_reducer):
+    def forward_func(imgs, gt_class, gt_bbox):
+        loss, rois_loss, bbox_losses = network(imgs, gt_class, gt_bbox)
+        return loss_scaler.scale(loss), rois_loss, bbox_losses
+
+    grad_fn = ops.value_and_grad(forward_func, grad_position=None, weights=optimizer.parameters, has_aux=True)
+
+    def train_step_func(imgs, gt_class, gt_bbox):
+        (loss, loss_rpn, loss_rcnn), grads = grad_fn(imgs, gt_class, gt_bbox)
+        grads = loss_scaler.unscale(grads)
+        loss = loss_scaler.unscale(loss)
+        grads = grad_reducer(grads)
+        loss = ops.depend(loss, optimizer(grads))
+        return loss, loss_rpn, loss_rcnn
+
+    return train_step_func
+
+
+class TrainOneStepCell(nn.TrainOneStepWithLossScaleCell):
+    def __init__(self, network, optimizer, loss_scaler, grad_reducer, clip_grads=False):
+        scale_sense = ms.Tensor(1.0, ms.float32)
+        super(TrainOneStepCell, self).__init__(network, optimizer, scale_sense)
+        self.loss_scaler = loss_scaler
+        self.grad_reducer = grad_reducer
+        self.clip_grads = clip_grads
+
+    def construct(self, *inputs):
+        weights = self.weights
+        outputs = self.network(*inputs)
+        loss, loss_rpn, loss_rcnn = outputs
+        sens_tuple = (ops.ones_like(loss) * self.loss_scaler.scale_value,)
+        for i in range(1, len(outputs)):
+            sens_tuple += (ops.zeros_like(outputs[i]),)
+        grads = self.grad(self.network, weights)(*inputs, sens_tuple)
+        grads = self.loss_scaler.unscale(grads)
+        grads = self.grad_reducer(grads)
+        loss = ops.depend(loss, self.optimizer(grads))
+        return loss, loss_rpn, loss_rcnn

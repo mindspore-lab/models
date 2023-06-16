@@ -1,10 +1,10 @@
 ## Research Models
 
-### Computer Vision
+### 机器视觉
 
-#### Image Classification
+#### 图像分类
 
-| model                   | paper                                                        |                      vanilla mindspore                       |
+| 模型                   | 论文                                                      |                      MindSpore实现                       |
 | :---------------------- | :----------------------------------------------------------- | :----------------------------------------------------------: |
 | lenet                   | [Gradient-Based Learning Applied to Document Recognition](https://ieeexplore.ieee.org/document/726791) | [link](https://gitee.com/mindspore/models/tree/master/research/cv/lenet) |
 | googlenet               | [Going Deeper with Convolutions](https://arxiv.org/abs/1409.4842) | [link](https://gitee.com/mindspore/models/tree/master/research/cv/googlenet) |
@@ -90,9 +90,9 @@
 | dem                     | [Learning a Deep Embedding Model for Zero-Shot Learning](https://arxiv.org/abs/1611.05088) | [link](https://gitee.com/mindspore/models/tree/master/research/cv/dem) |
 | triplet_loss_resnet50   | [Beyond triplet loss: A deep quadruplet network for person re-identification](https://arxiv.org/abs/1503.03832) | [link](https://gitee.com/mindspore/models/tree/master/research/cv/metric_learn) |
 
-#### Detection
+#### 检测
 
-| model                   | paper                                                        |                      vanilla mindspore                      |
+| 模型                   | 论文                                                      |                      MindSpore实现                       |
 | :---------------------- | :----------------------------------------------------------- | :----------------------------------------------------------: |
 | rcnn                    | [Rich feature hierarchies for accurate object detection and semantic segmentation](https://arxiv.org/abs/1311.2524) | [link](https://gitee.com/mindspore/models/tree/master/research/cv/rcnn) |
 | cascadercnn             | [Cascade R-CNN: Delving into High Quality Object Detection](https://arxiv.org/abs/1712.00726) | [link](https://gitee.com/mindspore/models/tree/master/research/cv/CascadeRCNN) |
@@ -131,9 +131,9 @@
 | ras                     | [Reverse attention-based residual network for salient object detection](https://ieeexplore.ieee.org/abstract/document/8966594) | [link](https://gitee.com/mindspore/models/tree/master/research/cv/ras)|
 | hed                     | [Holistically-nested edge detection](https://arxiv.org/abs/1504.06375) | [link](https://gitee.com/mindspore/models/tree/master/research/cv/hed)|
 
-#### Segmentation
+#### 分割
 
-| model | paper | vanilla mindspore |
+| 模型                   | 论文                                                      |                      MindSpore实现                       |
 |:-     | :-      | :-:  |
 | 3d densenet              | [Skip-connected 3D DenseNet for volumetric infant brain MRI segmentation](https://www.sciencedirect.com/science/article/abs/pii/S1746809419301946)  |  [link](https://gitee.com/mindspore/models/tree/master/research/cv/3D_DenseNet)           |
 | 3d cnn                   | [MRI tumor segmentation with densely connected 3D CNN](https://arxiv.org/abs/1802.02427)  |  [link](https://gitee.com/mindspore/models/tree/master/research/cv/3dcnn)           |
@@ -157,9 +157,9 @@
 | erfnet                  | [ERFNet: Efficient Residual Factorized ConvNet for Real-Time Semantic Segmentation](https://ieeexplore.ieee.org/document/8063438) | [link](https://gitee.com/mindspore/models/tree/master/research/cv/erfnet) |
 | semantic human matting                | [Semantic Human Matting](https://arxiv.org/pdf/1809.01354.pdf) | [link](https://gitee.com/mindspore/models/tree/master/research/cv/SemanticHumanMatting) |
 
-#### Face
+#### 人脸
 
-| model                      | paper                                                        |                      vanilla mindspore                       |
+| 模型                   | 论文                                                      |                      MindSpore实现                       |
 | :------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------: |
 | faceboxes                  | [FaceBoxes: A CPU Real-time Face Detector with High Accuracy](https://arxiv.org/abs/1708.05234) | [link](https://gitee.com/mindspore/models/tree/master/research/cv/faceboxes) |
 | facedetection              | [YOLOv3: An Incremental Improvement](https://arxiv.org/abs/1804.02767) | [link](https://gitee.com/mindspore/models/tree/master/research/cv/FaceDetection) |
@@ -173,9 +173,9 @@
 | face-attribute          | [Deep Residual Learning for Image Recognition](https://arxiv.org/abs/1512.03385) | [link](https://gitee.com/mindspore/models/tree/master/research/cv/FaceAttribute) |
 | face-quality-assessment | [Deep Residual Learning for Image Recognition](https://arxiv.org/abs/1512.03385) | [link](https://gitee.com/mindspore/models/tree/master/research/cv/FaceQualityAssessment) |
 
-#### OCR
+#### 文字识别
 
-| model              | paper                                                        |                      vanilla mindspore                       |
+| 模型                   | 论文                                                      |                      MindSpore实现                       |
 | :----------------- | :----------------------------------------------------------- | :----------------------------------------------------------: |
 | east               | [EAST: An Efficient and Accurate Scene Text Detector](https://arxiv.org/abs/1704.03155) | [link](https://gitee.com/mindspore/models/tree/master/research/cv/east) |
 | psenet             | [Shape Robust Text Detection with Progressive Scale Expansion Network](https://arxiv.org/abs/1806.02559) | [link](https://gitee.com/mindspore/models/tree/master/research/cv/psenet) |
@@ -185,17 +185,17 @@
 | crnn_seq2seq_ocr   | [Robust Scene Text Recognition with Automatic Rectification](https://arxiv.org/abs/1603.03915) | [link](https://gitee.com/mindspore/models/tree/master/research/cv/crnn_seq2seq_ocr) |
 | essay-recogination | [OrigamiNet: Weakly-Supervised, Segmentation-Free, One-Step, Full Page Text Recognition by learning to unfold](https://arxiv.org/abs/2006.07491) | [link](https://gitee.com/mindspore/models/tree/master/research/cv/essay-recogination) |
 
-#### Anomaly Detection
+#### 异常检测
 
-| model              | paper                                                        |                      vanilla mindspore                       |
+| 模型                   | 论文                                                      |                      MindSpore实现                       |
 | :----------------- | :----------------------------------------------------------- | :----------------------------------------------------------: |
 | patch_core               | [Towards Total Recall in Industrial Anomaly Detection](https://arxiv.org/abs/2106.08265) | [link](https://gitee.com/mindspore/models/tree/master/research/cv/PatchCore) |
 | ssim-ae            | [Improving Unsupervised Defect Segmentation by Applying Structural Similarity To Autoencoders](https://www.researchgate.net/publication/326222902) | [link](https://gitee.com/mindspore/models/tree/master/research/cv/SSIM-AE) |
 | stpm            | [Student-Teacher Feature Pyramid Matching for Unsupervised Anomaly Detection](https://arxiv.org/pdf/2103.04257v2.pdf) | [link](https://gitee.com/mindspore/models/tree/master/research/cv/STPM) |
 
-#### Video
+#### 视频
 
-| model            | paper                                                        |                      vanilla mindspore                       |
+| 模型                   | 论文                                                      |                      MindSpore实现                       |
 | :--------------- | :----------------------------------------------------------- | :----------------------------------------------------------: |
 | c3d              | [Learning Spatiotemporal Features with 3D Convolutional Networks](https://arxiv.org/pdf/1412.0767.pdf) | [link](https://gitee.com/mindspore/models/tree/master/research/cv/C3D) |
 | adnet            | [Action-Decision Networks for Visual Tracking with Deep Reinforcement Learning](https://openaccess.thecvf.com/content_cvpr_2017/papers/Yun_Action-Decision_Networks_for_CVPR_2017_paper.pdf) | [link](https://gitee.com/mindspore/models/tree/master/research/cv/ADNet) |
@@ -222,9 +222,9 @@
 | ArtTrack         | [Arttrack: articulated multi-person tracking in the wild](https://arxiv.org/abs/1612.01465) | [link](https://gitee.com/mindspore/models/tree/master/research/cv/ArtTrack)|
 | osvos            | [One-Shot Video Object Segmentation](https://arxiv.org/abs/1611.05198) | [link](https://gitee.com/mindspore/models/tree/master/research/cv/OSVOS) |
 
-#### Image Editing
+#### 图像编辑
 
-| model                       | paper                                                        |                      vanilla mindspore                       |
+| 模型                   | 论文                                                      |                      MindSpore实现                       |
 | :-------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------: |
 | learning to see in the dark | [Learning to See in the Dark](https://arxiv.org/abs/1805.01934) | [link](https://gitee.com/mindspore/models/tree/master/research/cv/LearningToSeeInTheDark) |
 | dncnn                       | [Beyond a Gaussian Denoiser: Residual Learning of Deep CNN for Image Denoising](https://arxiv.org/abs/1608.03981) | [link](https://gitee.com/mindspore/models/tree/master/research/cv/dncnn) |
@@ -269,7 +269,7 @@
 
 #### Re-id
 
-| model              | paper                                                        |                      vanilla mindspore                       |
+| 模型                   | 论文                                                      |                      MindSpore实现                       |
 | :----------------- | :----------------------------------------------------------- | :----------------------------------------------------------: |
 | reidstrongbaseline | [A Strong Baseline and Batch Normalization Neck for Deep Person Re-identification](https://arxiv.org/abs/1906.08332) | [link](https://gitee.com/mindspore/models/tree/master/research/cv/ReIDStrongBaseline) |
 | vehiclenet         | [VehicleNet: Learning Robust Visual Representation for Vehicle Re-identification)](https://arxiv.org/abs/2004.06305) | [link](https://gitee.com/mindspore/models/tree/master/research/cv/VehicleNet) |
@@ -282,7 +282,7 @@
 
 #### Pose
 
-| model             | paper                                                        |                      vanilla mindspore                       |
+| 模型                   | 论文                                                      |                      MindSpore实现                       |
 | :---------------- | :----------------------------------------------------------- | :----------------------------------------------------------: |
 | simple_baselines  | [Simple Baselines for Human Pose Estimation and Tracking](https://arxiv.org/abs/1804.06208) | [link](https://gitee.com/mindspore/models/tree/master/research/cv/simple_baselines) |
 | stacked_hourglass | [Stacked Hourglass Networks for Human Pose Estimation](https://arxiv.org/abs/1603.06937) | [link](https://gitee.com/mindspore/models/tree/master/research/cv/StackedHourglass) |
@@ -291,7 +291,7 @@
 
 #### 3D
 
-| model        | paper                                                        |                      vanilla mindspore                       |
+| 模型                   | 论文                                                      |                      MindSpore实现                       |
 | :----------- | :----------------------------------------------------------- | :----------------------------------------------------------: |
 | cmr          | [Convolutional Mesh Regression for Single-Image Human Shape Reconstruction](https://arxiv.org/abs/1905.03244) | [link](https://gitee.com/mindspore/models/tree/master/research/cv/cmr) |
 | decomr       | [3D Human Mesh Regression with Dense Correspondence](https://arxiv.org/abs/2006.05734) | [link](https://gitee.com/mindspore/models/tree/master/research/cv/DecoMR) |
@@ -301,17 +301,17 @@
 | oct_squeeze | [Octsqueeze: Octree-structured entropy model for lidar compression](https://arxiv.org/abs/2005.07178) | [link](https://gitee.com/mindspore/models/tree/master/research/cv/OctSqueeze) |
 | unet3d  | [Unet3D: Learning Dense Volumetric Segmentation from Sparse Annotation](http://arxiv.org/abs/1606.06650) | [link](https://gitee.com/mindspore/models/tree/master/research/cv/Unet3d) |
 
-#### Multi Modal
+#### 多模态
 
-| model       | paper                                                        |                      vanilla mindspore                       |
+| 模型                   | 论文                                                      |                      MindSpore实现                       |
 | :---------- | :----------------------------------------------------------- | :----------------------------------------------------------: |
 | opt         | [OPT: Omni-Perception Pre-Trainer for Cross-Modal Understanding and Generation](https://arxiv.org/abs/2107.00249) | [link](https://gitee.com/mindspore/models/tree/master/research/mm/opt) |
 | tokenfusion | [Multimodal Token Fusion for Vision Transformers](https://arxiv.org/abs/2204.08721) | [link](https://gitee.com/mindspore/models/tree/master/research/cv/TokenFusion) |
 | wukong      | [Wukong: A 100 Million Large-scale Chinese Cross-modal Pre-training Benchmark](https://arxiv.org/abs/2202.06767) | [link](https://gitee.com/mindspore/models/tree/master/research/mm/wukong) |
 
-#### Others
+#### 其他
 
-| model   | paper                                                        |                      vanilla mindspore                       |
+| 模型                   | 论文                                                      |                      MindSpore实现                       |
 | :------ | :----------------------------------------------------------- | :----------------------------------------------------------: |
 | depthNet | [Depth Map Prediction from a Single Image using a Multi-Scale Deep Network](https://arxiv.org/abs/1406.2283) | [link](https://gitee.com/mindspore/models/tree/master/research/cv/DepthNet) |
 | pwcnet   | [PWC-Net: CNNs for Optical Flow Using Pyramid, Warping, and Cost Volume](https://arxiv.org/pdf/1709.02371.pdf) | [link](https://gitee.com/mindspore/models/tree/master/research/cv/PWCNet) |
@@ -325,9 +325,9 @@
 | pcb_rpp            | [Beyond Part Models: Person Retrieval with Refined Part Pooling (and a Strong Convolutional Baseline)](https://arxiv.org/abs/1711.09349) | [link](https://gitee.com/mindspore/models/tree/master/research/cv/pcb_rpp) |
 | manidp             | [Manifold Regularized Dynamic Network Pruning](https://arxiv.org/abs/2103.05861) | [link](https://gitee.com/mindspore/models/tree/master/research/cv/ManiDP) |
 
-### Speech
+### 语音
 
-| model      | paper                                                        |                      vanilla mindspore                       |
+| 模型                   | 论文                                                      |                      MindSpore实现                       |
 | :--------- | :----------------------------------------------------------- | :----------------------------------------------------------: |
 | ctcmodel   | [Connectionist temporal classification: labelling unsegmented sequence data with recurrent neural networks](https://dl.acm.org/doi/abs/10.1145/1143844.1143891) | [link](https://gitee.com/mindspore/models/tree/master/research/audio/ctcmodel) |
 | dscnn      | [Hello Edge: Keyword Spotting on Microcontrollers](https://arxiv.org/abs/1711.07128) | [link](https://gitee.com/mindspore/models/tree/master/research/audio/dscnn) |
@@ -337,9 +337,9 @@
 | wavenet    | [WaveNet: A Generative Model for Raw Audio](https://arxiv.org/abs/1609.03499) | [link](https://gitee.com/mindspore/models/tree/master/research/audio/wavenet) |
 | speech_transformer | [The Speechtransformer for Large-scale Mandarin Chinese Speech Recognition](https://ieeexplore.ieee.org/document/8682586) | [link](https://gitee.com/mindspore/models/tree/master/research/nlp/speech_transformer) |
 
-### Text
+### 文本
 
-| model              | paper                                                        |                      vanilla mindspore                       |
+| 模型                   | 论文                                                      |                      MindSpore实现                       |
 | :----------------- | :----------------------------------------------------------- | :----------------------------------------------------------: |
 | albert             | [ALBERT: A Lite BERT for Self-supervised Learning of Language Representations](https://arxiv.org/abs/1909.11942) | [link](https://gitee.com/mindspore/models/tree/master/research/nlp/albert) |
 | atae_lstm          | [Attention-based LSTM for Aspect-level Sentiment Classification](https://aclanthology.org/D16-1058/) | [link](https://gitee.com/mindspore/models/tree/master/research/nlp/atae_lstm) |
@@ -370,9 +370,9 @@
 | textrcnn           | [Recurrent Convolutional Neural Networks for Text Classification](https://ojs.aaai.org/index.php/AAAI/article/view/9513) | [link](https://gitee.com/mindspore/models/tree/master/research/nlp/textrcnn) |
 | hypertext          | [HyperText: Endowing FastText with Hyperbolic Geometry](https://arxiv.org/abs/2010.16143) | [link](https://gitee.com/mindspore/models/tree/master/research/nlp/hypertext) |
 
-### Graph
+### 图
 
-| model     | paper                                                        |                      vanilla mindspore                       |
+| 模型                   | 论文                                                      |                      MindSpore实现                       |
 | :-------- | :----------------------------------------------------------- | :----------------------------------------------------------: |
 | dgcn      | [Dual Graph Convolutional Networks for Graph-Based Semi-Supervised Classification](https://www.researchgate.net/publication/324514333_Dual_Graph_Convolutional_Networks_for_Graph-Based_Semi-Supervised_Classification) | [link](https://gitee.com/mindspore/models/tree/master/research/gnn/dgcn) |
 | sdne      | [Structural Deep Network Embedding](https://dl.acm.org/doi/abs/10.1145/2939672.2939753) | [link](https://gitee.com/mindspore/models/tree/master/research/gnn/sdne) |
@@ -380,9 +380,9 @@
 | bgcf      | [A Framework for Recommending Accurate and Diverse Items Using Bayesian Graph Convolutional Neural Networks](https://dl.acm.org/doi/abs/10.1145/3394486.3403254) | [link](https://gitee.com/mindspore/models/tree/master/research/gnn/bgcf) |
 | gat       | [Graph Attention Networks](https://arxiv.org/abs/1710.10903) | [link](https://gitee.com/mindspore/models/tree/master/research/gnn/gat) |
 
-### Recommendation
+### 推荐
 
-| model          | paper                                                        |                      vanilla mindspore                       |
+| 模型                   | 论文                                                      |                      MindSpore实现                       |
 | :------------- | :----------------------------------------------------------- | :----------------------------------------------------------: |
 | autodis        | [An Embedding Learning Framework for Numerical Features in CTR Prediction](https://arxiv.org/abs/2012.08986) | [link](https://gitee.com/mindspore/models/tree/master/research/recommend/autodis) |
 | DIEN           | [Deep Interest Evolution Network for Click-Through Rate Prediction](https://arxiv.org/abs/1809.03672) | [link](https://gitee.com/mindspore/models/tree/master/research/recommend/DIEN) |
@@ -395,9 +395,9 @@
 | naml           | [Neural News Recommendation with Attentive Multi-View Learning](https://arxiv.org/abs/1907.05576) | [link](https://gitee.com/mindspore/models/tree/master/research/recommend/naml) |
 | ncf            | [Neural Collaborative Filtering](https://arxiv.org/abs/1708.05031) | [link](https://gitee.com/mindspore/models/tree/master/research/recommend/ncf) |
 
-### HPC
+### 高性能计算
 
-| model              | paper                                                        |                      vanilla mindspore                       |
+| 模型                   | 论文                                                      |                      MindSpore实现                       |
 | :----------------- | :----------------------------------------------------------- | :----------------------------------------------------------: |
 | deepbsde           | [Pricing Barrier Options with DeepBSDEs](https://arxiv.org/abs/2005.10966) | [link](https://gitee.com/mindspore/models/tree/master/research/hpc/deepbsde) |
 | molecular_dynamics | [Deep Potential Molecular Dynamics: a scalable model with the accuracy of quantum mechanics](https://arxiv.org/abs/1707.09571) | [link](https://gitee.com/mindspore/models/tree/master/research/hpc/molecular_dynamics) |
