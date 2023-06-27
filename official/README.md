@@ -229,6 +229,80 @@
 | crnn_resnet34_vd   | IC03,13,15,IIT,etc | 84.45 | [config](https://github.com/mindspore-lab/mindocr/tree/main/configs/rec/crnn)   |   |
 | rare_resnet34_vd   | IC03,13,15,IIT,etc | 85.19 | [config](https://github.com/mindspore-lab/mindocr/tree/main/configs/rec/rare)   |   |
 
+#### Inference for MindOCR Models
+
+##### Text Detection
+
+|       model       |  dataset  |  FPS  |                        mindocr recipe                        |
+| :---------------: | :-------: | :---: | :----------------------------------------------------------: |
+| dbnet_mobilenetv3 | icdar2015 | 26.19 | [config](https://github.com/mindspore-lab/mindocr/tree/main/configs/det/dbnet) |
+|  dbnet_resnet18   | icdar2015 | 24.04 | [config](https://github.com/mindspore-lab/mindocr/tree/main/configs/det/dbnet) |
+|  dbnet_resnet50   | icdar2015 | 21.69 | [config](https://github.com/mindspore-lab/mindocr/tree/main/configs/det/dbnet) |
+| dbnet++_resnet50  | icdar2015 | 8.46  | [config](https://github.com/mindspore-lab/mindocr/tree/main/configs/det/dbnet) |
+| psenet_resnet152  | icdar2015 | 2.31  | [config](https://github.com/mindspore-lab/mindocr/tree/main/configs/det/psenet) |
+|   east_resnet50   | icdar2015 | 6.72  | [config](https://github.com/mindspore-lab/mindocr/tree/main/configs/det/east) |
+
+##### Text Recognition
+
+|      model       |  dataset  |  FPS   |                        mindocr recipe                        |
+| :--------------: | :-------: | :----: | :----------------------------------------------------------: |
+|    crnn_vgg7     | icdar2015 | 465.64 | [config](https://github.com/mindspore-lab/mindocr/tree/main/configs/rec/crnn) |
+| crnn_resnet34_vd | icdar2015 | 397.29 | [config](https://github.com/mindspore-lab/mindocr/tree/main/configs/rec/crnn) |
+| rare_resnet34_vd | icdar2015 | 273.23 | [config](https://github.com/mindspore-lab/mindocr/tree/main/configs/rec/rare) |
+
+#### Inference for Third-party Models
+
+##### Text Detection
+
+|             name              |       model        |  dataset  |  FPS  |                            source                            |
+| :---------------------------: | :----------------: | :-------: | :---: | :----------------------------------------------------------: |
+|   ch_ppocr_server_v2.0_det    | dbnet_resnet18_vd  |   MLT17   | 21.65 | [PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR/blob/release/2.6/doc/doc_en/models_list_en.md) |
+|        ch_PP-OCRv3_det        | dbnet_mobilenetv3  |   MLT17   | 22.40 | [PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR/blob/release/2.6/doc/doc_en/models_list_en.md) |
+|        ch_PP-OCRv2_det        | dbnet_mobilenetv3  |   MLT17   | 21.90 | [PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR/blob/release/2.6/doc/doc_en/models_list_en.md) |
+| ch_ppocr_mobile_slim_v2.0_det | dbnet_mobilenetv3  |   MLT17   | 19.88 | [PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR/blob/release/2.6/doc/doc_en/models_list_en.md) |
+|   ch_ppocr_mobile_v2.0_det    | dbnet_mobilenetv3  |   MLT17   | 21.96 | [PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR/blob/release/2.6/doc/doc_en/models_list_en.md) |
+|        en_PP-OCRv3_det        | dbnet_mobilenetv3  | icdar2015 | 55.55 | [PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR/blob/release/2.6/doc/doc_en/models_list_en.md) |
+|        ml_PP-OCRv3_det        | dbnet_mobilenetv3  |   MLT17   | 22.48 | [PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR/blob/release/2.6/doc/doc_en/models_list_en.md) |
+|       dbnet_resnet50_vd       | dbnet_resnet50_vd  | icdar2015 | 21.17 | [PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR/blob/release/2.6/doc/doc_en/algorithm_det_db_en.md) |
+|      psenet_resnet50_vd       | psenet_resnet50_vd | icdar2015 | 7.75  | [PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR/blob/release/2.6/doc/doc_en/algorithm_det_psenet_en.md) |
+|       east_resnet50_vd        |  east_resnet50_vd  | icdar2015 | 20.70 | [PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR/blob/release/2.6/doc/doc_en/algorithm_det_east_en.md) |
+|       sast_resnet50_vd        |  sast_resnet50_vd  | icdar2015 | 22.14 | [PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR/blob/release/2.6/doc/doc_en/algorithm_det_sast_en.md) |
+|       dbnet++_resnet50        |  dbnet++_resnet50  | icdar2015 | 10.66 | [MMOCR](https://github.com/open-mmlab/mmocr/tree/main/configs/textdet/dbnetpp) |
+|        fcenet_resnet50        |  fcenet_resnet50   | icdar2015 | 3.34  | [MMOCR](https://github.com/open-mmlab/mmocr/blob/main/configs/textdet/fcenet) |
+
+##### Text Recognition
+
+|              name              |          model           |       dataset        |  FPS   |                            source                            |
+| :----------------------------: | :----------------------: | :------------------: | :----: | :----------------------------------------------------------: |
+|    ch_ppocr_server_v2.0_rec    |      crnn_resnet34       | MLT17 (only Chinese) | 154.16 | [PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR/blob/release/2.6/doc/doc_en/models_list_en.md) |
+|        ch_PP-OCRv3_rec         | svtr_mobilenetv1_enhance | MLT17 (only Chinese) | 408.38 | [PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR/blob/release/2.6/doc/doc_en/models_list_en.md) |
+|        ch_PP-OCRv2_rec         | crnn_mobilenetv1_enhance | MLT17 (only Chinese) | 203.34 | [PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR/blob/release/2.6/doc/doc_en/models_list_en.md) |
+|    ch_ppocr_mobile_v2.0_rec    |     crnn_mobilenetv3     | MLT17 (only Chinese) | 167.67 | [PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR/blob/release/2.6/doc/doc_en/models_list_en.md) |
+|        en_PP-OCRv3_rec         | svtr_mobilenetv1_enhance | MLT17 (only English) | 917.01 | [PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR/blob/release/2.6/doc/doc_en/models_list_en.md) |
+| en_number_mobile_slim_v2.0_rec |     crnn_mobilenetv3     | MLT17 (only English) | 445.04 | [PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR/blob/release/2.6/doc/doc_en/models_list_en.md) |
+|   en_number_mobile_v2.0_rec    |     crnn_mobilenetv3     | MLT17 (only English) | 458.66 | [PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR/blob/release/2.6/doc/doc_en/models_list_en.md) |
+|      korean_PP-OCRv3_rec       | svtr_mobilenetv1_enhance |          /           |   /    | [PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR/blob/release/2.6/doc/doc_en/models_list_en.md) |
+|       japan_PP-OCRv3_rec       | svtr_mobilenetv1_enhance |          /           |   /    | [PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR/blob/release/2.6/doc/doc_en/models_list_en.md) |
+|    chinese_cht_PP-OCRv3_rec    | svtr_mobilenetv1_enhance |          /           |   /    | [PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR/blob/release/2.6/doc/doc_en/models_list_en.md) |
+|        te_PP-OCRv3_rec         | svtr_mobilenetv1_enhance |          /           |   /    | [PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR/blob/release/2.6/doc/doc_en/models_list_en.md) |
+|        ka_PP-OCRv3_rec         | svtr_mobilenetv1_enhance |          /           |   /    | [PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR/blob/release/2.6/doc/doc_en/models_list_en.md) |
+|        ta_PP-OCRv3_rec         | svtr_mobilenetv1_enhance |          /           |   /    | [PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR/blob/release/2.6/doc/doc_en/models_list_en.md) |
+|       latin_PP-OCRv3_rec       | svtr_mobilenetv1_enhance |          /           |   /    | [PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR/blob/release/2.6/doc/doc_en/models_list_en.md) |
+|      arabic_PP-OCRv3_rec       | svtr_mobilenetv1_enhance |          /           |   /    | [PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR/blob/release/2.6/doc/doc_en/models_list_en.md) |
+|     cyrillic_PP-OCRv3_rec      | svtr_mobilenetv1_enhance |          /           |   /    | [PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR/blob/release/2.6/doc/doc_en/models_list_en.md) |
+|    devanagari_PP-OCRv3_rec     | svtr_mobilenetv1_enhance |          /           |   /    | [PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR/blob/release/2.6/doc/doc_en/models_list_en.md) |
+|        crnn_resnet34_vd        |     crnn_resnet34_vd     |      icdar2015       | 420.80 | [PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR/blob/release/2.6rc/doc/doc_en/algorithm_rec_crnn_en.md) |
+|      rosetta_resnet34_vd       |   rosetta_resnet34_vd    |      icdar2015       | 552.40 | [PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR/blob/release/2.6/doc/doc_en/algorithm_rec_rosetta_en.md) |
+|             vitstr             |          vitstr          |      icdar2015       | 364.67 | [PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR/blob/release/2.6/doc/doc_en/algorithm_rec_vitstr_en.md) |
+|         nrtr_resnet31          |      nrtr_resnet31       |      icdar2015       | 32.63  | [MMOCR](https://github.com/open-mmlab/mmocr/blob/main/configs/textrecog/nrtr) |
+|        satrn_shallowcnn        |     satrn_shallowcnn     |      icdar2015       | 32.14  | [MMOCR](https://github.com/open-mmlab/mmocr/blob/main/configs/textrecog/satrn) |
+
+##### Text Direction Classification
+
+|           name           |    model    | dataset | FPS  |                            source                            |
+| :----------------------: | :---------: | :-----: | :--: | :----------------------------------------------------------: |
+| ch_ppocr_mobile_v2.0_cls | mobilenetv3 |    /    |  /   | [PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR/blob/release/2.6/doc/doc_en/models_list_en.md) |
+
 ### Face
 
 | model | dataset | acc | mindface recipe | vanilla mindspore
