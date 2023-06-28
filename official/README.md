@@ -215,9 +215,8 @@
 
 ### OCR
 
-#### Training
 
-##### Text Detection
+### Text Detection
 
 | model  |dataset | F-score | mindocr recipe | vanilla mindspore |
 :-:     |   :-:       | :-:        | :-:   |  :-:   |
@@ -229,7 +228,7 @@
 | east_resnet50      | icdar2015          | 84.87 | [config](https://github.com/mindspore-lab/mindocr/tree/main/configs/det/east)   | [link](https://gitee.com/mindspore/models/tree/master/research/cv/east)    |
 | fcenet_resnet50    | icdar2015          | 84.12 | [config](https://github.com/mindspore-lab/mindocr/tree/main/configs/det/fcenet)   |   |
 
-##### Text Recognition
+### Text Recognition
 
 | model | dataset | acc | mindocr recipe | vanilla mindspore |
 :-:     |   :-:       | :-:        | :-:   |  :-:   |
@@ -238,11 +237,12 @@
 | crnn_resnet34_vd   | IC03,13,15,IIIT,etc | 84.45 | [config](https://github.com/mindspore-lab/mindocr/tree/main/configs/rec/crnn)   |   |
 | rare_resnet34_vd   | IC03,13,15,IIIT,etc | 85.19 | [config](https://github.com/mindspore-lab/mindocr/tree/main/configs/rec/rare)   | [link](https://gitee.com/mindspore/models/tree/master/research/cv/crnn_seq2seq_ocr)  |
 
-##### Text Direction Classification
+### Text Direction Classification
 
-| model | dataset | acc | mindocr recipe |
-:-:     |   :-:       | :-:        | :-:   |
+| model | dataset | acc | mindocr recipe | vanilla mindspore |
+:-:     |   :-:       | :-:        | :-:   | :-: |
 | mobilenetv3    | RCTW17,MTWI,LSVT | 94.59 | [config](https://github.com/mindspore-lab/mindocr/tree/main/configs/cls/mobilenetv3)   |
+
 
 ### Face
 

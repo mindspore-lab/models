@@ -185,11 +185,10 @@
 ### 
 ### OCR
 
-#### Training
+#### Training Performance on Ascend 910A
+#### Text Detection
 
-##### Text Detection
-
-| model  |dataset |bs | cards | F-score | ms/step | fps | amp | config |
+| model  |dataset |bs | cards | fscore | ms/step | fps | amp | config |
 :-:     |   :-:   | :-: | :-: |  :-:   |  :-:    | :-:  |  :-: |  :-:    |
 | dbnet_mobilenetv3  | icdar2015  | 10 | 1 | 77.23 | 100 | 100 | O0 | [mindocr_dbnet](https://github.com/mindspore-lab/mindocr/tree/main/configs/det/dbnet)  |
 | dbnet_resnet18     | icdar2015  | 20 | 1 | 81.73 | 186 | 108 | O0 | [mindocr_dbnet](https://github.com/mindspore-lab/mindocr/tree/main/configs/det/dbnet)  |
@@ -199,7 +198,7 @@
 | east_resnet50      | icdar2015  | 20 | 8 | 84.87 | 256 | 625 | O0 | [mindocr_east](https://github.com/mindspore-lab/mindocr/tree/main/configs/det/east)   |
 | fcenet_resnet50    | icdar2015  | 8 | 4 | 84.12 | 4570.64 | 7 | O0 | [mindocr_fcenet](https://github.com/mindspore-lab/mindocr/tree/main/configs/det/fcenet)   |
 
-##### Text Recognition
+#### Text Recognition
 
 | model  |dataset |bs | cards | acc | ms/step | fps | amp | config |
 :-:     |   :-:   | :-: | :-: |  :-:   |  :-:    | :-:  |  :-: |  :-:    |
@@ -208,8 +207,66 @@
 | crnn_resnet34_vd   | IC03,13,15,IIIT,etc | 64 | 8 | 84.45 | 76.48 | 6694.84 | O3 |  [mindocr_crnn](https://github.com/mindspore-lab/mindocr/tree/main/configs/rec/crnn)   |
 | rare_resnet34_vd   | IC03,13,15,IIIT,etc | 512 | 4 | 85.19 | 449 | 4561 | O2 |  [mindocr_rare](https://github.com/mindspore-lab/mindocr/tree/main/configs/rec/rare)   |
 
-##### Text Direction Classification
+#### Text Direction Classification
 
 | model  |dataset |bs | cards | acc | ms/step | fps | amp | config |
 :-:     |   :-:   | :-: | :-: |  :-:   |  :-:    | :-:  |  :-: |  :-:    |
 | mobilenetv3 | RCTW17,MTWI,LSVT | 256 | 4 | 94.59 | 172.9 | 5923.5 | O0 | [mindocr_mobilenetv3](https://github.com/mindspore-lab/mindocr/tree/main/configs/cls/mobilenetv3)   |
+
+
+#### Inference Performance on Ascend 310P for mindspore models
+#### Text Detection
+
+|       model       |  dataset  | fscore |  fps  |                        mindocr recipe                        |
+| :---------------: | :-------: | :-----: | :---: | :----------------------------------------------------------: |
+| dbnet_mobilenetv3 | icdar2015 | 0.7696  | 26.19 | [config](https://github.com/mindspore-lab/mindocr/tree/main/configs/det/dbnet) |
+|  dbnet_resnet18   | icdar2015 | 0.8173  | 24.04 | [config](https://github.com/mindspore-lab/mindocr/tree/main/configs/det/dbnet) |
+|  dbnet_resnet50   | icdar2015 | 0.8500  | 21.69 | [config](https://github.com/mindspore-lab/mindocr/tree/main/configs/det/dbnet) |
+| dbnet++_resnet50  | icdar2015 | 0.8679  | 8.46  | [config](https://github.com/mindspore-lab/mindocr/tree/main/configs/det/dbnet) |
+| psenet_resnet152  | icdar2015 | 0.8250  | 2.31  | [config](https://github.com/mindspore-lab/mindocr/tree/main/configs/det/psenet) |
+|   east_resnet50   | icdar2015 | 0.8686  | 6.72  | [config](https://github.com/mindspore-lab/mindocr/tree/main/configs/det/east) |
+
+#### Text Recognition
+
+|      model       |  dataset  |  acc   |  fps   |                        mindocr recipe                        |
+| :--------------: | :-------: | :----: | :----: | :----------------------------------------------------------: |
+|    crnn_vgg7     | icdar2015 | 0.6601 | 465.64 | [config](https://github.com/mindspore-lab/mindocr/tree/main/configs/rec/crnn) |
+| crnn_resnet34_vd | icdar2015 | 0.6967 | 397.29 | [config](https://github.com/mindspore-lab/mindocr/tree/main/configs/rec/crnn) |
+| rare_resnet34_vd | icdar2015 | 0.6947 | 273.23 | [config](https://github.com/mindspore-lab/mindocr/tree/main/configs/rec/rare) |
+
+
+#### Inference Performance on Ascend 310P for paddleocr/mmocr models via onnx
+#### Text Detection
+
+|             name              |       dataset  | fscore |  fps  |                            mindocr recipe                           |
+| :---------------------------: | :-------: | :-----: | :---: | :----------------------------------------------------------: |
+|   ch_ppocr_server_v2.0_det    |   MLT17   | 0.4622  | 21.65 | [config](https://github.com/mindspore-lab/mindocr/blob/main/docs/en/inference/models_list_thirdparty.md) |
+|        ch_PP-OCRv3_det        |   MLT17   | 0.3389  | 22.40 | [config](https://github.com/mindspore-lab/mindocr/blob/main/docs/en/inference/models_list_thirdparty.md)|
+|        ch_PP-OCRv2_det        |  MLT17   | 0.4299  | 21.90 | [config](https://github.com/mindspore-lab/mindocr/blob/main/docs/en/inference/models_list_thirdparty.md) |
+| ch_ppocr_mobile_slim_v2.0_det | MLT17   | 0.3166  | 19.88 | [config](https://github.com/mindspore-lab/mindocr/blob/main/docs/en/inference/models_list_thirdparty.md)|
+|   ch_ppocr_mobile_v2.0_det    |   MLT17   | 0.3156  | 21.96 | [config](https://github.com/mindspore-lab/mindocr/blob/main/docs/en/inference/models_list_thirdparty.md) |
+|        en_PP-OCRv3_det        |  icdar2015 | 0.4214  | 55.55 | [config](https://github.com/mindspore-lab/mindocr/blob/main/docs/en/inference/models_list_thirdparty.md) |
+|        ml_PP-OCRv3_det        |    MLT17   | 0.6601  | 22.48 | [config](https://github.com/mindspore-lab/mindocr/blob/main/docs/en/inference/models_list_thirdparty.md) |
+|       dbnet_resnet50_vd       | icdar2015 | 0.7989  | 21.17 | [config](https://github.com/mindspore-lab/mindocr/blob/main/docs/en/inference/models_list_thirdparty.md) |
+|      psenet_resnet50_vd       | icdar2015 | 0.8044  | 7.75  | [config](https://github.com/mindspore-lab/mindocr/blob/main/docs/en/inference/models_list_thirdparty.md)|
+|       east_resnet50_vd        |   icdar2015 | 0.8558  | 20.70 | [config](https://github.com/mindspore-lab/mindocr/blob/main/docs/en/inference/models_list_thirdparty.md) |
+|       sast_resnet50_vd        |   icdar2015 | 0.8177  | 22.14 | [config](https://github.com/mindspore-lab/mindocr/blob/main/docs/en/inference/models_list_thirdparty.md) |
+|       dbnet++_resnet50        |  icdar2015 | 0.8136  | 10.66 | [config](https://github.com/mindspore-lab/mindocr/blob/main/docs/en/inference/models_list_thirdparty.md) |
+|        fcenet_resnet50        |  icdar2015 | 0.8367  | 3.34  | [config](https://github.com/mindspore-lab/mindocr/blob/main/docs/en/inference/models_list_thirdparty.md)|
+
+#### Text Recognition
+
+|              name              |        dataset        |  acc   |  fps  |                           mindocr recipe                     |
+| :----------------------------: |  :------------------: | :----: | :----: | :----------------------------------------------------------: |
+|    ch_ppocr_server_v2.0_rec    |   MLT17 (ch) | 0.4991 | 154.16 | [config](https://github.com/mindspore-lab/mindocr/blob/main/docs/en/inference/models_list_thirdparty.md) |
+|        ch_PP-OCRv3_rec         |   MLT17 (ch) | 0.4991 | 408.38 | [config](https://github.com/mindspore-lab/mindocr/blob/main/docs/en/inference/models_list_thirdparty.md) |
+|        ch_PP-OCRv2_rec         |   MLT17 (ch) | 0.4459 | 203.34 | [config](https://github.com/mindspore-lab/mindocr/blob/main/docs/en/inference/models_list_thirdparty.md) |
+|    ch_ppocr_mobile_v2.0_rec    |   MLT17 (ch) | 0.2459 | 167.67 | [config](https://github.com/mindspore-lab/mindocr/blob/main/docs/en/inference/models_list_thirdparty.md) |
+|        en_PP-OCRv3_rec         |   MLT17 (en) | 0.7964 | 917.01 | [config](https://github.com/mindspore-lab/mindocr/blob/main/docs/en/inference/models_list_thirdparty.md) |
+| en_number_mobile_slim_v2.0_rec |   MLT17 (en) | 0.0164 | 445.04 | [config](https://github.com/mindspore-lab/mindocr/blob/main/docs/en/inference/models_list_thirdparty.md) |
+|   en_number_mobile_v2.0_rec    |   MLT17 (en) | 0.4304 | 458.66 | [config](https://github.com/mindspore-lab/mindocr/blob/main/docs/en/inference/models_list_thirdparty.md) |
+|        crnn_resnet34_vd        |  icdar2015       | 0.6635 | 420.80 | [config](https://github.com/mindspore-lab/mindocr/blob/main/docs/en/inference/models_list_thirdparty.md) |
+|      rosetta_resnet34_vd       |  icdar2015       | 0.6428 | 552.40 | [config](https://github.com/mindspore-lab/mindocr/blob/main/docs/en/inference/models_list_thirdparty.md)|
+|             vitstr             |  icdar2015       | 0.6842 | 364.67 | [config](https://github.com/mindspore-lab/mindocr/blob/main/docs/en/inference/models_list_thirdparty.md) |
+|         nrtr_resnet31          |  icdar2015       | 0.6726 | 32.63  | [config](https://github.com/mindspore-lab/mindocr/blob/main/docs/en/inference/models_list_thirdparty.md)|
+|        satrn_shallowcnn        |  icdar2015       | 0.7352 | 32.14  | [config](https://github.com/mindspore-lab/mindocr/blob/main/docs/en/inference/models_list_thirdparty.md) |

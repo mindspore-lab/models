@@ -215,11 +215,11 @@
 
 ### OCR
 
-#### 训练端
 
-##### 文本检测
 
-| model  |dataset | F-score | mindocr recipe | vanilla mindspore |
+#### 文本检测
+
+| model  |dataset | fscore | mindocr recipe | vanilla mindspore |
 :-:     |   :-:       | :-:        | :-:   |  :-:   |
 | dbnet_mobilenetv3  | icdar2015          | 77.23 | [config](https://github.com/mindspore-lab/mindocr/tree/main/configs/det/dbnet)  | [link](https://gitee.com/mindspore/models/tree/master/official/cv/DBNet/)  |
 | dbnet_resnet18     | icdar2015          | 81.73 | [config](https://github.com/mindspore-lab/mindocr/tree/main/configs/det/dbnet)  | [link](https://gitee.com/mindspore/models/tree/master/official/cv/DBNet/)  |
@@ -229,7 +229,7 @@
 | east_resnet50      | icdar2015          | 84.87 | [config](https://github.com/mindspore-lab/mindocr/tree/main/configs/det/east)   | [link](https://gitee.com/mindspore/models/tree/master/research/cv/east)    |
 | fcenet_resnet50    | icdar2015          | 84.12 | [config](https://github.com/mindspore-lab/mindocr/tree/main/configs/det/fcenet)   |   |
 
-##### 文本识别
+#### 文本识别
 
 | model | dataset | acc | mindocr recipe | vanilla mindspore |
 :-:     |   :-:       | :-:        | :-:   |  :-:   |
@@ -238,7 +238,7 @@
 | crnn_resnet34_vd   | IC03,13,15,IIIT,etc | 84.45 | [config](https://github.com/mindspore-lab/mindocr/tree/main/configs/rec/crnn)   |   |
 | rare_resnet34_vd   | IC03,13,15,IIIT,etc | 85.19 | [config](https://github.com/mindspore-lab/mindocr/tree/main/configs/rec/rare)   | [link](https://gitee.com/mindspore/models/tree/master/research/cv/crnn_seq2seq_ocr)  |
 
-##### 文本方向分类
+#### 文本方向分类
 
 | model | dataset | acc | mindocr recipe |
 :-:     |   :-:       | :-:        | :-:   |
@@ -258,7 +258,7 @@
 | retinaface_mobilenet_0.25    | WiderFace        | 90.77/88.2/74.76  | [config](https://github.com/mindspore-lab/mindface/tree/main/mindface/detection)  | [link](https://gitee.com/mindspore/models/tree/master/research/cv/retinaface) |
 | retinaface_r50               | WiderFace        | 95.07/93.61/84.84 | [config](https://github.com/mindspore-lab/mindface/tree/main/mindface/detection)  | [link](https://gitee.com/mindspore/models/tree/master/official/cv/RetinaFace_ResNet50) |
 
-### 敬请期待
+
 
 ## 免责声明
 
