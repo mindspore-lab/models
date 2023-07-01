@@ -1,16 +1,23 @@
 ## What Is New
 
-- We've done code refactoring for classic SOTA models,modularized data processing, model definition&creation, training process and other common components with new lanched MindSpore CV/NLP/Audio/Yolo/OCR Series toolbox
+- 2023.07.01: add llm model (including hot glm/llama/bloom from mindformers🔥)
+- 2023.06.01: We've done code refactoring for classic SOTA models,modularized data processing, model definition&creation, training process and other common components with new lanched MindSpore CV/NLP/Audio/Yolo/OCR Series toolbox
 
 - Old models were implemented by original MindSpore API with some tricks for training process speedup
 
 - More information for model performance, please check [benchmark](benchmark.md).
 
 ## Standard Models
+ - [image classification](#image-classification-backbone)
+ - [object detection](#object-detection)
+ - [semantic segmentation](#semantic-segmentation)
+ - [ocr](#ocr)
+ - [face](#face)
+ - [llm](#nlp)
 
 ### Computer Vision
 
-#### Image Classification（backbone）
+#### Image Classification (backbone)
 
 | model | acc@1 | mindcv recipe | vanilla mindspore |
 | :-:     | :-:        | :-:    | :-:  |
@@ -258,7 +265,29 @@
 | retinaface_mobilenet_0.25    | WiderFace        | 90.77/88.2/74.76  | [config](https://github.com/mindspore-lab/mindface/tree/main/mindface/detection)  | [link](https://gitee.com/mindspore/models/tree/master/research/cv/retinaface) |
 | retinaface_r50               | WiderFace        | 95.07/93.61/84.84 | [config](https://github.com/mindspore-lab/mindface/tree/main/mindface/detection)  | [link](https://gitee.com/mindspore/models/tree/master/official/cv/RetinaFace_ResNet50) |
 
-### More models are coming
+
+### nlp
+| model |  mindformer recipe | vanilla mindspore
+| :-:     |  :-:   | :-: |
+| bert_base   | [config](https://gitee.com/mindspore/mindformers/blob/dev/docs/model_cards/t5.md) | [link](https://gitee.com/mindspore/models/tree/master/official/nlp/Bert) |
+| t5_small    | [config](https://github.com/mindspore-lab/mindformers/blob/master/docs/model_cards/bert.md) |  |
+| gpt2_small  | [config](https://gitee.com/mindspore/mindformers/blob/dev/docs/model_cards/gpt2.md) |
+| gpt2_13b    | [config](https://gitee.com/mindspore/mindformers/blob/dev/docs/model_cards/gpt2.md) |
+| gpt2_52b    | [config](https://gitee.com/mindspore/mindformers/blob/dev/docs/model_cards/gpt2.md) |
+| pangu_alpha | [config](https://gitee.com/mindspore/mindformers/blob/dev/docs/model_cards/pangualpha.md) | 
+| glm_6b       | [config](https://gitee.com/mindspore/mindformers/blob/dev/docs/model_cards/glm.md)  |
+| glm_6b_lora  | [config](https://gitee.com/mindspore/mindformers/blob/dev/docs/model_cards/glm.md)  |
+| llama_7b     | [config](https://gitee.com/mindspore/mindformers/blob/dev/docs/model_cards/llama.md) |
+| llama_13b    | [config](https://gitee.com/mindspore/mindformers/blob/dev/docs/model_cards/llama.md) |
+| llama_65b    | [config](https://gitee.com/mindspore/mindformers/blob/dev/docs/model_cards/llama.md) |
+| llama_7b_lora | [config](https://gitee.com/mindspore/mindformers/blob/dev/docs/model_cards/llama.md) |
+| bloom_560m    | [config](https://gitee.com/mindspore/mindformers/blob/dev/docs/model_cards/bloom.md) |
+| bloom_7.1b    | [config](https://gitee.com/mindspore/mindformers/blob/dev/docs/model_cards/bloom.md) |
+| bloom_65b     | [config](https://gitee.com/mindspore/mindformers/blob/dev/docs/model_cards/bloom.md) |
+| bloom_176b    | [config](https://gitee.com/mindspore/mindformers/blob/dev/docs/model_cards/bloom.md) |
+
+### audio coming soon
+
 
 ## Disclaimers
 

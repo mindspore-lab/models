@@ -3,8 +3,12 @@
 ## Welcome to the MindSpore Model Zoo
 ### WHAT IS NEW:
 
-- We've done code refactoring for classic SOTA models,modularized data processing, model definition&creation, training process and other common components with new lanched MindSpore CV/NLP/Audio/Yolo/OCR Series toolbox
-- Old models were implemented by original MindSpore API with tricks for model training speedup
+- 2023.07.01: 🔥add [llm](https://github.com/mindspore-lab/models/tree/master/official/README.md/#nlp) model (including hot glm/llama/bloom from mindformers)
+- 2023.06.01: We've done code refactoring for classic SOTA models,modularized data processing, model definition&creation, training process and other common components with new lanched MindSpore CV/NLP/Audio/Yolo/OCR Series toolbox
+
+- Old models were implemented by original MindSpore API with some tricks for training process speedup
+
+- More information for model performance, please check [benchmark](benchmark.md).
 
 
 | Directory               | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |

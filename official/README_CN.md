@@ -1,13 +1,16 @@
 ## What Is New
-
-- 我们对经典SOTA模型进行了重构，模块化数据处理，模型定义，训练流程等常用组件，推出MindSpore CV/NLP/Audio/Yolo/OCR等系列
-
+- 2023.07.01: 🔥新增[语言模型](#语言模型) (包括热点模型glm/llama/bloom 来自于mindformers套件)
+- 2023.06.01: 我们对经典SOTA模型进行了重构，模块化数据处理，模型定义，训练流程等常用组件，推出MindSpore CV/NLP/Audio/Yolo/OCR等系列
 - 原models仓模型实现是基于MindSpore原生API，并且有一定训练推理加速优化
-
 - 更多关于模型精度性能信息，请查阅 [benchmark](benchmark_CN.md)。
 
 ## 官方标准模型
-
+ - [图像分类](#图像分类骨干类)
+ - [目标检测](#目标检测)
+ - [语义分割](#语义分割)
+ - [OCR](#ocr)
+ - [人脸](#人脸)
+ - [语言模型](#语言模型)
 ### 计算机视觉
 
 #### 图像分类（骨干类)
@@ -244,7 +247,7 @@
 :-:     |   :-:       | :-:        | :-:   |
 | mobilenetv3  | RCTW17,MTWI,LSVT | 94.59 | [config](https://github.com/mindspore-lab/mindocr/tree/main/configs/cls/mobilenetv3)   |
 
-### Face
+### 人脸
 
 | model | dataset | acc | mindface recipe | vanilla mindspore
 | :-:     |  :-:       | :-:        | :-:   | :-: |
@@ -258,7 +261,25 @@
 | retinaface_mobilenet_0.25    | WiderFace        | 90.77/88.2/74.76  | [config](https://github.com/mindspore-lab/mindface/tree/main/mindface/detection)  | [link](https://gitee.com/mindspore/models/tree/master/research/cv/retinaface) |
 | retinaface_r50               | WiderFace        | 95.07/93.61/84.84 | [config](https://github.com/mindspore-lab/mindface/tree/main/mindface/detection)  | [link](https://gitee.com/mindspore/models/tree/master/official/cv/RetinaFace_ResNet50) |
 
-
+### 语言模型
+| model |  mindformer recipe | vanilla mindspore
+| :-:     |  :-:   | :-: |
+| bert_base   | [config](https://gitee.com/mindspore/mindformers/blob/dev/docs/model_cards/t5.md) | [link](https://gitee.com/mindspore/models/tree/master/official/nlp/Bert) |
+| t5_small    | [config](https://github.com/mindspore-lab/mindformers/blob/master/docs/model_cards/bert.md) |  |
+| gpt2_small  | [config](https://gitee.com/mindspore/mindformers/blob/dev/docs/model_cards/gpt2.md) |
+| gpt2_13b    | [config](https://gitee.com/mindspore/mindformers/blob/dev/docs/model_cards/gpt2.md) |
+| gpt2_52b    | [config](https://gitee.com/mindspore/mindformers/blob/dev/docs/model_cards/gpt2.md) |
+| pangu_alpha | [config](https://gitee.com/mindspore/mindformers/blob/dev/docs/model_cards/pangualpha.md) | 
+| glm_6b       | [config](https://gitee.com/mindspore/mindformers/blob/dev/docs/model_cards/glm.md)  |
+| glm_6b_lora  | [config](https://gitee.com/mindspore/mindformers/blob/dev/docs/model_cards/glm.md)  |
+| llama_7b     | [config](https://gitee.com/mindspore/mindformers/blob/dev/docs/model_cards/llama.md) |
+| llama_13b    | [config](https://gitee.com/mindspore/mindformers/blob/dev/docs/model_cards/llama.md) |
+| llama_65b    | [config](https://gitee.com/mindspore/mindformers/blob/dev/docs/model_cards/llama.md) |
+| llama_7b_lora | [config](https://gitee.com/mindspore/mindformers/blob/dev/docs/model_cards/llama.md) |
+| bloom_560m    | [config](https://gitee.com/mindspore/mindformers/blob/dev/docs/model_cards/bloom.md) |
+| bloom_7.1b    | [config](https://gitee.com/mindspore/mindformers/blob/dev/docs/model_cards/bloom.md) |
+| bloom_65b     | [config](https://gitee.com/mindspore/mindformers/blob/dev/docs/model_cards/bloom.md) |
+| bloom_176b    | [config](https://gitee.com/mindspore/mindformers/blob/dev/docs/model_cards/bloom.md) |
 
 ## 免责声明
 
