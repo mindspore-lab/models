@@ -1,6 +1,6 @@
 ## What Is New
 
-- 2023.07.01: add llm model (including hot glm/llama/bloom from mindformers🔥)
+- 2023.07.01: 🔥add [llm](#nlp) model (including hot glm/llama/bloom from mindformers)
 - 2023.06.01: We've done code refactoring for classic SOTA models,modularized data processing, model definition&creation, training process and other common components with new lanched MindSpore CV/NLP/Audio/Yolo/OCR Series toolbox
 
 - Old models were implemented by original MindSpore API with some tricks for training process speedup
