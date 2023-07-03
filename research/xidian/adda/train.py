@@ -87,6 +87,10 @@ def modelarts_pre_process():
 @moxing_wrapper(pre_process=modelarts_pre_process)
 def run_train():
     current_dir = os.path.dirname(os.path.abspath(__file__))
+    checkpoint_path = os.path.join(current_dir, config.model_root)
+    folder = os.path.exists(checkpoint_path)
+    if not folder:
+        os.makedirs(checkpoint_path)
     cfg = config
     context.set_context(mode=context.GRAPH_MODE, device_target=cfg.device_target)
     device_num = get_device_num()
