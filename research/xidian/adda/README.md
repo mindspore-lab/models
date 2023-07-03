@@ -218,7 +218,7 @@ Before training and evaluation, you can set the default_config_cpu.yaml. Specify
         ├──run_train.sh             # Shell script for distributed training on Ascend
         ├──run_train_cpu.sh         # Shell script for training on CPU
         ├──run_train_gpu.sh         # Shell script for distributed training on GPU
-    ├── sdefault_config.yaml        # Parameter configuration
+    ├── default_config.yaml        # Parameter configuration
     ├── eval.py                     # Evaluation script
     ├── export.py                   # Export checkpoint file to air/Mindir
     ├── README.md                   # English descriptions about ADDA
