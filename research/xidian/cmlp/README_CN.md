@@ -121,11 +121,6 @@
     ├── README.md                          // 所有模型相关说明
     ├── CMLP
         ├── README.md                    // CMLP相关说明
-        ├── checkpoint
-        │   ├──cifa10_CMLP.ckpt             // cifa10 mindspore预训练模型
-        │   ├──cifa100_CMLP.pth         // cifa10 CMLP官方预训练模型
-        │   ├──cifa100_CMLP.ckpt         // cifa100 mindspore预训练模型
-        │   ├──cifa10_CMLP.pth              //  cifa100 CMLP官方预训练模型
         ├── data //数据文件夹
         │   ├──cifar-10-batches-bin
         │   ├──cifar-100-binary
