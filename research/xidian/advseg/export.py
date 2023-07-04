@@ -1,4 +1,4 @@
-# Copyright 2020 Huawei Technologies Co., Ltd
+# Copyright 2023 Xidian University
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -35,7 +35,7 @@ def run_export():
 
     net_G = get_deeplab_v2(config.num_classes)
     h, w = config.input_size_target
-    # input_data = Tensor(np.ones((config.batch_size, 3, h, w), mindspore.float32))
+
     if os.path.exists(os.path.join(config.data_dir_target, 'leftImg8bit_trainvaltest')):
         val_data_path = os.path.join(config.data_dir_target, 'leftImg8bit_trainvaltest')
     else:
@@ -50,7 +50,7 @@ def run_export():
     cityscapes_dataset = cityscapes_dataset.batch(batch_size=1)
 
     checkpoint = load_checkpoint(config.restore_from)
-    # print(checkpoint)
+
     param_G = split_checkpoint(checkpoint, ['net_G', 'net_D1', 'net_D2'])
     load_param_into_net(net_G, param_G['net_G'])
     config.file_name = config.file_name + '/'+os.path.split(config.restore_from)[1].replace('.ckpt', '')

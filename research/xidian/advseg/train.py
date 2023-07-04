@@ -1,4 +1,4 @@
-# Copyright 2020 Huawei Technologies Co., Ltd
+# Copyright 2023 Xidian University
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -45,27 +45,23 @@ def main():
 
     config.IMG_MEAN = np.array((104.00698793, 116.66876762, 122.67891434), dtype=np.float32)
 
-    # if config.model_arts:
-    #     import moxing as mox
-    #     local_data_url = '/cache/data'
-    #     local_train_url = '/cache/ckpt'
-    #     mox.file.copy_parallel(src_url=config.data_dir, dst_url=os.path.join(local_data_url, 'GTA5'))
-    #     if os.path.exists(os.path.join(config.data_dir_target,'leftImg8bit_trainvaltest')) and \
-    #        os.path.exists(os.path.join(config.data_dir_target,'gtFine_trainvaltest')):
-    #         mox.file.copy_parallel(src_url=os.path.join(config.data_dir_target,'leftImg8bit_trainvaltest','leftImg8bit'), dst_url=os.path.join(local_data_url, 'Cityscapes/leftImg8bit'))
-    #         mox.file.copy_parallel(src_url=(os.path.join(config.data_dir_target,'gtFine_trainvaltest','gtFine')), dst_url=os.path.join(local_data_url, 'Cityscapes/gtFine'))
-    #     else:
-    #         mox.file.copy_parallel(src_url=config.data_dir_target, dst_url=os.path.join(local_data_url, 'Cityscapes'))
-    #     mox.file.copy_parallel(src_url=config.restore_from, dst_url=os.path.join(local_data_url, 'Pretrain_DeeplabMulti.ckpt'))
-    #     # download dataset from obs to cache
-    #     # if "obs://" in config.checkpoint_path:
-    #     #     local_checkpoint_url = "/cache/" + config.checkpoint_path.split("/")[-1]
-    #     #     mox.file.copy_parallel(config.checkpoint_path, local_checkpoint_url)
-    #     #     config.checkpoint_path = local_checkpoint_url
-    #     config.data_dir = os.path.join(local_data_url, 'GTA5')
-    #     config.data_dir_target = os.path.join(local_data_url, 'Cityscapes')
-    #     config.restore_from = os.path.join(local_data_url, 'Pretrain_DeeplabMulti.ckpt')
-    #     # ckpt_save_dir = local_train_url + config.training_set
+    if config.model_arts:
+        import moxing as mox
+        local_data_url = '/cache/data'
+        local_train_url = '/cache/ckpt'
+        mox.file.copy_parallel(src_url=config.data_dir, dst_url=os.path.join(local_data_url, 'GTA5'))
+        if os.path.exists(os.path.join(config.data_dir_target,'leftImg8bit_trainvaltest')) and \
+           os.path.exists(os.path.join(config.data_dir_target,'gtFine_trainvaltest')):
+            mox.file.copy_parallel(src_url=os.path.join(config.data_dir_target,'leftImg8bit_trainvaltest','leftImg8bit'), dst_url=os.path.join(local_data_url, 'Cityscapes/leftImg8bit'))
+            mox.file.copy_parallel(src_url=(os.path.join(config.data_dir_target,'gtFine_trainvaltest','gtFine')), dst_url=os.path.join(local_data_url, 'Cityscapes/gtFine'))
+        else:
+            mox.file.copy_parallel(src_url=config.data_dir_target, dst_url=os.path.join(local_data_url, 'Cityscapes'))
+        mox.file.copy_parallel(src_url=config.restore_from, dst_url=os.path.join(local_data_url, 'Pretrain_DeeplabMulti.ckpt'))
+
+        config.data_dir = os.path.join(local_data_url, 'GTA5')
+        config.data_dir_target = os.path.join(local_data_url, 'Cityscapes')
+        config.restore_from = os.path.join(local_data_url, 'Pretrain_DeeplabMulti.ckpt')
+        # ckpt_save_dir = local_train_url + config.training_set
 
     # 环境配置
 
@@ -92,15 +88,6 @@ def main():
                                           )
         config.save_pred_every = config.save_pred_every // config.group_size
 
-    if config.debug:
-        config.batch_size = 2
-        config.input_size = (128, 300)
-        config.input_size_target = (128, 400)
-        config.save_pred_every = 10
-        config.num_steps_stop = 100
-        config.not_val = False
-        config.num_steps = 1000
-        config.max_iters = 20000
 
     # [Part 1: dataset]
     dataset = get_dataset(config)
