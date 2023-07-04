@@ -124,11 +124,6 @@ After installing MindSpore via the official website, you can start training and 
     ├── README.md // All model-related descriptions
     ├── CMLP
         ├── README.md // CMLP-related instructions
-        ├─ checkpoint
-        │ ├──cifa10_CMLP.ckpt // cifa10 mindspore pre-training model
-        │ ├──cifa100_CMLP.pth // cifa10 CMLP official pre-training model
-        │ ├──cifa100_CMLP.ckpt // cifa100 mindspore pre-training model
-        │ ├──cifa10_CMLP.pth // cifa100 CMLP official pre-training model
         ├── data // data folder
         │ ├──cifar-10-batches-bin
         │ ├──cifar-100-binary    
