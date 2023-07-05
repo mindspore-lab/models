@@ -1,7 +1,6 @@
 import math
-import mindspore as ms
 from mindspore import ops, nn
-from mindspore.common.initializer import HeUniform, Uniform
+from mindspore.common.initializer import HeUniform
 from .proposal_generator import ProposalGenerator
 from .anchor_generator import AnchorGenerator
 from ..label_assignment import RPNLabelAssignment
@@ -19,16 +18,20 @@ class RPNFeat(nn.Cell):
 
     def __init__(self, num_layers=1, num_anchors=3, in_channel=1024, out_channel=1024):
         super(RPNFeat, self).__init__()
-        self.rpn_conv = nn.Conv2d(
-            in_channel, out_channel, 3, padding=1, pad_mode="pad", weight_init=HeUniform(math.sqrt(5))
+        self.rpn_conv = nn.Conv2d(in_channel,
+                                  out_channel,
+                                  kernel_size=3,
+                                  padding=1,
+                                  pad_mode="pad",
+                                  weight_init=HeUniform(math.sqrt(5)),
+                                  has_bias=True,
+                                  bias_init="zeros"
         )
-        bound = 1 / math.sqrt(out_channel)
-        bias_init = Uniform(scale=bound)
         self.rpn_rois_score = nn.Conv2d(
-            out_channel, num_anchors, 1, weight_init=HeUniform(math.sqrt(5)), has_bias=True, bias_init=bias_init
+            out_channel, num_anchors, 1, weight_init=HeUniform(math.sqrt(5)), has_bias=True, bias_init="zeros"
         )
         self.rpn_rois_delta = nn.Conv2d(
-            out_channel, 4 * num_anchors, 1, weight_init=HeUniform(math.sqrt(5)), has_bias=True, bias_init=bias_init
+            out_channel, 4 * num_anchors, 1, weight_init=HeUniform(math.sqrt(5)), has_bias=True, bias_init="zeros"
         )
         self.relu = nn.ReLU()
 

@@ -31,7 +31,8 @@ class Resize:
         image = cv2.resize(image, None, None, fx=im_scale_x, fy=im_scale_y, interpolation=interp)
         resize_h, resize_w = image.shape[:2]
         image = cv2.copyMakeBorder(
-            image, 0, self.target_size[0] - resize_h, 0, self.target_size[1] - resize_w, cv2.BORDER_CONSTANT
+            image, 0, self.target_size[0] - resize_h, 0, self.target_size[1] - resize_w,
+            cv2.BORDER_CONSTANT, value=(255,255,255)
         )  # top, bottom, left, right
         return image
 
@@ -40,7 +41,8 @@ class Resize:
         label = cv2.resize(label, None, None, fx=im_scale_x, fy=im_scale_y, interpolation=cv2.INTER_NEAREST)
         resize_h, resize_w = label.shape[:2]
         label = cv2.copyMakeBorder(
-            label, 0, self.target_size[0] - resize_h, 0, self.target_size[1] - resize_w, self.ignore_label
+            label, 0, self.target_size[0] - resize_h, 0, self.target_size[1] - resize_w,
+            cv2.BORDER_CONSTANT, value=self.ignore_label
         )  # top, bottom, left, right
         return label
 
@@ -65,8 +67,9 @@ class RandomResizeCrop:
         self,
         base_size=2048,
         crop_size=(512, 1024),
-        downsample_rate=1,
-        scale_factor=16,
+        min_scale_factor=0.75,
+        max_scale_factor=1.25,
+        scale_step_size=0.25,
         keep_ratio=True,
         interp=None,
         ignore_label=255,
@@ -80,8 +83,9 @@ class RandomResizeCrop:
         Args:
             base_size (int): image target long side.
             crop_size (list): crop target size.
-            downsample_rate (int): label down sample rate.
-            scale_factor (int): random resize scale factor.
+            min_scale_factor (float): min resize scale factor.
+            max_scale_factor (float): min resize scale factor.
+            scale_step_size (float): scale interval.
             keep_ratio (bool): whether keep_ratio or not, default true
             interp (int, option): the interpolation method.
             ignore_label (int): ignore label in label.
@@ -90,8 +94,9 @@ class RandomResizeCrop:
         super(RandomResizeCrop, self).__init__()
         self.base_size = base_size
         self.crop_size = crop_size
-        self.scale_factor = scale_factor
-        self.downsample_rate = 1.0 / downsample_rate
+        self.min_scale_factor = min_scale_factor
+        self.max_scale_factor = max_scale_factor
+        self.scale_step_size = scale_step_size
         self.keep_ratio = keep_ratio
         self.interp = interp
         self.ignore_label = ignore_label
@@ -141,12 +146,18 @@ class RandomResizeCrop:
     def __call__(self, img, label):
         label = np.squeeze(label)
         if self.multi_scale:
-            rand_scale = 0.5 + np.random.randint(0, self.scale_factor) / 10.0
+            if self.min_scale_factor >= self.max_scale_factor:
+                rand_scale = self.min_scale_factor
+            elif self.scale_step_size <= 0:
+                rand_scale = np.random.uniform(self.min_scale_factor, self.max_scale_factor)
+            else:
+                num_steps = int((self.max_scale_factor - self.min_scale_factor) / self.scale_step_size + 1)
+                scale_factors = np.linspace(self.min_scale_factor,
+                                            self.max_scale_factor,
+                                            num_steps).tolist()
+                np.random.shuffle(scale_factors)
+                rand_scale = scale_factors[0]
             img, label = self.multi_scale_aug(img, label, rand_scale)
 
         img, label = self.rand_crop(img, label)
-        if self.downsample_rate != 1:
-            label = cv2.resize(
-                label, None, fx=self.downsample_rate, fy=self.downsample_rate, interpolation=cv2.INTER_NEAREST
-            )
         return img, label

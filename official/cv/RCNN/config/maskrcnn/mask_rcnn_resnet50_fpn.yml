@@ -52,6 +52,7 @@ bbox_head:
     fg_fraction: 0.25
 mask_head:
   resolution: 14
+  mask_shape: [28, 28]
   head:
     in_channel: 256
     out_channel: 256

@@ -28,7 +28,7 @@ def get_args_eval(parents=None):
     parser.add_argument("--num_parallel_workers", type=int, default=4, help="num parallel worker for dataloader")
     parser.add_argument("--device_target", type=str, default="Ascend", help="device target, Ascend/GPU/CPU")
     parser.add_argument("--mix", type=ast.literal_eval, default=True, help="Mix Precision")
-    parser.add_argument("--checkpoint_path", type=str, default="", help="pre trained weights path")
+    parser.add_argument("--ckpt_path", type=str, default="", help="pre trained weights path")
     parser.add_argument("--batch_size", type=int, default=1, help="total batch size for all device")
     parser.add_argument("--eval_parallel", type=ast.literal_eval, default=True, help="run eval")
     parser.add_argument("--save_dir", type=str, default="output", help="save dir")
@@ -61,6 +61,10 @@ if __name__ == "__main__":
         network.rpn_head.rpn_feat.to_float(ms.float16)
         network.bbox_head.head.to_float(ms.float16)
         network.bbox_head.roi_extractor.to_float(ms.float16)
+        if config.net == "MaskRCNN":
+            network.mask_head.head.to_float(ms.float16)
+            network.mask_head.roi_extractor.to_float(ms.float16)
+            network.mask_head.mask_fcn_logits.to_float(ms.float16)
         for _, cell in network.cells_and_names():
             if isinstance(cell, (nn.Dense)):
                 cell.to_float(ms.float16)
@@ -82,15 +86,15 @@ if __name__ == "__main__":
         )
     try:
         ckpt_list = []
-        if os.path.isdir(config.checkpoint_path):
+        if os.path.isdir(config.ckpt_path):
             ckpt_list = []
-            for f in os.listdir(config.checkpoint_path):
+            for f in os.listdir(config.ckpt_path):
                 if f.endswith(".ckpt"):
-                    ckpt_list.append(os.path.join(config.checkpoint_path, f))
-        elif os.path.isfile(config.checkpoint_path) and config.checkpoint_path.endswith(".ckpt"):
-            ckpt_list = [config.checkpoint_path]
+                    ckpt_list.append(os.path.join(config.ckpt_path, f))
+        elif os.path.isfile(config.ckpt_path) and config.ckpt_path.endswith(".ckpt"):
+            ckpt_list = [config.ckpt_path]
         else:
-            raise ValueError("{config.checkpoint_path} is not a ckpt file or dir")
+            raise ValueError("{config.ckpt_path} is not a ckpt file or dir")
         for ckpt in ckpt_list:
             logger.info(f"eval {ckpt}")
             ms.load_checkpoint(ckpt, network)
