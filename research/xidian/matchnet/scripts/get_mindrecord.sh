@@ -1,0 +1,1 @@
+python src/make_mindrecord.py --data_root=./Dataset/ --dst_path=./MindRecord/ 
