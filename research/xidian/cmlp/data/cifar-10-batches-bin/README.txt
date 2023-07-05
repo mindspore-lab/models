@@ -1,1 +1,1 @@
-Please place the MNIST dataset in this folder
+Please place the CIFAR-10-bin dataset in this folder
