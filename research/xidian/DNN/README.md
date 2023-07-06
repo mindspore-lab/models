@@ -168,7 +168,7 @@ bash run_eval.sh [MODEL_PATH] [DEVICE_NUM] [VISIBLE_DEVICES(0,1,2,3,4,5,6,7)]
 **运行脚本**:
 
 ```shell
-python compute_iou.py data/cityscapes/gtFine/val result/cityscapes
+
 ```
 
 **输出结果**:
