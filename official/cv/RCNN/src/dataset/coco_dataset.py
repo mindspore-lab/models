@@ -78,7 +78,7 @@ class COCODataset:
                 record_out["ori_shape"],
                 record_out["gt_bbox"],
                 record_out["gt_class"],
-                record_out["gt_mask"],
+                record_out["gt_poly"],
             )
         return (
             img,
@@ -88,21 +88,6 @@ class COCODataset:
             record_out["gt_bbox"],
             record_out["gt_class"],
         )
-
-    def annToMask(self, ann, height, width):
-        """Convert annotation to RLE and then to binary mask."""
-        from pycocotools import mask as maskHelper
-
-        segm = ann["segmentation"]
-        if isinstance(segm, list):
-            rles = maskHelper.frPyObjects(segm, height, width)
-            rle = maskHelper.merge(rles)
-        elif isinstance(segm["counts"], list):
-            rle = maskHelper.frPyObjects(segm, height, width)
-        else:
-            rle = ann["segmentation"]
-        m = maskHelper.decode(rle)
-        return m
 
     def parse_dataset(self):
         anno_path = os.path.join(self.dataset_dir, self.anno_path)
@@ -187,25 +172,15 @@ class COCODataset:
                     gt_bbox = np.zeros((num_bbox, 4), dtype=np.float32)
                     gt_class = np.zeros((num_bbox, 1), dtype=np.int32)
                     if self.is_segmentaion:
-                        gt_mask = np.zeros((num_bbox, self.seg_size[0], self.seg_size[1]), dtype=np.bool_)
+                        gt_poly = {"segmentations": []}
 
                     for i, box in enumerate(bboxes):
                         catid = box["category_id"]
                         gt_class[i][0] = self.catid2clsid[catid]
                         gt_bbox[i, :] = box["clean_bbox"]
                         if self.is_segmentaion:
-                            from pycocotools import mask as maskHelper
-
-                            x1, y1, x2, y2 = map(int, box["clean_bbox"])
-                            h, w = img_rec["ori_shape"]
-                            m = self.annToMask(box, h, w)
-                            bbox_m = m[y1 : y2 + 1, x1 : x2 + 1]
-                            bbox_m = cv2.resize(
-                                bbox_m.astype(np.uint8),
-                                (self.seg_size[1], self.seg_size[0]),
-                                interpolation=cv2.INTER_NEAREST,
-                            )
-                            gt_mask[i] = bbox_m.astype(np.bool_)
+                            seg = box["segmentation"]
+                            gt_poly["segmentations"].append(seg)
 
                 elif not self.allow_empty:
                     continue
@@ -218,7 +193,7 @@ class COCODataset:
                     "gt_bbox": gt_bbox,  # (x1, y1, x2, y2)
                 }
                 if self.is_segmentaion:
-                    gt_rec["gt_mask"] = gt_mask
+                    gt_rec["gt_poly"] = gt_poly
 
                 for k, v in gt_rec.items():
                     img_rec[k] = v

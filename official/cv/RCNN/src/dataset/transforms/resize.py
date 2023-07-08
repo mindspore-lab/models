@@ -38,16 +38,17 @@ class Resize:
 
         return bbox
 
-    def resize_poly(self, polys, scale):
+    def resize_poly(self, poly, scale, size):
         im_scale_x, im_scale_y = scale
-        for i, poly in enumerate(polys):
-            poly[:, 0] *= im_scale_x
-            poly[:, 1] *= im_scale_y
-            polys[i] = poly
+        resize_w, resize_h = size
+        resized_poly = np.array(poly)
+        resized_poly[0::2] = im_scale_x * np.array(poly[0::2])
+        resized_poly[0::2] = np.clip(resized_poly[0::2], 0, resize_w)
+        resized_poly[1::2] = im_scale_y * np.array(poly[1::2])
+        resized_poly[1::2] = np.clip(resized_poly[1::2], 0, resize_h)
+        return resized_poly.tolist()
 
-        return polys
-
-    def __call__(self, img, gt_bbox, gt_class, gt_mask=None):
+    def __call__(self, img, gt_bbox, gt_class, gt_poly=None):
         """Resize the image numpy."""
         # apply image
         img_shape = img.shape
@@ -66,6 +67,11 @@ class Resize:
         img = cv2.copyMakeBorder(
             img, 0, self.target_size[0] - resize_h, 0, self.target_size[1] - resize_w, cv2.BORDER_CONSTANT
         )  # top, bottom, left, right
-        if gt_mask is not None:
-            return img, gt_bbox, gt_class, gt_mask
+        if gt_poly is not None:
+            resized_segms = []
+            for segm in gt_poly["segmentations"]:
+                resized_segms.append(
+                    [self.resize_poly(poly, [im_scale_x, im_scale_y], [resize_w, resize_h]) for poly in segm])
+            gt_poly["segmentations"] = resized_segms
+            return img, gt_bbox, gt_class, gt_poly
         return img, gt_bbox, gt_class

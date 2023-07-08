@@ -50,7 +50,7 @@ def batched_nms(bboxes, scores, labels, threshold):
     return keep
 
 
-def multiclass_nms(multi_bboxes, multi_scores, score_thr, nms_thr, max_num=-1):
+def multiclass_nms(multi_bboxes, multi_scores, score_thr, nms_thr, max_num=-1, multi_masks=None):
     """NMS for multi-class bboxes.
 
     Args:
@@ -78,7 +78,9 @@ def multiclass_nms(multi_bboxes, multi_scores, score_thr, nms_thr, max_num=-1):
     bboxes = bboxes.reshape(-1, 4)
     scores = scores.reshape(-1)
     labels = labels.reshape(-1)
-
+    if multi_masks is not None:
+        n, c, h, w = multi_masks.shape
+        multi_masks = multi_masks.reshape(-1, h, w)
     valid_mask = scores > score_thr
     if valid_mask.sum() > 0:
         bboxes, scores, labels = bboxes[valid_mask], scores[valid_mask], labels[valid_mask]
@@ -88,6 +90,8 @@ def multiclass_nms(multi_bboxes, multi_scores, score_thr, nms_thr, max_num=-1):
             keep = keep[:max_num]
         cls_scores = scores[:, None]
         predicts = np.concatenate((bboxes, np.ones_like(cls_scores), cls_scores, labels[:, None]), axis=-1)
+        if multi_masks is not None:
+            return predicts[keep], multi_masks[valid_mask][keep]
         return predicts[keep]
     else:
         return []

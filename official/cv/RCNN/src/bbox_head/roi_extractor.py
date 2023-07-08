@@ -24,7 +24,11 @@ class RoIExtractor(nn.Cell):
         self.resolution = resolution
         for s in featmap_strides:
             self.roi_layers.append(
-                ops.ROIAlign(pooled_height=resolution, pooled_width=resolution, spatial_scale=1 / s, sample_num=2)
+                ops.ROIAlign(pooled_height=resolution,
+                             pooled_width=resolution,
+                             spatial_scale=1 / s,
+                             sample_num=2,
+                             roi_end_mode=0)
             )
         self.featmap_strides = featmap_strides
         self.temp_roi = ms.Tensor(

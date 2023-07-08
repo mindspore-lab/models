@@ -27,14 +27,14 @@ class RCNNBBoxTwoFCHead(nn.Cell):
             out_channel,
             weight_init=HeUniform(math.sqrt(5)),
             has_bias=True,
-            bias_init=Uniform(scale=1 / math.sqrt(in_channel * resolution * resolution)),
+            bias_init="zeros"
         )
         self.fc7 = nn.Dense(
             out_channel,
             out_channel,
             weight_init=HeUniform(math.sqrt(5)),
             has_bias=True,
-            bias_init=Uniform(scale=1 / math.sqrt(out_channel)),
+            bias_init="zeros"
         )
         self.relu = nn.ReLU()
 
@@ -77,14 +77,14 @@ class BBoxHead(nn.Cell):
             self.num_classes + 1,
             weight_init=HeUniform(math.sqrt(5)),
             has_bias=True,
-            bias_init=Uniform(scale=1 / math.sqrt(cfg.head.out_channel)),
+            bias_init="zeros"
         )
         self.bbox_delta = nn.Dense(
             cfg.head.out_channel,
             4 * self.num_classes,
             weight_init=HeUniform(math.sqrt(5)),
             has_bias=True,
-            bias_init=Uniform(scale=1 / math.sqrt(cfg.head.out_channel)),
+            bias_init="zeros"
         )
         self.onehot = nn.OneHot(depth=self.num_classes)
         self.with_mask = with_mask
@@ -97,11 +97,13 @@ class BBoxHead(nn.Cell):
         gts (Tensor): The ground-truth
         """
         if self.with_mask:
-            gt_classes, gt_bboxes, gt_masks, fg_masks, valid_masks, select_rois = self.bbox_assigner(
+            gt_classes, gt_bboxes, gt_masks, fg_masks, valid_masks, select_rois, pos_rois = self.bbox_assigner(
                 rois, rois_mask, gts, gt_masks
             )
         else:
+            pos_rois = None
             gt_classes, gt_bboxes, fg_masks, valid_masks, select_rois = self.bbox_assigner(rois, rois_mask, gts)
+        batch_size, rois_num, _ = select_rois.shape
         rois_feat = self.roi_extractor(feats, select_rois, valid_masks)
         feat = self.head(rois_feat)
 
@@ -122,13 +124,15 @@ class BBoxHead(nn.Cell):
         cond = ops.logical_and(gt_classes < self.num_classes, gt_classes >= 0)
         reg_class = ops.select(cond, gt_classes, ops.zeros_like(gt_classes)).reshape(-1)
         reg_class_weight = ops.expand_dims(self.onehot(reg_class), -1)
-        reg_class_weight = reg_class_weight * fg_masks.reshape((-1, 1, 1)).astype(reg_class_weight.dtype)
+        reg_class_weight = ops.stop_gradient(
+            reg_class_weight * fg_masks.reshape((-1, 1, 1)).astype(reg_class_weight.dtype))
         loss_bbox_reg = self.loc_loss(pred_delta.reshape(-1, self.num_classes, 4), reg_target)
         loss_bbox_reg = loss_bbox_reg * reg_class_weight
         loss_bbox_reg = loss_bbox_reg.sum() / (valid_masks.astype(pred_delta.dtype).sum() + 1e-4)
         if self.with_mask:
-            mask_weights = ops.expand_dims(reg_class_weight, -1) # B*N, 80, 1, 1
-            return loss_bbox_reg, loss_bbox_cls, select_rois, gt_masks, mask_weights, valid_masks
+            mask_weights = reg_class_weight.reshape(batch_size, rois_num, self.num_classes) # B, N, 80, 1, 1
+            mask_weights = mask_weights[:, :pos_rois.shape[1], :].reshape(-1, self.num_classes)
+            return loss_bbox_reg, loss_bbox_cls, pos_rois, gt_masks, mask_weights, valid_masks
         return loss_bbox_reg, loss_bbox_cls
 
     def predict(self, feats, rois, rois_mask):

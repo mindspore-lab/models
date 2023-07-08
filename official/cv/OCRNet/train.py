@@ -34,7 +34,6 @@ def get_args_train(parents=None):
     parser.add_argument("--device_target", type=str, default="Ascend", help="device target, Ascend/GPU/CPU")
     parser.add_argument("--resume_ckpt", type=str, default="", help="pre trained weights path")
     parser.add_argument("--batch_size", type=int, default=2, help="total batch size for all device")
-    parser.add_argument("--mix", type=ast.literal_eval, default=True, help="Mix Precision")
     parser.add_argument("--amp_level", type=str, default="O3", help="Supports ['O0', 'O1', 'O2', 'O3']. Default: 'O3'")
     parser.add_argument("--run_eval", type=ast.literal_eval, default=True, help="run eval")
     parser.add_argument("--clip_grad", type=ast.literal_eval, default=False, help="clip grad")
@@ -136,8 +135,7 @@ if __name__ == "__main__":
 
     # Network
     network = OCRNet(config)
-    if config.mix:
-        ms.amp.auto_mixed_precision(network, config.amp_level)
+    ms.amp.auto_mixed_precision(network, config.amp_level)
 
     if config.run_eval:
         from src.modules.base_modules import MultiScaleInfer

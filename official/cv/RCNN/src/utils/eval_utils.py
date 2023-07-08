@@ -4,6 +4,7 @@ import time
 import json
 import copy
 from datetime import datetime
+import cv2
 import numpy as np
 from typing import List, Union
 import mindspore as ms
@@ -14,6 +15,7 @@ try:
 except ImportError:
     from pycocotools.cocoeval import COCOeval
 from pycocotools.coco import COCO
+from pycocotools import mask as maskUtils
 
 from .nms import multiclass_nms
 
@@ -27,8 +29,7 @@ def run_eval(cfg, network, dataset, cur_epoch=0, cur_step=0):
         save_prefix = os.path.join(cfg.save_dir, "eval_parallel")
     eval_wrapper = EvalWrapper(cfg, dataset, network, detection, save_prefix)
     logger.info("Start inference...")
-    eval_print_str, _ = eval_wrapper.inference(cur_epoch=cur_epoch, cur_step=cur_step)
-    logger.info(eval_print_str)
+    eval_wrapper.inference(cur_epoch=cur_epoch, cur_step=cur_step)
     logger.info("Finish inference...")
     network.set_train(True)
 
@@ -70,12 +71,10 @@ class EvalWrapper:
         img_id = data["im_id"]
         self.detection_engine.input_shape = image.shape[2:]
         prediction = self.network.predict(ms.Tensor(image))
-        has_mask = False
         if isinstance(prediction, (tuple, list)):
-            prediction = prediction[0]
             if self.is_segment:
-                has_mask = True
                 mask = prediction[1].asnumpy()
+            prediction = prediction[0]
         prediction = prediction.asnumpy()
         img_shape = img_shape
         if self.eval_parallel:
@@ -87,19 +86,19 @@ class EvalWrapper:
                 prediction_p.append(prediction[i])
                 img_shape_p.append(img_shape[i])
                 img_id_p.append(img_id[i])
-                if has_mask:
+                if self.is_segment:
                     mask_p.append(mask[i])
             prediction = np.stack(prediction_p, 0)
             img_shape = np.stack(img_shape_p, 0)
             img_id = np.stack(img_id_p, 0)
-            if has_mask:
+            if self.is_segment:
                 mask = np.stack(mask_p, 0)
 
         if prediction.shape[0] > 0:
-            data = self.detection_engine.detection(prediction, img_shape, img_id)
+            if not self.is_segment:
+                mask = None
+            data = self.detection_engine.detection(prediction, img_shape, img_id, mask)
             self.data_list.extend(data)
-            if has_mask:
-                mask = np.stack(mask_p, 0)
 
     def inference(self, cur_epoch=0, cur_step=0):
         self.network.set_train(False)
@@ -120,11 +119,7 @@ class EvalWrapper:
             self.synchronize()
             file_path = os.listdir(self.dir_path)
             result_file_path = [os.path.join(self.dir_path, path) for path in file_path]
-        eval_result, results = self.detection_engine.get_eval_result(result_file_path)
-        if eval_result is not None and results is not None:
-            eval_print_str = "\n=============coco eval result=========\n" + eval_result
-            return eval_print_str, results
-        return None, 0
+        self.detection_engine.get_eval_result(result_file_path)
 
     def save_prediction(self, cur_epoch=0, cur_step=0):
         logger.info("Save bbox prediction result.")
@@ -195,8 +190,12 @@ class DetectionEngine:
         else:
             self.annFile = os.path.join(cfg.data.dataset_dir, cfg.data.test_anno_path)
         self.coco_data = COCOData(self.annFile) if os.path.exists(self.annFile) else None
+        self.is_segment = cfg.data.is_segment
+        self.eval_types = ["bbox"]
+        if self.is_segment:
+            self.eval_types.append("segm")
 
-    def detection(self, predicts, img_shape, img_ids):
+    def detection(self, predicts, img_shape, img_ids, masks=None):
         """
         Post process nms and detection
         Args:
@@ -209,22 +208,25 @@ class DetectionEngine:
             coco_format data list.
         """
         # post process nms
-        predicts = self.postprocess(predicts, self.conf_thre, self.nms_thre)
+        predicts = self.postprocess(predicts, self.conf_thre, self.nms_thre, masks)
         return self.convert_to_coco_format(predicts, img_shape, img_ids)
 
-    def postprocess(self, prediction, conf_thre=0.7, nms_thre=0.45):
+    def postprocess(self, prediction, conf_thre=0.7, nms_thre=0.45, masks=None):
         """nms"""
         output = []
         for i in range(prediction.shape[0]):
             bboxes = prediction[i][..., : self.class_num * 4]
             scores = prediction[i][..., self.class_num * 4 :]
-            output.append(multiclass_nms(bboxes, scores, conf_thre, nms_thre, max_num=-1))
+            output.append(multiclass_nms(bboxes, scores, conf_thre, nms_thre, max_num=-1, multi_masks=masks))
         return output
 
     def convert_to_coco_format(self, predicts, img_shapes, ids):
         """convert to coco format"""
         data_list = []
         for output, ori_img_h, ori_img_w, img_id in zip(predicts, img_shapes[:, 0], img_shapes[:, 1], ids):
+            if self.is_segment:
+                segs = output[1]
+                output = output[0]
             if len(output) < 1:
                 continue
             bboxes = output[:, 0:4]
@@ -238,17 +240,35 @@ class DetectionEngine:
 
             cls = output[:, 6]
             scores = output[:, 4] * output[:, 5]
+
             for ind in range(bboxes.shape[0]):
                 label = self.coco_data.cat_ids[int(cls[ind])]
+                segmentation = []
+                if self.is_segment:
+                    segmentation = self.get_seg_masks(segs[ind], bboxes[ind], ori_img_h, ori_img_w)
+                    segmentation["counts"] = segmentation["counts"].decode()
                 pred_data = {
                     "image_id": int(img_id),
                     "category_id": label,
                     "bbox": bboxes[ind].tolist(),
                     "score": scores[ind].item(),
-                    "segmentation": [],
+                    "segmentation": segmentation,
                 }  # COCO json format
                 data_list.append(pred_data)
         return data_list
+
+    def get_seg_masks(self, mask_pred, bbox, h, w):
+        """Get segmentation masks from mask_pred and bboxes"""
+        mask_pred = mask_pred.astype(np.uint8)
+        im_mask = np.zeros((int(h), int(w)), dtype=np.uint8)
+        bbox_x, bbox_y, bbox_w, bbox_h = int(bbox[0]), int(bbox[1]), int(bbox[2] + 0.5), int(bbox[3] + 0.5)
+        bbox_mask = cv2.resize(mask_pred, (bbox_w, bbox_h), interpolation=cv2.INTER_LINEAR)
+        bbox_mask = (bbox_mask > 0.5).astype(np.uint8)
+        im_mask[bbox_y:bbox_y + bbox_h, bbox_x:bbox_x + bbox_w] = bbox_mask
+
+        rle = maskUtils.encode(
+            np.array(im_mask[:, :, np.newaxis], order='F'))[0]
+        return rle
 
     def get_dt_list(self, file_path: List[str]):
         dt_list = []
@@ -290,14 +310,17 @@ class DetectionEngine:
         return cocoDt
 
     def compute_coco(self, cocoGt, cocoDt):
-        cocoEval = COCOeval(cocoGt, cocoDt, "bbox")
-        cocoEval.evaluate()
-        cocoEval.accumulate()
-        rdct = Redirct()
-        stdout = sys.stdout
-        sys.stdout = rdct
-        cocoEval.summarize()
-        sys.stdout = stdout
+        for eval_type in self.eval_types:
+            cocoEval = COCOeval(cocoGt, cocoDt, eval_type)
+            cocoEval.evaluate()
+            cocoEval.accumulate()
+            rdct = Redirct()
+            stdout = sys.stdout
+            sys.stdout = rdct
+            cocoEval.summarize()
+            sys.stdout = stdout
+            eval_print_str = f"\n=============coco eval {eval_type} result=========\n{rdct.content}"
+            logger.info(eval_print_str)
         return rdct.content, cocoEval.stats[0]
 
     def get_eval_result(self, file_path: Union[str, List[str]]):
