@@ -1,0 +1,13 @@
+SOURCE: GTA
+TARGET: Cityscapes
+NUM_WORKERS: 4
+EXP_NAME: fuxian4
+TRAIN:
+  DA_METHOD: AdvEnt
+  MODEL: DeepLabv2
+  RESTORE_FROM: ./pretrained/DeepLab_resnet_pretrained_imagenet_new.ckpt
+  MULTI_LEVEL: True
+  LAMBDA_ADV_MAIN: 0.001
+  LAMBDA_ADV_AUX: 0.0002
+TEST:
+  MODE: best
