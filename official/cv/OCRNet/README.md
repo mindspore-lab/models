@@ -40,8 +40,8 @@ your directory tree should be look like this:：
 
 | method | backbone | image size | cards | step | bs | fps | mIoU | mIoU(ms) | recipe/weights | 
 | :-: | :-:| :-: | :-:| :-: | :-:| :-: | :-:| :-: | :-: |
-| OCRNet | [hrnet_w48](https://github.com/mindspore-lab/mindcv) | [1024, 2048] | 8 | 16k | 2 | 72.39 | 82.07 | 82.96 |[yaml](config/ocrnet/config_ocrnet_hrw48_16k.yml)/uploading
-| OCRNet | [hrnet_w32](https://github.com/mindspore-lab/mindcv) | [1024, 2048] | 8 | 16k | 2 | 85.10 | 81.13 | 82.27 |[yaml](config/ocrnet/config_ocrnet_hrw32_16k.yml)/uploading
+| OCRNet | [hrnet_w48](https://github.com/mindspore-lab/mindcv) | [1024, 2048] | 8 | 16k | 2 | 72.39 | 82.07 | 82.96 |[yaml](config/ocrnet/config_ocrnet_hrw48_16k.yml)/ [ckpt](https://download.mindspore.cn/model_zoo/official/cv/ocrnet/OCRNet_hrw48_16k.ckpt) |
+| OCRNet | [hrnet_w32](https://github.com/mindspore-lab/mindcv) | [1024, 2048] | 8 | 16k | 2 | 85.10 | 81.13 | 82.27 |[yaml](config/ocrnet/config_ocrnet_hrw32_16k.yml)/ [ckpt](https://download.mindspore.cn/model_zoo/official/cv/ocrnet/OCRNet_hrw32_16k.ckpt) |
 
 ### Training
 
