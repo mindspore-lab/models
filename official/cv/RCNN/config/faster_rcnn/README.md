@@ -38,7 +38,7 @@ After downloading on the official website, organize the dataset into the followi
 ## Environment Requirements
 
 - Hardware（Ascend/GPU/CPU）
-  - Prepare hardware environment with Ascend processor. Reference [MindSpot](https://www.mindspore.cn/install/en) Installation and operation environment
+  - Prepare hardware environment with Ascend processor. Reference [MindSpore](https://www.mindspore.cn/install/en) Installation and operation environment
 - Dependency: MindSpore >= 2.0
 
 ```shell
@@ -51,7 +51,7 @@ pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
 
 | Model | pretrained Model | config | Device Num | Epoch | mAP(0.5~0.95) | FPS |CheckPoint | Graph Train Log |
 | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- |
-| FasterRCNN R50-FPN | [R50](https://github.com/mindspore-lab/mindcv) | [cfg](config/faster_rcnn/faster_rcnn_resnet50_fpn_1x.yml) | 8 | 12 | 37.3 | 123.01 |[download]() | [download]() |
+| FasterRCNN R50-FPN | [R50](https://github.com/mindspore-lab/mindcv) | [cfg](config/faster_rcnn/faster_rcnn_resnet50_fpn_1x.yml) | 8 | 12 | 37.3 | 123.01 |[download](https://download.mindspore.cn/model_zoo/official/cv/rcnn/FasterRCNN_det_resnet50_epoch12_rank0.ckpt) | [download](https://download.mindspore.cn/model_zoo/official/cv/rcnn/FasterRCNN_det_resnet50_epoch12_rank0.log) |
 
 ## Quick Start
 
