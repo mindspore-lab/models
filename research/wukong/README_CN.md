@@ -68,6 +68,17 @@ rrdb_srx4_fp32_new.om  #  超分模型
        └── data_0
 ```
 
+diffusion模型和超分模型的权重可通过如下方式获取
+
+|          name           |                                           link                                           |
+|:-----------------------:|:----------------------------------------------------------------------------------------:|
+|       384_640.zip       |      [zip](https://download.mindspore.cn/toolkits/mindone/wukonghuahua/384_640.zip)      |
+|       640_384.zip       |      [zip](https://download.mindspore.cn/toolkits/mindone/wukonghuahua/640_384.zip)      |
+|       512_640.zip       |      [zip](https://download.mindspore.cn/toolkits/mindone/wukonghuahua/512_640.zip)      |
+|       640_512.zip       |      [zip](https://download.mindspore.cn/toolkits/mindone/wukonghuahua/640_512.zip)      |
+|       512_512.zip       |      [zip](https://download.mindspore.cn/toolkits/mindone/wukonghuahua/512_512.zip)      |
+|  rrdb_srx4_fp32_new.om  | [om](https://download.mindspore.cn/toolkits/mindone/wukonghuahua/rrdb_srx4_fp32_new.om)  |
+
 *注意：当前mindir和om模型仅适配310P平台*
  
 
