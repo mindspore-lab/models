@@ -70,17 +70,53 @@ rrdb_srx4_fp32_new.om  #  超分模型
 
 diffusion模型和超分模型的权重可通过如下方式获取
 
-|          name           |                                           link                                           |
-|:-----------------------:|:----------------------------------------------------------------------------------------:|
-|       384_640.zip       |      [zip](https://download.mindspore.cn/toolkits/mindone/wukonghuahua/384_640.zip)      |
-|       640_384.zip       |      [zip](https://download.mindspore.cn/toolkits/mindone/wukonghuahua/640_384.zip)      |
-|       512_640.zip       |      [zip](https://download.mindspore.cn/toolkits/mindone/wukonghuahua/512_640.zip)      |
-|       640_512.zip       |      [zip](https://download.mindspore.cn/toolkits/mindone/wukonghuahua/640_512.zip)      |
-|       512_512.zip       |      [zip](https://download.mindspore.cn/toolkits/mindone/wukonghuahua/512_512.zip)      |
-|  rrdb_srx4_fp32_new.om  | [om](https://download.mindspore.cn/toolkits/mindone/wukonghuahua/rrdb_srx4_fp32_new.om)  |
 
-*注意：当前mindir和om模型仅适配310P平台*
+|         name         |                                          link                                          |
+| :-------------------: | :-------------------------------------------------------------------------------------: |
+|      384_640.zip      |     [zip](https://download.mindspore.cn/toolkits/mindone/wukonghuahua/384_640.zip)     |
+|      640_384.zip      |     [zip](https://download.mindspore.cn/toolkits/mindone/wukonghuahua/640_384.zip)     |
+|      512_640.zip      |     [zip](https://download.mindspore.cn/toolkits/mindone/wukonghuahua/512_640.zip)     |
+|      640_512.zip      |     [zip](https://download.mindspore.cn/toolkits/mindone/wukonghuahua/640_512.zip)     |
+|      512_512.zip      |     [zip](https://download.mindspore.cn/toolkits/mindone/wukonghuahua/512_512.zip)     |
+| rrdb_srx4_fp32_new.om | [om](https://download.mindspore.cn/toolkits/mindone/wukonghuahua/rrdb_srx4_fp32_new.om) |
+
+*注意：该表中mindir和om为针对硬件平台优化后的模型，仅适配310P平台*
  
+
+此外，还可以获取原始的mindir模型，再在相应硬件平台上转化为对应的硬件优化模型。原始模型的获取方式如下，
+
+
+|        name        |                                         link                                         |
+| :----------------: | :-----------------------------------------------------------------------------------: |
+| origin_384_640.zip | [zip](https://download.mindspore.cn/toolkits/mindone/wukonghuahua/origin_384_640.zip) |
+| origin_640_384.zip | [zip](https://download.mindspore.cn/toolkits/mindone/wukonghuahua/origin_640_384.zip) |
+| origin_512_640.zip | [zip](https://download.mindspore.cn/toolkits/mindone/wukonghuahua/origin_512_640.zip) |
+| origin_640_512.zip | [zip](https://download.mindspore.cn/toolkits/mindone/wukonghuahua/origin_640_512.zip) |
+| origin_512_512.zip | [zip](https://download.mindspore.cn/toolkits/mindone/wukonghuahua/origin_512_512.zip) |
+
+要进行模型转换，首先需在`{project_root}/convert/convert_ms.py`脚本中配置相关参数,主要参数为配置文件路径`config_file`,输入模型`.mindir`路径`model_file`,输出模型文件名`output_file`，输出文件会自动添加后缀`_graph.mindir`和`variables`
+
+```python
+    sizes = ['384_640', '512_512', '512_640', '640_384', '640_512']
+
+    config_file = './convert/config.cni'
+    converter = mslite.Converter()
+    converter.optimize = "ascend_oriented"
+
+    for size in sizes:
+        model_file = f'./origin_{size}.mindir'
+        output_file= f'./models/wukong_youhua_{size}_out'
+        converter.convert(fmk_type=mslite.FmkType.MINDIR, model_file=model_file,
+                          output_file=output_file, config_file=config_file)
+```
+
+命令行中运行如下指令，即可得到转换后的模型
+
+~~~shell
+cd {project_root}/convert/convert_ms.py
+
+python convert_ms.py
+~~~
 
 ## 4. 运行
 
