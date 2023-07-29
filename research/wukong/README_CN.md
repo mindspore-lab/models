@@ -27,7 +27,7 @@ Ascend-hdk-310p-npu-firmware_6.4.12.1.241.run
 #### b、mindspore-lite
 
 mindspore-lite>=2.1.0
-悟空画画中的diffusion模型依赖mindspore-lite，若从[官网](https://www.mindspore.cn/lite/docs/zh-CN/r2.0/use/downloads.html)获取，应安装不低于2.1.0的版本, 若从每日构建归档地址获取，应安装版本的日期不早于2023年7月7日 
+悟空画画中的diffusion模型依赖mindspore-lite, 可点此获取[MindSpore-Lite安装包](https://repo.mindspore.cn/mindspore/mindspore/version/202307/20230713/r2.1_20230713094527_c20a53db5b86e595335acc3614e1b5205c7e40d5/lite/centos_x86/cloud_fusion/python37/mindspore_lite-2.1.0-cp37-cp37m-linux_x86_64.whl) 
 
  
 
@@ -36,11 +36,11 @@ mindspore-lite>=2.1.0
 将代码克隆至本地服务器，在命令行中运行如下命令
 
 ```shell
-git clone https://github.com/Mark-ZhouWX/wukong
+git clone https://github.com/mindspore-lab/models.git
 cd research/wukong
 ```
 
-激活虚拟环境，再安装python包依赖
+再安装python包依赖
 
 ```
 pip install -r requirements.txt
@@ -63,8 +63,8 @@ rrdb_srx4_fp32_new.om  #  超分模型
 
 ```shell
 384_640.zip
-├── wukong_youhua_384_640_out_graph.mindir
-├── wukong_youhua_384_640_out_variables
+├── wukong_youhua_384_640_out_graph.mindir  # 针对Ascend310P平台优化后的模型结构文件
+├── wukong_youhua_384_640_out_variables  # 模型权重数据
        └── data_0
 ```
 
@@ -83,7 +83,7 @@ diffusion模型和超分模型的权重可通过如下方式获取
 *注意：该表中mindir和om为针对硬件平台优化后的模型，仅适配310P平台*
  
 
-此外，还可以获取原始的mindir模型，再在相应硬件平台上转化为对应的硬件优化模型。原始模型的获取方式如下，
+此外，我们还提供原始的未针对硬件平台优化的mindir模型文件，您可在下载该文件后，再在相应硬件平台上转化为对应的硬件优化模型。原始模型的获取方式如下，
 
 
 |        name        |                                         link                                         |
@@ -94,20 +94,22 @@ diffusion模型和超分模型的权重可通过如下方式获取
 | origin_640_512.zip | [zip](https://download.mindspore.cn/toolkits/mindone/wukonghuahua/origin_640_512.zip) |
 | origin_512_512.zip | [zip](https://download.mindspore.cn/toolkits/mindone/wukonghuahua/origin_512_512.zip) |
 
-要进行模型转换，首先需在`{project_root}/convert/convert_ms.py`脚本中配置相关参数,主要参数为配置文件路径`config_file`,输入模型`.mindir`路径`model_file`,输出模型文件名`output_file`，输出文件会自动添加后缀`_graph.mindir`和`variables`
+要进行模型转换，首先需在`{project_root}/convert/convert_ms.py`脚本中配置相关参数,主要参数为配置文件路径`config_file`,输入模型`.mindir`路径`input_file`,输出模型文件名`output_file`，输出文件会自动添加后缀`_graph.mindir`和`variables`
 
 ```python
-    sizes = ['384_640', '512_512', '512_640', '640_384', '640_512']
+sizes = ['384_640', '512_512', '512_640', '640_384', '640_512']
 
-    config_file = './convert/config.cni'
-    converter = mslite.Converter()
-    converter.optimize = "ascend_oriented"
+config_file = './convert/config.cni'
+converter = mslite.Converter()
+converter.optimize = "ascend_oriented"
 
-    for size in sizes:
-        model_file = f'./origin_{size}.mindir'
-        output_file= f'./models/wukong_youhua_{size}_out'
-        converter.convert(fmk_type=mslite.FmkType.MINDIR, model_file=model_file,
-                          output_file=output_file, config_file=config_file)
+for size in sizes:
+    input_file = f'./models/wukong_youhua_{size}_graph.mindir'  # raw mindir file path
+    output_file= f'./models/wukong_youhua_{size}_out'  # output file path, suffix '_graph.mindir' will be automaticly add
+    os.makedirs(os.path.dirname(input_file), exist_ok=True)
+    os.makedirs(os.path.dirname(output_file), exist_ok=True)
+    converter.convert(fmk_type=mslite.FmkType.MINDIR, model_file=input_file,
+                      output_file=output_file, config_file=config_file)
 ```
 
 命令行中运行如下指令，即可得到转换后的模型
