@@ -11,23 +11,29 @@
 
 #### a、昇腾AI处理器配套软件包
 
-获取：需安装Atlas分包，而不能使用海思Run包，因为悟空画画中的超分模型依赖acl组件，海思分包的中的 CANN-toolkit不含有pyacl，atlas分包的获取方式在[这里](https://www.mindspore.cn/install)
-当前版本的悟空画画依赖CANN-6.3及以上环境，注意选择包含合适CANN版本的的atlas分包
-我们尝试过的一种可用的atlas分包([base]([cmc-szv.clouddragon.huawei.com](https://cmc-szv.clouddragon.huawei.com/cmcversion/index/releaseView?deltaId=8360598672113792&isSelect=Software&url_data=Alpha)), [toolkit]([cmc-szv.clouddragon.huawei.com](https://cmc-szv.clouddragon.huawei.com/cmcversion/index/releaseView?deltaId=8153997453754624&isSelect=Software&url_data=run)))，需安装的分包如下：
+当前版本的悟空画画共需要安装3个软件分包，分别为cann-toolkit分包、driver和firmware分包，其中cann-toolkit分包需要6.3及以上版本，driver和firmware的版本可跟随cann-toolkit而定。下列为Ascend 310P上的一种可行的分包组合：
 
 ```shell
-Ascend-cann-toolkit_6.3.RC2_linux-aarch64.run
-Ascend-hdk-310p-npu-driver_23.0.rc2.b100_linux-aarch64.run
-Ascend-hdk-310p-npu-firmware_6.4.12.1.241.run
+Ascend-hdk-310p-npu-driver_23.0.rc1_linux-aarch64.run
+Ascend-hdk-310p-npu-firmware_6.3.0.1.241.run
+Ascend-cann-toolkit_6.3.RC2.alpha003_linux-aarch64.run
 ```
 
+以aarch64架构为例（x86_64架构参考示例获取，仅后缀名有所区别），上述3个分包的详细获取过程如下：
+
+1. 下载cann-toolkit。进入[昇腾社区CANN产品](https://www.hiascend.com/software/cann/community-history)页面，选择6.3.RC2.alpha003版本，勾选架构和文件格式过滤选项， 下载`Ascend-cann-toolkit_6.3.RC2.alpha003_linux-aarch64.run`。
+   ![firmware-dirver.png](./resources/pics/cann-toolkit.png)
+
+2. 下载firmware和driver。进入[昇腾社区固件与驱动](https://www.hiascend.com/zh/hardware/firmware-drivers/community?product=2&model=18&cann=6.3.RC2.alpha003&driver=1.0.19.alpha)页面，选择按图示勾选CANN版本和产品序列等，勾选组件、文件格式等过滤条件，下载firmware和driver包。注意cann版本需与步骤1中保持一致。
+   ![firmware-dirver.png](./resources/pics/firmware-dirver.png)
+
  
-安装：需严格按照[MindSpore安装指南](https://www.mindspore.cn/install)安装atlas分包，不要漏掉whl包的重装环节
+安装：需严格按照[MindSpore安装指南](https://www.mindspore.cn/install)安装上述分包，**不要漏掉安装昇腾AI处理器配套软件所包含的whl包**。3个软件分包的安装顺序为driver->firmware->ascend-toolkit，安装前需卸载旧版本。
 
 #### b、mindspore-lite
 
 mindspore-lite>=2.1.0
-悟空画画中的diffusion模型依赖mindspore-lite, 可点此获取[MindSpore-Lite安装包](https://repo.mindspore.cn/mindspore/mindspore/version/202307/20230713/r2.1_20230713094527_c20a53db5b86e595335acc3614e1b5205c7e40d5/lite/centos_x86/cloud_fusion/python37/mindspore_lite-2.1.0-cp37-cp37m-linux_x86_64.whl) 
+悟空画画中的diffusion模型依赖mindspore-lite, 可点此获取[MindSpore-Lite安装包](https://repo.mindspore.cn/mindspore/mindspore/version/202307/20230713/r2.1_20230713094527_c20a53db5b86e595335acc3614e1b5205c7e40d5/lite/centos_x86/cloud_fusion/python37/mindspore_lite-2.1.0-cp37-cp37m-linux_x86_64.whl)。
 
  
 
