@@ -1,3 +1,5 @@
+# function： convert raw mindir model file to hardware-optimized mindir model file
+
 import os
 
 import mindspore_lite as mslite
@@ -11,16 +13,10 @@ if __name__ == "__main__":
     converter = mslite.Converter()
     converter.optimize = "ascend_oriented"
 
-    sizes = sizes[0:4]
     for size in sizes:
-        # rename
-        # os.rename(f'./models/0722_out/out_wukong_youhua_{size}_graph.mindir' ,f'./models/0722_out/wukong_youhua_{size}_out_graph.mindir')
-        # os.rename(f'./models/0722_out/out_wukong_youhua_{size}.om' ,f'./models/0722_out/wukong_youhua_{size}_out.om')
-        # os.rename(f'./models/0722_out/out_wukong_youhua_{size}_variables' ,f'./models/0722_out/wukong_youhua_{size}_out_variables')
-
-        model_file = f'./models/wukong_youhua_{size}_graph.mindir'
-        output_file= f'./models/0722_out/wukong_youhua_{size}_out'
-        converter.convert(fmk_type=mslite.FmkType.MINDIR, model_file=model_file,
+        input_file = f'./models/wukong_youhua_{size}_graph.mindir'  # raw mindir file path
+        output_file= f'./models/wukong_youhua_{size}_out'  # output file path, suffix '_graph.mindir' will be automaticly add
+        os.makedirs(os.path.dirname(input_file), exist_ok=True)
+        os.makedirs(os.path.dirname(output_file), exist_ok=True)
+        converter.convert(fmk_type=mslite.FmkType.MINDIR, model_file=input_file,
                           output_file=output_file, config_file=config_file)
-
-
