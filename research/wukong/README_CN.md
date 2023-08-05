@@ -30,10 +30,15 @@ Ascend-cann-toolkit_6.3.RC2.alpha003_linux-aarch64.run
  
 安装：需严格按照[MindSpore安装指南](https://www.mindspore.cn/install)安装上述分包，**不要漏掉安装昇腾AI处理器配套软件所包含的whl包**。3个软件分包的安装顺序为driver->firmware->ascend-toolkit，安装前需卸载旧版本。
 
-#### b、mindspore-lite
+#### b、python
+python==3.7
+
+#### c、mindspore-lite
 
 mindspore-lite>=2.1.0
-悟空画画中的diffusion模型依赖mindspore-lite, 可点此获取[MindSpore-Lite安装包](https://repo.mindspore.cn/mindspore/mindspore/version/202307/20230713/r2.1_20230713094527_c20a53db5b86e595335acc3614e1b5205c7e40d5/lite/centos_x86/cloud_fusion/python37/mindspore_lite-2.1.0-cp37-cp37m-linux_x86_64.whl)。
+悟空画画中的diffusion模型依赖mindspore-lite, 可点此直接获取MindSpore-Lite2.1.0安装包([x86_64](https://ms-release.obs.cn-north-4.myhuaweicloud.com/2.1.0/MindSpore/lite/release/linux/x86_64/cloud_fusion/python37/mindspore_lite-2.1.0-cp37-cp37m-linux_x86_64.whl), [aarch64](https://ms-release.obs.cn-north-4.myhuaweicloud.com/2.1.0/MindSpore/lite/release/linux/aarch64/cloud_fusion/python37/mindspore_lite-2.1.0-cp37-cp37m-linux_aarch64.whl))，或访问
+[mindspore官网](https://mindspore.cn/lite/docs/zh-CN/r2.1/use/downloads.html) 手动选择安装
+
 
  
 
