@@ -23,7 +23,6 @@ Ascend-cann-toolkit_6.3.RC2.alpha003_linux-aarch64.run
 
 1. 下载cann-toolkit。进入[昇腾社区CANN产品](https://www.hiascend.com/software/cann/community-history)页面，选择6.3.RC2.alpha003版本，勾选架构和文件格式过滤选项， 下载`Ascend-cann-toolkit_6.3.RC2.alpha003_linux-aarch64.run`。
    ![firmware-dirver.png](./resources/pics/cann-toolkit.png)
-
 2. 下载firmware和driver。进入[昇腾社区固件与驱动](https://www.hiascend.com/zh/hardware/firmware-drivers/community?product=2&model=18&cann=6.3.RC2.alpha003&driver=1.0.19.alpha)页面，选择按图示勾选CANN版本和产品序列等，勾选组件、文件格式等过滤条件，下载firmware和driver包。注意cann版本需与步骤1中保持一致。
    ![firmware-dirver.png](./resources/pics/firmware-dirver.png)
 
@@ -104,6 +103,8 @@ diffusion模型和超分模型的权重可通过如下方式获取
 | origin_512_640.zip | [zip](https://download.mindspore.cn/toolkits/mindone/wukonghuahua/origin_512_640.zip) |
 | origin_640_512.zip | [zip](https://download.mindspore.cn/toolkits/mindone/wukonghuahua/origin_640_512.zip) |
 | origin_512_512.zip | [zip](https://download.mindspore.cn/toolkits/mindone/wukonghuahua/origin_512_512.zip) |
+
+_如您不想使用我们提供的原始mindir模型，而需要将自行训练的ckpt转成原始mindir，请参考[这里](CONVERT_CKPT_TO_MINDIR.md)_
 
 要进行模型转换，首先需在`{project_root}/convert/convert_ms.py`脚本中配置相关参数,主要参数为配置文件路径`config_file`,输入模型`.mindir`路径`input_file`,输出模型文件名`output_file`，输出文件会自动添加后缀`_graph.mindir`和`variables`
 
