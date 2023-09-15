@@ -52,7 +52,7 @@ class ImageNorm:
         """
         Norm an image with given mean and std, also adjust transpose the chanel when specified.
 
-        Required keys: image
+        Required keys: image, image_pad_area
         Updated keys: image
         Added keys:
         """
