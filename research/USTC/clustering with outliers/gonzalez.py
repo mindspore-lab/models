@@ -14,12 +14,14 @@ def gonzalez(data, k):
         print('k is too big !!')
         return
     for i in range(k - 1):
-        print(i)
+
         D[:, i] = next_center(data, centers_t[i, :])  # the next center
         index = int(np.argmax(np.min(D[:, :i+1], axis=1)))
         centers_t[i + 1, :] = data[index, :]
-        data = ms.delete(data, index, axis=0)
-        D = np.delete(D, index, axis=0)
+        # indices = ms.ops.ones(data.shape[0], dtype=ms.bool_)
+        # indices[index] = 0
+        # data = data.index_select(axis = 0, index=indices)
+        # D = np.delete(D, index, axis=0)
     return centers_t
 
 def next_center(data, centers):
