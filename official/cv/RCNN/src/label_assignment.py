@@ -220,7 +220,7 @@ def label_box(anchors, gt_boxes, positive_overlap, negative_overlap, allow_low_q
 
 
 def generate_proposal_target(rois, rois_mask, gts, rois_per_batch, fg_fraction, fg_thresh, bg_thresh, num_classes):
-    gt_classes, gt_bboxes, select_rois, fg_masks, valid_masks = [], [], [], [], []
+    gt_classes, gt_bboxes, valid_rois, fg_masks, valid_masks = [], [], [], [], []
     batch_size = len(rois)
     for i in range(batch_size):
         roi = rois[i]
@@ -266,20 +266,20 @@ def generate_proposal_target(rois, rois_mask, gts, rois_per_batch, fg_fraction, 
         gt_bboxes.append(gt[:, 1:][matches][vaild_idx])
         fg_masks.append(fg_s_mask)
         valid_masks.append(vaild_mask)
-        select_rois.append(roi[vaild_idx])
+        valid_rois.append(roi[vaild_idx])
 
     gt_classes = ops.stop_gradient(ops.stack(gt_classes, 0))
     gt_bboxes = ops.stop_gradient(ops.stack(gt_bboxes, 0))
     fg_masks = ops.stop_gradient(ops.stack(fg_masks, 0))
     valid_masks = ops.stop_gradient(ops.stack(valid_masks, 0))
-    select_rois = ops.stop_gradient(ops.stack(select_rois, 0))
-    return gt_classes, gt_bboxes, fg_masks, valid_masks, select_rois
+    valid_rois = ops.stop_gradient(ops.stack(valid_rois, 0))
+    return gt_classes, gt_bboxes, fg_masks, valid_masks, valid_rois
 
 
 def generate_proposal_target_with_mask(
     rois, rois_mask, gts, masks, rois_per_batch, fg_fraction, fg_thresh, bg_thresh, num_classes
 ):
-    gt_classes, gt_bboxes, select_rois, fg_masks, valid_masks, gt_masks = [], [], [], [], [], []
+    gt_classes, gt_bboxes, valid_rois, pos_rois, fg_masks, valid_masks, gt_masks = [], [], [], [], [], [], []
     batch_size = len(rois)
     for i in range(batch_size):
         roi = rois[i]
@@ -314,7 +314,9 @@ def generate_proposal_target_with_mask(
         bg_num_mask = ops.arange(int(rois_per_batch)) < bg_num
         bg_s_mask = ops.logical_and(bg_s_mask, bg_num_mask)
 
-        vaild_idx = ops.concat((fg_idx, bg_idx), 0).reshape(-1)
+        fg_idx = fg_idx.reshape(-1)
+        bg_idx = bg_idx.reshape(-1)
+        vaild_idx = ops.concat((fg_idx, bg_idx), 0)
         vaild_mask = ops.concat((fg_s_mask, bg_s_mask), 0).reshape(-1)
         fg_s_mask = ops.concat((fg_s_mask, ops.zeros_like(bg_s_mask)), 0).reshape(-1)
 
@@ -324,18 +326,20 @@ def generate_proposal_target_with_mask(
         gt_class = ops.select(vaild_mask, gt_class, ops.zeros_like(gt_class))
         gt_classes.append(gt_class)
         gt_bboxes.append(gt[:, 1:][matches][vaild_idx])
-        gt_masks.append(mask[matches][vaild_idx])
+        gt_masks.append(mask[matches][fg_idx])
         fg_masks.append(fg_s_mask)
         valid_masks.append(vaild_mask)
-        select_rois.append(roi[vaild_idx])
+        valid_rois.append(roi[vaild_idx])
+        pos_rois.append(roi[fg_idx])
 
     gt_classes = ops.stop_gradient(ops.stack(gt_classes, 0))
     gt_bboxes = ops.stop_gradient(ops.stack(gt_bboxes, 0))
     fg_masks = ops.stop_gradient(ops.stack(fg_masks, 0))
     gt_masks = ops.stop_gradient(ops.stack(gt_masks, 0))
     valid_masks = ops.stop_gradient(ops.stack(valid_masks, 0))
-    select_rois = ops.stop_gradient(ops.stack(select_rois, 0))
-    return gt_classes, gt_bboxes, gt_masks, fg_masks, valid_masks, select_rois
+    valid_rois = ops.stop_gradient(ops.stack(valid_rois, 0))
+    pos_rois = ops.stop_gradient(ops.stack(pos_rois, 0))
+    return gt_classes, gt_bboxes, gt_masks, fg_masks, valid_masks, valid_rois, pos_rois
 
 
 if __name__ == "__main__":

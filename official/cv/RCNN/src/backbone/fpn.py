@@ -21,6 +21,7 @@ class ConvModule(nn.Cell):
                 padding=padding,
                 has_bias=bias,
                 weight_init="XavierUniform",
+                bias_init="zeros"
             )
         )
         if norm == "bn":

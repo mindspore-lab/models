@@ -25,10 +25,10 @@ class MaskRCNN(nn.Cell):
         features = self.backbone(images)
         image_shape = images.shape[2:]
         rois, rois_mask, loss_rpn_cls, loss_rpn_reg = self.rpn_head(features, gts, image_shape)
-        loss_bbox_reg, loss_bbox_cls, select_rois, gt_masks, mask_weights, valid_masks = self.bbox_head(
+        loss_bbox_reg, loss_bbox_cls, pos_rois, gt_masks, mask_weights, valid_masks = self.bbox_head(
             features, rois, rois_mask, gts, masks
         )
-        loss_mask = self.mask_head(features, select_rois, gt_masks, mask_weights, valid_masks)
+        loss_mask = self.mask_head(features, pos_rois, gt_masks, mask_weights, valid_masks)
         loss = loss_rpn_cls + loss_rpn_reg + loss_bbox_cls + loss_bbox_reg + loss_mask
         return loss, loss_rpn_cls + loss_rpn_reg, loss_bbox_cls + loss_bbox_reg + loss_mask
 

@@ -137,6 +137,10 @@ if __name__ == "__main__":
         network.rpn_head.rpn_feat.to_float(ms.float16)
         network.bbox_head.head.to_float(ms.float16)
         network.bbox_head.roi_extractor.to_float(ms.float16)
+        if config.net == "MaskRCNN":
+            network.mask_head.head.to_float(ms.float16)
+            network.mask_head.roi_extractor.to_float(ms.float16)
+            network.mask_head.mask_fcn_logits.to_float(ms.float16)
         for _, cell in network.cells_and_names():
             if isinstance(cell, (nn.Dense)):
                 cell.to_float(ms.float16)

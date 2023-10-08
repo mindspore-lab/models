@@ -32,11 +32,17 @@ class TrainOneStepCell(nn.TrainOneStepWithLossScaleCell):
         weights = self.weights
         outputs = self.network(*inputs)
         loss, loss_rpn, loss_rcnn = outputs
-        sens_tuple = (ops.ones_like(loss) * self.loss_scaler.scale_value,)
+        status, scaling_sens = self.start_overflow_check(loss, self.loss_scaler.scale_value)
+        sens_tuple = (ops.ones_like(loss) * scaling_sens,)
         for i in range(1, len(outputs)):
             sens_tuple += (ops.zeros_like(outputs[i]),)
         grads = self.grad(self.network, weights)(*inputs, sens_tuple)
         grads = self.loss_scaler.unscale(grads)
         grads = self.grad_reducer(grads)
-        loss = ops.depend(loss, self.optimizer(grads))
+        # get the overflow buffer
+        cond = self.get_overflow_status(status, grads)
+        overflow = self.process_loss_scale(cond)
+        # if there is no overflow, do optimize
+        if not overflow:
+            loss = ops.depend(loss, self.optimizer(grads))
         return loss, loss_rpn, loss_rcnn
