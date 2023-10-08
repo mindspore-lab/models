@@ -7,8 +7,7 @@ import numpy as np
 import mindspore as ms
 
 from segment_anything.build_sam import sam_model_registry
-from segment_anything.dataset.transform import TransformPipeline, ImageNorm
-from segment_anything.utils.transforms import ResizeLongestSide
+from segment_anything.dataset.transform import TransformPipeline, ImageNorm, ImageResizeAndPad
 import matplotlib.pyplot as plt
 import time
 
@@ -29,65 +28,13 @@ class Timer:
         print(f'{self.name} cost time {self.end - self.start:.3f}')
 
 
-class ImageResizeAndPad:
-
-    def __init__(self, target_size):
-        """
-        Args:
-            target_size (int): target size of model input (1024 in sam)
-        """
-        self.target_size = target_size
-        self.transform = ResizeLongestSide(target_size)
-
-    def __call__(self, result_dict):
-        """
-        Resize input to the long size and then pad it to the model input size (1024*1024 in sam).
-        Pad masks and boxes to a fixed length for graph mode
-        Required keys: image, masks, boxes
-        Update keys: image, masks, boxes
-        Add keys:
-            origin_hw (np.array): array with shape (4), represents original image height, width
-            and resized height, width, respectively. This array record the trace of image shape transformation
-            and is used for visualization.
-            image_pad_area (Tuple): image padding area in h and w direction, in the format of
-            ((pad_h_left, pad_h_right), (pad_w_left, pad_w_right))
-        """
-
-        image = result_dict['image']
-        boxes = result_dict['boxes']
-
-        og_h, og_w, _ = image.shape
-        image = self.transform.apply_image(image)
-        resized_h, resized_w, _ = image.shape
-
-        # Pad image and masks to the model input
-        h, w, c = image.shape
-        max_dim = max(h, w)  # long side length
-        assert max_dim == self.target_size
-        # pad 0 to the right and bottom side
-        pad_h = max_dim - h
-        pad_w = max_dim - w
-        img_padding = ((0, pad_h), (0, pad_w), (0, 0))
-        image = np.pad(image, pad_width=img_padding, constant_values=0)  # (h, w, c)
-
-        # Adjust bounding boxes
-        boxes = self.transform.apply_boxes(boxes, (og_h, og_w)).astype(np.float32)
-
-        result_dict['origin_hw'] = np.array([og_h, og_w, resized_h, resized_w], np.int32)  # record image shape trace for visualization
-        result_dict['image'] = image
-        result_dict['boxes'] = boxes
-        result_dict['image_pad_area'] = img_padding[:2]
-
-        return result_dict
-
-
 def infer(args):
     ms.context.set_context(mode=args.mode, device_target=args.device)
 
     # Step1: data preparation
     with Timer('preprocess'):
         transform_list = [
-            ImageResizeAndPad(target_size=1024),
+            ImageResizeAndPad(target_size=1024, apply_mask=False),
             ImageNorm(),
         ]
         transform_pipeline = TransformPipeline(transform_list)
@@ -99,6 +46,9 @@ def infer(args):
 
         transformed = transform_pipeline(dict(image=image_np, boxes=boxes_np))
         image, boxes, origin_hw = transformed['image'], transformed['boxes'], transformed['origin_hw']
+        # batch_size for speed test
+        # image = ms.Tensor(np.expand_dims(image, 0).repeat(8, axis=0))  # b, 3, 1023
+        # boxes = ms.Tensor(np.expand_dims(boxes, 0).repeat(8, axis=0))  # b, n, 4
         image = ms.Tensor(image).unsqueeze(0)  # b, 3, 1023
         boxes = ms.Tensor(boxes).unsqueeze(0)  # b, n, 4
 

@@ -136,13 +136,17 @@ class LabelPad:
 @TRANSFORM_REGISTRY.registry_module()
 class ImageResizeAndPad:
 
-    def __init__(self, target_size):
+    def __init__(self, target_size, apply_box=True, apply_mask=True):
         """
         Args:
             target_size (int): target size of model input (1024 in sam)
+            apply_box: also resize and pad box accordingly beside image
+            apply_mask: also resize and pad mask accordingly beside image
         """
         self.target_size = target_size
         self.transform = ResizeLongestSide(target_size)
+        self.apply_box = apply_box
+        self.apply_mask = apply_mask
 
     def __call__(self, result_dict):
         """
@@ -159,13 +163,12 @@ class ImageResizeAndPad:
         """
 
         image = result_dict['image']
-        masks = result_dict['masks']
-        boxes = result_dict['boxes']
+        masks = result_dict.get('masks')
+        boxes = result_dict.get('boxes')
 
         og_h, og_w, _ = image.shape
         image = self.transform.apply_image(image)
         resized_h, resized_w, _ = image.shape
-        masks = np.stack([self.transform.apply_image(mask) for mask in masks])
 
         # Pad image and masks to the model input
         h, w, c = image.shape
@@ -176,17 +179,21 @@ class ImageResizeAndPad:
         pad_w = max_dim - w
         img_padding = ((0, pad_h), (0, pad_w), (0, 0))
         image = np.pad(image, pad_width=img_padding, constant_values=0)  # (h, w, c)
-        mask_padding = ((0, 0), (0, pad_h), (0, pad_w))  # (n, h, w)
-        masks = np.pad(masks, pad_width=mask_padding, constant_values=0)
-
-        # Adjust bounding boxes
-        boxes = self.transform.apply_boxes(boxes, (og_h, og_w)).astype(np.float32)
 
         result_dict['origin_hw'] = np.array([og_h, og_w, resized_h, resized_w], np.int32)  # record image shape trace for visualization
         result_dict['image'] = image
-        result_dict['masks'] = masks
-        result_dict['boxes'] = boxes
         result_dict['image_pad_area'] = img_padding[:2]
+
+        if self.apply_box:
+            # Adjust bounding boxes
+            boxes = self.transform.apply_boxes(boxes, (og_h, og_w)).astype(np.float32)
+            result_dict['boxes'] = boxes
+
+        if self.apply_mask:
+            masks = np.stack([self.transform.apply_image(mask) for mask in masks])
+            mask_padding = ((0, 0), (0, pad_h), (0, pad_w))  # (n, h, w)
+            masks = np.pad(masks, pad_width=mask_padding, constant_values=0)
+            result_dict['masks'] = masks
 
         return result_dict
 
