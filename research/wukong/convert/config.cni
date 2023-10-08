@@ -1,0 +1,4 @@
+[ascend_context]
+precision_mode=preferred_fp32
+#aoe_mode="subgraph tuning, operator tuning"
+#dump_config_file=/data3/youshu/benchmark/minddiffusion/vision/wukong-huahua/batch1/310_dump.json

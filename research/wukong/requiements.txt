@@ -1,0 +1,5 @@
+mindspore-lite>=2.0  # pkg after date 20230707
+sympy==1.10.1
+opencv-python
+Pillow
+munch

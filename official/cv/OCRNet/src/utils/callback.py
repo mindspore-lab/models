@@ -1,3 +1,4 @@
+import os
 import time
 import numpy as np
 import mindspore as ms
@@ -29,6 +30,8 @@ class Callback(ms.Callback):
                                                        1)
         if self.cfg.run_profilor:
             self.profiler = ms.Profiler(start_profile=False)
+        if self.cfg.run_eval:
+            self.best_metric = 0
 
     def run_eval(self):
         self.eval_net.set_train(False)
@@ -51,6 +54,13 @@ class Callback(ms.Callback):
         tp = np.diag(confusion_matrix)
         iou_array = tp / np.maximum(1.0, pos + res - tp)
         mean_iou = iou_array.mean()
+        if mean_iou >= self.best_metric and self.cfg.rank == 0:
+            self.best_metric = mean_iou
+            logger.info(f"update best miou {mean_iou}")
+            ms.save_checkpoint(self.eval_net,
+                               os.path.join(self.cfg.save_dir, "checkpoints",
+                                            f"{self.cfg.net}_{self.cfg.backbone.initializer}_miou_{mean_iou}.ckpt")
+                               )
         self.eval_net.set_train(True)
 
         # Show results

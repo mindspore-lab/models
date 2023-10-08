@@ -10,7 +10,7 @@ from mindspore import Tensor
 
 from mindcv.models.layers.pooling import GlobalAvgPooling
 from mindcv.models.registry import register_model
-from mindcv.models.utils import load_pretrained
+from mindcv.models.helpers import load_pretrained
 
 from ..base_modules import get_bn
 

@@ -2,6 +2,7 @@ import mindspore.dataset as de
 
 from .transforms_factory import create_transform
 from .coco_dataset import COCODataset
+from .transforms import Poly2Mask
 
 __all__ = ["create_dataloader"]
 
@@ -48,7 +49,7 @@ def create_dataloader(
     )
     dataset_column_names = ["image", "im_file", "im_id", "ori_shape", "gt_bbox", "gt_class"]
     if is_segmentaion:
-        dataset_column_names.append("gt_mask")
+        dataset_column_names.append("gt_poly")
 
     ds = de.GeneratorDataset(
         dataset,
@@ -57,16 +58,24 @@ def create_dataloader(
         shuffle=shuffle,
         num_shards=rank_size,
         shard_id=rank,
+        python_multiprocessing=True,
     )
     columns = ["image", "gt_bbox", "gt_class"]
     if is_segmentaion:
-        columns.append("gt_mask")
+        columns.append("gt_poly")
     ds = ds.map(
         operations=transforms_list,
         input_columns=columns,
         num_parallel_workers=num_parallel_worker,
         python_multiprocessing=True,
     )
+    if is_segmentaion:
+        ds = ds.map(
+            operations=Poly2Mask(),
+            input_columns=columns,
+            num_parallel_workers=num_parallel_worker,
+            python_multiprocessing=False,
+        )
 
     if task == "train":
         ds = ds.project(columns)

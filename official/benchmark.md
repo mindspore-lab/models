@@ -1,9 +1,10 @@
 ### Computer Vision
-##### Currently all results are tested on Ascend 910, RTX 3090 version is coming soon
-###
-### Image Classification
-#### Accuracies are reported on ImageNet-1K
 
+##### Currently all results are tested on Ascend 910, RTX 3090 version is coming soon
+
+### Image Classification
+
+#### Accuracies are reported on ImageNet-1K
 
 | model | acc@1 | bs | cards | ms/step | amp | config
 :-: | :-: | :-: | :-: | :-: | :-: | :-: |
@@ -153,9 +154,10 @@
 | volo_d1 | 81.82 | 128 | 8 | 575.54 |  O3 |   uploading |
 | cait_s24 | 82.25 | 64 | 8 | 435.54 |  O2 |   uploading |
 
-###
 ### Object Detection
+
 #### Accuracies are reported on COCO2017
+
 | model | map | bs | cards | ms/step | amp | config
 :-: | :-: | :-: | :-: | :-: | :-: | :-: |
 | yolov8_n | 37.2 | 16 | 8 |  302  |  O0 |   [mindyolo_yolov8](https://github.com/mindspore-lab/mindyolo/tree/main/configs/yolov8) |
@@ -181,11 +183,21 @@
 | yolox_l | 49.2 | 8 | 8 |  535  |  O0 |   [mindyolo_yolox](https://github.com/mindspore-lab/mindyolo/tree/master/configs/yolox) |
 | yolox_x | 51.6 | 8 | 8 |  619  |  O0 |   [mindyolo_yolox](https://github.com/mindspore-lab/mindyolo/tree/master/configs/yolox) |
 | yolox_darknet53 | 47.7 | 8 | 8 |  411  |  O0 |   [mindyolo_yolox](https://github.com/mindspore-lab/mindyolo/tree/master/configs/yolox) |
+| fasterrcnn_r50_fpn | 37.0 | 2 | 8 |  130  |  O2 |   [fasterrcnn_r50_fpn](https://github.com/mindspore-lab/models/tree/master/official/cv/RCNN) |
 
-### 
+### Semantic Segmentation
+
+#### Accuracies are reported on CityScapes
+
+| model | miou | bs | cards | ms/step | amp | config
+:-: | :-: | :-: | :-: | :-: | :-: | :-: |
+| ocrnet_hw48 | 82.96 | 2 | 8 |  220.48  |  O3 |   [ocrnet_hw48](https://github.com/mindspore-lab/models/tree/master/official/cv/OCRNet/config/ocrnet/config_ocrnet_hrw48_16k.yml) |
+| ocrnet_hw32 | 82.27 | 2 | 8 |  168.6  |  O3 |   [ocrnet_hw32](https://github.com/mindspore-lab/models/tree/master/official/cv/OCRNet/config/ocrnet/config_ocrnet_hrw32_16k.yml) |
+
 ### OCR
 
-#### Training Performance on Ascend 910A
+##### Training Performance on Ascend 910A
+
 #### Text Detection
 
 | model  |dataset |bs | cards | fscore | ms/step | fps | amp | config |
@@ -214,7 +226,8 @@
 | mobilenetv3 | RCTW17,MTWI,LSVT | 256 | 4 | 94.59 | 172.9 | 5923.5 | O0 | [mindocr_mobilenetv3](https://github.com/mindspore-lab/mindocr/tree/main/configs/cls/mobilenetv3)   |
 
 
-#### Inference Performance on Ascend 310P for mindspore models
+##### Inference Performance on Ascend 310P for mindspore models
+
 #### Text Detection
 
 |       model       |  dataset  | fscore |  fps  |                        mindocr recipe                        |
@@ -235,7 +248,8 @@
 | rare_resnet34_vd | icdar2015 | 0.6947 | 273.23 | [config](https://github.com/mindspore-lab/mindocr/tree/main/configs/rec/rare) |
 
 
-#### Inference Performance on Ascend 310P for paddleocr/mmocr models via onnx
+##### Inference Performance on Ascend 310P for paddleocr/mmocr models via onnx
+
 #### Text Detection
 
 |             name              |       dataset  | fscore |  fps  |                            mindocr recipe                           |

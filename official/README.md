@@ -206,7 +206,7 @@
 |  ssd_mobilenetv1           | 22.0  |   | [link](https://gitee.com/mindspore/models/tree/master/official/cv/SSD)|
 |  ssd_mobilenetv2           | 29.1  |   | [link](https://gitee.com/mindspore/models/tree/master/official/cv/SSD)|
 |  ssd_resnet50              | 34.3  |   | [link](https://gitee.com/mindspore/models/tree/master/official/cv/SSD)|
-|  fastrcnn                  | 58    |   | [link](https://gitee.com/mindspore/models/tree/master/official/cv/FasterRCNN) |
+|  fasterrcnn                  | 58    | [link](https://github.com/mindspore-lab/models/tree/master/official/cv/RCNN))  | [link](https://gitee.com/mindspore/models/tree/master/official/cv/FasterRCNN) |
 |  maskrcnn_mobilenetv1      | coming soon   |   | [link](https://gitee.com/mindspore/models/tree/master/official/cv/MaskRCNN/maskrcnn_mobilenetv1) |
 |  maskrcnn_resnet50         | coming soon   |   | [link](https://gitee.com/mindspore/models/tree/master/official/cv/MaskRCNN/maskrcnn_resnet50) |
 
@@ -214,7 +214,7 @@
 
 | model |  mind_series recipe | vanilla mindspore |
 | :-:     |  :-:            | :-:     |
-| ocrnet          |      | [link](https://gitee.com/mindspore/models/tree/master/official/cv/OCRNet/)         |
+| ocrnet          |   [link](https://github.com/mindspore-lab/models/tree/master/official/cv/OCRNet)   | [link](https://gitee.com/mindspore/models/tree/master/official/cv/OCRNet/)         |
 | deeplab v3      |      | [link](https://gitee.com/mindspore/models/tree/master/official/cv/DeepLabv3)       |
 | deeplab v3 plus |      | [link](https://gitee.com/mindspore/models/tree/master/official/cv/DeepLabV3P)      |
 | unet            |      | [link](https://gitee.com/mindspore/models/tree/master/official/cv/Unet)            |

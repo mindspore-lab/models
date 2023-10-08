@@ -32,7 +32,7 @@ def create_backbone(initializer, in_channels=3, pretrained=True, backbone_ckpt="
         if local_rank == 0:
             print(f"==== create_model {local_rank} start")
             net = create_model(
-                initializer, in_channels=in_channels, pretrained=pretrained, checkpoint_path=backbone_ckpt
+                initializer, in_channels=in_channels, pretrained=pretrained, ckpt_path=backbone_ckpt
             )
             print(f"==== create_model {local_rank} done")
             r = allreduce_sum(ops.ones((1), ms.float32))
@@ -40,11 +40,11 @@ def create_backbone(initializer, in_channels=3, pretrained=True, backbone_ckpt="
             r = allreduce_sum(ops.ones((1), ms.float32))
             print(f"==== create_model {local_rank} {r} start")
             net = create_model(
-                initializer, in_channels=in_channels, pretrained=pretrained, checkpoint_path=backbone_ckpt
+                initializer, in_channels=in_channels, pretrained=pretrained, ckpt_path=backbone_ckpt
             )
             print(f"==== create_model {local_rank} done")
     else:
-        net = create_model(initializer, in_channels=in_channels, pretrained=pretrained, checkpoint_path=backbone_ckpt)
+        net = create_model(initializer, in_channels=in_channels, pretrained=pretrained, ckpt_path=backbone_ckpt)
     return net
 
 

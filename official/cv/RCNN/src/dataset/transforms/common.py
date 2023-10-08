@@ -17,17 +17,25 @@ class RandomFlip:
         if not (isinstance(self.prob, float)):
             raise TypeError("{}: input type is invalid.".format(self))
 
-    def __call__(self, img, gt_bbox, gt_class, gt_mask=None):
+    def flip_poly(self, poly, width):
+        flipped_poly = np.array(poly)
+        flipped_poly[0::2] = width - np.array(poly[0::2])
+        return flipped_poly.tolist()
+
+    def __call__(self, img, gt_bbox, gt_class, gt_poly=None):
+        h, w = img.shape[:2]
         if np.random.random() < self.prob:
             img = cv2.flip(img, 1)
-            h, w = img.shape[:2]
             new_gt = copy.deepcopy(gt_bbox)
             gt_bbox[:, 0] = w - new_gt[:, 2]
             gt_bbox[:, 2] = w - new_gt[:, 0]  # x1 and x2 will be exchanged after flip
             del new_gt
-        if gt_mask is not None:
-            gt_mask = gt_mask[:, ::-1]
-            return img, gt_bbox, gt_class, gt_mask
+        if gt_poly is not None:
+            flipped_segms = []
+            for segm in gt_poly["segmentations"]:
+                flipped_segms.append([self.flip_poly(poly, w) for poly in segm])
+            gt_poly["segmentations"] = flipped_segms
+            return img, gt_bbox, gt_class, gt_poly
         return img, gt_bbox, gt_class
 
 
@@ -39,7 +47,7 @@ class RandomHSV:
     def __init__(self, hgain=0.5, sgain=0.5, vgain=0.5):
         self.gains = [hgain, sgain, vgain]
 
-    def __call__(self, img, gt_bbox, gt_class, gt_mask=None):
+    def __call__(self, img, gt_bbox, gt_class, gt_poly=None):
         r = np.random.uniform(-1, 1, 3) * self.gains + 1  # random gains
         hue, sat, val = cv2.split(cv2.cvtColor(img, cv2.COLOR_RGB2HSV))
 
@@ -50,8 +58,8 @@ class RandomHSV:
 
         img_hsv = cv2.merge((cv2.LUT(hue, lut_hue), cv2.LUT(sat, lut_sat), cv2.LUT(val, lut_val)))
         img = cv2.cvtColor(img_hsv, cv2.COLOR_HSV2RGB)
-        if gt_mask is not None:
-            return img, gt_bbox, gt_class, gt_mask
+        if gt_poly is not None:
+            return img, gt_bbox, gt_class, gt_poly
         return img, gt_bbox, gt_class
 
 
@@ -78,7 +86,7 @@ class NormalizeImage:
         if self.std and reduce(lambda x, y: x * y, self.std) == 0:
             raise ValueError("{}: std is invalid!".format(self))
 
-    def __call__(self, img, gt_bbox, gt_class, gt_mask=None):
+    def __call__(self, img, gt_bbox, gt_class, gt_poly=None):
         """Normalize the image.
         Operators:
             1.(optional) Scale the pixel to [0,1]
@@ -97,8 +105,8 @@ class NormalizeImage:
             std = np.array(std)[np.newaxis, np.newaxis, :]
             img -= mean
             img /= std
-        if gt_mask is not None:
-            return img, gt_bbox, gt_class, gt_mask
+        if gt_poly is not None:
+            return img, gt_bbox, gt_class, gt_poly
         return img, gt_bbox, gt_class
 
 
@@ -117,13 +125,13 @@ class TransposeImage:
         if not (isinstance(bgr2rgb, bool) and isinstance(hwc2chw, bool)):
             raise TypeError("{}: input type is invalid.".format(self))
 
-    def __call__(self, img, gt_bbox, gt_class, gt_mask=None):
+    def __call__(self, img, gt_bbox, gt_class, gt_poly=None):
         if self.bgr2rgb:
             img = img[:, :, ::-1]
         if self.hwc2chw:
             img = img.transpose(2, 0, 1)
-        if gt_mask is not None:
-            return img, gt_bbox, gt_class, gt_mask
+        if gt_poly is not None:
+            return img, gt_bbox, gt_class, gt_poly
         return img, gt_bbox, gt_class
 
 
@@ -138,7 +146,7 @@ class LabelsPadding:
         self.padding_size = padding_size
         self.padding_value = padding_value
 
-    def __call__(self, img, gt_bbox, gt_class, gt_mask=None):
+    def __call__(self, img, gt_bbox, gt_class, gt_poly=None):
         """
         Padding the list of numpy labels.
         """
@@ -150,9 +158,8 @@ class LabelsPadding:
         gt_bboxes[:nL, :] = gt_bbox[:nL, :]
         gt_classes = np.full((ps, 1), pv, dtype=np.int32)
         gt_classes[:nL, :] = gt_class[:nL, :]
-        if gt_mask is not None:
-            _, h, w = gt_mask.shape
-            gt_masks = np.full((ps, h, w), pv, dtype=np.float32)
-            gt_masks[:nL, :, :] = gt_mask[:nL, :, :]
-            return img, gt_bboxes, gt_classes, gt_masks
+        if gt_poly is not None:
+            for i in range(nL, ps):
+                gt_poly["segmentations"].append([])
+            return img, gt_bboxes, gt_classes, gt_poly
         return img, gt_bboxes, gt_classes

@@ -25,17 +25,7 @@ After downloading on the official website, organize the dataset into the followi
 ```text
 └── coco2017
      ├── train2017
-     │    ├── 000000000009.jpg
-     │    ├── 000000000025.jpg
-     │    ├── ...
-     ├── test2017
-     │    ├── 000000000001.jpg
-     │    ├── 000000058136.jpg
-     │    ├── ...
      ├── val2017
-     │    ├── 000000000139.jpg
-     │    ├── 000000057027.jpg
-     │    ├── ...
      └── annotation
           ├── captions_train2017.json
           ├── captions_val2017.json
@@ -48,7 +38,7 @@ After downloading on the official website, organize the dataset into the followi
 ## Environment Requirements
 
 - Hardware（Ascend/GPU/CPU）
-  - Prepare hardware environment with Ascend processor. Reference [MindSpot](https://www.mindspore.cn/install/en) Installation and operation environment
+  - Prepare hardware environment with Ascend processor. Reference [MindSpore](https://www.mindspore.cn/install/en) Installation and operation environment
 - Dependency: MindSpore >= 2.0
 
 ```shell
@@ -59,57 +49,46 @@ pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
 
 ### mAP
 
-| Model | pretrained Model | config | Device Num | Epoch | mAP(0.5~0.95) | CheckPoint | Graph Train Log |
-| ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- |
-| FasterRCNN R50-FPN | [R50](https://github.com/mindspore-lab/mindcv) | [cfg](config/faster_rcnn/faster_rcnn_resnet50_fpn_1x.yml) | 8 | 12 | 37.0 | [download]() | [download]() |
+| Model | pretrained Model | config | Device Num | Epoch | mAP(0.5~0.95) | FPS |CheckPoint | Graph Train Log |
+| ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- |
+| FasterRCNN R50-FPN | [R50](https://github.com/mindspore-lab/mindcv) | [cfg](config/faster_rcnn/faster_rcnn_resnet50_fpn_1x.yml) | 8 | 12 | 37.3 | 123.01 |[download](https://download.mindspore.cn/model_zoo/official/cv/rcnn/FasterRCNN_det_resnet50_epoch12_rank0.ckpt) | [download](https://download.mindspore.cn/model_zoo/official/cv/rcnn/FasterRCNN_det_resnet50_epoch12_rank0.log) |
 
 ## Quick Start
 
 change path of the Coco dataset in:`cconfig/coco.yml`:
 
 ```text
-dataset_dir: "your cityscapes"
+dataset_dir: "your coco"
 ```
 
-### Standalone Training
+### Training
 
 ```shell
+# single card
 python train.py --config [CONFIG_PATH] --device_target [DEVICE_TARGET] --mix True
-
-# example FasterRCNN R50-FPN training on 1 device
-python train.py --config config/faster_rcnn/faster_rcnn_resnet50_fpn_1x.yml --device_target Ascend --mix True
 ```
 
-### Distribute Training
-
 ```shell
+# multiple cards using openmpi
 mpirun --allow-run-as-root -n [DEVICE_NUM] --merge-stderr-to-stdout \
     python train.py --config [CONFIG_PATH] --device_target [DEVICE_TARGET] --mix True
+```
 
-# example FasterRCNN R50-FPN training on 8 devices
-mpirun --allow-run-as-root -n 8 --merge-stderr-to-stdout 、
-    python train.py --config config/faster_rcnn/faster_rcnn_resnet50_fpn_1x.yml --device_target Ascend --mix True
+If you want to use breakpoint training function, add resume_ckpt, such as:
+
+```shell
+python train.py --config [CONFIG_PATH] --device_target [DEVICE_TARGET] --mix True --resume_ckpt [CHECKPOINT_PATH]
 ```
 
 ### Evaluation：
 
 ```shell
-python eval.py --config [CONFIG_PATH] --device_target [DEVICE_TARGET] --mix True --checkpoint_path [CHECKPOINT_PATH]
+# single card
+python eval.py --config [CONFIG_PATH] --device_target [DEVICE_TARGET] --mix True --ckpt_path [CHECKPOINT_PATH]
 
-# example FasterRCNN R50-FPN evaluation on 1 device
-python eval.py --config config/faster_rcnn/faster_rcnn_resnet50_fpn_1x.yml --device_target Ascend --mix True --checkpoint_path output/checkpoint/FasterRCNN_det_resnet50_epoch12_rank0.ckpt
-
-# distribute evaluation
+# multiple cards using openmpi
 mpirun --allow-run-as-root -n [DEVICE_NUM] --merge-stderr-to-stdout 、
-    python eval.py --config [CONFIG_PATH] --device_target [DEVICE_TARGET] --mix True --checkpoint_path [CHECKPOINT_PATH]
-```
-
-### Resume Training
-
-If you want to use breakpoint training function, add resume at startup_ CKPT training parameters are sufficient, such as:
-
-```shell
-python train.py --config [CONFIG_PATH] --device_target [DEVICE_TARGET] --mix True --resume_ckpt [CHECKPOINT_PATH]
+    python eval.py --config [CONFIG_PATH] --device_target [DEVICE_TARGET] --mix True --ckpt_path [CHECKPOINT_PATH]
 ```
 
 ### Training on ModelArts
@@ -121,13 +100,6 @@ python train.py --config [CONFIG_PATH] --device_target [DEVICE_TARGET] --mix Tru
 - set OBS output results path train_url: <The path of output results in OBS>
 
 2. Refer to [ModelArts](https://support.huaweicloud.com/modelarts/index.html) start training.
-
-## Disclaimers
-
-Mindspore only provides scripts that downloads and preprocesses public datasets. We do not own these datasets and are not responsible for their quality or maintenance. Please make sure you have permission to use the dataset under the dataset’s license. The models trained on these dataset are for non-commercial research and educational purpose only.
-
-To dataset owners: we will remove or update all public content upon request if you don’t want your dataset included on Mindspore, or wish to update it in any way. Please contact us through a Github/Gitee issue. Your understanding and contribution to this community is greatly appreciated.
-
 
 ## FAQ
 
@@ -141,4 +113,17 @@ Generally, excessive CPU usage requires reduction `num_workers`; Excessive memor
 
 Q: What should I do if loss does not converge on GPU?
 
-A: set`mix` to `False`。
+A: set`mix` to `False`.
+
+## Citation
+
+```latex
+@article{Ren_2017,
+   title={Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks},
+   journal={IEEE Transactions on Pattern Analysis and Machine Intelligence},
+   publisher={Institute of Electrical and Electronics Engineers (IEEE)},
+   author={Ren, Shaoqing and He, Kaiming and Girshick, Ross and Sun, Jian},
+   year={2017},
+   month={Jun},
+}
+```
