@@ -9,23 +9,9 @@ import mindspore as ms
 from segment_anything.build_sam import sam_model_registry
 from segment_anything.dataset.transform import TransformPipeline, ImageNorm, ImageResizeAndPad
 import matplotlib.pyplot as plt
-import time
 
+from segment_anything.utils.utils import Timer
 from use_sam_with_promts import show_mask, show_box
-
-
-class Timer:
-    def __init__(self, name=''):
-        self.name = name
-        self.start = 0.0
-        self.end = 0.0
-
-    def __enter__(self):
-        self.start = time.time()
-
-    def __exit__(self, exc_type, exc_val, exc_tb):
-        self.end = time.time()
-        print(f'{self.name} cost time {self.end - self.start:.3f}')
 
 
 def infer(args):

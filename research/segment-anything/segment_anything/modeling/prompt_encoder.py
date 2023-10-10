@@ -167,7 +167,8 @@ class PromptEncoder(nn.Cell):
             dense_embeddings = self._embed_masks(masks)
         else:
             dense_embeddings = self.no_mask_embed.embedding_table.reshape(1, -1, 1, 1).broadcast_to(
-                (bs, -1, self.image_embedding_size[0], self.image_embedding_size[1])
+                (bs, self.no_mask_embed.embedding_table.shape[1],
+                 self.image_embedding_size[0], self.image_embedding_size[1])
             )
 
         return sparse_embeddings, dense_embeddings

@@ -114,7 +114,7 @@ class MaskDecoder(nn.Cell):
         """Predicts masks. See 'forward' for more details."""
         # Concatenate output tokens
         output_tokens = ops.cat([self.iou_token.embedding_table, self.mask_tokens.embedding_table], axis=0)
-        output_tokens = output_tokens.unsqueeze(0).broadcast_to((sparse_prompt_embeddings.shape[0], -1, -1))
+        output_tokens = output_tokens.unsqueeze(0).repeat(sparse_prompt_embeddings.shape[0], axis=0)
         tokens = ops.cat((output_tokens, sparse_prompt_embeddings), axis=1)
 
         # Expand per-image data in batch direction to be per-mask

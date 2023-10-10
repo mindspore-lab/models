@@ -358,7 +358,7 @@ def add_decomposed_rel_pos(
     r_q = q.reshape(B, q_h, q_w, dim)
     dtype = r_q.dtype
     # rel_h = ops.einsum("bhwc,hkc->bhwk", r_q, Rh)
-    rel_h = ops.BatchMatMul(transpose_b=True)(r_q, ops.broadcast_to(ops.unsqueeze(Rh, 0).astype(dtype), (B, -1, -1, -1)))
+    rel_h = ops.BatchMatMul(transpose_b=True)(r_q, ops.unsqueeze(Rh, 0).astype(dtype).repeat(B, axis=0))
     # rel_w = ops.einsum("bhwc,wkc->bhwk", r_q, Rw)
     rel_w = ops.mul(ops.unsqueeze(r_q, -2), ops.unsqueeze(ops.unsqueeze(Rw, 0), 0).astype(dtype)).sum(axis=-1)
 
