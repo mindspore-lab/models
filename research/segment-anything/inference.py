@@ -11,7 +11,7 @@ from segment_anything.dataset.transform import TransformPipeline, ImageNorm, Ima
 import matplotlib.pyplot as plt
 
 from segment_anything.utils.utils import Timer
-from use_sam_with_promts import show_mask, show_box
+from segment_anything.utils.visualize import show_mask, show_box
 
 
 def infer(args):
