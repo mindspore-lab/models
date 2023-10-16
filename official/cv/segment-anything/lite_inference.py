@@ -33,7 +33,8 @@ def build_model(lite_mindir_path, context):
 def infer(args):
     # Step0: prepare model
     context = set_context(device=args.device, device_id=args.device_id)
-    model = build_model(args.model_path, context)
+    with Timer('build model'):
+        model = build_model(args.model_path, context)
 
     # Step1: data preparation
     with Timer('preprocess'):
