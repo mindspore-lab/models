@@ -24,13 +24,16 @@ def freeze_layer(network, specify_prefix=None, filter_prefix=None):
         p.requires_grad = False
 
 
-def reduce_with_mask(input, valid_mask):
+def reduce_with_mask(input, valid_mask, reduction='mean'):
     if valid_mask is None:
         return ops.sum(input)
     if valid_mask.dtype != input.dtype:
         valid_mask = valid_mask.astype(input.dtype)
     num_valid = ops.sum(valid_mask)
-    return ops.sum(input * valid_mask) / num_valid
+    if reduction == 'mean':
+        return ops.sum(input * valid_mask) / num_valid
+    else:  # sum
+        return ops.sum(input * valid_mask)
 
 
 def calc_iou(pred_mask: ms.Tensor, gt_mask: ms.Tensor, epsilon=1e-7):

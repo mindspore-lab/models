@@ -61,10 +61,10 @@ train_loader:
 
   shuffle: True
   batch_size: 1
-  epoch_size: 20
+  epoch_size: 8
   drop_remainder: True
   num_workers: 2
-  max_rowsize: 24  # 24M space for dataloader
+  max_rowsize: 64  # 24M space for dataloader
 
 
 eval_loader: &eval_loader
@@ -78,7 +78,7 @@ eval_loader: &eval_loader
       - type: segment_anything.dataset.transform.ImageNorm
         hwc2chw: True
       - type: segment_anything.dataset.transform.LabelPad
-        gt_size: 20
+        gt_size: 40  # for coco val, most box_per_image is less than 40
     output_column: ['image', 'masks', 'boxes', 'valid_boxes', 'origin_hw']
 
   model_column: &model_column [ 'image', 'boxes' ]  # columns for model cell input
@@ -88,7 +88,7 @@ eval_loader: &eval_loader
   batch_size: 1
   drop_remainder: False
   num_workers: 2
-  max_rowsize: 36  # 36M space for dataloader, increase with gt_size
+  max_rowsize: 64  # 36M space for dataloader, increase with gt_size
   max_eval_iter: null  # the max iteration to eval, default to eval all the dataset
 
 

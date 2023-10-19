@@ -29,10 +29,10 @@ class MaskMiou(ms.train.Metric):
 
         assert pred_mask.shape == gt_mask.shape
         iou = calc_iou(pred_mask, gt_mask)  # (b, n)
-        miou_per_batch = reduce_with_mask(iou, valid_boxes)  # (1,)
-
-        self.num_step += 1
-        self.sum_iou += miou_per_batch
+        iou_per_batch = reduce_with_mask(iou, valid_boxes, reduction='sum')  # (1,)
+        valid_per_batch = ms.ops.sum(valid_boxes.astype(iou.dtype))
+        self.num_step += valid_per_batch
+        self.sum_iou += iou_per_batch
     
     def eval(self):
         # reduce from all the devices

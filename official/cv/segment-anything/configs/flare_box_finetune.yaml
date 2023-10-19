@@ -51,7 +51,7 @@ train_loader:
       - type: segment_anything.dataset.transform.BinaryMaskFromInstanceSeg
       - type: segment_anything.dataset.transform.BoxFormMask
       - type: segment_anything.dataset.transform.LabelPad
-        gt_size: 20
+        gt_size: 20  # all the box_pre_image are less than 20
     output_column: ['image', 'masks', 'boxes', 'valid_boxes' ]
 
   model_column: ['image', 'boxes' ]  # columns for model cell input
@@ -73,7 +73,7 @@ eval_loader: &eval_loader
       - type: segment_anything.dataset.transform.BinaryMaskFromInstanceSeg
       - type: segment_anything.dataset.transform.BoxFormMask
       - type: segment_anything.dataset.transform.LabelPad
-        gt_size: 20
+        gt_size: 20  # all the box_pre_image are less than 20
     output_column: ['image', 'masks', 'boxes', 'valid_boxes']
 
   model_column: &model_column [ 'image', 'boxes' ]  # columns for model cell input
