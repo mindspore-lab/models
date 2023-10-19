@@ -87,7 +87,7 @@ eval_loader: &eval_loader
   shuffle: True
   batch_size: 1
   drop_remainder: False
-  num_workers: 1
+  num_workers: 2
   max_rowsize: 36  # 36M space for dataloader, increase with gt_size
   max_eval_iter: null  # the max iteration to eval, default to eval all the dataset
 

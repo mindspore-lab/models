@@ -1,6 +1,7 @@
 import argparse
 
 import mindspore as ms
+from mindspore import amp
 
 from segment_anything.build_sam import create_model
 from segment_anything.dataset.dataset import create_dataloader
@@ -28,6 +29,7 @@ def main(args) -> None:
     # create model, also freeze layer if specified
     network = create_model(args.network.model)
     network.set_train(False)
+    network = amp.auto_mixed_precision(network, args.get('amp_level', 'O0'))
 
     # create evaluator
     metric = create_metric(args.eval_metric)
