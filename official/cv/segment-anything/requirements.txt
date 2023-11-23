@@ -4,5 +4,5 @@ opencv-python
 omegaconf==2.0.0
 
 # Optional. for preprocess medical ct and mr dataset
-connected-components-3d
-SimpleITK
+# connected-components-3d
+# SimpleITK

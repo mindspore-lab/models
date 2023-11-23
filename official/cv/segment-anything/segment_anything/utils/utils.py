@@ -138,7 +138,7 @@ def set_directory_and_log(main_device, rank_id, rank_size, work_root, log_level,
     if args_callback is not None:
         for cb in args_callback:
             if cb.type.endswith('SaveCkpt'):
-                hack_list = {'save_dir': save_dir, 'main_device': main_device}
+                hack_list = {'save_dir': save_dir, 'main_device': main_device, 'work_root': work_root}
                 cb.update(hack_list)
     return save_dir
 

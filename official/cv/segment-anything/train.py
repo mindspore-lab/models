@@ -18,7 +18,7 @@ from segment_anything.utils.utils import set_distributed, set_directory_and_log,
 
 def main(args) -> None:
     # Step1: initialize environment
-    ms.context.set_context(mode=args.mode, device_target=args.device, pynative_synchronize=False)
+    ms.context.set_context(mode=args.mode, device_target=args.device, pynative_synchronize=False, max_device_memory="50GB")
     ms.set_seed(42)
 
     rank_id, rank_size, main_device = set_distributed(args.distributed)
