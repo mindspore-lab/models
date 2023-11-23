@@ -32,6 +32,19 @@ def parse_args(parser_config):
     if args_cmd.override_cfg is not None:
         args.merge_with_dotlist(args_cmd.override_cfg)
 
+    # model arts
+    if 'enable_modelarts' in args_cmd and args_cmd.enable_modelarts:
+        print(f'model arts enabled')
+        # output
+        args.work_root = args_cmd.train_url
+        # input
+        args.train_loader.dataset.data_dir = os.path.join(args_cmd.data_url, 'train2017')
+        args.train_loader.dataset.annotation_path = os.path.join(args_cmd.data_url, "annotations", "instances_train2017.json")
+
+        args.eval_loader.dataset.data_dir = os.path.join(args_cmd.data_url, 'val2017')
+        args.eval_loader.dataset.annotation_path = os.path.join(args_cmd.data_url, "annotations",
+                                                                 "instances_val2017.json")
+
     return args
 
 

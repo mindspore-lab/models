@@ -1,4 +1,5 @@
 import argparse
+import ast
 
 import mindspore as ms
 from mindspore import amp
@@ -65,5 +66,11 @@ if __name__ == "__main__":
                                     "For dict, use key=value format, eg: device=False. "
                                     "For nested dict, use '.' to denote hierarchy, eg: optimizer.weight_decay=1e-3."
                                     "For list, use number to denote position, eg: callback.1.interval=100.")
+
+    # model arts
+    parser_config.add_argument("--enable_modelarts", type=ast.literal_eval, default=False)
+    parser_config.add_argument("--train_url", type=str, default="", help="obs path to output folder")
+    parser_config.add_argument("--data_url", type=str, default="", help="obs path to dataset folder")
+
     args = parse_args(parser_config)
     main(args)
