@@ -1,4 +1,5 @@
 import math
+import mindspore  as ms
 from mindspore.common.initializer import HeUniform
 from mindspore import ops, nn
 from .backbone import create_backbone
@@ -25,7 +26,7 @@ class SpatialGatherModule(nn.Cell):
         # [batch_size, height*width, num_classes]
         feats = feats.transpose((0, 2, 1))
         # [batch_size, channels, height*width]
-        probs = ops.softmax(self.scale * probs, axis=2)
+        probs = ops.softmax(self.scale * probs.to(ms.float32), axis=2).to(probs.dtype)
         # [batch_size, channels, num_classes]
         ocr_context = ops.matmul(probs, feats)
         ocr_context = ocr_context.transpose((0, 2, 1)).unsqueeze(3)
@@ -160,7 +161,7 @@ class SelfAttentionBlock(nn.Cell):
         sim_map = ops.matmul(query, key)
         if self.matmul_norm:
             sim_map = (self.channels**-0.5) * sim_map
-        sim_map = ops.softmax(sim_map, axis=-1)
+        sim_map = ops.softmax(sim_map.to(ms.float32), axis=-1).to(sim_map.dtype)
 
         context = ops.matmul(sim_map, value)
         context = context.transpose((0, 2, 1))

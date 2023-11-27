@@ -331,23 +331,26 @@ class HRModule(nn.Cell):
         if self.num_branches == 1:
             return [self.branches[0](x[0])]
 
+        x2 = []  
         for i in range(self.num_branches):
-            x[i] = self.branches[i](x[i])
+            x2.append(self.branches[i](x[i]))
 
         x_fuse = []
 
         for i in range(len(self.fuse_layers)):
-            y = x[0] if i == 0 else self.fuse_layers[i][0](x[0])
+            y = x2[0] if i == 0 else self.fuse_layers[i][0](x2[0])
             for j in range(1, self.num_branches):
                 if i == j:
-                    y = y + x[j]
+                    y = y + x2[j]
                 elif j > i:
-                    _, _, height, width = x[i].shape
-                    t = self.fuse_layers[i][j](x[j])
+                    _, _, height, width = x2[i].shape
+                    t = self.fuse_layers[i][j](x2[j])
+                    # resize是float16运算，精度不够，改32可提高推理精度
+                    # 但只改这里训练仍然溢出，需要将BN同时修改float32
                     t = ops.ResizeNearestNeighbor((height, width))(t)
                     y = y + t
                 else:
-                    y = y + self.fuse_layers[i][j](x[j])
+                    y = y + self.fuse_layers[i][j](x2[j])
             x_fuse.append(self.relu(y))
 
         if not self.multi_scale_output:

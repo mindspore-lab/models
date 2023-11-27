@@ -136,6 +136,10 @@ if __name__ == "__main__":
     # Network
     network = OCRNet(config)
     ms.amp.auto_mixed_precision(network, config.amp_level)
+    # 单卡O3不溢出，多卡O3溢出，大概率是BN输出精度不够，影响后面算子
+    for _, cell in network.cells_and_names():
+        if isinstance(cell, (nn.BatchNorm1d, nn.BatchNorm2d, nn.BatchNorm3d, nn.SyncBatchNorm)):
+            cell.to_float(ms.float32)
 
     if config.run_eval:
         from src.modules.base_modules import MultiScaleInfer

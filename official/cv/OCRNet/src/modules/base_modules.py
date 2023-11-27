@@ -5,6 +5,9 @@ from mindspore import ops, nn
 
 
 def get_bn():
+    # 单卡推理 与 多卡边训边推精度不同
+    # 应该是因为SyncBatchNorm和BatchNorm2d在推理时不同
+    # 实测4卡边训边推时第一个epoch前推理将SyncBatchNorm改为BatchNorm2d后，精度与单卡推理相同
     if ms.get_auto_parallel_context("device_num") > 1 and ms.get_context("device_target") == "Ascend":
         return nn.SyncBatchNorm
     return nn.BatchNorm2d
@@ -168,7 +171,7 @@ class FCNHead(nn.Cell):
 
 class MultiScaleInfer(nn.Cell):
     def __init__(self, net, num_classes=2, img_ratios=(1.0,), flip=False, multi_out=True):
-        super(MultiScaleInfer, self).__init__()
+        super(MultiScaleInfer, self).__init__(auto_prefix=False)
         self.net = net
         self.num_classes = num_classes
         self.img_ratios = img_ratios
@@ -185,7 +188,7 @@ class MultiScaleInfer(nn.Cell):
             if self.multi_out:
                 pred = pred[0]
             pred = ops.interpolate(pred, size=(h, w), mode="bilinear")
-            pred = ops.softmax(pred.transpose(0, 2, 3, 1), -1)
+            pred = ops.softmax(pred.transpose(0, 2, 3, 1).to(ms.float32), -1).to(pred.dtype)
             pred_res += pred
             if self.flip:
                 n_img = n_img[:, :, :, ::-1]
@@ -194,7 +197,7 @@ class MultiScaleInfer(nn.Cell):
                     pred = pred[0]
                 pred = pred[:, :, :, ::-1]
                 pred = ops.interpolate(pred, size=(h, w), mode="bilinear")
-                pred = ops.softmax(pred.transpose(0, 2, 3, 1), -1)
+                pred = ops.softmax(pred.transpose(0, 2, 3, 1).to(ms.float32), -1).to(pred.dtype)
                 pred_res += pred
         pred_res = ops.argmax(pred_res, -1)
         return pred_res
