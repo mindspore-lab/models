@@ -16,7 +16,7 @@ pip install -r requirements.txt
 
 ## Inference
 
-First download the weights ([sam_vit_b](sam_vit_b-35e4849c.ckpt), [sam_vit_l](sam_vit_l-1b460f38.ckpt), [sam_vit_h](sam_vit_h-c72f8ba1.ckpt)) and put them under `${project_root}/models` directory.
+First download the weights ([sam_vit_b](https://download.mindspore.cn/toolkits/mindone/sam/sam_vit_b-35e4849c.ckpt), [sam_vit_l](https://download.mindspore.cn/toolkits/mindone/sam/sam_vit_l-1b460f38.ckpt), [sam_vit_h](https://download.mindspore.cn/toolkits/mindone/sam/sam_vit_h-c72f8ba1.ckpt)) and put them under `${project_root}/models` directory.
 There are two recommended ways to use sam.
 
 ### Using sam with prompts
