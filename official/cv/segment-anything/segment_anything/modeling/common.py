@@ -30,8 +30,14 @@ class LayerNorm2d(nn.Cell):
         self.eps = epsilon
 
     def construct(self, x: ms.Tensor) -> ms.Tensor:
-        u = x.mean(1, keep_dims=True)
-        s = (x - u).pow(2).mean(1, keep_dims=True)
-        x = (x - u) / ops.sqrt(s + self.eps)
+        bs, c, h, w = x.shape
+        x = x.reshape(bs, c, -1).swapaxes(1, 2) # (bs, c, h, w) -> (bs, hw, c)
+
+        u = x.mean(-1, keep_dims=True) # (bs, hw, 1)
+        s = (x - u).pow(2).mean(-1, keep_dims=True) # (bs, hw, 1)
+        x = (x - u) / ops.sqrt(s + self.eps) # (bs, hw, c)
+
+        x = x.swapaxes(1, 2).reshape(bs, c, h, w)
+
         x = self.weight[:, None, None] * x + self.bias[:, None, None]
         return x
