@@ -15,7 +15,6 @@ loss_manager:
   loss_scaler:
     type: dynamic
   grad_clip: False
-  drop_overflow_update: False
 
 optimizer:
   type: segment_anything.optim.optimizer.AdamW
