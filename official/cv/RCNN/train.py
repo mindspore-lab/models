@@ -191,7 +191,7 @@ if __name__ == "__main__":
     elif config.ms_loss_scaler == "static":
         loss_scaler = StaticLossScaler(config.get("ms_loss_scaler_value", 2**10))
 
-    grad_reducer = ops.functional.identity
+    grad_reducer = nn.Identity()
     if config.rank_size > 1:
         mean = ms.context.get_auto_parallel_context("gradients_mean")
         grad_reducer = nn.DistributedGradReducer(optimizer.parameters, mean, config.rank_size)
