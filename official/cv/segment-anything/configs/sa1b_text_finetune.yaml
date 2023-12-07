@@ -1,0 +1,80 @@
+#---------------------------------------------
+# Part 1: system basic config setting
+distributed: False
+device: Ascend
+mode: 0  # 0: graph, 1: pynative
+work_root: &work_root ./work_dir/
+log_level: info
+amp_level: O2
+
+# ---------------------------------------------
+# Part2: module setting
+loss_manager:
+#  type: fixed  # dynamic or
+#  scale_sense: 1024
+  loss_scaler:
+    type: dynamic
+  grad_clip: False
+
+optimizer:
+  type: segment_anything.optim.optimizer.AdamW
+  weight_decay: 1e-4
+  group_param:
+
+  lr_scheduler:
+    type: segment_anything.optim.scheduler.SAMDynamicDecayLR
+    learning_rate: 8e-6
+    warmup_steps: 250
+    decay_steps: [ 60000, 86666 ]
+    decay_factor: 10
+
+
+network:
+  model:
+    type: vit_b
+    checkpoint: ./models/sam_vit_b-35e4849c.ckpt
+    enable_text_encoder: True  # do not build text encoder to improve performance if set False
+    text_encoder:
+      type: blip2_stage1_classification
+    freeze:
+      image_encoder: True
+      prompt_encoder:
+        filter_prefix: text_embeddings.  # NOTE: text position embedding won't freeze
+      text_encoder: True  # text encoder(blip2) is always frozen
+
+  loss:
+    type: segment_anything.modeling.loss.SAMLoss
+
+
+train_loader:
+  dataset:
+    type: segment_anything.dataset.dataset.SA1BDataset
+    data_dir: ./datasets/sa-1b/
+    transform_pipeline:
+      - type: segment_anything.dataset.transform.ImageResizeAndPad
+        target_size: 1024
+      - type: segment_anything.dataset.transform.ImageNorm
+        hwc2chw: True
+      - type: segment_anything.dataset.transform.LabelPad
+        gt_size: 20
+    output_column: ['image', 'masks', 'image_patches', 'valid_boxes']
+
+  model_column: ['image', 'boxes']  # columns for model cell input
+  loss_column:  ['masks', 'valid_boxes']  # columns for loss function input
+
+  shuffle: True
+  batch_size: 1
+  epoch_size: 8
+  drop_remainder: True
+  num_workers: 2
+  max_rowsize: 64  # 24M space for dataloader
+
+
+callback:
+  - type: segment_anything.utils.callbacks.TrainStatusLog
+    loss_item: ['focal_loss', 'dice_loss', 'mse_loss']  # for log
+    interval: 100
+  - type: segment_anything.utils.callbacks.SaveCkpt
+    work_root: *work_root
+    interval: 1  # in epoch
+

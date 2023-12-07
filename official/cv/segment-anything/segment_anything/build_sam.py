@@ -1,6 +1,7 @@
 import os.path
 
 import mindspore as ms
+from mindformers import AutoModel, Blip2Classifier
 from mindspore import nn
 
 from functools import partial
@@ -10,36 +11,42 @@ from .utils import logger
 from .utils.utils import freeze_layer
 
 
-def build_sam_vit_h(checkpoint=None):
+def build_sam_vit_h(checkpoint=None, enable_text_encoder=False, text_encoder_config=None):
     return _build_sam(
         encoder_embed_dim=1280,
         encoder_depth=32,
         encoder_num_heads=16,
         encoder_global_attn_indexes=[7, 15, 23, 31],
         checkpoint=checkpoint,
+        enable_text_encoder=enable_text_encoder,
+        text_encoder_config=text_encoder_config
     )
 
 
 build_sam = build_sam_vit_h
 
 
-def build_sam_vit_l(checkpoint=None):
+def build_sam_vit_l(checkpoint=None, enable_text_encoder=False, text_encoder_config=None):
     return _build_sam(
         encoder_embed_dim=1024,
         encoder_depth=24,
         encoder_num_heads=16,
         encoder_global_attn_indexes=[5, 11, 17, 23],
         checkpoint=checkpoint,
+        enable_text_encoder=enable_text_encoder,
+        text_encoder_config=text_encoder_config
     )
 
 
-def build_sam_vit_b(checkpoint=None):
+def build_sam_vit_b(checkpoint=None, enable_text_encoder=False, text_encoder_config=None):
     return _build_sam(
         encoder_embed_dim=768,
         encoder_depth=12,
         encoder_num_heads=12,
         encoder_global_attn_indexes=[2, 5, 8, 11],
         checkpoint=checkpoint,
+        enable_text_encoder=enable_text_encoder,
+        text_encoder_config=text_encoder_config,
     )
 
 
@@ -57,11 +64,21 @@ def _build_sam(
     encoder_num_heads,
     encoder_global_attn_indexes,
     checkpoint=None,
+    enable_text_encoder=False,
+    text_encoder_config=None
 ):
     prompt_embed_dim = 256
     image_size = 1024
     vit_patch_size = 16
     image_embedding_size = image_size // vit_patch_size
+
+    # blip2 model default to load from ./checkpoint_download/blip2/blip2_stage1_classification.ckpt
+    if text_encoder_config is None:
+        text_encoder_config = dict()
+    text_encoder: Blip2Classifier = \
+        AutoModel.from_pretrained(text_encoder_config.get('type', 'blip2_stage1_classification')) \
+            if enable_text_encoder else None
+
     sam = Sam(
         image_encoder=ImageEncoderViT(
             depth=encoder_depth,
@@ -98,6 +115,7 @@ def _build_sam(
             iou_head_depth=3,
             iou_head_hidden_dim=256,
         ),
+        text_encoder=text_encoder,
         pixel_mean=[123.675, 116.28, 103.53],
         pixel_std=[58.395, 57.12, 57.375],
     )
@@ -111,11 +129,15 @@ def _build_sam(
 
 
 def create_model(args):
-    model = sam_model_registry[args.type](checkpoint=args.checkpoint)
+    model = sam_model_registry[args.type](checkpoint=args.checkpoint,
+                                          enable_text_encoder=args.get('enable_text_encoder', False),
+                                          text_encoder_config=args.get('text_encoder', None))
     if args.freeze is not None:
-        for module in ['image_encoder', 'prompt_encoder', 'mask_decoder']:
+        for module in ['image_encoder', 'prompt_encoder', 'mask_decoder', 'text_encoder']:
             if not args.freeze.get(module, False):
                 continue
-            logger.info(f'freezing {module}')
-            freeze_layer(getattr(model, module))
+            filter_prefix = getattr(args.freeze.get(module), 'filter_prefix', None)
+            specify_prefix = getattr(args.freeze.get(module), 'specify_prefix', None)
+            logger.info(f'freezing {module}, filter_prefix: {filter_prefix}, specify_prefix: {specify_prefix}')
+            freeze_layer(getattr(model, module), filter_prefix=filter_prefix, specify_prefix=specify_prefix)
     return model

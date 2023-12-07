@@ -1,4 +1,5 @@
 import mindspore as ms
+from mindformers import Blip2Classifier
 from mindspore import nn, ops
 
 from typing import Any, Dict, List, Tuple
@@ -17,6 +18,7 @@ class Sam(nn.Cell):
         image_encoder: ImageEncoderViT,
         prompt_encoder: PromptEncoder,
         mask_decoder: MaskDecoder,
+        text_encoder: Blip2Classifier,
         pixel_mean: List[float] = [123.675, 116.28, 103.53],
         pixel_std: List[float] = [58.395, 57.12, 57.375],
     ) -> None:
@@ -29,6 +31,7 @@ class Sam(nn.Cell):
           prompt_encoder (PromptEncoder): Encodes various types of input prompts.
           mask_decoder (MaskDecoder): Predicts masks from the image embeddings
             and encoded prompts.
+          text_encoder(Blip2Classifier): Encoders text when inference and image patches when training
           pixel_mean (list(float)): Mean values for normalizing pixels in the input image.
           pixel_std (list(float)): Std values for normalizing pixels in the input image.
         """
@@ -36,13 +39,30 @@ class Sam(nn.Cell):
         self.image_encoder = image_encoder
         self.prompt_encoder = prompt_encoder
         self.mask_decoder = mask_decoder
+        self.text_encoder = text_encoder
         self.pixel_mean = ms.Tensor(pixel_mean).view(-1, 1, 1)
         self.pixel_std = ms.Tensor(pixel_std).view(-1, 1, 1)
+
+    def get_text_features(self, text_id: ms.Tensor = None, image: ms.Tensor = None):
+        """Embeds text prompts"""
+        # Using image_encoder when training and text_encoder when inference.
+        # Ref to chapter 7.5. 'Zero-Shot Text-to-Mask' in the official SAM papr https://ai.facebook.com/research/publications/segment-anything/
+        if image is None and text_id is None:
+            return None
+
+        if self.training:
+            features = self.text_encoder.get_image_feature(image)[:, 0]  # (bs, 256)
+        else:
+            features = self.text_encoder.get_text_feature(text_id)[:, 0]
+        # (bs, 256)
+        return features
 
     def construct(
         self,
         image: ms.Tensor,
-        boxes: ms.Tensor,
+        boxes: ms.Tensor = None,
+        text_ids: ms.Tensor = None,
+        image_patches: ms.Tensor = None,
     ) -> Tuple[ms.Tensor]:
         """
         Predicts masks end-to-end from provided images and prompts. Currently, only boxe prompt is supported
@@ -55,6 +75,10 @@ class Sam(nn.Cell):
 
           boxes: (ms.Tensor) Batched box inputs, with shape BxNx4. N denotes the number of boxes within in one image.
             Already transformed to the input frame of the model.
+          text_ids: (ms.Tensor) Batched tokenized text inputs, with shape BxNx4, required when inference.
+                Only one of 'text_ids' and 'image_patches' takes effect.
+          image_patches: (ms.Tensor) Batched image patches, with shape BxNx4, required when training text prompts.
+                Only one of 'text_ids' and 'image_patches' takes effect.
 
         Returns:
           (list(ms.Tensor)): A list over input images, where each element is
@@ -75,12 +99,17 @@ class Sam(nn.Cell):
         pred_masks = []
         pred_ious = []
         for i in range(bs):
-            box, curr_embedding = boxes[i], image_embeddings[i]
-            # box (n, 4)  curr_embedding (c, h, w)
+            curr_embedding = image_embeddings[i] # (c, h, w)
+            box = boxes[i] if boxes is not None else None  # (n, 4)
+            text_id = text_ids[i] if text_ids is not None else None
+            image_patch = image_patches[i] if image_patches is not None else None
+            text_features = self.get_text_features(text_id, image_patch)  # (n, 256)
+
             sparse_embeddings, dense_embeddings = self.prompt_encoder(
                 points=None,
                 boxes=box,
                 masks=None,
+                texts=text_features,
             )
             low_res_masks, iou_predictions = self.mask_decoder(
                 image_embeddings=curr_embedding.unsqueeze(0),  # (1, c, h, w) will finally expand to (n, c, h, w)

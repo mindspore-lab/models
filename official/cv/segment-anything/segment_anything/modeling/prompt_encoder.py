@@ -1,5 +1,6 @@
 import numpy as np
 import mindspore as ms
+from mindformers import Blip2Classifier
 from mindspore import nn, ops
 
 from typing import Any, Optional, Tuple, Type
@@ -15,6 +16,7 @@ class PromptEncoder(nn.Cell):
         input_image_size: Tuple[int, int],
         mask_in_chans: int,
         activation: Type[nn.Cell] = nn.GELU,
+        text_encoder=None,
     ) -> None:
         """
         Encodes prompts for input to SAM's mask decoder.
@@ -52,6 +54,9 @@ class PromptEncoder(nn.Cell):
             nn.Conv2d(mask_in_chans, embed_dim, kernel_size=1, has_bias=True),
         )
         self.no_mask_embed = nn.Embedding(1, embed_dim)
+
+        self.text_embeddings = nn.Embedding(1, embed_dim)
+        self.text_encoder: Blip2Classifier = text_encoder
 
     def get_dense_pe(self) -> ms.Tensor:
         """
@@ -109,11 +114,17 @@ class PromptEncoder(nn.Cell):
         mask_embedding = self.mask_downscaling(masks)
         return mask_embedding
 
+    def _embed_texts(self, texts: ms.Tensor) -> ms.Tensor:
+        """Embeds text inputs."""
+        text_embedding = texts + self.text_embeddings.embedding_table
+        return text_embedding
+
     def _get_batch_size(
         self,
         points: Optional[Tuple[ms.Tensor, ms.Tensor]],
         boxes: Optional[ms.Tensor],
         masks: Optional[ms.Tensor],
+        texts: Optional[ms.Tensor] = None,
     ) -> int:
         """
         Gets the batch size of the output given the batch size of the input prompts.
@@ -124,6 +135,8 @@ class PromptEncoder(nn.Cell):
             return boxes.shape[0]
         elif masks is not None:
             return masks.shape[0]
+        elif texts is not None:
+            return texts.shape[0]
         else:
             return 1
 
@@ -132,6 +145,7 @@ class PromptEncoder(nn.Cell):
         points: Optional[Tuple[ms.Tensor, ms.Tensor]],
         boxes: Optional[ms.Tensor],
         masks: Optional[ms.Tensor],
+        texts: Optional[ms.Tensor] = None,
     ) -> Tuple[ms.Tensor, ms.Tensor]:
         """
         Embeds different types of prompts, returning both sparse and dense
@@ -142,6 +156,7 @@ class PromptEncoder(nn.Cell):
             and labels to embed.
           boxes (ms.Tensor or none): boxes to embed
           masks (ms.Tensor or none): masks to embed
+          texts (ms.Tensor or none): blip2 outputted text(inference) or image(training) features  to embed
 
         Returns:
           ms.Tensor: sparse embeddings for the points and boxes, with shape
@@ -150,18 +165,25 @@ class PromptEncoder(nn.Cell):
           ms.Tensor: dense embeddings for the masks, in the shape
             Bx(embed_dim)x(embed_H)x(embed_W)
         """
-        bs = self._get_batch_size(points, boxes, masks)
-        # sparse_embeddings = ms.numpy.empty((bs, 0, self.embed_dim))
-        sparse_embeddings = None
+        bs = self._get_batch_size(points, boxes, masks, texts)
+        # sparse_embeddings = ms.numpy.empty((bs_prompt, 0, self.embed_dim))
+        sparse_embeddings = None  # (bs_prompt, sum_of_prompts, embed_dim)
         if points is not None:
-            coords, labels = points
-            point_embeddings = self._embed_points(coords, labels, pad=(boxes is None))
+            coords, labels = points  # (bs_prompt, num_point, 2), multiple point a time
+            point_embeddings = self._embed_points(coords, labels, pad=(boxes is None)) # (bs_prompt, num_point, embed_dim)
             sparse_embeddings = point_embeddings if sparse_embeddings is None \
                 else ops.cat([sparse_embeddings, point_embeddings], axis=1)
-        if boxes is not None:
-            box_embeddings = self._embed_boxes(boxes)
+        if boxes is not None:  # (bs_prompt, 4)  # one box a time
+            box_embeddings = self._embed_boxes(boxes)  # (bs_prompt, 2, embed_dim), 1 box worth 2 points
             sparse_embeddings = box_embeddings if sparse_embeddings is None \
                 else ops.cat([sparse_embeddings, box_embeddings], axis=1)
+
+        if texts is not None:
+            assert len(texts.shape) == 2
+            texts = texts.unsqueeze(1)  # (bs_prompt, 1, embed_dim)  # one text a time
+            text_embeddings = self._embed_texts(texts)  # (bs_prompt, 1, 256)
+            sparse_embeddings = text_embeddings if sparse_embeddings is None \
+                else ops.cat([sparse_embeddings, text_embeddings], axis=1)
 
         if masks is not None:
             dense_embeddings = self._embed_masks(masks)
