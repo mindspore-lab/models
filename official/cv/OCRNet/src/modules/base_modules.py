@@ -168,7 +168,7 @@ class FCNHead(nn.Cell):
 
 class MultiScaleInfer(nn.Cell):
     def __init__(self, net, num_classes=2, img_ratios=(1.0,), flip=False, multi_out=True):
-        super(MultiScaleInfer, self).__init__()
+        super(MultiScaleInfer, self).__init__(auto_prefix=False)
         self.net = net
         self.num_classes = num_classes
         self.img_ratios = img_ratios
