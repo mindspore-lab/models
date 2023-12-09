@@ -24,6 +24,26 @@ def ndarray_to_pil(npimg):
 
     return Image.fromarray(npimg, mode=mode)
 
+
+def resize_no_alias(image, new_hw):
+    """
+    resize image with no alias
+
+    apply resize with pillow to remove aliasing. See below link for more info about aliasing
+    https://stackoverflow.com/questions/60949936/why-bilinear-scaling-of-images-with-pil-and-pytorch-produces-different-results
+
+    Args:
+        image (np.ndarray): in shape [h, w, c] or [h, w].
+        new_hw (tuple): new shape to resize to, in [h, w] format.
+    """
+
+    pil_img = ndarray_to_pil(image)
+    pil_img = pil_img.resize(tuple(new_hw[::-1]), resample=Image.Resampling.BILINEAR)
+    np_img = np.array(pil_img)
+
+    return np_img
+
+
 class ResizeLongestSide:
     """
     Resizes images to the longest side 'target_length', as well as provides

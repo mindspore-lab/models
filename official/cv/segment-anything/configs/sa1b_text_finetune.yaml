@@ -51,15 +51,19 @@ train_loader:
     type: segment_anything.dataset.dataset.SA1BDataset
     data_dir: ./datasets/sa-1b/
     transform_pipeline:
+      # extrack image patch before image resize and pad
+      - type: segment_anything.dataset.transform.ImagePatchFromBoxMask
+      - type: segment_anything.dataset.transform.ImagePatchPreprocess  # norm, resize and to chw
+        model: blip2_stage1_classification
       - type: segment_anything.dataset.transform.ImageResizeAndPad
         target_size: 1024
-      - type: segment_anything.dataset.transform.ImageNorm
+      - type: segment_anything.dataset.transform.ImageNorm  # norm and to chw
         hwc2chw: True
       - type: segment_anything.dataset.transform.LabelPad
         gt_size: 20
     output_column: ['image', 'masks', 'image_patches', 'valid_boxes']
 
-  model_column: ['image', 'boxes']  # columns for model cell input
+  model_column: ['image', 'image_patches']  # columns for model cell input
   loss_column:  ['masks', 'valid_boxes']  # columns for loss function input
 
   shuffle: True
@@ -77,4 +81,5 @@ callback:
   - type: segment_anything.utils.callbacks.SaveCkpt
     work_root: *work_root
     interval: 1  # in epoch
-
+  - type: segment_anything.utils.callbacks.FreezeChildCell
+    child_cells: ['text_encoder']

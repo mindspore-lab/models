@@ -219,17 +219,25 @@ class SA1BDataset:
 
         boxes = []
         masks = []
+        areas = []
         for anno in anno_list:
             x, y, w, h = anno['bbox']
             mask = maskUtils.decode(anno['segmentation'])  # uint8
 
             # filter small mask
-            image_h, image_w = anno['segmentation']['size']
-            if w / image_w < 0.1 and h / image_h < 0.1:
-                continue
+            # image_h, image_w = anno['segmentation']['size']
+            # if w / image_w < 0.1 and h / image_h < 0.1:
+            #     continue
 
+            # filter small area mask, refer to chapter 7.5 in official SAM paper
+            if w * h < 100**2:
+                continue
+            areas.append(w * h)
             boxes.append([x, y, x + w, y + h])
             masks.append(mask)
+
+        _, boxes = zip(*sorted(zip(areas, boxes), key=lambda x: x[0], reverse=True))
+        _, masks = zip(*sorted(zip(areas, masks), key=lambda x: x[0] , reverse=True))
 
         # letter box
         data_dict = dict(image=image, masks=masks, boxes=np.array(boxes, np.float32))

@@ -49,7 +49,7 @@ class Sam(nn.Cell):
         # Ref to chapter 7.5. 'Zero-Shot Text-to-Mask' in the official SAM papr https://ai.facebook.com/research/publications/segment-anything/
         if image is None and text_id is None:
             return None
-
+        assert not self.text_encoder.training, "text encoder should be in eval mode during training"
         if self.training:
             features = self.text_encoder.get_image_feature(image)[:, 0]  # (bs, 256)
         else:

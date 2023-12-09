@@ -199,3 +199,22 @@ class Profiler(Callback):
             logger.info(f'finish analyzing profiler in step range [{self.start_step}, {self.end_step}]')
             if self.exit_after_analyze:
                 run_context.request_stop()
+
+
+@CALLBACK_REGISTRY.registry_module()
+class FreezeChildCell(Callback):
+    """
+    Set child cell to eval mode when training, this is useful to completely freeze
+     some training-specific behavior like bn running mean and dropout.
+    """
+    def __init__(self, child_cells=('text_encoder',)):
+        self.child_cells = child_cells
+
+    def on_train_begin(self, run_context: RunContext):
+        cb_params = run_context.original_args()
+        network = cb_params.network.network.net
+        for name, cell in network.cells_and_names():
+            name = name.lstrip("_backbone.") # strip prefix added by mindspore.amp.auto_mixed_precision
+            if name in self.child_cells:
+                logger.info(f'set training mode to False: {name}')
+                cell.set_train(False)

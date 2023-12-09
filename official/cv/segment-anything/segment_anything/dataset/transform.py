@@ -4,7 +4,7 @@ from typing import Tuple, Dict, List
 import numpy as np
 
 from segment_anything.utils.registry import TRANSFORM_REGISTRY
-from segment_anything.utils.transforms import ResizeLongestSide
+from segment_anything.utils.transforms import ResizeLongestSide, resize_no_alias
 
 
 class TransformPipeline:
@@ -107,13 +107,15 @@ class LabelPad:
         """
         Pad the label to the given gt_size for the static shape
 
-        Required keys: masks, boxes
-        update keys: masks, boxes
+        Required keys: masks, boxes, image_patches(Option)
+        update keys: masks, boxes, image_patches(Option)
         add keys: valid_boxes
         """
 
         boxes = result_dict['boxes']
         masks = result_dict['masks']
+        image_patches = result_dict.get('image_patches')
+
         # Pad box and mask to a fixed length
         valid_gt_size = len(boxes)
         valid_boxes = [1] * self.gt_size
@@ -126,6 +128,14 @@ class LabelPad:
             masks = np.concatenate([masks, np.zeros((pad_len, h, w), np.uint8)], axis=0)
             boxes= np.concatenate([boxes, np.zeros((pad_len, 4), np.float32)], axis=0)
             valid_boxes = [1] * valid_gt_size + [0] * pad_len
+
+        if image_patches is not None:
+            # (nv, c, hp, wp) normed with Blip2ImageProcess
+            nv, c, hp, wp = image_patches.shape
+            pad_len = 0 if valid_gt_size > self.gt_size else self.gt_size - valid_gt_size
+            image_patches = image_patches[:self.gt_size]  # keep at most gt_size samples
+            image_patches = np.concatenate([image_patches, np.zeros((pad_len, c, hp, wp), np.float32)], axis=0)
+            result_dict['image_patches'] = image_patches  # (n, c, h, w)
 
         result_dict['boxes'] = boxes  # (n, 4)
         result_dict['masks'] = masks  # (n, h, w)
@@ -265,4 +275,107 @@ class BoxFormMask:
             boxes.append(box)
 
         result_dict['boxes'] = np.stack(boxes)
+        return result_dict
+
+
+@TRANSFORM_REGISTRY.registry_module()
+class ImagePatchFromBoxMask:
+    """
+    This is the approach to generate text training prompts described in D.5. Zero-Shot Text-to-Mask of the officail SAM paper
+
+    """
+    def __init__(self, random_factor_range=(1.0, 2.0), resize=336):
+        self.random_factor_range = random_factor_range
+        self.resize = resize
+
+    def __call__(self, result_dict):
+        """
+        Get image patch from raw image with box and mask by following steps
+            1. Expand the bounding box by a random factor.
+            2. Square-crop the expanded box to maintain its aspect ratio
+            3. crop the image and resize it to 336*336 pixel
+            4. Zero-out the non-mask area with 50% probability
+        required keys: masks, boxes, image
+        Update keys: None
+        Add keys: image_patches
+        """
+        full_image = result_dict['image']  # raw image (h, w, c)
+        masks = result_dict['masks']  # (n, h, w) [0, 1]
+        boxes = result_dict['boxes']  # (n, 4)
+
+        max_h, max_w = masks[0].shape
+
+        image_patches = []
+        patch_boxes = []
+        for box, mask in zip(boxes, masks):
+            x1, y1, x2, y2 = box
+            cx, cy, w, h = (x2+x1)/2, (y2+y1)/2, (x2-x1), (y2-y1)
+            factor = np.random.uniform(low=self.random_factor_range[0], high=self.random_factor_range[1])
+            exp_x1 = max(int(cx - factor*w/2), 0)
+            exp_y1 = max(int(cy - factor*h/2), 0)
+            exp_x2 = min(int(cx + factor*w/2), max_w)
+            exp_y2 = min(int(cy + factor*h/2), max_h)
+
+            exp_cx = (exp_x1+exp_x2)/2
+            exp_cy = (exp_y1+exp_y2)/2
+            exp_w = exp_x2 - exp_x1
+            exp_h = exp_y2 - exp_y1
+
+            side_length = min(exp_w, exp_h)
+            square_x1 = max(int(exp_cx - side_length/2), 0)
+            square_y1 = max(int(exp_cy - side_length/2), 0)
+            square_x2 = min(int(exp_cx + side_length/2), max_w)
+            square_y2 = min(int(exp_cy + side_length/2), max_h)
+
+            assert full_image.shape[2] == 3
+            image_patch = full_image[square_y1: square_y2, square_x1: square_x2]
+
+            image_patch = resize_no_alias(image_patch, (self.resize, self.resize))
+
+            if np.random.uniform() > 0.5:
+                mask_patch = mask[square_y1: square_y2, square_x1: square_x2]
+                # value int[0, 1], (n, h, w)
+                mask_patch = resize_no_alias(mask_patch, (self.resize, self.resize))
+                image_patch = image_patch * np.expand_dims(mask_patch, -1)  # (h, w, c)
+
+            image_patches.append(image_patch)
+            patch_boxes.append([square_x1, square_y1, square_x2, square_y2])
+
+        result_dict['image_patches'] = np.stack(image_patches)  # (n, h, w, c)
+
+        if False:  # show image and mask for debug
+            imd = 0
+            import matplotlib.pyplot as plt
+            plt.imshow(result_dict['image'])  # raw image
+            from segment_anything.utils.visualize import show_box, show_mask
+            show_box(patch_boxes[imd], plt.gca())
+            show_mask(result_dict['masks'][imd], plt.gca())
+            plt.show()
+            plt.imshow(result_dict['image_patches'][imd])  # normed image
+            plt.show()
+
+        return result_dict
+
+
+@TRANSFORM_REGISTRY.registry_module()
+class ImagePatchPreprocess:
+    """
+    This is the approach to generate text training prompts described in D.5. Zero-Shot Text-to-Mask of the officail SAM paper
+
+    """
+    def __init__(self, model='blip2_stage1_classification'):
+        from mindformers import AutoProcessor
+        self.processor = AutoProcessor.from_pretrained(model)
+
+    def __call__(self, result_dict):
+        """
+        Process image patch to blip2 model input
+        required keys: image_patches
+        Update keys: image_patches
+        Add keys: None
+        """
+        image_patches = result_dict["image_patches"]  # (n, c, h, w), in range(0, 255), RGB
+        processed_patches = self.processor.image_processor(image_patches)  # (n, c, 224, 224), in range(0, 1), RGB
+        result_dict["image_patches"] = processed_patches.asnumpy()
+
         return result_dict
