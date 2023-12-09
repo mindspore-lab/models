@@ -153,6 +153,8 @@ class SA1BDataset:
                  data_dir,
                  transform_pipeline,
                  output_column: List[str] = None,
+                 filter_by_area=True,
+                 min_area_thresh=10000, # in pixel^2
                  **kwargs,
                  ):
         self.data_dir = data_dir
@@ -173,6 +175,9 @@ class SA1BDataset:
         self.image_paths = image_paths
         self.anno_paths = anno_paths
 
+        self.filter_by_area = filter_by_area
+        self.min_area_thresh = min_area_thresh
+        self._filter(filter_by_area, min_area_thresh)
         logger.info(f'got {len(parts)} parts of SA-1B dateset, total size: {len(self.image_paths)}')
 
     def __len__(self):
@@ -228,14 +233,14 @@ class SA1BDataset:
             # image_h, image_w = anno['segmentation']['size']
             # if w / image_w < 0.1 and h / image_h < 0.1:
             #     continue
-
-            # filter small area mask, refer to chapter 7.5 in official SAM paper
-            if w * h < 100**2:
+            area = self._get_area(anno)
+            if self.filter_by_area and area < self.min_area_thresh:
                 continue
+
             areas.append(w * h)
             boxes.append([x, y, x + w, y + h])
             masks.append(mask)
-
+        assert len(masks) > 0, f'invalid sample, not any mask, annotation path: {anno_path}'
         _, boxes = zip(*sorted(zip(areas, boxes), key=lambda x: x[0], reverse=True))
         _, masks = zip(*sorted(zip(areas, masks), key=lambda x: x[0] , reverse=True))
 
@@ -247,3 +252,37 @@ class SA1BDataset:
             self.output_column = list(data_dict.key())
 
         return tuple(data_dict[k] for k in self.output_column)
+
+    def _get_area(self, anno):
+        if 'area' in anno:
+            area = anno['area']
+        else:
+            _, _, w, h = anno['bbox']
+            area = w * h
+        return area
+
+    def _filter(self, filter_by_area=True, area_thresh=10000):
+        """
+        filter small area mask, refer to chapter 7.5 in official SAM paper
+        """
+        if not filter_by_area:
+            return
+
+        logger.info(f'start filtering sa-1b mask, min area threshold: {area_thresh}, '
+                    f'original size: {len(self.image_paths)}')
+        valid_inds = []
+        for i, anno_path in enumerate(self.anno_paths):
+            with open(anno_path, 'r') as f:
+                json_data = json.load(f)
+            anno_list = json_data['annotations']
+            for anno in anno_list:
+                area = self._get_area(anno)
+                if area >= area_thresh:
+                    valid_inds.append(i)
+                    break
+
+        logger.info(f'finish filtering sa-1b mask, got valid: {len(valid_inds)}, '
+                    f'invalid: {len(self.image_paths)-len(valid_inds)}')
+
+        self.image_paths = [self.image_paths[v] for v in valid_inds]
+        self.anno_paths = [self.anno_paths[v] for v in valid_inds]

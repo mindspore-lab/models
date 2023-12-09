@@ -54,6 +54,7 @@ for i in range(5):
     ind = int(np.argmax(probs[i]))
     print('img feature', image_features[i, :10])
     print('text feature', text_features[ind, :10])
+    print('diff', text_features[ind, :10] - image_features[i, :10])
 
     import matplotlib.pyplot as plt
     plt.imshow(images[i])
