@@ -28,12 +28,11 @@ print(f'preprocess diff : {pre_diff.flatten()[:10]}')
 images_np = np.load('./blip2_patch.npy')
 input_images  = mindspore.Tensor(images_np)  #
 image_features = model.get_image_feature(input_images)[:, 0] # (20, 256)
-feat_diff = np.load('./blip2_image_features_o2.npy') - image_features[:20].asnumpy()
+feat_diff = np.load('./blip2_image_features.npy') - image_features[:20].asnumpy()
 print(f'feature diff max: {np.max(np.abs(feat_diff))}')
 print(f'feature diff : {feat_diff.flatten()[:10]}')
-breakpoint()
 
-candidate_labels=["stone steps", "cat", "person", "window", "tree"]
+candidate_labels=["cat", "person", "stone steps", "window", "tree"]
 sentences = ["This is a photo of {}.".format(candidate_label)
                      for candidate_label in candidate_labels]
 
@@ -44,13 +43,13 @@ logits_per_image = ops.matmul(image_features, text_features.T) / model.temp  # (
 
 probs = P.Softmax()(logits_per_image).asnumpy() # (20, 5)
 
-for i in range(5):
+for i in range(20):
+    print(f'\n\n{i}')
     print('logits', logits_per_image[i])
 
     sorted_res = sorted(zip(probs[i], candidate_labels), key=lambda x: -x[0])
     print('sorted res', sorted_res)
 
-    breakpoint()
     ind = int(np.argmax(probs[i]))
     print('img feature', image_features[i, :10])
     print('text feature', text_features[ind, :10])

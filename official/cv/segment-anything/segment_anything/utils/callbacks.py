@@ -146,7 +146,7 @@ class SaveCkpt(Callback):
     """
     Callback to record the status of training, mainly including loss and time performance information.
     """
-    def __init__(self, interval=1, work_root='./work_root', save_dir='', main_device=True):
+    def __init__(self, interval=1, work_root='./work_root', save_dir='', main_device=True, filter_text_encoder=True):
         """
         Args:
             work_root (str): the directory that ckpt directory is rooted at.
@@ -154,6 +154,7 @@ class SaveCkpt(Callback):
              Note to leave this arg default and set automatically by set_directory_and_log method in train.py
             main_device (str): whether the current device is the main device.
              Note to leave this arg default and set automatically by set_directory_and_log method in train.py
+            filter_text_encoder(bool): whether to filter text encoder parameters.
         """
         self.interval = interval
         self.work_root = work_root
@@ -161,7 +162,11 @@ class SaveCkpt(Callback):
         self.main_device = main_device
         print('main_device', self.main_device)
         self.full_save_dir = os.path.join(work_root, save_dir)
-
+        self.filter_text_encoder = filter_text_encoder
+        if self.filter_text_encoder:
+            self.choice_func = lambda x: not x.startswith("text_encoder")
+        else:
+            self.choice_func = None
 
     def on_train_epoch_end(self, run_context: RunContext):
         cb_params = run_context.original_args()
@@ -172,7 +177,7 @@ class SaveCkpt(Callback):
             logger.info(f'saving ckpt of epoch {cur_epoch} at {save_path}, interval is {self.interval}')
             # model without loss function, cb_params.network is train_one_step_cell
             network = cb_params.network.network.net
-            ms.save_checkpoint(network, save_path)
+            ms.save_checkpoint(network, save_path, choice_func=self.choice_func)
 
 
 @CALLBACK_REGISTRY.registry_module()
