@@ -93,6 +93,12 @@ class Sam(nn.Cell):
                 shape BxCxHxW, where H=W=256. Can be passed as mask input
                 to subsequent iterations of prediction.
         """
+        # for debug
+        # print('image', image.shape)
+        # print('boxes', boxes.shape if boxes is not None else None)
+        # print('text_ids', text_ids.shape if text_ids is not None else None)
+        # print('image_patches', image_patches.shape if image_patches is not None else None)
+
         bs, _, h, w = image.shape
         image_embeddings = self.image_encoder(image)  # (b, c, h, w)
 

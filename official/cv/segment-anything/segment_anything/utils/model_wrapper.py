@@ -39,7 +39,9 @@ class NetWithLossWrapper(nn.Cell):
         assert len(input_columns) == 2
         self.input_indices = key2index(input_columns[0], all_columns)
         self.label_indices = key2index(input_columns[1], all_columns)
-
+        self.all_columns = all_columns
+        self.input_names = [all_columns[i] for i in self.input_indices]
+        self.label_names = [all_columns[i] for i in self.label_indices]
 
     def construct(self, *args):
         """
@@ -49,7 +51,15 @@ class NetWithLossWrapper(nn.Cell):
             loss_val (Tensor): loss value
         """
 
-        pred = self.net(*select_inputs_by_indices(args, self.input_indices))
+        # This is a very ugly workaround due to mindspore's disability of dict setitem and unpacking
+        # pred = self.net(**select_inputs_by_indices(args, self.input_indices, self.all_columns, return_type='dict'))
+        if len(self.input_names) == 2 and self.input_names[0] == 'image' and self.input_names[1] == 'image_patches':  # text-prompt
+            pred = self.net(image=args[self.input_indices[0]], image_patches=args[self.input_indices[1]])
+        elif len(self.input_names) == 2 and self.input_names[0] == 'image' and self.input_names[1] == 'boxes':
+            pred = self.net(image=args[self.input_indices[0]], boxes=args[self.input_indices[1]])
+        else:
+            raise NotImplementedError
+
         if not isinstance(pred, tuple):
             pred = (pred, )
         loss_val = self.loss_fn(*pred, *select_inputs_by_indices(args, self.label_indices))
@@ -61,12 +71,21 @@ class NetWithLossWrapper(nn.Cell):
         return loss_val
 
 
-def select_inputs_by_indices(inputs, indices):
-    new_inputs = list()
-    for x in indices:
-        new_inputs.append(inputs[x])
-    return new_inputs
+def select_inputs_by_indices(inputs, indices, columns_names=None, return_type='tuple'):
+    if return_type == 'dict':
+        assert columns_names is not None
+        assert len(inputs) == len(columns_names)
+        new_inputs = dict()
+        for i in indices:
+            new_inputs[columns_names[i]] = inputs[i]
+    elif return_type == 'tuple':
+        new_inputs = list()
+        for x in indices:
+            new_inputs.append(inputs[x])
+    else:
+        raise NotImplementedError
 
+    return new_inputs
 
 def key2index(keys: Union[List[str], str], all_keys: List[str])-> Union[List[int], int]:
     """
