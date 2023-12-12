@@ -1,6 +1,6 @@
 import os.path
 import time
-from typing import Dict, List, Tuple
+from typing import Dict, List, Tuple, Union
 
 import mindspore as ms
 from mindspore.train import RunContext
@@ -13,13 +13,14 @@ from segment_anything.utils.registry import CALLBACK_REGISTRY
 from mindspore.train import Callback
 
 
-def sec_to_dhms(sec, append_sec_digit=True)-> List:
+def sec_to_dhms(sec, append_sec_digit=True, return_name=False)-> Union[List, Tuple]:
     """
     Args:
         append_sec_digit: if true, the digit part of second is appended to the result list,
         otherwise , it is combined as a float number in second.
     """
     dhms = [0]*4
+    names = ['day', 'hour', 'min', 'sec']
     dhms[2], dhms[3] = divmod(sec, 60)  # min, sec
     dhms[1], dhms[2] = divmod(dhms[2], 60)  # hour, min
     dhms[0], dhms[1] = divmod(dhms[1], 23)  # day, hour
@@ -29,7 +30,11 @@ def sec_to_dhms(sec, append_sec_digit=True)-> List:
         sec = int(dhms[3])
         dhms.append(dhms[3] - sec)
         dhms[3] = sec
+        names.append('decimal_sec')
+    if return_name:
+        return dhms, names
     return dhms
+
 
 def create_callback(args: List):
     """
@@ -87,6 +92,7 @@ class TrainStatusLog(Callback):
         self.log_interval = interval
         self.loss_item = loss_item
         self.step_start_time = 0.0
+        self.epoch_start_time = 0.0
         self.train_start_time = 0.0
         self.accumulate_loss = ms.Tensor(0.0, dtype=ms.float32)
         self.dataset_size = 0
@@ -99,7 +105,17 @@ class TrainStatusLog(Callback):
         self.epoch_num = cb_params.epoch_num
 
     def on_train_end(self, run_context: RunContext):
-        logger.info('Training Finished')
+        cost  = time.time() - self.train_start_time  # s
+        cost_h = cost / 3600.0  # h
+        logger.info(f'Training Finished, cost {cost_h:.1f} hour')
+
+    def on_train_epoch_begin(self, run_context: RunContext):
+        self.epoch_start_time = time.time()
+
+    def on_train_epoch_end(self, run_context: RunContext):
+        cost  = time.time() - self.epoch_start_time  # s
+        cost_m = cost / 60.0  # min
+        logger.info(f'epoch finished, cost {cost_m:.1f} min')
 
     def on_train_step_begin(self, run_context: RunContext):
         self.step_start_time = time.time()
