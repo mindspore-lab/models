@@ -68,7 +68,7 @@ train_loader:
 
   shuffle: True
   batch_size: 1
-  epoch_size: 8
+  epoch_size: 20
   drop_remainder: True
   num_workers: 2
   max_rowsize: 64  # 24M space for dataloader
