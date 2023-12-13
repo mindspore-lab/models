@@ -78,6 +78,7 @@ def _build_sam(
     text_encoder: Blip2Classifier = \
         AutoModel.from_pretrained(text_encoder_config.get('type', 'blip2_stage1_classification')) \
             if enable_text_encoder else None
+    text_feature_dim = text_encoder_config.get('feature_dim', prompt_embed_dim)
 
     sam = Sam(
         image_encoder=ImageEncoderViT(
@@ -102,6 +103,7 @@ def _build_sam(
             image_embedding_size=(image_embedding_size, image_embedding_size),
             input_image_size=(image_size, image_size),
             mask_in_chans=16,
+            text_feature_dim=text_feature_dim,
         ),
         mask_decoder=MaskDecoder(
             num_multimask_outputs=3,

@@ -40,7 +40,7 @@ network:
       image_encoder: True
       prompt_encoder:
         filter_prefix: text_embeddings.  # NOTE: text position embedding won't freeze
-      text_encoder: True  # text encoder(blip2) is always frozen
+      text_encoder: True  # text encoder is always frozen, freeze grad.
 
   loss:
     type: segment_anything.modeling.loss.SAMLoss
@@ -81,5 +81,5 @@ callback:
   - type: segment_anything.utils.callbacks.SaveCkpt
     work_root: *work_root
     interval: 1  # in epoch
-  - type: segment_anything.utils.callbacks.FreezeChildCell
+  - type: segment_anything.utils.callbacks.FreezeChildCell  # freeze training behavior like dropout and bn
     child_cells: ['text_encoder']

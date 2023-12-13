@@ -1,3 +1,4 @@
+import mindformers
 import mindspore as ms
 from mindformers import Blip2Classifier
 from mindspore import nn, ops
@@ -49,7 +50,20 @@ class Sam(nn.Cell):
         # Ref to chapter 7.5. 'Zero-Shot Text-to-Mask' in the official SAM papr https://ai.facebook.com/research/publications/segment-anything/
         if image is None and text_id is None:
             return None
+
         assert not self.text_encoder.training, "text encoder should be in eval mode during training"
+
+        # CLIP
+        if isinstance(self.text_encoder, mindformers.CLIPModel):
+            if self.training:
+                image_features = self.text_encoder.get_image_features(image)
+                features = image_features / self.text_encoder.norm(image_features, dim=1, keepdim=True)
+            else:
+                text_features = self.text_encoder.get_text_features(text_id)
+                features = text_features / self.text_encoder.norm(text_features, dim=1, keepdim=True)
+            return features
+
+        # BLIP2
         if self.training:
             features = self.text_encoder.get_image_feature(image)[:, 0]  # (bs, 256)
         else:

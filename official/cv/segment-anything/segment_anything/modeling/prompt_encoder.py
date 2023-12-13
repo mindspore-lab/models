@@ -17,6 +17,7 @@ class PromptEncoder(nn.Cell):
         mask_in_chans: int,
         activation: Type[nn.Cell] = nn.GELU,
         text_encoder=None,
+        text_feature_dim=256,
     ) -> None:
         """
         Encodes prompts for input to SAM's mask decoder.
@@ -57,6 +58,8 @@ class PromptEncoder(nn.Cell):
 
         self.text_embeddings = nn.Embedding(1, embed_dim)
         self.text_encoder: Blip2Classifier = text_encoder
+        self.text_proj = nn.Dense(in_channels=text_feature_dim, out_channels=embed_dim) \
+            if text_feature_dim != embed_dim else nn.Identity() # clip need projection while blip2 not
 
     def get_dense_pe(self) -> ms.Tensor:
         """
@@ -116,6 +119,7 @@ class PromptEncoder(nn.Cell):
 
     def _embed_texts(self, texts: ms.Tensor) -> ms.Tensor:
         """Embeds text inputs."""
+        texts = self.text_proj(texts)
         text_embedding = texts + self.text_embeddings.embedding_table
         return text_embedding
 

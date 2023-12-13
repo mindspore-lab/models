@@ -100,13 +100,13 @@ First download  SA-1B dataset and put it under `${project_root}/datasets/sa-1b`.
 
 for standalone finetune of SA-1B dataset, please run:
 ```shell
-python train.py -c configs/sa1b_text_finetune.yaml
+python train.py -c configs/sa1b_text_finetune_blip2.yaml
 ```
 the BLIP2 checkpoint and bert vocabulary.txt will be automatically downloaded at `./checkpoint_download/`
 
 for distributed finetune, please run:
 ```shell
-mpirun --allow-run-as-root -n 8 python train.py -c configs/sa1b_text_finetune.yaml
+mpirun --allow-run-as-root -n 8 python train.py -c configs/sa1b_text_finetune_blip2.yaml
 ```
 the fine-tuned model will be saved at the work_root specified in `configs/sa1b_text_finetune.yaml`. For a fast single image inference, please run,
 

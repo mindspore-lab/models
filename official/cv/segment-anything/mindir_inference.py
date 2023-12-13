@@ -1,19 +1,16 @@
 import argparse
-import os
 
 import cv2
 import numpy as np
 
 import mindspore as ms
-from mindformers import AutoProcessor
-from omegaconf import OmegaConf
+from mindspore import nn
 
-from segment_anything.build_sam import sam_model_registry, create_model
 from segment_anything.dataset.transform import TransformPipeline, ImageNorm, ImageResizeAndPad
 import matplotlib.pyplot as plt
 
 from segment_anything.utils.utils import Timer
-from segment_anything.utils.visualize import show_mask, show_box
+from segment_anything.utils.visualize import show_box, show_mask
 
 
 def infer(args):
@@ -40,32 +37,16 @@ def infer(args):
         image = ms.Tensor(image).unsqueeze(0)  # b, 3, 1023
         boxes = ms.Tensor(boxes).unsqueeze(0)  # b, n, 4
 
-        if args.text_model_type == 'blip2':
-            text_model_type = 'blip2_stage1_classification'
-        elif args.text_model_type == 'clip':
-            text_model_type = 'clip_vit_l_14@336'
-        else:
-            raise NotImplementedError
-        processor = AutoProcessor.from_pretrained(text_model_type)
-        tokenizer = processor.tokenizer
-        input_ids = tokenizer(["wheels"], max_length=77, padding="max_length", return_tensors="ms")["input_ids"].unsqueeze(0)  # b, n, 7
-
     # Step2: inference
     with Timer('model inference'):
         with Timer('load weight and build net'):
-            if args.text_model_type == 'blip2':
-                text_encoder = dict(type='blip2_stage1_classification')
-            elif args.text_model_type == 'clip':
-                text_encoder = dict(type="clip_vit_l_14@336", feature_dim=768)
-            else:
-                raise NotImplementedError
-            # network = create_model(OmegaConf.create({"text_encoder": dict(type="clip_vit_l_14@336", feature_dim=768), "type": args.model_type, "checkpoint": args.checkpoint, "enable_text_encoder": True, }))
-            network = create_model(OmegaConf.create({"text_encoder": text_encoder, "type": args.model_type, "checkpoint": args.checkpoint, "enable_text_encoder": True, }))
+            graph = ms.load(args.model_path)
+            network = nn.GraphCell(graph)
         ms.amp.auto_mixed_precision(network=network, amp_level=args.amp_level)
-        mask_logits = network(image, text_ids=input_ids)[0]   # (1, 1, 1024, 1024)
+        mask_logits = network(image, boxes)[0]   # (1, 1, 1024, 1024)
 
     with Timer('Second time inference'):
-        mask_logits = network(image, text_ids=input_ids)[0]  # (1, 1, 1024, 1024)
+        mask_logits = network(image, boxes)[0]  # (1, 1, 1024, 1024)
 
     # Step3: post-process
     with Timer('post-process'):
@@ -76,10 +57,9 @@ def infer(args):
 
     # Step4: visualize
     plt.imshow(image_np)
+    show_box(boxes_np[0], plt.gca())
     show_mask(final_mask, plt.gca())
-    save_path = args.image_path + '_infer.jpg'
-    plt.savefig(save_path)
-    print(f'finish saving inference image at {save_path}')
+    plt.savefig(args.image_path + '_mindir_infer.jpg')
     plt.show()
 
 
@@ -90,24 +70,18 @@ if __name__ == '__main__':
         "--model-type",
         type=str,
         default='vit_b',
-        help="The type of sam model to load, in ['vit_h', 'vit_l', 'vit_b']",
-    )
-    parser.add_argument(
-        "--text-model-type",
-        type=str,
-        default='blip2',
-        help="The type of text model to load, in ['clip', 'blip2']",
+        help="The type of model to load, in ['vit_h', 'vit_l', 'vit_b']",
     )
 
     parser.add_argument(
-        "--checkpoint",
+        "--model-path",
         type=str,
-        default='./models/sam_vit_b-35e4849c.ckpt',
+        default='./models/sam_vit_b.mindir',
         help="The type of model to load, in ['default', 'vit_h', 'vit_l', 'vit_b']",
     )
 
     parser.add_argument("--device", type=str, default="Ascend", help="The device to run generation on.")
-    parser.add_argument("--amp_level", type=str, default="O0", help="auto mixed precision level O0, O2.")
+    parser.add_argument("--amp_level", type=str, default="O2", help="auto mixed precision level O0, O2.")
     parser.add_argument("--mode", type=int, default=0, help="MindSpore context mode. 0 for graph, 1 for pynative.")
 
     args = parser.parse_args()
