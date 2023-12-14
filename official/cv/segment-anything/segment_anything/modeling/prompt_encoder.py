@@ -16,7 +16,6 @@ class PromptEncoder(nn.Cell):
         input_image_size: Tuple[int, int],
         mask_in_chans: int,
         activation: Type[nn.Cell] = nn.GELU,
-        text_encoder=None,
         text_feature_dim=256,
     ) -> None:
         """
@@ -57,9 +56,7 @@ class PromptEncoder(nn.Cell):
         self.no_mask_embed = nn.Embedding(1, embed_dim)
 
         self.text_embeddings = nn.Embedding(1, embed_dim)
-        self.text_encoder: Blip2Classifier = text_encoder
-        self.text_proj = nn.Dense(in_channels=text_feature_dim, out_channels=embed_dim) \
-            if text_feature_dim != embed_dim else nn.Identity() # clip need projection while blip2 not
+        self.text_proj = nn.Dense(in_channels=text_feature_dim, out_channels=embed_dim)
 
     def get_dense_pe(self) -> ms.Tensor:
         """

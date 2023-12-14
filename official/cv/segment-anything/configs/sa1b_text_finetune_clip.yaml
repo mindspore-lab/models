@@ -40,7 +40,7 @@ network:
     freeze:
       image_encoder: True
       prompt_encoder:
-        filter_prefix: text_embeddings.  # NOTE: text position embedding won't freeze
+        filter_prefix: text_  # NOTE: text position embedding won't freeze
       text_encoder: True  # text encoder(blip2) is always frozen
 
   loss:
