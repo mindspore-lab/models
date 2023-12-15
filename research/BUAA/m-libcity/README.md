@@ -113,8 +113,8 @@ ckpt链接：https://download-mindspore.osinfra.cn/toolkits/M-LibCity/
 [9]. DeepTTE : When Will You Arrive? Estimating Travel Time Based on Deep Neural Networks. In AAAI’18 [C].
 
 
-
-
+### Contact Us
+The M-LibCity is mainly developed and maintained by Beihang Interest Group on SmartCity ([BIGSCITY](https://www.bigscity.com/)). 
 
 
 
