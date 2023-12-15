@@ -1,0 +1,272 @@
+2023-10-19 13:20:12,047 - INFO - Log directory: /home/ma-user/work/M-Libcity/M_libcity/log
+2023-10-19 13:20:12,048 - INFO - Begin pipeline, task=traffic_state_pred, model_name=GSNet, dataset_name=NYC_RISK, exp_id=84450
+2023-10-19 13:20:12,048 - INFO - {'task': 'traffic_state_pred', 'model': 'GSNet', 'dataset': 'NYC_RISK', 'saved_model': True, 'train': False, 'batch_size': 64, 'max_epoch': 5, 'dataset_class': 'GSNetDataset', 'executor': 'TrafficStateExecutor', 'evaluator': 'TrafficAccidentEvaluator', 'num_of_gru_layers': 5, 'gru_hidden_size': 256, 'gcn_nums_filters': [64, 64], 'scaler': 'minmax01', 'load_external': True, 'normal_external': True, 'ext_scaler': 'minmax01', 'add_time_in_day': 'true', 'add_day_in_week': 'true', 'train_rate': 0.6, 'eval_rate': 0.2, 'learning_rate': 0.003, 'learner': 'adam', 'use_early_stop': True, 'patience': 10, 'delta': 1e-06, 'num_of_target_time_feature': 1, 'cache_dataset': True, 'num_workers': 1, 'pad_with_last_sample': False, 'calculate_weight_adj': False, 'len_closeness': 3, 'len_period': 4, 'len_trend': 0, 'interval_period': 7, 'interval_trend': 0, 'pad_back_period': 0, 'pad_forward_period': 0, 'pad_back_trend': 0, 'pad_forward_trend': 0, 'gpu': True, 'gpu_id': 0, 'train_loss': 'none', 'epoch': 0, 'weight_decay': 0, 'lr_epsilon': 1e-08, 'lr_beta1': 0.9, 'lr_beta2': 0.999, 'lr_alpha': 0.99, 'lr_momentum': 0.0, 'lr_decay': False, 'lr_scheduler': 'multisteplr', 'lr_decay_ratio': 0.1, 'steps': [50, 200, 400, 700], 'step_size': 10, 'lr_T_max': 30, 'lr_eta_min': 0, 'lr_patience': 10, 'lr_threshold': 0.0001, 'clip_grad_norm': False, 'max_grad_norm': 1.0, 'log_level': 'INFO', 'log_every': 1, 'load_best_epoch': True, 'hyper_tune': False, 'metrics': ['RMSE', 'Recall', 'MAP'], 'evaluator_mode': 'single', 'save_mode': ['csv'], 'geo': {'including_types': 'Polygon', 'Polygon': {'row_id': 'num', 'column_id': 'num', 'risk_mask': 'num'}}, 'rel': {'including_types': 'geo', 'geo': {'road_adj': 'num', 'risk_adj': 'num', 'poi_adj': 'num'}}, 'grid': {'including_types': 'state', 'state': {'row_id': 20, 'column_id': 20, 'risk': 'num', 'holiday': 'num', 'poi_type_0': 'num', 'poi_type_1': 'num', 'poi_type_2': 'num', 'poi_type_3': 'num', 'poi_type_4': 'num', 'poi_type_5': 'num', 'poi_type_6': 'num', 'temperature': 'num', 'weather_clear': 'num', 'weather_cloudy': 'num', 'weather_rain': 'num', 'weather_snow': 'num', 'weather_mist': 'num', 'inflow': 'num', 'outflow': 'num'}}, 'data_col': ['risk', 'holiday', 'poi_type_0', 'poi_type_1', 'poi_type_2', 'poi_type_3', 'poi_type_4', 'poi_type_5', 'poi_type_6', 'temperature', 'weather_clear', 'weather_cloudy', 'weather_rain', 'weather_snow', 'weather_mist', 'inflow', 'outflow'], 'weight_col': ['road_adj', 'risk_adj', 'poi_adj'], 'data_files': ['NYC_RISK'], 'graph_input_col': ['risk', 'inflow', 'outflow'], 'target_time_col': ['holiday'], 'geo_file': 'NYC_RISK', 'rel_file': 'NYC_RISK', 'grid_len_row': 20, 'grid_len_column': 20, 'output_dim': 1, 'time_intervals': 3600, 'risk_thresholds': [0, 0.04, 0.08], 'risk_weights': [0.05, 0.2, 0.25, 0.5], 'exp_id': 84450}
+2023-10-19 13:20:12,070 - INFO - Loaded file NYC_RISK.geo, num_nodes=243
+2023-10-19 13:20:12,124 - INFO - set_weight_link_or_dist: dist
+2023-10-19 13:20:12,124 - INFO - init_weight_inf_or_zero: inf
+2023-10-19 13:20:12,352 - INFO - Loaded file NYC_RISK.rel, shape=(243, 243)
+2023-10-19 13:20:12,403 - INFO - set_weight_link_or_dist: dist
+2023-10-19 13:20:12,403 - INFO - init_weight_inf_or_zero: inf
+2023-10-19 13:20:12,630 - INFO - Loaded file NYC_RISK.rel, shape=(243, 243)
+2023-10-19 13:20:12,679 - INFO - set_weight_link_or_dist: dist
+2023-10-19 13:20:12,679 - INFO - init_weight_inf_or_zero: inf
+2023-10-19 13:20:12,908 - INFO - Loaded file NYC_RISK.rel, shape=(243, 243)
+2023-10-19 13:20:12,909 - INFO - Loading file NYC_RISK.geo
+2023-10-19 13:21:08,408 - INFO - GSNet<
+  (gsnet): _ViT<
+    (patch_to_embedding): Dense<input_channels=175, output_channels=64, has_bias=True>
+    (transformer): Transformer<
+      (layers): SequentialCell<
+        (0): SequentialCell<
+          (0): Residual<
+            (fn): PreNorm<
+              (norm): LayerNorm<normalized_shape=[64], begin_norm_axis=-1, begin_params_axis=-1, gammaParameter (name=gsnet.transformer.layers.0.0.fn.norm.gamma, shape=(64,), dtype=Float32, requires_grad=True), beta=Parameter (name=gsnet.transformer.layers.0.0.fn.norm.beta, shape=(64,), dtype=Float32, requires_grad=True)>
+              (fn): Attention<
+                (to_qkv): Dense<input_channels=64, output_channels=192, has_bias=True>
+                (to_out): Dense<input_channels=64, output_channels=64, has_bias=True>
+                >
+              >
+            >
+          (1): Residual<
+            (fn): PreNorm<
+              (norm): LayerNorm<normalized_shape=[64], begin_norm_axis=-1, begin_params_axis=-1, gammaParameter (name=gsnet.transformer.layers.0.1.fn.norm.gamma, shape=(64,), dtype=Float32, requires_grad=True), beta=Parameter (name=gsnet.transformer.layers.0.1.fn.norm.beta, shape=(64,), dtype=Float32, requires_grad=True)>
+              (fn): FeedForward<
+                (net): SequentialCell<
+                  (0): Dense<input_channels=64, output_channels=128, has_bias=True>
+                  (1): GELU<>
+                  (2): Dense<input_channels=128, output_channels=64, has_bias=True>
+                  >
+                >
+              >
+            >
+          >
+        (1): SequentialCell<
+          (0): Residual<
+            (fn): PreNorm<
+              (norm): LayerNorm<normalized_shape=[64], begin_norm_axis=-1, begin_params_axis=-1, gammaParameter (name=gsnet.transformer.layers.1.0.fn.norm.gamma, shape=(64,), dtype=Float32, requires_grad=True), beta=Parameter (name=gsnet.transformer.layers.1.0.fn.norm.beta, shape=(64,), dtype=Float32, requires_grad=True)>
+              (fn): Attention<
+                (to_qkv): Dense<input_channels=64, output_channels=192, has_bias=True>
+                (to_out): Dense<input_channels=64, output_channels=64, has_bias=True>
+                >
+              >
+            >
+          (1): Residual<
+            (fn): PreNorm<
+              (norm): LayerNorm<normalized_shape=[64], begin_norm_axis=-1, begin_params_axis=-1, gammaParameter (name=gsnet.transformer.layers.1.1.fn.norm.gamma, shape=(64,), dtype=Float32, requires_grad=True), beta=Parameter (name=gsnet.transformer.layers.1.1.fn.norm.beta, shape=(64,), dtype=Float32, requires_grad=True)>
+              (fn): FeedForward<
+                (net): SequentialCell<
+                  (0): Dense<input_channels=64, output_channels=128, has_bias=True>
+                  (1): GELU<>
+                  (2): Dense<input_channels=128, output_channels=64, has_bias=True>
+                  >
+                >
+              >
+            >
+          >
+        (2): SequentialCell<
+          (0): Residual<
+            (fn): PreNorm<
+              (norm): LayerNorm<normalized_shape=[64], begin_norm_axis=-1, begin_params_axis=-1, gammaParameter (name=gsnet.transformer.layers.2.0.fn.norm.gamma, shape=(64,), dtype=Float32, requires_grad=True), beta=Parameter (name=gsnet.transformer.layers.2.0.fn.norm.beta, shape=(64,), dtype=Float32, requires_grad=True)>
+              (fn): Attention<
+                (to_qkv): Dense<input_channels=64, output_channels=192, has_bias=True>
+                (to_out): Dense<input_channels=64, output_channels=64, has_bias=True>
+                >
+              >
+            >
+          (1): Residual<
+            (fn): PreNorm<
+              (norm): LayerNorm<normalized_shape=[64], begin_norm_axis=-1, begin_params_axis=-1, gammaParameter (name=gsnet.transformer.layers.2.1.fn.norm.gamma, shape=(64,), dtype=Float32, requires_grad=True), beta=Parameter (name=gsnet.transformer.layers.2.1.fn.norm.beta, shape=(64,), dtype=Float32, requires_grad=True)>
+              (fn): FeedForward<
+                (net): SequentialCell<
+                  (0): Dense<input_channels=64, output_channels=128, has_bias=True>
+                  (1): GELU<>
+                  (2): Dense<input_channels=128, output_channels=64, has_bias=True>
+                  >
+                >
+              >
+            >
+          >
+        (3): SequentialCell<
+          (0): Residual<
+            (fn): PreNorm<
+              (norm): LayerNorm<normalized_shape=[64], begin_norm_axis=-1, begin_params_axis=-1, gammaParameter (name=gsnet.transformer.layers.3.0.fn.norm.gamma, shape=(64,), dtype=Float32, requires_grad=True), beta=Parameter (name=gsnet.transformer.layers.3.0.fn.norm.beta, shape=(64,), dtype=Float32, requires_grad=True)>
+              (fn): Attention<
+                (to_qkv): Dense<input_channels=64, output_channels=192, has_bias=True>
+                (to_out): Dense<input_channels=64, output_channels=64, has_bias=True>
+                >
+              >
+            >
+          (1): Residual<
+            (fn): PreNorm<
+              (norm): LayerNorm<normalized_shape=[64], begin_norm_axis=-1, begin_params_axis=-1, gammaParameter (name=gsnet.transformer.layers.3.1.fn.norm.gamma, shape=(64,), dtype=Float32, requires_grad=True), beta=Parameter (name=gsnet.transformer.layers.3.1.fn.norm.beta, shape=(64,), dtype=Float32, requires_grad=True)>
+              (fn): FeedForward<
+                (net): SequentialCell<
+                  (0): Dense<input_channels=64, output_channels=128, has_bias=True>
+                  (1): GELU<>
+                  (2): Dense<input_channels=128, output_channels=64, has_bias=True>
+                  >
+                >
+              >
+            >
+          >
+        (4): SequentialCell<
+          (0): Residual<
+            (fn): PreNorm<
+              (norm): LayerNorm<normalized_shape=[64], begin_norm_axis=-1, begin_params_axis=-1, gammaParameter (name=gsnet.transformer.layers.4.0.fn.norm.gamma, shape=(64,), dtype=Float32, requires_grad=True), beta=Parameter (name=gsnet.transformer.layers.4.0.fn.norm.beta, shape=(64,), dtype=Float32, requires_grad=True)>
+              (fn): Attention<
+                (to_qkv): Dense<input_channels=64, output_channels=192, has_bias=True>
+                (to_out): Dense<input_channels=64, output_channels=64, has_bias=True>
+                >
+              >
+            >
+          (1): Residual<
+            (fn): PreNorm<
+              (norm): LayerNorm<normalized_shape=[64], begin_norm_axis=-1, begin_params_axis=-1, gammaParameter (name=gsnet.transformer.layers.4.1.fn.norm.gamma, shape=(64,), dtype=Float32, requires_grad=True), beta=Parameter (name=gsnet.transformer.layers.4.1.fn.norm.beta, shape=(64,), dtype=Float32, requires_grad=True)>
+              (fn): FeedForward<
+                (net): SequentialCell<
+                  (0): Dense<input_channels=64, output_channels=128, has_bias=True>
+                  (1): GELU<>
+                  (2): Dense<input_channels=128, output_channels=64, has_bias=True>
+                  >
+                >
+              >
+            >
+          >
+        (5): SequentialCell<
+          (0): Residual<
+            (fn): PreNorm<
+              (norm): LayerNorm<normalized_shape=[64], begin_norm_axis=-1, begin_params_axis=-1, gammaParameter (name=gsnet.transformer.layers.5.0.fn.norm.gamma, shape=(64,), dtype=Float32, requires_grad=True), beta=Parameter (name=gsnet.transformer.layers.5.0.fn.norm.beta, shape=(64,), dtype=Float32, requires_grad=True)>
+              (fn): Attention<
+                (to_qkv): Dense<input_channels=64, output_channels=192, has_bias=True>
+                (to_out): Dense<input_channels=64, output_channels=64, has_bias=True>
+                >
+              >
+            >
+          (1): Residual<
+            (fn): PreNorm<
+              (norm): LayerNorm<normalized_shape=[64], begin_norm_axis=-1, begin_params_axis=-1, gammaParameter (name=gsnet.transformer.layers.5.1.fn.norm.gamma, shape=(64,), dtype=Float32, requires_grad=True), beta=Parameter (name=gsnet.transformer.layers.5.1.fn.norm.beta, shape=(64,), dtype=Float32, requires_grad=True)>
+              (fn): FeedForward<
+                (net): SequentialCell<
+                  (0): Dense<input_channels=64, output_channels=128, has_bias=True>
+                  (1): GELU<>
+                  (2): Dense<input_channels=128, output_channels=64, has_bias=True>
+                  >
+                >
+              >
+            >
+          >
+        >
+      >
+    (to_cls_token): Identity<>
+    (past_region_features_fc): Dense<input_channels=329, output_channels=64, has_bias=True>
+    (mlp_head): SequentialCell<
+      (0): Dense<input_channels=64, output_channels=128, has_bias=True>
+      (1): GELU<>
+      (2): Dense<input_channels=128, output_channels=400, has_bias=True>
+      >
+    >
+  >
+2023-10-19 13:21:08,414 - INFO - gsnet.pos_embedding	(1, 17, 64)	True
+2023-10-19 13:21:08,414 - INFO - gsnet.cls_token	(1, 1, 64)	True
+2023-10-19 13:21:08,414 - INFO - gsnet.patch_to_embedding.weight	(64, 175)	True
+2023-10-19 13:21:08,415 - INFO - gsnet.patch_to_embedding.bias	(64,)	True
+2023-10-19 13:21:08,415 - INFO - gsnet.transformer.layers.0.0.fn.norm.gamma	(64,)	True
+2023-10-19 13:21:08,415 - INFO - gsnet.transformer.layers.0.0.fn.norm.beta	(64,)	True
+2023-10-19 13:21:08,415 - INFO - gsnet.transformer.layers.0.0.fn.fn.to_qkv.weight	(192, 64)	True
+2023-10-19 13:21:08,415 - INFO - gsnet.transformer.layers.0.0.fn.fn.to_qkv.bias	(192,)	True
+2023-10-19 13:21:08,415 - INFO - gsnet.transformer.layers.0.0.fn.fn.to_out.weight	(64, 64)	True
+2023-10-19 13:21:08,415 - INFO - gsnet.transformer.layers.0.0.fn.fn.to_out.bias	(64,)	True
+2023-10-19 13:21:08,415 - INFO - gsnet.transformer.layers.0.1.fn.norm.gamma	(64,)	True
+2023-10-19 13:21:08,415 - INFO - gsnet.transformer.layers.0.1.fn.norm.beta	(64,)	True
+2023-10-19 13:21:08,416 - INFO - gsnet.transformer.layers.0.1.fn.fn.net.0.weight	(128, 64)	True
+2023-10-19 13:21:08,416 - INFO - gsnet.transformer.layers.0.1.fn.fn.net.0.bias	(128,)	True
+2023-10-19 13:21:08,416 - INFO - gsnet.transformer.layers.0.1.fn.fn.net.2.weight	(64, 128)	True
+2023-10-19 13:21:08,416 - INFO - gsnet.transformer.layers.0.1.fn.fn.net.2.bias	(64,)	True
+2023-10-19 13:21:08,416 - INFO - gsnet.transformer.layers.1.0.fn.norm.gamma	(64,)	True
+2023-10-19 13:21:08,416 - INFO - gsnet.transformer.layers.1.0.fn.norm.beta	(64,)	True
+2023-10-19 13:21:08,416 - INFO - gsnet.transformer.layers.1.0.fn.fn.to_qkv.weight	(192, 64)	True
+2023-10-19 13:21:08,416 - INFO - gsnet.transformer.layers.1.0.fn.fn.to_qkv.bias	(192,)	True
+2023-10-19 13:21:08,417 - INFO - gsnet.transformer.layers.1.0.fn.fn.to_out.weight	(64, 64)	True
+2023-10-19 13:21:08,417 - INFO - gsnet.transformer.layers.1.0.fn.fn.to_out.bias	(64,)	True
+2023-10-19 13:21:08,417 - INFO - gsnet.transformer.layers.1.1.fn.norm.gamma	(64,)	True
+2023-10-19 13:21:08,417 - INFO - gsnet.transformer.layers.1.1.fn.norm.beta	(64,)	True
+2023-10-19 13:21:08,417 - INFO - gsnet.transformer.layers.1.1.fn.fn.net.0.weight	(128, 64)	True
+2023-10-19 13:21:08,417 - INFO - gsnet.transformer.layers.1.1.fn.fn.net.0.bias	(128,)	True
+2023-10-19 13:21:08,417 - INFO - gsnet.transformer.layers.1.1.fn.fn.net.2.weight	(64, 128)	True
+2023-10-19 13:21:08,417 - INFO - gsnet.transformer.layers.1.1.fn.fn.net.2.bias	(64,)	True
+2023-10-19 13:21:08,417 - INFO - gsnet.transformer.layers.2.0.fn.norm.gamma	(64,)	True
+2023-10-19 13:21:08,418 - INFO - gsnet.transformer.layers.2.0.fn.norm.beta	(64,)	True
+2023-10-19 13:21:08,418 - INFO - gsnet.transformer.layers.2.0.fn.fn.to_qkv.weight	(192, 64)	True
+2023-10-19 13:21:08,418 - INFO - gsnet.transformer.layers.2.0.fn.fn.to_qkv.bias	(192,)	True
+2023-10-19 13:21:08,418 - INFO - gsnet.transformer.layers.2.0.fn.fn.to_out.weight	(64, 64)	True
+2023-10-19 13:21:08,418 - INFO - gsnet.transformer.layers.2.0.fn.fn.to_out.bias	(64,)	True
+2023-10-19 13:21:08,418 - INFO - gsnet.transformer.layers.2.1.fn.norm.gamma	(64,)	True
+2023-10-19 13:21:08,418 - INFO - gsnet.transformer.layers.2.1.fn.norm.beta	(64,)	True
+2023-10-19 13:21:08,418 - INFO - gsnet.transformer.layers.2.1.fn.fn.net.0.weight	(128, 64)	True
+2023-10-19 13:21:08,418 - INFO - gsnet.transformer.layers.2.1.fn.fn.net.0.bias	(128,)	True
+2023-10-19 13:21:08,419 - INFO - gsnet.transformer.layers.2.1.fn.fn.net.2.weight	(64, 128)	True
+2023-10-19 13:21:08,419 - INFO - gsnet.transformer.layers.2.1.fn.fn.net.2.bias	(64,)	True
+2023-10-19 13:21:08,419 - INFO - gsnet.transformer.layers.3.0.fn.norm.gamma	(64,)	True
+2023-10-19 13:21:08,419 - INFO - gsnet.transformer.layers.3.0.fn.norm.beta	(64,)	True
+2023-10-19 13:21:08,419 - INFO - gsnet.transformer.layers.3.0.fn.fn.to_qkv.weight	(192, 64)	True
+2023-10-19 13:21:08,419 - INFO - gsnet.transformer.layers.3.0.fn.fn.to_qkv.bias	(192,)	True
+2023-10-19 13:21:08,419 - INFO - gsnet.transformer.layers.3.0.fn.fn.to_out.weight	(64, 64)	True
+2023-10-19 13:21:08,419 - INFO - gsnet.transformer.layers.3.0.fn.fn.to_out.bias	(64,)	True
+2023-10-19 13:21:08,420 - INFO - gsnet.transformer.layers.3.1.fn.norm.gamma	(64,)	True
+2023-10-19 13:21:08,420 - INFO - gsnet.transformer.layers.3.1.fn.norm.beta	(64,)	True
+2023-10-19 13:21:08,420 - INFO - gsnet.transformer.layers.3.1.fn.fn.net.0.weight	(128, 64)	True
+2023-10-19 13:21:08,420 - INFO - gsnet.transformer.layers.3.1.fn.fn.net.0.bias	(128,)	True
+2023-10-19 13:21:08,420 - INFO - gsnet.transformer.layers.3.1.fn.fn.net.2.weight	(64, 128)	True
+2023-10-19 13:21:08,420 - INFO - gsnet.transformer.layers.3.1.fn.fn.net.2.bias	(64,)	True
+2023-10-19 13:21:08,420 - INFO - gsnet.transformer.layers.4.0.fn.norm.gamma	(64,)	True
+2023-10-19 13:21:08,420 - INFO - gsnet.transformer.layers.4.0.fn.norm.beta	(64,)	True
+2023-10-19 13:21:08,420 - INFO - gsnet.transformer.layers.4.0.fn.fn.to_qkv.weight	(192, 64)	True
+2023-10-19 13:21:08,421 - INFO - gsnet.transformer.layers.4.0.fn.fn.to_qkv.bias	(192,)	True
+2023-10-19 13:21:08,421 - INFO - gsnet.transformer.layers.4.0.fn.fn.to_out.weight	(64, 64)	True
+2023-10-19 13:21:08,421 - INFO - gsnet.transformer.layers.4.0.fn.fn.to_out.bias	(64,)	True
+2023-10-19 13:21:08,421 - INFO - gsnet.transformer.layers.4.1.fn.norm.gamma	(64,)	True
+2023-10-19 13:21:08,421 - INFO - gsnet.transformer.layers.4.1.fn.norm.beta	(64,)	True
+2023-10-19 13:21:08,421 - INFO - gsnet.transformer.layers.4.1.fn.fn.net.0.weight	(128, 64)	True
+2023-10-19 13:21:08,421 - INFO - gsnet.transformer.layers.4.1.fn.fn.net.0.bias	(128,)	True
+2023-10-19 13:21:08,421 - INFO - gsnet.transformer.layers.4.1.fn.fn.net.2.weight	(64, 128)	True
+2023-10-19 13:21:08,421 - INFO - gsnet.transformer.layers.4.1.fn.fn.net.2.bias	(64,)	True
+2023-10-19 13:21:08,422 - INFO - gsnet.transformer.layers.5.0.fn.norm.gamma	(64,)	True
+2023-10-19 13:21:08,422 - INFO - gsnet.transformer.layers.5.0.fn.norm.beta	(64,)	True
+2023-10-19 13:21:08,422 - INFO - gsnet.transformer.layers.5.0.fn.fn.to_qkv.weight	(192, 64)	True
+2023-10-19 13:21:08,422 - INFO - gsnet.transformer.layers.5.0.fn.fn.to_qkv.bias	(192,)	True
+2023-10-19 13:21:08,422 - INFO - gsnet.transformer.layers.5.0.fn.fn.to_out.weight	(64, 64)	True
+2023-10-19 13:21:08,422 - INFO - gsnet.transformer.layers.5.0.fn.fn.to_out.bias	(64,)	True
+2023-10-19 13:21:08,422 - INFO - gsnet.transformer.layers.5.1.fn.norm.gamma	(64,)	True
+2023-10-19 13:21:08,422 - INFO - gsnet.transformer.layers.5.1.fn.norm.beta	(64,)	True
+2023-10-19 13:21:08,422 - INFO - gsnet.transformer.layers.5.1.fn.fn.net.0.weight	(128, 64)	True
+2023-10-19 13:21:08,423 - INFO - gsnet.transformer.layers.5.1.fn.fn.net.0.bias	(128,)	True
+2023-10-19 13:21:08,423 - INFO - gsnet.transformer.layers.5.1.fn.fn.net.2.weight	(64, 128)	True
+2023-10-19 13:21:08,423 - INFO - gsnet.transformer.layers.5.1.fn.fn.net.2.bias	(64,)	True
+2023-10-19 13:21:08,423 - INFO - gsnet.past_region_features_fc.weight	(64, 329)	True
+2023-10-19 13:21:08,423 - INFO - gsnet.past_region_features_fc.bias	(64,)	True
+2023-10-19 13:21:08,423 - INFO - gsnet.mlp_head.0.weight	(128, 64)	True
+2023-10-19 13:21:08,423 - INFO - gsnet.mlp_head.0.bias	(128,)	True
+2023-10-19 13:21:08,423 - INFO - gsnet.mlp_head.2.weight	(400, 128)	True
+2023-10-19 13:21:08,423 - INFO - gsnet.mlp_head.2.bias	(400,)	True
+2023-10-19 13:21:08,426 - INFO - Total parameter numbers: 294288
+2023-10-19 13:21:08,426 - INFO - You select `adam` optimizer.
+2023-10-19 13:21:08,736 - WARNING - Received none train loss func and will use the loss func defined in the model.
+2023-10-19 13:21:08,737 - INFO - Start training ...
+2023-10-19 13:21:08,740 - INFO - num_batches:71
+2023-10-19 13:23:38,594 - INFO - current lr 为：0.003000000026077032
+2023-10-19 13:23:43,165 - INFO - valid loss 为: 3.3792779445648193
+2023-10-19 13:26:08,021 - INFO - current lr 为：0.003000000026077032
+2023-10-19 13:26:11,706 - INFO - valid loss 为: 3.3543496131896973
+2023-10-19 13:28:34,777 - INFO - current lr 为：0.003000000026077032
+2023-10-19 13:28:38,216 - INFO - valid loss 为: 3.3495469093322754
+2023-10-19 13:31:00,833 - INFO - current lr 为：0.003000000026077032
+2023-10-19 13:31:04,734 - INFO - valid loss 为: 3.364877223968506
+2023-10-19 13:33:31,965 - INFO - current lr 为：0.003000000026077032
+2023-10-19 13:33:35,755 - INFO - valid loss 为: 3.370558261871338
+2023-10-19 13:33:35,757 - INFO - Loaded model at /home/ma-user/work/M-Libcity/M_libcity/cache/84450/model_cache/GSNet_NYC_RISK.ckpt
+2023-10-19 13:33:36,018 - INFO - Start evaluating ...
+2023-10-19 13:33:42,766 - INFO - Note that you select the single mode to evaluate!
+2023-10-19 13:33:42,780 - INFO - Evaluate result is saved at /home/ma-user/work/M-Libcity/M_libcity/cache/84450/evaluate_cache/2023_10_19_13_33_42_GSNet_NYC_RISK.csv
+2023-10-19 13:33:42,795 - INFO - 
+       RMSE     Recall       MAP
+1  7.972412  33.256499  0.184063

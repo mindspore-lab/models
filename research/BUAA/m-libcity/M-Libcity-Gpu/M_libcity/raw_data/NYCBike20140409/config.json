@@ -1,0 +1,38 @@
+{
+  "geo": {
+    "including_types": [
+      "Polygon"
+    ],
+    "Polygon": {
+      "row_id": "num",
+      "column_id": "num"
+    }
+  },
+  "grid": {
+    "including_types": [
+      "state"
+    ],
+    "state": {
+      "row_id": 16,
+      "column_id": 8,
+      "new_flow": "num",
+      "end_flow": "num"
+    }
+  },
+  "info": {
+    "data_col": [
+      "new_flow",
+      "end_flow"
+    ],
+    "data_files": [
+      "NYCBIKE20140409"
+    ],
+    "geo_file": "NYCBIKE20140409",
+    "output_dim": 2,
+    "time_intervals": 3600,
+    "init_weight_inf_or_zero": "inf",
+    "set_weight_link_or_dist": "dist",
+    "calculate_weight_adj": false,
+    "weight_adj_epsilon": 0.1
+  }
+}

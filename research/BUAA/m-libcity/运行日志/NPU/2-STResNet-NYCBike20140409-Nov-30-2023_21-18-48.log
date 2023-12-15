@@ -1,0 +1,1550 @@
+2023-11-30 21:18:48,934 - INFO - Log directory: /disk1/mindone/m-libcity/M-Libcity/M_libcity/log
+2023-11-30 21:18:48,934 - INFO - Begin pipeline, task=traffic_state_pred, model_name=STResNet, dataset_name=NYCBike20140409, exp_id=2
+2023-11-30 21:18:48,934 - INFO - {'task': 'traffic_state_pred', 'model': 'STResNet', 'dataset': 'NYCBike20140409', 'saved_model': True, 'train': False, 'exp_id': 2, 'dataset_class': 'STResNetDataset', 'executor': 'TrafficStateExecutor', 'evaluator': 'TrafficStateEvaluator', 'nb_residual_unit': 12, 'batch_norm': False, 'scaler': 'minmax11', 'load_external': True, 'normal_external': False, 'ext_scaler': 'none', 'add_time_in_day': False, 'add_day_in_week': False, 'external_time': True, 'max_epoch': 500, 'learner': 'adam', 'learning_rate': 0.0002, 'lr_decay': False, 'clip_grad_norm': True, 'max_grad_norm': 0.1, 'use_early_stop': True, 'patience': 50, 'batch_size': 64, 'cache_dataset': True, 'num_workers': 1, 'pad_with_last_sample': True, 'train_rate': 0.8, 'eval_rate': 0.1, 'input_window': 12, 'output_window': 12, 'len_closeness': 4, 'len_period': 2, 'len_trend': 0, 'interval_period': 1, 'interval_trend': 7, 'use_row_column': True, 'gpu': True, 'gpu_id': 0, 'train_loss': 'none', 'epoch': 0, 'weight_decay': 0, 'lr_epsilon': 1e-08, 'lr_beta1': 0.9, 'lr_beta2': 0.999, 'lr_alpha': 0.99, 'lr_momentum': 0.0, 'lr_scheduler': 'multisteplr', 'lr_decay_ratio': 0.1, 'steps': [50, 200, 400, 700], 'step_size': 10, 'lr_T_max': 30, 'lr_eta_min': 0, 'lr_patience': 10, 'lr_threshold': 0.0001, 'log_level': 'INFO', 'log_every': 1, 'load_best_epoch': True, 'hyper_tune': False, 'metrics': ['MAE', 'MAPE', 'RMSE'], 'evaluator_mode': 'single', 'save_mode': ['csv'], 'geo': {'including_types': ['Polygon'], 'Polygon': {'row_id': 'num', 'column_id': 'num'}}, 'grid': {'including_types': ['state'], 'state': {'row_id': 16, 'column_id': 8, 'new_flow': 'num', 'end_flow': 'num'}}, 'data_col': ['new_flow', 'end_flow'], 'data_files': ['NYCBIKE20140409'], 'geo_file': 'NYCBIKE20140409', 'output_dim': 2, 'time_intervals': 3600, 'init_weight_inf_or_zero': 'inf', 'set_weight_link_or_dist': 'dist', 'calculate_weight_adj': False, 'weight_adj_epsilon': 0.1}
+2023-11-30 21:18:48,941 - INFO - Loaded file NYCBIKE20140409.geo, num_grids=128, grid_size=(16, 8)
+2023-11-30 21:18:48,942 - INFO - Generate grid rel file, shape=(128, 128)
+2023-11-30 21:18:48,942 - INFO - Loading /disk1/mindone/m-libcity/M-Libcity/M_libcity/cache/dataset_cache/grid_based_NYCBike20140409_12_12_0.8_0.1_minmax11_64_True_False_False_True_True_4_2_0_1_7.npz
+2023-11-30 21:18:49,073 - INFO - train	x: (3475, 6, 16, 8, 2), y: (3475, 1, 16, 8, 2), x_ext: (3475, 6, 33), y_ext: (3475, 33)
+2023-11-30 21:18:49,073 - INFO - eval	x: (435, 6, 16, 8, 2), y: (435, 1, 16, 8, 2), x_ext: (435, 6, 33), y_ext: (435, 33)
+2023-11-30 21:18:49,073 - INFO - test	x: (434, 6, 16, 8, 2), y: (434, 1, 16, 8, 2), x_ext: (434, 6, 33), y_ext: (434, 33)
+2023-11-30 21:18:49,085 - INFO - MinMax11Scaler max: 267.0, min: 0.0
+2023-11-30 21:18:49,085 - INFO - NoneScaler
+2023-11-30 21:18:59,037 - INFO - STResNet<
+  (loss): MSELoss<>
+  (network): STResNet_model<
+    (relu): ReLU<>
+    (tanh): Tanh<>
+    (c_way): SequentialCell<
+      (conv1): Conv2d<input_channels=8, output_channels=64, kernel_size=(3, 3), stride=(1, 1), pad_mode=pad, padding=1, dilation=(1, 1), group=1, has_bias=True, weight_init=normal, bias_init=zeros, format=NCHW>
+      (ResUnits): ResUnits<
+        (residual_units): SequentialCell<
+          (0): ResidualUnit<
+            (bn_relu_conv1): BnReluConv<
+              (bn1): BatchNorm2d<num_features=64, eps=1e-05, momentum=0.9, gamma=Parameter (name=network.c_way.ResUnits.residual_units.0.bn_relu_conv1.bn1.gamma, shape=(64,), dtype=Float32, requires_grad=True), beta=Parameter (name=network.c_way.ResUnits.residual_units.0.bn_relu_conv1.bn1.beta, shape=(64,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=network.c_way.ResUnits.residual_units.0.bn_relu_conv1.bn1.moving_mean, shape=(64,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=network.c_way.ResUnits.residual_units.0.bn_relu_conv1.bn1.moving_variance, shape=(64,), dtype=Float32, requires_grad=False)>
+              (relu): ReLU<>
+              (conv1): Conv2d<input_channels=64, output_channels=64, kernel_size=(3, 3), stride=(1, 1), pad_mode=pad, padding=1, dilation=(1, 1), group=1, has_bias=True, weight_init=normal, bias_init=zeros, format=NCHW>
+              >
+            (bn_relu_conv2): BnReluConv<
+              (bn1): BatchNorm2d<num_features=64, eps=1e-05, momentum=0.9, gamma=Parameter (name=network.c_way.ResUnits.residual_units.0.bn_relu_conv2.bn1.gamma, shape=(64,), dtype=Float32, requires_grad=True), beta=Parameter (name=network.c_way.ResUnits.residual_units.0.bn_relu_conv2.bn1.beta, shape=(64,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=network.c_way.ResUnits.residual_units.0.bn_relu_conv2.bn1.moving_mean, shape=(64,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=network.c_way.ResUnits.residual_units.0.bn_relu_conv2.bn1.moving_variance, shape=(64,), dtype=Float32, requires_grad=False)>
+              (relu): ReLU<>
+              (conv1): Conv2d<input_channels=64, output_channels=64, kernel_size=(3, 3), stride=(1, 1), pad_mode=pad, padding=1, dilation=(1, 1), group=1, has_bias=True, weight_init=normal, bias_init=zeros, format=NCHW>
+              >
+            >
+          (1): ResidualUnit<
+            (bn_relu_conv1): BnReluConv<
+              (bn1): BatchNorm2d<num_features=64, eps=1e-05, momentum=0.9, gamma=Parameter (name=network.c_way.ResUnits.residual_units.1.bn_relu_conv1.bn1.gamma, shape=(64,), dtype=Float32, requires_grad=True), beta=Parameter (name=network.c_way.ResUnits.residual_units.1.bn_relu_conv1.bn1.beta, shape=(64,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=network.c_way.ResUnits.residual_units.1.bn_relu_conv1.bn1.moving_mean, shape=(64,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=network.c_way.ResUnits.residual_units.1.bn_relu_conv1.bn1.moving_variance, shape=(64,), dtype=Float32, requires_grad=False)>
+              (relu): ReLU<>
+              (conv1): Conv2d<input_channels=64, output_channels=64, kernel_size=(3, 3), stride=(1, 1), pad_mode=pad, padding=1, dilation=(1, 1), group=1, has_bias=True, weight_init=normal, bias_init=zeros, format=NCHW>
+              >
+            (bn_relu_conv2): BnReluConv<
+              (bn1): BatchNorm2d<num_features=64, eps=1e-05, momentum=0.9, gamma=Parameter (name=network.c_way.ResUnits.residual_units.1.bn_relu_conv2.bn1.gamma, shape=(64,), dtype=Float32, requires_grad=True), beta=Parameter (name=network.c_way.ResUnits.residual_units.1.bn_relu_conv2.bn1.beta, shape=(64,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=network.c_way.ResUnits.residual_units.1.bn_relu_conv2.bn1.moving_mean, shape=(64,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=network.c_way.ResUnits.residual_units.1.bn_relu_conv2.bn1.moving_variance, shape=(64,), dtype=Float32, requires_grad=False)>
+              (relu): ReLU<>
+              (conv1): Conv2d<input_channels=64, output_channels=64, kernel_size=(3, 3), stride=(1, 1), pad_mode=pad, padding=1, dilation=(1, 1), group=1, has_bias=True, weight_init=normal, bias_init=zeros, format=NCHW>
+              >
+            >
+          (2): ResidualUnit<
+            (bn_relu_conv1): BnReluConv<
+              (bn1): BatchNorm2d<num_features=64, eps=1e-05, momentum=0.9, gamma=Parameter (name=network.c_way.ResUnits.residual_units.2.bn_relu_conv1.bn1.gamma, shape=(64,), dtype=Float32, requires_grad=True), beta=Parameter (name=network.c_way.ResUnits.residual_units.2.bn_relu_conv1.bn1.beta, shape=(64,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=network.c_way.ResUnits.residual_units.2.bn_relu_conv1.bn1.moving_mean, shape=(64,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=network.c_way.ResUnits.residual_units.2.bn_relu_conv1.bn1.moving_variance, shape=(64,), dtype=Float32, requires_grad=False)>
+              (relu): ReLU<>
+              (conv1): Conv2d<input_channels=64, output_channels=64, kernel_size=(3, 3), stride=(1, 1), pad_mode=pad, padding=1, dilation=(1, 1), group=1, has_bias=True, weight_init=normal, bias_init=zeros, format=NCHW>
+              >
+            (bn_relu_conv2): BnReluConv<
+              (bn1): BatchNorm2d<num_features=64, eps=1e-05, momentum=0.9, gamma=Parameter (name=network.c_way.ResUnits.residual_units.2.bn_relu_conv2.bn1.gamma, shape=(64,), dtype=Float32, requires_grad=True), beta=Parameter (name=network.c_way.ResUnits.residual_units.2.bn_relu_conv2.bn1.beta, shape=(64,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=network.c_way.ResUnits.residual_units.2.bn_relu_conv2.bn1.moving_mean, shape=(64,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=network.c_way.ResUnits.residual_units.2.bn_relu_conv2.bn1.moving_variance, shape=(64,), dtype=Float32, requires_grad=False)>
+              (relu): ReLU<>
+              (conv1): Conv2d<input_channels=64, output_channels=64, kernel_size=(3, 3), stride=(1, 1), pad_mode=pad, padding=1, dilation=(1, 1), group=1, has_bias=True, weight_init=normal, bias_init=zeros, format=NCHW>
+              >
+            >
+          (3): ResidualUnit<
+            (bn_relu_conv1): BnReluConv<
+              (bn1): BatchNorm2d<num_features=64, eps=1e-05, momentum=0.9, gamma=Parameter (name=network.c_way.ResUnits.residual_units.3.bn_relu_conv1.bn1.gamma, shape=(64,), dtype=Float32, requires_grad=True), beta=Parameter (name=network.c_way.ResUnits.residual_units.3.bn_relu_conv1.bn1.beta, shape=(64,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=network.c_way.ResUnits.residual_units.3.bn_relu_conv1.bn1.moving_mean, shape=(64,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=network.c_way.ResUnits.residual_units.3.bn_relu_conv1.bn1.moving_variance, shape=(64,), dtype=Float32, requires_grad=False)>
+              (relu): ReLU<>
+              (conv1): Conv2d<input_channels=64, output_channels=64, kernel_size=(3, 3), stride=(1, 1), pad_mode=pad, padding=1, dilation=(1, 1), group=1, has_bias=True, weight_init=normal, bias_init=zeros, format=NCHW>
+              >
+            (bn_relu_conv2): BnReluConv<
+              (bn1): BatchNorm2d<num_features=64, eps=1e-05, momentum=0.9, gamma=Parameter (name=network.c_way.ResUnits.residual_units.3.bn_relu_conv2.bn1.gamma, shape=(64,), dtype=Float32, requires_grad=True), beta=Parameter (name=network.c_way.ResUnits.residual_units.3.bn_relu_conv2.bn1.beta, shape=(64,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=network.c_way.ResUnits.residual_units.3.bn_relu_conv2.bn1.moving_mean, shape=(64,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=network.c_way.ResUnits.residual_units.3.bn_relu_conv2.bn1.moving_variance, shape=(64,), dtype=Float32, requires_grad=False)>
+              (relu): ReLU<>
+              (conv1): Conv2d<input_channels=64, output_channels=64, kernel_size=(3, 3), stride=(1, 1), pad_mode=pad, padding=1, dilation=(1, 1), group=1, has_bias=True, weight_init=normal, bias_init=zeros, format=NCHW>
+              >
+            >
+          (4): ResidualUnit<
+            (bn_relu_conv1): BnReluConv<
+              (bn1): BatchNorm2d<num_features=64, eps=1e-05, momentum=0.9, gamma=Parameter (name=network.c_way.ResUnits.residual_units.4.bn_relu_conv1.bn1.gamma, shape=(64,), dtype=Float32, requires_grad=True), beta=Parameter (name=network.c_way.ResUnits.residual_units.4.bn_relu_conv1.bn1.beta, shape=(64,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=network.c_way.ResUnits.residual_units.4.bn_relu_conv1.bn1.moving_mean, shape=(64,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=network.c_way.ResUnits.residual_units.4.bn_relu_conv1.bn1.moving_variance, shape=(64,), dtype=Float32, requires_grad=False)>
+              (relu): ReLU<>
+              (conv1): Conv2d<input_channels=64, output_channels=64, kernel_size=(3, 3), stride=(1, 1), pad_mode=pad, padding=1, dilation=(1, 1), group=1, has_bias=True, weight_init=normal, bias_init=zeros, format=NCHW>
+              >
+            (bn_relu_conv2): BnReluConv<
+              (bn1): BatchNorm2d<num_features=64, eps=1e-05, momentum=0.9, gamma=Parameter (name=network.c_way.ResUnits.residual_units.4.bn_relu_conv2.bn1.gamma, shape=(64,), dtype=Float32, requires_grad=True), beta=Parameter (name=network.c_way.ResUnits.residual_units.4.bn_relu_conv2.bn1.beta, shape=(64,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=network.c_way.ResUnits.residual_units.4.bn_relu_conv2.bn1.moving_mean, shape=(64,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=network.c_way.ResUnits.residual_units.4.bn_relu_conv2.bn1.moving_variance, shape=(64,), dtype=Float32, requires_grad=False)>
+              (relu): ReLU<>
+              (conv1): Conv2d<input_channels=64, output_channels=64, kernel_size=(3, 3), stride=(1, 1), pad_mode=pad, padding=1, dilation=(1, 1), group=1, has_bias=True, weight_init=normal, bias_init=zeros, format=NCHW>
+              >
+            >
+          (5): ResidualUnit<
+            (bn_relu_conv1): BnReluConv<
+              (bn1): BatchNorm2d<num_features=64, eps=1e-05, momentum=0.9, gamma=Parameter (name=network.c_way.ResUnits.residual_units.5.bn_relu_conv1.bn1.gamma, shape=(64,), dtype=Float32, requires_grad=True), beta=Parameter (name=network.c_way.ResUnits.residual_units.5.bn_relu_conv1.bn1.beta, shape=(64,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=network.c_way.ResUnits.residual_units.5.bn_relu_conv1.bn1.moving_mean, shape=(64,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=network.c_way.ResUnits.residual_units.5.bn_relu_conv1.bn1.moving_variance, shape=(64,), dtype=Float32, requires_grad=False)>
+              (relu): ReLU<>
+              (conv1): Conv2d<input_channels=64, output_channels=64, kernel_size=(3, 3), stride=(1, 1), pad_mode=pad, padding=1, dilation=(1, 1), group=1, has_bias=True, weight_init=normal, bias_init=zeros, format=NCHW>
+              >
+            (bn_relu_conv2): BnReluConv<
+              (bn1): BatchNorm2d<num_features=64, eps=1e-05, momentum=0.9, gamma=Parameter (name=network.c_way.ResUnits.residual_units.5.bn_relu_conv2.bn1.gamma, shape=(64,), dtype=Float32, requires_grad=True), beta=Parameter (name=network.c_way.ResUnits.residual_units.5.bn_relu_conv2.bn1.beta, shape=(64,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=network.c_way.ResUnits.residual_units.5.bn_relu_conv2.bn1.moving_mean, shape=(64,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=network.c_way.ResUnits.residual_units.5.bn_relu_conv2.bn1.moving_variance, shape=(64,), dtype=Float32, requires_grad=False)>
+              (relu): ReLU<>
+              (conv1): Conv2d<input_channels=64, output_channels=64, kernel_size=(3, 3), stride=(1, 1), pad_mode=pad, padding=1, dilation=(1, 1), group=1, has_bias=True, weight_init=normal, bias_init=zeros, format=NCHW>
+              >
+            >
+          (6): ResidualUnit<
+            (bn_relu_conv1): BnReluConv<
+              (bn1): BatchNorm2d<num_features=64, eps=1e-05, momentum=0.9, gamma=Parameter (name=network.c_way.ResUnits.residual_units.6.bn_relu_conv1.bn1.gamma, shape=(64,), dtype=Float32, requires_grad=True), beta=Parameter (name=network.c_way.ResUnits.residual_units.6.bn_relu_conv1.bn1.beta, shape=(64,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=network.c_way.ResUnits.residual_units.6.bn_relu_conv1.bn1.moving_mean, shape=(64,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=network.c_way.ResUnits.residual_units.6.bn_relu_conv1.bn1.moving_variance, shape=(64,), dtype=Float32, requires_grad=False)>
+              (relu): ReLU<>
+              (conv1): Conv2d<input_channels=64, output_channels=64, kernel_size=(3, 3), stride=(1, 1), pad_mode=pad, padding=1, dilation=(1, 1), group=1, has_bias=True, weight_init=normal, bias_init=zeros, format=NCHW>
+              >
+            (bn_relu_conv2): BnReluConv<
+              (bn1): BatchNorm2d<num_features=64, eps=1e-05, momentum=0.9, gamma=Parameter (name=network.c_way.ResUnits.residual_units.6.bn_relu_conv2.bn1.gamma, shape=(64,), dtype=Float32, requires_grad=True), beta=Parameter (name=network.c_way.ResUnits.residual_units.6.bn_relu_conv2.bn1.beta, shape=(64,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=network.c_way.ResUnits.residual_units.6.bn_relu_conv2.bn1.moving_mean, shape=(64,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=network.c_way.ResUnits.residual_units.6.bn_relu_conv2.bn1.moving_variance, shape=(64,), dtype=Float32, requires_grad=False)>
+              (relu): ReLU<>
+              (conv1): Conv2d<input_channels=64, output_channels=64, kernel_size=(3, 3), stride=(1, 1), pad_mode=pad, padding=1, dilation=(1, 1), group=1, has_bias=True, weight_init=normal, bias_init=zeros, format=NCHW>
+              >
+            >
+          (7): ResidualUnit<
+            (bn_relu_conv1): BnReluConv<
+              (bn1): BatchNorm2d<num_features=64, eps=1e-05, momentum=0.9, gamma=Parameter (name=network.c_way.ResUnits.residual_units.7.bn_relu_conv1.bn1.gamma, shape=(64,), dtype=Float32, requires_grad=True), beta=Parameter (name=network.c_way.ResUnits.residual_units.7.bn_relu_conv1.bn1.beta, shape=(64,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=network.c_way.ResUnits.residual_units.7.bn_relu_conv1.bn1.moving_mean, shape=(64,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=network.c_way.ResUnits.residual_units.7.bn_relu_conv1.bn1.moving_variance, shape=(64,), dtype=Float32, requires_grad=False)>
+              (relu): ReLU<>
+              (conv1): Conv2d<input_channels=64, output_channels=64, kernel_size=(3, 3), stride=(1, 1), pad_mode=pad, padding=1, dilation=(1, 1), group=1, has_bias=True, weight_init=normal, bias_init=zeros, format=NCHW>
+              >
+            (bn_relu_conv2): BnReluConv<
+              (bn1): BatchNorm2d<num_features=64, eps=1e-05, momentum=0.9, gamma=Parameter (name=network.c_way.ResUnits.residual_units.7.bn_relu_conv2.bn1.gamma, shape=(64,), dtype=Float32, requires_grad=True), beta=Parameter (name=network.c_way.ResUnits.residual_units.7.bn_relu_conv2.bn1.beta, shape=(64,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=network.c_way.ResUnits.residual_units.7.bn_relu_conv2.bn1.moving_mean, shape=(64,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=network.c_way.ResUnits.residual_units.7.bn_relu_conv2.bn1.moving_variance, shape=(64,), dtype=Float32, requires_grad=False)>
+              (relu): ReLU<>
+              (conv1): Conv2d<input_channels=64, output_channels=64, kernel_size=(3, 3), stride=(1, 1), pad_mode=pad, padding=1, dilation=(1, 1), group=1, has_bias=True, weight_init=normal, bias_init=zeros, format=NCHW>
+              >
+            >
+          (8): ResidualUnit<
+            (bn_relu_conv1): BnReluConv<
+              (bn1): BatchNorm2d<num_features=64, eps=1e-05, momentum=0.9, gamma=Parameter (name=network.c_way.ResUnits.residual_units.8.bn_relu_conv1.bn1.gamma, shape=(64,), dtype=Float32, requires_grad=True), beta=Parameter (name=network.c_way.ResUnits.residual_units.8.bn_relu_conv1.bn1.beta, shape=(64,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=network.c_way.ResUnits.residual_units.8.bn_relu_conv1.bn1.moving_mean, shape=(64,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=network.c_way.ResUnits.residual_units.8.bn_relu_conv1.bn1.moving_variance, shape=(64,), dtype=Float32, requires_grad=False)>
+              (relu): ReLU<>
+              (conv1): Conv2d<input_channels=64, output_channels=64, kernel_size=(3, 3), stride=(1, 1), pad_mode=pad, padding=1, dilation=(1, 1), group=1, has_bias=True, weight_init=normal, bias_init=zeros, format=NCHW>
+              >
+            (bn_relu_conv2): BnReluConv<
+              (bn1): BatchNorm2d<num_features=64, eps=1e-05, momentum=0.9, gamma=Parameter (name=network.c_way.ResUnits.residual_units.8.bn_relu_conv2.bn1.gamma, shape=(64,), dtype=Float32, requires_grad=True), beta=Parameter (name=network.c_way.ResUnits.residual_units.8.bn_relu_conv2.bn1.beta, shape=(64,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=network.c_way.ResUnits.residual_units.8.bn_relu_conv2.bn1.moving_mean, shape=(64,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=network.c_way.ResUnits.residual_units.8.bn_relu_conv2.bn1.moving_variance, shape=(64,), dtype=Float32, requires_grad=False)>
+              (relu): ReLU<>
+              (conv1): Conv2d<input_channels=64, output_channels=64, kernel_size=(3, 3), stride=(1, 1), pad_mode=pad, padding=1, dilation=(1, 1), group=1, has_bias=True, weight_init=normal, bias_init=zeros, format=NCHW>
+              >
+            >
+          (9): ResidualUnit<
+            (bn_relu_conv1): BnReluConv<
+              (bn1): BatchNorm2d<num_features=64, eps=1e-05, momentum=0.9, gamma=Parameter (name=network.c_way.ResUnits.residual_units.9.bn_relu_conv1.bn1.gamma, shape=(64,), dtype=Float32, requires_grad=True), beta=Parameter (name=network.c_way.ResUnits.residual_units.9.bn_relu_conv1.bn1.beta, shape=(64,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=network.c_way.ResUnits.residual_units.9.bn_relu_conv1.bn1.moving_mean, shape=(64,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=network.c_way.ResUnits.residual_units.9.bn_relu_conv1.bn1.moving_variance, shape=(64,), dtype=Float32, requires_grad=False)>
+              (relu): ReLU<>
+              (conv1): Conv2d<input_channels=64, output_channels=64, kernel_size=(3, 3), stride=(1, 1), pad_mode=pad, padding=1, dilation=(1, 1), group=1, has_bias=True, weight_init=normal, bias_init=zeros, format=NCHW>
+              >
+            (bn_relu_conv2): BnReluConv<
+              (bn1): BatchNorm2d<num_features=64, eps=1e-05, momentum=0.9, gamma=Parameter (name=network.c_way.ResUnits.residual_units.9.bn_relu_conv2.bn1.gamma, shape=(64,), dtype=Float32, requires_grad=True), beta=Parameter (name=network.c_way.ResUnits.residual_units.9.bn_relu_conv2.bn1.beta, shape=(64,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=network.c_way.ResUnits.residual_units.9.bn_relu_conv2.bn1.moving_mean, shape=(64,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=network.c_way.ResUnits.residual_units.9.bn_relu_conv2.bn1.moving_variance, shape=(64,), dtype=Float32, requires_grad=False)>
+              (relu): ReLU<>
+              (conv1): Conv2d<input_channels=64, output_channels=64, kernel_size=(3, 3), stride=(1, 1), pad_mode=pad, padding=1, dilation=(1, 1), group=1, has_bias=True, weight_init=normal, bias_init=zeros, format=NCHW>
+              >
+            >
+          (10): ResidualUnit<
+            (bn_relu_conv1): BnReluConv<
+              (bn1): BatchNorm2d<num_features=64, eps=1e-05, momentum=0.9, gamma=Parameter (name=network.c_way.ResUnits.residual_units.10.bn_relu_conv1.bn1.gamma, shape=(64,), dtype=Float32, requires_grad=True), beta=Parameter (name=network.c_way.ResUnits.residual_units.10.bn_relu_conv1.bn1.beta, shape=(64,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=network.c_way.ResUnits.residual_units.10.bn_relu_conv1.bn1.moving_mean, shape=(64,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=network.c_way.ResUnits.residual_units.10.bn_relu_conv1.bn1.moving_variance, shape=(64,), dtype=Float32, requires_grad=False)>
+              (relu): ReLU<>
+              (conv1): Conv2d<input_channels=64, output_channels=64, kernel_size=(3, 3), stride=(1, 1), pad_mode=pad, padding=1, dilation=(1, 1), group=1, has_bias=True, weight_init=normal, bias_init=zeros, format=NCHW>
+              >
+            (bn_relu_conv2): BnReluConv<
+              (bn1): BatchNorm2d<num_features=64, eps=1e-05, momentum=0.9, gamma=Parameter (name=network.c_way.ResUnits.residual_units.10.bn_relu_conv2.bn1.gamma, shape=(64,), dtype=Float32, requires_grad=True), beta=Parameter (name=network.c_way.ResUnits.residual_units.10.bn_relu_conv2.bn1.beta, shape=(64,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=network.c_way.ResUnits.residual_units.10.bn_relu_conv2.bn1.moving_mean, shape=(64,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=network.c_way.ResUnits.residual_units.10.bn_relu_conv2.bn1.moving_variance, shape=(64,), dtype=Float32, requires_grad=False)>
+              (relu): ReLU<>
+              (conv1): Conv2d<input_channels=64, output_channels=64, kernel_size=(3, 3), stride=(1, 1), pad_mode=pad, padding=1, dilation=(1, 1), group=1, has_bias=True, weight_init=normal, bias_init=zeros, format=NCHW>
+              >
+            >
+          (11): ResidualUnit<
+            (bn_relu_conv1): BnReluConv<
+              (bn1): BatchNorm2d<num_features=64, eps=1e-05, momentum=0.9, gamma=Parameter (name=network.c_way.ResUnits.residual_units.11.bn_relu_conv1.bn1.gamma, shape=(64,), dtype=Float32, requires_grad=True), beta=Parameter (name=network.c_way.ResUnits.residual_units.11.bn_relu_conv1.bn1.beta, shape=(64,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=network.c_way.ResUnits.residual_units.11.bn_relu_conv1.bn1.moving_mean, shape=(64,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=network.c_way.ResUnits.residual_units.11.bn_relu_conv1.bn1.moving_variance, shape=(64,), dtype=Float32, requires_grad=False)>
+              (relu): ReLU<>
+              (conv1): Conv2d<input_channels=64, output_channels=64, kernel_size=(3, 3), stride=(1, 1), pad_mode=pad, padding=1, dilation=(1, 1), group=1, has_bias=True, weight_init=normal, bias_init=zeros, format=NCHW>
+              >
+            (bn_relu_conv2): BnReluConv<
+              (bn1): BatchNorm2d<num_features=64, eps=1e-05, momentum=0.9, gamma=Parameter (name=network.c_way.ResUnits.residual_units.11.bn_relu_conv2.bn1.gamma, shape=(64,), dtype=Float32, requires_grad=True), beta=Parameter (name=network.c_way.ResUnits.residual_units.11.bn_relu_conv2.bn1.beta, shape=(64,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=network.c_way.ResUnits.residual_units.11.bn_relu_conv2.bn1.moving_mean, shape=(64,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=network.c_way.ResUnits.residual_units.11.bn_relu_conv2.bn1.moving_variance, shape=(64,), dtype=Float32, requires_grad=False)>
+              (relu): ReLU<>
+              (conv1): Conv2d<input_channels=64, output_channels=64, kernel_size=(3, 3), stride=(1, 1), pad_mode=pad, padding=1, dilation=(1, 1), group=1, has_bias=True, weight_init=normal, bias_init=zeros, format=NCHW>
+              >
+            >
+          >
+        >
+      (relu): ReLU<>
+      (conv2): Conv2d<input_channels=64, output_channels=2, kernel_size=(3, 3), stride=(1, 1), pad_mode=pad, padding=1, dilation=(1, 1), group=1, has_bias=True, weight_init=normal, bias_init=zeros, format=NCHW>
+      (FusionLayer): TrainableEltwiseLayer<>
+      >
+    (p_way): SequentialCell<
+      (conv1): Conv2d<input_channels=4, output_channels=64, kernel_size=(3, 3), stride=(1, 1), pad_mode=pad, padding=1, dilation=(1, 1), group=1, has_bias=True, weight_init=normal, bias_init=zeros, format=NCHW>
+      (ResUnits): ResUnits<
+        (residual_units): SequentialCell<
+          (0): ResidualUnit<
+            (bn_relu_conv1): BnReluConv<
+              (bn1): BatchNorm2d<num_features=64, eps=1e-05, momentum=0.9, gamma=Parameter (name=network.p_way.ResUnits.residual_units.0.bn_relu_conv1.bn1.gamma, shape=(64,), dtype=Float32, requires_grad=True), beta=Parameter (name=network.p_way.ResUnits.residual_units.0.bn_relu_conv1.bn1.beta, shape=(64,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=network.p_way.ResUnits.residual_units.0.bn_relu_conv1.bn1.moving_mean, shape=(64,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=network.p_way.ResUnits.residual_units.0.bn_relu_conv1.bn1.moving_variance, shape=(64,), dtype=Float32, requires_grad=False)>
+              (relu): ReLU<>
+              (conv1): Conv2d<input_channels=64, output_channels=64, kernel_size=(3, 3), stride=(1, 1), pad_mode=pad, padding=1, dilation=(1, 1), group=1, has_bias=True, weight_init=normal, bias_init=zeros, format=NCHW>
+              >
+            (bn_relu_conv2): BnReluConv<
+              (bn1): BatchNorm2d<num_features=64, eps=1e-05, momentum=0.9, gamma=Parameter (name=network.p_way.ResUnits.residual_units.0.bn_relu_conv2.bn1.gamma, shape=(64,), dtype=Float32, requires_grad=True), beta=Parameter (name=network.p_way.ResUnits.residual_units.0.bn_relu_conv2.bn1.beta, shape=(64,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=network.p_way.ResUnits.residual_units.0.bn_relu_conv2.bn1.moving_mean, shape=(64,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=network.p_way.ResUnits.residual_units.0.bn_relu_conv2.bn1.moving_variance, shape=(64,), dtype=Float32, requires_grad=False)>
+              (relu): ReLU<>
+              (conv1): Conv2d<input_channels=64, output_channels=64, kernel_size=(3, 3), stride=(1, 1), pad_mode=pad, padding=1, dilation=(1, 1), group=1, has_bias=True, weight_init=normal, bias_init=zeros, format=NCHW>
+              >
+            >
+          (1): ResidualUnit<
+            (bn_relu_conv1): BnReluConv<
+              (bn1): BatchNorm2d<num_features=64, eps=1e-05, momentum=0.9, gamma=Parameter (name=network.p_way.ResUnits.residual_units.1.bn_relu_conv1.bn1.gamma, shape=(64,), dtype=Float32, requires_grad=True), beta=Parameter (name=network.p_way.ResUnits.residual_units.1.bn_relu_conv1.bn1.beta, shape=(64,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=network.p_way.ResUnits.residual_units.1.bn_relu_conv1.bn1.moving_mean, shape=(64,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=network.p_way.ResUnits.residual_units.1.bn_relu_conv1.bn1.moving_variance, shape=(64,), dtype=Float32, requires_grad=False)>
+              (relu): ReLU<>
+              (conv1): Conv2d<input_channels=64, output_channels=64, kernel_size=(3, 3), stride=(1, 1), pad_mode=pad, padding=1, dilation=(1, 1), group=1, has_bias=True, weight_init=normal, bias_init=zeros, format=NCHW>
+              >
+            (bn_relu_conv2): BnReluConv<
+              (bn1): BatchNorm2d<num_features=64, eps=1e-05, momentum=0.9, gamma=Parameter (name=network.p_way.ResUnits.residual_units.1.bn_relu_conv2.bn1.gamma, shape=(64,), dtype=Float32, requires_grad=True), beta=Parameter (name=network.p_way.ResUnits.residual_units.1.bn_relu_conv2.bn1.beta, shape=(64,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=network.p_way.ResUnits.residual_units.1.bn_relu_conv2.bn1.moving_mean, shape=(64,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=network.p_way.ResUnits.residual_units.1.bn_relu_conv2.bn1.moving_variance, shape=(64,), dtype=Float32, requires_grad=False)>
+              (relu): ReLU<>
+              (conv1): Conv2d<input_channels=64, output_channels=64, kernel_size=(3, 3), stride=(1, 1), pad_mode=pad, padding=1, dilation=(1, 1), group=1, has_bias=True, weight_init=normal, bias_init=zeros, format=NCHW>
+              >
+            >
+          (2): ResidualUnit<
+            (bn_relu_conv1): BnReluConv<
+              (bn1): BatchNorm2d<num_features=64, eps=1e-05, momentum=0.9, gamma=Parameter (name=network.p_way.ResUnits.residual_units.2.bn_relu_conv1.bn1.gamma, shape=(64,), dtype=Float32, requires_grad=True), beta=Parameter (name=network.p_way.ResUnits.residual_units.2.bn_relu_conv1.bn1.beta, shape=(64,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=network.p_way.ResUnits.residual_units.2.bn_relu_conv1.bn1.moving_mean, shape=(64,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=network.p_way.ResUnits.residual_units.2.bn_relu_conv1.bn1.moving_variance, shape=(64,), dtype=Float32, requires_grad=False)>
+              (relu): ReLU<>
+              (conv1): Conv2d<input_channels=64, output_channels=64, kernel_size=(3, 3), stride=(1, 1), pad_mode=pad, padding=1, dilation=(1, 1), group=1, has_bias=True, weight_init=normal, bias_init=zeros, format=NCHW>
+              >
+            (bn_relu_conv2): BnReluConv<
+              (bn1): BatchNorm2d<num_features=64, eps=1e-05, momentum=0.9, gamma=Parameter (name=network.p_way.ResUnits.residual_units.2.bn_relu_conv2.bn1.gamma, shape=(64,), dtype=Float32, requires_grad=True), beta=Parameter (name=network.p_way.ResUnits.residual_units.2.bn_relu_conv2.bn1.beta, shape=(64,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=network.p_way.ResUnits.residual_units.2.bn_relu_conv2.bn1.moving_mean, shape=(64,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=network.p_way.ResUnits.residual_units.2.bn_relu_conv2.bn1.moving_variance, shape=(64,), dtype=Float32, requires_grad=False)>
+              (relu): ReLU<>
+              (conv1): Conv2d<input_channels=64, output_channels=64, kernel_size=(3, 3), stride=(1, 1), pad_mode=pad, padding=1, dilation=(1, 1), group=1, has_bias=True, weight_init=normal, bias_init=zeros, format=NCHW>
+              >
+            >
+          (3): ResidualUnit<
+            (bn_relu_conv1): BnReluConv<
+              (bn1): BatchNorm2d<num_features=64, eps=1e-05, momentum=0.9, gamma=Parameter (name=network.p_way.ResUnits.residual_units.3.bn_relu_conv1.bn1.gamma, shape=(64,), dtype=Float32, requires_grad=True), beta=Parameter (name=network.p_way.ResUnits.residual_units.3.bn_relu_conv1.bn1.beta, shape=(64,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=network.p_way.ResUnits.residual_units.3.bn_relu_conv1.bn1.moving_mean, shape=(64,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=network.p_way.ResUnits.residual_units.3.bn_relu_conv1.bn1.moving_variance, shape=(64,), dtype=Float32, requires_grad=False)>
+              (relu): ReLU<>
+              (conv1): Conv2d<input_channels=64, output_channels=64, kernel_size=(3, 3), stride=(1, 1), pad_mode=pad, padding=1, dilation=(1, 1), group=1, has_bias=True, weight_init=normal, bias_init=zeros, format=NCHW>
+              >
+            (bn_relu_conv2): BnReluConv<
+              (bn1): BatchNorm2d<num_features=64, eps=1e-05, momentum=0.9, gamma=Parameter (name=network.p_way.ResUnits.residual_units.3.bn_relu_conv2.bn1.gamma, shape=(64,), dtype=Float32, requires_grad=True), beta=Parameter (name=network.p_way.ResUnits.residual_units.3.bn_relu_conv2.bn1.beta, shape=(64,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=network.p_way.ResUnits.residual_units.3.bn_relu_conv2.bn1.moving_mean, shape=(64,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=network.p_way.ResUnits.residual_units.3.bn_relu_conv2.bn1.moving_variance, shape=(64,), dtype=Float32, requires_grad=False)>
+              (relu): ReLU<>
+              (conv1): Conv2d<input_channels=64, output_channels=64, kernel_size=(3, 3), stride=(1, 1), pad_mode=pad, padding=1, dilation=(1, 1), group=1, has_bias=True, weight_init=normal, bias_init=zeros, format=NCHW>
+              >
+            >
+          (4): ResidualUnit<
+            (bn_relu_conv1): BnReluConv<
+              (bn1): BatchNorm2d<num_features=64, eps=1e-05, momentum=0.9, gamma=Parameter (name=network.p_way.ResUnits.residual_units.4.bn_relu_conv1.bn1.gamma, shape=(64,), dtype=Float32, requires_grad=True), beta=Parameter (name=network.p_way.ResUnits.residual_units.4.bn_relu_conv1.bn1.beta, shape=(64,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=network.p_way.ResUnits.residual_units.4.bn_relu_conv1.bn1.moving_mean, shape=(64,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=network.p_way.ResUnits.residual_units.4.bn_relu_conv1.bn1.moving_variance, shape=(64,), dtype=Float32, requires_grad=False)>
+              (relu): ReLU<>
+              (conv1): Conv2d<input_channels=64, output_channels=64, kernel_size=(3, 3), stride=(1, 1), pad_mode=pad, padding=1, dilation=(1, 1), group=1, has_bias=True, weight_init=normal, bias_init=zeros, format=NCHW>
+              >
+            (bn_relu_conv2): BnReluConv<
+              (bn1): BatchNorm2d<num_features=64, eps=1e-05, momentum=0.9, gamma=Parameter (name=network.p_way.ResUnits.residual_units.4.bn_relu_conv2.bn1.gamma, shape=(64,), dtype=Float32, requires_grad=True), beta=Parameter (name=network.p_way.ResUnits.residual_units.4.bn_relu_conv2.bn1.beta, shape=(64,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=network.p_way.ResUnits.residual_units.4.bn_relu_conv2.bn1.moving_mean, shape=(64,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=network.p_way.ResUnits.residual_units.4.bn_relu_conv2.bn1.moving_variance, shape=(64,), dtype=Float32, requires_grad=False)>
+              (relu): ReLU<>
+              (conv1): Conv2d<input_channels=64, output_channels=64, kernel_size=(3, 3), stride=(1, 1), pad_mode=pad, padding=1, dilation=(1, 1), group=1, has_bias=True, weight_init=normal, bias_init=zeros, format=NCHW>
+              >
+            >
+          (5): ResidualUnit<
+            (bn_relu_conv1): BnReluConv<
+              (bn1): BatchNorm2d<num_features=64, eps=1e-05, momentum=0.9, gamma=Parameter (name=network.p_way.ResUnits.residual_units.5.bn_relu_conv1.bn1.gamma, shape=(64,), dtype=Float32, requires_grad=True), beta=Parameter (name=network.p_way.ResUnits.residual_units.5.bn_relu_conv1.bn1.beta, shape=(64,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=network.p_way.ResUnits.residual_units.5.bn_relu_conv1.bn1.moving_mean, shape=(64,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=network.p_way.ResUnits.residual_units.5.bn_relu_conv1.bn1.moving_variance, shape=(64,), dtype=Float32, requires_grad=False)>
+              (relu): ReLU<>
+              (conv1): Conv2d<input_channels=64, output_channels=64, kernel_size=(3, 3), stride=(1, 1), pad_mode=pad, padding=1, dilation=(1, 1), group=1, has_bias=True, weight_init=normal, bias_init=zeros, format=NCHW>
+              >
+            (bn_relu_conv2): BnReluConv<
+              (bn1): BatchNorm2d<num_features=64, eps=1e-05, momentum=0.9, gamma=Parameter (name=network.p_way.ResUnits.residual_units.5.bn_relu_conv2.bn1.gamma, shape=(64,), dtype=Float32, requires_grad=True), beta=Parameter (name=network.p_way.ResUnits.residual_units.5.bn_relu_conv2.bn1.beta, shape=(64,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=network.p_way.ResUnits.residual_units.5.bn_relu_conv2.bn1.moving_mean, shape=(64,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=network.p_way.ResUnits.residual_units.5.bn_relu_conv2.bn1.moving_variance, shape=(64,), dtype=Float32, requires_grad=False)>
+              (relu): ReLU<>
+              (conv1): Conv2d<input_channels=64, output_channels=64, kernel_size=(3, 3), stride=(1, 1), pad_mode=pad, padding=1, dilation=(1, 1), group=1, has_bias=True, weight_init=normal, bias_init=zeros, format=NCHW>
+              >
+            >
+          (6): ResidualUnit<
+            (bn_relu_conv1): BnReluConv<
+              (bn1): BatchNorm2d<num_features=64, eps=1e-05, momentum=0.9, gamma=Parameter (name=network.p_way.ResUnits.residual_units.6.bn_relu_conv1.bn1.gamma, shape=(64,), dtype=Float32, requires_grad=True), beta=Parameter (name=network.p_way.ResUnits.residual_units.6.bn_relu_conv1.bn1.beta, shape=(64,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=network.p_way.ResUnits.residual_units.6.bn_relu_conv1.bn1.moving_mean, shape=(64,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=network.p_way.ResUnits.residual_units.6.bn_relu_conv1.bn1.moving_variance, shape=(64,), dtype=Float32, requires_grad=False)>
+              (relu): ReLU<>
+              (conv1): Conv2d<input_channels=64, output_channels=64, kernel_size=(3, 3), stride=(1, 1), pad_mode=pad, padding=1, dilation=(1, 1), group=1, has_bias=True, weight_init=normal, bias_init=zeros, format=NCHW>
+              >
+            (bn_relu_conv2): BnReluConv<
+              (bn1): BatchNorm2d<num_features=64, eps=1e-05, momentum=0.9, gamma=Parameter (name=network.p_way.ResUnits.residual_units.6.bn_relu_conv2.bn1.gamma, shape=(64,), dtype=Float32, requires_grad=True), beta=Parameter (name=network.p_way.ResUnits.residual_units.6.bn_relu_conv2.bn1.beta, shape=(64,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=network.p_way.ResUnits.residual_units.6.bn_relu_conv2.bn1.moving_mean, shape=(64,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=network.p_way.ResUnits.residual_units.6.bn_relu_conv2.bn1.moving_variance, shape=(64,), dtype=Float32, requires_grad=False)>
+              (relu): ReLU<>
+              (conv1): Conv2d<input_channels=64, output_channels=64, kernel_size=(3, 3), stride=(1, 1), pad_mode=pad, padding=1, dilation=(1, 1), group=1, has_bias=True, weight_init=normal, bias_init=zeros, format=NCHW>
+              >
+            >
+          (7): ResidualUnit<
+            (bn_relu_conv1): BnReluConv<
+              (bn1): BatchNorm2d<num_features=64, eps=1e-05, momentum=0.9, gamma=Parameter (name=network.p_way.ResUnits.residual_units.7.bn_relu_conv1.bn1.gamma, shape=(64,), dtype=Float32, requires_grad=True), beta=Parameter (name=network.p_way.ResUnits.residual_units.7.bn_relu_conv1.bn1.beta, shape=(64,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=network.p_way.ResUnits.residual_units.7.bn_relu_conv1.bn1.moving_mean, shape=(64,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=network.p_way.ResUnits.residual_units.7.bn_relu_conv1.bn1.moving_variance, shape=(64,), dtype=Float32, requires_grad=False)>
+              (relu): ReLU<>
+              (conv1): Conv2d<input_channels=64, output_channels=64, kernel_size=(3, 3), stride=(1, 1), pad_mode=pad, padding=1, dilation=(1, 1), group=1, has_bias=True, weight_init=normal, bias_init=zeros, format=NCHW>
+              >
+            (bn_relu_conv2): BnReluConv<
+              (bn1): BatchNorm2d<num_features=64, eps=1e-05, momentum=0.9, gamma=Parameter (name=network.p_way.ResUnits.residual_units.7.bn_relu_conv2.bn1.gamma, shape=(64,), dtype=Float32, requires_grad=True), beta=Parameter (name=network.p_way.ResUnits.residual_units.7.bn_relu_conv2.bn1.beta, shape=(64,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=network.p_way.ResUnits.residual_units.7.bn_relu_conv2.bn1.moving_mean, shape=(64,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=network.p_way.ResUnits.residual_units.7.bn_relu_conv2.bn1.moving_variance, shape=(64,), dtype=Float32, requires_grad=False)>
+              (relu): ReLU<>
+              (conv1): Conv2d<input_channels=64, output_channels=64, kernel_size=(3, 3), stride=(1, 1), pad_mode=pad, padding=1, dilation=(1, 1), group=1, has_bias=True, weight_init=normal, bias_init=zeros, format=NCHW>
+              >
+            >
+          (8): ResidualUnit<
+            (bn_relu_conv1): BnReluConv<
+              (bn1): BatchNorm2d<num_features=64, eps=1e-05, momentum=0.9, gamma=Parameter (name=network.p_way.ResUnits.residual_units.8.bn_relu_conv1.bn1.gamma, shape=(64,), dtype=Float32, requires_grad=True), beta=Parameter (name=network.p_way.ResUnits.residual_units.8.bn_relu_conv1.bn1.beta, shape=(64,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=network.p_way.ResUnits.residual_units.8.bn_relu_conv1.bn1.moving_mean, shape=(64,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=network.p_way.ResUnits.residual_units.8.bn_relu_conv1.bn1.moving_variance, shape=(64,), dtype=Float32, requires_grad=False)>
+              (relu): ReLU<>
+              (conv1): Conv2d<input_channels=64, output_channels=64, kernel_size=(3, 3), stride=(1, 1), pad_mode=pad, padding=1, dilation=(1, 1), group=1, has_bias=True, weight_init=normal, bias_init=zeros, format=NCHW>
+              >
+            (bn_relu_conv2): BnReluConv<
+              (bn1): BatchNorm2d<num_features=64, eps=1e-05, momentum=0.9, gamma=Parameter (name=network.p_way.ResUnits.residual_units.8.bn_relu_conv2.bn1.gamma, shape=(64,), dtype=Float32, requires_grad=True), beta=Parameter (name=network.p_way.ResUnits.residual_units.8.bn_relu_conv2.bn1.beta, shape=(64,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=network.p_way.ResUnits.residual_units.8.bn_relu_conv2.bn1.moving_mean, shape=(64,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=network.p_way.ResUnits.residual_units.8.bn_relu_conv2.bn1.moving_variance, shape=(64,), dtype=Float32, requires_grad=False)>
+              (relu): ReLU<>
+              (conv1): Conv2d<input_channels=64, output_channels=64, kernel_size=(3, 3), stride=(1, 1), pad_mode=pad, padding=1, dilation=(1, 1), group=1, has_bias=True, weight_init=normal, bias_init=zeros, format=NCHW>
+              >
+            >
+          (9): ResidualUnit<
+            (bn_relu_conv1): BnReluConv<
+              (bn1): BatchNorm2d<num_features=64, eps=1e-05, momentum=0.9, gamma=Parameter (name=network.p_way.ResUnits.residual_units.9.bn_relu_conv1.bn1.gamma, shape=(64,), dtype=Float32, requires_grad=True), beta=Parameter (name=network.p_way.ResUnits.residual_units.9.bn_relu_conv1.bn1.beta, shape=(64,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=network.p_way.ResUnits.residual_units.9.bn_relu_conv1.bn1.moving_mean, shape=(64,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=network.p_way.ResUnits.residual_units.9.bn_relu_conv1.bn1.moving_variance, shape=(64,), dtype=Float32, requires_grad=False)>
+              (relu): ReLU<>
+              (conv1): Conv2d<input_channels=64, output_channels=64, kernel_size=(3, 3), stride=(1, 1), pad_mode=pad, padding=1, dilation=(1, 1), group=1, has_bias=True, weight_init=normal, bias_init=zeros, format=NCHW>
+              >
+            (bn_relu_conv2): BnReluConv<
+              (bn1): BatchNorm2d<num_features=64, eps=1e-05, momentum=0.9, gamma=Parameter (name=network.p_way.ResUnits.residual_units.9.bn_relu_conv2.bn1.gamma, shape=(64,), dtype=Float32, requires_grad=True), beta=Parameter (name=network.p_way.ResUnits.residual_units.9.bn_relu_conv2.bn1.beta, shape=(64,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=network.p_way.ResUnits.residual_units.9.bn_relu_conv2.bn1.moving_mean, shape=(64,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=network.p_way.ResUnits.residual_units.9.bn_relu_conv2.bn1.moving_variance, shape=(64,), dtype=Float32, requires_grad=False)>
+              (relu): ReLU<>
+              (conv1): Conv2d<input_channels=64, output_channels=64, kernel_size=(3, 3), stride=(1, 1), pad_mode=pad, padding=1, dilation=(1, 1), group=1, has_bias=True, weight_init=normal, bias_init=zeros, format=NCHW>
+              >
+            >
+          (10): ResidualUnit<
+            (bn_relu_conv1): BnReluConv<
+              (bn1): BatchNorm2d<num_features=64, eps=1e-05, momentum=0.9, gamma=Parameter (name=network.p_way.ResUnits.residual_units.10.bn_relu_conv1.bn1.gamma, shape=(64,), dtype=Float32, requires_grad=True), beta=Parameter (name=network.p_way.ResUnits.residual_units.10.bn_relu_conv1.bn1.beta, shape=(64,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=network.p_way.ResUnits.residual_units.10.bn_relu_conv1.bn1.moving_mean, shape=(64,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=network.p_way.ResUnits.residual_units.10.bn_relu_conv1.bn1.moving_variance, shape=(64,), dtype=Float32, requires_grad=False)>
+              (relu): ReLU<>
+              (conv1): Conv2d<input_channels=64, output_channels=64, kernel_size=(3, 3), stride=(1, 1), pad_mode=pad, padding=1, dilation=(1, 1), group=1, has_bias=True, weight_init=normal, bias_init=zeros, format=NCHW>
+              >
+            (bn_relu_conv2): BnReluConv<
+              (bn1): BatchNorm2d<num_features=64, eps=1e-05, momentum=0.9, gamma=Parameter (name=network.p_way.ResUnits.residual_units.10.bn_relu_conv2.bn1.gamma, shape=(64,), dtype=Float32, requires_grad=True), beta=Parameter (name=network.p_way.ResUnits.residual_units.10.bn_relu_conv2.bn1.beta, shape=(64,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=network.p_way.ResUnits.residual_units.10.bn_relu_conv2.bn1.moving_mean, shape=(64,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=network.p_way.ResUnits.residual_units.10.bn_relu_conv2.bn1.moving_variance, shape=(64,), dtype=Float32, requires_grad=False)>
+              (relu): ReLU<>
+              (conv1): Conv2d<input_channels=64, output_channels=64, kernel_size=(3, 3), stride=(1, 1), pad_mode=pad, padding=1, dilation=(1, 1), group=1, has_bias=True, weight_init=normal, bias_init=zeros, format=NCHW>
+              >
+            >
+          (11): ResidualUnit<
+            (bn_relu_conv1): BnReluConv<
+              (bn1): BatchNorm2d<num_features=64, eps=1e-05, momentum=0.9, gamma=Parameter (name=network.p_way.ResUnits.residual_units.11.bn_relu_conv1.bn1.gamma, shape=(64,), dtype=Float32, requires_grad=True), beta=Parameter (name=network.p_way.ResUnits.residual_units.11.bn_relu_conv1.bn1.beta, shape=(64,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=network.p_way.ResUnits.residual_units.11.bn_relu_conv1.bn1.moving_mean, shape=(64,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=network.p_way.ResUnits.residual_units.11.bn_relu_conv1.bn1.moving_variance, shape=(64,), dtype=Float32, requires_grad=False)>
+              (relu): ReLU<>
+              (conv1): Conv2d<input_channels=64, output_channels=64, kernel_size=(3, 3), stride=(1, 1), pad_mode=pad, padding=1, dilation=(1, 1), group=1, has_bias=True, weight_init=normal, bias_init=zeros, format=NCHW>
+              >
+            (bn_relu_conv2): BnReluConv<
+              (bn1): BatchNorm2d<num_features=64, eps=1e-05, momentum=0.9, gamma=Parameter (name=network.p_way.ResUnits.residual_units.11.bn_relu_conv2.bn1.gamma, shape=(64,), dtype=Float32, requires_grad=True), beta=Parameter (name=network.p_way.ResUnits.residual_units.11.bn_relu_conv2.bn1.beta, shape=(64,), dtype=Float32, requires_grad=True), moving_mean=Parameter (name=network.p_way.ResUnits.residual_units.11.bn_relu_conv2.bn1.moving_mean, shape=(64,), dtype=Float32, requires_grad=False), moving_variance=Parameter (name=network.p_way.ResUnits.residual_units.11.bn_relu_conv2.bn1.moving_variance, shape=(64,), dtype=Float32, requires_grad=False)>
+              (relu): ReLU<>
+              (conv1): Conv2d<input_channels=64, output_channels=64, kernel_size=(3, 3), stride=(1, 1), pad_mode=pad, padding=1, dilation=(1, 1), group=1, has_bias=True, weight_init=normal, bias_init=zeros, format=NCHW>
+              >
+            >
+          >
+        >
+      (relu): ReLU<>
+      (conv2): Conv2d<input_channels=64, output_channels=2, kernel_size=(3, 3), stride=(1, 1), pad_mode=pad, padding=1, dilation=(1, 1), group=1, has_bias=True, weight_init=normal, bias_init=zeros, format=NCHW>
+      (FusionLayer): TrainableEltwiseLayer<>
+      >
+    (external_ops): SequentialCell<
+      (embd): Dense<input_channels=33, output_channels=10, has_bias=True>
+      (relu1): ReLU<>
+      (fc): Dense<input_channels=10, output_channels=256, has_bias=True>
+      (relu2): ReLU<>
+      >
+    >
+  >
+2023-11-30 21:18:59,049 - INFO - network.c_way.conv1.weight	(64, 8, 3, 3)	True
+2023-11-30 21:18:59,049 - INFO - network.c_way.conv1.bias	(64,)	True
+2023-11-30 21:18:59,049 - INFO - network.c_way.ResUnits.residual_units.0.bn_relu_conv1.bn1.gamma	(64,)	True
+2023-11-30 21:18:59,049 - INFO - network.c_way.ResUnits.residual_units.0.bn_relu_conv1.bn1.beta	(64,)	True
+2023-11-30 21:18:59,049 - INFO - network.c_way.ResUnits.residual_units.0.bn_relu_conv1.conv1.weight	(64, 64, 3, 3)	True
+2023-11-30 21:18:59,049 - INFO - network.c_way.ResUnits.residual_units.0.bn_relu_conv1.conv1.bias	(64,)	True
+2023-11-30 21:18:59,049 - INFO - network.c_way.ResUnits.residual_units.0.bn_relu_conv2.bn1.gamma	(64,)	True
+2023-11-30 21:18:59,049 - INFO - network.c_way.ResUnits.residual_units.0.bn_relu_conv2.bn1.beta	(64,)	True
+2023-11-30 21:18:59,049 - INFO - network.c_way.ResUnits.residual_units.0.bn_relu_conv2.conv1.weight	(64, 64, 3, 3)	True
+2023-11-30 21:18:59,049 - INFO - network.c_way.ResUnits.residual_units.0.bn_relu_conv2.conv1.bias	(64,)	True
+2023-11-30 21:18:59,049 - INFO - network.c_way.ResUnits.residual_units.1.bn_relu_conv1.bn1.gamma	(64,)	True
+2023-11-30 21:18:59,049 - INFO - network.c_way.ResUnits.residual_units.1.bn_relu_conv1.bn1.beta	(64,)	True
+2023-11-30 21:18:59,049 - INFO - network.c_way.ResUnits.residual_units.1.bn_relu_conv1.conv1.weight	(64, 64, 3, 3)	True
+2023-11-30 21:18:59,049 - INFO - network.c_way.ResUnits.residual_units.1.bn_relu_conv1.conv1.bias	(64,)	True
+2023-11-30 21:18:59,049 - INFO - network.c_way.ResUnits.residual_units.1.bn_relu_conv2.bn1.gamma	(64,)	True
+2023-11-30 21:18:59,050 - INFO - network.c_way.ResUnits.residual_units.1.bn_relu_conv2.bn1.beta	(64,)	True
+2023-11-30 21:18:59,050 - INFO - network.c_way.ResUnits.residual_units.1.bn_relu_conv2.conv1.weight	(64, 64, 3, 3)	True
+2023-11-30 21:18:59,050 - INFO - network.c_way.ResUnits.residual_units.1.bn_relu_conv2.conv1.bias	(64,)	True
+2023-11-30 21:18:59,050 - INFO - network.c_way.ResUnits.residual_units.2.bn_relu_conv1.bn1.gamma	(64,)	True
+2023-11-30 21:18:59,050 - INFO - network.c_way.ResUnits.residual_units.2.bn_relu_conv1.bn1.beta	(64,)	True
+2023-11-30 21:18:59,050 - INFO - network.c_way.ResUnits.residual_units.2.bn_relu_conv1.conv1.weight	(64, 64, 3, 3)	True
+2023-11-30 21:18:59,050 - INFO - network.c_way.ResUnits.residual_units.2.bn_relu_conv1.conv1.bias	(64,)	True
+2023-11-30 21:18:59,050 - INFO - network.c_way.ResUnits.residual_units.2.bn_relu_conv2.bn1.gamma	(64,)	True
+2023-11-30 21:18:59,050 - INFO - network.c_way.ResUnits.residual_units.2.bn_relu_conv2.bn1.beta	(64,)	True
+2023-11-30 21:18:59,050 - INFO - network.c_way.ResUnits.residual_units.2.bn_relu_conv2.conv1.weight	(64, 64, 3, 3)	True
+2023-11-30 21:18:59,050 - INFO - network.c_way.ResUnits.residual_units.2.bn_relu_conv2.conv1.bias	(64,)	True
+2023-11-30 21:18:59,050 - INFO - network.c_way.ResUnits.residual_units.3.bn_relu_conv1.bn1.gamma	(64,)	True
+2023-11-30 21:18:59,050 - INFO - network.c_way.ResUnits.residual_units.3.bn_relu_conv1.bn1.beta	(64,)	True
+2023-11-30 21:18:59,050 - INFO - network.c_way.ResUnits.residual_units.3.bn_relu_conv1.conv1.weight	(64, 64, 3, 3)	True
+2023-11-30 21:18:59,050 - INFO - network.c_way.ResUnits.residual_units.3.bn_relu_conv1.conv1.bias	(64,)	True
+2023-11-30 21:18:59,050 - INFO - network.c_way.ResUnits.residual_units.3.bn_relu_conv2.bn1.gamma	(64,)	True
+2023-11-30 21:18:59,050 - INFO - network.c_way.ResUnits.residual_units.3.bn_relu_conv2.bn1.beta	(64,)	True
+2023-11-30 21:18:59,050 - INFO - network.c_way.ResUnits.residual_units.3.bn_relu_conv2.conv1.weight	(64, 64, 3, 3)	True
+2023-11-30 21:18:59,050 - INFO - network.c_way.ResUnits.residual_units.3.bn_relu_conv2.conv1.bias	(64,)	True
+2023-11-30 21:18:59,050 - INFO - network.c_way.ResUnits.residual_units.4.bn_relu_conv1.bn1.gamma	(64,)	True
+2023-11-30 21:18:59,050 - INFO - network.c_way.ResUnits.residual_units.4.bn_relu_conv1.bn1.beta	(64,)	True
+2023-11-30 21:18:59,050 - INFO - network.c_way.ResUnits.residual_units.4.bn_relu_conv1.conv1.weight	(64, 64, 3, 3)	True
+2023-11-30 21:18:59,050 - INFO - network.c_way.ResUnits.residual_units.4.bn_relu_conv1.conv1.bias	(64,)	True
+2023-11-30 21:18:59,050 - INFO - network.c_way.ResUnits.residual_units.4.bn_relu_conv2.bn1.gamma	(64,)	True
+2023-11-30 21:18:59,050 - INFO - network.c_way.ResUnits.residual_units.4.bn_relu_conv2.bn1.beta	(64,)	True
+2023-11-30 21:18:59,051 - INFO - network.c_way.ResUnits.residual_units.4.bn_relu_conv2.conv1.weight	(64, 64, 3, 3)	True
+2023-11-30 21:18:59,051 - INFO - network.c_way.ResUnits.residual_units.4.bn_relu_conv2.conv1.bias	(64,)	True
+2023-11-30 21:18:59,051 - INFO - network.c_way.ResUnits.residual_units.5.bn_relu_conv1.bn1.gamma	(64,)	True
+2023-11-30 21:18:59,051 - INFO - network.c_way.ResUnits.residual_units.5.bn_relu_conv1.bn1.beta	(64,)	True
+2023-11-30 21:18:59,051 - INFO - network.c_way.ResUnits.residual_units.5.bn_relu_conv1.conv1.weight	(64, 64, 3, 3)	True
+2023-11-30 21:18:59,051 - INFO - network.c_way.ResUnits.residual_units.5.bn_relu_conv1.conv1.bias	(64,)	True
+2023-11-30 21:18:59,051 - INFO - network.c_way.ResUnits.residual_units.5.bn_relu_conv2.bn1.gamma	(64,)	True
+2023-11-30 21:18:59,051 - INFO - network.c_way.ResUnits.residual_units.5.bn_relu_conv2.bn1.beta	(64,)	True
+2023-11-30 21:18:59,051 - INFO - network.c_way.ResUnits.residual_units.5.bn_relu_conv2.conv1.weight	(64, 64, 3, 3)	True
+2023-11-30 21:18:59,051 - INFO - network.c_way.ResUnits.residual_units.5.bn_relu_conv2.conv1.bias	(64,)	True
+2023-11-30 21:18:59,051 - INFO - network.c_way.ResUnits.residual_units.6.bn_relu_conv1.bn1.gamma	(64,)	True
+2023-11-30 21:18:59,051 - INFO - network.c_way.ResUnits.residual_units.6.bn_relu_conv1.bn1.beta	(64,)	True
+2023-11-30 21:18:59,051 - INFO - network.c_way.ResUnits.residual_units.6.bn_relu_conv1.conv1.weight	(64, 64, 3, 3)	True
+2023-11-30 21:18:59,051 - INFO - network.c_way.ResUnits.residual_units.6.bn_relu_conv1.conv1.bias	(64,)	True
+2023-11-30 21:18:59,051 - INFO - network.c_way.ResUnits.residual_units.6.bn_relu_conv2.bn1.gamma	(64,)	True
+2023-11-30 21:18:59,051 - INFO - network.c_way.ResUnits.residual_units.6.bn_relu_conv2.bn1.beta	(64,)	True
+2023-11-30 21:18:59,051 - INFO - network.c_way.ResUnits.residual_units.6.bn_relu_conv2.conv1.weight	(64, 64, 3, 3)	True
+2023-11-30 21:18:59,051 - INFO - network.c_way.ResUnits.residual_units.6.bn_relu_conv2.conv1.bias	(64,)	True
+2023-11-30 21:18:59,051 - INFO - network.c_way.ResUnits.residual_units.7.bn_relu_conv1.bn1.gamma	(64,)	True
+2023-11-30 21:18:59,051 - INFO - network.c_way.ResUnits.residual_units.7.bn_relu_conv1.bn1.beta	(64,)	True
+2023-11-30 21:18:59,051 - INFO - network.c_way.ResUnits.residual_units.7.bn_relu_conv1.conv1.weight	(64, 64, 3, 3)	True
+2023-11-30 21:18:59,051 - INFO - network.c_way.ResUnits.residual_units.7.bn_relu_conv1.conv1.bias	(64,)	True
+2023-11-30 21:18:59,051 - INFO - network.c_way.ResUnits.residual_units.7.bn_relu_conv2.bn1.gamma	(64,)	True
+2023-11-30 21:18:59,051 - INFO - network.c_way.ResUnits.residual_units.7.bn_relu_conv2.bn1.beta	(64,)	True
+2023-11-30 21:18:59,051 - INFO - network.c_way.ResUnits.residual_units.7.bn_relu_conv2.conv1.weight	(64, 64, 3, 3)	True
+2023-11-30 21:18:59,052 - INFO - network.c_way.ResUnits.residual_units.7.bn_relu_conv2.conv1.bias	(64,)	True
+2023-11-30 21:18:59,052 - INFO - network.c_way.ResUnits.residual_units.8.bn_relu_conv1.bn1.gamma	(64,)	True
+2023-11-30 21:18:59,052 - INFO - network.c_way.ResUnits.residual_units.8.bn_relu_conv1.bn1.beta	(64,)	True
+2023-11-30 21:18:59,052 - INFO - network.c_way.ResUnits.residual_units.8.bn_relu_conv1.conv1.weight	(64, 64, 3, 3)	True
+2023-11-30 21:18:59,052 - INFO - network.c_way.ResUnits.residual_units.8.bn_relu_conv1.conv1.bias	(64,)	True
+2023-11-30 21:18:59,052 - INFO - network.c_way.ResUnits.residual_units.8.bn_relu_conv2.bn1.gamma	(64,)	True
+2023-11-30 21:18:59,052 - INFO - network.c_way.ResUnits.residual_units.8.bn_relu_conv2.bn1.beta	(64,)	True
+2023-11-30 21:18:59,052 - INFO - network.c_way.ResUnits.residual_units.8.bn_relu_conv2.conv1.weight	(64, 64, 3, 3)	True
+2023-11-30 21:18:59,052 - INFO - network.c_way.ResUnits.residual_units.8.bn_relu_conv2.conv1.bias	(64,)	True
+2023-11-30 21:18:59,052 - INFO - network.c_way.ResUnits.residual_units.9.bn_relu_conv1.bn1.gamma	(64,)	True
+2023-11-30 21:18:59,052 - INFO - network.c_way.ResUnits.residual_units.9.bn_relu_conv1.bn1.beta	(64,)	True
+2023-11-30 21:18:59,052 - INFO - network.c_way.ResUnits.residual_units.9.bn_relu_conv1.conv1.weight	(64, 64, 3, 3)	True
+2023-11-30 21:18:59,052 - INFO - network.c_way.ResUnits.residual_units.9.bn_relu_conv1.conv1.bias	(64,)	True
+2023-11-30 21:18:59,052 - INFO - network.c_way.ResUnits.residual_units.9.bn_relu_conv2.bn1.gamma	(64,)	True
+2023-11-30 21:18:59,052 - INFO - network.c_way.ResUnits.residual_units.9.bn_relu_conv2.bn1.beta	(64,)	True
+2023-11-30 21:18:59,052 - INFO - network.c_way.ResUnits.residual_units.9.bn_relu_conv2.conv1.weight	(64, 64, 3, 3)	True
+2023-11-30 21:18:59,052 - INFO - network.c_way.ResUnits.residual_units.9.bn_relu_conv2.conv1.bias	(64,)	True
+2023-11-30 21:18:59,052 - INFO - network.c_way.ResUnits.residual_units.10.bn_relu_conv1.bn1.gamma	(64,)	True
+2023-11-30 21:18:59,052 - INFO - network.c_way.ResUnits.residual_units.10.bn_relu_conv1.bn1.beta	(64,)	True
+2023-11-30 21:18:59,052 - INFO - network.c_way.ResUnits.residual_units.10.bn_relu_conv1.conv1.weight	(64, 64, 3, 3)	True
+2023-11-30 21:18:59,052 - INFO - network.c_way.ResUnits.residual_units.10.bn_relu_conv1.conv1.bias	(64,)	True
+2023-11-30 21:18:59,052 - INFO - network.c_way.ResUnits.residual_units.10.bn_relu_conv2.bn1.gamma	(64,)	True
+2023-11-30 21:18:59,052 - INFO - network.c_way.ResUnits.residual_units.10.bn_relu_conv2.bn1.beta	(64,)	True
+2023-11-30 21:18:59,052 - INFO - network.c_way.ResUnits.residual_units.10.bn_relu_conv2.conv1.weight	(64, 64, 3, 3)	True
+2023-11-30 21:18:59,053 - INFO - network.c_way.ResUnits.residual_units.10.bn_relu_conv2.conv1.bias	(64,)	True
+2023-11-30 21:18:59,053 - INFO - network.c_way.ResUnits.residual_units.11.bn_relu_conv1.bn1.gamma	(64,)	True
+2023-11-30 21:18:59,053 - INFO - network.c_way.ResUnits.residual_units.11.bn_relu_conv1.bn1.beta	(64,)	True
+2023-11-30 21:18:59,053 - INFO - network.c_way.ResUnits.residual_units.11.bn_relu_conv1.conv1.weight	(64, 64, 3, 3)	True
+2023-11-30 21:18:59,053 - INFO - network.c_way.ResUnits.residual_units.11.bn_relu_conv1.conv1.bias	(64,)	True
+2023-11-30 21:18:59,053 - INFO - network.c_way.ResUnits.residual_units.11.bn_relu_conv2.bn1.gamma	(64,)	True
+2023-11-30 21:18:59,053 - INFO - network.c_way.ResUnits.residual_units.11.bn_relu_conv2.bn1.beta	(64,)	True
+2023-11-30 21:18:59,053 - INFO - network.c_way.ResUnits.residual_units.11.bn_relu_conv2.conv1.weight	(64, 64, 3, 3)	True
+2023-11-30 21:18:59,053 - INFO - network.c_way.ResUnits.residual_units.11.bn_relu_conv2.conv1.bias	(64,)	True
+2023-11-30 21:18:59,053 - INFO - network.c_way.conv2.weight	(2, 64, 3, 3)	True
+2023-11-30 21:18:59,053 - INFO - network.c_way.conv2.bias	(2,)	True
+2023-11-30 21:18:59,053 - INFO - network.c_way.FusionLayer.weights	(1, 2, 16, 8)	True
+2023-11-30 21:18:59,053 - INFO - network.p_way.conv1.weight	(64, 4, 3, 3)	True
+2023-11-30 21:18:59,053 - INFO - network.p_way.conv1.bias	(64,)	True
+2023-11-30 21:18:59,053 - INFO - network.p_way.ResUnits.residual_units.0.bn_relu_conv1.bn1.gamma	(64,)	True
+2023-11-30 21:18:59,053 - INFO - network.p_way.ResUnits.residual_units.0.bn_relu_conv1.bn1.beta	(64,)	True
+2023-11-30 21:18:59,053 - INFO - network.p_way.ResUnits.residual_units.0.bn_relu_conv1.conv1.weight	(64, 64, 3, 3)	True
+2023-11-30 21:18:59,053 - INFO - network.p_way.ResUnits.residual_units.0.bn_relu_conv1.conv1.bias	(64,)	True
+2023-11-30 21:18:59,053 - INFO - network.p_way.ResUnits.residual_units.0.bn_relu_conv2.bn1.gamma	(64,)	True
+2023-11-30 21:18:59,053 - INFO - network.p_way.ResUnits.residual_units.0.bn_relu_conv2.bn1.beta	(64,)	True
+2023-11-30 21:18:59,053 - INFO - network.p_way.ResUnits.residual_units.0.bn_relu_conv2.conv1.weight	(64, 64, 3, 3)	True
+2023-11-30 21:18:59,053 - INFO - network.p_way.ResUnits.residual_units.0.bn_relu_conv2.conv1.bias	(64,)	True
+2023-11-30 21:18:59,053 - INFO - network.p_way.ResUnits.residual_units.1.bn_relu_conv1.bn1.gamma	(64,)	True
+2023-11-30 21:18:59,054 - INFO - network.p_way.ResUnits.residual_units.1.bn_relu_conv1.bn1.beta	(64,)	True
+2023-11-30 21:18:59,054 - INFO - network.p_way.ResUnits.residual_units.1.bn_relu_conv1.conv1.weight	(64, 64, 3, 3)	True
+2023-11-30 21:18:59,054 - INFO - network.p_way.ResUnits.residual_units.1.bn_relu_conv1.conv1.bias	(64,)	True
+2023-11-30 21:18:59,054 - INFO - network.p_way.ResUnits.residual_units.1.bn_relu_conv2.bn1.gamma	(64,)	True
+2023-11-30 21:18:59,054 - INFO - network.p_way.ResUnits.residual_units.1.bn_relu_conv2.bn1.beta	(64,)	True
+2023-11-30 21:18:59,054 - INFO - network.p_way.ResUnits.residual_units.1.bn_relu_conv2.conv1.weight	(64, 64, 3, 3)	True
+2023-11-30 21:18:59,054 - INFO - network.p_way.ResUnits.residual_units.1.bn_relu_conv2.conv1.bias	(64,)	True
+2023-11-30 21:18:59,054 - INFO - network.p_way.ResUnits.residual_units.2.bn_relu_conv1.bn1.gamma	(64,)	True
+2023-11-30 21:18:59,054 - INFO - network.p_way.ResUnits.residual_units.2.bn_relu_conv1.bn1.beta	(64,)	True
+2023-11-30 21:18:59,054 - INFO - network.p_way.ResUnits.residual_units.2.bn_relu_conv1.conv1.weight	(64, 64, 3, 3)	True
+2023-11-30 21:18:59,054 - INFO - network.p_way.ResUnits.residual_units.2.bn_relu_conv1.conv1.bias	(64,)	True
+2023-11-30 21:18:59,054 - INFO - network.p_way.ResUnits.residual_units.2.bn_relu_conv2.bn1.gamma	(64,)	True
+2023-11-30 21:18:59,054 - INFO - network.p_way.ResUnits.residual_units.2.bn_relu_conv2.bn1.beta	(64,)	True
+2023-11-30 21:18:59,054 - INFO - network.p_way.ResUnits.residual_units.2.bn_relu_conv2.conv1.weight	(64, 64, 3, 3)	True
+2023-11-30 21:18:59,054 - INFO - network.p_way.ResUnits.residual_units.2.bn_relu_conv2.conv1.bias	(64,)	True
+2023-11-30 21:18:59,054 - INFO - network.p_way.ResUnits.residual_units.3.bn_relu_conv1.bn1.gamma	(64,)	True
+2023-11-30 21:18:59,054 - INFO - network.p_way.ResUnits.residual_units.3.bn_relu_conv1.bn1.beta	(64,)	True
+2023-11-30 21:18:59,054 - INFO - network.p_way.ResUnits.residual_units.3.bn_relu_conv1.conv1.weight	(64, 64, 3, 3)	True
+2023-11-30 21:18:59,054 - INFO - network.p_way.ResUnits.residual_units.3.bn_relu_conv1.conv1.bias	(64,)	True
+2023-11-30 21:18:59,054 - INFO - network.p_way.ResUnits.residual_units.3.bn_relu_conv2.bn1.gamma	(64,)	True
+2023-11-30 21:18:59,054 - INFO - network.p_way.ResUnits.residual_units.3.bn_relu_conv2.bn1.beta	(64,)	True
+2023-11-30 21:18:59,054 - INFO - network.p_way.ResUnits.residual_units.3.bn_relu_conv2.conv1.weight	(64, 64, 3, 3)	True
+2023-11-30 21:18:59,055 - INFO - network.p_way.ResUnits.residual_units.3.bn_relu_conv2.conv1.bias	(64,)	True
+2023-11-30 21:18:59,055 - INFO - network.p_way.ResUnits.residual_units.4.bn_relu_conv1.bn1.gamma	(64,)	True
+2023-11-30 21:18:59,055 - INFO - network.p_way.ResUnits.residual_units.4.bn_relu_conv1.bn1.beta	(64,)	True
+2023-11-30 21:18:59,055 - INFO - network.p_way.ResUnits.residual_units.4.bn_relu_conv1.conv1.weight	(64, 64, 3, 3)	True
+2023-11-30 21:18:59,055 - INFO - network.p_way.ResUnits.residual_units.4.bn_relu_conv1.conv1.bias	(64,)	True
+2023-11-30 21:18:59,055 - INFO - network.p_way.ResUnits.residual_units.4.bn_relu_conv2.bn1.gamma	(64,)	True
+2023-11-30 21:18:59,055 - INFO - network.p_way.ResUnits.residual_units.4.bn_relu_conv2.bn1.beta	(64,)	True
+2023-11-30 21:18:59,055 - INFO - network.p_way.ResUnits.residual_units.4.bn_relu_conv2.conv1.weight	(64, 64, 3, 3)	True
+2023-11-30 21:18:59,055 - INFO - network.p_way.ResUnits.residual_units.4.bn_relu_conv2.conv1.bias	(64,)	True
+2023-11-30 21:18:59,055 - INFO - network.p_way.ResUnits.residual_units.5.bn_relu_conv1.bn1.gamma	(64,)	True
+2023-11-30 21:18:59,055 - INFO - network.p_way.ResUnits.residual_units.5.bn_relu_conv1.bn1.beta	(64,)	True
+2023-11-30 21:18:59,055 - INFO - network.p_way.ResUnits.residual_units.5.bn_relu_conv1.conv1.weight	(64, 64, 3, 3)	True
+2023-11-30 21:18:59,055 - INFO - network.p_way.ResUnits.residual_units.5.bn_relu_conv1.conv1.bias	(64,)	True
+2023-11-30 21:18:59,055 - INFO - network.p_way.ResUnits.residual_units.5.bn_relu_conv2.bn1.gamma	(64,)	True
+2023-11-30 21:18:59,055 - INFO - network.p_way.ResUnits.residual_units.5.bn_relu_conv2.bn1.beta	(64,)	True
+2023-11-30 21:18:59,055 - INFO - network.p_way.ResUnits.residual_units.5.bn_relu_conv2.conv1.weight	(64, 64, 3, 3)	True
+2023-11-30 21:18:59,055 - INFO - network.p_way.ResUnits.residual_units.5.bn_relu_conv2.conv1.bias	(64,)	True
+2023-11-30 21:18:59,055 - INFO - network.p_way.ResUnits.residual_units.6.bn_relu_conv1.bn1.gamma	(64,)	True
+2023-11-30 21:18:59,055 - INFO - network.p_way.ResUnits.residual_units.6.bn_relu_conv1.bn1.beta	(64,)	True
+2023-11-30 21:18:59,055 - INFO - network.p_way.ResUnits.residual_units.6.bn_relu_conv1.conv1.weight	(64, 64, 3, 3)	True
+2023-11-30 21:18:59,055 - INFO - network.p_way.ResUnits.residual_units.6.bn_relu_conv1.conv1.bias	(64,)	True
+2023-11-30 21:18:59,055 - INFO - network.p_way.ResUnits.residual_units.6.bn_relu_conv2.bn1.gamma	(64,)	True
+2023-11-30 21:18:59,056 - INFO - network.p_way.ResUnits.residual_units.6.bn_relu_conv2.bn1.beta	(64,)	True
+2023-11-30 21:18:59,056 - INFO - network.p_way.ResUnits.residual_units.6.bn_relu_conv2.conv1.weight	(64, 64, 3, 3)	True
+2023-11-30 21:18:59,056 - INFO - network.p_way.ResUnits.residual_units.6.bn_relu_conv2.conv1.bias	(64,)	True
+2023-11-30 21:18:59,056 - INFO - network.p_way.ResUnits.residual_units.7.bn_relu_conv1.bn1.gamma	(64,)	True
+2023-11-30 21:18:59,056 - INFO - network.p_way.ResUnits.residual_units.7.bn_relu_conv1.bn1.beta	(64,)	True
+2023-11-30 21:18:59,056 - INFO - network.p_way.ResUnits.residual_units.7.bn_relu_conv1.conv1.weight	(64, 64, 3, 3)	True
+2023-11-30 21:18:59,056 - INFO - network.p_way.ResUnits.residual_units.7.bn_relu_conv1.conv1.bias	(64,)	True
+2023-11-30 21:18:59,056 - INFO - network.p_way.ResUnits.residual_units.7.bn_relu_conv2.bn1.gamma	(64,)	True
+2023-11-30 21:18:59,056 - INFO - network.p_way.ResUnits.residual_units.7.bn_relu_conv2.bn1.beta	(64,)	True
+2023-11-30 21:18:59,056 - INFO - network.p_way.ResUnits.residual_units.7.bn_relu_conv2.conv1.weight	(64, 64, 3, 3)	True
+2023-11-30 21:18:59,056 - INFO - network.p_way.ResUnits.residual_units.7.bn_relu_conv2.conv1.bias	(64,)	True
+2023-11-30 21:18:59,056 - INFO - network.p_way.ResUnits.residual_units.8.bn_relu_conv1.bn1.gamma	(64,)	True
+2023-11-30 21:18:59,056 - INFO - network.p_way.ResUnits.residual_units.8.bn_relu_conv1.bn1.beta	(64,)	True
+2023-11-30 21:18:59,056 - INFO - network.p_way.ResUnits.residual_units.8.bn_relu_conv1.conv1.weight	(64, 64, 3, 3)	True
+2023-11-30 21:18:59,056 - INFO - network.p_way.ResUnits.residual_units.8.bn_relu_conv1.conv1.bias	(64,)	True
+2023-11-30 21:18:59,056 - INFO - network.p_way.ResUnits.residual_units.8.bn_relu_conv2.bn1.gamma	(64,)	True
+2023-11-30 21:18:59,056 - INFO - network.p_way.ResUnits.residual_units.8.bn_relu_conv2.bn1.beta	(64,)	True
+2023-11-30 21:18:59,056 - INFO - network.p_way.ResUnits.residual_units.8.bn_relu_conv2.conv1.weight	(64, 64, 3, 3)	True
+2023-11-30 21:18:59,056 - INFO - network.p_way.ResUnits.residual_units.8.bn_relu_conv2.conv1.bias	(64,)	True
+2023-11-30 21:18:59,056 - INFO - network.p_way.ResUnits.residual_units.9.bn_relu_conv1.bn1.gamma	(64,)	True
+2023-11-30 21:18:59,056 - INFO - network.p_way.ResUnits.residual_units.9.bn_relu_conv1.bn1.beta	(64,)	True
+2023-11-30 21:18:59,056 - INFO - network.p_way.ResUnits.residual_units.9.bn_relu_conv1.conv1.weight	(64, 64, 3, 3)	True
+2023-11-30 21:18:59,057 - INFO - network.p_way.ResUnits.residual_units.9.bn_relu_conv1.conv1.bias	(64,)	True
+2023-11-30 21:18:59,057 - INFO - network.p_way.ResUnits.residual_units.9.bn_relu_conv2.bn1.gamma	(64,)	True
+2023-11-30 21:18:59,057 - INFO - network.p_way.ResUnits.residual_units.9.bn_relu_conv2.bn1.beta	(64,)	True
+2023-11-30 21:18:59,057 - INFO - network.p_way.ResUnits.residual_units.9.bn_relu_conv2.conv1.weight	(64, 64, 3, 3)	True
+2023-11-30 21:18:59,057 - INFO - network.p_way.ResUnits.residual_units.9.bn_relu_conv2.conv1.bias	(64,)	True
+2023-11-30 21:18:59,057 - INFO - network.p_way.ResUnits.residual_units.10.bn_relu_conv1.bn1.gamma	(64,)	True
+2023-11-30 21:18:59,057 - INFO - network.p_way.ResUnits.residual_units.10.bn_relu_conv1.bn1.beta	(64,)	True
+2023-11-30 21:18:59,057 - INFO - network.p_way.ResUnits.residual_units.10.bn_relu_conv1.conv1.weight	(64, 64, 3, 3)	True
+2023-11-30 21:18:59,057 - INFO - network.p_way.ResUnits.residual_units.10.bn_relu_conv1.conv1.bias	(64,)	True
+2023-11-30 21:18:59,057 - INFO - network.p_way.ResUnits.residual_units.10.bn_relu_conv2.bn1.gamma	(64,)	True
+2023-11-30 21:18:59,057 - INFO - network.p_way.ResUnits.residual_units.10.bn_relu_conv2.bn1.beta	(64,)	True
+2023-11-30 21:18:59,057 - INFO - network.p_way.ResUnits.residual_units.10.bn_relu_conv2.conv1.weight	(64, 64, 3, 3)	True
+2023-11-30 21:18:59,057 - INFO - network.p_way.ResUnits.residual_units.10.bn_relu_conv2.conv1.bias	(64,)	True
+2023-11-30 21:18:59,057 - INFO - network.p_way.ResUnits.residual_units.11.bn_relu_conv1.bn1.gamma	(64,)	True
+2023-11-30 21:18:59,057 - INFO - network.p_way.ResUnits.residual_units.11.bn_relu_conv1.bn1.beta	(64,)	True
+2023-11-30 21:18:59,057 - INFO - network.p_way.ResUnits.residual_units.11.bn_relu_conv1.conv1.weight	(64, 64, 3, 3)	True
+2023-11-30 21:18:59,057 - INFO - network.p_way.ResUnits.residual_units.11.bn_relu_conv1.conv1.bias	(64,)	True
+2023-11-30 21:18:59,057 - INFO - network.p_way.ResUnits.residual_units.11.bn_relu_conv2.bn1.gamma	(64,)	True
+2023-11-30 21:18:59,057 - INFO - network.p_way.ResUnits.residual_units.11.bn_relu_conv2.bn1.beta	(64,)	True
+2023-11-30 21:18:59,057 - INFO - network.p_way.ResUnits.residual_units.11.bn_relu_conv2.conv1.weight	(64, 64, 3, 3)	True
+2023-11-30 21:18:59,057 - INFO - network.p_way.ResUnits.residual_units.11.bn_relu_conv2.conv1.bias	(64,)	True
+2023-11-30 21:18:59,057 - INFO - network.p_way.conv2.weight	(2, 64, 3, 3)	True
+2023-11-30 21:18:59,058 - INFO - network.p_way.conv2.bias	(2,)	True
+2023-11-30 21:18:59,058 - INFO - network.p_way.FusionLayer.weights	(1, 2, 16, 8)	True
+2023-11-30 21:18:59,058 - INFO - network.external_ops.embd.weight	(10, 33)	True
+2023-11-30 21:18:59,058 - INFO - network.external_ops.embd.bias	(10,)	True
+2023-11-30 21:18:59,058 - INFO - network.external_ops.fc.weight	(256, 10)	True
+2023-11-30 21:18:59,058 - INFO - network.external_ops.fc.bias	(256,)	True
+2023-11-30 21:18:59,060 - INFO - Total parameter numbers: 1791704
+2023-11-30 21:18:59,060 - INFO - You select `adam` optimizer.
+2023-11-30 21:18:59,263 - WARNING - Received none train loss func and will use the loss func defined in the model.
+2023-11-30 21:18:59,263 - INFO - Start training ...
+2023-11-30 21:18:59,264 - INFO - num_batches:54
+2023-11-30 21:19:22,316 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:19:23,721 - INFO - valid loss 为: 8256.16796875
+2023-11-30 21:19:28,172 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:19:28,433 - INFO - valid loss 为: 4058.2216796875
+2023-11-30 21:19:32,738 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:19:32,997 - INFO - valid loss 为: 5973.05712890625
+2023-11-30 21:19:37,621 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:19:37,886 - INFO - valid loss 为: 2080.299560546875
+2023-11-30 21:19:42,434 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:19:42,693 - INFO - valid loss 为: 2032.0484619140625
+2023-11-30 21:19:47,299 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:19:47,576 - INFO - valid loss 为: 2015.88427734375
+2023-11-30 21:19:52,132 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:19:52,383 - INFO - valid loss 为: 2009.3486328125
+2023-11-30 21:19:56,873 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:19:57,137 - INFO - valid loss 为: 1995.5511474609375
+2023-11-30 21:20:01,481 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:20:01,692 - INFO - valid loss 为: 1993.7349853515625
+2023-11-30 21:20:05,909 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:20:06,155 - INFO - valid loss 为: 1986.7523193359375
+2023-11-30 21:20:10,501 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:20:10,758 - INFO - valid loss 为: 1985.5870361328125
+2023-11-30 21:20:15,054 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:20:15,329 - INFO - valid loss 为: 1991.43408203125
+2023-11-30 21:20:19,678 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:20:19,935 - INFO - valid loss 为: 1983.00244140625
+2023-11-30 21:20:24,247 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:20:24,469 - INFO - valid loss 为: 1974.5203857421875
+2023-11-30 21:20:28,993 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:20:29,253 - INFO - valid loss 为: 1978.7960205078125
+2023-11-30 21:20:33,650 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:20:33,918 - INFO - valid loss 为: 1971.23095703125
+2023-11-30 21:20:38,477 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:20:38,732 - INFO - valid loss 为: 1964.7535400390625
+2023-11-30 21:20:43,131 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:20:43,393 - INFO - valid loss 为: 1963.7012939453125
+2023-11-30 21:20:47,805 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:20:48,065 - INFO - valid loss 为: 2066.519287109375
+2023-11-30 21:20:52,701 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:20:52,952 - INFO - valid loss 为: 2527.658203125
+2023-11-30 21:20:57,558 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:20:57,803 - INFO - valid loss 为: 2490.217529296875
+2023-11-30 21:21:02,071 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:21:02,329 - INFO - valid loss 为: 2484.1552734375
+2023-11-30 21:21:07,162 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:21:07,428 - INFO - valid loss 为: 2473.57470703125
+2023-11-30 21:21:11,851 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:21:12,112 - INFO - valid loss 为: 2467.35400390625
+2023-11-30 21:21:16,639 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:21:16,872 - INFO - valid loss 为: 2466.870361328125
+2023-11-30 21:21:21,402 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:21:21,621 - INFO - valid loss 为: 2457.16455078125
+2023-11-30 21:21:26,469 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:21:26,744 - INFO - valid loss 为: 2449.259765625
+2023-11-30 21:21:31,123 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:21:31,387 - INFO - valid loss 为: 2374.764892578125
+2023-11-30 21:21:35,787 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:21:36,069 - INFO - valid loss 为: 1539.6851806640625
+2023-11-30 21:21:40,508 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:21:40,797 - INFO - valid loss 为: 1473.7640380859375
+2023-11-30 21:21:45,645 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:21:45,938 - INFO - valid loss 为: 1465.9720458984375
+2023-11-30 21:21:50,829 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:21:51,112 - INFO - valid loss 为: 1459.1031494140625
+2023-11-30 21:21:55,685 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:21:55,973 - INFO - valid loss 为: 1450.4642333984375
+2023-11-30 21:22:00,542 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:22:00,817 - INFO - valid loss 为: 1441.5482177734375
+2023-11-30 21:22:05,550 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:22:05,823 - INFO - valid loss 为: 1438.28271484375
+2023-11-30 21:22:10,435 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:22:10,706 - INFO - valid loss 为: 1435.12158203125
+2023-11-30 21:22:14,991 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:22:15,268 - INFO - valid loss 为: 1432.0802001953125
+2023-11-30 21:22:20,042 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:22:20,321 - INFO - valid loss 为: 1428.5142822265625
+2023-11-30 21:22:24,794 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:22:25,057 - INFO - valid loss 为: 1429.7286376953125
+2023-11-30 21:22:29,711 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:22:29,987 - INFO - valid loss 为: 1422.3455810546875
+2023-11-30 21:22:34,600 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:22:34,862 - INFO - valid loss 为: 1420.3468017578125
+2023-11-30 21:22:39,372 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:22:39,676 - INFO - valid loss 为: 1419.162109375
+2023-11-30 21:22:44,197 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:22:44,487 - INFO - valid loss 为: 1418.5350341796875
+2023-11-30 21:22:48,971 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:22:49,226 - INFO - valid loss 为: 1414.9752197265625
+2023-11-30 21:22:53,695 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:22:53,958 - INFO - valid loss 为: 1414.18798828125
+2023-11-30 21:22:58,410 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:22:58,686 - INFO - valid loss 为: 1411.9168701171875
+2023-11-30 21:23:03,168 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:23:03,487 - INFO - valid loss 为: 1410.00390625
+2023-11-30 21:23:08,139 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:23:08,402 - INFO - valid loss 为: 1411.0433349609375
+2023-11-30 21:23:13,044 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:23:13,323 - INFO - valid loss 为: 1407.2591552734375
+2023-11-30 21:23:17,800 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:23:18,048 - INFO - valid loss 为: 1407.4034423828125
+2023-11-30 21:23:22,569 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:23:22,866 - INFO - valid loss 为: 1406.7291259765625
+2023-11-30 21:23:27,667 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:23:27,933 - INFO - valid loss 为: 1406.18115234375
+2023-11-30 21:23:32,504 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:23:32,732 - INFO - valid loss 为: 1408.0970458984375
+2023-11-30 21:23:37,143 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:23:37,454 - INFO - valid loss 为: 1403.42578125
+2023-11-30 21:23:42,066 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:23:42,346 - INFO - valid loss 为: 1402.4033203125
+2023-11-30 21:23:46,887 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:23:47,201 - INFO - valid loss 为: 1401.82373046875
+2023-11-30 21:23:51,731 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:23:51,979 - INFO - valid loss 为: 1401.3355712890625
+2023-11-30 21:23:56,415 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:23:56,675 - INFO - valid loss 为: 1399.8345947265625
+2023-11-30 21:24:01,244 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:24:01,512 - INFO - valid loss 为: 1403.962890625
+2023-11-30 21:24:06,078 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:24:06,355 - INFO - valid loss 为: 1398.0794677734375
+2023-11-30 21:24:10,719 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:24:10,998 - INFO - valid loss 为: 1396.1787109375
+2023-11-30 21:24:15,574 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:24:15,826 - INFO - valid loss 为: 1395.0841064453125
+2023-11-30 21:24:20,442 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:24:20,719 - INFO - valid loss 为: 1393.6253662109375
+2023-11-30 21:24:25,207 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:24:25,466 - INFO - valid loss 为: 1395.2021484375
+2023-11-30 21:24:30,060 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:24:30,354 - INFO - valid loss 为: 1392.2249755859375
+2023-11-30 21:24:35,010 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:24:35,274 - INFO - valid loss 为: 1391.9644775390625
+2023-11-30 21:24:39,898 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:24:40,152 - INFO - valid loss 为: 1392.2288818359375
+2023-11-30 21:24:44,569 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:24:44,855 - INFO - valid loss 为: 1389.2685546875
+2023-11-30 21:24:49,505 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:24:49,749 - INFO - valid loss 为: 1384.28759765625
+2023-11-30 21:24:54,358 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:24:54,654 - INFO - valid loss 为: 1381.0614013671875
+2023-11-30 21:24:59,183 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:24:59,444 - INFO - valid loss 为: 1379.1507568359375
+2023-11-30 21:25:04,191 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:25:04,489 - INFO - valid loss 为: 1379.6005859375
+2023-11-30 21:25:09,390 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:25:09,663 - INFO - valid loss 为: 1378.3955078125
+2023-11-30 21:25:14,329 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:25:14,601 - INFO - valid loss 为: 1380.0714111328125
+2023-11-30 21:25:19,174 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:25:19,425 - INFO - valid loss 为: 1376.53857421875
+2023-11-30 21:25:23,944 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:25:24,233 - INFO - valid loss 为: 1373.826171875
+2023-11-30 21:25:28,860 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:25:29,128 - INFO - valid loss 为: 1374.8392333984375
+2023-11-30 21:25:33,877 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:25:34,150 - INFO - valid loss 为: 1371.7078857421875
+2023-11-30 21:25:38,786 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:25:39,043 - INFO - valid loss 为: 1365.097412109375
+2023-11-30 21:25:43,700 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:25:43,963 - INFO - valid loss 为: 1364.1080322265625
+2023-11-30 21:25:48,475 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:25:48,765 - INFO - valid loss 为: 1363.86669921875
+2023-11-30 21:25:53,510 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:25:53,786 - INFO - valid loss 为: 1361.1517333984375
+2023-11-30 21:25:58,251 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:25:58,559 - INFO - valid loss 为: 1354.209716796875
+2023-11-30 21:26:03,232 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:26:03,495 - INFO - valid loss 为: 1362.6832275390625
+2023-11-30 21:26:08,061 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:26:08,335 - INFO - valid loss 为: 1360.1005859375
+2023-11-30 21:26:12,884 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:26:13,135 - INFO - valid loss 为: 1360.2694091796875
+2023-11-30 21:26:17,640 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:26:17,900 - INFO - valid loss 为: 1349.076904296875
+2023-11-30 21:26:22,544 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:26:22,820 - INFO - valid loss 为: 1340.1014404296875
+2023-11-30 21:26:27,419 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:26:27,692 - INFO - valid loss 为: 1334.869140625
+2023-11-30 21:26:32,312 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:26:32,580 - INFO - valid loss 为: 1334.1370849609375
+2023-11-30 21:26:37,264 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:26:37,580 - INFO - valid loss 为: 1331.6124267578125
+2023-11-30 21:26:42,193 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:26:42,448 - INFO - valid loss 为: 1330.7908935546875
+2023-11-30 21:26:47,077 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:26:47,384 - INFO - valid loss 为: 1329.873046875
+2023-11-30 21:26:52,105 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:26:52,370 - INFO - valid loss 为: 1329.82177734375
+2023-11-30 21:26:56,973 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:26:57,261 - INFO - valid loss 为: 1328.1632080078125
+2023-11-30 21:27:01,689 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:27:01,943 - INFO - valid loss 为: 1332.54541015625
+2023-11-30 21:27:06,568 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:27:06,844 - INFO - valid loss 为: 1329.1322021484375
+2023-11-30 21:27:11,447 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:27:11,721 - INFO - valid loss 为: 1327.47607421875
+2023-11-30 21:27:16,338 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:27:16,585 - INFO - valid loss 为: 1327.2230224609375
+2023-11-30 21:27:21,297 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:27:21,562 - INFO - valid loss 为: 1327.0364990234375
+2023-11-30 21:27:26,220 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:27:26,485 - INFO - valid loss 为: 1326.9300537109375
+2023-11-30 21:27:31,030 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:27:31,292 - INFO - valid loss 为: 2491.92431640625
+2023-11-30 21:27:35,740 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:27:36,022 - INFO - valid loss 为: 2377.73583984375
+2023-11-30 21:27:40,609 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:27:40,918 - INFO - valid loss 为: 2212.30712890625
+2023-11-30 21:27:45,689 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:27:46,012 - INFO - valid loss 为: 2022.0914306640625
+2023-11-30 21:27:50,601 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:27:50,893 - INFO - valid loss 为: 2005.9149169921875
+2023-11-30 21:27:55,561 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:27:55,825 - INFO - valid loss 为: 1997.6162109375
+2023-11-30 21:28:00,444 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:28:00,721 - INFO - valid loss 为: 1990.8446044921875
+2023-11-30 21:28:05,363 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:28:05,638 - INFO - valid loss 为: 1979.9974365234375
+2023-11-30 21:28:10,302 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:28:10,573 - INFO - valid loss 为: 1972.3095703125
+2023-11-30 21:28:15,347 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:28:15,626 - INFO - valid loss 为: 1500.2540283203125
+2023-11-30 21:28:20,191 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:28:20,470 - INFO - valid loss 为: 1443.3455810546875
+2023-11-30 21:28:25,061 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:28:25,340 - INFO - valid loss 为: 1421.65478515625
+2023-11-30 21:28:30,015 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:28:30,293 - INFO - valid loss 为: 1411.9185791015625
+2023-11-30 21:28:34,905 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:28:35,181 - INFO - valid loss 为: 1409.142578125
+2023-11-30 21:28:39,656 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:28:39,935 - INFO - valid loss 为: 1403.24658203125
+2023-11-30 21:28:44,625 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:28:44,905 - INFO - valid loss 为: 1405.69677734375
+2023-11-30 21:28:49,384 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:28:49,629 - INFO - valid loss 为: 1403.7252197265625
+2023-11-30 21:28:54,215 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:28:54,492 - INFO - valid loss 为: 1401.1075439453125
+2023-11-30 21:28:59,181 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:28:59,471 - INFO - valid loss 为: 1398.65625
+2023-11-30 21:29:04,122 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:29:04,382 - INFO - valid loss 为: 1397.31884765625
+2023-11-30 21:29:08,853 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:29:09,113 - INFO - valid loss 为: 1391.86328125
+2023-11-30 21:29:13,685 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:29:13,961 - INFO - valid loss 为: 1389.6143798828125
+2023-11-30 21:29:18,525 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:29:18,788 - INFO - valid loss 为: 1384.9228515625
+2023-11-30 21:29:23,338 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:29:23,616 - INFO - valid loss 为: 1380.1510009765625
+2023-11-30 21:29:28,228 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:29:28,487 - INFO - valid loss 为: 1373.26123046875
+2023-11-30 21:29:33,057 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:29:33,313 - INFO - valid loss 为: 1369.4462890625
+2023-11-30 21:29:37,872 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:29:38,145 - INFO - valid loss 为: 1363.0242919921875
+2023-11-30 21:29:42,704 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:29:42,972 - INFO - valid loss 为: 1362.392578125
+2023-11-30 21:29:47,543 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:29:47,816 - INFO - valid loss 为: 1351.3184814453125
+2023-11-30 21:29:52,459 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:29:52,729 - INFO - valid loss 为: 1353.0784912109375
+2023-11-30 21:29:57,085 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:29:57,385 - INFO - valid loss 为: 1351.0677490234375
+2023-11-30 21:30:01,761 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:30:02,057 - INFO - valid loss 为: 1345.3216552734375
+2023-11-30 21:30:06,708 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:30:06,980 - INFO - valid loss 为: 1331.57421875
+2023-11-30 21:30:11,433 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:30:11,711 - INFO - valid loss 为: 1325.3831787109375
+2023-11-30 21:30:16,225 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:30:16,476 - INFO - valid loss 为: 1325.27294921875
+2023-11-30 21:30:21,090 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:30:21,354 - INFO - valid loss 为: 1327.3184814453125
+2023-11-30 21:30:25,985 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:30:26,240 - INFO - valid loss 为: 1323.9976806640625
+2023-11-30 21:30:30,846 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:30:31,151 - INFO - valid loss 为: 1316.82763671875
+2023-11-30 21:30:35,844 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:30:36,098 - INFO - valid loss 为: 1317.8575439453125
+2023-11-30 21:30:40,579 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:30:40,874 - INFO - valid loss 为: 1313.5777587890625
+2023-11-30 21:30:45,460 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:30:45,755 - INFO - valid loss 为: 1313.306640625
+2023-11-30 21:30:50,419 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:30:50,687 - INFO - valid loss 为: 1312.6339111328125
+2023-11-30 21:30:55,206 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:30:55,476 - INFO - valid loss 为: 1310.9324951171875
+2023-11-30 21:31:00,037 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:31:00,296 - INFO - valid loss 为: 1311.8624267578125
+2023-11-30 21:31:04,717 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:31:04,979 - INFO - valid loss 为: 1309.6717529296875
+2023-11-30 21:31:09,550 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:31:09,847 - INFO - valid loss 为: 1309.4166259765625
+2023-11-30 21:31:14,671 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:31:14,929 - INFO - valid loss 为: 1307.72705078125
+2023-11-30 21:31:19,449 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:31:19,722 - INFO - valid loss 为: 1308.7955322265625
+2023-11-30 21:31:24,277 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:31:24,551 - INFO - valid loss 为: 1307.6103515625
+2023-11-30 21:31:29,045 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:31:29,301 - INFO - valid loss 为: 1310.2845458984375
+2023-11-30 21:31:34,046 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:31:34,299 - INFO - valid loss 为: 1307.744384765625
+2023-11-30 21:31:38,970 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:31:39,239 - INFO - valid loss 为: 1306.61767578125
+2023-11-30 21:31:43,669 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:31:43,919 - INFO - valid loss 为: 1294.6263427734375
+2023-11-30 21:31:48,523 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:31:48,783 - INFO - valid loss 为: 1349.0977783203125
+2023-11-30 21:31:53,233 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:31:53,545 - INFO - valid loss 为: 1322.6268310546875
+2023-11-30 21:31:58,039 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:31:58,335 - INFO - valid loss 为: 1309.3917236328125
+2023-11-30 21:32:02,798 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:32:03,098 - INFO - valid loss 为: 1084.4630126953125
+2023-11-30 21:32:07,620 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:32:07,895 - INFO - valid loss 为: 1061.671142578125
+2023-11-30 21:32:12,588 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:32:12,837 - INFO - valid loss 为: 1055.5909423828125
+2023-11-30 21:32:17,440 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:32:17,669 - INFO - valid loss 为: 1052.2462158203125
+2023-11-30 21:32:22,372 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:32:22,620 - INFO - valid loss 为: 1051.8853759765625
+2023-11-30 21:32:27,057 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:32:27,319 - INFO - valid loss 为: 1051.1351318359375
+2023-11-30 21:32:32,009 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:32:32,249 - INFO - valid loss 为: 1050.2235107421875
+2023-11-30 21:32:36,872 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:32:37,136 - INFO - valid loss 为: 1049.2374267578125
+2023-11-30 21:32:41,814 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:32:42,103 - INFO - valid loss 为: 1049.1732177734375
+2023-11-30 21:32:46,620 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:32:46,868 - INFO - valid loss 为: 1049.1783447265625
+2023-11-30 21:32:51,446 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:32:51,771 - INFO - valid loss 为: 1048.4736328125
+2023-11-30 21:32:56,445 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:32:56,720 - INFO - valid loss 为: 1045.88720703125
+2023-11-30 21:33:01,203 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:33:01,459 - INFO - valid loss 为: 1046.6773681640625
+2023-11-30 21:33:06,033 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:33:06,292 - INFO - valid loss 为: 1046.8599853515625
+2023-11-30 21:33:10,920 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:33:11,229 - INFO - valid loss 为: 1046.5067138671875
+2023-11-30 21:33:15,893 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:33:16,165 - INFO - valid loss 为: 1046.129638671875
+2023-11-30 21:33:20,556 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:33:20,834 - INFO - valid loss 为: 1044.318359375
+2023-11-30 21:33:25,311 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:33:25,580 - INFO - valid loss 为: 1034.9112548828125
+2023-11-30 21:33:30,001 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:33:30,276 - INFO - valid loss 为: 1033.6060791015625
+2023-11-30 21:33:34,823 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:33:35,098 - INFO - valid loss 为: 1039.7213134765625
+2023-11-30 21:33:39,905 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:33:40,154 - INFO - valid loss 为: 1035.6710205078125
+2023-11-30 21:33:44,655 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:33:44,922 - INFO - valid loss 为: 1032.7203369140625
+2023-11-30 21:33:49,564 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:33:49,836 - INFO - valid loss 为: 1032.9556884765625
+2023-11-30 21:33:54,405 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:33:54,668 - INFO - valid loss 为: 1020.8427734375
+2023-11-30 21:33:59,117 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:33:59,376 - INFO - valid loss 为: 1016.0836791992188
+2023-11-30 21:34:04,014 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:34:04,318 - INFO - valid loss 为: 1012.8980102539062
+2023-11-30 21:34:08,861 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:34:09,119 - INFO - valid loss 为: 1012.0353393554688
+2023-11-30 21:34:13,672 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:34:13,934 - INFO - valid loss 为: 1013.2096557617188
+2023-11-30 21:34:18,434 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:34:18,718 - INFO - valid loss 为: 1014.3632202148438
+2023-11-30 21:34:23,318 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:34:23,624 - INFO - valid loss 为: 1013.0759887695312
+2023-11-30 21:34:28,339 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:34:28,612 - INFO - valid loss 为: 1012.419677734375
+2023-11-30 21:34:33,145 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:34:33,407 - INFO - valid loss 为: 1009.8662109375
+2023-11-30 21:34:38,001 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:34:38,287 - INFO - valid loss 为: 1010.07861328125
+2023-11-30 21:34:42,808 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:34:43,055 - INFO - valid loss 为: 1009.17333984375
+2023-11-30 21:34:47,639 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:34:47,917 - INFO - valid loss 为: 1009.9526977539062
+2023-11-30 21:34:52,387 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:34:52,656 - INFO - valid loss 为: 999.748291015625
+2023-11-30 21:34:57,085 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:34:57,360 - INFO - valid loss 为: 999.2265014648438
+2023-11-30 21:35:01,907 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:35:02,165 - INFO - valid loss 为: 1000.4319458007812
+2023-11-30 21:35:06,652 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:35:06,913 - INFO - valid loss 为: 980.8762817382812
+2023-11-30 21:35:11,571 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:35:11,834 - INFO - valid loss 为: 980.6367797851562
+2023-11-30 21:35:16,361 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:35:16,633 - INFO - valid loss 为: 982.1851196289062
+2023-11-30 21:35:21,212 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:35:21,489 - INFO - valid loss 为: 979.1784057617188
+2023-11-30 21:35:26,090 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:35:26,344 - INFO - valid loss 为: 717.0534057617188
+2023-11-30 21:35:30,996 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:35:31,269 - INFO - valid loss 为: 689.6233520507812
+2023-11-30 21:35:35,802 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:35:36,057 - INFO - valid loss 为: 700.7195434570312
+2023-11-30 21:35:40,577 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:35:40,876 - INFO - valid loss 为: 691.1786499023438
+2023-11-30 21:35:45,387 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:35:45,645 - INFO - valid loss 为: 682.3237915039062
+2023-11-30 21:35:50,157 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:35:50,434 - INFO - valid loss 为: 683.9406127929688
+2023-11-30 21:35:54,924 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:35:55,191 - INFO - valid loss 为: 679.9671020507812
+2023-11-30 21:35:59,907 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:36:00,192 - INFO - valid loss 为: 679.0646362304688
+2023-11-30 21:36:04,673 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:36:04,920 - INFO - valid loss 为: 677.781494140625
+2023-11-30 21:36:09,449 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:36:09,724 - INFO - valid loss 为: 675.3853759765625
+2023-11-30 21:36:14,431 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:36:14,656 - INFO - valid loss 为: 677.7754516601562
+2023-11-30 21:36:19,285 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:36:19,598 - INFO - valid loss 为: 675.3035888671875
+2023-11-30 21:36:24,123 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:36:24,425 - INFO - valid loss 为: 674.9756469726562
+2023-11-30 21:36:29,042 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:36:29,310 - INFO - valid loss 为: 674.4268188476562
+2023-11-30 21:36:33,749 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:36:34,022 - INFO - valid loss 为: 673.4481201171875
+2023-11-30 21:36:38,710 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:36:38,985 - INFO - valid loss 为: 673.2506713867188
+2023-11-30 21:36:43,472 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:36:43,724 - INFO - valid loss 为: 673.6229858398438
+2023-11-30 21:36:48,362 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:36:48,631 - INFO - valid loss 为: 675.6256713867188
+2023-11-30 21:36:53,122 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:36:53,334 - INFO - valid loss 为: 662.029296875
+2023-11-30 21:36:57,840 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:36:58,097 - INFO - valid loss 为: 661.7886352539062
+2023-11-30 21:37:02,514 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:37:02,798 - INFO - valid loss 为: 657.5963745117188
+2023-11-30 21:37:07,266 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:37:07,544 - INFO - valid loss 为: 651.853515625
+2023-11-30 21:37:12,192 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:37:12,448 - INFO - valid loss 为: 648.201904296875
+2023-11-30 21:37:16,919 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:37:17,196 - INFO - valid loss 为: 646.6510620117188
+2023-11-30 21:37:21,787 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:37:22,045 - INFO - valid loss 为: 647.8388061523438
+2023-11-30 21:37:26,679 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:37:26,951 - INFO - valid loss 为: 653.2986450195312
+2023-11-30 21:37:31,589 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:37:31,875 - INFO - valid loss 为: 647.9761352539062
+2023-11-30 21:37:36,521 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:37:36,775 - INFO - valid loss 为: 649.4092407226562
+2023-11-30 21:37:41,434 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:37:41,702 - INFO - valid loss 为: 646.49658203125
+2023-11-30 21:37:46,257 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:37:46,518 - INFO - valid loss 为: 631.090087890625
+2023-11-30 21:37:51,103 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:37:51,388 - INFO - valid loss 为: 635.0914916992188
+2023-11-30 21:37:56,012 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:37:56,285 - INFO - valid loss 为: 624.6926879882812
+2023-11-30 21:38:00,763 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:38:01,031 - INFO - valid loss 为: 625.8793334960938
+2023-11-30 21:38:05,692 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:38:05,959 - INFO - valid loss 为: 623.4891357421875
+2023-11-30 21:38:10,508 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:38:10,768 - INFO - valid loss 为: 621.9529418945312
+2023-11-30 21:38:15,115 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:38:15,388 - INFO - valid loss 为: 621.87744140625
+2023-11-30 21:38:19,889 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:38:20,176 - INFO - valid loss 为: 624.44677734375
+2023-11-30 21:38:24,738 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:38:25,047 - INFO - valid loss 为: 620.7037963867188
+2023-11-30 21:38:29,525 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:38:29,784 - INFO - valid loss 为: 623.5541381835938
+2023-11-30 21:38:34,270 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:38:34,574 - INFO - valid loss 为: 623.4674682617188
+2023-11-30 21:38:39,118 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:38:39,398 - INFO - valid loss 为: 620.870361328125
+2023-11-30 21:38:43,813 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:38:44,038 - INFO - valid loss 为: 620.2525024414062
+2023-11-30 21:38:48,387 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:38:48,661 - INFO - valid loss 为: 619.7588500976562
+2023-11-30 21:38:53,117 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:38:53,379 - INFO - valid loss 为: 621.5059204101562
+2023-11-30 21:38:58,078 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:38:58,341 - INFO - valid loss 为: 624.3040161132812
+2023-11-30 21:39:03,016 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:39:03,287 - INFO - valid loss 为: 623.7800903320312
+2023-11-30 21:39:07,961 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:39:08,267 - INFO - valid loss 为: 621.1964721679688
+2023-11-30 21:39:13,030 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:39:13,276 - INFO - valid loss 为: 621.04736328125
+2023-11-30 21:39:17,873 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:39:18,146 - INFO - valid loss 为: 617.0291137695312
+2023-11-30 21:39:22,546 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:39:22,823 - INFO - valid loss 为: 615.4022827148438
+2023-11-30 21:39:27,257 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:39:27,539 - INFO - valid loss 为: 616.1798095703125
+2023-11-30 21:39:32,058 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:39:32,303 - INFO - valid loss 为: 615.6469116210938
+2023-11-30 21:39:36,732 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:39:37,047 - INFO - valid loss 为: 614.5590209960938
+2023-11-30 21:39:41,533 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:39:41,789 - INFO - valid loss 为: 615.5807495117188
+2023-11-30 21:39:46,416 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:39:46,701 - INFO - valid loss 为: 616.3139038085938
+2023-11-30 21:39:51,323 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:39:51,598 - INFO - valid loss 为: 617.537841796875
+2023-11-30 21:39:56,347 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:39:56,651 - INFO - valid loss 为: 616.3282470703125
+2023-11-30 21:40:01,192 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:40:01,472 - INFO - valid loss 为: 615.9739379882812
+2023-11-30 21:40:06,227 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:40:06,483 - INFO - valid loss 为: 615.5847778320312
+2023-11-30 21:40:10,985 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:40:11,237 - INFO - valid loss 为: 616.8963012695312
+2023-11-30 21:40:15,921 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:40:16,181 - INFO - valid loss 为: 622.63134765625
+2023-11-30 21:40:20,791 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:40:21,039 - INFO - valid loss 为: 615.7428588867188
+2023-11-30 21:40:25,441 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:40:25,654 - INFO - valid loss 为: 614.357666015625
+2023-11-30 21:40:30,141 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:40:30,430 - INFO - valid loss 为: 619.2107543945312
+2023-11-30 21:40:35,105 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:40:35,391 - INFO - valid loss 为: 613.02880859375
+2023-11-30 21:40:40,028 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:40:40,294 - INFO - valid loss 为: 613.8395385742188
+2023-11-30 21:40:44,849 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:40:45,125 - INFO - valid loss 为: 612.6199340820312
+2023-11-30 21:40:49,386 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:40:49,654 - INFO - valid loss 为: 613.6714477539062
+2023-11-30 21:40:54,273 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:40:54,558 - INFO - valid loss 为: 612.7959594726562
+2023-11-30 21:40:58,995 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:40:59,257 - INFO - valid loss 为: 615.1206665039062
+2023-11-30 21:41:03,853 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:41:04,162 - INFO - valid loss 为: 607.07666015625
+2023-11-30 21:41:08,779 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:41:09,041 - INFO - valid loss 为: 607.069580078125
+2023-11-30 21:41:13,523 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:41:13,765 - INFO - valid loss 为: 605.1203002929688
+2023-11-30 21:41:18,358 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:41:18,623 - INFO - valid loss 为: 605.8186645507812
+2023-11-30 21:41:23,107 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:41:23,352 - INFO - valid loss 为: 607.361083984375
+2023-11-30 21:41:28,035 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:41:28,310 - INFO - valid loss 为: 606.8042602539062
+2023-11-30 21:41:32,832 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:41:33,052 - INFO - valid loss 为: 607.6282958984375
+2023-11-30 21:41:37,665 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:41:37,946 - INFO - valid loss 为: 607.4736328125
+2023-11-30 21:41:42,415 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:41:42,669 - INFO - valid loss 为: 605.1741333007812
+2023-11-30 21:41:47,196 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:41:47,488 - INFO - valid loss 为: 604.2728881835938
+2023-11-30 21:41:52,178 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:41:52,432 - INFO - valid loss 为: 604.364990234375
+2023-11-30 21:41:56,847 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:41:57,117 - INFO - valid loss 为: 603.3152465820312
+2023-11-30 21:42:01,588 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:42:01,828 - INFO - valid loss 为: 608.5870971679688
+2023-11-30 21:42:06,364 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:42:06,649 - INFO - valid loss 为: 598.6939086914062
+2023-11-30 21:42:11,250 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:42:11,512 - INFO - valid loss 为: 599.6464233398438
+2023-11-30 21:42:15,945 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:42:16,194 - INFO - valid loss 为: 600.0562133789062
+2023-11-30 21:42:20,718 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:42:20,944 - INFO - valid loss 为: 603.8838500976562
+2023-11-30 21:42:25,505 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:42:25,804 - INFO - valid loss 为: 601.0574340820312
+2023-11-30 21:42:30,371 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:42:30,625 - INFO - valid loss 为: 598.7706909179688
+2023-11-30 21:42:35,244 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:42:35,565 - INFO - valid loss 为: 598.0505981445312
+2023-11-30 21:42:40,382 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:42:40,650 - INFO - valid loss 为: 598.6826782226562
+2023-11-30 21:42:45,304 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:42:45,616 - INFO - valid loss 为: 597.7659912109375
+2023-11-30 21:42:50,179 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:42:50,447 - INFO - valid loss 为: 598.4020385742188
+2023-11-30 21:42:55,028 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:42:55,309 - INFO - valid loss 为: 598.1571655273438
+2023-11-30 21:43:00,044 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:43:00,317 - INFO - valid loss 为: 598.4063110351562
+2023-11-30 21:43:04,765 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:43:05,055 - INFO - valid loss 为: 599.516845703125
+2023-11-30 21:43:09,831 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:43:10,099 - INFO - valid loss 为: 598.0452270507812
+2023-11-30 21:43:14,728 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:43:14,978 - INFO - valid loss 为: 324.6554260253906
+2023-11-30 21:43:19,635 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:43:19,909 - INFO - valid loss 为: 172.7152099609375
+2023-11-30 21:43:24,468 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:43:24,736 - INFO - valid loss 为: 144.59352111816406
+2023-11-30 21:43:29,390 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:43:29,665 - INFO - valid loss 为: 131.46519470214844
+2023-11-30 21:43:34,310 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:43:34,592 - INFO - valid loss 为: 126.37259674072266
+2023-11-30 21:43:39,196 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:43:39,516 - INFO - valid loss 为: 101.6317367553711
+2023-11-30 21:43:43,990 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:43:44,255 - INFO - valid loss 为: 91.6009750366211
+2023-11-30 21:43:48,814 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:43:49,088 - INFO - valid loss 为: 83.6365737915039
+2023-11-30 21:43:53,758 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:43:54,018 - INFO - valid loss 为: 79.90624237060547
+2023-11-30 21:43:58,409 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:43:58,687 - INFO - valid loss 为: 79.77325439453125
+2023-11-30 21:44:03,307 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:44:03,576 - INFO - valid loss 为: 79.33844757080078
+2023-11-30 21:44:08,302 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:44:08,576 - INFO - valid loss 为: 81.93913269042969
+2023-11-30 21:44:13,046 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:44:13,301 - INFO - valid loss 为: 77.32882690429688
+2023-11-30 21:44:17,879 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:44:18,154 - INFO - valid loss 为: 76.79183959960938
+2023-11-30 21:44:22,663 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:44:22,908 - INFO - valid loss 为: 75.31818389892578
+2023-11-30 21:44:27,518 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:44:27,769 - INFO - valid loss 为: 73.6563949584961
+2023-11-30 21:44:32,284 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:44:32,539 - INFO - valid loss 为: 72.11666107177734
+2023-11-30 21:44:37,223 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:44:37,515 - INFO - valid loss 为: 70.84346771240234
+2023-11-30 21:44:41,988 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:44:42,246 - INFO - valid loss 为: 68.40921020507812
+2023-11-30 21:44:46,644 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:44:46,919 - INFO - valid loss 为: 66.6832275390625
+2023-11-30 21:44:51,512 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:44:51,775 - INFO - valid loss 为: 66.07611846923828
+2023-11-30 21:44:56,422 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:44:56,701 - INFO - valid loss 为: 62.85160446166992
+2023-11-30 21:45:01,162 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:45:01,414 - INFO - valid loss 为: 62.49763107299805
+2023-11-30 21:45:05,813 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:45:06,084 - INFO - valid loss 为: 66.18856811523438
+2023-11-30 21:45:10,678 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:45:10,956 - INFO - valid loss 为: 62.338375091552734
+2023-11-30 21:45:15,572 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:45:15,859 - INFO - valid loss 为: 61.9653434753418
+2023-11-30 21:45:20,527 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:45:20,797 - INFO - valid loss 为: 62.6446533203125
+2023-11-30 21:45:25,311 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:45:25,601 - INFO - valid loss 为: 60.9565315246582
+2023-11-30 21:45:30,104 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:45:30,361 - INFO - valid loss 为: 61.192012786865234
+2023-11-30 21:45:34,822 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:45:35,108 - INFO - valid loss 为: 61.51192092895508
+2023-11-30 21:45:39,670 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:45:39,933 - INFO - valid loss 为: 64.81138610839844
+2023-11-30 21:45:44,560 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:45:44,825 - INFO - valid loss 为: 60.646854400634766
+2023-11-30 21:45:49,117 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:45:49,400 - INFO - valid loss 为: 59.30167007446289
+2023-11-30 21:45:53,948 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:45:54,203 - INFO - valid loss 为: 59.74232864379883
+2023-11-30 21:45:58,745 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:45:59,014 - INFO - valid loss 为: 59.20737838745117
+2023-11-30 21:46:03,652 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:46:03,918 - INFO - valid loss 为: 59.17377853393555
+2023-11-30 21:46:08,450 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:46:08,708 - INFO - valid loss 为: 60.46266555786133
+2023-11-30 21:46:13,111 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:46:13,351 - INFO - valid loss 为: 59.170475006103516
+2023-11-30 21:46:17,808 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:46:18,077 - INFO - valid loss 为: 59.75651931762695
+2023-11-30 21:46:22,660 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:46:22,969 - INFO - valid loss 为: 59.25018310546875
+2023-11-30 21:46:27,604 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:46:27,908 - INFO - valid loss 为: 59.18916702270508
+2023-11-30 21:46:32,523 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:46:32,803 - INFO - valid loss 为: 58.66386032104492
+2023-11-30 21:46:37,539 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:46:37,815 - INFO - valid loss 为: 58.67890548706055
+2023-11-30 21:46:42,318 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:46:42,611 - INFO - valid loss 为: 58.559749603271484
+2023-11-30 21:46:47,232 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:46:47,531 - INFO - valid loss 为: 59.150821685791016
+2023-11-30 21:46:52,082 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:46:52,361 - INFO - valid loss 为: 58.90985107421875
+2023-11-30 21:46:56,994 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:46:57,266 - INFO - valid loss 为: 58.06535720825195
+2023-11-30 21:47:01,657 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:47:01,869 - INFO - valid loss 为: 57.67716598510742
+2023-11-30 21:47:06,449 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:47:06,716 - INFO - valid loss 为: 57.78240966796875
+2023-11-30 21:47:11,395 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:47:11,692 - INFO - valid loss 为: 59.05085372924805
+2023-11-30 21:47:16,399 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:47:16,659 - INFO - valid loss 为: 57.771358489990234
+2023-11-30 21:47:21,212 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:47:21,463 - INFO - valid loss 为: 55.28715133666992
+2023-11-30 21:47:26,113 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:47:26,405 - INFO - valid loss 为: 54.4271354675293
+2023-11-30 21:47:30,998 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:47:31,302 - INFO - valid loss 为: 52.940311431884766
+2023-11-30 21:47:36,154 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:47:36,441 - INFO - valid loss 为: 53.77457809448242
+2023-11-30 21:47:40,894 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:47:41,159 - INFO - valid loss 为: 53.529083251953125
+2023-11-30 21:47:45,849 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:47:46,129 - INFO - valid loss 为: 52.48398208618164
+2023-11-30 21:47:50,621 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:47:50,869 - INFO - valid loss 为: 52.157806396484375
+2023-11-30 21:47:55,499 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:47:55,770 - INFO - valid loss 为: 50.04436111450195
+2023-11-30 21:48:00,239 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:48:00,509 - INFO - valid loss 为: 50.465057373046875
+2023-11-30 21:48:05,296 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:48:05,569 - INFO - valid loss 为: 49.741207122802734
+2023-11-30 21:48:10,064 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:48:10,314 - INFO - valid loss 为: 47.214656829833984
+2023-11-30 21:48:14,935 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:48:15,214 - INFO - valid loss 为: 49.37443542480469
+2023-11-30 21:48:19,728 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:48:19,986 - INFO - valid loss 为: 48.15541458129883
+2023-11-30 21:48:24,575 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:48:24,884 - INFO - valid loss 为: 50.07815170288086
+2023-11-30 21:48:29,605 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:48:29,859 - INFO - valid loss 为: 48.737640380859375
+2023-11-30 21:48:34,488 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:48:34,796 - INFO - valid loss 为: 48.36887741088867
+2023-11-30 21:48:39,195 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:48:39,455 - INFO - valid loss 为: 46.99162673950195
+2023-11-30 21:48:44,204 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:48:44,468 - INFO - valid loss 为: 47.17142868041992
+2023-11-30 21:48:48,932 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:48:49,201 - INFO - valid loss 为: 46.51192855834961
+2023-11-30 21:48:53,630 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:48:53,939 - INFO - valid loss 为: 46.66428756713867
+2023-11-30 21:48:58,698 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:48:58,989 - INFO - valid loss 为: 46.63555908203125
+2023-11-30 21:49:03,609 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:49:03,894 - INFO - valid loss 为: 46.8109016418457
+2023-11-30 21:49:08,577 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:49:08,856 - INFO - valid loss 为: 46.04402542114258
+2023-11-30 21:49:13,480 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:49:13,733 - INFO - valid loss 为: 47.56242752075195
+2023-11-30 21:49:18,275 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:49:18,548 - INFO - valid loss 为: 47.09431457519531
+2023-11-30 21:49:23,175 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:49:23,476 - INFO - valid loss 为: 46.44595718383789
+2023-11-30 21:49:28,099 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:49:28,409 - INFO - valid loss 为: 45.894405364990234
+2023-11-30 21:49:33,052 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:49:33,307 - INFO - valid loss 为: 45.49153518676758
+2023-11-30 21:49:38,076 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:49:38,344 - INFO - valid loss 为: 46.287261962890625
+2023-11-30 21:49:42,840 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:49:43,126 - INFO - valid loss 为: 46.49875259399414
+2023-11-30 21:49:47,700 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:49:47,973 - INFO - valid loss 为: 45.9769287109375
+2023-11-30 21:49:52,434 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:49:52,686 - INFO - valid loss 为: 45.14564895629883
+2023-11-30 21:49:57,281 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:49:57,558 - INFO - valid loss 为: 45.848175048828125
+2023-11-30 21:50:02,151 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:50:02,424 - INFO - valid loss 为: 46.61172866821289
+2023-11-30 21:50:07,058 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:50:07,337 - INFO - valid loss 为: 49.213802337646484
+2023-11-30 21:50:11,848 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:50:12,108 - INFO - valid loss 为: 46.39034652709961
+2023-11-30 21:50:16,714 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:50:16,981 - INFO - valid loss 为: 45.81776809692383
+2023-11-30 21:50:21,371 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:50:21,629 - INFO - valid loss 为: 46.38956832885742
+2023-11-30 21:50:25,898 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:50:26,169 - INFO - valid loss 为: 41.25007629394531
+2023-11-30 21:50:30,711 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:50:30,993 - INFO - valid loss 为: 39.69247055053711
+2023-11-30 21:50:35,627 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:50:35,893 - INFO - valid loss 为: 40.09938430786133
+2023-11-30 21:50:40,423 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:50:40,664 - INFO - valid loss 为: 39.83060836791992
+2023-11-30 21:50:45,263 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:50:45,553 - INFO - valid loss 为: 38.34751892089844
+2023-11-30 21:50:50,076 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:50:50,339 - INFO - valid loss 为: 37.955867767333984
+2023-11-30 21:50:54,751 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:50:55,026 - INFO - valid loss 为: 38.04621505737305
+2023-11-30 21:50:59,572 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:50:59,865 - INFO - valid loss 为: 36.4018440246582
+2023-11-30 21:51:04,421 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:51:04,662 - INFO - valid loss 为: 35.46784210205078
+2023-11-30 21:51:09,157 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:51:09,429 - INFO - valid loss 为: 35.852115631103516
+2023-11-30 21:51:13,963 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:51:14,273 - INFO - valid loss 为: 33.00400924682617
+2023-11-30 21:51:18,829 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:51:19,113 - INFO - valid loss 为: 31.7772159576416
+2023-11-30 21:51:23,868 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:51:24,148 - INFO - valid loss 为: 29.69415283203125
+2023-11-30 21:51:28,660 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:51:28,921 - INFO - valid loss 为: 30.988664627075195
+2023-11-30 21:51:33,417 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:51:33,670 - INFO - valid loss 为: 29.80792808532715
+2023-11-30 21:51:38,171 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:51:38,414 - INFO - valid loss 为: 31.856979370117188
+2023-11-30 21:51:42,794 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:51:43,081 - INFO - valid loss 为: 30.772674560546875
+2023-11-30 21:51:47,657 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:51:47,917 - INFO - valid loss 为: 30.244829177856445
+2023-11-30 21:51:52,498 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:51:52,771 - INFO - valid loss 为: 30.0444278717041
+2023-11-30 21:51:57,396 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:51:57,676 - INFO - valid loss 为: 29.184890747070312
+2023-11-30 21:52:02,262 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:52:02,490 - INFO - valid loss 为: 30.403493881225586
+2023-11-30 21:52:07,199 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:52:07,509 - INFO - valid loss 为: 29.934280395507812
+2023-11-30 21:52:12,377 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:52:12,654 - INFO - valid loss 为: 29.47394371032715
+2023-11-30 21:52:17,451 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:52:17,740 - INFO - valid loss 为: 30.272323608398438
+2023-11-30 21:52:22,322 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:52:22,577 - INFO - valid loss 为: 29.855911254882812
+2023-11-30 21:52:26,971 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:52:27,209 - INFO - valid loss 为: 28.772390365600586
+2023-11-30 21:52:31,666 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:52:31,918 - INFO - valid loss 为: 30.54166603088379
+2023-11-30 21:52:36,395 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:52:36,659 - INFO - valid loss 为: 31.103200912475586
+2023-11-30 21:52:41,167 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:52:41,439 - INFO - valid loss 为: 30.761232376098633
+2023-11-30 21:52:46,009 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:52:46,301 - INFO - valid loss 为: 32.458770751953125
+2023-11-30 21:52:50,836 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:52:51,103 - INFO - valid loss 为: 29.378385543823242
+2023-11-30 21:52:55,646 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:52:55,918 - INFO - valid loss 为: 29.462844848632812
+2023-11-30 21:53:00,437 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:53:00,692 - INFO - valid loss 为: 31.190277099609375
+2023-11-30 21:53:05,309 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:53:05,562 - INFO - valid loss 为: 29.169952392578125
+2023-11-30 21:53:10,140 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:53:10,374 - INFO - valid loss 为: 30.164901733398438
+2023-11-30 21:53:14,826 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:53:15,078 - INFO - valid loss 为: 30.35433006286621
+2023-11-30 21:53:19,556 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:53:19,846 - INFO - valid loss 为: 29.70848846435547
+2023-11-30 21:53:24,507 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:53:24,739 - INFO - valid loss 为: 29.79340362548828
+2023-11-30 21:53:29,233 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:53:29,507 - INFO - valid loss 为: 28.91996192932129
+2023-11-30 21:53:34,039 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:53:34,305 - INFO - valid loss 为: 30.3836669921875
+2023-11-30 21:53:38,945 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:53:39,208 - INFO - valid loss 为: 29.9480037689209
+2023-11-30 21:53:43,676 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:53:43,983 - INFO - valid loss 为: 29.264463424682617
+2023-11-30 21:53:48,639 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:53:48,894 - INFO - valid loss 为: 29.537094116210938
+2023-11-30 21:53:53,428 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:53:53,703 - INFO - valid loss 为: 29.8815975189209
+2023-11-30 21:53:58,153 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:53:58,380 - INFO - valid loss 为: 30.010374069213867
+2023-11-30 21:54:02,699 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:54:02,977 - INFO - valid loss 为: 28.526247024536133
+2023-11-30 21:54:07,715 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:54:07,992 - INFO - valid loss 为: 29.25847625732422
+2023-11-30 21:54:12,649 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:54:12,923 - INFO - valid loss 为: 29.342660903930664
+2023-11-30 21:54:17,447 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:54:17,723 - INFO - valid loss 为: 29.532224655151367
+2023-11-30 21:54:22,314 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:54:22,573 - INFO - valid loss 为: 29.553970336914062
+2023-11-30 21:54:27,099 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:54:27,383 - INFO - valid loss 为: 28.41871452331543
+2023-11-30 21:54:32,009 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:54:32,275 - INFO - valid loss 为: 30.055208206176758
+2023-11-30 21:54:36,822 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:54:37,099 - INFO - valid loss 为: 29.5577335357666
+2023-11-30 21:54:41,561 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:54:41,856 - INFO - valid loss 为: 29.357385635375977
+2023-11-30 21:54:46,424 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:54:46,676 - INFO - valid loss 为: 28.725873947143555
+2023-11-30 21:54:51,342 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:54:51,618 - INFO - valid loss 为: 29.295509338378906
+2023-11-30 21:54:56,052 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:54:56,317 - INFO - valid loss 为: 29.17772102355957
+2023-11-30 21:55:00,793 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:55:01,074 - INFO - valid loss 为: 29.283493041992188
+2023-11-30 21:55:05,631 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:55:05,896 - INFO - valid loss 为: 29.29833221435547
+2023-11-30 21:55:10,395 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:55:10,699 - INFO - valid loss 为: 28.91682243347168
+2023-11-30 21:55:15,202 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:55:15,458 - INFO - valid loss 为: 29.311668395996094
+2023-11-30 21:55:20,118 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:55:20,393 - INFO - valid loss 为: 28.860082626342773
+2023-11-30 21:55:24,954 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:55:25,231 - INFO - valid loss 为: 28.846940994262695
+2023-11-30 21:55:29,788 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:55:30,060 - INFO - valid loss 为: 29.66180419921875
+2023-11-30 21:55:34,577 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:55:34,891 - INFO - valid loss 为: 30.98996925354004
+2023-11-30 21:55:39,252 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:55:39,538 - INFO - valid loss 为: 28.71565818786621
+2023-11-30 21:55:44,163 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:55:44,431 - INFO - valid loss 为: 28.830907821655273
+2023-11-30 21:55:49,010 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:55:49,305 - INFO - valid loss 为: 28.323768615722656
+2023-11-30 21:55:54,134 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:55:54,412 - INFO - valid loss 为: 28.50861167907715
+2023-11-30 21:55:58,903 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:55:59,173 - INFO - valid loss 为: 28.82343292236328
+2023-11-30 21:56:04,044 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:56:04,320 - INFO - valid loss 为: 28.8431453704834
+2023-11-30 21:56:08,908 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:56:09,183 - INFO - valid loss 为: 29.373682022094727
+2023-11-30 21:56:13,905 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:56:14,180 - INFO - valid loss 为: 29.670007705688477
+2023-11-30 21:56:18,719 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:56:18,982 - INFO - valid loss 为: 28.973329544067383
+2023-11-30 21:56:23,605 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:56:23,866 - INFO - valid loss 为: 28.435983657836914
+2023-11-30 21:56:28,580 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:56:28,877 - INFO - valid loss 为: 29.658843994140625
+2023-11-30 21:56:33,537 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:56:33,788 - INFO - valid loss 为: 27.99486541748047
+2023-11-30 21:56:38,374 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:56:38,616 - INFO - valid loss 为: 28.7253360748291
+2023-11-30 21:56:43,301 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:56:43,579 - INFO - valid loss 为: 28.56956672668457
+2023-11-30 21:56:48,151 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:56:48,406 - INFO - valid loss 为: 28.083717346191406
+2023-11-30 21:56:52,889 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:56:53,148 - INFO - valid loss 为: 28.88128662109375
+2023-11-30 21:56:57,839 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:56:58,110 - INFO - valid loss 为: 28.69036293029785
+2023-11-30 21:57:02,787 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:57:03,087 - INFO - valid loss 为: 28.34699821472168
+2023-11-30 21:57:07,617 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:57:07,905 - INFO - valid loss 为: 27.76812171936035
+2023-11-30 21:57:12,379 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:57:12,655 - INFO - valid loss 为: 29.073163986206055
+2023-11-30 21:57:17,148 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:57:17,420 - INFO - valid loss 为: 25.681215286254883
+2023-11-30 21:57:22,206 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:57:22,514 - INFO - valid loss 为: 25.335405349731445
+2023-11-30 21:57:27,395 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:57:27,672 - INFO - valid loss 为: 24.253982543945312
+2023-11-30 21:57:32,317 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:57:32,608 - INFO - valid loss 为: 25.9990234375
+2023-11-30 21:57:37,034 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:57:37,298 - INFO - valid loss 为: 25.244592666625977
+2023-11-30 21:57:41,930 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:57:42,187 - INFO - valid loss 为: 24.47186851501465
+2023-11-30 21:57:46,586 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:57:46,860 - INFO - valid loss 为: 24.21158790588379
+2023-11-30 21:57:51,380 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:57:51,636 - INFO - valid loss 为: 24.943326950073242
+2023-11-30 21:57:56,173 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:57:56,438 - INFO - valid loss 为: 24.297170639038086
+2023-11-30 21:58:01,091 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:58:01,356 - INFO - valid loss 为: 26.150718688964844
+2023-11-30 21:58:05,927 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:58:06,201 - INFO - valid loss 为: 24.875932693481445
+2023-11-30 21:58:10,610 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:58:10,862 - INFO - valid loss 为: 24.634572982788086
+2023-11-30 21:58:15,463 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:58:15,719 - INFO - valid loss 为: 25.145004272460938
+2023-11-30 21:58:20,078 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:58:20,318 - INFO - valid loss 为: 24.779958724975586
+2023-11-30 21:58:24,953 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:58:25,268 - INFO - valid loss 为: 25.1190185546875
+2023-11-30 21:58:30,065 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:58:30,317 - INFO - valid loss 为: 25.340742111206055
+2023-11-30 21:58:34,846 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:58:35,110 - INFO - valid loss 为: 25.198152542114258
+2023-11-30 21:58:39,610 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:58:39,908 - INFO - valid loss 为: 25.862985610961914
+2023-11-30 21:58:44,468 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:58:44,744 - INFO - valid loss 为: 25.14750099182129
+2023-11-30 21:58:49,300 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:58:49,571 - INFO - valid loss 为: 25.448516845703125
+2023-11-30 21:58:54,113 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:58:54,401 - INFO - valid loss 为: 24.613527297973633
+2023-11-30 21:58:58,934 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:58:59,189 - INFO - valid loss 为: 24.451353073120117
+2023-11-30 21:59:03,695 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:59:03,982 - INFO - valid loss 为: 26.126665115356445
+2023-11-30 21:59:08,667 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:59:08,936 - INFO - valid loss 为: 25.64996337890625
+2023-11-30 21:59:13,333 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:59:13,612 - INFO - valid loss 为: 25.83654022216797
+2023-11-30 21:59:18,290 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:59:18,592 - INFO - valid loss 为: 24.617734909057617
+2023-11-30 21:59:23,067 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:59:23,334 - INFO - valid loss 为: 24.51279640197754
+2023-11-30 21:59:27,642 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:59:27,907 - INFO - valid loss 为: 25.036367416381836
+2023-11-30 21:59:32,275 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:59:32,534 - INFO - valid loss 为: 26.66731834411621
+2023-11-30 21:59:36,940 - INFO - current lr 为：0.00019999999494757503
+2023-11-30 21:59:37,219 - INFO - valid loss 为: 24.87763786315918
+2023-11-30 21:59:37,221 - INFO - Loaded model at /disk1/mindone/m-libcity/M-Libcity/M_libcity/cache/2/model_cache/STResNet_NYCBike20140409.ckpt
+2023-11-30 21:59:37,634 - INFO - Start evaluating ...
+2023-11-30 21:59:40,898 - INFO - Note that you select the single mode to evaluate!
+2023-11-30 21:59:40,904 - INFO - Evaluate result is saved at /disk1/mindone/m-libcity/M-Libcity/M_libcity/cache/2/evaluate_cache/2023_11_30_21_59_40_STResNet_NYCBike20140409.csv
+2023-11-30 21:59:40,913 - INFO - 
+       MAE   MAPE      RMSE
+1  2.50691  0.253  5.283452

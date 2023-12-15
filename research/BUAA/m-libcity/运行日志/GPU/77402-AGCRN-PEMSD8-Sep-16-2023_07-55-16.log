@@ -1,0 +1,176 @@
+2023-09-16 07:55:16,306 - INFO - Log directory: /home/zhangwt/remote/M-Libcity/M_libcity/log
+2023-09-16 07:55:16,307 - INFO - Begin pipeline, task=traffic_state_pred, model_name=AGCRN, dataset_name=PEMSD8, exp_id=77402
+2023-09-16 07:55:16,307 - INFO - {'task': 'traffic_state_pred', 'model': 'AGCRN', 'dataset': 'PEMSD8', 'saved_model': True, 'train': True, 'batch_size': 64, 'dataset_class': 'TrafficStatePointDataset', 'executor': 'TrafficStateExecutor', 'evaluator': 'TrafficStateEvaluator', 'embed_dim': 10, 'rnn_units': 64, 'num_layers': 2, 'cheb_order': 2, 'bidir_adj_mx': True, 'scaler': 'standard', 'load_external': False, 'normal_external': False, 'ext_scaler': 'none', 'add_time_in_day': False, 'add_day_in_week': False, 'max_epoch': 100, 'learner': 'adam', 'learning_rate': 0.003, 'lr_decay': False, 'clip_grad_norm': False, 'use_early_stop': True, 'patience': 50, 'cache_dataset': False, 'num_workers': 1, 'pad_with_last_sample': True, 'train_rate': 0.8, 'eval_rate': 0.1, 'input_window': 12, 'output_window': 12, 'input_dim': 2, 'output_dim': 2, 'gpu': True, 'gpu_id': 0, 'train_loss': 'none', 'epoch': 0, 'weight_decay': 0, 'lr_epsilon': 1e-08, 'lr_beta1': 0.9, 'lr_beta2': 0.999, 'lr_alpha': 0.99, 'lr_momentum': 0.0, 'lr_scheduler': 'multisteplr', 'lr_decay_ratio': 0.1, 'steps': [5, 20, 40, 70], 'step_size': 10, 'lr_T_max': 30, 'lr_eta_min': 0, 'lr_patience': 10, 'lr_threshold': 0.0001, 'max_grad_norm': 1.0, 'log_level': 'INFO', 'log_every': 1, 'load_best_epoch': True, 'hyper_tune': False, 'metrics': ['MAE', 'MAPE', 'MSE', 'RMSE'], 'evaluator_mode': 'single', 'save_mode': ['csv'], 'geo': {'including_types': ['Point'], 'Point': {}}, 'rel': {'including_types': ['geo'], 'geo': {'cost': 'num'}}, 'dyna': {'including_types': ['state'], 'state': {'entity_id': 'geo_id', 'traffic_flow': 'num', 'traffic_occupancy': 'num', 'traffic_speed': 'num'}}, 'data_col': ['traffic_flow', 'traffic_occupancy', 'traffic_speed'], 'weight_col': 'cost', 'data_files': ['PEMSD8'], 'geo_file': 'PEMSD8', 'rel_file': 'PEMSD8', 'time_intervals': 300, 'init_weight_inf_or_zero': 'zero', 'set_weight_link_or_dist': 'link', 'calculate_weight_adj': False, 'weight_adj_epsilon': 0.1, 'exp_id': 77402}
+2023-09-16 07:55:16,327 - INFO - Loaded file PEMSD8.geo, num_nodes=170
+2023-09-16 07:55:16,329 - INFO - set_weight_link_or_dist: link
+2023-09-16 07:55:16,329 - INFO - init_weight_inf_or_zero: zero
+2023-09-16 07:55:16,331 - INFO - Loaded file PEMSD8.rel, shape=(170, 170)
+2023-09-16 07:55:16,331 - INFO - Loading file PEMSD8.dyna
+2023-09-16 07:55:18,477 - INFO - Loaded file PEMSD8.dyna, shape=(17856, 170, 3)
+2023-09-16 07:55:20,935 - INFO - Dataset created
+2023-09-16 07:55:20,935 - INFO - x shape: (17833, 12, 170, 3), y shape: (17833, 12, 170, 3)
+2023-09-16 07:55:20,939 - INFO - train	x: (14266, 12, 170, 3), y: (14266, 12, 170, 3)
+2023-09-16 07:55:20,939 - INFO - eval	x: (1784, 12, 170, 3), y: (1784, 12, 170, 3)
+2023-09-16 07:55:20,939 - INFO - test	x: (1783, 12, 170, 3), y: (1783, 12, 170, 3)
+2023-09-16 07:55:21,704 - INFO - StandardScaler mean: 115.28812248332791, std: 154.77945201395136
+2023-09-16 07:55:21,704 - INFO - NoneScaler
+2023-09-16 07:55:24,297 - INFO - AGCRN<
+  (network): AGCRN_model<
+    (encoder): AVWDCRNN<
+      (dcrnn_cells): CellList<
+        (0): AGCRNCell<
+          (gate): AVWGCN<
+            (softmax): Softmax<>
+            (relu): ReLU<>
+            >
+          (update): AVWGCN<
+            (softmax): Softmax<>
+            (relu): ReLU<>
+            >
+          >
+        (1): AGCRNCell<
+          (gate): AVWGCN<
+            (softmax): Softmax<>
+            (relu): ReLU<>
+            >
+          (update): AVWGCN<
+            (softmax): Softmax<>
+            (relu): ReLU<>
+            >
+          >
+        >
+      >
+    (end_conv): Conv2d<input_channels=1, output_channels=24, kernel_size=(1, 64), stride=(1, 1), pad_mode=valid, padding=0, dilation=(1, 1), group=1, has_bias=True, weight_init=normal, bias_init=zeros, format=NCHW>
+    >
+  >
+2023-09-16 07:55:24,297 - INFO - network.node_embeddings	(170, 10)	True
+2023-09-16 07:55:24,298 - INFO - network.encoder.dcrnn_cells.0.gate.weights_pool	(10, 2, 65, 128)	True
+2023-09-16 07:55:24,298 - INFO - network.encoder.dcrnn_cells.0.gate.bias_pool	(10, 128)	True
+2023-09-16 07:55:24,298 - INFO - network.encoder.dcrnn_cells.0.update.weights_pool	(10, 2, 65, 64)	True
+2023-09-16 07:55:24,298 - INFO - network.encoder.dcrnn_cells.0.update.bias_pool	(10, 64)	True
+2023-09-16 07:55:24,298 - INFO - network.encoder.dcrnn_cells.1.gate.weights_pool	(10, 2, 128, 128)	True
+2023-09-16 07:55:24,298 - INFO - network.encoder.dcrnn_cells.1.gate.bias_pool	(10, 128)	True
+2023-09-16 07:55:24,298 - INFO - network.encoder.dcrnn_cells.1.update.weights_pool	(10, 2, 128, 64)	True
+2023-09-16 07:55:24,298 - INFO - network.encoder.dcrnn_cells.1.update.bias_pool	(10, 64)	True
+2023-09-16 07:55:24,298 - INFO - network.end_conv.weight	(24, 1, 1, 64)	True
+2023-09-16 07:55:24,298 - INFO - network.end_conv.bias	(24,)	True
+2023-09-16 07:55:24,298 - INFO - Total parameter numbers: 748220
+2023-09-16 07:55:24,298 - INFO - You select `adam` optimizer.
+2023-09-16 07:55:24,316 - WARNING - Received none train loss func and will use the loss func defined in the model.
+2023-09-16 07:55:24,316 - INFO - Start training ...
+2023-09-16 07:55:24,316 - INFO - num_batches:222
+2023-09-16 08:29:38,401 - INFO - valid loss 为: 20.789155960083008
+2023-09-16 09:03:46,058 - INFO - valid loss 为: 19.88005828857422
+2023-09-16 09:37:54,958 - INFO - valid loss 为: 19.01328468322754
+2023-09-16 10:12:01,548 - INFO - valid loss 为: 18.488441467285156
+2023-09-16 10:46:15,419 - INFO - valid loss 为: 18.136125564575195
+2023-09-16 11:20:28,667 - INFO - valid loss 为: 18.316993713378906
+2023-09-16 11:54:46,911 - INFO - valid loss 为: 17.628875732421875
+2023-09-16 12:29:01,267 - INFO - valid loss 为: 17.376747131347656
+2023-09-16 13:03:09,560 - INFO - valid loss 为: 17.09828758239746
+2023-09-16 13:37:19,559 - INFO - valid loss 为: 17.075613021850586
+2023-09-16 14:11:30,871 - INFO - valid loss 为: 16.92849349975586
+2023-09-16 14:45:43,210 - INFO - valid loss 为: 16.98229217529297
+2023-09-16 15:19:52,688 - INFO - valid loss 为: 16.435182571411133
+2023-09-16 15:53:58,988 - INFO - valid loss 为: 16.065832138061523
+2023-09-16 16:28:09,727 - INFO - valid loss 为: 15.971251487731934
+2023-09-16 17:02:28,211 - INFO - valid loss 为: 15.979429244995117
+2023-09-16 17:36:38,602 - INFO - valid loss 为: 15.8134765625
+2023-09-16 18:10:53,971 - INFO - valid loss 为: 16.03314208984375
+2023-09-16 18:45:08,598 - INFO - valid loss 为: 15.672455787658691
+2023-09-16 19:19:40,487 - INFO - valid loss 为: 15.531264305114746
+2023-09-16 19:53:52,409 - INFO - valid loss 为: 15.692070007324219
+2023-09-16 20:28:06,385 - INFO - valid loss 为: 15.530180931091309
+2023-09-16 21:02:32,128 - INFO - valid loss 为: 15.55154037475586
+2023-09-16 21:36:47,480 - INFO - valid loss 为: 15.385567665100098
+2023-09-16 22:11:01,422 - INFO - valid loss 为: 15.264728546142578
+2023-09-16 22:45:15,799 - INFO - valid loss 为: 15.30338191986084
+2023-09-16 23:19:31,308 - INFO - valid loss 为: 15.129271507263184
+2023-09-16 23:53:47,962 - INFO - valid loss 为: 15.222326278686523
+2023-09-17 00:28:15,496 - INFO - valid loss 为: 15.201264381408691
+2023-09-17 01:02:37,341 - INFO - valid loss 为: 15.146529197692871
+2023-09-17 01:37:06,874 - INFO - valid loss 为: 14.969534873962402
+2023-09-17 02:11:29,828 - INFO - valid loss 为: 15.097771644592285
+2023-09-17 02:45:46,533 - INFO - valid loss 为: 15.255334854125977
+2023-09-17 03:20:07,351 - INFO - valid loss 为: 15.008898735046387
+2023-09-17 03:54:24,112 - INFO - valid loss 为: 14.94123649597168
+2023-09-17 04:28:38,364 - INFO - valid loss 为: 14.873230934143066
+2023-09-17 05:02:50,955 - INFO - valid loss 为: 14.893999099731445
+2023-09-17 05:37:13,369 - INFO - valid loss 为: 15.147768020629883
+2023-09-17 06:11:30,251 - INFO - valid loss 为: 14.925053596496582
+2023-09-17 06:45:58,926 - INFO - valid loss 为: 14.937355995178223
+2023-09-17 07:20:16,571 - INFO - valid loss 为: 14.906919479370117
+2023-09-17 07:54:35,948 - INFO - valid loss 为: 14.760679244995117
+2023-09-17 08:28:55,142 - INFO - valid loss 为: 14.793137550354004
+2023-09-17 09:03:14,686 - INFO - valid loss 为: 14.791085243225098
+2023-09-17 09:37:46,489 - INFO - valid loss 为: 14.80877685546875
+2023-09-17 10:11:56,898 - INFO - valid loss 为: 14.993574142456055
+2023-09-17 10:46:08,897 - INFO - valid loss 为: 14.859886169433594
+2023-09-17 11:20:17,919 - INFO - valid loss 为: 14.72670841217041
+2023-09-17 11:54:28,213 - INFO - valid loss 为: 14.918073654174805
+2023-09-17 12:28:23,055 - INFO - valid loss 为: 14.77712631225586
+2023-09-17 13:02:59,176 - INFO - valid loss 为: 14.840482711791992
+2023-09-17 13:37:47,843 - INFO - valid loss 为: 14.69269847869873
+2023-09-17 14:12:35,554 - INFO - valid loss 为: 14.794129371643066
+2023-09-17 14:47:10,998 - INFO - valid loss 为: 14.850048065185547
+2023-09-17 15:21:26,416 - INFO - valid loss 为: 14.792685508728027
+2023-09-17 15:55:25,501 - INFO - valid loss 为: 14.914069175720215
+2023-09-17 16:29:27,355 - INFO - valid loss 为: 14.780591011047363
+2023-09-17 17:03:31,419 - INFO - valid loss 为: 14.846602439880371
+2023-09-17 17:37:32,404 - INFO - valid loss 为: 14.953649520874023
+2023-09-17 18:11:33,953 - INFO - valid loss 为: 14.74068832397461
+2023-09-17 18:45:39,054 - INFO - valid loss 为: 14.900872230529785
+2023-09-17 19:19:41,601 - INFO - valid loss 为: 14.858819961547852
+2023-09-17 19:53:40,889 - INFO - valid loss 为: 14.930924415588379
+2023-09-17 20:27:42,551 - INFO - valid loss 为: 14.878092765808105
+2023-09-17 21:01:50,175 - INFO - valid loss 为: 14.913111686706543
+2023-09-17 21:35:49,780 - INFO - valid loss 为: 14.884657859802246
+2023-09-17 22:09:55,318 - INFO - valid loss 为: 14.851306915283203
+2023-09-17 22:43:57,713 - INFO - valid loss 为: 14.948963165283203
+2023-09-17 23:17:58,110 - INFO - valid loss 为: 14.869257926940918
+2023-09-17 23:51:58,078 - INFO - valid loss 为: 14.867340087890625
+2023-09-18 00:26:00,801 - INFO - valid loss 为: 15.133201599121094
+2023-09-18 00:59:56,775 - INFO - valid loss 为: 14.98330020904541
+2023-09-18 01:33:56,538 - INFO - valid loss 为: 15.407337188720703
+2023-09-18 02:07:51,989 - INFO - valid loss 为: 15.03781795501709
+2023-09-18 02:41:51,481 - INFO - valid loss 为: 14.890689849853516
+2023-09-18 03:15:49,361 - INFO - valid loss 为: 14.84316635131836
+2023-09-18 03:49:45,187 - INFO - valid loss 为: 15.008268356323242
+2023-09-18 04:23:43,934 - INFO - valid loss 为: 14.929999351501465
+2023-09-18 04:57:42,760 - INFO - valid loss 为: 14.953899383544922
+2023-09-18 05:31:42,099 - INFO - valid loss 为: 14.958507537841797
+2023-09-18 06:05:46,432 - INFO - valid loss 为: 14.969364166259766
+2023-09-18 06:39:55,829 - INFO - valid loss 为: 15.03544807434082
+2023-09-18 07:14:04,769 - INFO - valid loss 为: 14.995429992675781
+2023-09-18 07:48:13,494 - INFO - valid loss 为: 14.968918800354004
+2023-09-18 08:22:21,293 - INFO - valid loss 为: 14.964703559875488
+2023-09-18 08:56:33,595 - INFO - valid loss 为: 15.016081809997559
+2023-09-18 09:30:40,133 - INFO - valid loss 为: 14.94001579284668
+2023-09-18 10:04:50,146 - INFO - valid loss 为: 15.02802848815918
+2023-09-18 10:39:04,268 - INFO - valid loss 为: 15.08115005493164
+2023-09-18 11:13:13,967 - INFO - valid loss 为: 15.109997749328613
+2023-09-18 11:47:22,658 - INFO - valid loss 为: 15.219286918640137
+2023-09-18 12:21:29,781 - INFO - valid loss 为: 15.157886505126953
+2023-09-18 12:55:36,922 - INFO - valid loss 为: 14.993701934814453
+2023-09-18 13:29:40,488 - INFO - valid loss 为: 15.104209899902344
+2023-09-18 14:03:43,519 - INFO - valid loss 为: 15.083747863769531
+2023-09-18 14:37:47,363 - INFO - valid loss 为: 15.149444580078125
+2023-09-18 15:11:50,563 - INFO - valid loss 为: 15.11429214477539
+2023-09-18 15:45:55,479 - INFO - valid loss 为: 15.20584774017334
+2023-09-18 16:19:59,711 - INFO - valid loss 为: 15.058857917785645
+2023-09-18 16:54:05,712 - INFO - valid loss 为: 15.208553314208984
+2023-09-18 16:54:06,177 - INFO - Loaded model at /home/zhangwt/remote/M-Libcity/M_libcity/cache/77402/model_cache/AGCRN_PEMSD8.ckpt
+2023-09-18 16:54:06,334 - INFO - Start evaluating ...
+           MAE         MAPE        MSE       RMSE
+1    13.063327   0.08585286  418.15744  20.448898
+2    13.481876    0.0896014  452.28622  21.267021
+3   13.8296585   0.09019294  484.32584  22.007404
+4    14.165465   0.09236293  513.22205  22.654404
+5    14.452496  0.095506325   537.5648  23.185444
+6     14.75414    0.0983144  562.00653  23.706676
+7     14.87904   0.09663529  582.33075   24.13153
+8    15.095905   0.09806034  603.16235  24.559364
+9    15.301573  0.100116394  619.23096  24.884352
+10   15.477302   0.10146491   637.7181   25.25308
+11   15.646532  0.102246135   652.1113   25.53647
+12   16.001245  0.108373284   673.4731   25.95136

@@ -1,0 +1,62 @@
+2023-10-12 06:16:52,513 - INFO - Log directory: /home/zhangwt/remote/M-Libcity/M_libcity/log
+2023-10-12 06:16:52,513 - INFO - Begin pipeline, task=traffic_state_pred, model_name=DCRNN, dataset_name=NYCBike20140409, exp_id=1
+2023-10-12 06:16:52,513 - INFO - {'task': 'traffic_state_pred', 'model': 'DCRNN', 'dataset': 'NYCBike20140409', 'saved_model': True, 'train': False, 'batch_size': 64, 'exp_id': 1, 'dataset_class': 'TrafficStateGridDataset', 'executor': 'TrafficStateExecutor', 'evaluator': 'TrafficStateEvaluator', 'cl_decay_steps': 2000, 'filter_type': 'dual_random_walk', 'bidir_adj_mx': False, 'max_diffusion_step': 2, 'num_rnn_layers': 2, 'rnn_units': 32, 'use_curriculum_learning': True, 'scaler': 'standard', 'load_external': True, 'normal_external': False, 'ext_scaler': 'none', 'add_time_in_day': True, 'add_day_in_week': False, 'max_epoch': 100, 'learner': 'adam', 'learning_rate': 0.01, 'lr_decay': True, 'lr_scheduler': 'multisteplr', 'lr_decay_ratio': 0.1, 'steps': [5, 20, 40, 70], 'clip_grad_norm': True, 'max_grad_norm': 5, 'use_early_stop': True, 'patience': 50, 'cache_dataset': True, 'num_workers': 1, 'pad_with_last_sample': True, 'train_rate': 0.7, 'eval_rate': 0.1, 'input_window': 12, 'output_window': 12, 'use_row_column': False, 'gpu': True, 'gpu_id': 0, 'train_loss': 'none', 'epoch': 0, 'weight_decay': 0, 'lr_epsilon': 1e-08, 'lr_beta1': 0.9, 'lr_beta2': 0.999, 'lr_alpha': 0.99, 'lr_momentum': 0.0, 'step_size': 10, 'lr_T_max': 30, 'lr_eta_min': 0, 'lr_patience': 10, 'lr_threshold': 0.0001, 'log_level': 'INFO', 'log_every': 1, 'load_best_epoch': True, 'hyper_tune': False, 'metrics': ['MAE', 'MAPE', 'RMSE'], 'evaluator_mode': 'single', 'save_mode': ['csv'], 'geo': {'including_types': ['Polygon'], 'Polygon': {'row_id': 'num', 'column_id': 'num'}}, 'grid': {'including_types': ['state'], 'state': {'row_id': 16, 'column_id': 8, 'new_flow': 'num', 'end_flow': 'num'}}, 'data_col': ['new_flow', 'end_flow'], 'data_files': ['NYCBIKE20140409'], 'geo_file': 'NYCBIKE20140409', 'output_dim': 2, 'time_intervals': 3600, 'init_weight_inf_or_zero': 'inf', 'set_weight_link_or_dist': 'dist', 'calculate_weight_adj': False, 'weight_adj_epsilon': 0.1}
+2023-10-12 06:16:52,537 - INFO - Loaded file NYCBIKE20140409.geo, num_grids=128, grid_size=(16, 8)
+2023-10-12 06:16:52,539 - INFO - Generate grid rel file, shape=(128, 128)
+2023-10-12 06:16:52,540 - INFO - Loading file NYCBIKE20140409.grid
+2023-10-12 06:16:52,881 - INFO - Loaded file NYCBIKE20140409.grid, shape=(4392, 128, 2)
+2023-10-12 06:16:53,344 - INFO - Dataset created
+2023-10-12 06:16:53,345 - INFO - x shape: (4369, 12, 128, 3), y shape: (4369, 12, 128, 3)
+2023-10-12 06:16:53,346 - INFO - train	x: (3058, 12, 128, 3), y: (3058, 12, 128, 3)
+2023-10-12 06:16:53,346 - INFO - eval	x: (437, 12, 128, 3), y: (437, 12, 128, 3)
+2023-10-12 06:16:53,346 - INFO - test	x: (874, 12, 128, 3), y: (874, 12, 128, 3)
+2023-10-12 06:17:00,588 - INFO - Saved at /home/zhangwt/remote/M-Libcity/M_libcity/cache/dataset_cache/grid_based_NYCBike20140409_12_12_0.7_0.1_standard_64_True_True_False_True_False.npz
+2023-10-12 06:17:00,711 - INFO - StandardScaler mean: 9.230346759524199, std: 18.07876831474537
+2023-10-12 06:17:00,711 - INFO - NoneScaler
+2023-10-12 06:17:05,055 - INFO - DCRNN<
+  (network): DCRNNModel<
+    (encoder_model): EncoderModel<
+      (dcgru_layers): CellList<
+        (0): DCGRUCell<>
+        (1): DCGRUCell<>
+        >
+      >
+    (decoder_model): DecoderModel<
+      (projection_layer): Dense<input_channels=32, output_channels=1, has_bias=True>
+      (dcgru_layers): CellList<
+        (0): DCGRUCell<>
+        (1): DCGRUCell<>
+        >
+      >
+    >
+  >
+2023-10-12 06:17:05,056 - INFO - gconv_weight_(170, 64)_1	(170, 64)	True
+2023-10-12 06:17:05,056 - INFO - gconv_biases_64_1	(64,)	True
+2023-10-12 06:17:05,056 - INFO - gconv_weight_(170, 32)_2	(170, 32)	True
+2023-10-12 06:17:05,056 - INFO - gconv_biases_32_2	(32,)	True
+2023-10-12 06:17:05,056 - INFO - gconv_weight_(320, 64)_3	(320, 64)	True
+2023-10-12 06:17:05,056 - INFO - gconv_biases_64_3	(64,)	True
+2023-10-12 06:17:05,056 - INFO - gconv_weight_(320, 32)_4	(320, 32)	True
+2023-10-12 06:17:05,056 - INFO - gconv_biases_32_4	(32,)	True
+2023-10-12 06:17:05,056 - INFO - network.decoder_model.projection_layer.weight	(1, 32)	True
+2023-10-12 06:17:05,056 - INFO - network.decoder_model.projection_layer.bias	(1,)	True
+2023-10-12 06:17:05,056 - INFO - gconv_weight_(165, 64)_5	(165, 64)	True
+2023-10-12 06:17:05,056 - INFO - gconv_biases_64_5	(64,)	True
+2023-10-12 06:17:05,056 - INFO - gconv_weight_(165, 32)_6	(165, 32)	True
+2023-10-12 06:17:05,056 - INFO - gconv_biases_32_6	(32,)	True
+2023-10-12 06:17:05,056 - INFO - gconv_weight_(320, 64)_7	(320, 64)	True
+2023-10-12 06:17:05,056 - INFO - gconv_biases_64_7	(64,)	True
+2023-10-12 06:17:05,056 - INFO - gconv_weight_(320, 32)_8	(320, 32)	True
+2023-10-12 06:17:05,056 - INFO - gconv_biases_32_8	(32,)	True
+2023-10-12 06:17:05,056 - INFO - Total parameter numbers: 94017
+2023-10-12 06:17:05,056 - INFO - You select `multisteplr` lr_scheduler.
+2023-10-12 06:17:05,057 - INFO - You select `adam` optimizer.
+2023-10-12 06:17:05,078 - WARNING - Received none train loss func and will use the loss func defined in the model.
+2023-10-12 06:17:05,079 - INFO - Loaded model at /home/zhangwt/remote/M-Libcity/M_libcity/cache/1/model_cache/DCRNN_NYCBike20140409.ckpt
+2023-10-12 06:17:05,163 - INFO - Start evaluating ...
+2023-10-12 06:17:13,098 - INFO - Note that you select the single mode to evaluate!
+2023-10-12 06:17:13,129 - INFO - Evaluate result is saved at /home/zhangwt/remote/M-Libcity/M_libcity/cache/1/evaluate_cache/2023_10_12_06_17_13_DCRNN_NYCBike20140409.csv
+2023-10-12 06:17:13,140 - INFO - 
+          MAE        MAPE       RMSE
+1    3.159159  0.25902787  5.8821707
+

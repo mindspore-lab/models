@@ -1,0 +1,44 @@
+2023-10-24 07:31:20,770 - INFO - Log directory: /home/zhangwt/remote/M-Libcity/M_libcity/log
+2023-10-24 07:31:20,770 - INFO - Begin pipeline, task=traj_loc_pred, model_name=DeepMove, dataset_name=foursquare_nyc, exp_id=58112
+2023-10-24 07:31:20,770 - INFO - {'task': 'traj_loc_pred', 'model': 'DeepMove', 'dataset': 'foursquare_nyc', 'saved_model': True, 'train': True, 'batch_size': 64, 'dataset_class': 'TrajectoryDataset', 'traj_encoder': 'StandardTrajectoryEncoder', 'executor': 'TrajLocPredExecutor', 'evaluator': 'TrajLocPredEvaluator', 'loc_emb_size': 300, 'uid_emb_size': 16, 'tim_emb_size': 16, 'hidden_size': 300, 'attn_type': 'dot', 'rnn_type': 'LSTM', 'dropout_p': 0.2, 'learning_rate': 0.001, 'lr_step': 3, 'max_epoch': 30, 'optimizer': 'adam', 'window_size': 72, 'max_session_len': 50, 'min_session_len': 5, 'min_sessions': 5, 'min_checkins': 5, 'num_workers': 1, 'cache_dataset': True, 'train_rate': 0.8, 'eval_rate': 0.1, 'history_type': 'splice', 'cut_method': 'time_interval', 'gpu': True, 'gpu_id': 0, 'L2': 1e-05, 'lr_decay': 0.1, 'clip': 1.0, 'schedule_threshold': 0.001, 'loss_func': 'default', 'load_best_epoch': True, 'hyper_tune': False, 'early_stop_lr': 9e-06, 'debug': False, 'metrics': ['Precision', 'Recall'], 'evaluate_method': 'popularity', 'topk': 1, 'geo': {'including_types': ['Point'], 'Point': {'venue_category_name': 'enum'}}, 'usr': {'properties': {'gender': 'enum', 'twitter_friend_count': 'num', 'twitter_follower_count': 'num'}}, 'dyna': {'including_types': ['trajectory'], 'trajectory': {'entity_id': 'usr_id', 'location': 'geo_id', 'timezone_offset_in_minutes': 'num'}}, 'distance_upper': 30.0, 'geo_file': 'foursquare_nyc', 'dyna_file': 'foursquare_nyc', 'usr_file': 'foursquare_nyc', 'exp_id': 58112}
+2023-10-24 07:31:31,222 - INFO - You select `adam` optimizer.
+2023-10-24 07:31:31,300 - INFO - Start training ...
+2023-10-24 07:31:31,301 - INFO - num_batches:1367
+2023-10-24 07:50:52,719 - INFO - Epoch: [  1/ 30], Average Train Loss: [7.117], Accuracy: [0.134]
+2023-10-24 07:50:52,723 - INFO - save model in/home/zhangwt/remote/M-Libcity/M_libcity/cache/58112/model_cache/DeepMove_foursquare_nyc.ckpt
+2023-10-24 08:10:28,815 - INFO - Epoch: [  2/ 30], Average Train Loss: [4.803], Accuracy: [0.167]
+2023-10-24 08:10:28,817 - INFO - save model in/home/zhangwt/remote/M-Libcity/M_libcity/cache/58112/model_cache/DeepMove_foursquare_nyc.ckpt
+2023-10-24 08:30:09,082 - INFO - Epoch: [  3/ 30], Average Train Loss: [3.848], Accuracy: [0.177]
+2023-10-24 08:30:09,084 - INFO - save model in/home/zhangwt/remote/M-Libcity/M_libcity/cache/58112/model_cache/DeepMove_foursquare_nyc.ckpt
+2023-10-24 08:49:49,527 - INFO - Epoch: [  4/ 30], Average Train Loss: [3.201], Accuracy: [0.177]
+2023-10-24 08:49:49,529 - INFO - save model in/home/zhangwt/remote/M-Libcity/M_libcity/cache/58112/model_cache/DeepMove_foursquare_nyc.ckpt
+2023-10-24 09:09:38,108 - INFO - Epoch: [  5/ 30], Average Train Loss: [2.678], Accuracy: [0.176]
+2023-10-24 09:29:30,624 - INFO - Epoch: [  6/ 30], Average Train Loss: [2.252], Accuracy: [0.172]
+2023-10-24 09:48:53,323 - INFO - Epoch: [  7/ 30], Average Train Loss: [1.884], Accuracy: [0.172]
+2023-10-24 10:08:19,642 - INFO - Epoch: [  8/ 30], Average Train Loss: [1.605], Accuracy: [0.172]
+2023-10-24 10:29:16,148 - INFO - Epoch: [  9/ 30], Average Train Loss: [1.350], Accuracy: [0.169]
+2023-10-24 10:49:54,805 - INFO - Epoch: [ 10/ 30], Average Train Loss: [1.176], Accuracy: [0.163]
+2023-10-24 11:10:09,326 - INFO - Epoch: [ 11/ 30], Average Train Loss: [1.012], Accuracy: [0.164]
+2023-10-24 11:30:49,575 - INFO - Epoch: [ 12/ 30], Average Train Loss: [0.897], Accuracy: [0.162]
+2023-10-24 11:51:07,825 - INFO - Epoch: [ 13/ 30], Average Train Loss: [0.797], Accuracy: [0.161]
+2023-10-24 12:10:15,192 - INFO - Epoch: [ 14/ 30], Average Train Loss: [0.712], Accuracy: [0.165]
+2023-10-24 12:29:24,893 - INFO - Epoch: [ 15/ 30], Average Train Loss: [0.645], Accuracy: [0.161]
+2023-10-24 12:48:37,248 - INFO - Epoch: [ 16/ 30], Average Train Loss: [0.586], Accuracy: [0.158]
+2023-10-24 13:07:45,809 - INFO - Epoch: [ 17/ 30], Average Train Loss: [0.529], Accuracy: [0.164]
+2023-10-24 13:26:57,776 - INFO - Epoch: [ 18/ 30], Average Train Loss: [0.508], Accuracy: [0.164]
+2023-10-24 13:46:32,874 - INFO - Epoch: [ 19/ 30], Average Train Loss: [0.467], Accuracy: [0.162]
+2023-10-24 14:06:33,711 - INFO - Epoch: [ 20/ 30], Average Train Loss: [0.444], Accuracy: [0.162]
+2023-10-24 14:28:14,181 - INFO - Epoch: [ 21/ 30], Average Train Loss: [0.421], Accuracy: [0.160]
+2023-10-24 14:49:05,291 - INFO - Epoch: [ 22/ 30], Average Train Loss: [0.409], Accuracy: [0.161]
+2023-10-24 15:08:48,325 - INFO - Epoch: [ 23/ 30], Average Train Loss: [0.391], Accuracy: [0.161]
+2023-10-24 15:28:43,009 - INFO - Epoch: [ 24/ 30], Average Train Loss: [0.374], Accuracy: [0.162]
+2023-10-24 15:48:35,716 - INFO - Epoch: [ 25/ 30], Average Train Loss: [0.347], Accuracy: [0.161]
+2023-10-24 16:08:09,270 - INFO - Epoch: [ 26/ 30], Average Train Loss: [0.347], Accuracy: [0.161]
+2023-10-24 16:27:32,724 - INFO - Epoch: [ 27/ 30], Average Train Loss: [0.340], Accuracy: [0.160]
+2023-10-24 16:46:40,137 - INFO - Epoch: [ 28/ 30], Average Train Loss: [0.326], Accuracy: [0.163]
+2023-10-24 17:05:49,615 - INFO - Epoch: [ 29/ 30], Average Train Loss: [0.322], Accuracy: [0.159]
+2023-10-24 17:24:55,968 - INFO - Epoch: [ 30/ 30], Average Train Loss: [0.308], Accuracy: [0.160]
+2023-10-24 17:24:55,968 - INFO - Trained totally 30 epochs, average train time is 1106.033s, average eval time is 80.767s
+2023-10-24 17:24:55,968 - INFO - Loaded model at /home/zhangwt/remote/M-Libcity/M_libcity/cache/58112/model_cache/DeepMove_foursquare_nyc.ckpt
+2023-10-24 17:26:14,389 - INFO - test result:
+2023-10-24 17:26:14,389 - INFO - {'Precision@1': 0.16091844512195122, 'Recall@1': 0.16091844512195122}

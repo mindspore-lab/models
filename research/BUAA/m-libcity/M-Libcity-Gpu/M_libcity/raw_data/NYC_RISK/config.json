@@ -1,0 +1,96 @@
+{
+    "geo": {
+        "including_types": "Polygon",
+        "Polygon": {
+            "row_id": "num",
+            "column_id": "num",
+            "risk_mask": "num"
+        }
+    },
+    "rel": {
+        "including_types": "geo",
+        "geo": {
+            "road_adj": "num",
+            "risk_adj": "num",
+            "poi_adj": "num"
+        }
+    },
+    "grid": {
+        "including_types": "state",
+        "state": {
+            "row_id": 20,
+            "column_id": 20,
+            "risk": "num",
+            "holiday": "num",
+            "poi_type_0": "num",
+            "poi_type_1": "num",
+            "poi_type_2": "num",
+            "poi_type_3": "num",
+            "poi_type_4": "num",
+            "poi_type_5": "num",
+            "poi_type_6": "num",
+            "temperature": "num",
+            "weather_clear": "num",
+            "weather_cloudy": "num",
+            "weather_rain": "num",
+            "weather_snow": "num",
+            "weather_mist": "num",
+            "inflow": "num",
+            "outflow": "num"
+        }
+    },
+    "info": {
+        "data_col": [
+            "risk",
+            "holiday",
+            "poi_type_0",
+            "poi_type_1",
+            "poi_type_2",
+            "poi_type_3",
+            "poi_type_4",
+            "poi_type_5",
+            "poi_type_6",
+            "temperature",
+            "weather_clear",
+            "weather_cloudy",
+            "weather_rain",
+            "weather_snow",
+            "weather_mist",
+            "inflow",
+            "outflow"
+        ],
+        "weight_col": [
+            "road_adj",
+            "risk_adj",
+            "poi_adj"
+        ],
+        "data_files": [
+            "NYC_RISK"
+        ],
+        "graph_input_col": [
+            "risk",
+            "inflow",
+            "outflow"
+        ],
+        "target_time_col": [
+            "holiday"
+        ],
+        "geo_file": "NYC_RISK",
+        "rel_file": "NYC_RISK",
+        "grid_len_row": 20,
+        "grid_len_column": 20,
+        "output_dim": 1,
+        "time_intervals": 3600,
+        "risk_thresholds": [
+            0,
+            0.04,
+            0.08
+        ],
+        "risk_weights": [
+            0.05,
+            0.2,
+            0.25,
+            0.5
+        ]
+    }
+}

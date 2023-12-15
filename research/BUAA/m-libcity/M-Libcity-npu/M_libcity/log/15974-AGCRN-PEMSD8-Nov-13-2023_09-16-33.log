@@ -1,0 +1,280 @@
+2023-11-13 09:16:33,486 - INFO - Log directory: /home/mindspore/yxx/M-Libcity-npu/M_libcity/log
+2023-11-13 09:16:33,486 - INFO - Begin pipeline, task=traffic_state_pred, model_name=AGCRN, dataset_name=PEMSD8, exp_id=15974
+2023-11-13 09:16:33,486 - INFO - {'task': 'traffic_state_pred', 'model': 'AGCRN', 'dataset': 'PEMSD8', 'saved_model': True, 'train': False, 'dataset_class': 'TrafficStatePointDataset', 'executor': 'TrafficStateExecutor', 'evaluator': 'TrafficStateEvaluator', 'embed_dim': 10, 'rnn_units': 64, 'num_layers': 2, 'cheb_order': 2, 'bidir_adj_mx': True, 'output_dim': 1, 'scaler': 'standard', 'load_external': False, 'normal_external': False, 'ext_scaler': 'none', 'add_time_in_day': False, 'add_day_in_week': False, 'max_epoch': 100, 'learner': 'adam', 'learning_rate': 0.003, 'lr_decay': False, 'clip_grad_norm': False, 'use_early_stop': True, 'len_timeslots': 12, 'patience': 50, 'batch_size': 64, 'cache_dataset': False, 'num_workers': 1, 'pad_with_last_sample': True, 'train_rate': 0.8, 'eval_rate': 0.1, 'input_window': 12, 'output_window': 12, 'input_dim': 2, 'gpu': True, 'gpu_id': 0, 'train_loss': 'none', 'epoch': 0, 'weight_decay': 0, 'lr_epsilon': 1e-08, 'lr_beta1': 0.9, 'lr_beta2': 0.999, 'lr_alpha': 0.99, 'lr_momentum': 0.0, 'lr_scheduler': 'multisteplr', 'lr_decay_ratio': 0.1, 'steps': [50, 200, 400, 700], 'step_size': 10, 'lr_T_max': 30, 'lr_eta_min': 0, 'lr_patience': 10, 'lr_threshold': 0.0001, 'max_grad_norm': 1.0, 'log_level': 'INFO', 'log_every': 1, 'load_best_epoch': True, 'hyper_tune': False, 'metrics': ['MAE', 'MAPE', 'RMSE'], 'evaluator_mode': 'single', 'save_mode': ['csv'], 'geo': {'including_types': ['Point'], 'Point': {}}, 'rel': {'including_types': ['geo'], 'geo': {'cost': 'num'}}, 'dyna': {'including_types': ['state'], 'state': {'entity_id': 'geo_id', 'traffic_flow': 'num', 'traffic_occupancy': 'num', 'traffic_speed': 'num'}}, 'data_col': ['traffic_flow', 'traffic_occupancy', 'traffic_speed'], 'weight_col': 'cost', 'data_files': ['PEMSD8'], 'geo_file': 'PEMSD8', 'rel_file': 'PEMSD8', 'time_intervals': 300, 'init_weight_inf_or_zero': 'zero', 'set_weight_link_or_dist': 'link', 'calculate_weight_adj': False, 'weight_adj_epsilon': 0.1, 'exp_id': 15974}
+2023-11-13 09:16:33,495 - INFO - Loaded file PEMSD8.geo, num_nodes=170
+2023-11-13 09:16:33,497 - INFO - set_weight_link_or_dist: link
+2023-11-13 09:16:33,497 - INFO - init_weight_inf_or_zero: zero
+2023-11-13 09:16:33,501 - INFO - Loaded file PEMSD8.rel, shape=(170, 170)
+2023-11-13 09:16:33,501 - INFO - Loading file PEMSD8.dyna
+2023-11-13 09:16:36,823 - INFO - Loaded file PEMSD8.dyna, shape=(17856, 170, 3)
+2023-11-13 09:16:39,747 - INFO - Dataset created
+2023-11-13 09:16:39,747 - INFO - x shape: (17833, 12, 170, 3), y shape: (17833, 12, 170, 3)
+2023-11-13 09:16:39,752 - INFO - train	x: (14266, 12, 170, 3), y: (14266, 12, 170, 3)
+2023-11-13 09:16:39,752 - INFO - eval	x: (1784, 12, 170, 3), y: (1784, 12, 170, 3)
+2023-11-13 09:16:39,752 - INFO - test	x: (1783, 12, 170, 3), y: (1783, 12, 170, 3)
+2023-11-13 09:16:40,097 - INFO - StandardScaler mean: 230.51147122735256, std: 146.15237015218136
+2023-11-13 09:16:40,097 - INFO - NoneScaler
+2023-11-13 09:16:42,953 - INFO - AGCRN<
+  (loss): L1Loss<>
+  (network): AGCRN_model<
+    (encoder): AVWDCRNN<
+      (dcrnn_cells): CellList<
+        (0): AGCRNCell<
+          (gate): AVWGCN<
+            (softmax): Softmax<>
+            (relu): ReLU<>
+            >
+          (update): AVWGCN<
+            (softmax): Softmax<>
+            (relu): ReLU<>
+            >
+          >
+        (1): AGCRNCell<
+          (gate): AVWGCN<
+            (softmax): Softmax<>
+            (relu): ReLU<>
+            >
+          (update): AVWGCN<
+            (softmax): Softmax<>
+            (relu): ReLU<>
+            >
+          >
+        >
+      >
+    (end_conv): Conv2d<input_channels=1, output_channels=12, kernel_size=(1, 64), stride=(1, 1), pad_mode=valid, padding=0, dilation=(1, 1), group=1, has_bias=True, weight_init=normal, bias_init=zeros, format=NCHW>
+    >
+  >
+2023-11-13 09:16:42,953 - INFO - network.node_embeddings	(170, 10)	True
+2023-11-13 09:16:42,953 - INFO - network.encoder.dcrnn_cells.0.gate.weights_pool	(10, 2, 65, 128)	True
+2023-11-13 09:16:42,953 - INFO - network.encoder.dcrnn_cells.0.gate.bias_pool	(10, 128)	True
+2023-11-13 09:16:42,954 - INFO - network.encoder.dcrnn_cells.0.update.weights_pool	(10, 2, 65, 64)	True
+2023-11-13 09:16:42,954 - INFO - network.encoder.dcrnn_cells.0.update.bias_pool	(10, 64)	True
+2023-11-13 09:16:42,954 - INFO - network.encoder.dcrnn_cells.1.gate.weights_pool	(10, 2, 128, 128)	True
+2023-11-13 09:16:42,954 - INFO - network.encoder.dcrnn_cells.1.gate.bias_pool	(10, 128)	True
+2023-11-13 09:16:42,954 - INFO - network.encoder.dcrnn_cells.1.update.weights_pool	(10, 2, 128, 64)	True
+2023-11-13 09:16:42,954 - INFO - network.encoder.dcrnn_cells.1.update.bias_pool	(10, 64)	True
+2023-11-13 09:16:42,954 - INFO - network.end_conv.weight	(12, 1, 1, 64)	True
+2023-11-13 09:16:42,954 - INFO - network.end_conv.bias	(12,)	True
+2023-11-13 09:16:42,954 - INFO - Total parameter numbers: 747440
+2023-11-13 09:16:42,955 - INFO - You select `adam` optimizer.
+2023-11-13 09:16:42,978 - WARNING - Received none train loss func and will use the loss func defined in the model.
+2023-11-13 09:16:42,978 - INFO - Start training ...
+2023-11-13 09:16:42,979 - INFO - num_batches:222
+2023-11-13 09:30:08,393 - INFO - current lr 为：0.003000000026077032
+2023-11-13 09:30:23,298 - INFO - valid loss 为: 20.715261459350586
+2023-11-13 09:40:01,575 - INFO - current lr 为：0.003000000026077032
+2023-11-13 09:40:16,269 - INFO - valid loss 为: 19.324642181396484
+2023-11-13 09:49:54,797 - INFO - current lr 为：0.003000000026077032
+2023-11-13 09:50:09,459 - INFO - valid loss 为: 18.480478286743164
+2023-11-13 09:59:47,856 - INFO - current lr 为：0.003000000026077032
+2023-11-13 10:00:02,656 - INFO - valid loss 为: 18.291948318481445
+2023-11-13 10:09:41,079 - INFO - current lr 为：0.003000000026077032
+2023-11-13 10:09:55,848 - INFO - valid loss 为: 18.171194076538086
+2023-11-13 10:19:34,329 - INFO - current lr 为：0.003000000026077032
+2023-11-13 10:19:49,072 - INFO - valid loss 为: 17.906673431396484
+2023-11-13 10:29:27,469 - INFO - current lr 为：0.003000000026077032
+2023-11-13 10:29:42,185 - INFO - valid loss 为: 17.390188217163086
+2023-11-13 10:39:20,564 - INFO - current lr 为：0.003000000026077032
+2023-11-13 10:39:35,258 - INFO - valid loss 为: 17.251529693603516
+2023-11-13 10:49:13,652 - INFO - current lr 为：0.003000000026077032
+2023-11-13 10:49:28,519 - INFO - valid loss 为: 16.952383041381836
+2023-11-13 10:59:06,782 - INFO - current lr 为：0.003000000026077032
+2023-11-13 10:59:21,508 - INFO - valid loss 为: 16.78589630126953
+2023-11-13 11:08:59,899 - INFO - current lr 为：0.003000000026077032
+2023-11-13 11:09:14,672 - INFO - valid loss 为: 16.50861358642578
+2023-11-13 11:18:53,104 - INFO - current lr 为：0.003000000026077032
+2023-11-13 11:19:07,843 - INFO - valid loss 为: 16.615501403808594
+2023-11-13 11:28:46,249 - INFO - current lr 为：0.003000000026077032
+2023-11-13 11:29:01,099 - INFO - valid loss 为: 16.326866149902344
+2023-11-13 11:38:39,444 - INFO - current lr 为：0.003000000026077032
+2023-11-13 11:38:54,214 - INFO - valid loss 为: 16.02613639831543
+2023-11-13 11:48:32,542 - INFO - current lr 为：0.003000000026077032
+2023-11-13 11:48:47,298 - INFO - valid loss 为: 15.978856086730957
+2023-11-13 11:58:25,641 - INFO - current lr 为：0.003000000026077032
+2023-11-13 11:58:40,376 - INFO - valid loss 为: 15.790931701660156
+2023-11-13 12:08:18,816 - INFO - current lr 为：0.003000000026077032
+2023-11-13 12:08:33,528 - INFO - valid loss 为: 15.839936256408691
+2023-11-13 12:18:11,922 - INFO - current lr 为：0.003000000026077032
+2023-11-13 12:18:26,796 - INFO - valid loss 为: 15.668968200683594
+2023-11-13 12:28:05,146 - INFO - current lr 为：0.003000000026077032
+2023-11-13 12:28:20,075 - INFO - valid loss 为: 15.69774341583252
+2023-11-13 12:37:59,122 - INFO - current lr 为：0.003000000026077032
+2023-11-13 12:38:13,862 - INFO - valid loss 为: 15.454362869262695
+2023-11-13 12:47:52,422 - INFO - current lr 为：0.003000000026077032
+2023-11-13 12:48:07,187 - INFO - valid loss 为: 15.393303871154785
+2023-11-13 12:57:45,651 - INFO - current lr 为：0.003000000026077032
+2023-11-13 12:58:00,398 - INFO - valid loss 为: 15.43429183959961
+2023-11-13 13:07:38,874 - INFO - current lr 为：0.003000000026077032
+2023-11-13 13:07:53,631 - INFO - valid loss 为: 15.207411766052246
+2023-11-13 13:17:32,662 - INFO - current lr 为：0.003000000026077032
+2023-11-13 13:17:47,663 - INFO - valid loss 为: 15.158268928527832
+2023-11-13 13:27:27,206 - INFO - current lr 为：0.003000000026077032
+2023-11-13 13:27:42,240 - INFO - valid loss 为: 15.206122398376465
+2023-11-13 13:37:21,383 - INFO - current lr 为：0.003000000026077032
+2023-11-13 13:37:36,172 - INFO - valid loss 为: 15.191625595092773
+2023-11-13 13:47:14,817 - INFO - current lr 为：0.003000000026077032
+2023-11-13 13:47:30,460 - INFO - valid loss 为: 15.055137634277344
+2023-11-13 13:57:13,582 - INFO - current lr 为：0.003000000026077032
+2023-11-13 13:57:28,402 - INFO - valid loss 为: 15.091316223144531
+2023-11-13 14:07:08,201 - INFO - current lr 为：0.003000000026077032
+2023-11-13 14:07:22,990 - INFO - valid loss 为: 15.083464622497559
+2023-11-13 14:17:01,936 - INFO - current lr 为：0.003000000026077032
+2023-11-13 14:17:16,806 - INFO - valid loss 为: 14.918331146240234
+2023-11-13 14:26:55,458 - INFO - current lr 为：0.003000000026077032
+2023-11-13 14:27:10,229 - INFO - valid loss 为: 14.962032318115234
+2023-11-13 14:36:48,919 - INFO - current lr 为：0.003000000026077032
+2023-11-13 14:37:03,932 - INFO - valid loss 为: 14.982914924621582
+2023-11-13 14:46:43,116 - INFO - current lr 为：0.003000000026077032
+2023-11-13 14:46:57,921 - INFO - valid loss 为: 14.947839736938477
+2023-11-13 14:56:36,587 - INFO - current lr 为：0.003000000026077032
+2023-11-13 14:56:51,379 - INFO - valid loss 为: 14.941781044006348
+2023-11-13 15:06:29,996 - INFO - current lr 为：0.003000000026077032
+2023-11-13 15:06:44,766 - INFO - valid loss 为: 14.84829330444336
+2023-11-13 15:16:23,284 - INFO - current lr 为：0.003000000026077032
+2023-11-13 15:16:38,159 - INFO - valid loss 为: 14.931615829467773
+2023-11-13 15:26:16,856 - INFO - current lr 为：0.003000000026077032
+2023-11-13 15:26:31,624 - INFO - valid loss 为: 14.853479385375977
+2023-11-13 15:36:10,402 - INFO - current lr 为：0.003000000026077032
+2023-11-13 15:36:25,305 - INFO - valid loss 为: 14.893549919128418
+2023-11-13 15:46:03,910 - INFO - current lr 为：0.003000000026077032
+2023-11-13 15:46:18,677 - INFO - valid loss 为: 14.990151405334473
+2023-11-13 15:55:57,346 - INFO - current lr 为：0.003000000026077032
+2023-11-13 15:56:12,118 - INFO - valid loss 为: 14.997206687927246
+2023-11-13 16:05:50,917 - INFO - current lr 为：0.003000000026077032
+2023-11-13 16:06:05,824 - INFO - valid loss 为: 14.850811958312988
+2023-11-13 16:15:44,711 - INFO - current lr 为：0.003000000026077032
+2023-11-13 16:15:59,611 - INFO - valid loss 为: 14.825191497802734
+2023-11-13 16:25:38,760 - INFO - current lr 为：0.003000000026077032
+2023-11-13 16:25:53,985 - INFO - valid loss 为: 14.868367195129395
+2023-11-13 16:35:32,743 - INFO - current lr 为：0.003000000026077032
+2023-11-13 16:35:47,603 - INFO - valid loss 为: 14.821348190307617
+2023-11-13 16:45:29,993 - INFO - current lr 为：0.003000000026077032
+2023-11-13 16:45:45,154 - INFO - valid loss 为: 14.810075759887695
+2023-11-13 16:55:23,896 - INFO - current lr 为：0.003000000026077032
+2023-11-13 16:55:38,633 - INFO - valid loss 为: 14.849945068359375
+2023-11-13 17:05:17,051 - INFO - current lr 为：0.003000000026077032
+2023-11-13 17:05:31,918 - INFO - valid loss 为: 14.846619606018066
+2023-11-13 17:15:10,292 - INFO - current lr 为：0.003000000026077032
+2023-11-13 17:15:25,027 - INFO - valid loss 为: 14.814176559448242
+2023-11-13 17:25:04,517 - INFO - current lr 为：0.003000000026077032
+2023-11-13 17:25:19,218 - INFO - valid loss 为: 14.900663375854492
+2023-11-13 17:34:57,642 - INFO - current lr 为：0.003000000026077032
+2023-11-13 17:35:12,327 - INFO - valid loss 为: 14.989888191223145
+2023-11-13 17:44:50,635 - INFO - current lr 为：0.003000000026077032
+2023-11-13 17:45:05,369 - INFO - valid loss 为: 14.876147270202637
+2023-11-13 17:54:43,698 - INFO - current lr 为：0.003000000026077032
+2023-11-13 17:54:58,739 - INFO - valid loss 为: 14.833060264587402
+2023-11-13 18:04:38,891 - INFO - current lr 为：0.003000000026077032
+2023-11-13 18:04:53,794 - INFO - valid loss 为: 14.865767478942871
+2023-11-13 18:14:32,376 - INFO - current lr 为：0.003000000026077032
+2023-11-13 18:14:47,152 - INFO - valid loss 为: 14.86638355255127
+2023-11-13 18:24:27,691 - INFO - current lr 为：0.003000000026077032
+2023-11-13 18:24:43,082 - INFO - valid loss 为: 14.973723411560059
+2023-11-13 18:34:22,431 - INFO - current lr 为：0.003000000026077032
+2023-11-13 18:34:37,162 - INFO - valid loss 为: 15.008644104003906
+2023-11-13 18:44:15,655 - INFO - current lr 为：0.003000000026077032
+2023-11-13 18:44:30,579 - INFO - valid loss 为: 14.872536659240723
+2023-11-13 18:54:09,285 - INFO - current lr 为：0.003000000026077032
+2023-11-13 18:54:24,166 - INFO - valid loss 为: 14.962672233581543
+2023-11-13 19:04:02,757 - INFO - current lr 为：0.003000000026077032
+2023-11-13 19:04:17,729 - INFO - valid loss 为: 14.98997974395752
+2023-11-13 19:13:57,894 - INFO - current lr 为：0.003000000026077032
+2023-11-13 19:14:12,707 - INFO - valid loss 为: 14.926819801330566
+2023-11-13 19:23:51,363 - INFO - current lr 为：0.003000000026077032
+2023-11-13 19:24:06,172 - INFO - valid loss 为: 14.973054885864258
+2023-11-13 19:33:45,402 - INFO - current lr 为：0.003000000026077032
+2023-11-13 19:34:00,135 - INFO - valid loss 为: 14.963396072387695
+2023-11-13 19:43:38,600 - INFO - current lr 为：0.003000000026077032
+2023-11-13 19:43:53,369 - INFO - valid loss 为: 15.170088768005371
+2023-11-13 19:53:31,703 - INFO - current lr 为：0.003000000026077032
+2023-11-13 19:53:46,412 - INFO - valid loss 为: 14.912755966186523
+2023-11-13 20:03:24,775 - INFO - current lr 为：0.003000000026077032
+2023-11-13 20:03:39,603 - INFO - valid loss 为: 14.924253463745117
+2023-11-13 20:13:17,794 - INFO - current lr 为：0.003000000026077032
+2023-11-13 20:13:32,480 - INFO - valid loss 为: 14.996166229248047
+2023-11-13 20:23:10,771 - INFO - current lr 为：0.003000000026077032
+2023-11-13 20:23:25,476 - INFO - valid loss 为: 14.979340553283691
+2023-11-13 20:33:03,657 - INFO - current lr 为：0.003000000026077032
+2023-11-13 20:33:18,450 - INFO - valid loss 为: 15.013154983520508
+2023-11-13 20:42:56,666 - INFO - current lr 为：0.003000000026077032
+2023-11-13 20:43:11,458 - INFO - valid loss 为: 14.931775093078613
+2023-11-13 20:52:49,782 - INFO - current lr 为：0.003000000026077032
+2023-11-13 20:53:04,527 - INFO - valid loss 为: 15.06126880645752
+2023-11-13 21:02:42,803 - INFO - current lr 为：0.003000000026077032
+2023-11-13 21:02:57,520 - INFO - valid loss 为: 15.157032012939453
+2023-11-13 21:12:35,773 - INFO - current lr 为：0.003000000026077032
+2023-11-13 21:12:50,471 - INFO - valid loss 为: 15.036700248718262
+2023-11-13 21:22:28,747 - INFO - current lr 为：0.003000000026077032
+2023-11-13 21:22:43,466 - INFO - valid loss 为: 15.175131797790527
+2023-11-13 21:32:21,668 - INFO - current lr 为：0.003000000026077032
+2023-11-13 21:32:36,363 - INFO - valid loss 为: 15.036888122558594
+2023-11-13 21:42:14,633 - INFO - current lr 为：0.003000000026077032
+2023-11-13 21:42:29,350 - INFO - valid loss 为: 14.996594429016113
+2023-11-13 21:52:07,549 - INFO - current lr 为：0.003000000026077032
+2023-11-13 21:52:22,257 - INFO - valid loss 为: 15.16685676574707
+2023-11-13 22:02:00,547 - INFO - current lr 为：0.003000000026077032
+2023-11-13 22:02:15,362 - INFO - valid loss 为: 15.094730377197266
+2023-11-13 22:11:53,423 - INFO - current lr 为：0.003000000026077032
+2023-11-13 22:12:08,272 - INFO - valid loss 为: 15.117310523986816
+2023-11-13 22:21:46,447 - INFO - current lr 为：0.003000000026077032
+2023-11-13 22:22:01,144 - INFO - valid loss 为: 15.011812210083008
+2023-11-13 22:31:39,369 - INFO - current lr 为：0.003000000026077032
+2023-11-13 22:31:54,058 - INFO - valid loss 为: 15.061529159545898
+2023-11-13 22:41:32,264 - INFO - current lr 为：0.003000000026077032
+2023-11-13 22:41:46,965 - INFO - valid loss 为: 15.07957935333252
+2023-11-13 22:51:25,284 - INFO - current lr 为：0.003000000026077032
+2023-11-13 22:51:39,977 - INFO - valid loss 为: 15.058465957641602
+2023-11-13 23:01:18,125 - INFO - current lr 为：0.003000000026077032
+2023-11-13 23:01:32,818 - INFO - valid loss 为: 15.054875373840332
+2023-11-13 23:11:11,052 - INFO - current lr 为：0.003000000026077032
+2023-11-13 23:11:25,788 - INFO - valid loss 为: 15.020146369934082
+2023-11-13 23:21:04,103 - INFO - current lr 为：0.003000000026077032
+2023-11-13 23:21:19,041 - INFO - valid loss 为: 15.082438468933105
+2023-11-13 23:30:57,429 - INFO - current lr 为：0.003000000026077032
+2023-11-13 23:31:12,284 - INFO - valid loss 为: 15.139079093933105
+2023-11-13 23:40:50,533 - INFO - current lr 为：0.003000000026077032
+2023-11-13 23:41:05,517 - INFO - valid loss 为: 14.999345779418945
+2023-11-13 23:50:44,123 - INFO - current lr 为：0.003000000026077032
+2023-11-13 23:50:59,120 - INFO - valid loss 为: 15.088908195495605
+2023-11-14 00:00:37,485 - INFO - current lr 为：0.003000000026077032
+2023-11-14 00:00:52,286 - INFO - valid loss 为: 15.085350036621094
+2023-11-14 00:10:30,993 - INFO - current lr 为：0.003000000026077032
+2023-11-14 00:10:45,764 - INFO - valid loss 为: 15.082663536071777
+2023-11-14 00:20:24,072 - INFO - current lr 为：0.003000000026077032
+2023-11-14 00:20:38,787 - INFO - valid loss 为: 15.185132026672363
+2023-11-14 00:30:17,056 - INFO - current lr 为：0.003000000026077032
+2023-11-14 00:30:31,765 - INFO - valid loss 为: 15.125710487365723
+2023-11-14 00:40:10,151 - INFO - current lr 为：0.003000000026077032
+2023-11-14 00:40:24,883 - INFO - valid loss 为: 15.183589935302734
+2023-11-14 00:50:03,402 - INFO - current lr 为：0.003000000026077032
+2023-11-14 00:50:18,340 - INFO - valid loss 为: 15.105012893676758
+2023-11-14 00:59:56,690 - INFO - current lr 为：0.003000000026077032
+2023-11-14 01:00:11,649 - INFO - valid loss 为: 15.154009819030762
+2023-11-14 01:09:50,136 - INFO - current lr 为：0.003000000026077032
+2023-11-14 01:10:04,853 - INFO - valid loss 为: 15.162418365478516
+2023-11-14 01:19:44,545 - INFO - current lr 为：0.003000000026077032
+2023-11-14 01:19:59,265 - INFO - valid loss 为: 15.175533294677734
+2023-11-14 01:29:37,603 - INFO - current lr 为：0.003000000026077032
+2023-11-14 01:29:52,308 - INFO - valid loss 为: 15.267204284667969
+2023-11-14 01:39:30,473 - INFO - current lr 为：0.003000000026077032
+2023-11-14 01:39:45,162 - INFO - valid loss 为: 15.109179496765137
+2023-11-14 01:49:23,232 - INFO - current lr 为：0.003000000026077032
+2023-11-14 01:49:37,921 - INFO - valid loss 为: 15.215351104736328
+2023-11-14 01:49:37,923 - INFO - Loaded model at /home/mindspore/yxx/M-Libcity-npu/M_libcity/cache/15974/model_cache/AGCRN_PEMSD8.ckpt
+2023-11-14 01:49:37,965 - INFO - Start evaluating ...
+2023-11-14 01:49:54,095 - INFO - Note that you select the single mode to evaluate!
+2023-11-14 01:49:54,100 - INFO - Evaluate result is saved at /home/mindspore/yxx/M-Libcity-npu/M_libcity/cache/15974/evaluate_cache/2023_11_14_01_49_54_AGCRN_PEMSD8.csv
+2023-11-14 01:49:54,110 - INFO - 
+          MAE      MAPE       RMSE
+1   13.175361  0.088917  20.520004
+2   13.557875  0.093601  21.331480
+3   13.962791  0.094362  22.062349
+4   14.211462  0.094024  22.654121
+5   14.481943  0.095448  23.205496
+6   14.759097  0.096995  23.767162
+7   14.993008  0.099390  24.210600
+8   15.225807  0.101227  24.592430
+9   15.503132  0.107610  24.968855
+10  15.636395  0.105387  25.276506
+11  15.849895  0.107914  25.606483
+12  16.178398  0.107542  26.143015

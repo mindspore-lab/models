@@ -1,0 +1,77 @@
+2023-10-12 05:35:00,549 - INFO - Log directory: /home/zhangwt/remote/M-Libcity/M_libcity/log
+2023-10-12 05:35:00,549 - INFO - Begin pipeline, task=traffic_state_pred, model_name=AGCRN, dataset_name=PEMSD8, exp_id=1
+2023-10-12 05:35:00,549 - INFO - {'task': 'traffic_state_pred', 'model': 'AGCRN', 'dataset': 'PEMSD8', 'saved_model': True, 'train': False, 'batch_size': 64, 'exp_id': 1, 'dataset_class': 'TrafficStatePointDataset', 'executor': 'TrafficStateExecutor', 'evaluator': 'TrafficStateEvaluator', 'embed_dim': 10, 'rnn_units': 64, 'num_layers': 2, 'cheb_order': 2, 'bidir_adj_mx': True, 'output_dim': 2, 'scaler': 'standard', 'load_external': False, 'normal_external': False, 'ext_scaler': 'none', 'add_time_in_day': False, 'add_day_in_week': False, 'max_epoch': 100, 'learner': 'adam', 'learning_rate': 0.003, 'lr_decay': False, 'clip_grad_norm': False, 'use_early_stop': True, 'patience': 50, 'cache_dataset': False, 'num_workers': 1, 'pad_with_last_sample': True, 'train_rate': 0.8, 'eval_rate': 0.1, 'input_window': 12, 'output_window': 12, 'input_dim': 3, 'gpu': True, 'gpu_id': 0, 'train_loss': 'none', 'epoch': 0, 'weight_decay': 0, 'lr_epsilon': 1e-08, 'lr_beta1': 0.9, 'lr_beta2': 0.999, 'lr_alpha': 0.99, 'lr_momentum': 0.0, 'lr_scheduler': 'multisteplr', 'lr_decay_ratio': 0.1, 'steps': [5, 20, 40, 70], 'step_size': 10, 'lr_T_max': 30, 'lr_eta_min': 0, 'lr_patience': 10, 'lr_threshold': 0.0001, 'max_grad_norm': 1.0, 'log_level': 'INFO', 'log_every': 1, 'load_best_epoch': True, 'hyper_tune': False, 'metrics': ['MAE', 'MAPE', 'RMSE'], 'evaluator_mode': 'single', 'save_mode': ['csv'], 'geo': {'including_types': ['Point'], 'Point': {}}, 'rel': {'including_types': ['geo'], 'geo': {'cost': 'num'}}, 'dyna': {'including_types': ['state'], 'state': {'entity_id': 'geo_id', 'traffic_flow': 'num', 'traffic_occupancy': 'num', 'traffic_speed': 'num'}}, 'data_col': ['traffic_flow', 'traffic_occupancy', 'traffic_speed'], 'weight_col': 'cost', 'data_files': ['PEMSD8'], 'geo_file': 'PEMSD8', 'rel_file': 'PEMSD8', 'time_intervals': 300, 'init_weight_inf_or_zero': 'zero', 'set_weight_link_or_dist': 'link', 'calculate_weight_adj': False, 'weight_adj_epsilon': 0.1}
+2023-10-12 05:35:00,570 - INFO - Loaded file PEMSD8.geo, num_nodes=170
+2023-10-12 05:35:00,573 - INFO - set_weight_link_or_dist: link
+2023-10-12 05:35:00,573 - INFO - init_weight_inf_or_zero: zero
+2023-10-12 05:35:00,576 - INFO - Loaded file PEMSD8.rel, shape=(170, 170)
+2023-10-12 05:35:00,576 - INFO - Loading file PEMSD8.dyna
+2023-10-12 05:35:02,755 - INFO - Loaded file PEMSD8.dyna, shape=(17856, 170, 3)
+2023-10-12 05:35:05,195 - INFO - Dataset created
+2023-10-12 05:35:05,195 - INFO - x shape: (17833, 12, 170, 3), y shape: (17833, 12, 170, 3)
+2023-10-12 05:35:05,199 - INFO - train	x: (14266, 12, 170, 3), y: (14266, 12, 170, 3)
+2023-10-12 05:35:05,199 - INFO - eval	x: (1784, 12, 170, 3), y: (1784, 12, 170, 3)
+2023-10-12 05:35:05,199 - INFO - test	x: (1783, 12, 170, 3), y: (1783, 12, 170, 3)
+2023-10-12 05:35:05,955 - INFO - StandardScaler mean: 115.28812248332791, std: 154.77945201395136
+2023-10-12 05:35:05,956 - INFO - NoneScaler
+2023-10-12 05:35:08,501 - INFO - AGCRN<
+  (network): AGCRN_model<
+    (encoder): AVWDCRNN<
+      (dcrnn_cells): CellList<
+        (0): AGCRNCell<
+          (gate): AVWGCN<
+            (softmax): Softmax<>
+            (relu): ReLU<>
+            >
+          (update): AVWGCN<
+            (softmax): Softmax<>
+            (relu): ReLU<>
+            >
+          >
+        (1): AGCRNCell<
+          (gate): AVWGCN<
+            (softmax): Softmax<>
+            (relu): ReLU<>
+            >
+          (update): AVWGCN<
+            (softmax): Softmax<>
+            (relu): ReLU<>
+            >
+          >
+        >
+      >
+    (end_conv): Conv2d<input_channels=1, output_channels=24, kernel_size=(1, 64), stride=(1, 1), pad_mode=valid, padding=0, dilation=(1, 1), group=1, has_bias=True, weight_init=normal, bias_init=zeros, format=NCHW>
+    >
+  >
+2023-10-12 05:35:08,501 - INFO - network.node_embeddings	(170, 10)	True
+2023-10-12 05:35:08,501 - INFO - network.encoder.dcrnn_cells.0.gate.weights_pool	(10, 2, 65, 128)	True
+2023-10-12 05:35:08,501 - INFO - network.encoder.dcrnn_cells.0.gate.bias_pool	(10, 128)	True
+2023-10-12 05:35:08,501 - INFO - network.encoder.dcrnn_cells.0.update.weights_pool	(10, 2, 65, 64)	True
+2023-10-12 05:35:08,501 - INFO - network.encoder.dcrnn_cells.0.update.bias_pool	(10, 64)	True
+2023-10-12 05:35:08,501 - INFO - network.encoder.dcrnn_cells.1.gate.weights_pool	(10, 2, 128, 128)	True
+2023-10-12 05:35:08,502 - INFO - network.encoder.dcrnn_cells.1.gate.bias_pool	(10, 128)	True
+2023-10-12 05:35:08,502 - INFO - network.encoder.dcrnn_cells.1.update.weights_pool	(10, 2, 128, 64)	True
+2023-10-12 05:35:08,502 - INFO - network.encoder.dcrnn_cells.1.update.bias_pool	(10, 64)	True
+2023-10-12 05:35:08,502 - INFO - network.end_conv.weight	(24, 1, 1, 64)	True
+2023-10-12 05:35:08,502 - INFO - network.end_conv.bias	(24,)	True
+2023-10-12 05:35:08,502 - INFO - Total parameter numbers: 748220
+2023-10-12 05:35:08,502 - INFO - You select `adam` optimizer.
+2023-10-12 05:35:08,518 - WARNING - Received none train loss func and will use the loss func defined in the model.
+2023-10-12 05:35:08,519 - INFO - Loaded model at /home/zhangwt/remote/M-Libcity/M_libcity/cache/1/model_cache/AGCRN_PEMSD8.ckpt
+2023-10-12 05:35:08,557 - INFO - Start evaluating ...
+2023-10-12 05:35:59,092 - INFO - Note that you select the single mode to evaluate!
+2023-10-12 05:35:59,125 - INFO - Evaluate result is saved at /home/zhangwt/remote/M-Libcity/M_libcity/cache/1/evaluate_cache/2023_10_12_05_35_59_AGCRN_PEMSD8.csv
+2023-10-12 05:35:59,135 - INFO - 
+           MAE         MAPE       RMSE
+1    13.063327   0.08585286  20.448898
+2    13.481876    0.0896014  21.267021
+3   13.8296585   0.09019294  22.007404
+4    14.165465   0.09236293  22.654404
+5    14.452496  0.095506325  23.185444
+6     14.75414    0.0983144  23.706676
+7     14.87904   0.09663529   24.13153
+8    15.095905   0.09806034  24.559364
+9    15.301573  0.100116394  24.884352
+10   15.477302   0.10146491   25.25308
+11   15.646532  0.102246135   25.53647
+12   16.001245  0.108373284   25.95136
