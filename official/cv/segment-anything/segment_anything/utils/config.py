@@ -38,12 +38,16 @@ def parse_args(parser_config):
         # output
         args.work_root = args_cmd.train_url
         # input
-        args.train_loader.dataset.data_dir = os.path.join(args_cmd.data_url, 'train2017')
-        args.train_loader.dataset.annotation_path = os.path.join(args_cmd.data_url, "annotations", "instances_train2017.json")
+        if args.train_loader.dataset.type.endswith('COCODataset'):
+            args.train_loader.dataset.data_dir = os.path.join(args_cmd.data_url, 'train2017')
+            args.train_loader.dataset.annotation_path = os.path.join(args_cmd.data_url, "annotations", "instances_train2017.json")
 
-        args.eval_loader.dataset.data_dir = os.path.join(args_cmd.data_url, 'val2017')
-        args.eval_loader.dataset.annotation_path = os.path.join(args_cmd.data_url, "annotations",
-                                                                 "instances_val2017.json")
+            args.eval_loader.dataset.data_dir = os.path.join(args_cmd.data_url, 'val2017')
+            args.eval_loader.dataset.annotation_path = os.path.join(args_cmd.data_url, "annotations", "instances_val2017.json")
+        elif args.train_loader.dataset.type.endswith('SA1BDataset'):
+            args.train_loader.dataset.data_dir = args_cmd.data_url
+        else:
+            raise NotImplementedError(f'Not supported dataset {args.train_loader.dataset.type}')
 
     return args
 
