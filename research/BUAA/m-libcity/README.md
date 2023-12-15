@@ -4,83 +4,7 @@
 M-libcity 是一个基于华为MindSpore框架实现的开源算法库，专注于城市时空预测领域。它为MindSpore开发人员提供了统一、全面、可扩展的时空预测模型实现方案，同时为城市时空预测研究人员提供了可靠的实验工具和便捷的开发框架。M-LibCity开源算法库涵盖了与城市时空预测相关的所有必要步骤和组件，构建了完整的研究流程，使研究人员能够进行全面的对比实验。这将为研究人员在MindSpore平台上开展城市时空预测研究提供便利和强大的支持。
 
 ## 二、安装与配置
-### *Mindspore安装* 
-![figure/img.png](figure/img.png)
-#### 1.	获取安装命令，在Mindspore官网（https://www.mindspore.cn/install）寻找官方命令：
-- 如果是在全新的系统上使用pip安装Mindspore，可以使用自动安装脚本进行一键式安装。安装脚本会安装Mindspore以及其所需要的依赖。
-- 如果系统已经安装了部分依赖，如Python，GCC等，可以参照手动安装步骤进行。
-#### 2.	自动安装，自动安装脚本如下：
-```
-1. # wget https://gitee.com/mindspore/mindspore/raw/r2.0/scripts/install/euleros-ascend-pip.sh  
-2. # 安装MindSpore 2.0.0和Python 3.7  
-3. # 默认LOCAL_ASCEND路径为/usr/local/Ascend  
-4. MINDSPORE_VERSION=2.0.0 bash -i ./euleros-ascend-pip.sh  
-5. # 如需指定Python和MindSpore版本，以Python 3.9和MindSpore 1.6.0为例  
-6. # 且指定LOCAL_ASCEND路径为/home/xxx/Ascend，使用以下方式  
-7. # LOCAL_ASCEND=/home/xxx/Ascend PYTHON_VERSION=3.9 MINDSPORE_VERSION=1.6.0 bash -i ./euleros-ascend-pip.sh  
-```
-其执行内容如下：
-  - 1)	更改软件源配置为华为云源。
-  - 2)	安装MindSpore所需的依赖，如GCC。
-  - 3)	通过APT安装Python3和pip3，并设为默认。
-  - 4)	通过pip安装MindSpore CPU版本。
-  - 5)	自动安装脚本执行完成后，需要重新打开终端窗口以使环境变量生效。
 
-#### 3.	手动安装
-安装MindSpore所需要的系统环境和第三方依赖如下表：
-![figure/img_2.png](figure/img_2.png)
-安装Python（通过APT安装）
-```
-1.  sudo apt-get update  
-2.  sudo apt-get install software-properties-common -y  
-3.  sudo add-apt-repository ppa:deadsnakes/ppa -y  
-4.  sudo apt-get install python3.7 python3.7-dev python3.7-distutils python3-pip -y  
-5.  # 将新安装的Python设为默认  
-6.  sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.7 100  
-7.  # 安装pip  
-8.  python -m pip install pip -i https://repo.huaweicloud.com/repository/pypi/simple  
-9.  sudo update-alternatives --install /usr/bin/pip pip ~/.local/bin/pip3.7 100  
-10. pip config set global.index-url https://repo.huaweicloud.com/repository/pypi/simple  
-```
-安装完成后可以查看Python版本：
-
-```1.	python --version```
-
-安装GCC:
-
-```1.	sudo apt-get install gcc -y ```
-
-安装MindSpore,本项目测试时使用的是2.0.0版本的MindSpore，以此为例。
-
-```1.	export MS_VERSION=2.0.0```  
-
-然后根据系统架构及Python版本执行如下命令安装MindSpore
-```
-1.  # x86_64 + Python3.7  
-2.  pip install https://ms-release.obs.cn-north-4.myhuaweicloud.com/${MS_VERSION}/MindSpore/cpu/x86_64/mindspore-${MS_VERSION/-/}-cp37-cp37m-linux_x86_64.whl --trusted-host ms-release.obs.cn-north-4.myhuaweicloud.com -i https://pypi.tuna.tsinghua.edu.cn/simple  
-3.  # x86_64 + Python3.8  
-4.  pip install https://ms-release.obs.cn-north-4.myhuaweicloud.com/${MS_VERSION}/MindSpore/cpu/x86_64/mindspore-${MS_VERSION/-/}-cp38-cp38-linux_x86_64.whl --trusted-host ms-release.obs.cn-north-4.myhuaweicloud.com -i https://pypi.tuna.tsinghua.edu.cn/simple  
-5.  # x86_64 + Python3.9  
-6.  pip install https://ms-release.obs.cn-north-4.myhuaweicloud.com/${MS_VERSION}/MindSpore/cpu/x86_64/mindspore-${MS_VERSION/-/}-cp39-cp39-linux_x86_64.whl --trusted-host ms-release.obs.cn-north-4.myhuaweicloud.com -i https://pypi.tuna.tsinghua.edu.cn/simple  
-7.  # aarch64 + Python3.7  
-8.  pip install https://ms-release.obs.cn-north-4.myhuaweicloud.com/${MS_VERSION}/MindSpore/cpu/aarch64/mindspore-${MS_VERSION/-/}-cp37-cp37m-linux_aarch64.whl --trusted-host ms-release.obs.cn-north-4.myhuaweicloud.com -i https://pypi.tuna.tsinghua.edu.cn/simple  
-9.  # aarch64 + Python3.8  
-10. pip install https://ms-release.obs.cn-north-4.myhuaweicloud.com/${MS_VERSION}/MindSpore/cpu/aarch64/mindspore-${MS_VERSION/-/}-cp38-cp38-linux_aarch64.whl --trusted-host ms-release.obs.cn-north-4.myhuaweicloud.com -i https://pypi.tuna.tsinghua.edu.cn/simple  
-11. # aarch64 + Python3.9  
-12. pip install https://ms-release.obs.cn-north-4.myhuaweicloud.com/${MS_VERSION}/MindSpore/cpu/aarch64/mindspore-${MS_VERSION/-/}-cp39-cp39-linux_aarch64.whl --trusted-host ms-release.obs.cn-nort
-```
-检验是否安装成功:
-
-进入Python执行以下命令：
-```
-1.  import mindspore;  
-2.  mindspore.run_check()
-```
-如果输出如下信息则表示安装成功：
-```
-1.  MindSpore version: 版本号  
-2.  The result of multiplication calculation is correct, MindSpore has been installed successfully!  
-```
 ### *运行的Python环境依赖*
 ```
 matplotlib==3.5.1
@@ -94,7 +18,7 @@ tqdm==4.62.3
 mindspore应为2.0.0版本，且与后端对应
 ```
 
-### *数据集下载*
+### *数据下载*
 
 数据集下载链接：https://drive.google.com/file/d/11a6PyE5KrFK0wnI7RSv4sxLV9SLxqlLs/view?usp=drive_link
 
@@ -137,6 +61,59 @@ task_config.json记录了模型要加载的具体数据模块配置文件、执�
 1.  bash run.sh 2 [task] [model_name] [dataset]
 ```
 参数`2`表示卡数为2。
+
+### 四、模型测试结果
+#### Mindspore-GPU
+|   model    | dataset | metric | result |
+|:----------:| ---| --- | --- |
+|   AGCRN    | PEMSD8 | MAE | 14.67 |
+| ST-ResNet  | NYCBike20140409 | RMSE | 5.25 |
+|   GWNET    | NYCBike20140409 | MAE | 3.79 |
+|   DCRNN    | NYCBike20140409 | MAE | 3.15 |
+|  STG2Seq   | NYCBike20140409 | MAE | 3.86 |
+|    CSTN    | NYC_TOD | RMSE | 1.33 |
+|  DeepMove  | foursquare_nyc | [Persicion@1](mailto:Persicion@1) | 0.162 |
+|   GSNet    | NYC_RISK | MAP | 0.1858 |
+|  DeepTTE   | Beijing_Taxi_Sample | MAE | 214.78 |
+
+#### Mindspore-NPU
+|    model    | dataset             | metric                            | result |
+|:-----------:|---------------------| --------------------------------- | ------ |
+|    AGCRN    | PEMSD8              | MAE                               | 14.79  |
+|  ST-ResNet  | NYCBike20140409     | RMSE                              | 5.1    |
+|    GWNET    | NYCBike20140409     | MAE                               | 3.84   |
+|    DCRNN    | NYCBike20140409     | MAE                               | 3.15   |
+|   STG2Seq   | NYCBike20140409     | MAE                               | 3.45   |
+|    CSTN     | NYC_TOD             | RMSE                              | 1.32   |
+|  DeepMove   | foursquare_nyc      | [Persicion@1](mailto:Persicion@1) | 0.169  |
+|    GSNet    | NYC_RISK            | MAP                               | 0.184  |
+|   DeepTTE   | Beijing_Taxi_Sample | MAE                               | 205.5  |
+
+#### 对应论文：
+
+[1]. AGCRN : Adaptive Graph Convolutional Recurrent Network for Traffic Forecasting. In NeurIPS’20 [C].
+
+[2]. ST-ResNet : Deep Spatio-Temporal Residual Networks for Citywide Crowd Flows Prediction. In AAAI’17 [C].
+
+[3]. GWNET : Graph Wave Net for Deep Spatial-Temporal Graph Modeling.In IJCAI’19 [C].
+
+[4]. DCRNN : Diffusion Convolutional Recurrent Neural Network: Data-Driven Traffic Forecasting. In ICLR’18 [C].
+
+[5]. STG2Seq : STG2Seq: Spatial-Temporal Graph to Sequence Model for Multi-step Passenger Demand Forecasting. In IJCAI’19 [C].
+
+[6]. CSTN : Contextualized Spatial-Temporal Network for Taxi Origin-Destination Demand Prediction. In IEEE Transactions on Intelligent Transportation Systems [J].
+
+[7]. DeepMove : DeepMove: Predicting Human Mobility with Attentional Recurrent Networks. In WWW’18 [C].
+
+[8]. GSNet : GSNet: Learning Spatial-Temporal Correlations from Geographical and Semantic Aspects for Traffic Accident Risk Forecasting. In AAAI’21 [C].
+
+[9]. DeepTTE : When Will You Arrive? Estimating Travel Time Based on Deep Neural Networks. In AAAI’18 [C].
+
+
+
+
+
+
 
 
 
