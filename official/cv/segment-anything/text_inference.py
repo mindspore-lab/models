@@ -48,7 +48,7 @@ def infer(args):
             raise NotImplementedError
         processor = AutoProcessor.from_pretrained(text_model_type)
         tokenizer = processor.tokenizer
-        input_ids = tokenizer(["wheels"], max_length=77, padding="max_length", return_tensors="ms")["input_ids"].unsqueeze(0)  # b, n, 7
+        input_ids = tokenizer([args.text_prompt], max_length=77, padding="max_length", return_tensors="ms")["input_ids"].unsqueeze(0)  # b, n, 7
 
     # Step2: inference
     with Timer('model inference'):
@@ -62,6 +62,7 @@ def infer(args):
             # network = create_model(OmegaConf.create({"text_encoder": dict(type="clip_vit_l_14@336", feature_dim=768), "type": args.model_type, "checkpoint": args.checkpoint, "enable_text_encoder": True, }))
             network = create_model(OmegaConf.create({"text_encoder": text_encoder, "type": args.model_type, "checkpoint": args.checkpoint, "enable_text_encoder": True, }))
         ms.amp.auto_mixed_precision(network=network, amp_level=args.amp_level)
+        print(f'prompt is: {args.text_prompt}')
         mask_logits = network(image, text_ids=input_ids)[0]   # (1, 1, 1024, 1024)
 
     with Timer('Second time inference'):
@@ -77,7 +78,7 @@ def infer(args):
     # Step4: visualize
     plt.imshow(image_np)
     show_mask(final_mask, plt.gca())
-    save_path = args.image_path + '_infer.jpg'
+    save_path = os.path.basename(args.image_path) + '_infer.jpg'
     plt.savefig(save_path)
     print(f'finish saving inference image at {save_path}')
     plt.show()
@@ -85,7 +86,7 @@ def infer(args):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=("Runs inference on one image"))
-    parser.add_argument("--image_path", type=str, default='./images/truck.jpg', help="Path to an input image.")
+    parser.add_argument("--image_path", type=str, default='./datasets/sa-1b/sa_000000/sa_1.jpg', help="Path to an input image.")
     parser.add_argument(
         "--model-type",
         type=str,
@@ -97,6 +98,13 @@ if __name__ == '__main__':
         type=str,
         default='blip2',
         help="The type of text model to load, in ['clip', 'blip2']",
+    )
+
+    parser.add_argument(
+        "--text-prompt",
+        type=str,
+        default='wheels',
+        help="Text prompt",
     )
 
     parser.add_argument(

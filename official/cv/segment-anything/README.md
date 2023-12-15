@@ -114,6 +114,11 @@ the fine-tuned model will be saved at the work_root specified in `configs/sa1b_t
 python text_inference.py --checkpoint=your/path/to/ckpt
 ```
 
+Below is an experimental result prompted with `wheels`. _Note that the model is trained with limited data and the smallest SAM type `vit_b`._ 
+<div align="center">
+    <img alt="img.png" src="images/blip2-text-prompt-wheel.jpg" width="600"/>
+</div>
+
 ## Demo
 
 First download the weights ([sam_vit_b](https://download.mindspore.cn/toolkits/mindone/sam/sam_vit_b-35e4849c.ckpt), [sam_vit_l](https://download.mindspore.cn/toolkits/mindone/sam/sam_vit_l-1b460f38.ckpt), [sam_vit_h](https://download.mindspore.cn/toolkits/mindone/sam/sam_vit_h-c72f8ba1.ckpt)) and put them under `${project_root}/models` directory.
