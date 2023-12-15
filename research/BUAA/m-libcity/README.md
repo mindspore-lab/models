@@ -63,6 +63,9 @@ task_config.json记录了模型要加载的具体数据模块配置文件、执�
 参数`2`表示卡数为2。
 
 ### 四、模型测试结果
+
+ckpt链接：https://download-mindspore.osinfra.cn/toolkits/M-LibCity/
+
 #### Mindspore-GPU
 |   model    | dataset | metric | result |
 |:----------:| ---| --- | --- |
