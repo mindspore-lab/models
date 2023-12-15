@@ -72,22 +72,22 @@ task_config.json记录了模型要加载的具体数据模块配置文件、执�
 |   DCRNN    | NYCBike20140409 | MAE | 3.15 |
 |  STG2Seq   | NYCBike20140409 | MAE | 3.86 |
 |    CSTN    | NYC_TOD | RMSE | 1.33 |
-|  DeepMove  | foursquare_nyc | [Persicion@1](mailto:Persicion@1) | 0.162 |
+|  DeepMove  | foursquare_nyc | Persicion | 0.162 |
 |   GSNet    | NYC_RISK | MAP | 0.1858 |
 |  DeepTTE   | Beijing_Taxi_Sample | MAE | 214.78 |
 
 #### Mindspore-NPU
-|    model    | dataset             | metric                            | result |
-|:-----------:|---------------------| --------------------------------- | ------ |
-|    AGCRN    | PEMSD8              | MAE                               | 14.79  |
-|  ST-ResNet  | NYCBike20140409     | RMSE                              | 5.1    |
-|    GWNET    | NYCBike20140409     | MAE                               | 3.84   |
-|    DCRNN    | NYCBike20140409     | MAE                               | 3.15   |
-|   STG2Seq   | NYCBike20140409     | MAE                               | 3.45   |
-|    CSTN     | NYC_TOD             | RMSE                              | 1.32   |
-|  DeepMove   | foursquare_nyc      | [Persicion@1](mailto:Persicion@1) | 0.169  |
-|    GSNet    | NYC_RISK            | MAP                               | 0.184  |
-|   DeepTTE   | Beijing_Taxi_Sample | MAE                               | 205.5  |
+|    model    | dataset             | metric                        | result |
+|:-----------:|---------------------| ----------------------------- | ------ |
+|    AGCRN    | PEMSD8              | MAE                           | 14.79  |
+|  ST-ResNet  | NYCBike20140409     | RMSE                          | 5.1    |
+|    GWNET    | NYCBike20140409     | MAE                           | 3.84   |
+|    DCRNN    | NYCBike20140409     | MAE                           | 3.15   |
+|   STG2Seq   | NYCBike20140409     | MAE                           | 3.45   |
+|    CSTN     | NYC_TOD             | RMSE                          | 1.32   |
+|  DeepMove   | foursquare_nyc      | Persicion| 0.169  |
+|    GSNet    | NYC_RISK            | MAP                           | 0.184  |
+|   DeepTTE   | Beijing_Taxi_Sample | MAE                           | 205.5  |
 
 #### 对应论文：
 
