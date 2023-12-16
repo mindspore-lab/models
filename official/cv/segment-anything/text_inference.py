@@ -65,9 +65,6 @@ def infer(args):
         print(f'prompt is: {args.text_prompt}')
         mask_logits = network(image, text_ids=input_ids)[0]   # (1, 1, 1024, 1024)
 
-    with Timer('Second time inference'):
-        mask_logits = network(image, text_ids=input_ids)[0]  # (1, 1, 1024, 1024)
-
     # Step3: post-process
     with Timer('post-process'):
         mask_logits = mask_logits.asnumpy()[0, 0] > 0.0
@@ -86,7 +83,7 @@ def infer(args):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=("Runs inference on one image"))
-    parser.add_argument("--image_path", type=str, default='./datasets/sa-1b/sa_000000/sa_1.jpg', help="Path to an input image.")
+    parser.add_argument("--image_path", type=str, default='./images/truck.jpg', help="Path to an input image.")
     parser.add_argument(
         "--model-type",
         type=str,

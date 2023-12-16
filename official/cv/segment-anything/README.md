@@ -116,7 +116,7 @@ python text_inference.py --checkpoint=your/path/to/ckpt
 
 Below is an experimental result prompted with `wheels`. _Note that the model is trained with limited data and the smallest SAM type `vit_b`._ 
 <div align="center">
-    <img alt="img.png" src="images/blip2-text-prompt-wheel.jpg" width="600"/>
+    <img alt="img.png" src="images/blip2-text-prompt-wheel.png" width="600"/>
 </div>
 
 ## Demo
