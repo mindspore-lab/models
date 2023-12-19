@@ -1,4 +1,4 @@
-# Copyright 2020 Huawei Technologies Co., Ltd
+# Copyright 2023 Huawei Technologies Co., Ltd
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -52,9 +52,25 @@ TITLE_COLUMN = "titles"
 USER_COLUMN = "user_id"
 
 GENRES = [
-    'Action', 'Adventure', 'Animation', "Children", 'Comedy', 'Crime',
-    'Documentary', 'Drama', 'Fantasy', 'Film-Noir', 'Horror', "IMAX", 'Musical',
-    'Mystery', 'Romance', 'Sci-Fi', 'Thriller', 'War', 'Western'
+    'Action',
+    'Adventure',
+    'Animation',
+    "Children",
+    'Comedy',
+    'Crime',
+    'Documentary',
+    'Drama',
+    'Fantasy',
+    'Film-Noir',
+    'Horror',
+    "IMAX",
+    'Musical',
+    'Mystery',
+    'Romance',
+    'Sci-Fi',
+    'Thriller',
+    'War',
+    'Western',
 ]
 N_GENRE = len(GENRES)
 
@@ -73,14 +89,13 @@ NUM_ITEM_IDS = 3952
 
 MAX_RATING = 5
 
-NUM_RATINGS = {
-    ML_1M: 1000209,
-    MASKED_ML_1M: 20000263
-}
+NUM_RATINGS = {ML_1M: 1000209, MASKED_ML_1M: 20000263}
 
 arg_parser = argparse.ArgumentParser(description='movielens dataset')
 arg_parser.add_argument("--data_path", type=str, default="./dataset/")
-arg_parser.add_argument("--dataset", type=str, default="ml-1m", choices=["ml-1m", "masked_ml-1m"])
+arg_parser.add_argument(
+    "--dataset", type=str, default="ml-1m", choices=["ml-1m", "masked_ml-1m"]
+)
 args, _ = arg_parser.parse_known_args()
 
 
@@ -93,16 +108,16 @@ def _download_and_clean(dataset, data_dir):
     whole number ratings while the 20m dataset allows half integer ratings.
     """
     if dataset not in DATASETS:
-        raise ValueError("dataset {} is not in {{{}}}".format(
-            dataset, ",".join(DATASETS)))
+        raise ValueError(
+            "dataset {} is not in {{{}}}".format(dataset, ",".join(DATASETS))
+        )
 
     data_subdir = os.path.join(data_dir, dataset)
 
     expected_files = ["{}.zip".format(dataset), RATINGS_FILE, MOVIES_FILE]
 
     os.makedirs(data_subdir, exist_ok=True)
-    if set(expected_files).intersection(
-            os.listdir(data_subdir)) == set(expected_files):
+    if set(expected_files).intersection(os.listdir(data_subdir)) == set(expected_files):
         logging.info("Dataset {} has already been downloaded".format(dataset))
         return
 
@@ -117,8 +132,8 @@ def _download_and_clean(dataset, data_dir):
         # logging.info is not applicable here
         print()
         logging.info(
-            "Successfully downloaded {} {} bytes".format(
-                zip_path, statinfo.st_size))
+            "Successfully downloaded {} {} bytes".format(zip_path, statinfo.st_size)
+        )
 
         zipfile.ZipFile(zip_path, "r").extractall(temp_dir)
 
@@ -129,11 +144,14 @@ def _download_and_clean(dataset, data_dir):
 
         for fname in os.listdir(temp_dir):
             if not os.path.exists(os.path.join(data_subdir, fname)):
-                shutil.copy(os.path.join(temp_dir, fname),
-                            os.path.join(data_subdir, fname))
+                shutil.copy(
+                    os.path.join(temp_dir, fname), os.path.join(data_subdir, fname)
+                )
             else:
-                logging.info("Skipping copy of {}, as it already exists in the "
-                             "destination folder.".format(fname))
+                logging.info(
+                    "Skipping copy of {}, as it already exists in the "
+                    "destination folder.".format(fname)
+                )
 
     finally:
         shutil.rmtree(temp_dir)
@@ -152,9 +170,7 @@ def _transform_csv(input_path, output_path, names, skip_first, separator=","):
     if six.PY2:
         names = [six.ensure_text(n, "utf-8") for n in names]
 
-    with open(output_path, "wb") as f_out, \
-            open(input_path, "rb") as f_in:
-
+    with open(output_path, "wb") as f_out, open(input_path, "rb") as f_in:
         # Write column names to the csv.
         f_out.write(",".join(names).encode("utf-8"))
         f_out.write(b"\n")
@@ -165,8 +181,9 @@ def _transform_csv(input_path, output_path, names, skip_first, separator=","):
             line = six.ensure_text(line, "utf-8", errors="ignore")
             fields = line.split(separator)
             if separator != ",":
-                fields = ['"{}"'.format(field) if "," in field else field
-                          for field in fields]
+                fields = [
+                    '"{}"'.format(field) if "," in field else field for field in fields
+                ]
             f_out.write(",".join(fields).encode("utf-8"))
 
 
@@ -192,12 +209,18 @@ def _regularize_1m_dataset(temp_dir):
     _transform_csv(
         input_path=os.path.join(working_dir, "ratings.dat"),
         output_path=os.path.join(temp_dir, RATINGS_FILE),
-        names=RATING_COLUMNS, skip_first=False, separator="::")
+        names=RATING_COLUMNS,
+        skip_first=False,
+        separator="::",
+    )
 
     _transform_csv(
         input_path=os.path.join(working_dir, "movies.dat"),
         output_path=os.path.join(temp_dir, MOVIES_FILE),
-        names=MOVIE_COLUMNS, skip_first=False, separator="::")
+        names=MOVIE_COLUMNS,
+        skip_first=False,
+        separator="::",
+    )
 
     shutil.rmtree(working_dir)
 
@@ -226,12 +249,18 @@ def _regularize_20m_dataset(temp_dir):
     _transform_csv(
         input_path=os.path.join(working_dir, "ratings.csv"),
         output_path=os.path.join(temp_dir, RATINGS_FILE),
-        names=RATING_COLUMNS, skip_first=True, separator=",")
+        names=RATING_COLUMNS,
+        skip_first=True,
+        separator=",",
+    )
 
     _transform_csv(
         input_path=os.path.join(working_dir, "movies.csv"),
         output_path=os.path.join(temp_dir, MOVIES_FILE),
-        names=MOVIE_COLUMNS, skip_first=True, separator=",")
+        names=MOVIE_COLUMNS,
+        skip_first=True,
+        separator=",",
+    )
 
     shutil.rmtree(working_dir)
 
@@ -282,6 +311,7 @@ def integerize_genres(dataframe):
     dataframe[GENRE_COLUMN] = dataframe[GENRE_COLUMN].apply(_map_fn)
 
     return dataframe
+
 
 if __name__ == "__main__":
     download(args.dataset, args.data_path)

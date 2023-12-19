@@ -1,4 +1,4 @@
-# Copyright 2020-2022 Huawei Technologies Co., Ltd
+# Copyright 2023 Huawei Technologies Co., Ltd
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -28,14 +28,16 @@ import src.constants as rconst
 import src.movielens as movielens
 import src.stat_utils as stat_utils
 
-DATASET_TO_NUM_USERS_AND_ITEMS = {
-    "ml-1m": (86, 820),
-    "masked_ml-1m": (138493, 26744)
-}
+DATASET_TO_NUM_USERS_AND_ITEMS = {"ml-1m": (86, 820), "masked_ml-1m": (138493, 26744)}
 
 _EXPECTED_CACHE_KEYS = (
-    rconst.TRAIN_USER_KEY, rconst.TRAIN_ITEM_KEY, rconst.EVAL_USER_KEY,
-    rconst.EVAL_ITEM_KEY, rconst.USER_MAP, rconst.ITEM_MAP)
+    rconst.TRAIN_USER_KEY,
+    rconst.TRAIN_ITEM_KEY,
+    rconst.EVAL_USER_KEY,
+    rconst.EVAL_ITEM_KEY,
+    rconst.USER_MAP,
+    rconst.ITEM_MAP,
+)
 
 
 def load_data(data_dir, dataset):
@@ -67,8 +69,8 @@ def load_data(data_dir, dataset):
     raw_rating_path = os.path.join(data_dir, dataset, movielens.RATINGS_FILE)
     cache_path = os.path.join(data_dir, dataset, rconst.RAW_CACHE_FILE)
 
-    #valid_cache = os.path.exists(cache_path)
-    valid_cache=False
+    # valid_cache = os.path.exists(cache_path)
+    valid_cache = False
     if valid_cache:
         with open(cache_path, 'rb') as f:
             cached_data = pickle.load(f)
@@ -90,8 +92,11 @@ def load_data(data_dir, dataset):
 
         # Get the info of users who have more than 20 ratings on items
         grouped = df.groupby(movielens.USER_COLUMN)
-        df = grouped.filter(lambda x: len(x) >= rconst.MIN_NUM_RATINGS and len(x) <= rconst.MAX_NUM_RATINGS)
-        #df = grouped.filter(lambda x: len(x) <= 10000)
+        df = grouped.filter(
+            lambda x: len(x) >= rconst.MIN_NUM_RATINGS
+            and len(x) <= rconst.MAX_NUM_RATINGS
+        )
+        # df = grouped.filter(lambda x: len(x) <= 10000)
 
         original_users = df[movielens.USER_COLUMN].unique()
         original_items = df[movielens.ITEM_COLUMN].unique()
@@ -102,9 +107,11 @@ def load_data(data_dir, dataset):
         item_map = {item: index for index, item in enumerate(original_items)}
 
         df[movielens.USER_COLUMN] = df[movielens.USER_COLUMN].apply(
-            lambda user: user_map[user])
+            lambda user: user_map[user]
+        )
         df[movielens.ITEM_COLUMN] = df[movielens.ITEM_COLUMN].apply(
-            lambda item: item_map[item])
+            lambda item: item_map[item]
+        )
 
         num_users = len(original_users)
         num_items = len(original_items)
@@ -125,29 +132,36 @@ def load_data(data_dir, dataset):
         # sometimes different. For some reason, this sort results in a better
         # hit-rate during evaluation, matching the performance of the MLPerf
         # reference implementation.
-        if dataset.find("masked")==-1:
+        if dataset.find("masked") == -1:
             df.sort_values(by=movielens.TIMESTAMP_COLUMN, inplace=True)
-            df.sort_values([movielens.USER_COLUMN, movielens.TIMESTAMP_COLUMN],
-                           inplace=True, kind="mergesort")
+            df.sort_values(
+                [movielens.USER_COLUMN, movielens.TIMESTAMP_COLUMN],
+                inplace=True,
+                kind="mergesort",
+            )
 
         # The dataframe does not reconstruct indices in the sort or filter steps.
         df = df.reset_index()
 
         grouped = df.groupby(movielens.USER_COLUMN, group_keys=False)
         eval_df, train_df = grouped.tail(1), grouped.apply(lambda x: x.iloc[:-1])
-        action_len=grouped.apply(lambda x: len(x)-1)
+        action_len = grouped.apply(lambda x: len(x) - 1)
 
-        action=grouped[movielens.ITEM_COLUMN].apply(lambda  x:list(x)).to_list()
+        action = grouped[movielens.ITEM_COLUMN].apply(lambda x: list(x)).to_list()
         action = np.array(action)
         data = {
-            rconst.TRAIN_USER_KEY:
-                train_df[movielens.USER_COLUMN].values.astype(rconst.USER_DTYPE),
-            rconst.TRAIN_ITEM_KEY:
-                train_df[movielens.ITEM_COLUMN].values.astype(rconst.ITEM_DTYPE),
-            rconst.EVAL_USER_KEY:
-                eval_df[movielens.USER_COLUMN].values.astype(rconst.USER_DTYPE),
-            rconst.EVAL_ITEM_KEY:
-                eval_df[movielens.ITEM_COLUMN].values.astype(rconst.ITEM_DTYPE),
+            rconst.TRAIN_USER_KEY: train_df[movielens.USER_COLUMN].values.astype(
+                rconst.USER_DTYPE
+            ),
+            rconst.TRAIN_ITEM_KEY: train_df[movielens.ITEM_COLUMN].values.astype(
+                rconst.ITEM_DTYPE
+            ),
+            rconst.EVAL_USER_KEY: eval_df[movielens.USER_COLUMN].values.astype(
+                rconst.USER_DTYPE
+            ),
+            rconst.EVAL_ITEM_KEY: eval_df[movielens.ITEM_COLUMN].values.astype(
+                rconst.ITEM_DTYPE
+            ),
             rconst.USER_MAP: user_map,
             rconst.ITEM_MAP: item_map,
             rconst.ACTION_LEN: action_len,
@@ -176,17 +190,17 @@ def construct_lookup_variables(train_pos_users, train_pos_items, num_users):
     sorted_train_pos_items = None
 
     def index_segment(user):
-        lower, upper = index_bounds[user:user + 2]
+        lower, upper = index_bounds[user : user + 2]
         items = sorted_train_pos_items[lower:upper]
 
         negatives_since_last_positive = np.concatenate(
-            [items[0][np.newaxis], items[1:] - items[:-1] - 1])
+            [items[0][np.newaxis], items[1:] - items[:-1] - 1]
+        )
 
         return np.cumsum(negatives_since_last_positive)
 
     start_time = timeit.default_timer()
-    inner_bounds = np.argwhere(train_pos_users[1:] -
-                               train_pos_users[:-1])[:, 0] + 1
+    inner_bounds = np.argwhere(train_pos_users[1:] - train_pos_users[:-1])[:, 0] + 1
     (upper_bound,) = train_pos_users.shape
     index_bounds = np.array([0] + inner_bounds.tolist() + [upper_bound])
 
@@ -196,14 +210,16 @@ def construct_lookup_variables(train_pos_users, train_pos_items, num_users):
     sorted_train_pos_items = train_pos_items.copy()
 
     for i in range(num_users):
-        lower, upper = index_bounds[i:i + 2]
+        lower, upper = index_bounds[i : i + 2]
         sorted_train_pos_items[lower:upper].sort()
 
-    total_negatives = np.concatenate([
-        index_segment(i) for i in range(num_users)])
+    total_negatives = np.concatenate([index_segment(i) for i in range(num_users)])
 
-    logging.info("Negative total vector built. Time: {:.1f} seconds".format(
-        timeit.default_timer() - start_time))
+    logging.info(
+        "Negative total vector built. Time: {:.1f} seconds".format(
+            timeit.default_timer() - start_time
+        )
+    )
 
     return total_negatives, index_bounds, sorted_train_pos_items
 
@@ -213,17 +229,19 @@ class IFRQEDataset:
     A dataset for IFRQE network.
     """
 
-    def __init__(self,
-                 pos_users,
-                 pos_items,
-                 num_users,
-                 num_items,
-                 batch_size,
-                 total_negatives,
-                 index_bounds,
-                 sorted_train_pos_items,
-                 num_neg,
-                 is_training=True):
+    def __init__(
+        self,
+        pos_users,
+        pos_items,
+        num_users,
+        num_items,
+        batch_size,
+        total_negatives,
+        index_bounds,
+        sorted_train_pos_items,
+        num_neg,
+        is_training=True,
+    ):
         self._pos_users = pos_users
         self._pos_items = pos_items
         self._num_users = num_users
@@ -241,7 +259,8 @@ class IFRQEDataset:
             self._train_pos_count = self._pos_users.shape[0]
         else:
             self._eval_users_per_batch = int(
-                batch_size // (1 + rconst.NUM_EVAL_NEGATIVES))
+                batch_size // (1 + rconst.NUM_EVAL_NEGATIVES)
+            )
 
         _pos_count = pos_users.shape[0]
         _num_samples = (1 + num_neg) * _pos_count
@@ -273,9 +292,10 @@ class IFRQEDataset:
         # not worth implementing.
         use_shortcut = neg_item_choice >= self._total_negatives[right_index]
         output[use_shortcut] = (
-            self._sorted_train_pos_items[right_index] + 1 +
-            (neg_item_choice - self._total_negatives[right_index])
-            )[use_shortcut]
+            self._sorted_train_pos_items[right_index]
+            + 1
+            + (neg_item_choice - self._total_negatives[right_index])
+        )[use_shortcut]
 
         if np.all(use_shortcut):
             # The bisection code is ill-posed when there are no elements.
@@ -287,7 +307,8 @@ class IFRQEDataset:
         neg_item_choice = neg_item_choice[not_use_shortcut]
 
         num_loops = np.max(
-            np.ceil(np.log2(num_positives[not_use_shortcut])).astype(np.int32))
+            np.ceil(np.log2(num_positives[not_use_shortcut])).astype(np.int32)
+        )
 
         for _ in range(num_loops):
             mid_index = (left_index + right_index) // 2
@@ -303,9 +324,9 @@ class IFRQEDataset:
 
         assert np.all((right_index - left_index) <= 1)
 
-        output[not_use_shortcut] = (
-            self._sorted_train_pos_items[right_index] - (self._total_negatives[right_index] - neg_item_choice)
-            )
+        output[not_use_shortcut] = self._sorted_train_pos_items[right_index] - (
+            self._total_negatives[right_index] - neg_item_choice
+        )
 
         assert np.all(output >= 0)
 
@@ -341,16 +362,22 @@ class IFRQEDataset:
 
         users = np.reshape(users, (self._batch_size, 1))  # (_batch_size, 1), int32
         items = np.reshape(items, (self._batch_size, 1))  # (_batch_size, 1), int32
-        mask_start_index = np.array(mask_start_index, dtype=np.int32)  # (_batch_size, 1), int32
+        mask_start_index = np.array(
+            mask_start_index, dtype=np.int32
+        )  # (_batch_size, 1), int32
         valid_pt_mask = np.expand_dims(
-            np.less(np.arange(self._batch_size), mask_start_index), -1).astype(np.float32)  # (_batch_size, 1), bool
-        labels = np.reshape(labels, (self._batch_size, 1)).astype(np.int32)  # (_batch_size, 1), bool
+            np.less(np.arange(self._batch_size), mask_start_index), -1
+        ).astype(
+            np.float32
+        )  # (_batch_size, 1), bool
+        labels = np.reshape(labels, (self._batch_size, 1)).astype(
+            np.int32
+        )  # (_batch_size, 1), bool
 
         return users, items, labels, valid_pt_mask
 
     @staticmethod
-    def _assemble_eval_batch(users, positive_items, negative_items,
-                             users_per_batch):
+    def _assemble_eval_batch(users, positive_items, negative_items, users_per_batch):
         """Construct duplicate_mask and structure data accordingly.
 
         The positive items should be last so that they lose ties. However, they
@@ -391,18 +418,29 @@ class IFRQEDataset:
     def _get_eval_item(self, index):
         """Get eval item"""
         low_index, high_index = index
-        users = np.repeat(self._pos_users[low_index:high_index, np.newaxis],
-                          1 + rconst.NUM_EVAL_NEGATIVES, axis=1)
+        users = np.repeat(
+            self._pos_users[low_index:high_index, np.newaxis],
+            1 + rconst.NUM_EVAL_NEGATIVES,
+            axis=1,
+        )
         positive_items = self._pos_items[low_index:high_index, np.newaxis]
-        negative_items = (self.lookup_negative_items(negative_users=users[:, :-1])
-                          .reshape(-1, rconst.NUM_EVAL_NEGATIVES))
+        negative_items = self.lookup_negative_items(
+            negative_users=users[:, :-1]
+        ).reshape(-1, rconst.NUM_EVAL_NEGATIVES)
 
         users, items, duplicate_mask = self._assemble_eval_batch(
-            users, positive_items, negative_items, self._eval_users_per_batch)
+            users, positive_items, negative_items, self._eval_users_per_batch
+        )
 
-        users = np.reshape(users.flatten(), (self._batch_size, 1))  # (self._batch_size, 1), int32
-        items = np.reshape(items.flatten(), (self._batch_size, 1))  # (self._batch_size, 1), int32
-        duplicate_mask = np.reshape(duplicate_mask.flatten(), (self._batch_size, 1))  # (self._batch_size, 1), bool
+        users = np.reshape(
+            users.flatten(), (self._batch_size, 1)
+        )  # (self._batch_size, 1), int32
+        items = np.reshape(
+            items.flatten(), (self._batch_size, 1)
+        )  # (self._batch_size, 1), int32
+        duplicate_mask = np.reshape(
+            duplicate_mask.flatten(), (self._batch_size, 1)
+        )  # (self._batch_size, 1), bool
 
         return users, items, duplicate_mask
 
@@ -440,7 +478,10 @@ class RandomSampler(Sampler):
         """
         indices = stat_utils.permutation((self._num_samples, stat_utils.random_int32()))
 
-        batch_indices = [indices[x * self._batch_size:(x + 1) * self._batch_size] for x in range(self._num_batches)]
+        batch_indices = [
+            indices[x * self._batch_size : (x + 1) * self._batch_size]
+            for x in range(self._num_batches)
+        ]
 
         # padding last batch indices if necessary
         if len(batch_indices) > 2 and len(batch_indices[-2]) != len(batch_indices[-1]):
@@ -465,8 +506,12 @@ class DistributedSamplerOfTrain:
         self._rank_size = rank_size
         self._batch_size = batch_size
 
-        self._batchs_per_rank = int(math.ceil(self._num_samples / self._batch_size / rank_size))
-        self._samples_per_rank = int(math.ceil(self._batchs_per_rank * self._batch_size))
+        self._batchs_per_rank = int(
+            math.ceil(self._num_samples / self._batch_size / rank_size)
+        )
+        self._samples_per_rank = int(
+            math.ceil(self._batchs_per_rank * self._batch_size)
+        )
         self._total_num_samples = self._samples_per_rank * self._rank_size
 
     def __iter__(self):
@@ -475,9 +520,12 @@ class DistributedSamplerOfTrain:
         """
         indices = stat_utils.permutation((self._num_samples, stat_utils.random_int32()))
         indices = indices.tolist()
-        indices.extend(indices[:self._total_num_samples - len(indices)])
-        indices = indices[self._rank_id:self._total_num_samples:self._rank_size]
-        batch_indices = [indices[x * self._batch_size:(x + 1) * self._batch_size] for x in range(self._batchs_per_rank)]
+        indices.extend(indices[: self._total_num_samples - len(indices)])
+        indices = indices[self._rank_id : self._total_num_samples : self._rank_size]
+        batch_indices = [
+            indices[x * self._batch_size : (x + 1) * self._batch_size]
+            for x in range(self._batchs_per_rank)
+        ]
 
         return iter(np.array(batch_indices))
 
@@ -495,15 +543,19 @@ class SequenceSampler(Sampler):
 
     def __init__(self, eval_batch_size, num_users):
         self._eval_users_per_batch = int(
-            eval_batch_size // (1 + rconst.NUM_EVAL_NEGATIVES))
+            eval_batch_size // (1 + rconst.NUM_EVAL_NEGATIVES)
+        )
         self._eval_elements_in_epoch = num_users * (1 + rconst.NUM_EVAL_NEGATIVES)
         self._eval_batches_per_epoch = self.count_batches(
-            self._eval_elements_in_epoch, eval_batch_size)
+            self._eval_elements_in_epoch, eval_batch_size
+        )
         super().__init__(self._eval_batches_per_epoch)
 
     def __iter__(self):
-        indices = [(x * self._eval_users_per_batch, (x + 1) * self._eval_users_per_batch)
-                   for x in range(self._eval_batches_per_epoch)]
+        indices = [
+            (x * self._eval_users_per_batch, (x + 1) * self._eval_users_per_batch)
+            for x in range(self._eval_batches_per_epoch)
+        ]
 
         # padding last batch indices if necessary
         if len(indices) > 2 and len(indices[-2]) != len(indices[-1]):
@@ -527,10 +579,12 @@ class DistributedSamplerOfEval:
 
     def __init__(self, eval_batch_size, num_users, rank_id, rank_size):
         self._eval_users_per_batch = int(
-            eval_batch_size // (1 + rconst.NUM_EVAL_NEGATIVES))
+            eval_batch_size // (1 + rconst.NUM_EVAL_NEGATIVES)
+        )
         self._eval_elements_in_epoch = num_users * (1 + rconst.NUM_EVAL_NEGATIVES)
         self._eval_batches_per_epoch = self.count_batches(
-            self._eval_elements_in_epoch, eval_batch_size)
+            self._eval_elements_in_epoch, eval_batch_size
+        )
 
         self._rank_id = rank_id
         self._rank_size = rank_size
@@ -539,8 +593,13 @@ class DistributedSamplerOfEval:
         self._batchs_per_rank = int(math.ceil(self._eval_batches_per_epoch / rank_size))
 
     def __iter__(self):
-        indices = [(x * self._eval_users_per_batch, (x + self._rank_id + 1) * self._eval_users_per_batch)
-                   for x in range(self._batchs_per_rank)]
+        indices = [
+            (
+                x * self._eval_users_per_batch,
+                (x + self._rank_id + 1) * self._eval_users_per_batch,
+            )
+            for x in range(self._batchs_per_rank)
+        ]
 
         return iter(np.array(indices))
 
@@ -559,13 +618,26 @@ def parse_eval_batch_size(eval_batch_size):
     Parse eval batch size.
     """
     if eval_batch_size % (1 + rconst.NUM_EVAL_NEGATIVES):
-        raise ValueError("Eval batch size {} is not divisible by {}".format(
-            eval_batch_size, 1 + rconst.NUM_EVAL_NEGATIVES))
+        raise ValueError(
+            "Eval batch size {} is not divisible by {}".format(
+                eval_batch_size, 1 + rconst.NUM_EVAL_NEGATIVES
+            )
+        )
     return eval_batch_size
 
 
-def create_dataset(test_train=True, data_dir='./dataset/', dataset='ml-1m', train_epochs=14, batch_size=256,
-                   eval_batch_size=160000, num_neg=4, rank_id=None, rank_size=None, num_parallel_workers=1):
+def create_dataset(
+    test_train=True,
+    data_dir='./dataset/',
+    dataset='ml-1m',
+    train_epochs=14,
+    batch_size=256,
+    eval_batch_size=160000,
+    num_neg=4,
+    rank_id=None,
+    rank_size=None,
+    num_parallel_workers=1,
+):
     """
     Create NCF dataset.
     """
@@ -576,46 +648,84 @@ def create_dataset(test_train=True, data_dir='./dataset/', dataset='ml-1m', trai
     eval_pos_users = data[rconst.EVAL_USER_KEY]
     eval_pos_items = data[rconst.EVAL_ITEM_KEY]
 
-    total_negatives, index_bounds, sorted_train_pos_items = \
-        construct_lookup_variables(train_pos_users, train_pos_items, num_users)
+    total_negatives, index_bounds, sorted_train_pos_items = construct_lookup_variables(
+        train_pos_users, train_pos_items, num_users
+    )
 
     if test_train:
-        print(train_pos_users, train_pos_items, num_users, num_items, batch_size, total_negatives, index_bounds,
-              sorted_train_pos_items)
-        dataset = IFRQEDataset(train_pos_users, train_pos_items, num_users, num_items, batch_size, total_negatives,
-                             index_bounds, sorted_train_pos_items, num_neg)
+        print(
+            train_pos_users,
+            train_pos_items,
+            num_users,
+            num_items,
+            batch_size,
+            total_negatives,
+            index_bounds,
+            sorted_train_pos_items,
+        )
+        dataset = IFRQEDataset(
+            train_pos_users,
+            train_pos_items,
+            num_users,
+            num_items,
+            batch_size,
+            total_negatives,
+            index_bounds,
+            sorted_train_pos_items,
+            num_neg,
+        )
         sampler = RandomSampler(train_pos_users.shape[0], num_neg, batch_size)
         if rank_id is not None and rank_size is not None:
-            sampler = DistributedSamplerOfTrain(train_pos_users.shape[0], num_neg, batch_size, rank_id, rank_size)
+            sampler = DistributedSamplerOfTrain(
+                train_pos_users.shape[0], num_neg, batch_size, rank_id, rank_size
+            )
 
-        ds = GeneratorDataset(dataset,
-                              column_names=[movielens.USER_COLUMN,
-                                            movielens.ITEM_COLUMN,
-                                            "labels",
-                                            rconst.VALID_POINT_MASK],
-                              sampler=sampler,
-                              num_parallel_workers=num_parallel_workers)
+        ds = GeneratorDataset(
+            dataset,
+            column_names=[
+                movielens.USER_COLUMN,
+                movielens.ITEM_COLUMN,
+                "labels",
+                rconst.VALID_POINT_MASK,
+            ],
+            sampler=sampler,
+            num_parallel_workers=num_parallel_workers,
+        )
 
     else:
         eval_batch_size = parse_eval_batch_size(eval_batch_size=eval_batch_size)
-        dataset = IFRQEDataset(eval_pos_users, eval_pos_items, num_users, num_items,
-                             eval_batch_size, total_negatives, index_bounds,
-                             sorted_train_pos_items, num_neg, is_training=False)
+        dataset = IFRQEDataset(
+            eval_pos_users,
+            eval_pos_items,
+            num_users,
+            num_items,
+            eval_batch_size,
+            total_negatives,
+            index_bounds,
+            sorted_train_pos_items,
+            num_neg,
+            is_training=False,
+        )
         sampler = SequenceSampler(eval_batch_size, num_users)
 
-        ds = GeneratorDataset(dataset,
-                              column_names=[movielens.USER_COLUMN,
-                                            movielens.ITEM_COLUMN,
-                                            rconst.DUPLICATE_MASK],
-                              sampler=sampler,
-                              num_parallel_workers=num_parallel_workers)
+        ds = GeneratorDataset(
+            dataset,
+            column_names=[
+                movielens.USER_COLUMN,
+                movielens.ITEM_COLUMN,
+                rconst.DUPLICATE_MASK,
+            ],
+            sampler=sampler,
+            num_parallel_workers=num_parallel_workers,
+        )
 
     repeat_count = train_epochs if test_train else train_epochs + 1
     ds = ds.repeat(repeat_count)
 
-    return ds, num_users, num_items,data[rconst.ACTION],data[rconst.ACTION_LEN]
+    return ds, num_users, num_items, data[rconst.ACTION], data[rconst.ACTION_LEN]
 
-def mask_dataset(ds_train,mask,data_dir='./dataset/', dataset='ml-1m'):
+
+def mask_dataset(ds_train, mask, data_dir='./dataset/', dataset='ml-1m'):
     # raw_rating_path = os.path.join(data_dir, dataset, movielens.RATINGS_FILE)
     # with open(raw_rating_path) as f:
     #     df = pd.read_csv(f)
@@ -629,19 +739,22 @@ def mask_dataset(ds_train,mask,data_dir='./dataset/', dataset='ml-1m'):
     #
     #     # 输出修改后的DataFrame为csv文件
     data = pd.DataFrame(columns=['user_id', 'item_id', 'rating'])
-    ds_train_helper=DatasetHelper(ds_train,dataset_sink_mode=False)
+    ds_train_helper = DatasetHelper(ds_train, dataset_sink_mode=False)
     for next_element in ds_train_helper:
         users, items, labels, valid_pt_masks = next_element
         for i in range(len(users)):
-            user_id=int(users[i])
+            user_id = int(users[i])
             item_id = int(items[i])
             if mask[user_id][item_id]:
                 label = int(labels[i])
-                data = data.append({'user_id': user_id, 'item_id': item_id, 'rating': label}, ignore_index=True)
+                data = data.append(
+                    {'user_id': user_id, 'item_id': item_id, 'rating': label},
+                    ignore_index=True,
+                )
     data = data.drop_duplicates()
     # masked_dir=data_dir+"masked"
-    masked_rating_path=os.path.join(data_dir, "masked_"+dataset)
+    masked_rating_path = os.path.join(data_dir, "masked_" + dataset)
     if not os.path.exists(masked_rating_path):
         os.mkdir(masked_rating_path)
-    file_name=os.path.join(masked_rating_path,movielens.RATINGS_FILE )
+    file_name = os.path.join(masked_rating_path, movielens.RATINGS_FILE)
     data.to_csv(file_name, index=False)

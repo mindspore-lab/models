@@ -1,4 +1,4 @@
-# Copyright 2020 Huawei Technologies Co., Ltd
+# Copyright 2023 Huawei Technologies Co., Ltd
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,15 +18,18 @@ import numpy as np
 from mindspore.nn.metrics import Metric
 from mindspore import nn, context
 import mindspore as ms
+
+
 class IFRQEMetric(Metric):
     """NCF metrics method"""
-    def __init__(self,masked):
+
+    def __init__(self, masked):
         super(IFRQEMetric, self).__init__()
         self.hr = []
         self.loss = nn.SoftmaxCrossEntropyWithLogits(sparse=True)
-        self.losses=[]
-        self.reward=0
-        self.l=0.5
+        self.losses = []
+        self.reward = 0
+        self.l = 0.5
         self.weights = []
         with open("regret.txt", "r") as f:
             # Read the first line
@@ -38,7 +41,7 @@ class IFRQEMetric(Metric):
         self.regret = float(line1.strip())
         self.total_regret = float(line2.strip())
         if not masked:
-            self.regret=self.total_regret
+            self.regret = self.total_regret
 
     def clear(self):
         """Clear the internal evaluation result."""
@@ -57,7 +60,6 @@ class IFRQEMetric(Metric):
             return np.reciprocal(np.log2(index + 2))
         return 0
 
-
     def update(self, batch_indices, batch_items, metric_weights):
         """Update hr and ndcg"""
         batch_indices = batch_indices.asnumpy()  # (num_user, topk)
@@ -71,6 +73,11 @@ class IFRQEMetric(Metric):
                 self.hr.append(self.hit(items, recommends))
                 self.ndcg.append(self.ndcg_function(items, recommends))
 
-
     def eval(self):
-        return np.mean(self.hr), np.mean(self.ndcg),self.regret,self.total_regret,-np.mean(self.hr)-self.l*self.regret
+        return (
+            np.mean(self.hr),
+            np.mean(self.ndcg),
+            self.regret,
+            self.total_regret,
+            -np.mean(self.hr) - self.l * self.regret,
+        )

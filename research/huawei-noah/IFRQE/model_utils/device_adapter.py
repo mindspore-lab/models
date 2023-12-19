@@ -1,4 +1,4 @@
-# Copyright 2021 Huawei Technologies Co., Ltd
+# Copyright 2023 Huawei Technologies Co., Ltd
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,10 +18,18 @@
 from model_utils.config import config
 
 if config.enable_modelarts:
-    from model_utils.moxing_adapter import get_device_id, get_device_num, get_rank_id, get_job_id
+    from model_utils.moxing_adapter import (
+        get_device_id,
+        get_device_num,
+        get_rank_id,
+        get_job_id,
+    )
 else:
-    from model_utils.local_adapter import get_device_id, get_device_num, get_rank_id, get_job_id
+    from model_utils.local_adapter import (
+        get_device_id,
+        get_device_num,
+        get_rank_id,
+        get_job_id,
+    )
 
-__all__ = [
-    "get_device_id", "get_device_num", "get_rank_id", "get_job_id"
-]
+__all__ = ["get_device_id", "get_device_num", "get_rank_id", "get_job_id"]

@@ -1,4 +1,4 @@
-# Copyright 2020 Huawei Technologies Co., Ltd
+# Copyright 2023 Huawei Technologies Co., Ltd
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,10 +15,12 @@
 """Callbacks file"""
 from mindspore.train.callback import Callback
 
+
 class EvalCallBack(Callback):
     """
     Monitor the loss in evaluate.
     """
+
     def __init__(self, model, eval_dataset, metric, eval_file_path="./eval.log"):
         super(EvalCallBack, self).__init__()
         self.model = model
@@ -34,6 +36,8 @@ class EvalCallBack(Callback):
         out = self.model.eval(self.eval_dataset)
 
         eval_file = open(self.eval_file_path, "a+")
-        eval_file.write("EvalCallBack: HR = {}, NDCG = {}\n".format(out['ncf'][0], out['ncf'][1]))
+        eval_file.write(
+            "EvalCallBack: HR = {}, NDCG = {}\n".format(out['ncf'][0], out['ncf'][1])
+        )
         eval_file.close()
         print("EvalCallBack: HR = {}, NDCG = {}".format(out['ncf'][0], out['ncf'][1]))

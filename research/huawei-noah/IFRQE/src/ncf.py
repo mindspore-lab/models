@@ -1,4 +1,4 @@
-# Copyright 2020-2021 Huawei Technologies Co., Ltd
+# Copyright 2023 Huawei Technologies Co., Ltd
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -27,25 +27,32 @@ from mindspore.nn.wrap.grad_reducer import DistributedGradReducer
 
 from src.lr_schedule import dynamic_lr
 
+
 class DenseLayer(nn.Cell):
     """
     Dense layer definition
     """
-    def __init__(self,
-                 in_channels,
-                 out_channels,
-                 weight_init='normal',
-                 bias_init='zeros',
-                 has_bias=True,
-                 activation=None):
+
+    def __init__(
+        self,
+        in_channels,
+        out_channels,
+        weight_init='normal',
+        bias_init='zeros',
+        has_bias=True,
+        activation=None,
+    ):
         super(DenseLayer, self).__init__()
         self.in_channels = validator.check_positive_int(in_channels)
         self.out_channels = validator.check_positive_int(out_channels)
         self.has_bias = validator.check_bool(has_bias)
 
         if isinstance(weight_init, Tensor):
-            if weight_init.ndim != 2 or weight_init.shape()[0] != out_channels or \
-                    weight_init.shape()[1] != in_channels:
+            if (
+                weight_init.ndim != 2
+                or weight_init.shape()[0] != out_channels
+                or weight_init.shape()[1] != in_channels
+            ):
                 raise ValueError("weight_init shape error")
 
         self.weight = Parameter(initializer(weight_init, [out_channels, in_channels]))
@@ -87,8 +94,9 @@ class DenseLayer(nn.Cell):
 
     def extend_repr(self):
         """A pretty print for Dense layer."""
-        str_info = 'in_channels={}, out_channels={}, weight={}, has_bias={}' \
-            .format(self.in_channels, self.out_channels, self.weight, self.has_bias)
+        str_info = 'in_channels={}, out_channels={}, weight={}, has_bias={}'.format(
+            self.in_channels, self.out_channels, self.weight, self.has_bias
+        )
         if self.has_bias:
             str_info = str_info + ', bias={}'.format(self.bias)
 
@@ -100,17 +108,19 @@ class DenseLayer(nn.Cell):
 
 class NCFModel(nn.Cell):
     """
-        Class for Neural Collaborative Filtering Model from paper " Neural Collaborative Filtering".
+    Class for Neural Collaborative Filtering Model from paper " Neural Collaborative Filtering".
     """
 
-    def __init__(self,
-                 num_users,
-                 num_items,
-                 num_factors,
-                 model_layers,
-                 mf_regularization,
-                 mlp_reg_layers,
-                 mf_dim):
+    def __init__(
+        self,
+        num_users,
+        num_items,
+        num_factors,
+        model_layers,
+        mf_regularization,
+        mlp_reg_layers,
+        mf_dim,
+    ):
         super(NCFModel, self).__init__()
 
         self.data_path = ""
@@ -137,26 +147,32 @@ class NCFModel(nn.Cell):
         self.embedding_user = nn.Embedding(
             self.num_users,
             self.num_factors + self.model_layers[0] // 2,
-            embedding_table=self.embedding_initializer
+            embedding_table=self.embedding_initializer,
         )
         self.embedding_item = nn.Embedding(
             self.num_items,
             self.num_factors + self.model_layers[0] // 2,
-            embedding_table=self.embedding_initializer
+            embedding_table=self.embedding_initializer,
         )
 
-        self.mlp_dense1 = DenseLayer(in_channels=self.model_layers[0],
-                                     out_channels=self.model_layers[1],
-                                     activation="relu")
-        self.mlp_dense2 = DenseLayer(in_channels=self.model_layers[1],
-                                     out_channels=self.model_layers[2],
-                                     activation="relu")
+        self.mlp_dense1 = DenseLayer(
+            in_channels=self.model_layers[0],
+            out_channels=self.model_layers[1],
+            activation="relu",
+        )
+        self.mlp_dense2 = DenseLayer(
+            in_channels=self.model_layers[1],
+            out_channels=self.model_layers[2],
+            activation="relu",
+        )
 
         # Logit dense layer
-        self.logits_dense = DenseLayer(in_channels=self.model_layers[1],
-                                       out_channels=1,
-                                       weight_init="normal",
-                                       activation=None)
+        self.logits_dense = DenseLayer(
+            in_channels=self.model_layers[1],
+            out_channels=1,
+            weight_init="normal",
+            activation=None,
+        )
 
         # ops definition
         self.mul = P.Mul()
@@ -169,28 +185,46 @@ class NCFModel(nn.Cell):
         """
         # GMF part
         # embedding_layers
-        embedding_user = self.embedding_user(user_input)  # input: (256, 1)  output: (256, 1, 16 + 32)
-        embedding_item = self.embedding_item(item_input)  # input: (256, 1)  output: (256, 1, 16 + 32)
+        embedding_user = self.embedding_user(
+            user_input
+        )  # input: (256, 1)  output: (256, 1, 16 + 32)
+        embedding_item = self.embedding_item(
+            item_input
+        )  # input: (256, 1)  output: (256, 1, 16 + 32)
 
-        mf_user_latent = self.squeeze(embedding_user)[:, :self.num_factors]  # input: (256, 1, 16 + 32) output: (256, 16)
-        mf_item_latent = self.squeeze(embedding_item)[:, :self.num_factors]  # input: (256, 1, 16 + 32) output: (256, 16)
+        mf_user_latent = self.squeeze(embedding_user)[
+            :, : self.num_factors
+        ]  # input: (256, 1, 16 + 32) output: (256, 16)
+        mf_item_latent = self.squeeze(embedding_item)[
+            :, : self.num_factors
+        ]  # input: (256, 1, 16 + 32) output: (256, 16)
 
         # MLP part
-        mlp_user_latent = self.squeeze(embedding_user)[:, self.mf_dim:]  # input: (256, 1, 16 + 32) output: (256, 32)
-        mlp_item_latent = self.squeeze(embedding_item)[:, self.mf_dim:]  # input: (256, 1, 16 + 32) output: (256, 32)
+        mlp_user_latent = self.squeeze(embedding_user)[
+            :, self.mf_dim :
+        ]  # input: (256, 1, 16 + 32) output: (256, 32)
+        mlp_item_latent = self.squeeze(embedding_item)[
+            :, self.mf_dim :
+        ]  # input: (256, 1, 16 + 32) output: (256, 32)
 
         # Element-wise multiply
-        mf_vector = self.mul(mf_user_latent, mf_item_latent)  # input: (256, 16), (256, 16) output: (256, 16)
+        mf_vector = self.mul(
+            mf_user_latent, mf_item_latent
+        )  # input: (256, 16), (256, 16) output: (256, 16)
 
         # Concatenation of two latent features
-        mlp_vector = self.concat((mlp_user_latent, mlp_item_latent))  # input: (256, 32), (256, 32) output: (256, 64)
+        mlp_vector = self.concat(
+            (mlp_user_latent, mlp_item_latent)
+        )  # input: (256, 32), (256, 32) output: (256, 64)
 
         # MLP dense layers
         mlp_vector = self.mlp_dense1(mlp_vector)  # input: (256, 64) output: (256, 32)
         mlp_vector = self.mlp_dense2(mlp_vector)  # input: (256, 32) output: (256, 16)
 
         # # Concatenate GMF and MLP parts
-        predict_vector = self.concat((mf_vector, mlp_vector))  # input: (256, 16), (256, 16)  output: (256, 32)
+        predict_vector = self.concat(
+            (mf_vector, mlp_vector)
+        )  # input: (256, 16), (256, 16)  output: (256, 32)
 
         # Final prediction layer
         logits = self.logits_dense(predict_vector)  # input: (256, 32)  output: (256, 1)
@@ -203,6 +237,7 @@ class NetWithLossClass(nn.Cell):
     """
     NetWithLossClass definition
     """
+
     def __init__(self, network):
         super(NetWithLossClass, self).__init__(auto_prefix=False)
         self.loss = nn.SoftmaxCrossEntropyWithLogits(sparse=True)
@@ -220,7 +255,9 @@ class NetWithLossClass(nn.Cell):
         labels = self.squeeze(labels)
         loss = self.loss(predict, labels)
         loss = self.mul(loss, self.squeeze(valid_pt_mask))
-        mean_loss = self.mul(self.reducesum(loss), self.reciprocal(self.reducesum(valid_pt_mask)))
+        mean_loss = self.mul(
+            self.reducesum(loss), self.reciprocal(self.reducesum(valid_pt_mask))
+        )
         return mean_loss
 
 
@@ -228,6 +265,7 @@ class TrainStepWrap(nn.Cell):
     """
     TrainStepWrap definition
     """
+
     def __init__(self, network, total_steps=1, sens=16384.0):
         super(TrainStepWrap, self).__init__(auto_prefix=False)
         self.network = network
@@ -236,12 +274,14 @@ class TrainStepWrap(nn.Cell):
         self.weights = ParameterTuple(network.trainable_params())
 
         lr = dynamic_lr(0.01, total_steps, 5000)
-        self.optimizer = nn.Adam(self.weights,
-                                 learning_rate=lr,
-                                 beta1=0.9,
-                                 beta2=0.999,
-                                 eps=1e-8,
-                                 loss_scale=sens)
+        self.optimizer = nn.Adam(
+            self.weights,
+            learning_rate=lr,
+            beta1=0.9,
+            beta2=0.999,
+            eps=1e-8,
+            loss_scale=sens,
+        )
 
         self.hyper_map = C.HyperMap()
         self.grad = C.GradOperation(get_by_list=True, sens_param=True)
@@ -255,14 +295,17 @@ class TrainStepWrap(nn.Cell):
         if self.reducer_flag:
             mean = context.get_auto_parallel_context("gradients_mean")
             degree = context.get_auto_parallel_context("device_num")
-            self.grad_reducer = DistributedGradReducer(self.optimizer.parameters, mean, degree)
-
+            self.grad_reducer = DistributedGradReducer(
+                self.optimizer.parameters, mean, degree
+            )
 
     def construct(self, batch_users, batch_items, labels, valid_pt_mask):
         weights = self.weights
         loss = self.network(batch_users, batch_items, labels, valid_pt_mask)
         sens = P.Fill()(P.DType()(loss), P.Shape()(loss), self.sens)  #
-        grads = self.grad(self.network, weights)(batch_users, batch_items, labels, valid_pt_mask, sens)
+        grads = self.grad(self.network, weights)(
+            batch_users, batch_items, labels, valid_pt_mask, sens
+        )
         if self.reducer_flag:
             # apply grad reducer on grads
             grads = self.grad_reducer(grads)
@@ -273,6 +316,7 @@ class PredictWithSigmoid(nn.Cell):
     """
     Predict definition
     """
+
     def __init__(self, network, k, num_eval_neg):
         super(PredictWithSigmoid, self).__init__()
         self.network = network
@@ -287,9 +331,15 @@ class PredictWithSigmoid(nn.Cell):
 
     def construct(self, batch_users, batch_items, duplicated_masks):
         predicts = self.network(batch_users, batch_items)  # (bs, 1)
-        predicts = self.reshape(predicts, (-1, self.num_eval_neg + 1))  # (num_user, 100)
-        batch_items = self.reshape(batch_items, (-1, self.num_eval_neg + 1))  # (num_user, 100)
-        duplicated_masks = self.reshape(duplicated_masks, (-1, self.num_eval_neg + 1))  # (num_user, 100)
+        predicts = self.reshape(
+            predicts, (-1, self.num_eval_neg + 1)
+        )  # (num_user, 100)
+        batch_items = self.reshape(
+            batch_items, (-1, self.num_eval_neg + 1)
+        )  # (num_user, 100)
+        duplicated_masks = self.reshape(
+            duplicated_masks, (-1, self.num_eval_neg + 1)
+        )  # (num_user, 100)
         masks_sum = self.reducesum(duplicated_masks, 1)
         metric_weights = self.notequal(masks_sum, self.num_eval_neg)  # (num_user)
         _, indices = self.topk(predicts, self.k)  # (num_user, k)
