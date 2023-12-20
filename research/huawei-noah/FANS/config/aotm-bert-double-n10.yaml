@@ -1,0 +1,28 @@
+dataset: aotm-n10
+store:
+  data_dir: data/ListContUni/{config.dataset}
+  save_dir: saving/{config.dataset}/{exp.model}-E{config.model_config.hidden_size}/
+data:
+  split:
+    train:
+      weight: 8
+    dev:
+      weight: 1
+    test:
+      weight: 1
+  shuffle: true
+  filter:
+    p_local:
+      - len(x) >= 5
+set:
+  order:
+    - [k_cluster, k_global, k_local]
+    - [p_cluster, p_global, p_local]
+  append:
+    - index
+  use_sep_token: true
+  use_cls_token: true
+model_config:
+  hidden_size: 64
+  num_hidden_layers: 3
+  num_attention_heads: 8
