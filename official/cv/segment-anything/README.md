@@ -126,10 +126,14 @@ There are two recommended ways to use sam.
 
 ### Using sam with prompts
 
+#### predict one object at one time
+
+1. points
+
 SAM predicts object masks given prompts that indicate the desired object. if a point prompt is given, three plausible masks are generated.
 
 ```shell
-python demo/inference_with_promts.py --prompt-type point --model-type vit_h
+python demo/inference_with_promts.py --prompt-type point --model-type vit_h --checkpoint models/sam_vit_h-c72f8ba1.ckpt
 ```
 
 <p float="left">
@@ -143,24 +147,60 @@ The star in green and red denotes positive and negtive point, respectively.
     <img alt="img.png" src="images/truck_two_point.png" width="600"/>
 </div>
 
+2. one box
+
 If a box prompt is given, one plausible masks is generated.
 
 ```shell
-python demo/inference_with_promts.py --prompt-type box --model-type vit_h
+python demo/inference_with_promts.py --prompt-type box --model-type vit_h --checkpoint models/sam_vit_h-c72f8ba1.ckpt
 ```
 
 <div align="center">
     <img alt="img.png" width="600" src="images/truck_box.png"/>
 </div>
 
+3. one box and one point
+
 If a prompt with both a box and a point is given, one plausible mask is generated.
 
 ```shell
-python demo/inference_with_promts.py --prompt-type point_box --model-type vit_h
+python demo/inference_with_promts.py --prompt-type point_box --model-type vit_h --checkpoint models/sam_vit_h-c72f8ba1.ckpt
 ```
 
 <div align="center">
     <img alt="img.png" width="600" src="images/truck_point_box.png"/>
+</div>
+
+#### predict multiple objects at one time in a batch way
+
+1. batch point 
+
+```shell
+python demo/inference_with_promts.py --prompt-type batch_point --model-type vit_h --checkpoint models/sam_vit_h-c72f8ba1.ckpt
+```
+
+<div align="center">
+    <img alt="img.png" src="images/truck_batch_point.png" width="600"/>
+</div>
+
+2. batch box
+
+```shell
+python demo/inference_with_promts.py --prompt-type batch_box --model-type vit_h --checkpoint models/sam_vit_h-c72f8ba1.ckpt
+```
+
+<div align="center">
+    <img alt="img.png" width="600" src="images/truck_batch_box.png"/>
+</div>
+
+3. batch box and point
+
+```shell
+python demo/inference_with_promts.py --prompt-type batch_point_box --model-type vit_h --checkpoint models/sam_vit_h-c72f8ba1.ckpt
+```
+
+<div align="center">
+    <img alt="img.png" width="600" src="images/truck_batch_point_box.png"/>
 </div>
 
 See `python demo/inference_with_promts.py --help` to explore more custom settings.
@@ -180,6 +220,3 @@ python demo/inference_with_amg.py --model-type vit_h
 </div>
 
 See `python demo/inference_with_amg.py --help` to explore more custom settings.
-
-
-
