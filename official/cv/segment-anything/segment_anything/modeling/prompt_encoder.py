@@ -78,8 +78,8 @@ class PromptEncoder(nn.Cell):
         """Embeds point prompts."""
         points = points + 0.5  # Shift to center of pixel
         if pad:
-            padding_point = ops.zeros((points.shape[0], 1, 2))
-            padding_label = -ops.ones((labels.shape[0], 1), dtype=ms.int32)
+            padding_point = ops.zeros((points.shape[0], 1, 2), points.dtype)
+            padding_label = -ops.ones((labels.shape[0], 1), dtype=labels.dtype)
             points = ops.cat([points, padding_point], axis=1)
             labels = ops.cat([labels, padding_label], axis=1)
         point_embedding = self.pe_layer.forward_with_coords(points, self.input_image_size)

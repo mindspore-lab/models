@@ -77,6 +77,11 @@ class Sam(nn.Cell):
         boxes: ms.Tensor = None,
         text_ids: ms.Tensor = None,
         image_patches: ms.Tensor = None,
+        points: ms.Tensor = None,
+        masks: ms.Tensor = None,
+        multimask_output = False,
+        output_best_mask=False,
+        return_low_res_mask=False,
     ) -> Tuple[ms.Tensor]:
         """
         Predicts masks end-to-end from provided images and prompts. Currently, only boxe prompt is supported
@@ -118,17 +123,20 @@ class Sam(nn.Cell):
 
         pred_masks = []
         pred_ious = []
+        pred_low_res_masks = []
         for i in range(bs):
             curr_embedding = image_embeddings[i] # (c, h, w)
             box = boxes[i] if boxes is not None else None  # (n, 4)
             text_id = text_ids[i] if text_ids is not None else None
             image_patch = image_patches[i] if image_patches is not None else None
+            point = (points[0][i], points[1][i]) if points is not None else None
+            mask = masks[i] if masks is not None else None
             text_features = self.get_text_features(text_id, image_patch)  # (n, 256)
 
             sparse_embeddings, dense_embeddings = self.prompt_encoder(
-                points=None,
+                points=point,
                 boxes=box,
-                masks=None,
+                masks=mask,
                 texts=text_features,
             )
             low_res_masks, iou_predictions = self.mask_decoder(
@@ -136,18 +144,23 @@ class Sam(nn.Cell):
                 image_pe=self.prompt_encoder.get_dense_pe(),
                 sparse_prompt_embeddings=sparse_embeddings,
                 dense_prompt_embeddings=dense_embeddings,
-                multimask_output=False,
+                multimask_output=multimask_output,
+                output_best_mask=output_best_mask,
             )
             # low_res_masks (n, 4, h, w) if multimask_output else (n, 1, h, w)
             # iou_predictions (n, 4) if multimask_output else (n, 1)
-            masks = ops.interpolate(low_res_masks, (h, w), mode='bilinear', align_corners=False)
+            pred_mask = ops.interpolate(low_res_masks, (h, w), mode='bilinear', align_corners=False)
 
-            pred_masks.append(masks)
+            pred_masks.append(pred_mask)
             pred_ious.append(iou_predictions)
+            pred_low_res_masks.append(low_res_masks)
 
         # stack along batch dimension
         pred_masks = ops.stack(pred_masks).squeeze(2)  # -> (b, n, 1, h, w)  -> (b, n, h, w)
         pred_ious = ops.stack(pred_ious).squeeze(2)  # -> (b, n, 1) -> (b, n,)
+        pred_low_res_masks = ops.stack(pred_low_res_masks).squeeze(2)  # -> (b, n, 1, h, w)
+        if return_low_res_mask:
+            return pred_masks, pred_ious, pred_low_res_masks
 
         return pred_masks, pred_ious
 

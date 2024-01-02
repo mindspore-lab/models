@@ -43,10 +43,10 @@ def infer(args):
         with Timer('load weight and build net'):
             network = sam_model_registry[args.model_type](checkpoint=args.checkpoint)
         ms.amp.auto_mixed_precision(network=network, amp_level=args.amp_level)
-        mask_logits = network(image, boxes)[0]   # (1, 1, 1024, 1024)
+        mask_logits = network(image, boxes=boxes)[0]   # (1, 1, 1024, 1024)
 
     with Timer('Second time inference'):
-        mask_logits = network(image, boxes)[0]  # (1, 1, 1024, 1024)
+        mask_logits = network(image, boxes=boxes)[0]  # (1, 1, 1024, 1024)
 
     # Step3: post-process
     with Timer('post-process'):

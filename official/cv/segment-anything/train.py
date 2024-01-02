@@ -12,7 +12,7 @@ from segment_anything.optim.optimizer import create_optimizer
 from segment_anything.utils import logger
 from segment_anything.utils.callbacks import create_callback
 from segment_anything.utils.config import parse_args
-from segment_anything.utils.model_wrapper import NetWithLossWrapper, TrainOneStepCellWrapper
+from segment_anything.utils.model_wrapper import NetWithLossWrapper, TrainOneStepCellWrapper, SamIterativeSegModel
 from segment_anything.utils.utils import set_distributed, set_directory_and_log, update_rank_to_dataloader_config
 
 
@@ -51,7 +51,10 @@ def main(args) -> None:
 
     # Step5: train model
     callbacks = create_callback(args.callback)
-    model = ms.Model(model)
+    if not args.get('iterative_training'):
+        model = ms.Model(model)
+    else:
+        model = SamIterativeSegModel(model)
     model.train(epoch=args.train_loader.epoch_size, train_dataset=train_dataloader, callbacks=callbacks)
 
 

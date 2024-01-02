@@ -70,6 +70,7 @@ class MaskDecoder(nn.Cell):
         sparse_prompt_embeddings: ms.Tensor,
         dense_prompt_embeddings: ms.Tensor,
         multimask_output: bool,
+        output_best_mask: bool = False,
     ) -> Tuple[ms.Tensor, ms.Tensor]:
         """
         Predict masks given image and prompt embeddings.
@@ -92,6 +93,15 @@ class MaskDecoder(nn.Cell):
             sparse_prompt_embeddings=sparse_prompt_embeddings,
             dense_prompt_embeddings=dense_prompt_embeddings,
         )
+
+        # remove dynamic shape, for training
+        if output_best_mask:
+            ind = ops.stop_gradient(ops.argmax(iou_pred[:, 1:], dim=1, keepdim=True)) + 1  # (bs, 1)
+            best_iou = ops.gather(iou_pred, input_indices=ind, axis=1, batch_dims=1)  # (bs, 1)
+            best_mask = ops.gather(masks, input_indices=ind, axis=1, batch_dims=1) # (bs, 1, h, w)
+            best_mask = int(multimask_output) * best_mask + (1 - int(multimask_output)) * masks[:, :1]  # (bs, 1, h, w)
+            best_iou = int(multimask_output) * best_iou + (1 - int(multimask_output)) * iou_pred[:, :1]  # (bs, 1)
+            return best_mask, best_iou
 
         # Select the correct mask or masks for output
         if multimask_output:
