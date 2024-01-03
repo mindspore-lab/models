@@ -209,7 +209,7 @@ class SamIterativeSegModel(ms.Model):
             input_dict = select_inputs_by_indices(data_element, net_with_loss.input_indices, net_with_loss.all_columns, return_type='dict')
             gt_dict = select_inputs_by_indices(data_element, net_with_loss.label_indices, net_with_loss.all_columns, return_type='dict')
 
-            grad_fn = value_and_grad(forward_point, grad_position=None, weights=weights, has_aux=True)
+            grad_fn = ms.jit(value_and_grad(forward_point, grad_position=None, weights=weights, has_aux=True), compile_once=True)
 
             # 11 iteration
             # mask_only_iter = [10, np.random.randint(1, 10)]  # the last and one random iteration
@@ -219,22 +219,22 @@ class SamIterativeSegModel(ms.Model):
             loss_list = []
             grad_list = []
 
-            for i in range(2):
+            for i in range(3):
                 s0 = time.time()
-                print(f'\nstart iter {i}')
-                return_pad_point = i in mask_only_iter  # for mask only iter, give a pad-point to keep static shape
-                multimask_output = False
-                if i == 0:
-                    return_pad_point = False  # the first iteration needs a valid point
-                    multimask_output = True  # the first iteration needs multi-mask output due to point ambiguity
+                # for mask only iter, give a pad-point to keep static shape
+                # the first iteration needs a valid point
+                # the first iteration needs multi-mask output due to point ambiguity
+                return_pad_point = False if i==0 else i in mask_only_iter
+                multimask_output = True if i==0 else False
 
+                print(f'\nstart iter {i}, return_pad_point: {return_pad_point}, multimask_output: {multimask_output}')
                 point_and_label = self.get_next_point(gt_dict['masks'], pred_mask=previous_mask,
                                                       return_default=return_pad_point)
                 s1 = time.time()
                 print(f'get next takes: {s1-s0:.2f}s')
                 (loss, (mask, iou, low_res_mask)), grads = grad_fn(
                                                 input_dict['image'],
-                                                point_and_label,
+                                                ms.mutable(point_and_label),
                                                 None,  # box
                                                 previous_low_mask,
                                                 gt_dict['masks'],
@@ -244,7 +244,6 @@ class SamIterativeSegModel(ms.Model):
                 print(f'f and b takes: {s2-s1:.2f}s')
                 previous_mask = ops.stop_gradient(mask > loss_fn.mask_threshold)  #  (b, n, h, w)
                 previous_low_mask = ops.stop_gradient(low_res_mask.expand_dims(2))  # (b, n, h, w) -> (b, n, 1, h, w)
-                print(f'mask input shape {previous_low_mask.shape}')
                 s3 = time.time()
                 print(f'postprocess takes: {s3 - s2:.2f}s')
                 grad_list.append(grads)  # grad is a tuple with Tensor element
