@@ -54,7 +54,7 @@ def main(args) -> None:
     if not args.get('iterative_training'):
         model = ms.Model(model)
     else:
-        model = SamIterativeSegModel(model)
+        model = SamIterativeSegModel(model, num_iter=args.network.num_iter, mask_only_iter=args.network.mask_only_iter)
     model.train(epoch=args.train_loader.epoch_size, train_dataset=train_dataloader, callbacks=callbacks)
 
 

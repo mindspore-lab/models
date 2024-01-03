@@ -31,6 +31,8 @@ optimizer:
 
 
 network:
+  num_iter: 3
+  mask_only_iter: [] # for these iterations, only use mask as input
   model:
     type: vit_b
     checkpoint: ./models/sam_vit_b-35e4849c.ckpt

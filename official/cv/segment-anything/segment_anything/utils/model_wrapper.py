@@ -13,6 +13,8 @@ from mindspore.parallel._utils import _reset_op_id_with_offset
 from mindspore.train.model import _transfer_tensor_to_tuple
 from mindspore.train.dataset_helper import DatasetHelper, connect_network_with_dataset
 
+from segment_anything.utils import logger
+
 _grad_scale = ops.MultitypeFuncGraph("grad_scale")
 
 
@@ -183,6 +185,16 @@ class SamIterativeSegModel(ms.Model):
     """
     Model specialized for iterative interactive segmentation.
     """
+    def __init__(self, *args, num_iter=3, mask_only_iter=None, **kwargs):
+        super(SamIterativeSegModel, self).__init__(*args, **kwargs)
+
+        self.num_iter = num_iter
+        self.mask_only_iter = [] if mask_only_iter is None else mask_only_iter
+        # assert isinstance(self.mask_only_iter, (tuple, list)), f'got unsupported type {type(self.mask_only_iter)}'
+        for i in self.mask_only_iter:
+            assert i < self.num_iter, f'mask only index: {i} should be less than num_iter: {self.num_iter}'
+        logger.info(f'number of iteration per step: {self.num_iter}, mask-only iteration index: {self.mask_only_iter}')
+
     def _build_train_network(self):
         train_one_step_loss_cell = self._network  # train_one_step_loss_cell
         net_with_loss = train_one_step_loss_cell.network
@@ -213,25 +225,24 @@ class SamIterativeSegModel(ms.Model):
 
             # 11 iteration
             # mask_only_iter = [10, np.random.randint(1, 10)]  # the last and one random iteration
-            mask_only_iter = []  # the last and one random iteration
             previous_mask = None
             previous_low_mask = None
             loss_list = []
             grad_list = []
 
-            for i in range(3):
+            for i in range(self.num_iter):
                 s0 = time.time()
                 # for mask only iter, give a pad-point to keep static shape
                 # the first iteration needs a valid point
                 # the first iteration needs multi-mask output due to point ambiguity
-                return_pad_point = False if i==0 else i in mask_only_iter
+                return_pad_point = False if i==0 else i in self.mask_only_iter
                 multimask_output = True if i==0 else False
 
-                print(f'\nstart iter {i}, return_pad_point: {return_pad_point}, multimask_output: {multimask_output}')
+                # print(f'\nstart iter {i}, return_pad_point: {return_pad_point}, multimask_output: {multimask_output}')
                 point_and_label = self.get_next_point(gt_dict['masks'], pred_mask=previous_mask,
                                                       return_default=return_pad_point)
                 s1 = time.time()
-                print(f'get next takes: {s1-s0:.2f}s')
+                # print(f'get next takes: {s1-s0:.2f}s')
                 (loss, (mask, iou, low_res_mask)), grads = grad_fn(
                                                 input_dict['image'],
                                                 ms.mutable(point_and_label),
@@ -241,23 +252,23 @@ class SamIterativeSegModel(ms.Model):
                                                 gt_dict['valid_boxes'],
                                                 multimask_output)
                 s2 = time.time()
-                print(f'f and b takes: {s2-s1:.2f}s')
+                # print(f'f and b takes: {s2-s1:.2f}s')
                 previous_mask = ops.stop_gradient(mask > loss_fn.mask_threshold)  #  (b, n, h, w)
                 previous_low_mask = ops.stop_gradient(low_res_mask.expand_dims(2))  # (b, n, h, w) -> (b, n, 1, h, w)
                 s3 = time.time()
-                print(f'postprocess takes: {s3 - s2:.2f}s')
+                # print(f'postprocess takes: {s3 - s2:.2f}s')
                 grad_list.append(grads)  # grad is a tuple with Tensor element
 
                 loss_list.append(loss)
 
             grad_accum = tuple([sum(k) for k in zip(*grad_list)])
 
-            print(f'loss list', loss_list)
+            # print(f'loss list', loss_list)
             t0 = time.time()
             grad_accum = grad_reducer(grad_accum)
             optimizer(grad_accum)
             t1 = time.time()
-            print(f'optimize takes: {t1 - t0:.2f}s\n\n\n')
+            # print(f'optimize takes: {t1 - t0:.2f}s\n\n\n')
 
             return loss_list[0]
         return _train_fn
