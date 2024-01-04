@@ -83,7 +83,6 @@ For FP16 operators, if the input data type is FP32, the backend of MindSpore wil
 # [Quick Start](#contents)
 
 After installing MindSpore via the official website, you can start training and evaluation as follows:
-Before training and evaluation, you can set the default_config_cpu.yaml. Specify the source domain dataset and target domain data in the yaml file, that is, set "src_dataset: XX" and "tgt_dataset: XX", where "XX" can be selected as either 'MNIST' or 'SVHN'.
 
 - running on Ascend
 
