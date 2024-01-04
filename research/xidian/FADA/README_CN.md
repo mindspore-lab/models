@@ -87,7 +87,6 @@ FADA 共分为三步。第一步用源域预训练，初始化g和h，最小化�
 # 快速入门
 
 通过官方网站安装MindSpore后，您可以按照如下步骤进行训练和评估：
-在训练和评估之前，可以在default_config_cpu.yaml文件中指定源域数据集和目标域数据，即设置“ src_dataset：XX”，“ tgt_dataset：XX ”，其中’XX‘可选择'MNIST'或'SVHN'。  
 
 - Ascend处理器环境运行
 
