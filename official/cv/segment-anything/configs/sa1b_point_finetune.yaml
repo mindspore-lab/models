@@ -46,23 +46,33 @@ network:
 
 train_loader:
   dataset:
-    type: segment_anything.dataset.dataset.SA1BDataset
-    data_dir: ./datasets/sa-1b/
-    transform_pipeline:
-      - type: segment_anything.dataset.transform.ImageResizeAndPad
-        target_size: 1024
-      - type: segment_anything.dataset.transform.ImageNorm
-        hwc2chw: True
-      - type: segment_anything.dataset.transform.LabelPad
-        gt_size: 20
-    output_column: ['image', 'masks', 'boxes', 'valid_boxes']
+# Sa-1B dataset
+#    type: segment_anything.dataset.dataset.SA1BDataset
+#    data_dir: ./datasets/sa-1b/
+#    transform_pipeline:
+#      - type: segment_anything.dataset.transform.ImageResizeAndPad
+#        target_size: 1024
+#      - type: segment_anything.dataset.transform.ImageNorm
+#        hwc2chw: True
+#      - type: segment_anything.dataset.transform.LabelPad
+#        gt_size: 20
 
+    # Medical tumor dataset Flare
+    type: segment_anything.dataset.dataset.FLAREDataset
+    data_dir: ./datasets/FLARE22Train_processed/train/
+    transform_pipeline:
+      - type: segment_anything.dataset.transform.BinaryMaskFromInstanceSeg
+      - type: segment_anything.dataset.transform.BoxFormMask
+      - type: segment_anything.dataset.transform.LabelPad
+        gt_size: 20  # all the box_pre_image are less than 20
+
+    output_column: ['image', 'masks', 'boxes', 'valid_boxes']
   model_column: ['image', 'boxes']  # columns for model cell input
   loss_column:  ['masks', 'valid_boxes']  # columns for loss function input
 
   shuffle: True
   batch_size: 1
-  epoch_size: 8
+  epoch_size: 20
   drop_remainder: True
   num_workers: 2
   max_rowsize: 64  # 24M space for dataloader

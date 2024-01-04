@@ -275,6 +275,14 @@ class BoxFormMask:
             boxes.append(box)
 
         result_dict['boxes'] = np.stack(boxes)
+        if False:  # show image and mask for debug
+            import matplotlib.pyplot as plt
+            plt.imshow(result_dict['image'].transpose([1,2,0]))  # raw image
+            from segment_anything.utils.visualize import show_box, show_mask
+            show_box(result_dict['boxes'][0], plt.gca())
+            show_mask(result_dict['masks'][0], plt.gca())
+            plt.show()
+
         return result_dict
 
 
