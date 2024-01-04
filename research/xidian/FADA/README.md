@@ -199,36 +199,36 @@ After installing MindSpore via the official website, you can start training and 
 ├── FADA  
   ├── checkpoint
   ├── core
-  │   ├── step1.py              # 第一步训练
-  │   ├── step2.py              # 第二步训练
-  │   └── step3.py              # 第三步训练
+  │   ├── step1.py              # train step 1 
+  │   ├── step2.py              # train setp 2
+  │   └── step3.py              # train setp 3
   ├── dataset
-  │   ├── MNIST_Data            # MNIST数据集
-  │   └── SVHN                  # SVHN数据集
+  │   ├── MNIST_Data            # MNIST Dataset
+  │   └── SVHN                  # SVHN Dataset
   ├── model
-  │   ├── dataloader.py         # 处理数据集，构建Dataloader
-  │   ├── model.py              # 模型结构
-  │   └── utils.py              # 工具文件
+  │   ├── dataloader.py         # Process dataset, construct Dataloader
+  │   ├── model.py              # model file
+  │   └── utils.py              # utils file
   ├── model_utils
-  │   ├── config.py             # 处理配置参数
-  │   ├── device_adapter.py     # 获取云ID
-  │   ├── local_adapter.py      # 获取本地ID
-  │   ├── moxing_adapter.py     # 参数处理
-  │   └── utils.py              # 工具文件
+  │   ├── config.py             # Config file
+  │   ├── device_adapter.py     # Get cloud ID
+  │   ├── local_adapter.py      # Get loacl ID
+  │   ├── moxing_adapter.py     # Porcess parameters
+  │   └── utils.py              # utils file
   ├── scripts
-  │   ├── run_eval_cpu.sh       # CPU处理器评估的shell脚本
-  │   ├── run_eval_gpu.sh       # GPU处理器评估的shell脚本
-  │   ├── run_eval.sh           # Ascend评估的shell脚本
-  │   ├── run_train_cpu.sh      # 用于CPU训练的shell脚本
-  │   ├── run_train_gpu.sh      # 用于GPU上运行分布式训练的shell脚本
-  │   └── run_train.sh          # 用于分布式训练的shell脚本 
-  ├── README_CN.md              # FADA相关中文说明
-  ├── README.md                 # FADA相关英文说明
-  ├── requirements.txt          # 需要的包
-  ├── default_config.yaml       # 参数配置文件
-  ├── eval.py                   # 评估脚本
-  ├── export.py                 # 将checkpoint文件导出到air/mindir
-  └── train.py                  # 训练脚本
+  │   ├── run_eval_cpu.sh       # shell script for CPU eval
+  │   ├── run_eval_gpu.sh       # shell script for CPU eval
+  │   ├── run_eval.sh           # shell script for Ascend eval
+  │   ├── run_train_cpu.sh      # shell script for CPU training
+  │   ├── run_train_gpu.sh      # shell script for GPU Distributed training
+  │   └── run_train.sh          # shell script for Ascend training 
+  ├── README_CN.md              # FADA related Chinese instructions
+  ├── README.md                 # FADA related English instructions
+  ├── requirements.txt          # Required package
+  ├── default_config.yaml       # Parameter configuration file
+  ├── eval.py                   # Evaluation script
+  ├── export.py                 # Export checkpoint file to air/mindir
+  └── train.py                  # Training script
   ```
 
 ## [Script Parameters](#contents)
