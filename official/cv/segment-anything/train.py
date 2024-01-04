@@ -54,7 +54,10 @@ def main(args) -> None:
     if not args.get('iterative_training'):
         model = ms.Model(model)
     else:
-        model = SamIterativeSegModel(model, num_iter=args.network.num_iter, mask_only_iter=args.network.mask_only_iter)
+        args.loss_manager.loss_scaler.use_amp_scale = True
+        amp_loss_scaler = create_loss_scaler(args.loss_manager.loss_scaler)  # a workaround to use amp scaler
+        model = SamIterativeSegModel(model, num_iter=args.network.num_iter, mask_only_iter=args.network.mask_only_iter,
+                                     loss_scaler=amp_loss_scaler)
     model.train(epoch=args.train_loader.epoch_size, train_dataset=train_dataloader, callbacks=callbacks)
 
 

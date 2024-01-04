@@ -4,6 +4,7 @@ from typing import Union, List
 import mindspore as ms
 import numpy as np
 from mindspore import nn, ops, RunContext, value_and_grad, Tensor
+from mindspore.amp import all_finite
 from mindspore.dataset.engine.datasets import _set_training_dataset
 from mindspore.ops import composite as C
 from mindspore.ops import functional as F
@@ -185,7 +186,8 @@ class SamIterativeSegModel(ms.Model):
     """
     Model specialized for iterative interactive segmentation.
     """
-    def __init__(self, *args, num_iter=3, mask_only_iter=None, **kwargs):
+    def __init__(self, *args, num_iter=3, mask_only_iter=None, loss_scaler=None, **kwargs):
+        self.loss_scaler = loss_scaler
         super(SamIterativeSegModel, self).__init__(*args, **kwargs)
 
         self.num_iter = num_iter
@@ -200,6 +202,7 @@ class SamIterativeSegModel(ms.Model):
         net_with_loss = train_one_step_loss_cell.network
         optimizer = train_one_step_loss_cell.optimizer
         grad_reducer = train_one_step_loss_cell.grad_reducer
+        loss_scaler = self.loss_scaler
         net = net_with_loss.net  # Net without loss
         loss_fn = net_with_loss.loss_fn
         weights = train_one_step_loss_cell.weights
@@ -213,7 +216,7 @@ class SamIterativeSegModel(ms.Model):
             _pred_mask, _pred_iou, _low_res_mask = net(image, points=points, boxes=boxes, masks=masks,
                                                        multimask_output=multimask_output, output_best_mask=output_best_mask, return_low_res_mask=return_low_res_mask)
             _loss = loss_fn(_pred_mask, _pred_iou, gt_mask=gt_mask, valid_boxes=valid_boxes)
-            return _loss[0], (_pred_mask, _pred_iou, _low_res_mask)
+            return loss_scaler.scale(_loss[0]), (_pred_mask, _pred_iou, _low_res_mask)
 
         def _train_fn(*data_element):
 
@@ -229,7 +232,7 @@ class SamIterativeSegModel(ms.Model):
             previous_low_mask = None
             loss_list = []
             grad_list = []
-
+            grad_finite_list = []
             for i in range(self.num_iter):
                 s0 = time.time()
                 # for mask only iter, give a pad-point to keep static shape
@@ -251,6 +254,11 @@ class SamIterativeSegModel(ms.Model):
                                                 gt_dict['masks'],
                                                 gt_dict['valid_boxes'],
                                                 multimask_output)
+                # print(f'loss scale: {loss}, scale value: {loss_scaler.scale_value.value()}')
+                grads = loss_scaler.unscale(grads)
+                loss = loss_scaler.unscale(loss)
+                grads_finite = all_finite(grads)
+                # print(f'loss unscale: {loss}')
                 s2 = time.time()
                 # print(f'f and b takes: {s2-s1:.2f}s')
                 previous_mask = ops.stop_gradient(mask > loss_fn.mask_threshold)  #  (b, n, h, w)
@@ -260,13 +268,17 @@ class SamIterativeSegModel(ms.Model):
                 grad_list.append(grads)  # grad is a tuple with Tensor element
 
                 loss_list.append(loss)
+                grad_finite_list.append(grads_finite)
 
             grad_accum = tuple([sum(k) for k in zip(*grad_list)])
 
             # print(f'loss list', loss_list)
             t0 = time.time()
             grad_accum = grad_reducer(grad_accum)
-            optimizer(grad_accum)
+            if np.all(grad_finite_list):
+                optimizer(grad_accum)
+            else:
+                print(f'gradient overflow')
             t1 = time.time()
             # print(f'optimize takes: {t1 - t0:.2f}s\n\n\n')
 
