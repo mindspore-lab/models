@@ -146,17 +146,19 @@ class LabelPad:
 @TRANSFORM_REGISTRY.registry_module()
 class ImageResizeAndPad:
 
-    def __init__(self, target_size, apply_box=True, apply_mask=True):
+    def __init__(self, target_size, apply_box=True, apply_mask=True, apply_point=False):
         """
         Args:
             target_size (int): target size of model input (1024 in sam)
-            apply_box: also resize and pad box accordingly beside image
+            apply_box: also resize box accordingly beside image
             apply_mask: also resize and pad mask accordingly beside image
+            apply_mask: also resize point accordingly beside image
         """
         self.target_size = target_size
         self.transform = ResizeLongestSide(target_size)
         self.apply_box = apply_box
         self.apply_mask = apply_mask
+        self.apply_point = apply_point
 
     def __call__(self, result_dict):
         """
@@ -175,6 +177,7 @@ class ImageResizeAndPad:
         image = result_dict['image']
         masks = result_dict.get('masks')
         boxes = result_dict.get('boxes')
+        points = result_dict.get('points')
 
         og_h, og_w, _ = image.shape
         image = self.transform.apply_image(image)
@@ -204,6 +207,10 @@ class ImageResizeAndPad:
             mask_padding = ((0, 0), (0, pad_h), (0, pad_w))  # (n, h, w)
             masks = np.pad(masks, pad_width=mask_padding, constant_values=0)
             result_dict['masks'] = masks
+
+        if self.apply_point:
+            points = self.transform.apply_coords(points, (og_h, og_w)).astype(np.float32)
+            result_dict['points'] = points
 
         return result_dict
 

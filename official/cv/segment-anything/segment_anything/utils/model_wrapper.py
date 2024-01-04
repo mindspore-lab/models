@@ -298,8 +298,7 @@ class SamIterativeSegModel(ms.Model):
         for i in range(bs*n):
             non_zero_ind = np.transpose(np.nonzero(triple_map[i]))  # (nz, 2)
             if len(non_zero_ind) !=0:
-                # rand = np.random.randint(0, len(non_zero_ind)) # (1,)
-                rand = 0
+                rand = np.random.randint(0, len(non_zero_ind)) # (1,)
                 point = non_zero_ind[rand]  # (2,)
                 label = triple_map[i][point[0], point[1]]  # 1 or -1
                 label = (label > 0).astype(np.int32)  # 1 or 0
