@@ -270,7 +270,7 @@ class SamIterativeSegModel(ms.Model):
                 loss_list.append(loss)
                 grad_finite_list.append(grads_finite)
 
-            grad_accum = tuple([sum(k) for k in zip(*grad_list)])
+            grad_accum = tuple([sum(k)/self.num_iter for k in zip(*grad_list)])
 
             # print(f'loss list', loss_list)
             t0 = time.time()
