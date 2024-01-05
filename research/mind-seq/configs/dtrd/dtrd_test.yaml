@@ -1,0 +1,18 @@
+---
+
+model: 'dtrd'
+data: 'Qbert'
+seed: 42
+context_length: 30
+epochs: 5
+model_type: 'reward_conditioned'
+num_steps: 500000
+num_buffers: 50
+game: Qbert
+batch_size: 128
+trajectories_per_buffer: 10
+data_dir: './mindseq/data/game_data/'
+device: "GPU"
+do_train: False
+ckpt_path: "./checkpoints/test_ckpt/dtrd_best.ckpt"
+# ckpt_path: "./checkpoints/train_ckpt/DTRD/gpt_Qbert_best_0.ckpt"

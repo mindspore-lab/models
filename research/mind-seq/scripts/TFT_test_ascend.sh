@@ -1,0 +1,1 @@
+python -u train.py --model TFT --data electricity -c configs/tft/TFT_test.yaml --device Ascend

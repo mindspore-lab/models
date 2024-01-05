@@ -1,0 +1,103 @@
+---
+
+seed: 1
+epoch: 30
+load_mode: final_project
+net_mode: all_path
+desc: 'I1'
+ckpt_path: ./PEMS08.ckpt
+do_train: true
+distribute: false
+device: GPU
+data_path: ./mindseq/data
+param_path: ./checkpoints/train_ckpt
+
+
+path: PEMS08
+num_sensors: 170
+in_length: 12
+out_length: 12
+in_size: 1
+out_size: 1
+normalized_k: 0.1
+adj_type: 'distance'
+train_prop: 0.7
+test_prop: 0.2
+batch_size: 24
+
+
+name: PEMS08_ALLOT_PT_A2_N12
+hidden_size: 64
+skip_size: 64
+layer_names: [ALLOTCell]
+skip_mode: 'noskip'
+node_out: 'out'
+num_nodes: 4
+dropout: 0.1
+candidate_op_profiles: [
+  [S2TLayer, {
+    seq_len: 12, 
+    out_len: 12, 
+    d_model: 64,
+    n_heads: 8, 
+    d_ff: 64,
+    nodes: 170, 
+    n_graphs: 3,
+    order: 2,
+    use_bn: False,
+    dropout: 0.1,
+    activation: 'gelu'
+  }],
+  [STSGLayer, {
+    seq_len: 12, 
+    out_len: 12, 
+    d_model: 64,
+    n_heads: 8, 
+    d_ff: 64,
+    nodes: 170, 
+    n_graphs: 3,
+    order: 2,
+    use_bn: False,
+    dropout: 0.1,
+    activation: 'gelu'
+  }],
+  [T2SGLayer, {
+    seq_len: 12, 
+    out_len: 12, 
+    d_model: 64,
+    n_heads: 8, 
+    d_ff: 64,
+    nodes: 170, 
+    n_graphs: 3,
+    order: 2,
+    use_bn: False,
+    dropout: 0.1,
+    activation: 'gelu'
+  }],
+]
+
+
+arch_lr: 0.001
+arch_decay: 0.0
+arch_lr_decay_milestones: [50,60,70,80]
+arch_lr_decay_ratio: 0.1
+arch_clip_gradient: 5
+
+weight_lr: 0.001
+weight_decay: 0.0
+weight_lr_decay_milestones: [50,60,70,80]
+weight_lr_decay_ratio: 0.1
+weight_clip_gradient: 5
+
+num_search_epochs: 20
+num_train_epochs: 20
+
+criterion: 'masked_mae'
+metric_names: ['mae', 'rmse', 'mape']
+metric_indexes: [3,6,12]
+print_frequency: 20
+
+use_gpu: True
+device_ids: [0]
+
+project_init: 5

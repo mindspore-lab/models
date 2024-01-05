@@ -1,0 +1,1 @@
+python -u train.py --model DTRD --data Qbert -c ./configs/dtrd/dtrd_train.yaml --do_train

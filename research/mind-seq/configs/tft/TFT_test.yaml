@@ -1,0 +1,20 @@
+data_path: ./mindseq/data/TFT/processed/electricity_bin  # Specify the actual data path here
+dataset: electricity   # Specify the dataset name here
+epochs: 6
+sample_data: [-1, -1]
+sample: 450000 50000
+batch_size: 256
+lr: 0.001
+seed: 1
+use_amp: true
+clip_grad: 0.0
+grad_accumulation: 0
+early_stopping: 1000
+results: ./results/TFT_electricity_bs1x256_lr1e-3/seed_1
+log_file: dllogger.json
+overwrite_config: ''
+affinity: socket_unique_interleaved
+device: GPU
+disable_benchmark: false
+do_train: false
+ckpt_path: ./checkpoints/test_ckpt/TFT.ckpt

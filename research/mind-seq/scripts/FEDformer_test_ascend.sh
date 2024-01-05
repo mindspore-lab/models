@@ -1,0 +1,1 @@
+python -u train.py --model FEDformer --data ETTh1 -c configs/fedformer/FEDformer.yaml --device Ascend
