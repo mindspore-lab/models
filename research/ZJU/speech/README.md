@@ -62,7 +62,7 @@ SPEECH
 
 **1. Project Preparation**:
 
-Download this project and unzip the dataset. You can directly download the archive
+Download this project and unzip the [dataset](https://github.com/zjunlp/SPEECH/tree/main/Datasets). You can directly download the archive
 
 
 **2. Data Preparation**: 
