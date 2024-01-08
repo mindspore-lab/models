@@ -255,9 +255,9 @@ class SamIterativeSegModel(ms.Model):
                                                 gt_dict['valid_boxes'],
                                                 multimask_output)
                 # print(f'loss scale: {loss}, scale value: {loss_scaler.scale_value.value()}')
-                grads = loss_scaler.unscale(grads)
                 loss = loss_scaler.unscale(loss)
-                grads_finite = all_finite(grads)
+                grads_finite = all_finite(grads)  # all finite before unscale grads
+                grads = loss_scaler.unscale(grads)
                 # print(f'loss unscale: {loss}')
                 s2 = time.time()
                 # print(f'f and b takes: {s2-s1:.2f}s')
