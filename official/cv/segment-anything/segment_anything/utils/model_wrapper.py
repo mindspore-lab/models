@@ -209,6 +209,15 @@ class SamIterativeSegModel(ms.Model):
 
         # for training only
         net.set_train(True)
+
+        @ms.jit(compile_once=True)
+        def grad_reducer_wrapper(grads):
+            return grad_reducer(grads)
+
+        @ms.jit(compile_once=True)
+        def optimizer_wrapper(grads):
+            optimizer(grads)
+
         @ms.jit
         def forward_point(image, points=None, boxes=None, masks=None,
                           gt_mask=None, valid_boxes=None,
@@ -248,7 +257,7 @@ class SamIterativeSegModel(ms.Model):
                 # print(f'get next takes: {s1-s0:.2f}s')
                 (loss, (mask, iou, low_res_mask)), grads = grad_fn(
                                                 input_dict['image'],
-                                                ms.mutable(point_and_label),
+                                                ms.mutable(point_and_label), # mutable tuple to prevent duplicate graph compiling
                                                 None,  # box
                                                 previous_low_mask,
                                                 gt_dict['masks'],
@@ -274,9 +283,9 @@ class SamIterativeSegModel(ms.Model):
 
             # print(f'loss list', loss_list)
             t0 = time.time()
-            grad_accum = grad_reducer(grad_accum)
+            grad_accum = grad_reducer_wrapper(ms.mutable(grad_accum)) # mutable tuple to prevent duplicate graph compiling
             if np.all(grad_finite_list):
-                optimizer(grad_accum)
+                optimizer_wrapper(ms.mutable(grad_accum)) # mutable tuple to prevent duplicate graph compiling
             else:
                 print(f'gradient overflow')
             t1 = time.time()
