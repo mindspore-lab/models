@@ -10,6 +10,8 @@ from segment_anything.utils.registry import OPTIMIZER_REGISTRY
 def create_optimizer(
     params,
     args,
+    step_per_epoch,
+    epoch_size
 ):
     r"""Creates optimizer by name.
 
@@ -25,15 +27,16 @@ def create_optimizer(
     Returns:
         Optimizer object
     """
-    optimizer = OPTIMIZER_REGISTRY.instantiate(**args, params=params)
+    optimizer = OPTIMIZER_REGISTRY.instantiate(**args, params=params,
+                                               step_per_epoch=step_per_epoch, epoch_size=epoch_size)
     return optimizer
 
 
 @OPTIMIZER_REGISTRY.registry_module()
 class AdamW(nn.optim.Adam):
-    def __init__(self, params: List, lr_scheduler, group_param, **kwargs):
+    def __init__(self, params: List, lr_scheduler, group_param, step_per_epoch, epoch_size, **kwargs):
         if group_param is None:
             group_param = dict()
         params = create_group_param(params, **group_param)
-        lr_scheduler_inst = create_lr_scheduler(lr_scheduler)
+        lr_scheduler_inst = create_lr_scheduler(lr_scheduler, step_per_epoch=step_per_epoch, epoch_size=epoch_size)
         super().__init__(params, lr_scheduler_inst, **kwargs)

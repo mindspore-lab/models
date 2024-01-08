@@ -130,7 +130,7 @@ class TrainStatusLog(Callback):
         self.accumulate_loss += loss
 
         if cur_step % self.log_interval == 0:
-            lr = cb_params.network.optimizer.learning_rate(cur_step)
+            lr = cb_params.network.optimizer.learning_rate.learning_rate[cur_step]
             smooth_loss = self.accumulate_loss / self.log_interval
 
             step_cost = time.time() - self.step_start_time

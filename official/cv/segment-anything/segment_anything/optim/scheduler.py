@@ -7,15 +7,42 @@ import mindspore as ms
 from segment_anything.utils.registry import LR_SCHEDULER_REGISTRY
 
 
-def create_lr_scheduler(args: Dict):
+def create_lr_scheduler(args, step_per_epoch, epoch_size):
     """
     instantiate learning rate scheduler class
     """
+    if args.type.endswith('sam_dynamic_decay_lr'):
+        return sam_dynamic_decay_lr(learning_rate=args.learning_rate,
+                                    warmup_steps=args.warmup_steps,
+                                    decay_steps=args.decay_steps,
+                                    decay_factor=args.decay_factor,
+                                    step_per_epoch=step_per_epoch,
+                                    epoch_size=epoch_size,
+                                    )
     scheduler = LR_SCHEDULER_REGISTRY.instantiate(**args)
     return scheduler
 
+def sam_dynamic_decay_lr(learning_rate, warmup_steps, decay_steps, decay_factor, step_per_epoch, epoch_size):
+    def lr_factor(step):
+        if step < warmup_steps:
+            return step / float(warmup_steps)
+        elif step < decay_steps[0]:
+            return 1.0
+        elif step < decay_steps[1]:
+            return 1.0 / decay_factor
+        else:
+            return 1.0 / (decay_factor**2)
+    total_step = step_per_epoch * epoch_size
+    lr_list = []
+    for i in range(total_step):
+        step = i + 1
+        lr = learning_rate * lr_factor(step)
+        lr_list.append(lr)
 
-@LR_SCHEDULER_REGISTRY.registry_module()
+    return lr_list
+
+
+# @LR_SCHEDULER_REGISTRY.registry_module()
 class SAMDynamicDecayLR(LearningRateSchedule):
     def __init__(self,
                  learning_rate: float,
