@@ -224,7 +224,7 @@ class SamIterativeSegModel(ms.Model):
                           multimask_output=False, output_best_mask=True, return_low_res_mask=True):
             _pred_mask, _pred_iou, _low_res_mask = net(image, points=points, boxes=boxes, masks=masks,
                                                        multimask_output=multimask_output, output_best_mask=output_best_mask, return_low_res_mask=return_low_res_mask)
-            _loss = loss_fn(_pred_mask, _pred_iou, gt_mask=gt_mask, valid_boxes=valid_boxes)
+            _loss = loss_fn(_pred_mask, _pred_iou, gt_mask, valid_boxes)
             return loss_scaler.scale(_loss[0]), (_pred_mask, _pred_iou, _low_res_mask)
 
         def _train_fn(*data_element):
