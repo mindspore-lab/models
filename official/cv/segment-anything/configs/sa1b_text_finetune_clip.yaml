@@ -22,7 +22,7 @@ optimizer:
   group_param:
 
   lr_scheduler:
-    type: segment_anything.optim.scheduler.SAMDynamicDecayLR
+    type: segment_anything.optim.scheduler.sam_dynamic_decay_lr
     learning_rate: 8e-6
     warmup_steps: 250
     decay_steps: [ 60000, 86666 ]
