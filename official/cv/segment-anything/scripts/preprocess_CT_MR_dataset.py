@@ -78,7 +78,7 @@ for i, name in tqdm(enumerate(names), desc='preprocessing', total=total_size):  
     # remove label ids
     for remove_label_id in remove_label_ids:
         gt_data_ori[gt_data_ori == remove_label_id] = 0
-    all_labels = np.unique(gt_data_ori).sort()[1:]
+    all_labels = np.sort(np.unique(gt_data_ori))[1:]
 
     # remove obj with more than one connected area
     # for l in all_labels:

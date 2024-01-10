@@ -284,7 +284,9 @@ class SamIterativeSegModel(ms.Model):
             # print(f'loss list', loss_list)
             t0 = time.time()
             grad_accum = grad_reducer_wrapper(ms.mutable(grad_accum)) # mutable tuple to prevent duplicate graph compiling
-            if np.all(grad_finite_list):
+            # all finite should be after grad reduce for multi node
+            grad_accum_finite = all_finite(grad_accum)
+            if grad_accum_finite:
                 optimizer_wrapper(ms.mutable(grad_accum)) # mutable tuple to prevent duplicate graph compiling
             else:
                 print(f'gradient overflow')
