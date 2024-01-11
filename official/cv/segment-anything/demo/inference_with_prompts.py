@@ -56,13 +56,13 @@ def main(args: argparse.Namespace):
 
 def predict_with_point(predictor, image, args: argparse.Namespace):
     # predict the first point
-    input_point = np.array([[500, 375]])
-    input_label = np.array([1])
+    input_point1 = np.array([[500, 375]])
+    input_label1 = np.array([1])
 
     s1 = time.time()
     masks, scores, logits = predictor.predict(
-        point_coords=input_point,
-        point_labels=input_label,
+        point_coords=input_point1,
+        point_labels=input_label1,
         multimask_output=True,
     )
     s2 = time.time()
@@ -73,7 +73,7 @@ def predict_with_point(predictor, image, args: argparse.Namespace):
         plt.figure(figsize=(10, 10))
         plt.imshow(image)
         show_mask(mask, plt.gca())
-        show_points(input_point, input_label, plt.gca())
+        show_points(input_point1, input_label1, plt.gca())
         plt.title(f"Mask {i + 1}, Score: {score:.3f}", fontsize=18)
         plt.axis('off')
         path = os.path.join(args.output_dir, f'mask_{i+1}.jpg')
@@ -83,15 +83,15 @@ def predict_with_point(predictor, image, args: argparse.Namespace):
             plt.show()
 
     # predict the second and third points
-    input_point = np.array([[500, 375], [1125, 625]])
-    input_label = np.array([1, 0])
+    input_point2 = np.array([[500, 375], [1125, 625]])
+    input_label2 = np.array([1, 0])
 
     mask_input = logits[np.argmax(scores), :, :]  # Choose the model's best mask
     print(f'mask input shape {mask_input.shape}')
     s3 = time.time()
     masks, _, _ = predictor.predict(
-        point_coords=input_point,
-        point_labels=input_label,
+        point_coords=input_point2,
+        point_labels=input_label2,
         mask_input=mask_input[None, :, :],
         multimask_output=False,
     )
@@ -101,7 +101,8 @@ def predict_with_point(predictor, image, args: argparse.Namespace):
     plt.figure(figsize=(10, 10))
     plt.imshow(image)
     show_mask(masks, plt.gca())
-    show_points(input_point, input_label, plt.gca())
+    show_points(input_point1, input_label1, plt.gca())
+    show_points(input_point2, input_label2, plt.gca())
     plt.axis('off')
     path = os.path.join(args.output_dir, f'two_point.jpg')
     print(f'saving mask at {path}')

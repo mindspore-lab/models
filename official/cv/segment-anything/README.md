@@ -30,12 +30,12 @@ Beside fine-tuning our code on COCO2017 dataset which contains common seen objec
 The bellowing shows the mask quality before and after finetune.
 
 
-| pretrained_model | dataset  |    epochs     | mIOU |
-|:----------------:| -------- |:-------------:|------|
-|    sam-vit-b     | COCO2017 | 0 (zero-shot) | 77.4 |
-|    sam-vit-b     | COCO2017 |      20       | 83.5 |
-|    sam-vit-b     | FLARE22  | 0 (zero-shot) | 79.5 |
-|    sam-vit-b     | FLARE22  |      10       | 88.1 |
+| pretrained_model | dataset  |    epochs     | mIOU | ckpt                                                                                                         |
+|:----------------:| -------- |:-------------:|------|--------------------------------------------------------------------------------------------------------------|
+|    sam-vit-b     | COCO2017 | 0 (zero-shot) | 74.5 |                                                                                                              |
+|    sam-vit-b     | COCO2017 |      20       | 80.2 | [link](https://download-mindspore.osinfra.cn/toolkits/mindone/sam/sam_vitb_box_finetune_coco-a9b75828.ckpt)                                                                                                         |
+|    sam-vit-b     | FLARE22  | 0 (zero-shot) | 78.6 |                                                                                                              |
+|    sam-vit-b     | FLARE22  |      10       | 87.4 | [link](https://download-mindspore.osinfra.cn/toolkits/mindone/sam/sam_vitb_box_finetune_flare-ace06cc2.ckpt) |
 
 A machine with **32G ascend memory** is required for box-prompt finetune.
 
@@ -82,6 +82,38 @@ Here are the examples of segmentation result predicted by box-prompt fine-tuned 
   <em> FLARE22 image example </em>
 </p>
 
+### Finetune with point-prompt
+The point in addition to the previous-step-output mask are used as prompt input to predict mask.
+We follow an iterative interactive training schedule described in the official SAM paper. First a foreground point is sampled uniformly from the ground truth mask. After making a prediction, 
+subsequent points are selected uniformly from the error region between the previous mask prediction and the ground truth mask. Each new point is a foreground or background if the error region is a false negative or false positive. 
+The mask prediction from the previous iteration is used as an additional prompt. In order to encourage the model to benefit from the supplied mask, several more iterations are used where no additional points are sampled.
+The total iteration number and the position where mask-only iterations are inserted is configurable.
+
+Since the original training dataset (SA-1B) is almost of common objects, we use a medical imaging segmentation dataset [FLARE22](https://flare22.grand-challenge.org/Dataset/) (preprocess the raw dataset as mentioned in the last chapter) for the finetune experiment. 
+We note that SAM model express strong zero-shot ability and the finetune process may learn mainly the labelling bias for most downstream datasets.
+
+for standalone finetune of FLARE22 dataset, please run:
+```shell
+python train.py -c configs/sa1b_point_finetune.yaml
+```
+
+for distributed finetune of FLARE22 dataset, please run:
+```shell
+mpirun --allow-run-as-root -n 4 python train.py -c configs/sa1b_point_finetune.yaml
+```
+
+the fine-tuned model will be saved at the work_root specified in `configs/sa1b_point_finetune.yaml`. For a fast single image inference, please run,
+
+```shell
+python point_inference.py --checkpoint=your/path/to/ckpt
+```
+
+Below is an experimental result batch-prompted with 5 points and the model is trained at scale `vit_b`. The checkpoint can be downloaded [here](https://download-mindspore.osinfra.cn/toolkits/mindone/sam/sam_vitb_point_finetune_flare-898ae8f6.ckpt). 
+<div align="center">
+    <img alt="img.png" src="images/tumor2_5point.png" width="600"/>
+</div>
+
+Explore more interesting applications such as iterative positive and negative points prompting described in the following Demo Chapter.
 
 ### Finetune with text-prompt
 *Note again that text-to-mask finetune is exploratory and not robust, and the official pytorch code is not release yet.*
@@ -111,13 +143,25 @@ mpirun --allow-run-as-root -n 8 python train.py -c configs/sa1b_text_finetune_bl
 the fine-tuned model will be saved at the work_root specified in `configs/sa1b_text_finetune.yaml`. For a fast single image inference, please run,
 
 ```shell
-python text_inference.py --checkpoint=your/path/to/ckpt
+python text_inference.py --checkpoint=your/path/to/ckpt --text-prompt your_prompt
 ```
 
-Below is an experimental result prompted with `wheels`. _Note that the model is trained with limited data and the smallest SAM type `vit_b`._ 
+Below are some zero-shot experimental result prompted with `floor` and `buildings`. The checkpoint can be downloaded [here](https://download-mindspore.osinfra.cn/toolkits/mindone/sam/sam_vitb_text_finetune_sa1b_10k-972de39e.ckpt). _Note that the model is trained with limited data and the smallest SAM type `vit_b`._
+
 <div align="center">
-    <img alt="img.png" src="images/blip2-text-prompt-wheel.png" width="600"/>
+<img src="images/dengta-floor.png" height="350" />
+      
+<img src="images/dengta-buildings.png" height="350" />
 </div>
+
+<p align="center">
+  <em> prompt: floor</em>
+                        
+                        
+  <em> prompt: buildings </em>
+</p>
+
+Try more prompts like `sky` or `trees` etc.
 
 ## Demo
 

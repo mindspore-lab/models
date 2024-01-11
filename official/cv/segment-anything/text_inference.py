@@ -83,7 +83,7 @@ def infer(args):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=("Runs inference on one image"))
-    parser.add_argument("--image_path", type=str, default='./images/truck.jpg', help="Path to an input image.")
+    parser.add_argument("--image_path", type=str, default='./images/dengta.jpg', help="Path to an input image.")
     parser.add_argument(
         "--model-type",
         type=str,
@@ -100,14 +100,14 @@ if __name__ == '__main__':
     parser.add_argument(
         "--text-prompt",
         type=str,
-        default='wheels',
+        default='floor',
         help="Text prompt",
     )
 
     parser.add_argument(
         "--checkpoint",
         type=str,
-        default='./models/sam_vit_b-35e4849c.ckpt',
+        default='./models/sam_vitb_text_finetune_sa1b_10k-972de39e.ckpt',
         help="The type of model to load, in ['default', 'vit_h', 'vit_l', 'vit_b']",
     )
 

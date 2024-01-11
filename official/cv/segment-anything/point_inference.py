@@ -90,7 +90,7 @@ if __name__ == '__main__':
     parser.add_argument(
         "--checkpoint",
         type=str,
-        default='./models/sam_vit_b-35e4849c.ckpt',
+        default='./models/sam_vitb_point_finetune_flare-898ae8f6.ckpt',
         help="The type of model to load, in ['default', 'vit_h', 'vit_l', 'vit_b']",
     )
 
