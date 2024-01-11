@@ -124,13 +124,13 @@ with the extracted CLIP image embeddings as text prompt input. At inference time
 
 The key that make the training procedure work is that CLIP’s image embeddings are trained to align with its text embeddings.
 
-This repository provides an implementation of text-to-mask finetune referring to the model structure and training procedure described in the official SAM paper and replace CLIP to a stronger multimodal encoder BLIP2.
+This repository provides an implementation of text-to-mask finetune referring to the model structure and training procedure described in the official SAM paper and introduces a stronger multimodal encoder BLIP2 in addition to CLIP.
 
 A machine with **64G ascend memory** is required for text-prompt finetune.
 
 First download  SA-1B dataset and put it under `${project_root}/datasets/sa-1b`.
 
-for standalone finetune of SA-1B dataset, please run:
+for standalone finetune of SA-1B dataset with BLIP2 (CLIP is similar), please run:
 ```shell
 python train.py -c configs/sa1b_text_finetune_blip2.yaml
 ```
@@ -146,7 +146,7 @@ the fine-tuned model will be saved at the work_root specified in `configs/sa1b_t
 python text_inference.py --checkpoint=your/path/to/ckpt --text-prompt your_prompt
 ```
 
-Below are some zero-shot experimental result prompted with `floor` and `buildings`. The checkpoint can be downloaded [here](https://download-mindspore.osinfra.cn/toolkits/mindone/sam/sam_vitb_text_finetune_sa1b_10k-972de39e.ckpt). _Note that the model is trained with limited data and the smallest SAM type `vit_b`._
+Below are some zero-shot experimental result prompted with `floor` and `buildings`. The checkpoint fine-tuned with BLIP2 can be downloaded [here](https://download-mindspore.osinfra.cn/toolkits/mindone/sam/sam_vitb_text_finetune_sa1b_10k-972de39e.ckpt). _Note that the model is trained with limited data and the smallest SAM type `vit_b`._
 
 <div align="center">
 <img src="images/dengta-floor.png" height="350" />
