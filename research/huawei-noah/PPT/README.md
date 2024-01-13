@@ -190,6 +190,8 @@ PPT-DeiT
 
 #### Evaluation with checkpoint
 
+First download the pre-trained DeiT [checkpoint](https://dl.fbaipublicfiles.com/deit/deit_small_patch16_224-cd65a155.pth), then convert it from `pth` to the `ckpt` by `convert_pt_ro_ms.py`.
+
 Usage
 
 ```shell
