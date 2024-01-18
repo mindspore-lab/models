@@ -1,0 +1,105 @@
+# ===== Model ===== #
+model: deit_small_patch16_224
+
+finetune: ''
+exclude_epoch_state: false
+
+# ===== PPT setting ===== #
+r_tokens: 50
+pp_loc_list: [3, 6, 9]
+threshold: 7e-5
+
+# ===== Dataset ===== #
+data_path: /lustre/datasharing/sjma/ImageNet/ILSVRC2012/imagenet
+
+train_dir: train
+val_dir: val
+num_classes: 1000
+input_size: 224
+no_dataset_sink_mode: false
+
+
+# ===== Base training config ===== #
+amp_level: O2
+lr: 0.0005
+min_lr: 1.0e-05
+batch_size: 64
+epochs: 300
+model_ema: false
+
+
+# ===== Network training config ===== #
+clip_grad: null
+clip_grad_norm: 5.0
+bce_loss: false
+
+momentum: 0.9
+num_workers: 10
+opt: adamw
+opt_eps: 1.0e-08
+unscale_lr: false
+use_clip_grad_norm: false
+warmup_epochs: 5
+warmup_lr: 1.0e-06
+weight_decay: 0.05
+patience_epochs: 10
+start_epoch: 0
+sched: cosine_lr
+decay_epochs: 30
+decay_rate: 0.1
+is_dynamic_loss_scale: 1
+loss_scale: 1024
+cooldown_epochs: 10
+
+
+# ===== Hardware setup ===== #
+device_id: 0
+device_num: 1
+device_target: GPU
+
+
+# ===== Augments ===== #
+smoothing: 0.1
+eval_crop_ratio: 0.875
+aa: rand-m9-mstd0.5-inc1
+beta:
+- 0.9
+- 0.999
+recount: 1
+remode: pixel
+reprob: 0.25
+resplit: false
+color_jitter: 0.3
+cutmix: 1.0
+cutmix_minmax: null
+mixup: 0.8
+mixup_mode: batch
+mixup_off_epoch: 0
+mixup_prob: 1.0
+mixup_switch_prob: 0.5
+interpolation: bicubic
+
+
+
+
+# ===== EMA ===== #
+model_ema_decay: 0.99996
+
+# ===== Distilation ===== #
+
+distillation_alpha: 0.5
+distillation_tau: 1.0
+distillation_type: none
+teacher_model: regnety_160
+teacher_path: ''
+
+
+# ===== Artifacts setup ===== #
+keep_checkpoint_max: 10
+output_dir: ./
+ckpt_keep_num: 10
+ckpt_save_every_sec: 3600
+ckpt_save_every_step: 0
+collect_input_data: false
+summary_loss_collect_freq: 1
+print_loss_every: 20
