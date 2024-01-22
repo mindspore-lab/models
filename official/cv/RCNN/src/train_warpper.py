@@ -38,6 +38,8 @@ class TrainOneStepCell(nn.TrainOneStepWithLossScaleCell):
             sens_tuple += (ops.zeros_like(outputs[i]),)
         grads = self.grad(self.network, weights)(*inputs, sens_tuple)
         grads = self.loss_scaler.unscale(grads)
+        if self.clip_grads:
+            grads = ops.clip_by_global_norm(grads)
         grads = self.grad_reducer(grads)
         # get the overflow buffer
         cond = self.get_overflow_status(status, grads)
