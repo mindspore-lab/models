@@ -58,7 +58,7 @@ def get_args_train(parents=None):
 
 
 def train(cfg, network, dataset, optimizer, loss_scaler, grad_reducer, eval_dataset=None):
-    train_net = TrainOneStepCell(network, optimizer, loss_scaler, grad_reducer, clip_grads=cfg.backbone.frozen_bn)
+    train_net = TrainOneStepCell(network, optimizer, loss_scaler, grad_reducer, clip_grads=cfg.clip_grads)
     model = ms.Model(train_net)
     cfg.print_pre_epoch = dataset.get_dataset_size() // cfg.log_interval + 1
     cfg.steps_per_epoch = cfg.print_pre_epoch * cfg.log_interval
@@ -168,9 +168,20 @@ if __name__ == "__main__":
 
     config.start_step = 0
     if os.path.exists(config.resume_ckpt):
-        ms.load_checkpoint(config.resume_ckpt, network)
-        parameter_dict = ms.load_checkpoint(config.resume_ckpt, optimizer)
-        config.start_step = int(parameter_dict["global_step"].data)
+        params = ms.load_checkpoint(config.resume_ckpt)
+        new_params = {}
+        for p in params:
+            data = params[p]
+            if "bbox_cls" in p:
+                if data.shape[0] != config.data.nc + 1:
+                    print(f"[WARNING] param {p}'s shape {data.shape} is not match num_class {config.data.nc}")
+                    continue
+            if "bbox_delta" in p:
+                if data.shape[0] != config.data.nc * 4:
+                    print(f"[WARNING] param {p}'s shape {data.shape} is not match num_class {config.data.nc}")
+                    continue
+            new_params[p] = data
+        ms.load_param_into_net(network, new_params)
         logger.info(f"success to load pretrained ckpt {config.resume_ckpt}")
 
     loss_scaler = StaticLossScaler(1.0)

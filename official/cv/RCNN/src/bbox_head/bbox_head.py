@@ -67,6 +67,7 @@ class BBoxHead(nn.Cell):
             bg_thresh=cfg.bbox_assigner.bg_thresh,
             fg_thresh=cfg.bbox_assigner.fg_thresh,
             fg_fraction=cfg.bbox_assigner.fg_fraction,
+            num_classes=num_classes,
             with_mask=with_mask,
         )
         self.num_classes = num_classes
