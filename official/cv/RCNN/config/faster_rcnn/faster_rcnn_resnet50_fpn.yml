@@ -6,7 +6,7 @@ backbone:
   out_channels: 256
   frozen_2stage: True
   frozen_bn: False
-  frozen: True
+  frozen: False
   fpn:
     num_outs: 5
     level_index: [ 0, 1, 2, 3 ]
