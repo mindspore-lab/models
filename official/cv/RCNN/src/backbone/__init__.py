@@ -51,7 +51,7 @@ def create_backbone(initializer, in_channels=3, pretrained=True, backbone_ckpt="
 def build_backbone(cfg):
     model_name = cfg.name
     network = create_backbone(model_name, pretrained=cfg.pretrained)
-    if cfg.frozen_bn:
+    if cfg.frozen_bn or cfg.frozen:
         for _, cell in network.cells_and_names():
             if isinstance(cell, (nn.BatchNorm1d, nn.BatchNorm2d, nn.BatchNorm3d)):
                 cell.use_batch_statistics = False
@@ -70,9 +70,13 @@ def build_backbone(cfg):
             norm=cfg.fpn.norm,
             act=cfg.fpn.act,
             upsample_mode=cfg.fpn.upsample_mode,
+            frozen=cfg.frozen
         )
     else:
         network = SinOut(network, cfg.in_channels, cfg.out_channel)
+    if cfg.frozen:
+        for p in network.trainable_params():
+            p.requires_grad = False
     return network
 
 
