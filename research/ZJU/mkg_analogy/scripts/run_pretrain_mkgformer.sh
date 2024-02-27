@@ -1,0 +1,15 @@
+python ms_main.py \
+   --seed 42 \
+   --epochs=30 \
+   --model_name_or_path bert-base-uncased \
+   --visual_model_path clip-vit-base-patch32 \
+   --entity_img_path dataset/MARS/images \
+   --device 'CPU' \
+   --batch_size 64 \
+   --pretrain \
+   --overwrite_cache \
+   --data_dir dataset/MARS \
+   --pretrain_path dataset/MarKG \
+   --max_seq_length 96 \
+   --warmup_ratio 0.1 \
+   --lr 5e-5
