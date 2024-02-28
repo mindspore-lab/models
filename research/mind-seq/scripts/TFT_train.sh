@@ -1,0 +1,1 @@
+python -u train.py --model TFT --data electricity -c configs/tft/TFT_train.yaml --do_train
