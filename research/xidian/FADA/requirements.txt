@@ -1,0 +1,5 @@
+mindspore_ascend==1.8.0
+moxing_framework==2.0.0.rc2.4b57a67b
+numpy >= 1.17.0
+PyYAML==6.0
+
