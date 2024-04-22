@@ -35,5 +35,5 @@ run the `run.py` file. This can be done by navigating to the project directory a
 python run.py
 ```
 
-Ensure that all the dependencies are installed and the dataset is putted under path `./data/` before running the project.
+Ensure that all the dependencies are installed and the dataset is put under path `./data/` before running the project.
 
