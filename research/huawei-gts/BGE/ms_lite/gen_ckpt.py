@@ -7,7 +7,7 @@ parser.add_argument('--model-path', type=str, required=False, help='huggingface 
 args = parser.parse_args()
 
 MODEL_PATH = args.model_path
-CKPT_PATH = r"./model/model.ckpt"
+CKPT_PATH = r"./model.ckpt"
 
 model = MSBertModel.from_pretrained(MODEL_PATH)
 mindspore.save_checkpoint(model, CKPT_PATH)

@@ -17,15 +17,14 @@ def read_from_folder(folder_path):
     file_names.sort()
     first_file = np.load(os.path.join(folder_path, file_names[0]))
     sum_size = 0
+    print("Preparing data for entry")
     for i, file_name in enumerate(file_names):
-        print("step:",i)
         file_path = os.path.join(folder_path, file_name)
         array = np.load(file_path)
         sum_size += array.shape[0]
     concatenated_array = np.zeros((sum_size, *first_file.shape[1:]))
     cur_size = 0
     for i, file_name in enumerate(file_names):
-        print("step:",i)
         file_path = os.path.join(folder_path, file_name)
         array = np.load(file_path)
         concatenated_array[cur_size:cur_size + array.shape[0]] = array

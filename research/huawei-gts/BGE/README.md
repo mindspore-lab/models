@@ -121,29 +121,33 @@ print(similarity)
 1. 在训练服务(如910B)上导出ckpt格式的权重，参考gen_ckpt.py
 
 ```
-python gen_ckpt.py --model_path ./model
+python gen_ckpt.py --model-path ./model
 ```
 
 参数解释:
-/--model_path：原仓模型的路径，如./bge-large-zh-v1.5
+/--model-path：原仓模型的路径，如./bge-large-zh-v1.5
 
 2. 在训练服务器(如910B)上将ckpt转化为mindir格式的文件，参考gen_mindir_from_ckpt.py
 
 ```
-python gen_mindir_from_ckpt.py --model_path=./model/model.ckpt
+python gen_mindir_from_ckpt.py --model-path=./model/model.ckpt --config-path=./bge-large-zh-v1.5
 ```
 
 参数解释:
-/--model_path：ckpt模型路径
+/--model-path：ckpt模型路径
+
+/--config-path:   模型配置文件，tokenizer配置文件与词表路径，默认为bge-large-zh-v1.5
 
 3. 在推理服务器(如310P)上使用生成好的mindir文件进行推理，参考bge-cloud-lite.py
 
 ```
-python bge-cloud-lite.py --model_path=./model/model.mindir
+python bge-cloud-lite.py --model-path=./model/model.mindir --config-path=./bge-large-zh-v1.5
 ```
 
 参数解释:
-/--model_path：mindir模型路径
+/--model-path：mindir模型路径
+
+/--config-path:   模型配置文件，tokenizer配置文件与词表路径，默认为bge-large-zh-v1.5
 
 **注意**：
 
@@ -352,7 +356,7 @@ python multi_infer.py > device/scheduler.log 2>&1 &
 ##### 评估
 
 ```
-python eval_from_corpus_embeddings.py \
+python eval_msmarco.py \
 --encoder ./bge-large-zh-v1.5 \
 --fp16 \
 --add_instruction \

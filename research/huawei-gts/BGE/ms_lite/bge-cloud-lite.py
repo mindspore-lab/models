@@ -10,11 +10,12 @@ import os
 
 import argparse
 parser = argparse.ArgumentParser(description='gen ckpt model')
-parser.add_argument('--model-path', type=str, required=False, help='huggingface model path', default=r"./bge-large-zh-v1.5")
+parser.add_argument('--model-path', type=str, required=False, help='mindir path', default=r"./model/model.mindir")
+parser.add_argument('--config-path', type=str, required=False, help='tokenizer config path', default=r"./bge-large-zh-v1.5")
 args = parser.parse_args()
 
-MODEL_PATH = r"./model/model_graph.mindir"
-TOKEN_PATH = args.model_path
+MODEL_PATH = args.model_path
+TOKEN_PATH = args.config_path
 OUTPUT_PATH = r"./output"
 
 context = mslite.Context()
@@ -56,5 +57,4 @@ def infer(model):
 
 #推理结果，可用于精度验证
 final_outputs = infer(model)
-FILE_NAME = "final_output_npu_lite.npy"
-np.save(OUTPUT_PATH + "/" + FILE_NAME,final_outputs.asnumpy())
+print(final_outputs)
