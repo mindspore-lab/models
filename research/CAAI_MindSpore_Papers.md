@@ -29,3 +29,5 @@
 |27|昇思MindSpore论文精读27：交集类不匹配半监督分类问题中的动态加权对抗学习|https://zhuanlan.zhihu.com/p/677425041|南京理工大学|宫辰|[paper-link](https://dl.acm.org/doi/10.1145/3635310)|[code-link](https://github.com/lichuan210/DWAL-ms)|
 |28|昇思MindSpore论文精读28：基于片段级异常注意力的弱监督视频异常检测|https://zhuanlan.zhihu.com/p/678104693|天津大学|韩亚洪|[paper-link](https://arxiv.org/abs/2309.16309)|[code-link](https://github.com/Daniel00008/WS-VAD-mindspore)|
 |29|昇思MindSpore论文精读29：联合矫正与细化的平衡低光照图像增强|https://zhuanlan.zhihu.com/p/681108299|天津大学|韩亚洪|[paper-link](https://arxiv.org/abs/2309.16128)|[code-link](https://github.com/Daniel00008/JCRNet-mindspore)|
+|30|昇思MindSpore论文精读30：损失函数引导传播的加速对抗训练算法|https://zhuanlan.zhihu.com/p/683315730|北京交通大学|张淳杰|[paper-link](https://www.sciencedirect.com/science/article/abs/pii/S0306457322002448)|[code-link](https://gitee.com/chunjie-zhang/atlgp)|
+|31|昇思MindSpore论文精读31：自然语言引导的三维健身动作数据集FLAG3D，来自清华深圳唐老师和李老师团队|https://zhuanlan.zhihu.com/p/681108299|清华大学|唐彦嵩|[paper-link](https://openaccess.thecvf.com/content/CVPR2023/html/Tang_FLAG3D_A_3D_Fitness_Activity_Dataset_With_Language_Instruction_CVPR_2023_paper.html)|[code-link](https://andytang15.github.io/FLAG3D/)|
