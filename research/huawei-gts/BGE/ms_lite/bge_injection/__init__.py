@@ -1,0 +1,1 @@
+from bge_injection import injection_for_dense
