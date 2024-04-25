@@ -9,13 +9,14 @@ import json
 
 import argparse
 parser = argparse.ArgumentParser(description='gen ckpt model')
-parser.add_argument('--model-path', type=str, required=False, help='huggingface model path', default=r"./bge-large-zh-v1.5")
+parser.add_argument('--model-path', type=str, required=False, help='ckpt path', default=r"./model/model.ckpt")
+parser.add_argument('--config-path', type=str, required=False, help='config folder path', default=r"./model")
 args = parser.parse_args()
 
 #MODEL_PATH 存放ckpt模型的路径
 #TOKEN_PATH 存放词表与tokenizer配置文件的路径
-model_path = r"./model/model.ckpt"
-model_config_path = args.model_path
+model_path = args.model_path
+model_config_path = args.config_path
 OUTPUT_MINDIR_PATH = r"./model/model.mindir"
 
 #输入ckpt & config.json 输出model
