@@ -46,8 +46,8 @@ ds_train.to_json("train.jsonl", force_ascii=False)
 python run.py \
 --model_name_or_path ./bge-small-zh-v1.5 \
 --train_data ./train.jsonl \
---epoch 2 \
---batch_size 16 \
+--epoch 5 \
+--batch_size 12 \
 --train_group_size 2 \
 --query_max_len 512 \
 --passage_max_len 512 \
