@@ -154,8 +154,8 @@ python run.py \
    	"mteb_dataset_name": "CustomReranking",
    	"mteb_version": "1.1.1",
    	"test":{
-   		"map": 0.6887746175431654,
-   		"mrr": 0.7942883820194745
+   		"map": 0.6950280580025318,
+   		"mrr": 0.8031592637054822
    	}
    }
    ```
