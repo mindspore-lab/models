@@ -1,4 +1,3 @@
-# Copyright (c) OpenMMLab. All rights reserved.
 import os.path as osp
 from typing import Callable, List, Optional, Union
 

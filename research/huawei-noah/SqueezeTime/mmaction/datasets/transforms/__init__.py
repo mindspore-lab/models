@@ -1,4 +1,3 @@
-# Copyright (c) OpenMMLab. All rights reserved.
 from .formatting import (FormatAudioShape, FormatGCNInput, FormatShape,
                          PackActionInputs, PackLocalizationInputs, Transpose)
 from .loading import (ArrayDecode, AudioDecode, AudioDecodeInit,

@@ -353,7 +353,6 @@ class Subset(Dataset[T_co]):
 #     indices = randperm(sum(lengths), generator=generator).tolist()
 #     return [Subset(dataset, indices[offset - length : offset]) for offset, length in zip(_accumulate(lengths), lengths)]
 
-# Copyright (c) OpenMMLab. All rights reserved.
 from abc import ABCMeta
 from typing import Callable, List, Optional, Union
 import mindspore

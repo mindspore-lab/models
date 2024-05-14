@@ -1,4 +1,3 @@
-# Copyright (c) OpenMMLab. All rights reserved.
 from typing import Dict, Optional, Sequence, Tuple
 from typing import Sequence, Union
 import numpy as np

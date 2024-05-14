@@ -1,4 +1,3 @@
-# Copyright (c) OpenMMLab. All rights reserved.
 import ctypes
 import os
 import os.path as osp

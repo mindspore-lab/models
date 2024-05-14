@@ -1,4 +1,3 @@
-# Copyright (c) OpenMMLab. All rights reserved.
 """MMAction provides 20 registry nodes to support using modules across
 projects. Each node is a child of the root registry in MMEngine.
 
