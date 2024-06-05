@@ -1,7 +1,3 @@
-## Contents
-
-[TOC]
-
 # PMG
 
 This is the official mindspore implementation of our paper: [PMG: Personalized Multimodal Generation with Large Language Models](https://arxiv.org/abs/2404.08677), Xiaoteng Shen, Rui Zhang, Xiaoyan Zhao, Jieming Zhu, Xi Xiao. In WWW 2024.
@@ -12,7 +8,7 @@ This paper proposes the first method for personalized multimodal generation usin
 The proposed method, Personalized Multimodal Generation (PMG for short) first converts user behaviors (e.g., clicks in recommender systems or conversations with a virtual assistant) into natural language to facilitate LLM understanding and extract user preference descriptions. Such user preferences are then fed into a generator, such as a multimodal LLM or diffusion model, to produce personalized content.
 
 <center>
-    <img src="./overview.png" width="70%" />
+    <img src="https://cdn.jsdelivr.net/gh/mindspore-lab/models@master/research/huawei-noah/PMG/overview.png" width="70%" />
 </center>
 
 ## Environment Requirements
