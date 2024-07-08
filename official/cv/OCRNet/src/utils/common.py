@@ -51,6 +51,8 @@ def init_env(cfg):
     ms.set_context(mode=cfg.ms_mode, device_target=cfg.device_target, max_call_depth=2000, runtime_num_threads=15)
     if cfg.ms_mode == 1:
         ms.set_context(pynative_synchronize=True)
+    elif cfg.ms_mode == 0:
+        ms.set_context(jit_config={"jit_level": "O2"})
     if cfg.device_target != "CPU":
         device_id = int(os.getenv("DEVICE_ID", 0))
         ms.set_context(device_id=device_id)
