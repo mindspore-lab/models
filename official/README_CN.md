@@ -49,7 +49,7 @@
 ### 图像分类（骨干类)
 
 | model | acc@1 | supported by mindcv | 
-| :-    | :-        | :-   | 
+| :-  | :-     | :- | 
 |  vgg11           |  71.86   |  [config](https://github.com/mindspore-lab/mindcv/tree/main/configs/vgg)           | 
 |  vgg13           |  72.87   |  [config](https://github.com/mindspore-lab/mindcv/tree/main/configs/vgg)           |  
 |  vgg16           |  74.61   |  [config](https://github.com/mindspore-lab/mindcv/tree/main/configs/vgg)           |
@@ -256,8 +256,8 @@
 
 #### 其他
 
-| model |  map | supported by minddet | 
-| :-:     |  :-:            | :-:        | 
+| model |   supported by minddet | 
+| :-:     |  :-:            | 
 |  ssd_vgg16                 | coming soon | 
 |  ssd_mobilenetv1           | coming soon | 
 |  ssd_mobilenetv2           | coming soon | 
