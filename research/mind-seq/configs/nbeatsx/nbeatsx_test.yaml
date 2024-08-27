@@ -1,0 +1,11 @@
+---
+
+model: 'nbeatsx'
+data: 'NP'
+root_path: './mindseq/data/'
+device: "GPU"
+train_epochs: 1000
+batch_size: 512
+seed: 1
+do_train: False
+ckpt_path: "./checkpoints/test_ckpt/Nbeatsx_NP.ckpt"
