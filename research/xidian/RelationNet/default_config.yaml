@@ -1,0 +1,44 @@
+# Copyright 2024 Xidian University
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+# ============================================================================
+enable_modelarts: False
+device_target: "Ascend" # Ascend
+DEVICE_ID: 5
+
+model_root: "checkpoints"
+encoder_checkpoint: "omniglot_feature_encoder.ckpt"
+relation_checkpoint: "omniglot_relation_network.ckpt"
+
+
+CLASS_NUM: 5
+SAMPLE_NUM_PER_CLASS: 1
+FEATURE_DIM: 64
+RELATION_DIM: 8
+BATCH_NUM_PER_CLASS: 19
+EPISODE: 300000
+TEST_EPISODE: 100
+LEARNING_RATE: 0.001
+HIDDEN_UNIT: 10
+PRINT_FREQUENCY: 100
+TEST_FREQUENCY: 300
+
+
+
+# export option
+ckpt_file: ""
+file_name1: "net1"
+file_name2: "net2"
+file_format: "MINDIR" # AIR,MINDIR,ONNX
+image_height: 28
+image_width: 28
