@@ -3,8 +3,6 @@
 ## Introduction
 This is the mindspore implementation of ***ReLLa*** proposed in the paper [ReLLa: Retrieval-enhanced Large Language Models for Lifelong Sequential Behavior Comprehension in Recommendation](https://arxiv.org/abs/2308.11131).
 
-We also provide a pytorch implementation in this [repo](https://github.com/LaVieEnRose365/ReLLa).
-
 ## Requirements
 - Python==3.9
 - MindSpore==2.2.1
