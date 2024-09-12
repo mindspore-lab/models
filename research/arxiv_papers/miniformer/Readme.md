@@ -1,14 +1,14 @@
 # Readme
 
-
-
-- 环境
+code中为gpu上可以直接运行的代码，环境如下：
 
 ```
 python==3.9.1
 mindspore=2.2.14
 mindnlp=0.3.1
 ```
+
+NPU_code为可以在npu上运行的代码，环境一样，其余的训练测试等指令也一样。
 
 - 训练：
 
