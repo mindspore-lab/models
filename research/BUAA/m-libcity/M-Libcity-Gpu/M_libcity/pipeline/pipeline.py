@@ -40,6 +40,12 @@ def run_model(task=None, model_name=None, dataset_name=None, config_file=None,
     # 转换数据，并划分数据集
     train_data, valid_data, test_data = dataset.get_data()
     data_feature = dataset.get_data_feature()
+    
+    num_batches = train_data.get_dataset_size()
+    valid_num_batches = valid_data.get_dataset_size()
+    config['num_batches'] = num_batches
+    config['valid_num_batches'] = valid_num_batches
+    
     # 加载执行器
     model_cache_file = getRelatedPath('cache/{}/model_cache/{}_{}.ckpt'.format(
         exp_id, model_name, dataset_name))

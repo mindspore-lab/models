@@ -13,6 +13,7 @@ from model import loss
 from utils import get_evaluator, ensure_dir,getRelatedPath
 from mindspore.train.callback import ModelCheckpoint, CheckpointConfig
 from executor.softmax_cross_entropy_expand import SoftmaxCrossEntropyExpand
+from mindspore.train import ReduceLROnPlateau
 
 def nelement(param):
     ans=1
@@ -61,6 +62,8 @@ class TrafficStateExecutor(AbstractExecutor):
         self.lr_decay = self.config.get('lr_decay', True)
         self.lr_scheduler_type = self.config.get('lr_scheduler', 'multisteplr')
         self.lr_decay_ratio = self.config.get('lr_decay_ratio', 0.1)
+        self.num_batches   = self.config.get('num_batches', 1000)
+        self.valid_num_batches   = self.config.get('valid_num_batches', 100)
         self.milestones = self.config.get('steps', [])
         self.step_size = self.config.get('step_size', 10)
         self.lr_lambda = self.config.get('lr_lambda', lambda x: x)
@@ -144,13 +147,13 @@ class TrafficStateExecutor(AbstractExecutor):
         if self.lr_decay:
             self._logger.info('You select `{}` lr_scheduler.'.format(self.lr_scheduler_type.lower()))
             if self.lr_scheduler_type.lower() == 'multisteplr':
-
-                self.lr_list=[self.learning_rate]
+                lr_list = np.full(self.epochs  * (self.num_batches+self.valid_num_batches), self.learning_rate)
                 for i in range(len(self.milestones)):
-                    self.milestones[i]*=100
-                for _ in range(len(self.milestones)-1):
-                    self.lr_list.append(self.lr_list[-1]*self.lr_decay_ratio)
-                lr_scheduler = nn.piecewise_constant_lr(milestone=self.milestones, learning_rates=self.lr_list)
+                    index = (self.milestones[i]  - 1)* (self.num_batches+self.valid_num_batches)     # 终止位置epoch
+                    if index > len(lr_list):
+                        break
+                    lr_list[index :] *= self.lr_decay_ratio
+                lr_scheduler = lr_list.tolist()
 
 
             elif self.lr_scheduler_type.lower() == 'steplr':
@@ -283,7 +286,7 @@ class TrafficStateExecutor(AbstractExecutor):
         #单卡
         #model = Model(self.model, optimizer=self.optimizer)  # self.model此时应返回loss
 
-        loss_cb = LossMonitor()
+        loss_cb = LossMonitor(num_batches)
         time_cb = TimeMonitor(data_size=num_batches)
         config_ck = CheckpointConfig(save_checkpoint_steps=num_batches,
                                      keep_checkpoint_max=self.epochs,)
@@ -295,6 +298,12 @@ class TrafficStateExecutor(AbstractExecutor):
         # ckpt_config = CheckpointConfig()
         # eval_cb = ModelCheckpoint(prefix='auto_parallel', config=ckpt_config)
         callbacks = [time_cb, loss_cb, ckpoint_cb,eval_cb]
+        
+        if self.lr_scheduler_type.lower() == 'reducelronplateau':
+            lr_cb = ReduceLROnPlateau(monitor='loss',mode='min', patience=self.lr_patience,factor=self.lr_decay_ratio, min_delta=self.lr_threshold,cooldown=5)
+            callbacks.append(lr_cb)
+            self._logger.info('You select `ReduceLROnPlateau` lr_scheduler.')
+            
         #单卡
         #model.train(self.epochs,train_dataloader,callbacks=callbacks)
         #多卡
