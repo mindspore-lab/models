@@ -41,6 +41,8 @@ class TrafficStateExecutor(AbstractExecutor):
         # self._writer = SummaryWriter(self.summary_writer_dir)
         self._logger = getLogger()
         self._scaler = self.data_feature.get('scaler')
+        self.num_batches    = self.data_feature.get('num_batches', 1000)
+        self.eval_batches   = self.data_feature.get('eval_batches', 100)
         self._logger.info(self.model)
         for param in self.model.trainable_params():
             self._logger.info(str(param.name) + '\t' + str(param.shape) + '\t' +
@@ -62,8 +64,6 @@ class TrafficStateExecutor(AbstractExecutor):
         self.lr_decay = self.config.get('lr_decay', True)
         self.lr_scheduler_type = self.config.get('lr_scheduler', 'multisteplr')
         self.lr_decay_ratio = self.config.get('lr_decay_ratio', 0.1)
-        self.num_batches   = self.config.get('num_batches', 1000)
-        self.valid_num_batches   = self.config.get('valid_num_batches', 100)
         self.milestones = self.config.get('steps', [])
         self.step_size = self.config.get('step_size', 10)
         self.lr_lambda = self.config.get('lr_lambda', lambda x: x)
@@ -147,9 +147,9 @@ class TrafficStateExecutor(AbstractExecutor):
         if self.lr_decay:
             self._logger.info('You select `{}` lr_scheduler.'.format(self.lr_scheduler_type.lower()))
             if self.lr_scheduler_type.lower() == 'multisteplr':
-                lr_list = np.full(self.epochs  * (self.num_batches+self.valid_num_batches), self.learning_rate)
+                lr_list = np.full(self.epochs  * (self.num_batches+self.eval_batches), self.learning_rate)
                 for i in range(len(self.milestones)):
-                    index = (self.milestones[i]  - 1)* (self.num_batches+self.valid_num_batches)     # 终止位置epoch
+                    index = (self.milestones[i]  - 1)* (self.num_batches+self.eval_batches)     # 终止位置epoch
                     if index > len(lr_list):
                         break
                     lr_list[index :] *= self.lr_decay_ratio

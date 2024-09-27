@@ -67,10 +67,11 @@ class DMSTGCNDataset(TrafficStateDataset):
             generate_dataloader(train_data, eval_data, test_data, self.feature_name,
                                 self.batch_size, self.num_workers, pad_with_last_sample=self.pad_with_last_sample)
         self.num_batches = len(self.train_dataloader)
+        self.eval_batches = self.eval_dataloader.get_dataset_size()
         return self.train_dataloader, self.eval_dataloader, self.test_dataloader
 
     def get_data_feature(self):
         return {"scaler": self.scaler, "adj_mx": self.adj_mx, "ext_dim": self.ext_dim,
                 "num_nodes": self.num_nodes, "feature_dim": self.feature_dim,
                 "output_dim": self.output_dim, "num_batches": self.num_batches,
-                "time_slots": self.timeslots}
+                "time_slots": self.timeslots, "eval_batches": self.eval_batches}
