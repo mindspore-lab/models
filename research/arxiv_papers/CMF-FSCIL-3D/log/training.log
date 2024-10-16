@@ -1,0 +1,218 @@
+2024-08-31 21:50:50,103 - __main__ - INFO - Starting training on single GPU with MindSpore...
+2024-08-31 21:51:10,164 - __main__ - INFO - Starting training on single GPU with MindSpore...
+2024-08-31 21:52:19,628 - __main__ - INFO - Starting training on single GPU with MindSpore...
+2024-08-31 21:53:44,735 - __main__ - INFO - Starting training on single GPU with MindSpore...
+2024-08-31 21:56:58,969 - __main__ - INFO - Starting training on single GPU with MindSpore...
+2024-08-31 21:59:59,787 - __main__ - INFO - Starting training on single GPU with MindSpore...
+2024-08-31 22:06:00,835 - __main__ - INFO - Starting training on single GPU with MindSpore...
+2024-08-31 22:07:06,993 - __main__ - INFO - Starting training on single GPU with MindSpore...
+2024-08-31 22:09:28,388 - __main__ - INFO - Starting training on single GPU with MindSpore...
+2024-08-31 22:09:46,476 - __main__ - INFO - Starting training on single GPU with MindSpore...
+2024-08-31 22:10:11,222 - __main__ - INFO - Starting training on single GPU with MindSpore...
+2024-08-31 22:10:41,511 - __main__ - INFO - Starting training on single GPU with MindSpore...
+2024-08-31 22:11:09,688 - __main__ - INFO - Starting training on single GPU with MindSpore...
+2024-08-31 22:11:36,164 - __main__ - INFO - Starting training on single GPU with MindSpore...
+2024-08-31 22:20:42,719 - __main__ - INFO - Starting training on single GPU with MindSpore...
+2024-08-31 22:21:27,257 - __main__ - INFO - Starting training on single GPU with MindSpore...
+2024-08-31 22:24:53,728 - __main__ - INFO - Starting training on single GPU with MindSpore...
+2024-08-31 22:35:42,323 - __main__ - INFO - Starting training on single GPU with MindSpore...
+2024-09-01 13:24:53,619 - __main__ - INFO - Starting training on single GPU with MindSpore...
+2024-09-02 15:28:00,201 - __main__ - INFO - Starting training on single GPU with MindSpore...
+2024-09-02 22:45:34,146 - __main__ - INFO - Incremental test with SSG completed, starting without SSG...
+2024-09-02 22:50:02,442 - __main__ - INFO - Incremental test with SSG completed, starting without SSG...
+2024-09-02 22:52:28,994 - __main__ - INFO - Incremental test with SSG completed, starting without SSG...
+2024-09-03 18:42:37,807 - __main__ - INFO - Epoch 1/200 started.
+2024-10-12 12:37:45,783 - __main__ - INFO - Epoch 1/200 started.
+2024-10-12 12:39:47,898 - __main__ - INFO - Epoch 1/200 started.
+2024-10-12 12:40:08,713 - __main__ - INFO - Epoch 1/200 started.
+2024-10-12 12:56:16,175 - __main__ - INFO - Epoch 1/200 started.
+2024-10-12 13:19:07,534 - __main__ - INFO - Epoch 1/200 started.
+2024-10-12 13:20:30,029 - __main__ - INFO - Epoch 1/200 started.
+2024-10-12 13:21:55,738 - __main__ - INFO - Epoch 1/200 started.
+2024-10-12 13:24:36,247 - __main__ - INFO - Epoch 1/200 started.
+2024-10-12 13:34:44,754 - __main__ - INFO - Epoch 1/200 started.
+2024-10-12 13:47:11,199 - __main__ - INFO - Epoch 1/200 started.
+2024-10-12 14:21:08,367 - __main__ - INFO - Epoch 1/200 started.
+2024-10-12 14:26:41,136 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 04:57:11,713 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 05:03:00,782 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 05:07:22,343 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 05:08:20,021 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 05:11:23,352 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 05:13:43,582 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 05:14:35,088 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 05:15:26,732 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 05:17:15,342 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 05:17:45,535 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 05:20:25,003 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 05:21:46,004 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 05:22:48,531 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 05:23:40,023 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 05:27:53,031 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 05:29:40,973 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 05:31:15,078 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 05:32:44,238 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 05:33:34,962 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 05:36:25,374 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 05:37:15,752 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 05:45:18,619 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 05:45:55,077 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 05:46:25,889 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 05:47:37,640 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 05:52:08,118 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 06:02:38,026 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 06:03:35,243 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 06:08:32,894 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 06:10:35,314 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 06:37:26,349 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 06:42:01,044 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 06:43:09,071 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 06:51:54,686 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 06:52:44,137 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 06:54:32,034 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 06:55:42,205 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 06:56:24,126 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 07:01:45,727 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 07:03:56,116 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 07:06:11,409 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 07:07:23,148 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 07:21:11,215 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 07:22:57,516 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 07:28:34,826 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 07:30:11,698 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 07:31:35,473 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 07:32:15,589 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 07:34:23,442 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 07:35:53,463 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 07:36:19,667 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 07:37:44,373 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 07:39:23,923 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 07:41:41,013 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 07:44:23,573 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 07:45:09,036 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 07:46:57,669 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 07:49:26,229 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 07:51:00,079 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 07:52:23,683 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 07:59:04,084 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 08:07:04,472 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 08:11:00,714 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 08:14:37,275 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 08:17:25,671 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 08:20:39,140 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 08:22:14,648 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 09:12:21,086 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 09:14:35,090 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 09:16:49,991 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 09:17:28,218 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 09:29:29,334 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 09:33:44,598 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 09:39:18,903 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 09:59:15,246 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 10:00:37,786 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 10:07:01,507 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 10:09:03,147 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 10:09:49,579 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 10:12:06,031 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 10:12:54,441 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 10:14:28,157 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 10:15:57,180 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 10:55:35,984 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 11:02:10,829 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 11:09:50,977 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 11:25:22,673 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 11:25:59,244 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 11:30:26,217 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 11:31:59,020 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 11:35:12,318 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 11:49:33,778 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 11:59:08,716 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 12:00:46,026 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 12:01:50,310 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 12:03:18,533 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 12:05:46,435 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 12:13:44,093 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 12:14:32,849 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 12:16:50,971 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 12:18:49,075 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 12:21:29,355 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 12:26:50,842 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 12:57:20,034 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 12:59:03,568 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 13:01:37,184 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 13:03:52,394 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 15:07:36,348 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 15:12:08,769 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 15:15:18,393 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 15:19:07,339 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 15:19:46,189 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 15:21:49,271 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 15:23:01,733 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 15:26:47,061 - __main__ - INFO - Epoch 1/200 started.
+2024-10-13 15:28:45,413 - __main__ - INFO - Epoch 1/200 started.
+2024-10-14 02:43:57,573 - __main__ - INFO - Epoch 1/200 started.
+2024-10-14 02:49:04,830 - __main__ - INFO - Epoch 1/200 started.
+2024-10-14 02:51:10,754 - __main__ - INFO - Epoch 1/200 started.
+2024-10-14 02:51:57,618 - __main__ - INFO - Epoch 1/200 started.
+2024-10-14 02:52:50,339 - __main__ - INFO - Epoch 1/200 started.
+2024-10-14 02:54:14,436 - __main__ - INFO - Epoch 1/200 started.
+2024-10-14 02:56:25,389 - __main__ - INFO - Epoch 1/200 started.
+2024-10-14 02:57:42,347 - __main__ - INFO - Epoch 1/200 started.
+2024-10-14 02:58:32,616 - __main__ - INFO - Epoch 1/200 started.
+2024-10-14 02:59:59,037 - __main__ - INFO - Epoch 1/200 started.
+2024-10-14 03:29:41,495 - __main__ - INFO - 开始检查模型参数和预训练参数的一致性...
+2024-10-14 03:29:41,511 - __main__ - WARNING - 模型中存在 50 个参数未在预训练参数中找到: ['visual.blocks.0.norm1.gamma', 'visual.blocks.0.norm1.beta', 'visual.blocks.0.norm2.gamma', 'visual.blocks.0.norm2.beta', 'visual.blocks.1.norm1.gamma', 'visual.blocks.1.norm1.beta', 'visual.blocks.1.norm2.gamma', 'visual.blocks.1.norm2.beta', 'visual.blocks.2.norm1.gamma', 'visual.blocks.2.norm1.beta', 'visual.blocks.2.norm2.gamma', 'visual.blocks.2.norm2.beta', 'visual.blocks.3.norm1.gamma', 'visual.blocks.3.norm1.beta', 'visual.blocks.3.norm2.gamma', 'visual.blocks.3.norm2.beta', 'visual.blocks.4.norm1.gamma', 'visual.blocks.4.norm1.beta', 'visual.blocks.4.norm2.gamma', 'visual.blocks.4.norm2.beta', 'visual.blocks.5.norm1.gamma', 'visual.blocks.5.norm1.beta', 'visual.blocks.5.norm2.gamma', 'visual.blocks.5.norm2.beta', 'visual.blocks.6.norm1.gamma', 'visual.blocks.6.norm1.beta', 'visual.blocks.6.norm2.gamma', 'visual.blocks.6.norm2.beta', 'visual.blocks.7.norm1.gamma', 'visual.blocks.7.norm1.beta', 'visual.blocks.7.norm2.gamma', 'visual.blocks.7.norm2.beta', 'visual.blocks.8.norm1.gamma', 'visual.blocks.8.norm1.beta', 'visual.blocks.8.norm2.gamma', 'visual.blocks.8.norm2.beta', 'visual.blocks.9.norm1.gamma', 'visual.blocks.9.norm1.beta', 'visual.blocks.9.norm2.gamma', 'visual.blocks.9.norm2.beta', 'visual.blocks.10.norm1.gamma', 'visual.blocks.10.norm1.beta', 'visual.blocks.10.norm2.gamma', 'visual.blocks.10.norm2.beta', 'visual.blocks.11.norm1.gamma', 'visual.blocks.11.norm1.beta', 'visual.blocks.11.norm2.gamma', 'visual.blocks.11.norm2.beta', 'visual.norm.gamma', 'visual.norm.beta']
+2024-10-14 03:29:41,511 - __main__ - WARNING - 预训练参数中存在 82 个参数未在模型中找到: ['visual.blocks.0.norm1.weight', 'visual.blocks.0.norm1.bias', 'visual.blocks.0.attn.qkv.bias', 'visual.blocks.0.norm2.weight', 'visual.blocks.0.norm2.bias', 'visual.blocks.1.norm1.weight', 'visual.blocks.1.norm1.bias', 'visual.blocks.1.attn.qkv.bias', 'visual.blocks.1.norm2.weight', 'visual.blocks.1.norm2.bias', 'visual.blocks.2.norm1.weight', 'visual.blocks.2.norm1.bias', 'visual.blocks.2.attn.qkv.bias', 'visual.blocks.2.norm2.weight', 'visual.blocks.2.norm2.bias', 'visual.blocks.3.norm1.weight', 'visual.blocks.3.norm1.bias', 'visual.blocks.3.attn.qkv.bias', 'visual.blocks.3.norm2.weight', 'visual.blocks.3.norm2.bias', 'visual.blocks.4.norm1.weight', 'visual.blocks.4.norm1.bias', 'visual.blocks.4.attn.qkv.bias', 'visual.blocks.4.norm2.weight', 'visual.blocks.4.norm2.bias', 'visual.blocks.5.norm1.weight', 'visual.blocks.5.norm1.bias', 'visual.blocks.5.attn.qkv.bias', 'visual.blocks.5.norm2.weight', 'visual.blocks.5.norm2.bias', 'visual.blocks.6.norm1.weight', 'visual.blocks.6.norm1.bias', 'visual.blocks.6.attn.qkv.bias', 'visual.blocks.6.norm2.weight', 'visual.blocks.6.norm2.bias', 'visual.blocks.7.norm1.weight', 'visual.blocks.7.norm1.bias', 'visual.blocks.7.attn.qkv.bias', 'visual.blocks.7.norm2.weight', 'visual.blocks.7.norm2.bias', 'visual.blocks.8.norm1.weight', 'visual.blocks.8.norm1.bias', 'visual.blocks.8.attn.qkv.bias', 'visual.blocks.8.norm2.weight', 'visual.blocks.8.norm2.bias', 'visual.blocks.9.norm1.weight', 'visual.blocks.9.norm1.bias', 'visual.blocks.9.attn.qkv.bias', 'visual.blocks.9.norm2.weight', 'visual.blocks.9.norm2.bias', 'visual.blocks.10.norm1.weight', 'visual.blocks.10.norm1.bias', 'visual.blocks.10.attn.qkv.bias', 'visual.blocks.10.norm2.weight', 'visual.blocks.10.norm2.bias', 'visual.blocks.11.norm1.weight', 'visual.blocks.11.norm1.bias', 'visual.blocks.11.attn.qkv.bias', 'visual.blocks.11.norm2.weight', 'visual.blocks.11.norm2.bias', 'visual.norm.weight', 'visual.norm.bias', 'point_encoder.sa1.mlp_convs.0.bias', 'point_encoder.sa1.mlp_convs.1.bias', 'point_encoder.sa1.mlp_convs.2.bias', 'point_encoder.sa1.mlp_bns.0.num_batches_tracked', 'point_encoder.sa1.mlp_bns.1.num_batches_tracked', 'point_encoder.sa1.mlp_bns.2.num_batches_tracked', 'point_encoder.sa2.mlp_convs.0.bias', 'point_encoder.sa2.mlp_convs.1.bias', 'point_encoder.sa2.mlp_convs.2.bias', 'point_encoder.sa2.mlp_bns.0.num_batches_tracked', 'point_encoder.sa2.mlp_bns.1.num_batches_tracked', 'point_encoder.sa2.mlp_bns.2.num_batches_tracked', 'point_encoder.sa3.mlp_convs.0.bias', 'point_encoder.sa3.mlp_convs.1.bias', 'point_encoder.sa3.mlp_convs.2.bias', 'point_encoder.sa3.mlp_bns.0.num_batches_tracked', 'point_encoder.sa3.mlp_bns.1.num_batches_tracked', 'point_encoder.sa3.mlp_bns.2.num_batches_tracked', 'point_encoder.bn1.num_batches_tracked', 'point_encoder.bn2.num_batches_tracked']
+2024-10-14 03:29:41,511 - __main__ - INFO - 模型参数检查完成。
+2024-10-14 03:37:25,134 - __main__ - INFO - 开始检查模型参数和预训练参数的一致性...
+2024-10-14 03:37:25,134 - __main__ - WARNING - 预训练参数中存在 82 个参数未在模型中找到: ['visual.blocks.0.norm1.weight', 'visual.blocks.0.norm1.bias', 'visual.blocks.0.attn.qkv.bias', 'visual.blocks.0.norm2.weight', 'visual.blocks.0.norm2.bias', 'visual.blocks.1.norm1.weight', 'visual.blocks.1.norm1.bias', 'visual.blocks.1.attn.qkv.bias', 'visual.blocks.1.norm2.weight', 'visual.blocks.1.norm2.bias', 'visual.blocks.2.norm1.weight', 'visual.blocks.2.norm1.bias', 'visual.blocks.2.attn.qkv.bias', 'visual.blocks.2.norm2.weight', 'visual.blocks.2.norm2.bias', 'visual.blocks.3.norm1.weight', 'visual.blocks.3.norm1.bias', 'visual.blocks.3.attn.qkv.bias', 'visual.blocks.3.norm2.weight', 'visual.blocks.3.norm2.bias', 'visual.blocks.4.norm1.weight', 'visual.blocks.4.norm1.bias', 'visual.blocks.4.attn.qkv.bias', 'visual.blocks.4.norm2.weight', 'visual.blocks.4.norm2.bias', 'visual.blocks.5.norm1.weight', 'visual.blocks.5.norm1.bias', 'visual.blocks.5.attn.qkv.bias', 'visual.blocks.5.norm2.weight', 'visual.blocks.5.norm2.bias', 'visual.blocks.6.norm1.weight', 'visual.blocks.6.norm1.bias', 'visual.blocks.6.attn.qkv.bias', 'visual.blocks.6.norm2.weight', 'visual.blocks.6.norm2.bias', 'visual.blocks.7.norm1.weight', 'visual.blocks.7.norm1.bias', 'visual.blocks.7.attn.qkv.bias', 'visual.blocks.7.norm2.weight', 'visual.blocks.7.norm2.bias', 'visual.blocks.8.norm1.weight', 'visual.blocks.8.norm1.bias', 'visual.blocks.8.attn.qkv.bias', 'visual.blocks.8.norm2.weight', 'visual.blocks.8.norm2.bias', 'visual.blocks.9.norm1.weight', 'visual.blocks.9.norm1.bias', 'visual.blocks.9.attn.qkv.bias', 'visual.blocks.9.norm2.weight', 'visual.blocks.9.norm2.bias', 'visual.blocks.10.norm1.weight', 'visual.blocks.10.norm1.bias', 'visual.blocks.10.attn.qkv.bias', 'visual.blocks.10.norm2.weight', 'visual.blocks.10.norm2.bias', 'visual.blocks.11.norm1.weight', 'visual.blocks.11.norm1.bias', 'visual.blocks.11.attn.qkv.bias', 'visual.blocks.11.norm2.weight', 'visual.blocks.11.norm2.bias', 'visual.norm.weight', 'visual.norm.bias', 'point_encoder.sa1.mlp_convs.0.bias', 'point_encoder.sa1.mlp_convs.1.bias', 'point_encoder.sa1.mlp_convs.2.bias', 'point_encoder.sa1.mlp_bns.0.num_batches_tracked', 'point_encoder.sa1.mlp_bns.1.num_batches_tracked', 'point_encoder.sa1.mlp_bns.2.num_batches_tracked', 'point_encoder.sa2.mlp_convs.0.bias', 'point_encoder.sa2.mlp_convs.1.bias', 'point_encoder.sa2.mlp_convs.2.bias', 'point_encoder.sa2.mlp_bns.0.num_batches_tracked', 'point_encoder.sa2.mlp_bns.1.num_batches_tracked', 'point_encoder.sa2.mlp_bns.2.num_batches_tracked', 'point_encoder.sa3.mlp_convs.0.bias', 'point_encoder.sa3.mlp_convs.1.bias', 'point_encoder.sa3.mlp_convs.2.bias', 'point_encoder.sa3.mlp_bns.0.num_batches_tracked', 'point_encoder.sa3.mlp_bns.1.num_batches_tracked', 'point_encoder.sa3.mlp_bns.2.num_batches_tracked', 'point_encoder.bn1.num_batches_tracked', 'point_encoder.bn2.num_batches_tracked']
+2024-10-14 03:37:25,134 - __main__ - INFO - 预训练参数名进行了以下替换: [('visual.blocks.0.norm1.weight', 'visual.blocks.0.norm1.gamma'), ('visual.blocks.0.norm1.bias', 'visual.blocks.0.norm1.beta'), ('visual.blocks.0.norm2.weight', 'visual.blocks.0.norm2.gamma'), ('visual.blocks.0.norm2.bias', 'visual.blocks.0.norm2.beta'), ('visual.blocks.1.norm1.weight', 'visual.blocks.1.norm1.gamma'), ('visual.blocks.1.norm1.bias', 'visual.blocks.1.norm1.beta'), ('visual.blocks.1.norm2.weight', 'visual.blocks.1.norm2.gamma'), ('visual.blocks.1.norm2.bias', 'visual.blocks.1.norm2.beta'), ('visual.blocks.2.norm1.weight', 'visual.blocks.2.norm1.gamma'), ('visual.blocks.2.norm1.bias', 'visual.blocks.2.norm1.beta'), ('visual.blocks.2.norm2.weight', 'visual.blocks.2.norm2.gamma'), ('visual.blocks.2.norm2.bias', 'visual.blocks.2.norm2.beta'), ('visual.blocks.3.norm1.weight', 'visual.blocks.3.norm1.gamma'), ('visual.blocks.3.norm1.bias', 'visual.blocks.3.norm1.beta'), ('visual.blocks.3.norm2.weight', 'visual.blocks.3.norm2.gamma'), ('visual.blocks.3.norm2.bias', 'visual.blocks.3.norm2.beta'), ('visual.blocks.4.norm1.weight', 'visual.blocks.4.norm1.gamma'), ('visual.blocks.4.norm1.bias', 'visual.blocks.4.norm1.beta'), ('visual.blocks.4.norm2.weight', 'visual.blocks.4.norm2.gamma'), ('visual.blocks.4.norm2.bias', 'visual.blocks.4.norm2.beta'), ('visual.blocks.5.norm1.weight', 'visual.blocks.5.norm1.gamma'), ('visual.blocks.5.norm1.bias', 'visual.blocks.5.norm1.beta'), ('visual.blocks.5.norm2.weight', 'visual.blocks.5.norm2.gamma'), ('visual.blocks.5.norm2.bias', 'visual.blocks.5.norm2.beta'), ('visual.blocks.6.norm1.weight', 'visual.blocks.6.norm1.gamma'), ('visual.blocks.6.norm1.bias', 'visual.blocks.6.norm1.beta'), ('visual.blocks.6.norm2.weight', 'visual.blocks.6.norm2.gamma'), ('visual.blocks.6.norm2.bias', 'visual.blocks.6.norm2.beta'), ('visual.blocks.7.norm1.weight', 'visual.blocks.7.norm1.gamma'), ('visual.blocks.7.norm1.bias', 'visual.blocks.7.norm1.beta'), ('visual.blocks.7.norm2.weight', 'visual.blocks.7.norm2.gamma'), ('visual.blocks.7.norm2.bias', 'visual.blocks.7.norm2.beta'), ('visual.blocks.8.norm1.weight', 'visual.blocks.8.norm1.gamma'), ('visual.blocks.8.norm1.bias', 'visual.blocks.8.norm1.beta'), ('visual.blocks.8.norm2.weight', 'visual.blocks.8.norm2.gamma'), ('visual.blocks.8.norm2.bias', 'visual.blocks.8.norm2.beta'), ('visual.blocks.9.norm1.weight', 'visual.blocks.9.norm1.gamma'), ('visual.blocks.9.norm1.bias', 'visual.blocks.9.norm1.beta'), ('visual.blocks.9.norm2.weight', 'visual.blocks.9.norm2.gamma'), ('visual.blocks.9.norm2.bias', 'visual.blocks.9.norm2.beta'), ('visual.blocks.10.norm1.weight', 'visual.blocks.10.norm1.gamma'), ('visual.blocks.10.norm1.bias', 'visual.blocks.10.norm1.beta'), ('visual.blocks.10.norm2.weight', 'visual.blocks.10.norm2.gamma'), ('visual.blocks.10.norm2.bias', 'visual.blocks.10.norm2.beta'), ('visual.blocks.11.norm1.weight', 'visual.blocks.11.norm1.gamma'), ('visual.blocks.11.norm1.bias', 'visual.blocks.11.norm1.beta'), ('visual.blocks.11.norm2.weight', 'visual.blocks.11.norm2.gamma'), ('visual.blocks.11.norm2.bias', 'visual.blocks.11.norm2.beta'), ('visual.norm.weight', 'visual.norm.gamma'), ('visual.norm.bias', 'visual.norm.beta')]
+2024-10-14 03:37:25,639 - __main__ - INFO - 新的预训练模型参数已保存到: outputs/checkpoint_79.ckpt
+2024-10-14 03:37:25,639 - __main__ - INFO - 模型参数检查和调整完成。
+2024-10-14 03:37:59,751 - __main__ - INFO - 开始检查模型参数和预训练参数的一致性...
+2024-10-14 03:38:00,258 - __main__ - INFO - 新的预训练模型参数已保存到: outputs/checkpoint_79.ckpt
+2024-10-14 03:38:00,258 - __main__ - INFO - 模型参数检查和调整完成。
+2024-10-14 08:54:19,919 - __main__ - INFO - Epoch 1 completed with avg loss: nan, learning rate: 0.003000
+2024-10-14 09:46:11,160 - __main__ - INFO - Epoch 1/200 started.
+2024-10-14 09:51:47,893 - __main__ - INFO - 开始检查模型参数和预训练参数的一致性...
+2024-10-14 09:51:47,893 - __main__ - WARNING - 模型中存在 60 个参数未在预训练参数中找到: ['pc_projection', 'point_encoder.sa1.mlp_convs.0.weight', 'point_encoder.sa1.mlp_convs.1.weight', 'point_encoder.sa1.mlp_convs.2.weight', 'point_encoder.sa1.mlp_bns.0.moving_mean', 'point_encoder.sa1.mlp_bns.0.moving_variance', 'point_encoder.sa1.mlp_bns.0.gamma', 'point_encoder.sa1.mlp_bns.0.beta', 'point_encoder.sa1.mlp_bns.1.moving_mean', 'point_encoder.sa1.mlp_bns.1.moving_variance', 'point_encoder.sa1.mlp_bns.1.gamma', 'point_encoder.sa1.mlp_bns.1.beta', 'point_encoder.sa1.mlp_bns.2.moving_mean', 'point_encoder.sa1.mlp_bns.2.moving_variance', 'point_encoder.sa1.mlp_bns.2.gamma', 'point_encoder.sa1.mlp_bns.2.beta', 'point_encoder.sa2.mlp_convs.0.weight', 'point_encoder.sa2.mlp_convs.1.weight', 'point_encoder.sa2.mlp_convs.2.weight', 'point_encoder.sa2.mlp_bns.0.moving_mean', 'point_encoder.sa2.mlp_bns.0.moving_variance', 'point_encoder.sa2.mlp_bns.0.gamma', 'point_encoder.sa2.mlp_bns.0.beta', 'point_encoder.sa2.mlp_bns.1.moving_mean', 'point_encoder.sa2.mlp_bns.1.moving_variance', 'point_encoder.sa2.mlp_bns.1.gamma', 'point_encoder.sa2.mlp_bns.1.beta', 'point_encoder.sa2.mlp_bns.2.moving_mean', 'point_encoder.sa2.mlp_bns.2.moving_variance', 'point_encoder.sa2.mlp_bns.2.gamma', 'point_encoder.sa2.mlp_bns.2.beta', 'point_encoder.sa3.mlp_convs.0.weight', 'point_encoder.sa3.mlp_convs.1.weight', 'point_encoder.sa3.mlp_convs.2.weight', 'point_encoder.sa3.mlp_bns.0.moving_mean', 'point_encoder.sa3.mlp_bns.0.moving_variance', 'point_encoder.sa3.mlp_bns.0.gamma', 'point_encoder.sa3.mlp_bns.0.beta', 'point_encoder.sa3.mlp_bns.1.moving_mean', 'point_encoder.sa3.mlp_bns.1.moving_variance', 'point_encoder.sa3.mlp_bns.1.gamma', 'point_encoder.sa3.mlp_bns.1.beta', 'point_encoder.sa3.mlp_bns.2.moving_mean', 'point_encoder.sa3.mlp_bns.2.moving_variance', 'point_encoder.sa3.mlp_bns.2.gamma', 'point_encoder.sa3.mlp_bns.2.beta', 'point_encoder.fc1.weight', 'point_encoder.fc1.bias', 'point_encoder.bn1.moving_mean', 'point_encoder.bn1.moving_variance', 'point_encoder.bn1.gamma', 'point_encoder.bn1.beta', 'point_encoder.fc2.weight', 'point_encoder.fc2.bias', 'point_encoder.bn2.moving_mean', 'point_encoder.bn2.moving_variance', 'point_encoder.bn2.gamma', 'point_encoder.bn2.beta', 'point_encoder.fc_all.weight', 'point_encoder.fc_main.weight']
+2024-10-14 09:51:47,893 - __main__ - WARNING - 预训练参数中存在 78 个参数未在模型中找到: ['visual.blocks.0.norm1.weight', 'visual.blocks.0.norm1.bias', 'visual.blocks.0.attn.qkv.bias', 'visual.blocks.0.norm2.weight', 'visual.blocks.0.norm2.bias', 'visual.blocks.1.norm1.weight', 'visual.blocks.1.norm1.bias', 'visual.blocks.1.attn.qkv.bias', 'visual.blocks.1.norm2.weight', 'visual.blocks.1.norm2.bias', 'visual.blocks.2.norm1.weight', 'visual.blocks.2.norm1.bias', 'visual.blocks.2.attn.qkv.bias', 'visual.blocks.2.norm2.weight', 'visual.blocks.2.norm2.bias', 'visual.blocks.3.norm1.weight', 'visual.blocks.3.norm1.bias', 'visual.blocks.3.attn.qkv.bias', 'visual.blocks.3.norm2.weight', 'visual.blocks.3.norm2.bias', 'visual.blocks.4.norm1.weight', 'visual.blocks.4.norm1.bias', 'visual.blocks.4.attn.qkv.bias', 'visual.blocks.4.norm2.weight', 'visual.blocks.4.norm2.bias', 'visual.blocks.5.norm1.weight', 'visual.blocks.5.norm1.bias', 'visual.blocks.5.attn.qkv.bias', 'visual.blocks.5.norm2.weight', 'visual.blocks.5.norm2.bias', 'visual.blocks.6.norm1.weight', 'visual.blocks.6.norm1.bias', 'visual.blocks.6.attn.qkv.bias', 'visual.blocks.6.norm2.weight', 'visual.blocks.6.norm2.bias', 'visual.blocks.7.norm1.weight', 'visual.blocks.7.norm1.bias', 'visual.blocks.7.attn.qkv.bias', 'visual.blocks.7.norm2.weight', 'visual.blocks.7.norm2.bias', 'visual.blocks.8.norm1.weight', 'visual.blocks.8.norm1.bias', 'visual.blocks.8.attn.qkv.bias', 'visual.blocks.8.norm2.weight', 'visual.blocks.8.norm2.bias', 'visual.blocks.9.norm1.weight', 'visual.blocks.9.norm1.bias', 'visual.blocks.9.attn.qkv.bias', 'visual.blocks.9.norm2.weight', 'visual.blocks.9.norm2.bias', 'visual.blocks.10.norm1.weight', 'visual.blocks.10.norm1.bias', 'visual.blocks.10.attn.qkv.bias', 'visual.blocks.10.norm2.weight', 'visual.blocks.10.norm2.bias', 'visual.blocks.11.norm1.weight', 'visual.blocks.11.norm1.bias', 'visual.blocks.11.attn.qkv.bias', 'visual.blocks.11.norm2.weight', 'visual.blocks.11.norm2.bias', 'visual.norm.weight', 'visual.norm.bias', 'image_mlp.layer1.weight', 'image_mlp.layer1.bias', 'image_mlp.bn1.gamma', 'image_mlp.bn1.beta', 'image_mlp.bn1.moving_mean', 'image_mlp.bn1.moving_variance', 'image_mlp.bn1.num_batches_tracked', 'image_mlp.layer2.weight', 'image_mlp.layer2.bias', 'image_mlp.bn2.gamma', 'image_mlp.bn2.beta', 'image_mlp.bn2.moving_mean', 'image_mlp.bn2.moving_variance', 'image_mlp.bn2.num_batches_tracked', 'image_mlp.layer3.weight', 'image_mlp.layer3.bias']
+2024-10-14 09:51:47,893 - __main__ - INFO - 预训练参数名进行了以下替换: [('visual.blocks.0.norm1.weight', 'visual.blocks.0.norm1.gamma'), ('visual.blocks.0.norm1.bias', 'visual.blocks.0.norm1.beta'), ('visual.blocks.0.norm2.weight', 'visual.blocks.0.norm2.gamma'), ('visual.blocks.0.norm2.bias', 'visual.blocks.0.norm2.beta'), ('visual.blocks.1.norm1.weight', 'visual.blocks.1.norm1.gamma'), ('visual.blocks.1.norm1.bias', 'visual.blocks.1.norm1.beta'), ('visual.blocks.1.norm2.weight', 'visual.blocks.1.norm2.gamma'), ('visual.blocks.1.norm2.bias', 'visual.blocks.1.norm2.beta'), ('visual.blocks.2.norm1.weight', 'visual.blocks.2.norm1.gamma'), ('visual.blocks.2.norm1.bias', 'visual.blocks.2.norm1.beta'), ('visual.blocks.2.norm2.weight', 'visual.blocks.2.norm2.gamma'), ('visual.blocks.2.norm2.bias', 'visual.blocks.2.norm2.beta'), ('visual.blocks.3.norm1.weight', 'visual.blocks.3.norm1.gamma'), ('visual.blocks.3.norm1.bias', 'visual.blocks.3.norm1.beta'), ('visual.blocks.3.norm2.weight', 'visual.blocks.3.norm2.gamma'), ('visual.blocks.3.norm2.bias', 'visual.blocks.3.norm2.beta'), ('visual.blocks.4.norm1.weight', 'visual.blocks.4.norm1.gamma'), ('visual.blocks.4.norm1.bias', 'visual.blocks.4.norm1.beta'), ('visual.blocks.4.norm2.weight', 'visual.blocks.4.norm2.gamma'), ('visual.blocks.4.norm2.bias', 'visual.blocks.4.norm2.beta'), ('visual.blocks.5.norm1.weight', 'visual.blocks.5.norm1.gamma'), ('visual.blocks.5.norm1.bias', 'visual.blocks.5.norm1.beta'), ('visual.blocks.5.norm2.weight', 'visual.blocks.5.norm2.gamma'), ('visual.blocks.5.norm2.bias', 'visual.blocks.5.norm2.beta'), ('visual.blocks.6.norm1.weight', 'visual.blocks.6.norm1.gamma'), ('visual.blocks.6.norm1.bias', 'visual.blocks.6.norm1.beta'), ('visual.blocks.6.norm2.weight', 'visual.blocks.6.norm2.gamma'), ('visual.blocks.6.norm2.bias', 'visual.blocks.6.norm2.beta'), ('visual.blocks.7.norm1.weight', 'visual.blocks.7.norm1.gamma'), ('visual.blocks.7.norm1.bias', 'visual.blocks.7.norm1.beta'), ('visual.blocks.7.norm2.weight', 'visual.blocks.7.norm2.gamma'), ('visual.blocks.7.norm2.bias', 'visual.blocks.7.norm2.beta'), ('visual.blocks.8.norm1.weight', 'visual.blocks.8.norm1.gamma'), ('visual.blocks.8.norm1.bias', 'visual.blocks.8.norm1.beta'), ('visual.blocks.8.norm2.weight', 'visual.blocks.8.norm2.gamma'), ('visual.blocks.8.norm2.bias', 'visual.blocks.8.norm2.beta'), ('visual.blocks.9.norm1.weight', 'visual.blocks.9.norm1.gamma'), ('visual.blocks.9.norm1.bias', 'visual.blocks.9.norm1.beta'), ('visual.blocks.9.norm2.weight', 'visual.blocks.9.norm2.gamma'), ('visual.blocks.9.norm2.bias', 'visual.blocks.9.norm2.beta'), ('visual.blocks.10.norm1.weight', 'visual.blocks.10.norm1.gamma'), ('visual.blocks.10.norm1.bias', 'visual.blocks.10.norm1.beta'), ('visual.blocks.10.norm2.weight', 'visual.blocks.10.norm2.gamma'), ('visual.blocks.10.norm2.bias', 'visual.blocks.10.norm2.beta'), ('visual.blocks.11.norm1.weight', 'visual.blocks.11.norm1.gamma'), ('visual.blocks.11.norm1.bias', 'visual.blocks.11.norm1.beta'), ('visual.blocks.11.norm2.weight', 'visual.blocks.11.norm2.gamma'), ('visual.blocks.11.norm2.bias', 'visual.blocks.11.norm2.beta'), ('visual.norm.weight', 'visual.norm.gamma'), ('visual.norm.bias', 'visual.norm.beta')]
+2024-10-14 09:51:48,445 - __main__ - INFO - 新的预训练模型参数已保存到: data/initialize_models/slip_base_100ep.ckpt
+2024-10-14 09:51:48,445 - __main__ - INFO - 模型参数检查和调整完成。
+2024-10-14 09:52:09,148 - __main__ - INFO - 开始检查模型参数和预训练参数的一致性...
+2024-10-14 09:52:09,148 - __main__ - WARNING - 模型中存在 60 个参数未在预训练参数中找到: ['pc_projection', 'point_encoder.sa1.mlp_convs.0.weight', 'point_encoder.sa1.mlp_convs.1.weight', 'point_encoder.sa1.mlp_convs.2.weight', 'point_encoder.sa1.mlp_bns.0.moving_mean', 'point_encoder.sa1.mlp_bns.0.moving_variance', 'point_encoder.sa1.mlp_bns.0.gamma', 'point_encoder.sa1.mlp_bns.0.beta', 'point_encoder.sa1.mlp_bns.1.moving_mean', 'point_encoder.sa1.mlp_bns.1.moving_variance', 'point_encoder.sa1.mlp_bns.1.gamma', 'point_encoder.sa1.mlp_bns.1.beta', 'point_encoder.sa1.mlp_bns.2.moving_mean', 'point_encoder.sa1.mlp_bns.2.moving_variance', 'point_encoder.sa1.mlp_bns.2.gamma', 'point_encoder.sa1.mlp_bns.2.beta', 'point_encoder.sa2.mlp_convs.0.weight', 'point_encoder.sa2.mlp_convs.1.weight', 'point_encoder.sa2.mlp_convs.2.weight', 'point_encoder.sa2.mlp_bns.0.moving_mean', 'point_encoder.sa2.mlp_bns.0.moving_variance', 'point_encoder.sa2.mlp_bns.0.gamma', 'point_encoder.sa2.mlp_bns.0.beta', 'point_encoder.sa2.mlp_bns.1.moving_mean', 'point_encoder.sa2.mlp_bns.1.moving_variance', 'point_encoder.sa2.mlp_bns.1.gamma', 'point_encoder.sa2.mlp_bns.1.beta', 'point_encoder.sa2.mlp_bns.2.moving_mean', 'point_encoder.sa2.mlp_bns.2.moving_variance', 'point_encoder.sa2.mlp_bns.2.gamma', 'point_encoder.sa2.mlp_bns.2.beta', 'point_encoder.sa3.mlp_convs.0.weight', 'point_encoder.sa3.mlp_convs.1.weight', 'point_encoder.sa3.mlp_convs.2.weight', 'point_encoder.sa3.mlp_bns.0.moving_mean', 'point_encoder.sa3.mlp_bns.0.moving_variance', 'point_encoder.sa3.mlp_bns.0.gamma', 'point_encoder.sa3.mlp_bns.0.beta', 'point_encoder.sa3.mlp_bns.1.moving_mean', 'point_encoder.sa3.mlp_bns.1.moving_variance', 'point_encoder.sa3.mlp_bns.1.gamma', 'point_encoder.sa3.mlp_bns.1.beta', 'point_encoder.sa3.mlp_bns.2.moving_mean', 'point_encoder.sa3.mlp_bns.2.moving_variance', 'point_encoder.sa3.mlp_bns.2.gamma', 'point_encoder.sa3.mlp_bns.2.beta', 'point_encoder.fc1.weight', 'point_encoder.fc1.bias', 'point_encoder.bn1.moving_mean', 'point_encoder.bn1.moving_variance', 'point_encoder.bn1.gamma', 'point_encoder.bn1.beta', 'point_encoder.fc2.weight', 'point_encoder.fc2.bias', 'point_encoder.bn2.moving_mean', 'point_encoder.bn2.moving_variance', 'point_encoder.bn2.gamma', 'point_encoder.bn2.beta', 'point_encoder.fc_all.weight', 'point_encoder.fc_main.weight']
+2024-10-14 09:52:09,675 - __main__ - INFO - 新的预训练模型参数已保存到: data/initialize_models/slip_base_100ep.ckpt
+2024-10-14 09:52:09,675 - __main__ - INFO - 模型参数检查和调整完成。
+2024-10-14 09:52:30,383 - __main__ - INFO - Epoch 1/200 started.
+2024-10-14 09:54:26,958 - __main__ - INFO - Epoch 1/200 started.
+2024-10-14 09:56:18,951 - __main__ - INFO - Epoch 1/200 started.
+2024-10-14 09:58:08,675 - __main__ - INFO - Epoch 1/200 started.
+2024-10-14 09:59:21,058 - __main__ - INFO - Epoch 1/200 started.
+2024-10-14 09:59:55,586 - __main__ - INFO - Epoch 1/200 started.
+2024-10-14 10:00:49,559 - __main__ - INFO - Epoch 1/200 started.
+2024-10-14 10:01:55,331 - __main__ - INFO - Epoch 1/200 started.
+2024-10-14 10:04:33,177 - __main__ - INFO - Epoch 1/200 started.
+2024-10-14 10:05:17,687 - __main__ - INFO - Epoch 1/200 started.
+2024-10-14 10:05:58,590 - __main__ - INFO - Epoch 1/200 started.
+2024-10-14 10:06:22,413 - __main__ - INFO - Epoch 1/200 started.
+2024-10-14 10:07:23,075 - __main__ - INFO - Epoch 1/200 started.
+2024-10-14 10:08:02,252 - __main__ - INFO - Epoch 1/200 started.
+2024-10-14 11:57:46,652 - __main__ - INFO - Epoch 1/200 started.
+2024-10-14 12:09:04,972 - __main__ - INFO - Epoch 1/200 started.
+2024-10-14 12:09:29,938 - __main__ - INFO - Epoch 1/200 started.
+2024-10-14 12:09:56,558 - __main__ - INFO - Epoch 1/200 started.
+2024-10-14 12:55:55,363 - __main__ - INFO - Epoch 1/200 started.
+2024-10-14 12:58:33,400 - __main__ - INFO - Epoch 1/200 started.
+2024-10-14 13:06:39,295 - __main__ - INFO - Epoch 1/200 started.
+2024-10-14 13:09:10,934 - __main__ - INFO - Epoch 1/200 started.
+2024-10-14 14:24:00,519 - __main__ - INFO - Epoch 1/200 started.
+2024-10-14 18:35:40,330 - __main__ - INFO - Epoch 1 completed with avg loss: 2.4179, learning rate: 0.003000
+2024-10-15 02:31:56,962 - __main__ - INFO - Epoch 1/200 started.
+2024-10-15 02:33:15,351 - __main__ - INFO - Epoch 1/200 started.
+2024-10-15 02:33:23,396 - __main__ - INFO - Epoch 1/200 started.
+2024-10-15 02:33:40,565 - __main__ - INFO - Epoch 1/200 started.
+2024-10-15 02:35:19,182 - __main__ - INFO - Epoch 1/200 started.
+2024-10-15 02:36:16,151 - __main__ - INFO - Epoch 1/200 started.
+2024-10-15 03:10:36,843 - __main__ - INFO - Epoch 1/200 started.
+2024-10-15 07:22:56,864 - __main__ - INFO - Epoch 1/200 started.
