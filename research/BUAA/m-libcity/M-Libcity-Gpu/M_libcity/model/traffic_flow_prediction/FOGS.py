@@ -12,9 +12,9 @@ from mindspore.common.tensor import Tensor
 from model.abstract_model import AbstractModel
 from model import loss
 from mindspore.common.initializer import initializer, XavierNormal,XavierUniform,Normal, Uniform
-
-
-
+from mindspore import context
+# 设置运行模式和设备
+context.set_context(mode=context.PYNATIVE_MODE, device_target='GPU')
 class gcn_operation(nn.Cell):
     def __init__(self, adj, in_dim, out_dim, num_vertices, activation='GLU'):
         super(gcn_operation, self).__init__()
@@ -25,35 +25,22 @@ class gcn_operation(nn.Cell):
         self.activation = activation
         assert self.activation in {'GLU', 'relu'}
 
-        # 定义权重初始化器
-        weight_init = XavierNormal(gain=0.0003)
-        # 定义偏置初始化器
-        bias_init = Uniform()
-
         # 创建权重和偏置的Parameter对象
-        self.weight = Parameter(initializer(weight_init,shape=(out_dim, in_dim),
-            dtype=mindspore.float32),requires_grad=True)
+        self.weight = Parameter(initializer(XavierUniform(),shape=(out_dim, in_dim),
+            dtype=mindspore.float32),requires_grad=True)#.to('cuda')
 
-        self.bias = Parameter(initializer(bias_init,shape=(out_dim,),
-            dtype=mindspore.float32),requires_grad=True)
+        self.bias = Parameter(initializer(Uniform(),shape=(out_dim,),
+            dtype=mindspore.float32),requires_grad=True)#.to('cuda')
 
-        # 使用自定义初始化的权重和偏置创建全连接层
-        # 创建全连接层，MindSpore会自动使用上面创建的权重和偏置参数
         if self.activation == 'GLU':
-            self.fc = nn.Dense(in_dim, 2 * out_dim,
-                                # weight_init=self.weight,
-                                # bias_init=self.bias,
-                               has_bias=True)
+            self.fc = nn.Dense(in_dim, 2 * out_dim,has_bias=True)
         else:
-            self.fc = nn.Dense(in_dim, out_dim,
-                               # weight_init=self.weight,
-                               # bias_init=self.bias,
-                               has_bias=True)
+            self.fc = nn.Dense(in_dim, out_dim,has_bias=True)
 
         self.relu = ops.ReLU()
         self.sigmoid = ops.Sigmoid()
         self.split = ops.Split(axis=-1, output_num=2)
-
+        self.matmul = ops.MatMul()
     def construct(self, x, mask=None):
         """
         定义前向传播函数。
@@ -61,14 +48,14 @@ class gcn_operation(nn.Cell):
         :param mask: 掩码张量，用于屏蔽邻接矩阵中不需要更新的部分，其形状为(3*N, 3*N)。
         :return: 输出特征张量，其形状为(3*N, B, Cout)。
         """
-        # 如果提供了掩码，则更新邻接矩阵
         if mask is not None:
             adj = self.adj * mask
         else:
             adj = self.adj
 
-        x = einsum('nm, mbc->nbc', adj, x)
-
+        x_reshaped = x.reshape(x.shape[0], -1)  # 形状变为 (num_vertices, batch_size * channels_in)
+        result = self.matmul(adj, x_reshaped)  # 结果形状为 (num_vertices, batch_size * channels_in)
+        x = result.reshape(adj.shape[0], -1, self.in_dim)  # 结果形状为 (num_vertices, batch_size, channels_in)
         x = self.fc(x)
 
         if self.activation == 'GLU':
@@ -84,15 +71,13 @@ class gcn_operation(nn.Cell):
 class STSGCM(nn.Cell):
     def __init__(self, adj, in_dim, out_dims, num_of_vertices, activation='GLU'):
         super(STSGCM, self).__init__()
-        # 将邻接矩阵adj转换为MindSpore的Parameter
+
         self.adj = Tensor(adj, dtype=mstype.float32)
         self.in_dim = in_dim
         self.out_dims = out_dims
         self.num_of_vertices = num_of_vertices
         self.activation = activation
-        # 创建图卷积操作的CellList
         self.gcn_operations = nn.CellList()
-        # 添加第一层图卷积操作，输入维度为in_dim，输出维度为out_dims[0]
 
         self.gcn_operations.append(
             gcn_operation(
@@ -104,7 +89,6 @@ class STSGCM(nn.Cell):
             )
         )
 
-        # 循环添加剩余的图卷积层，每一层的输入是前一层的输出维度
         for i in range(1, len(self.out_dims)):
             self.gcn_operations.append(
                 gcn_operation(
@@ -118,18 +102,15 @@ class STSGCM(nn.Cell):
 
 
     def construct(self, x, mask=None):
-        # 初始化一个列表，用于存储需要合并的特征
         need_concat = []
         for i in range(len(self.out_dims)):
-            # 根据是否有mask执行带掩码或不带掩码的图卷积操作
             if mask is not None:
                 x = self.gcn_operations[i](x, mask)
             else:
                 x = self.gcn_operations[i](x)
-            # 将每层的输出特征添加到列表中
+
             need_concat.append(x)
 
-        #3个shape为(32, 12, 207, 1)的list
         need_concat = [
             ops.unsqueeze(
                 h[self.num_of_vertices: 2 * self.num_of_vertices], dim=0
@@ -137,7 +118,7 @@ class STSGCM(nn.Cell):
         ]
 
 
-        out=ops.Concat(axis=0)(*need_concat)
+        out=ops.Concat(axis=0)(need_concat)
 
         out,index = ops.max(out,axis=0)
 
@@ -164,15 +145,6 @@ class STSGCL(nn.Cell):
         self.activation = activation
         self.temporal_emb = temporal_emb
         self.spatial_emb = spatial_emb
-
-        # STFGNN的扩张卷积  1d
-        # self.dilation_conv_1 = nn.Conv2d(self.in_dim, self.in_dim, kernel_size=(1, 2), stride=(1, 1), dilation=(3, 1))
-        # self.dilation_conv_2 = nn.Conv2d(self.in_dim, self.in_dim, kernel_size=(1, 2), stride=(1, 1), dilation=(3, 1))
-
-        # 权重初始化为 PyTorch 风格的均匀分布
-        weight_init = Normal(0.0, math.sqrt(2) / self.in_dim)
-        # 偏置初始化为 PyTorch 风格的均匀分布
-        bias_init = Uniform(math.sqrt(2) / self.in_dim)
         # STFGNN的扩张卷积  1d
         self.dilation_conv_1 = nn.Conv2d(
             self.in_dim,
@@ -183,8 +155,8 @@ class STSGCL(nn.Cell):
             has_bias=True,  # 包含偏置项
             pad_mode='valid',   # 不进行填充
             padding=0,
-            weight_init=weight_init,  # 如果需要自定义权重初始化，可以设置这里
-            bias_init=bias_init  # 如果需要自定义偏置初始化，可以设置这里
+            weight_init=XavierUniform(),
+            bias_init=Uniform()
         )
 
         self.dilation_conv_2 = nn.Conv2d(
@@ -196,8 +168,8 @@ class STSGCL(nn.Cell):
             has_bias=True,  # 包含偏置项
             pad_mode='valid',  # 不进行填充
             padding=0,
-            weight_init=weight_init,  # 如果需要自定义权重初始化，可以设置这里
-            bias_init=bias_init  # 如果需要自定义偏置初始化，可以设置这里
+            weight_init=XavierUniform(),
+            bias_init=Uniform()
         )
 
         self.STSGCMS = nn.CellList()
@@ -268,9 +240,7 @@ class STSGCL(nn.Cell):
 
         for i in range(self.history - self.strides + 1):
             # (B, 3, N, Cin) -> (B, 3*N, Cin)
-
             t = x[:, i: i + self.strides, :, :]
-
             t = ops.Reshape()(t, (batch_size, self.strides * self.num_of_vertices, self.in_dim))
 
             # (3*N, B, Cin) -> (N, B, Cout)
@@ -283,45 +253,26 @@ class STSGCL(nn.Cell):
             need_concat.append(t)
 
 
-        out = ops.Concat(axis=1)(*need_concat)  # (B, T-2, N, Cout*(history-strides+1))
+        out = ops.Concat(axis=1)(need_concat)  # (B, T-2, N, Cout*(history-strides+1))
         layer_out = out + x_res
         return layer_out
 
 class output_layer(nn.Cell):
-    def __init__(self, num_of_vertices, history, in_dim,
-                 hidden_dim=128, horizon=12,
-                 weight_init=None, bias_init=None):
+    def __init__(self, num_of_vertices, history, in_dim,hidden_dim=128, horizon=12):
         super(output_layer, self).__init__()
         self.num_of_vertices = num_of_vertices
         self.history = history
         self.in_dim = in_dim
         self.hidden_dim = hidden_dim
         self.horizon = horizon
-        # 使用传入的初始化器来初始化Dense层的权重和偏置
-        # 检查是否提供了自定义初始化器
-        # 使用传入的初始化器创建权重和偏置
-        if weight_init is not None and bias_init is not None:
-            # 确保提供的初始化器是合法的
-            self.weight_init = weight_init
-            self.bias_init = bias_init
-        else:
-            # 如果没有提供初始化器，使用默认的初始化器
-            self.weight_init = XavierNormal(gain=0.0003)
-            self.bias_init = Uniform()
-
-        # 创建Dense层，使用自定义初始化器
         self.fc1 = nn.Dense(
             in_channels=self.in_dim * history,
             out_channels=self.hidden_dim,
-            weight_init=self.weight_init,
-            bias_init=self.bias_init,
             has_bias=True
         )
         self.fc2 = nn.Dense(
             in_channels=self.hidden_dim,
             out_channels=self.horizon,
-            weight_init=self.weight_init,
-            bias_init=self.bias_init,
             has_bias=True
         )
 
@@ -412,7 +363,7 @@ class FOGS_model(AbstractModel):
         for i in range(self.horizon):
             out_step = self.predictLayer[i](x)  # (B, 1, N)
             need_concat.append(out_step)
-        out = ops.Concat(axis=1)(*need_concat)
+        out = ops.Concat(axis=1)(need_concat)
 
 
         return out
@@ -518,7 +469,6 @@ class FOGS(nn.Cell):
             history -= (self.strides - 1)
             in_dim = hidden_list[-1]
 
-
         self.predictLayer = nn.CellList()
         for t in range(self.horizon):
             self.predictLayer.append(
@@ -540,34 +490,33 @@ class FOGS(nn.Cell):
 
 
     def train(self):
-        #self.network.train()
-        self.mode="train"
+        self.mode = "train"
+        self.set_grad(True)
+        self.set_train(True)
 
     def eval(self):
-        #self.network.eval()
+        self.mode = "eval"
+        self.set_grad(False)
+        self.set_train(False)
 
-        self.mode="eval"
-
-    def set_loss(self, loss_fn):
-        pass
-
+    def validate(self):
+        self.set_grad(False)
+        self.set_train(False)
 
     def forward(self, x):
-        # (B, Tin, N, Cin) 输入x假设已经是一个MindSpore Tensor
         x = self.First_FC(x)
-        relu = nn.ReLU()  # 应用全连接层和ReLU激活函数
+        relu = nn.ReLU()
         x = relu(x)
 
         for model in self.STSGCLS:
-            x = model(x, self.mask)  # 假设每个model接收x和mask作为参数
+            x = model(x, self.mask)
 
         need_concat = []
         for i in range(self.horizon):
-            out_step = self.predictLayer[i](x)  # 假设predictLayer中的每个层只接受x作为参数
+            out_step = self.predictLayer[i](x)
             need_concat.append(out_step)
 
-        # 使用ops.Concat操作来合并张量，axis=1表示沿着第二个维度合并
-        out = ops.Concat(axis=1)(*need_concat)  # (B, Tout, N)
+        out = ops.Concat(axis=1)(need_concat)  # (B, Tout, N)
         del need_concat
 
         return out
@@ -587,27 +536,23 @@ class FOGS(nn.Cell):
 
         return loss.masked_mae_m(bias, labels, null_val)
 
-    def predict(self,batch):
-
-        y_predict = self.forward(batch["X"])
-
+    def predict(self,batch_x, batch_y, batch_extx, batch_exty):
+        y_predict = self.forward(batch_x)
         return y_predict
 
-#batch_x, batch_y, batch_extx, batch_exty
-    def calculate_loss(self, batch):
-        # 从 batch 字典中获取输入数据 X
-        input = batch['X'][:, :, :, 0]
-        # 从 batch 字典中获取真实值 y，并且只取第一个通道的数据
-        real_val = batch['y'][:, :, :, 0]
-        # 从 batch 字典中获取趋势相关的数据 y_slot
-        realy_slot = batch['y_slot']
-        output = self.predict(batch['X'])
+
+    def calculate_loss(self, batch_x, batch_y, batch_extx, batch_exty):
+        input = batch_x[:, :, :, 0]
+        real_val = batch_y[:, :, :, 0]
+
+        realy_slot = batch_exty
+        output = self.predict(batch_x, batch_y, batch_extx, batch_exty)
         if self.trend_embedding:
             trend_time_bias = self.trend_bias_embeddings(realy_slot[:, 0])  # (B, N * T)
             trend_time_bias = ops.Reshape(trend_time_bias, (-1, self.num_nodes, self.horizon))  # (B, N, T)
             return loss.masked_mae_m(output, real_val) + self._compute_embedding_loss(input, real_val, output,
                                                                                           trend_time_bias)
-            #return ops.ReduceMean(ops.Abs(trend_time_bias - output), 0) + ops.ReduceMean(ops.Abs(real_val - output), 0)
+
         else:
             if self.use_trend:
                 return loss.masked_mae_m(output, real_val)
@@ -615,11 +560,9 @@ class FOGS(nn.Cell):
                 output = self._scaler.inverse_transform(output)
                 return self.default_loss_function(output, real_val)
 
-    def construct(self, batch):
-        #x, y, x_slot, y_slot = batch['X'], batch['y'], batch['x_slot'], batch['y_slot']
+    def construct(self, batch_x, batch_y, batch_extx, batch_exty):
         if self.mode=="train":
-            return self.calculate_loss(batch)
+            return self.calculate_loss(batch_x, batch_y, batch_extx, batch_exty)
         elif self.mode=="eval":
-            self.setgrad(False)
-            return self.predict(batch)
+            return self.predict(batch_x, batch_y, batch_extx, batch_exty)
         return
