@@ -145,7 +145,7 @@ You can download offical rgb and depth zip of Virtual KITTI, and run scripts as 
 bash script/download_vkitti.sh
 ```
 
-If you can't access the official VKITTI, you can use following script to download the dataset I have upload to [mindspore platform](https://xihe.mindspore.cn/models/Braval/Marigold-Model).
+If you can't access the official VKITTI, you can use following script to download the dataset I have upload to [mindspore platform](https://xihe.mindspore.cn/datasets/Braval/Marigold-Train).
 
 ```bash
 bash script/download_vkitti_mindspore.sh
@@ -190,7 +190,7 @@ marigold
 ...
 ```
 
-And then you could orgnized your data as [infer](#infer) and [evaluation](#evaluation) has introduced. And run below command to infer on your own ckpt:
+And then you could orgnized your data as [infer](#testing-on-your-images) and [evaluation](#evaluation-on-test-datasets) has introduced. And run below command to infer on your own ckpt:
 
 ```bash
 python run.py --fp16 --checkpoint marigold-checkpoint/marigold-vkitti.ckpt --ms_ckpt
