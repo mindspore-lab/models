@@ -11,21 +11,6 @@ import mindspore as ms
 from mindspore import Tensor, ops
 from scipy.sparse.linalg import eigsh
 
-class myLayerNorm(nn.Cell):
-    def __init__(self,dim,epsilon=1e-5,axis=-1):
-        super().__init__()
-        self.dim=dim
-        self.epsilon=epsilon
-        self.gamma = Parameter(initializer("ones",(dim,)),name="gamma")
-        self.beta = Parameter(initializer("zeros",(dim,)), name="beta")
-        self.axis=axis
-    def construct(self, x):
-        x_mean = ops.mean(x,axis=self.axis,keep_dims=True)
-        x -= x_mean
-        x_std = ops.sqrt(ops.mean(ops.square(x),axis=self.axis,keep_dims=True)+self.epsilon)
-        x = x/x_std*self.gamma+self.beta
-        return x
-
 
 def scaled_Laplacian(W):
     '''
@@ -43,7 +28,7 @@ def scaled_Laplacian(W):
     assert W.shape[0] == W.shape[1]
     # 将 W 转换为 Tensor
     if isinstance(W, np.ndarray):
-        W = Tensor(W, ms.float32)
+        W = Tensor(W, mnp.float32)
 
     D = ops.diag(ops.sum(W, dim =1))
 
@@ -51,9 +36,9 @@ def scaled_Laplacian(W):
 
     # 使用 scipy 进行特征值计算
     lambda_max = eigsh(L.asnumpy(), k=1, which='LM')[0].real
-    lambda_max = Tensor(lambda_max, ms.float32)
+    lambda_max = Tensor(lambda_max, mnp.float32)
 
-    identity = ops.eye(W.shape[0], W.shape[0], ms.float32)
+    identity = ops.eye(W.shape[0], W.shape[0], mnp.float32)
 
     return (2 * L) / lambda_max - identity
 
@@ -75,7 +60,8 @@ def cheb_polynomial(L_tilde, K):
     N = L_tilde.shape[0]
 
     # 初始化 T_0 和 T_1
-    identity = ops.eye(N, N, ms.float32)
+    identity = ops.eye(N, N, mnp.float32)
+
     cheb_polynomials = [identity, L_tilde.copy()]
 
     for i in range(2, K):
@@ -100,7 +86,7 @@ class SScaledDotProductAttention(nn.Cell):
         attn_mask: [batch_size, n_heads, seq_len, seq_len]
         '''
 
-        scores = ops.matmul(Q, self.transpose(K,(0,1,3,2))) / self.sqrt(Tensor(self.d_k,ms.float32))
+        scores = ops.matmul(Q, self.transpose(K,(0,1,3,2))) / self.sqrt(Tensor(self.d_k,mnp.float32))
         if attn_mask is not None:
             scores = self.masked_fill(scores, attn_mask, -1e9)
         return scores
@@ -111,11 +97,9 @@ class ScaledDotProductAttention(nn.Cell):
         super(ScaledDotProductAttention, self).__init__()
         self.d_k = d_k
         self.num_of_d = num_of_d
-        #self.matmul = ops.MatMul()
         self.sqrt = ops.Sqrt()
-        self.softmax = ops.Softmax(axis=3)
         self.masked_fill = ops.masked_fill
-        self.dtype = mstype.float32
+        self.dtype = mnp.float32
         self.transpose = ops.Transpose()
 
     def construct(self, Q, K, V, attn_mask, res_att):
@@ -125,10 +109,10 @@ class ScaledDotProductAttention(nn.Cell):
         V: [batch_size, n_heads, len_v(=len_k), d_v]
         attn_mask: [batch_size, n_heads, seq_len, seq_len]
         '''
-        scores = ops.matmul(Q, self.transpose(K, (0,1,2,4,3))) / self.sqrt(Tensor(self.d_k, ms.float32)) + res_att
+        scores = ops.matmul(Q, self.transpose(K, (0,1,2,4,3))) / self.sqrt(Tensor(self.d_k, mnp.float32)) + res_att
 
         if attn_mask is not None :
-            scores = self.masked_fill(scores, attn_mask, -1e9)
+           scores = self.masked_fill(scores, attn_mask, -1e9)
         softmax=ops.Softmax(axis=3)
         attn = softmax(scores)
         context = ops.matmul(attn, V)
@@ -143,10 +127,14 @@ class SMultiHeadAttention(nn.Cell):
         self.d_k = d_k
         self.d_v = d_v
         self.n_heads = n_heads
-        self.W_Q = nn.Dense(d_model, d_k * n_heads, has_bias=False,weight_init=XavierUniform(),
-                                    bias_init=Uniform())
-        self.W_K = nn.Dense(d_model, d_k * n_heads, has_bias=False,weight_init=XavierUniform(),
-                                    bias_init=Uniform())
+        self.W_Q = nn.Dense(d_model, d_k * n_heads, has_bias=False,
+                            # weight_init=XavierUniform(),
+                            # bias_init=Uniform()
+                            )
+        self.W_K = nn.Dense(d_model, d_k * n_heads, has_bias=False,
+                            # weight_init=XavierUniform(),
+                            # bias_init=Uniform()
+                            )
         self.transpose = ops.Transpose()
 
     def construct(self, input_Q, input_K, attn_mask):
@@ -179,14 +167,22 @@ class MultiHeadAttention(nn.Cell):
         self.d_v = d_v
         self.n_heads = n_heads
         self.num_of_d = num_of_d
-        self.W_Q = nn.Dense(d_model, d_k * n_heads, has_bias=False,weight_init=XavierUniform(),
-                                    bias_init=Uniform())
-        self.W_K = nn.Dense(d_model, d_k * n_heads, has_bias=False,weight_init=XavierUniform(),
-                                    bias_init=Uniform())
-        self.W_V = nn.Dense(d_model, d_v * n_heads, has_bias=False,weight_init=XavierUniform(),
-                                    bias_init=Uniform())
-        self.fc = nn.Dense(n_heads * d_v, d_model, has_bias=False,weight_init=XavierUniform(),
-                                    bias_init=Uniform())
+        self.W_Q = nn.Dense(d_model, d_k * n_heads, has_bias=False,
+                            # weight_init=XavierUniform(),
+                            # bias_init=Uniform()
+                            )
+        self.W_K = nn.Dense(d_model, d_k * n_heads, has_bias=False,
+                            # weight_init=XavierUniform(),
+                            # bias_init=Uniform()
+                            )
+        self.W_V = nn.Dense(d_model, d_v * n_heads, has_bias=False,
+                            # weight_init=XavierUniform(),
+                            # bias_init=Uniform()
+                            )
+        self.fc = nn.Dense(n_heads * d_v, d_model, has_bias=False,
+                           # weight_init=XavierUniform(),
+                           # bias_init=Uniform()
+                           )
         self.transpose = ops.Transpose()
         self.LayerNorm = nn.LayerNorm(normalized_shape=(d_model,), epsilon= 1e-5)
 
@@ -241,13 +237,13 @@ class cheb_conv_withSAt(nn.Cell):
         self.relu = nn.ReLU()
         self.transpose = ops.Transpose()
         self.Theta = ParameterTuple(
-            [Parameter(initializer(XavierUniform(),shape=[in_channels, out_channels], dtype=ms.float32),
+            [Parameter(initializer(XavierUniform(),shape=[in_channels, out_channels], dtype=mnp.float32),
                     requires_grad=True,name=f'param_{i}')
              for i in range(K)]
         )
 
         self.mask = ParameterTuple(
-            [Parameter(initializer(XavierUniform(),shape=[num_of_vertices, num_of_vertices], dtype=ms.float32),
+            [Parameter(initializer(XavierUniform(),shape=[num_of_vertices, num_of_vertices], dtype=mnp.float32),
                      requires_grad=True,name=f'param_{i}')
              for i in range(K)]
         )
@@ -267,7 +263,7 @@ class cheb_conv_withSAt(nn.Cell):
 
             graph_signal = x[:, :, :, time_step]  # (b, N, F_in)
 
-            output = ops.zeros((batch_size, num_of_vertices, self.out_channels), dtype=ms.float32)
+            output = ops.zeros((batch_size, num_of_vertices, self.out_channels), dtype=mnp.float32)
 
             for k in range(self.K):
                 T_k = self.cheb_polynomials[k]  # (N,N)
@@ -312,7 +308,7 @@ class cheb_conv(nn.Cell):
         self.in_channels = in_channels
         self.out_channels = out_channels
         self.Theta = ParameterTuple(
-            [Parameter(initializer(XavierUniform(),shape=[in_channels, out_channels], dtype=ms.float32),
+            [Parameter(initializer(XavierUniform(),shape=[in_channels, out_channels], dtype=mnp.float32),
                       requires_grad=True) for _ in range(K)]
         )
         self.relu = nn.ReLU()
@@ -333,7 +329,7 @@ class cheb_conv(nn.Cell):
 
             graph_signal = x[:, :, :, time_step]  # (b, N, F_in)
 
-            output = ops.zeros((batch_size, num_of_vertices, self.out_channels), dtype=ms.float32)
+            output = ops.zeros((batch_size, num_of_vertices, self.out_channels), dtype=mnp.float32)
 
             for k in range(self.K):
                 T_k = self.cheb_polynomials[k]  # (N,N)
@@ -362,20 +358,14 @@ class Embedding(nn.Cell):
 
     def construct(self, x, batch_size):
         if self.Etype == 'T':
-            pos = ops.arange(self.nb_seq, dtype=mstype.int32)
+            pos = ops.arange(self.nb_seq, dtype=mnp.int32)
             pos = ops.unsqueeze(pos, 0)
             pos = ops.unsqueeze(pos, 0)
             pos = ops.broadcast_to(pos,(batch_size,self.num_of_features, self.nb_seq))
             x=self.transpose(x, (0, 2, 3, 1))
-            #检查权重是否包含NaN
-            # embedding_table_np = self.pos_embed.embedding_table.data.asnumpy()
-            # if np.isnan(embedding_table_np).any():
-            #     print("NaN values found in the embedding weights")
-            # else:
-            #     print("No NaN values in the embedding weights")
             embedding = x + self.pos_embed(pos)
         else:
-            pos = ops.arange(self.nb_seq, dtype=mstype.int64)
+            pos = ops.arange(self.nb_seq, dtype=mnp.int64)
             pos = ops.unsqueeze(pos, 0)
             pos = ops.broadcast_to(pos,(batch_size, self.nb_seq))
             embedding = x + self.pos_embed(pos)
@@ -394,8 +384,8 @@ class GTU(nn.Cell):
                                  has_bias=True,  # 包含偏置项
                                  pad_mode='valid',  # 不进行填充
                                  padding=0,
-                                 weight_init=XavierUniform(),
-                                 bias_init=Uniform()
+                                 # weight_init=XavierUniform(),
+                                 # bias_init=Uniform()
                                  )
 
     def construct(self, x):
@@ -423,14 +413,14 @@ class DSTAGNN_block(nn.Cell):
         self.tanh = nn.Tanh()
         self.relu = nn.ReLU()
 
-        self.adj_pa = Tensor(adj_pa, ms.float32)
+        self.adj_pa = Tensor(adj_pa, mnp.float32)
 
         self.pre_conv = nn.Conv2d(num_of_timesteps, d_model, kernel_size=(1, num_of_d),
                                   has_bias=True,
                                   pad_mode='valid',  # 不进行填充
                                   padding=0,
-                                  weight_init=XavierUniform(),
-                                  bias_init=Uniform()
+                                  # weight_init=XavierUniform(),
+                                  # bias_init=Uniform()
                                   )
 
         self.EmbedT = Embedding(num_of_timesteps, num_of_vertices, num_of_d, 'T')
@@ -449,14 +439,16 @@ class DSTAGNN_block(nn.Cell):
                                        has_bias=True,
                                        pad_mode='valid',  # 不进行填充
                                        padding=0,
-                                       weight_init=XavierUniform(),
-                                       bias_init=Uniform()
+                                       # weight_init=XavierUniform(),
+                                       # bias_init=Uniform()
                                        )
 
         self.dropout = nn.Dropout(p=0.05)
         self.fcmy = nn.SequentialCell(
-            nn.Dense(3 * num_of_timesteps - 12, num_of_timesteps,weight_init=XavierUniform(),
-                                    bias_init=Uniform()),
+            nn.Dense(3 * num_of_timesteps - 12, num_of_timesteps,
+                    #  weight_init=XavierUniform(),
+                    # bias_init=Uniform()
+                     ),
             nn.Dropout(p=0.05),
         )
         self.nb_time_filter=nb_time_filter
@@ -477,7 +469,7 @@ class DSTAGNN_block(nn.Cell):
         if num_of_features == 1:
             TEmx = self.EmbedT(x, batch_size)  # B,F,T,N
         else:
-            TEmx =transpose_op(x, (0, 2,3,1))
+            TEmx =transpose_op(x, (0, 2,3,1) )
 
         TATout, re_At = self.TAt(TEmx, TEmx, TEmx, None, res_att)  # B,F,T,N; B,F,Ht,T,T
 
@@ -557,12 +549,9 @@ class DSTAGNN_model(AbstractTrafficStateModel):
         d_k = config.get('d_k', 32)
         d_v = config.get('d_k', 32)
         n_heads = config.get('n_heads', 3)
-
         # cheb_polynomials
         L_tilde = scaled_Laplacian(adj_merge)
-
-        cheb_polynomials = [Tensor(i, ms.float32) for i in cheb_polynomial(L_tilde, K)]
-
+        cheb_polynomials = [Tensor(i, mnp.float32) for i in cheb_polynomial(L_tilde, K)]
         self.BlockList = nn.CellList([DSTAGNN_block( num_of_d, in_channels, K,
                                                       nb_chev_filter, nb_time_filter, time_strides, cheb_polynomials,
                                                       adj_pa, adj_TMD, num_of_vertices, len_input, d_model, d_k, d_v,
@@ -577,12 +566,13 @@ class DSTAGNN_model(AbstractTrafficStateModel):
                                     kernel_size=(1, nb_time_filter),pad_mode='valid',  # 不进行填充
                                     has_bias=True,
                                     padding=0,
-                                    weight_init=XavierUniform(),
-                                    bias_init=Uniform()
+                                    # weight_init=XavierUniform(),
+                                    # bias_init=Uniform()
                                     )
         self.final_fc = nn.Dense(128, num_for_predict,
-                                weight_init=XavierUniform(),
-                                bias_init=Uniform() )
+                                # weight_init=XavierUniform(),
+                                # bias_init=Uniform()
+                                 )
 
 
     def construct(self, x):
@@ -640,9 +630,9 @@ class DSTAGNN(nn.Cell):
         self.set_train(False)
 
     def predict(self,x,label):
-        x = self.transpose(x,(0, 2, 3, 1))
-        x=x[...,0:1,:]
-        label=label[...,0:1,:]
+        x=x[...,0:1]
+        label=label[...,0:1]
+        x = self.transpose(x, (0, 2, 3, 1))
         y_predict= self.network(x)
         y_predict = self.transpose(y_predict,(0, 2, 1)).unsqueeze(-1)
         y_predict = self.zscore.inverse_transform(y_predict)
@@ -650,20 +640,19 @@ class DSTAGNN(nn.Cell):
         return y_predict[...,0:1],label
 
     def calculate_loss(self,x,label):
-        assert not mnp.isnan(x).any(), "Input data contains NaN values"
-        #print("xxx",x.shape)
         x=x[...,0:1]
         label=label[...,0:1]
         x = self.transpose(x, (0, 2, 3, 1))
         y = self.network(x)
         y = self.transpose(y, (0, 2, 1)).unsqueeze(-1)
-        #print(y.shape,label.shape)
         y = self.zscore.inverse_transform(y)
         label = self.zscore.inverse_transform(label)
         loss = self.loss(y, label,0)
         return loss
 
     def construct(self, x, label):
+        x = x.astype(dtype=mnp.float32)
+        label = label.astype(dtype=mnp.float32)
         if self.mode=="train":
             return self.calculate_loss(x,label)
         elif self.mode=="eval":
