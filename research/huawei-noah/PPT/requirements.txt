@@ -1,0 +1,8 @@
+mindspore_gpu~=1.9.0
+numpy~=1.21.6
+onnxruntime~=1.13.1
+Pillow~=9.4.0
+PyYAML~=6.0
+tqdm~=4.64.1
+loguru~=0.6.0
+torchprofile~=0.0.4

@@ -1,0 +1,51 @@
+# model config
+backbone: 'resnet50'
+backbone_pretrain: ''
+num_queries: 100
+qH: 10
+dec_layers: 6
+hidden_dim: 480
+dropout: 0.1
+nheads: 8
+
+pre_norm: False
+
+# train parameters
+device_target: 'GPU'
+lr: 0.0001
+lr_backbone: 0.00001
+weight_decay: 0.0001
+epochs: 150
+lr_drop: 100
+clip_max_norm: 0.1
+batch_size: 2 # for training. set to 1 for eval
+num_classes: 91
+seed: 42
+eval: False
+num_workers: 4
+is_distributed: False
+max_img_size: 1333
+img_scales: [480, 512, 544, 576, 608, 640, 672, 704, 736, 768, 800]
+log_frequency_step: 100
+keep_checkpoint_max: 10
+save_path: './output/'
+coco_path: '/home/ma-user/work/data/coco/'
+dataset_file: 'coco'
+
+# loss
+aux_loss: True
+class_loss_coef: 1
+bbox_loss_coef: 5
+giou_loss_coef: 2
+eos_coef: 0.1
+losses: ['labels', 'boxes', 'cardinality']
+
+# matcher
+set_cost_class: 1
+set_cost_bbox: 5
+set_cost_giou: 2
+
+# export and eval
+ckpt_path: 'checkpoints/deco_r50_150e.ckpt'
+file_format: 'MINDIR'
+file_name: ''

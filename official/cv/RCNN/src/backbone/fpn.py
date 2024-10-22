@@ -51,6 +51,7 @@ class FPN(nn.Cell):
         norm (Cell/str): normalization layer. Default: None.
         act (Cell/str): activation layer in ConvModule. Default: None.
         upsample_mode (str): interpolate mode for upsample. Default: 'nearest'.
+        frozen(bool): frozen backbone when training.
     """
 
     def __init__(
@@ -63,6 +64,7 @@ class FPN(nn.Cell):
         norm="none",
         act="none",
         upsample_mode="bilinear",
+        frozen=False,
     ):
         super(FPN, self).__init__()
         assert isinstance(in_channels, list)
@@ -77,6 +79,7 @@ class FPN(nn.Cell):
         self.lateral_convs = nn.CellList()
         self.fpn_convs = nn.CellList()
         self.max_pool = nn.MaxPool2d(kernel_size=1, stride=2)
+        self.frozen = frozen
 
         for i in range(len(in_channels)):
             l_conv = ConvModule(in_channels[i], out_channels, kernel_size=1, norm=norm, act=act)
@@ -105,11 +108,17 @@ class FPN(nn.Cell):
         # part 1: from original levels
         outs = ()
         for i in range(used_backbone_levels):
-            outs += (self.fpn_convs[i](ups[i]),)
+            out = self.fpn_convs[i](ups[i])
+            if self.frozen:
+                out = ops.stop_gradient(out)
+            outs += (out,)
 
         # part 2: add extra levels
         if self.num_outs > len(outs):
             # use max pool to get more levels on top of outputs
             for i in range(self.num_outs - used_backbone_levels):
-                outs += (self.max_pool(outs[-1]),)
+                out = self.max_pool(outs[-1])
+                if self.frozen:
+                    out = ops.stop_gradient(out)
+                outs += (out,)
         return outs

@@ -11,4 +11,5 @@ lr:
   decay_rate: 0.1
   milestones: [16, 22]
 
+clip_grads: False
 epochs: 24

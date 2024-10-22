@@ -58,7 +58,7 @@ def get_args_train(parents=None):
 
 
 def train(cfg, network, dataset, optimizer, loss_scaler, grad_reducer, eval_dataset=None):
-    train_net = TrainOneStepCell(network, optimizer, loss_scaler, grad_reducer, clip_grads=cfg.backbone.frozen_bn)
+    train_net = TrainOneStepCell(network, optimizer, loss_scaler, grad_reducer, clip_grads=cfg.clip_grads)
     model = ms.Model(train_net)
     cfg.print_pre_epoch = dataset.get_dataset_size() // cfg.log_interval + 1
     cfg.steps_per_epoch = cfg.print_pre_epoch * cfg.log_interval
@@ -133,16 +133,8 @@ if __name__ == "__main__":
     network = get_network(config)
     if config.mix:
         network.to_float(ms.float32)
-        network.backbone.to_float(ms.float16)
-        network.rpn_head.rpn_feat.to_float(ms.float16)
-        network.bbox_head.head.to_float(ms.float16)
-        network.bbox_head.roi_extractor.to_float(ms.float16)
-        if config.net == "MaskRCNN":
-            network.mask_head.head.to_float(ms.float16)
-            network.mask_head.roi_extractor.to_float(ms.float16)
-            network.mask_head.mask_fcn_logits.to_float(ms.float16)
         for _, cell in network.cells_and_names():
-            if isinstance(cell, (nn.Dense)):
+            if isinstance(cell, (nn.Dense, nn.Conv2d)):
                 cell.to_float(ms.float16)
 
     seg_size = None if not config.data.is_segment else config.data.seg_size
@@ -176,9 +168,20 @@ if __name__ == "__main__":
 
     config.start_step = 0
     if os.path.exists(config.resume_ckpt):
-        ms.load_checkpoint(config.resume_ckpt, network)
-        parameter_dict = ms.load_checkpoint(config.resume_ckpt, optimizer)
-        config.start_step = int(parameter_dict["global_step"].data)
+        params = ms.load_checkpoint(config.resume_ckpt)
+        new_params = {}
+        for p in params:
+            data = params[p]
+            if "bbox_cls" in p:
+                if data.shape[0] != config.data.nc + 1:
+                    print(f"[WARNING] param {p}'s shape {data.shape} is not match num_class {config.data.nc}")
+                    continue
+            if "bbox_delta" in p:
+                if data.shape[0] != config.data.nc * 4:
+                    print(f"[WARNING] param {p}'s shape {data.shape} is not match num_class {config.data.nc}")
+                    continue
+            new_params[p] = data
+        ms.load_param_into_net(network, new_params)
         logger.info(f"success to load pretrained ckpt {config.resume_ckpt}")
 
     loss_scaler = StaticLossScaler(1.0)
@@ -191,7 +194,7 @@ if __name__ == "__main__":
     elif config.ms_loss_scaler == "static":
         loss_scaler = StaticLossScaler(config.get("ms_loss_scaler_value", 2**10))
 
-    grad_reducer = ops.functional.identity
+    grad_reducer = nn.Identity()
     if config.rank_size > 1:
         mean = ms.context.get_auto_parallel_context("gradients_mean")
         grad_reducer = nn.DistributedGradReducer(optimizer.parameters, mean, config.rank_size)

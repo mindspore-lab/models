@@ -33,17 +33,21 @@ def init_env(cfg):
     seed = int(getattr(cfg, "seed", 1))
     device_target = getattr(cfg, "device_target", "Ascend")
     ms_mode = int(getattr(cfg, "ms_mode", 0))
+    run_profilor = bool(getattr(cfg, "run_profilor", False))
+    enable_modelarts = bool(getattr(cfg, "enable_modelarts", False))
     ms.set_seed(seed)
     # Set Context
     ms.set_context(mode=ms_mode, device_target=device_target, max_call_depth=2000, runtime_num_threads=15)
-    if cfg.ms_mode == 1:
+    if ms_mode == 1:
         ms.set_context(pynative_synchronize=True)
+    elif ms_mode == 0:
+        ms.set_context(jit_config={"jit_level": "O2"})
     if device_target != "CPU":
         device_id = int(os.getenv("DEVICE_ID", 0))
         ms.set_context(device_id=device_id)
     elif device_target == "GPU" and cfg.get("ms_enable_graph_kernel", False):
         ms.set_context(enable_graph_kernel=True)
-    if cfg.run_profilor:
+    if run_profilor:
         ms.set_context(save_graphs=True, save_graphs_path="ir")
 
     # Set Parallel
@@ -68,7 +72,7 @@ def init_env(cfg):
     logger.setup_logging_file(log_dir=os.path.join(cfg.save_dir, "logs"))
 
     # Modelarts: Copy data, from the s3 bucket to the computing node; Reset dataset dir.
-    if cfg.enable_modelarts:
+    if enable_modelarts:
         from src.utils.modelarts import sync_data
 
         print("==== data_dir", cfg.data_dir)

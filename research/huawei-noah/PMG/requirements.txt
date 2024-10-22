@@ -1,0 +1,11 @@
+gradio==3.48.0
+matplotlib==3.8.4
+mindformers==0.8.0
+mindspore==2.2.1
+numpy==1.26.4
+omegaconf==2.3.0
+pandas==1.2.5
+Pillow==10.3.0
+pyspark==3.5.1
+PyYAML==6.0.1
+Requests==2.31.0
