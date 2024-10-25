@@ -67,6 +67,7 @@ class BBoxHead(nn.Cell):
             bg_thresh=cfg.bbox_assigner.bg_thresh,
             fg_thresh=cfg.bbox_assigner.fg_thresh,
             fg_fraction=cfg.bbox_assigner.fg_fraction,
+            num_classes=num_classes,
             with_mask=with_mask,
         )
         self.num_classes = num_classes
@@ -86,7 +87,6 @@ class BBoxHead(nn.Cell):
             has_bias=True,
             bias_init="zeros"
         )
-        self.onehot = nn.OneHot(depth=self.num_classes)
         self.with_mask = with_mask
 
     def construct(self, feats, rois, rois_mask, gts, gt_masks=None):
@@ -123,7 +123,7 @@ class BBoxHead(nn.Cell):
         reg_target = ops.stop_gradient(reg_target)
         cond = ops.logical_and(gt_classes < self.num_classes, gt_classes >= 0)
         reg_class = ops.select(cond, gt_classes, ops.zeros_like(gt_classes)).reshape(-1)
-        reg_class_weight = ops.expand_dims(self.onehot(reg_class), -1)
+        reg_class_weight = ops.expand_dims(ops.one_hot(indices=reg_class.astype(ms.int64), depth=self.num_classes), -1)
         reg_class_weight = ops.stop_gradient(
             reg_class_weight * fg_masks.reshape((-1, 1, 1)).astype(reg_class_weight.dtype))
         loss_bbox_reg = self.loc_loss(pred_delta.reshape(-1, self.num_classes, 4), reg_target)

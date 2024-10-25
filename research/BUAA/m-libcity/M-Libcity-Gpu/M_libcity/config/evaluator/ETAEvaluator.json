@@ -1,0 +1,5 @@
+{
+  "metrics": ["MAE","RMSE"],
+  "mode": "single",
+  "save_modes": ["csv"]
+}

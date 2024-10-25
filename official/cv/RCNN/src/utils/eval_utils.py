@@ -250,6 +250,7 @@ class DetectionEngine:
                 pred_data = {
                     "image_id": int(img_id),
                     "category_id": label,
+                    "label_id": int(cls[ind]),
                     "bbox": bboxes[ind].tolist(),
                     "score": scores[ind].item(),
                     "segmentation": segmentation,

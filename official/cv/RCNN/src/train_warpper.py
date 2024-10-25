@@ -22,7 +22,7 @@ def train_one(network, optimizer, loss_scaler, grad_reducer):
 
 class TrainOneStepCell(nn.TrainOneStepWithLossScaleCell):
     def __init__(self, network, optimizer, loss_scaler, grad_reducer, clip_grads=False):
-        scale_sense = ms.Tensor(1.0, ms.float32)
+        scale_sense = ms.Tensor(256.0, ms.float32)
         super(TrainOneStepCell, self).__init__(network, optimizer, scale_sense)
         self.loss_scaler = loss_scaler
         self.grad_reducer = grad_reducer
@@ -38,6 +38,8 @@ class TrainOneStepCell(nn.TrainOneStepWithLossScaleCell):
             sens_tuple += (ops.zeros_like(outputs[i]),)
         grads = self.grad(self.network, weights)(*inputs, sens_tuple)
         grads = self.loss_scaler.unscale(grads)
+        if self.clip_grads:
+            grads = ops.clip_by_global_norm(grads)
         grads = self.grad_reducer(grads)
         # get the overflow buffer
         cond = self.get_overflow_status(status, grads)

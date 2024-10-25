@@ -1,18 +1,25 @@
 # ![MindSpore Logo](https://gitee.com/mindspore/mindspore/raw/master/docs/MindSpore-logo.png)
 
 ## 欢迎来到MindSpore ModelZoo
-### WHAT IS NEW:
-- 2023.07.01: 🔥新增[语言模型](https://github.com/mindspore-lab/models/blob/master/official/README_CN.md#语言模型) (包括热点模型glm/llama/bloom 来自于mindformers套件)
-- 2023.06.01: 我们对经典SOTA模型进行了重构，模块化数据处理，模型定义，训练流程等常用组件，推出MindSpore CV/NLP/Audio/Yolo/OCR等系列
-- 原models仓模型实现是基于MindSpore原生API，并且有一定训练推理加速优化
-- 更多关于模型精度性能信息，请查阅 [benchmark](benchmark_CN.md)。
 
-
-| 目录                     | 描述                                                         |
-|------------------------| ------------------------------------------------------------ |
+| 目录  | 描述 |
+|--|-|
 | [official](official)   | • 业界SOTA算法模型实现<br/> • MindSpore团队官方维护|
 | [research](research)   | • 业界前沿研究类算法模型实现 <br/> • 研究人员/机构维护 |
 | [community](community) | • github/gitee 生态AI/ML repos powered by MindSpore | 
+
+
+### MindSpore Lab:
+| 套件模型库 | 说明 |  
+|:--:|:-- |
+| mindformers | • transformers类大模型套件，包含llama/qwen等模型 <br/> • https://github.com/mindspore-lab/mindformers |
+| mindone     | • 生成式模型套件，包含sd/sora/dit等模型   <br/> • https://github.com/mindspore-lab/mindone     | 
+| mindcv      | • cv模型库包含vgg/resnet/vit等          <br/> •  https://github.com/mindspore-lab/mindcv    | 
+| mindnlp     | • nlp类模型库包含bert/roberta等         <br/> • https://github.com/mindspore-lab/mindnlp    | 
+| mindaudio   | • audio模型库包含deepspeech/conformer等 <br/> • https://github.com/mindspore-lab/mindaudio |
+| mindocr     | • ocr任务模型库包含dbnet/crnn等          <br/> • https://github.com/mindspore-lab/mindocr   | 
+| mindyolo    | • yolo模型库包含yolov3~v8等             <br/> • https://github.com/mindspore-lab/mindyolo  |
+
 
 
 ## 免责声明

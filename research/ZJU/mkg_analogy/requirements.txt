@@ -1,0 +1,5 @@
+mindspore==2.2.0
+mindformers==0.6.0
+datasets
+torch
+mindnlp

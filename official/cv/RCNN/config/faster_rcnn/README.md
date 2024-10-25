@@ -91,6 +91,12 @@ mpirun --allow-run-as-root -n [DEVICE_NUM] --merge-stderr-to-stdout 、
     python eval.py --config [CONFIG_PATH] --device_target [DEVICE_TARGET] --mix True --ckpt_path [CHECKPOINT_PATH]
 ```
 
+### Inference
+
+```shell
+python infer.py --config [CONFIG_PATH] --device_target [DEVICE_TARGET] --ckpt_path [CHECKPOINT_PATH] --imgs [image path] --save_dir [RESULT_PATH]
+```
+
 ### Training on ModelArts
 
 1. Configure the ModelArts parameter in the config file:
