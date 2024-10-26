@@ -389,7 +389,7 @@ python eval.py --config_path='./configs/IRMAS_config.yaml' --device_id=5
 AUC: 0.93686
 ```
 
-## FSDKaggle2018
+## FSDKaggle2018 dataset
 
 ### checkpoint
 
