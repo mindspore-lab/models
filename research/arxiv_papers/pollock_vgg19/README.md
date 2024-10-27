@@ -77,4 +77,14 @@ var_img mean: 0.5266, std: 0.3061
 time: 44.29 seconds
 ```
 
-感谢MindSpore社区的支持！
+计算分形维数、小波变换
+
+```bash
+python fractal_dimension.py
+```
+
+```bash
+python wavelet_transform.py
+```
+
+#### 感谢MindSpore社区的支持！
