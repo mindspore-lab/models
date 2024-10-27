@@ -50,9 +50,10 @@ python pth2ms.py -i vgg19.pth -m vgg
 #### 运行：
 
 先修改风格图片、内容图片的路径，根据需要修改迭代次数与输出。运行transfer.py文件即可
+注意: transfer_1.py为没有添加预训练权重的版本，transfer_2.py为添加预训练权重的版本
 
 ```bash
-python transfer.py
+python transfer_2.py
 ```
 
 看到类似于以下的输出即为正常运行
