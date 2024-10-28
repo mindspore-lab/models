@@ -25,23 +25,10 @@
 1. 安装MindSpore框架 (对于不同环境，参考昇思文档进行安装: [https://www.mindspore.cn/install](https://www.mindspore.cn/install) )  
 
 ```bash  
-pip install https://ms-release.obs.cn-north-4.myhuaweicloud.com/2.2.14/MindSpore/unified/x86_64/mindspore-2.2.14-cp38-cp38-linux_x86_64.whl --trusted-host ms-release.obs.cn-north-4.myhuaweicloud.com -i https://pypi.tuna.tsinghua.edu.cn/simple
+mindspore==2.2.14
 ```
 
-2. 检查是否安装成功（不同环境的检测方式不一致，参考昇思文档进行检查: [https://www.mindspore.cn/install](https://www.mindspore.cn/install))  
-
-```bash  
-python -c "import mindspore;mindspore.set_context(device_target='GPU');mindspore.run_check()"
-```
-
-3. 如果为以下输出即为安装成功
-
-```bash  
-MindSpore version: 2.2.14
-The result of multiplication calculation is correct, MindSpore has been installed on platform [GPU] successfully!
-```
-
-4. 转换权重文件
+2. 转换权重文件(可选)
 
 ```bash
 python pth2ms.py -i vgg19.pth -m vgg
