@@ -18,13 +18,8 @@
 export DEVICE_NUM=1
 export RANK_SIZE=${DEVICE_NUM}
 
-DATA_PATH="/home/ma-user/work/datasets"
-#DATA_PATH=$2
-GTA5_PATH="${DATA_PATH}/gtav"
-CITYSCAPES_PATH="${DATA_PATH}/Cityscapes"
 
 
-LOG_PATH="./log"
 
 EXEC_PATH="$(pwd)"
 echo "the work path : $EXEC_PATH"
@@ -34,7 +29,13 @@ echo "config path is : ${CONFIG_PATH}"
 # python train.py --data_dir ${GTA5_PATH} \
 #                         --data_dir_target ${CITYSCAPES_PATH} \
 #                         --config_path ${CONFIG_PATH}
-python eval.py --data_dir ${GTA5_PATH} \
-                        --data_dir_target ${CITYSCAPES_PATH} \
-                        --config_path ${CONFIG_PATH}
-                        --restrore_from ./checkpoint/best_41.61.ckpt
+#python eval.py --data_dir ${GTA5_PATH} \
+#                        --data_dir_target ${CITYSCAPES_PATH} \
+#                        --config_path ${CONFIG_PATH} \
+#                        --restore_from ./checkpoint/best_41.61.ckpt
+python eval.py --config_path "./advnet_config.yaml" \
+               --restore_from ./checkpoint/best_41.77.ckpt
+
+python eval.py --config_path "./advnet_config.yaml" \
+               --restore_from ./src/advnet/Multi_adv_best_41.8.ckpt \
+               --device_id 7

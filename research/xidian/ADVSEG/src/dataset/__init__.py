@@ -43,16 +43,14 @@ def get_dataset(config, mode='train') -> ds.GeneratorDataset:
         train_path = config.data_dir_target
 
     if mode == 'train':
-        gta_dataset = GTA5DataSet(config.z, config.data_list,
+        gta_dataset = GTA5DataSet(config.data_dir, config.data_list,
                                   max_iters=config.num_steps,
-                                  crop_size=config.input_size, scale=False,
-                                  mirror=False, mean=config.IMG_MEAN)
+                                  crop_size=config.input_size, mean=config.IMG_MEAN)
         config.num_steps = gta_dataset.__len__()
 
         cityscapes_dataset = cityscapesDataSet(train_path, os.path.join(config.data_list_target, f'{config.set}.txt'),
                                                max_iters=config.num_steps,
-                                               crop_size=config.input_size_target, scale=False,
-                                               mirror=False, mean=config.IMG_MEAN,
+                                               crop_size=config.input_size_target, mean=config.IMG_MEAN,
                                                set=config.set)
         print('GTA5 Train Data Path:\t', config.data_dir)
         print("Cityscapes Train Data path:\t", train_path)
@@ -62,8 +60,7 @@ def get_dataset(config, mode='train') -> ds.GeneratorDataset:
 
     else:
         dataset = cityscapesDataSet(train_path, os.path.join(config.data_list_target, mode + '.txt'),
-                                    crop_size=config.input_size_target, scale=False,
-                                    mirror=False, mean=config.IMG_MEAN,
+                                    crop_size=config.input_size_target, mean=config.IMG_MEAN,
                                     set=mode)
         dataset = ds.GeneratorDataset(dataset, shuffle=False, column_names=['image', 'name'],
                                       # num_shards=config.group_size,

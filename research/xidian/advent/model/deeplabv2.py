@@ -22,7 +22,6 @@ from mindspore.ops import Shape
 
 AFFINE_PAR = True
 
-
 class Bottleneck(nn.Cell):
     """build bottleneck module"""
     expansion = 4
@@ -78,10 +77,8 @@ class Bottleneck(nn.Cell):
         out = self.relu(out)
         return out
 
-
 class ClassifierModule(nn.Cell):
     """build classify module"""
-
     def __init__(self, inplanes, dilation_series, padding_series, num_classes):
         super(ClassifierModule, self).__init__()
         self.conv2d_list = nn.CellList()
@@ -103,7 +100,6 @@ class ClassifierModule(nn.Cell):
 
 class ResNetMulti(nn.Cell):
     """build resnet"""
-
     def __init__(self, block, layers, num_classes, multi_level, freeze_bn_affine=True):
         self.multi_level = multi_level
         self.inplanes = 64
@@ -189,7 +185,6 @@ class ResNetMulti(nn.Cell):
         """freeze batchnorm"""
         self.apply(freeze_bn_module)
 
-
 def freeze_bn_module(m):
     """Freeze bn module.
     param m: a torch module
@@ -199,8 +194,7 @@ def freeze_bn_module(m):
     if classname.find('BatchNorm') != -1:
         m.eval()
 
-
-def get_deeplab_v2(num_classes=19, multi_level=True, freeze_bn_affine=True):
+def get_deeplab_v2(num_classes=19, multi_level=True, freeze_bn_affine=None):
     """get deeplabv2 net"""
     model = ResNetMulti(Bottleneck, [3, 4, 23, 3], num_classes, multi_level,
                         freeze_bn_affine=freeze_bn_affine)

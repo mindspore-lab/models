@@ -52,6 +52,7 @@ class SoftmaxCrossEntropyLoss(nn.Cell):
         # ops.Print()(self.not_equal(labels_int, self.ignore_label))
         weights = self.logical_and(self.greater_equal(labels_int, 0), self.not_equal(labels_int, self.ignore_label))
         weights = self.cast(weights, mstype.float32)
+        # logits_ = self.cast(logits_, mstype.float32)
         one_hot_labels = self.one_hot(labels_int, self.num_cls, self.on_value, self.off_value)
         loss = self.ce(logits_, one_hot_labels)
         loss = self.mul(weights, loss)

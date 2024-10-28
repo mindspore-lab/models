@@ -163,8 +163,6 @@ def evaluation(model, testloader, interp, data_dir_target, save_result, data_lis
             logger.write('batch_id: %d processed \t Time: %.6f \n' % (index, batch_time))
 
     avg_time = all_time / all_index
-    if (not config) or (not config.is_distributed) or (config.rank == 0):
-        print('Total Image: {}\t Total processed time: {}\t Avg processed time: {}\n'.format(all_index, all_time, avg_time))
 
     # if not config:
     #     print('Total Image: {}\t Total processed time: {}\t Avg processed time: {}\n'.format(all_index, all_time, avg_time))

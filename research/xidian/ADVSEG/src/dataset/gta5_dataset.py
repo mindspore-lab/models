@@ -17,18 +17,30 @@ import numpy as np
 import mindspore.dataset as ds
 from random import shuffle
 from PIL import Image, ImageFile
+import cv2
+import random
+import os
+import matplotlib.pyplot as plt
 
+def save_label(label, class_color_map=None, save_path=None):
+    label_show = Image.fromarray(label.astype('uint8')).convert('P')
+    if class_color_map is not None:
+        label_show.putpalette(class_color_map)
+
+    if save_path is not None:
+        os.makedirs(os.path.dirname(save_path), exist_ok=True)
+        label_show.save(save_path)
+    else:
+        plt.imshow(label_show)
+        plt.show()
 
 class GTA5DataSet():
-    def __init__(self, root, list_path, max_iters=None, crop_size=(321, 321), mean=(128, 128, 128), scale=True,
-                 mirror=True, ignore_label=255):
+    def __init__(self, root, list_path, max_iters=None, crop_size=(321, 321), mean=(128, 128, 128), ignore_label=255):
         self.root = root
         self.list_path = list_path
         self.crop_size = crop_size
-        self.scale = scale
         self.ignore_label = ignore_label
         self.mean = mean
-        self.is_mirror = mirror
         # self.mean_bgr = np.array([104.00698793, 116.66876762, 122.67891434])
         self.img_ids = [i_id.strip() for i_id in open(list_path)]
         if not max_iters == None:
@@ -64,8 +76,8 @@ class GTA5DataSet():
         name = datafiles["name"]
 
         # resize
-        image = image.resize(self.crop_size)
-        label = label.resize(self.crop_size)
+        image = image.resize(self.crop_size,resample=Image.BILINEAR)
+        label = label.resize(self.crop_size,resample=Image.NEAREST)
 
         image = np.asarray(image, np.float32)
         label = np.asarray(label, np.float32)
@@ -76,15 +88,16 @@ class GTA5DataSet():
             label_copy[label == k] = v
 
         size = image.shape
+
         image = image[:, :, ::-1]  # change to BGR
         image -= self.mean
         image = image.transpose((2, 0, 1))
 
-        return image.copy(), label_copy.copy()
+        return image.copy(), label_copy.copy().astype(np.int32)
 
 
 if __name__ == '__main__':
-    dataset_generator = GTA5DataSet("E:\data\GTA5", 'gta5_list/train.txt')
+    dataset_generator = GTA5DataSet("./data/GTA5", './src/dataset/gta5_list/train.txt')
     data = iter(dataset_generator).__next__()
     print(data)
     dataset = ds.GeneratorDataset(dataset_generator, column_names=['image', 'label'], shuffle=False)

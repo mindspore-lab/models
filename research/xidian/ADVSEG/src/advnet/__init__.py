@@ -16,7 +16,7 @@
 
 import sys
 import os
-from src.advnet.deeplabv2 import get_deeplab_v2
+from src.advnet.deeplabV2 import get_deeplab_v2
 
 sys.path.append(f"{os.getcwd()}/src/advnet")
 
@@ -30,7 +30,7 @@ from mindspore.context import ParallelMode
 from src.model_utils import Softmax
 from .deeplab import *
 from .deeplab_multi import *
-from .deeplabv2 import *
+from .deeplabV2 import *
 from .discriminator import *
 
 

@@ -18,6 +18,7 @@ import numpy as np
 import random
 
 import mindspore
+import mindspore.dataset as ds
 from mindspore import nn, Model
 from mindspore import context
 from mindspore.communication.management import init, get_rank
@@ -25,98 +26,101 @@ from mindspore.train.callback import LossMonitor, TimeMonitor
 
 from src.model_utils import config, split_checkpoint
 
-# from src.advnet import get_adaptsegnet, get_TrainOneStepCell
+from src.dataset import get_dataset
+from src.dataset.gta5_dataset import GTA5DataSet
+from src.dataset.cityscapes_dataset import cityscapesDataSet
+
 from src.advnet.adaptsegnet import get_adaptsegnetCell, get_TrainOneStepCell
+
 from src.utils.loss import get_loss, SoftmaxCrossEntropyLoss
 from src.utils.optimizer import get_optimizer
 from src.utils.callbacks import StepMonitor, CheckpointMonitor
-from src.dataset import get_dataset
+from src.utils.platform_process import platform_preprocess, platform_postprocess
+from src.utils.set_environment import set_environment, cast_amp
+from src.utils.set_debug import set_debug
 
-print(config)
-
-mindspore.common.set_seed(config.seed)
-random.seed(config.seed)
-np.random.seed(config.seed)
+# print(config)
+#
+# mindspore.common.set_seed(config.seed)
+# random.seed(config.seed)
+# np.random.seed(config.seed)
 
 
 def main():
     """Create the model and start the training."""
     # config.debug = True
 
+    """Part 1: Environment Preparation"""
+    # 以下三个顺序不可乱，如果顺序混乱，可能会导致一些问题
+    set_debug(config)
+    set_environment(config)
+    platform_preprocess(config)
+    mindspore.context.set_context(enable_graph_kernel=False)
+    print("Please check the above information for the configurations", flush=True)
+    print(config)
+
     config.IMG_MEAN = np.array((104.00698793, 116.66876762, 122.67891434), dtype=np.float32)
 
-    if config.model_arts:
-        import moxing as mox
-        local_data_url = '/cache/data'
-        local_train_url = '/cache/ckpt'
-        mox.file.copy_parallel(src_url=config.data_dir, dst_url=os.path.join(local_data_url, 'GTA5'))
-        if os.path.exists(os.path.join(config.data_dir_target,'leftImg8bit_trainvaltest')) and \
-           os.path.exists(os.path.join(config.data_dir_target,'gtFine_trainvaltest')):
-            mox.file.copy_parallel(src_url=os.path.join(config.data_dir_target,'leftImg8bit_trainvaltest','leftImg8bit'), dst_url=os.path.join(local_data_url, 'Cityscapes/leftImg8bit'))
-            mox.file.copy_parallel(src_url=(os.path.join(config.data_dir_target,'gtFine_trainvaltest','gtFine')), dst_url=os.path.join(local_data_url, 'Cityscapes/gtFine'))
-        else:
-            mox.file.copy_parallel(src_url=config.data_dir_target, dst_url=os.path.join(local_data_url, 'Cityscapes'))
-        mox.file.copy_parallel(src_url=config.restore_from, dst_url=os.path.join(local_data_url, 'Pretrain_DeeplabMulti.ckpt'))
+    """Part 2: dataset Preparation"""
+    gta_dataset = GTA5DataSet(config.data_dir, config.data_list,
+                              max_iters=config.num_steps,
+                              crop_size=config.input_size, mean=config.IMG_MEAN)
+    cityscapes_dataset = cityscapesDataSet(config.data_dir_target, os.path.join(config.data_list_target, 'train.txt'),
+                                           max_iters=config.num_steps,
+                                           crop_size=config.input_size_target,
+                                           mean=config.IMG_MEAN,
+                                           set='train')
+    if config.device_num > 1:
+        sampler = ds.DistributedSampler(shuffle=True, shard_id=config.device_id, num_shards=config.device_num, num_samples=config.num_steps)
+        gta_dataset = ds.GeneratorDataset(gta_dataset, ["s_image", "s_label"], sampler=sampler)
+        sampler = ds.DistributedSampler(shuffle=True, shard_id=config.device_id, num_shards=config.device_num, num_samples=config.num_steps)
+        cityscapes_dataset = ds.GeneratorDataset(cityscapes_dataset, ["t_image", "None","name"], sampler=sampler)
+    else:
+        sampler = ds.RandomSampler(num_samples=config.num_steps)
+        gta_dataset = ds.GeneratorDataset(gta_dataset, ["s_image", "s_label"], sampler=sampler)
+        sampler = ds.RandomSampler(num_samples=config.num_steps)
+        cityscapes_dataset = ds.GeneratorDataset(cityscapes_dataset, ["t_image", "None","name"], sampler=sampler)
 
-        config.data_dir = os.path.join(local_data_url, 'GTA5')
-        config.data_dir_target = os.path.join(local_data_url, 'Cityscapes')
-        config.restore_from = os.path.join(local_data_url, 'Pretrain_DeeplabMulti.ckpt')
-        # ckpt_save_dir = local_train_url + config.training_set
+    train_dataset = ds.zip((gta_dataset, cityscapes_dataset))
+    train_dataset = train_dataset.project(['s_image', 't_image', 's_label'])
+    train_dataset = train_dataset.batch(batch_size=config.batch_size)
 
-    # 环境配置
+    print('GTA5 Train Data Path:\t', config.data_dir)
+    print("Cityscapes Train Data path:\t", config.data_dir_target)
+    print('the length of dataset is {}'.format(train_dataset.get_dataset_size()))
+    print('the batch size is {}'.format(train_dataset.batch_size))
 
-    context.set_context(mode=context.GRAPH_MODE, device_target=config.device_target)
+    val_dataset = cityscapesDataSet(config.data_dir_target, os.path.join(config.data_list_target, 'val.txt'),
+                                crop_size=config.input_size_target, mean=config.IMG_MEAN,set='val')
+    val_dataset = ds.GeneratorDataset(val_dataset, shuffle=False, column_names=['image', "label",'name'],)
+    val_dataset = val_dataset.batch(batch_size=1)
 
-    device_id = int(os.environ["DEVICE_ID"])
-    if config.device_target == "GPU":
-        context.set_context(enable_graph_kernel=True)
-    elif config.device_target == "Ascend":
-        context.set_context(device_id=device_id)
-    print('设备：', config.device_target)
-
-    if int(os.environ.get('DEVICE_NUM', 1)) > 1:
-        config.is_distributed = True
-
-    if config.is_distributed:
-        init()
-        config.rank = get_rank()
-        config.group_size = int(os.environ.get('DEVICE_NUM', 8))
-        parallel_mode = mindspore.context.ParallelMode.DATA_PARALLEL
-        context.set_auto_parallel_context(parallel_mode=parallel_mode, gradients_mean=False,
-                                          device_num=config.group_size,
-                                          # parameter_broadcast=True
-                                          )
-        config.save_pred_every = config.save_pred_every // config.group_size
-
-
-    # [Part 1: dataset]
-    dataset = get_dataset(config)
-    print('the length of dataset is {}'.format(dataset.get_dataset_size()))
     # [Part 2: net]
     net = get_adaptsegnetCell(config)
 
     print('Parameter Number:')
-    print('Generator       :\t{}'.format(len(net.model_G.trainable_params())))
-    print('Discriminator_1 :\t{}'.format(len(net.model_D1.trainable_params())))
-    print('Discriminator_2 :\t{}'.format(len(net.model_D2.trainable_params())))
+    print('Generator       :\t{}'.format(len(net.net_G.trainable_params())))
+    print('Discriminator_1 :\t{}'.format(len(net.net_D1.trainable_params())))
+    print('Discriminator_2 :\t{}'.format(len(net.net_D2.trainable_params())))
     print('All:            :\t{}'.format(len(net.trainable_params())))
     # [Part 3: Optimizer and Loss function]
-
-    # optimizer = get_optimizer(config, net)
-    calc_loss = SoftmaxCrossEntropyLoss()
+    # calc_loss = SoftmaxCrossEntropyLoss()
+    calc_loss = nn.CrossEntropyLoss(ignore_index=255)
     bce_loss = nn.BCEWithLogitsLoss()
 
     #  [Whether continue train]
 
     steps_per_epoch = 10
     step_cb = StepMonitor(per_print_times=steps_per_epoch)
-    ckpt_cb = CheckpointMonitor(config, net, get_dataset(config, mode='val'))
+    ckpt_cb = CheckpointMonitor(config, net, val_dataset)
     cb = [step_cb, ckpt_cb]
     # start train
     train_net = get_TrainOneStepCell(config, net, calc_loss, bce_loss)
+    # cast_amp(config, train_net)
+
     model = Model(train_net)
-    # model.build(dataset, sink_size=config.save_pred_every)
-    model.train(1, dataset, callbacks=cb, dataset_sink_mode=False)
+
+    model.train(1, train_dataset, callbacks=cb, dataset_sink_mode=False)
 
     print('Train Over ! Save Over model ')
 

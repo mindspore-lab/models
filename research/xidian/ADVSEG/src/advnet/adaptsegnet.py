@@ -23,16 +23,16 @@ from mindspore.context import ParallelMode
 from src.model_utils import Softmax, split_checkpoint
 from .deeplab import *
 from .deeplab_multi import *
-from .deeplabv2 import *
+from .deeplabV2 import *
 from .discriminator import *
 
 
 class AdaptSegNet(nn.Cell):
-    def __init__(self, model_G, model_D1, model_D2, size_source, size_target, ):
+    def __init__(self, net_G, net_D1, net_D2, size_source, size_target, ):
         super(AdaptSegNet, self).__init__()
-        self.model_G = model_G
-        self.model_D1 = model_D1
-        self.model_D2 = model_D2
+        self.net_G = net_G
+        self.net_D1 = net_D1
+        self.net_D2 = net_D2
         self.size_source = size_source
         self.size_target = size_target
         self.interp_source = ops.ResizeBilinear(size=(size_source[1], size_source[0]))
@@ -43,22 +43,22 @@ class AdaptSegNet(nn.Cell):
         # generator
         # image_source, image_target = data[:, :3, :, :], data[:, 3:, :, :]
         # image_source, image_target = data[:, 0, :, :, :], data[:, 1, :, :, :]
-        pred1, pred2 = self.model_G(image_source)
-        pred1_target, pred2_target = self.model_G(image_target)
+        pred1, pred2 = self.net_G(image_source)
+        pred1_target, pred2_target = self.net_G(image_target)
         pred1 = self.interp_source(pred1)
         pred2 = self.interp_source(pred2)
         pred1_target = self.interp_target(pred1_target)
         pred2_target = self.interp_target(pred2_target)
 
-        D_out1_part1 = self.model_D1(self.softmax(pred1_target))
-        D_out2_part1 = self.model_D2(self.softmax(pred2_target))
+        D_out1_part1 = self.net_D1(self.softmax(pred1_target))
+        D_out2_part1 = self.net_D2(self.softmax(pred2_target))
 
         return pred1, pred2, D_out1_part1, D_out2_part1, pred1_target, pred2_target
 
 
 class WithLossG(nn.Cell):
     def __init__(self, net: AdaptSegNet, loss_fn1, loss_fn2, lambda_):
-        super().__init__()
+        super().__init__(auto_prefix=False)
         self.net = net
         self.loss_fn1 = loss_fn1
         self.loss_fn2 = loss_fn2
@@ -72,7 +72,7 @@ class WithLossG(nn.Cell):
         loss_seg2 = self.loss_fn1(pred2, s_label)
         loss_adv1 = self.loss_fn2(D_out1_part1, self.zeros_like(D_out1_part1))
         loss_adv2 = self.loss_fn2(D_out2_part1, self.zeros_like(D_out2_part1))
-        loss_G = loss_seg2 + self.lambda_[0] * loss_seg1 + self.lambda_[2] * loss_adv2 + self.lambda_[1] * loss_adv1
+        loss_G = loss_seg2 + self.lambda_[0] * loss_seg1 + self.lambda_[1] * loss_adv1 + self.lambda_[2] * loss_adv2
 
         pred1 = self.stop_grad(pred1)
         pred2 = self.stop_grad(pred2)
@@ -83,7 +83,7 @@ class WithLossG(nn.Cell):
 
 class TrainOneStepG(nn.Cell):
     def __init__(self, net_with_loss: WithLossG, optimizer, sens=1.0):
-        super().__init__()
+        super().__init__(auto_prefix=False)
         self.net_with_loss = net_with_loss
         self.optimizer = optimizer
         self.weights = self.optimizer.parameters
@@ -124,7 +124,7 @@ class TrainOneStepG(nn.Cell):
 
 class WithlossD(nn.Cell):
     def __init__(self, model_D, loss_fn):
-        super().__init__()
+        super().__init__(auto_prefix=False)
         self.model_D = model_D
         self.loss_fn = loss_fn
         self.softmax = nn.Softmax(axis=1)
@@ -139,10 +139,33 @@ class WithlossD(nn.Cell):
         loss = (self.loss_fn(out, self.zeros_like(out)) + self.loss_fn(out_target, self.ones_like(out_target))) / 2
         return loss
 
+class WithlossD2(nn.Cell):
+    def __init__(self, model_D1,model_D2, loss_fn):
+        super().__init__(auto_prefix=False)
+        self.model_D1 = model_D1
+        self.model_D2 = model_D2
+        self.loss_fn = loss_fn
+        self.softmax = nn.Softmax(axis=1)
+        self.zeros_like = ops.ZerosLike()
+        self.ones_like = ops.OnesLike()
+
+    def construct(self, pred1, pred_target1,pred2, pred_target2):
+        prob = self.softmax(pred1)
+        prob_target = self.softmax(pred_target1)
+        out = self.model_D1(prob)
+        out_target = self.model_D2(prob_target)
+        loss = (self.loss_fn(out, self.zeros_like(out)) + self.loss_fn(out_target, self.ones_like(out_target))) / 2
+        prob = self.softmax(pred2)
+        prob_target = self.softmax(pred_target2)
+        out = self.model_D1(prob)
+        out_target = self.model_D2(prob_target)
+        loss += (self.loss_fn(out, self.zeros_like(out)) + self.loss_fn(out_target, self.ones_like(out_target))) / 2
+        return loss
+
 
 class TrainOneStepD(nn.Cell):
     def __init__(self, net_with_loss, optimizer, sens=1.0):
-        super().__init__()
+        super().__init__(auto_prefix=False)
         self.net_with_loss = net_with_loss
         self.optimizer = optimizer
         self.weights = self.optimizer.parameters
@@ -182,7 +205,8 @@ class TrainOneStepD(nn.Cell):
 
 class CustomTrainOneStep(nn.Cell):
     def __init__(self, Train_G: TrainOneStepG, Train_D1: TrainOneStepD, Train_D2: TrainOneStepD):
-        super().__init__()
+        super().__init__(auto_prefix=False)
+        # super().__init__()
         self.Train_G = Train_G
         self.Train_D1 = Train_D1
         self.Train_D2 = Train_D2
@@ -195,36 +219,39 @@ class CustomTrainOneStep(nn.Cell):
 
 
 def get_adaptsegnetCell(config):
-    model_G = get_deeplab_v2(num_classes=config.num_classes)
-    model_D1 = FCDiscriminator(num_classes=config.num_classes)
-    model_D2 = FCDiscriminator(num_classes=config.num_classes)
+    net_G = get_deeplab_v2(num_classes=config.num_classes)
+    net_D1 = FCDiscriminator(num_classes=config.num_classes)
+    net_D2 = FCDiscriminator(num_classes=config.num_classes)
 
     if config.restore_from:
         print('load model from : {}'.format(config.restore_from))
         saved_state_dict = mindspore.load_checkpoint(config.restore_from)
         split_list = ['net_G', 'net_D1', 'net_D2']
         train_state_dict = split_checkpoint(saved_state_dict, split_list=split_list)
-        mindspore.load_param_into_net(model_G, train_state_dict['net_G'], strict_load=True)
+        mindspore.load_param_into_net(net_G, train_state_dict['net_G'], strict_load=True)
         print('success load model !')
 
-    return AdaptSegNet(model_G, model_D1, model_D2, config.input_size, config.input_size_target)
-
+    return AdaptSegNet(net_G, net_D1, net_D2, config.input_size, config.input_size_target)
 
 def get_TrainOneStepCell(config, net: AdaptSegNet, loss_fn1, loss_fn2):
     net_with_lossG = WithLossG(net, loss_fn1, loss_fn2, config.lambda_)
-    net_with_lossD1 = WithlossD(net.model_D1, loss_fn2)
-    net_with_lossD2 = WithlossD(net.model_D2, loss_fn2)
+    net_with_lossD1 = WithlossD(net.net_D1, loss_fn2)
+    net_with_lossD2 = WithlossD(net.net_D2, loss_fn2)
 
     learning_rate = nn.PolynomialDecayLR(learning_rate=config.learning_rate, end_learning_rate=1e-9, decay_steps=config.num_steps, power=config.power)
-    optimizer = nn.SGD(net.model_G.trainable_params(), learning_rate=learning_rate, momentum=config.momentum, weight_decay=config.weight_decay)
+    optimizer = nn.SGD(net.net_G.trainable_params(), learning_rate=learning_rate, momentum=config.momentum, weight_decay=config.weight_decay)
 
     learning_rate_D1 = nn.PolynomialDecayLR(learning_rate=config.learning_rate_D, end_learning_rate=1e-9, decay_steps=config.num_steps, power=config.power)
-    optimizer_D1 = nn.Adam(net.model_D1.trainable_params(), learning_rate=learning_rate_D1, beta1=0.9, beta2=0.99)
+    optimizer_D1 = nn.Adam(net.net_D1.trainable_params(), learning_rate=learning_rate_D1, beta1=0.9, beta2=0.99)
+    optimizer_D1.update_parameters_name('optimizer_D1.')
+
 
     learning_rate_D2 = nn.PolynomialDecayLR(learning_rate=config.learning_rate_D, end_learning_rate=1e-9, decay_steps=config.num_steps, power=config.power)
-    optimizer_D2 = nn.Adam(net.model_D2.trainable_params(), learning_rate=learning_rate_D2, beta1=0.9, beta2=0.99)
+    optimizer_D2 = nn.Adam(net.net_D2.trainable_params(), learning_rate=learning_rate_D2, beta1=0.9, beta2=0.99)
+    optimizer_D2.update_parameters_name('optimizer_D2.')
 
     net_trainG = TrainOneStepG(net_with_lossG, optimizer)
     net_trainD1 = TrainOneStepD(net_with_lossD1, optimizer_D1)
     net_trainD2 = TrainOneStepD(net_with_lossD2, optimizer_D2)
     return CustomTrainOneStep(net_trainG, net_trainD1, net_trainD2)
+

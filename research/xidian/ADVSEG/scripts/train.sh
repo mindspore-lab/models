@@ -18,23 +18,16 @@
 export DEVICE_NUM=1
 export RANK_SIZE=${DEVICE_NUM}
 
-DATA_PATH="/home/ma-user/work/datasets"
-#DATA_PATH=$2
-GTA5_PATH="${DATA_PATH}/gtav"
-CITYSCAPES_PATH="${DATA_PATH}/Cityscapes"
-
-
 LOG_PATH="./log"
 
 EXEC_PATH="$(pwd)"
 echo "the work path : $EXEC_PATH"
-CONFIG_PATH="${EXEC_PATH}/advnet_config.yaml"
-#CONFIG_PATH="./advnet_config.yaml"
-echo "config path is : ${CONFIG_PATH}"
- python train.py --data_dir ${GTA5_PATH} \
-                         --data_dir_target ${CITYSCAPES_PATH} \
-                         --config_path ${CONFIG_PATH}
+
+#python -u train.py --config_path "./advnet_config.yaml"
+nohup python train.py --config_path "./advnet_config.yaml" > log.log 2>&1 &
 #python eval.py --data_dir ${GTA5_PATH} \
 #                        --data_dir_target ${CITYSCAPES_PATH} \
 #                        --config_path ${CONFIG_PATH}
 #                        --restrore_from ./checkpoint/best_41.61.ckpt
+
+#mpirun --allow-run-as-root -n ${RANK_SIZE} python train.py --config_path="./advnet_config.yaml" --device_num=${DEVICE_NUM}
