@@ -10,12 +10,23 @@ import time
 from mindspore.ops import value_and_grad
 import mindspore.numpy as mnp
 from mindspore.amp import StaticLossScaler
+import argparse
 
 context.set_context(mode=PYNATIVE_MODE)
 
 ms.set_seed(0)
 
 t0 = time.time()
+
+def parse_args():
+    parser = argparse.ArgumentParser(description="Style Transfer")
+    parser.add_argument('--content_img_path', type=str, required=True, help='Path to the content image')
+    parser.add_argument('--style_img_path', type=str, required=True, help='Path to the style image')
+    parser.add_argument('--output_dir', type=str, required=True, help='Directory to save output images')
+    parser.add_argument('--ckpt_path', type=str, required=True, help='Path to the VGG19 checkpoint file')
+    return parser.parse_args()
+
+args = parse_args()
 
 # 加载本地VGG19模型
 class VGG19(nn.Cell):
@@ -69,7 +80,7 @@ class VGG19(nn.Cell):
             param_dict = ms.load_checkpoint(ckpt_path)
             ms.load_param_into_net(self, param_dict)
 
-model = VGG19(ckpt_path='vgg19.ckpt')  # 替换为你的ckpt文件路径
+model = VGG19(ckpt_path=args.ckpt_path)  # 使用命令行参数
 
 batch_size = 1
 
@@ -97,7 +108,7 @@ def custom_expand_dims(tensor_tuple, axis=0):
     shape.insert(axis, 1)
     return tensor.reshape(shape)
 
-content_img = Image.open('/root/autodl-fs/test/A.jpg').convert('RGB')
+content_img = Image.open(args.content_img_path).convert('RGB')  # 使用命令行参数
 image_size = content_img.size
 content_img = transform_test(content_img)
 # 使用修改后的自定义函数
@@ -105,7 +116,7 @@ content_img = custom_expand_dims(content_img, 0)
 # 将 NumPy 数组转换为 MindSpore Tensor
 content_img = ms.Tensor(content_img, dtype=ms.float32)
 
-style_img = Image.open('/root/autodl-fs/test/pollock.png').convert('RGB')
+style_img = Image.open(args.style_img_path).convert('RGB')  # 使用命令行参数
 style_img = transform_test(style_img)
 # 使用修改后的自定义函数
 style_img = custom_expand_dims(style_img, 0)
@@ -239,7 +250,7 @@ for itera in range(1001):
         save_img = save_img[0].transpose(1, 2, 0).asnumpy() * 255
         save_img = save_img[..., ::-1].astype('uint8')
         save_img = cv2.resize(save_img, image_size)
-        cv2.imwrite(f'/root/autodl-fs/test/output/transfer{itera}.jpg', save_img)
+        cv2.imwrite(f'{args.output_dir}/transfer{itera}.jpg', save_img)  # 使用命令行参数
 
     loss_scale = StaticLossScaler(1024)
     loss = loss_scale.scale(loss)

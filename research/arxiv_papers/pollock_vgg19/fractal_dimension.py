@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from skimage import color, filters
 from osgeo import gdal
+import argparse
 
 
 def differential_box_counting(img, min_box_size=5, num_boxes=20):
@@ -38,8 +39,11 @@ def read_tif_image(image_path):
 
 
 def main():
-    img_path = "pollock.png"  # 替换为你的TIF文件路径
-    img = read_tif_image(img_path)
+    parser = argparse.ArgumentParser(description='Calculate the fractal dimension of an image.')
+    parser.add_argument('img_path', type=str, help='Path to the image file')
+    args = parser.parse_args()
+
+    img = read_tif_image(args.img_path)
     if img.ndim == 3 and img.shape[2] == 4:
         img = img[:, :, :3]
     if img.ndim == 3:

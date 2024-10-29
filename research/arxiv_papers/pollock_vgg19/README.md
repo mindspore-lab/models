@@ -40,7 +40,7 @@ mindspore==2.2.14
 注意: transfer_1.py为没有添加预训练权重的版本，transfer_2.py为添加预训练权重的版本
 
 ```bash
-python transfer_2.py
+python transfer_2.py --content_img_path /path/to/content.jpg --style_img_path /path/to/style.png --output_dir /path/to/output
 ```
 
 看到类似于以下的输出即为正常运行
@@ -68,11 +68,11 @@ time: 44.29 seconds
 计算分形维数、小波变换
 
 ```bash
-python fractal_dimension.py
+python fractal_dimension.py /path/to/image.jpg
 ```
 
 ```bash
-python wavelet_transform.py
+python wavelet_transform.py /path/to/pollock.png
 ```
 
 #### 感谢MindSpore社区的支持！

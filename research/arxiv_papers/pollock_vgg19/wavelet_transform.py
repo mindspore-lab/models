@@ -3,9 +3,17 @@ from matplotlib import pyplot as plt
 import pywt
 from PIL import Image
 import matplotlib.font_manager as fm
+import argparse
+
+# 创建解析器
+parser = argparse.ArgumentParser(description='Process an image file for wavelet transform.')
+parser.add_argument('image_path', type=str, help='Path to the image file')
+
+# 解析命令行参数
+args = parser.parse_args()
 
 # 打开图像并转换为灰度图
-img = Image.open("pollock_0000.png").convert('L')  # 'L' 表示转换为灰度图
+img = Image.open(args.image_path).convert('L')  # 'L' 表示转换为灰度图
 img = np.array(img)
 
 # 使用 Haar 小波对图像进行二维离散小波变换
