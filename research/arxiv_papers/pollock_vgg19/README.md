@@ -20,23 +20,19 @@
 - 12 vCPU Intel(R) Xeon(R) Platinum 8352V CPU @ 2.10GHz  
 ```
 
-权重文件: [https://download.pytorch.org/models/vgg19-dcbb9e9d.pth](https://download.pytorch.org/models/vgg19-dcbb9e9d.pth)  
-
-图片数据集: [https://xihe.mindspore.cn/datasets/wyqmath/MindSpore_pollock/](https://xihe.mindspore.cn/datasets/wyqmath/MindSpore_pollock/)  
-
 #### 准备工作：  
 
-1. 安装MindSpore框架 (对于不同环境，参考昇思文档进行安装: [https://www.mindspore.cn/install](https://www.mindspore.cn/install) )  
+安装MindSpore框架 (对于不同环境，参考昇思文档进行安装: [https://www.mindspore.cn/install](https://www.mindspore.cn/install) )  
 
 ```bash  
 mindspore==2.2.14
 ```
 
-2. 转换权重文件(可选)
+附件下载地址:
 
-```bash
-python pth2ms.py -i vgg19.pth -m vgg
-```
+“vgg19.ckpt"预训练权重文件托管在modeler社区: https://modelers.cn/models/wyq/MindSpore_VGG19 
+
+图片数据集托管在昇思大模型平台: [https://xihe.mindspore.cn/datasets/wyqmath/MindSpore_pollock/](https://xihe.mindspore.cn/datasets/wyqmath/MindSpore_pollock/)  
 
 #### 运行：
 
