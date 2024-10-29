@@ -6,6 +6,10 @@
 
 关键词：神经风格迁移、分形分析、湍流特征、NFT标签、深度学习
 
+本文已经在 [arXiv](https://arxiv.org/abs/2410.20519) 上发表，如需要引用请采用以下格式:
+
+> Wang Y. Fractal and Turbulent Feature Extraction and NFT Label Generation for Pollock Style Migration Paintings Based on VGG19 [J]. arXiv preprint arXiv:2410.20519, 2024.
+
 #### 测试环境:  
 
 ```markdown
