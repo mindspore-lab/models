@@ -1,29 +1,17 @@
-# import torch
-# import torch.nn as nn
-# import torch.nn.functional as F
-import numpy as np
 from logging import getLogger
-from model.abstract_traffic_state_model import AbstractTrafficStateModel
-from model import loss
-from scipy.sparse.linalg import eigs
+
 import mindspore as ms
 import mindspore.nn as nn
 import mindspore.ops as ops
-from mindspore import Parameter, Tensor,ParameterTuple
-from mindspore.common.initializer import initializer, XavierNormal,XavierUniform,Normal, Uniform
+import numpy as np
+from mindspore import Parameter, Tensor, ParameterTuple
+from mindspore.common.initializer import initializer, XavierUniform, Uniform
+from model import loss
+from model.abstract_traffic_state_model import AbstractTrafficStateModel
+from scipy.sparse.linalg import eigs
+
 
 def scaled_laplacian(weight):
-    """
-    compute ~L (scaled laplacian matrix)
-    L = D - A
-    ~L = 2L/lambda - I
-
-    Args:
-        weight(np.ndarray): shape is (N, N), N is the num of vertices
-
-    Returns:
-        np.ndarray: ~L, shape (N, N)
-    """
     assert weight.shape[0] == weight.shape[1]
     n = weight.shape[0]
     diag = np.diag(np.sum(weight, axis=1))
@@ -37,22 +25,11 @@ def scaled_laplacian(weight):
 
 
 def cheb_polynomial(l_tilde, k):
-    """
-    compute a list of chebyshev polynomials from T_0 to T_{K-1}
-
-    Args:
-        l_tilde(np.ndarray): scaled Laplacian, shape (N, N)
-        k(int): the maximum order of chebyshev polynomials
-
-    Returns:
-        list(np.ndarray): cheb_polynomials, length: K, from T_0 to T_{K-1}
-    """
     num = l_tilde.shape[0]
     cheb_polynomials = [np.identity(num), l_tilde.copy()]
     for i in range(2, k):
         cheb_polynomials.append(np.matmul(2 * l_tilde, cheb_polynomials[i - 1]) - cheb_polynomials[i - 2])
     return cheb_polynomials
-
 
 
 class ChebConv(nn.Cell):
@@ -87,6 +64,7 @@ class ChebConv(nn.Cell):
         output = ops.concat(outputs, axis=-1)
         output = self.relu(output)
         return output
+
 
 class MSTGCNBlock(nn.Cell):
     def __init__(self, in_channels, k, nb_chev_filter, nb_time_filter, time_strides, cheb_polynomials):
@@ -130,6 +108,7 @@ class FusionLayer(nn.Cell):
         x = x * self.weights  # element-wise multiplication
         return x
 
+
 class MSTGCNSubmodule(nn.Cell):
     def __init__(self, nb_block, in_channels, k, nb_chev_filter, nb_time_filter,
                  input_window, cheb_polynomials, output_window, output_dim, num_of_vertices):
@@ -142,24 +121,15 @@ class MSTGCNSubmodule(nn.Cell):
             MSTGCNBlock(nb_time_filter, k, nb_chev_filter, nb_time_filter, 1, cheb_polynomials)
             for _ in range(nb_block - 1)])
 
-        self.final_conv = nn.Conv2d(in_channels=output_window, out_channels=output_window, #修改了
+        self.final_conv = nn.Conv2d(in_channels=output_window, out_channels=output_window,
                                     kernel_size=(1, nb_time_filter - output_dim + 1), has_bias=False,
-                                    pad_mode='valid',  # 这里假设不需要padding
-                                    weight_init=XavierUniform(),  # 如果需要自定义权重初始化，可以设置这里
-                                    bias_init=Uniform()  # 如果需要自定义偏置初始化，可以设置这里
-                                  #  weight_init='normal'  # 权重初始化，默认为正态分布
+                                    pad_mode='valid',
+                                    weight_init=XavierUniform(),
+                                    bias_init=Uniform()
                                     )
-        self.output=output_dim
-
+        self.output = output_dim
 
     def construct(self, x):
-        """
-        Args:
-            x: (B, T_in, N_nodes, F_in)
-
-        Returns:
-            mindspore.tensor: (B, T_out, N_nodes, out_dim)
-        """
         x = ops.Transpose()(x, (0, 2, 3, 1))  # (B, N, F_in(feature_dim), T_in)
         for block in self.block_list:
             x = block(x)
@@ -167,7 +137,7 @@ class MSTGCNSubmodule(nn.Cell):
 
         return output
 
-# 适配最一般的TrafficStateGridDataset和TrafficStatePointDataset
+
 class MSTGCNCommon_model(AbstractTrafficStateModel):
     def __init__(self, config, data_feature):
         super().__init__(config, data_feature)
@@ -178,7 +148,6 @@ class MSTGCNCommon_model(AbstractTrafficStateModel):
         self.input_dim = self.data_feature.get('input_dim', 1)
         self.input_window = config.get('input_window', 1)
         self.output_window = config.get('output_window', 1)
-#        self.device = config.get('device', torch.device('cpu'))
         self.nb_block = config.get('nb_block', 2)
         self.K = config.get('K', 3)
         self.nb_chev_filter = config.get('nb_chev_filter', 64)
@@ -189,17 +158,17 @@ class MSTGCNCommon_model(AbstractTrafficStateModel):
         self.cheb_polynomials = [Tensor(i, ms.float32) for i in cheb_polynomial(l_tilde, self.K)]
         self._logger = getLogger()
         self._scaler = self.data_feature.get('scaler')
-        #print("inCommon",self.feature_dim)
+
         self.MSTGCN_submodule = \
             MSTGCNSubmodule(self.nb_block, self.feature_dim,
                             self.K, self.nb_chev_filter, self.nb_time_filter,
                             self.input_window, self.cheb_polynomials,
                             self.output_window, self.output_dim, self.num_nodes)
 
-
     def construct(self, x):
         output = self.MSTGCN_submodule(x)
         return output  # (B, T', N_nodes, F_out)
+
 
 class MSTGCNCommon(nn.Cell):
     def __init__(self, config, data_feature):
@@ -225,20 +194,20 @@ class MSTGCNCommon(nn.Cell):
         self.set_grad(False)
         self.set_train(False)
 
-    def calculate_loss(self, x,label):
+    def calculate_loss(self, x, label):
         y = self.network(x)
-        y = self.zscore.inverse_transform(y)#[..., :self.output_dim]
-        label = self.zscore.inverse_transform(label)#[..., :self.output_dim]
-        return loss.masked_mse_m(y, label,0)
+        y = self.zscore.inverse_transform(y)  # [..., :self.output_dim]
+        label = self.zscore.inverse_transform(label)  # [..., :self.output_dim]
+        return loss.masked_mse_m(y, label, 0)
 
-    def predict(self, x,label):
+    def predict(self, x, label):
         y_predict = self.network(x)
-        y_predict = self.zscore.inverse_transform(y_predict)#[..., :self.output_dim]
-        label = self.zscore.inverse_transform(label)#[..., :self.output_dim]
-        return y_predict,label
+        y_predict = self.zscore.inverse_transform(y_predict)  # [..., :self.output_dim]
+        label = self.zscore.inverse_transform(label)  # [..., :self.output_dim]
+        return y_predict, label
 
     def construct(self, x, label):
-        if self.mode=="train":
-            return self.calculate_loss(x,label)
-        elif self.mode=="eval":
-            return self.predict(x,label)
+        if self.mode == "train":
+            return self.calculate_loss(x, label)
+        elif self.mode == "eval":
+            return self.predict(x, label)

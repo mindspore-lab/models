@@ -1,29 +1,17 @@
-# import torch
-# import torch.nn as nn
-# import torch.nn.functional as F
-import numpy as np
 from logging import getLogger
-from model.abstract_traffic_state_model import AbstractTrafficStateModel
-from model import loss
-from scipy.sparse.linalg import eigs
+
 import mindspore as ms
 import mindspore.nn as nn
 import mindspore.ops as ops
-from mindspore import Parameter, Tensor,ParameterTuple
-from mindspore.common.initializer import initializer, XavierNormal,XavierUniform,Normal, Uniform
+import numpy as np
+from mindspore import Parameter, Tensor, ParameterTuple
+from mindspore.common.initializer import initializer, XavierUniform, Uniform
+from model import loss
+from model.abstract_traffic_state_model import AbstractTrafficStateModel
+from scipy.sparse.linalg import eigs
+
 
 def scaled_laplacian(weight):
-    """
-    compute ~L (scaled laplacian matrix)
-    L = D - A
-    ~L = 2L/lambda - I
-
-    Args:
-        weight(np.ndarray): shape is (N, N), N is the num of vertices
-
-    Returns:
-        np.ndarray: ~L, shape (N, N)
-    """
     assert weight.shape[0] == weight.shape[1]
     n = weight.shape[0]
     diag = np.diag(np.sum(weight, axis=1))
@@ -37,16 +25,6 @@ def scaled_laplacian(weight):
 
 
 def cheb_polynomial(l_tilde, k):
-    """
-    compute a list of chebyshev polynomials from T_0 to T_{K-1}
-
-    Args:
-        l_tilde(np.ndarray): scaled Laplacian, shape (N, N)
-        k(int): the maximum order of chebyshev polynomials
-
-    Returns:
-        list(np.ndarray): cheb_polynomials, length: K, from T_0 to T_{K-1}
-    """
     num = l_tilde.shape[0]
     cheb_polynomials = [np.identity(num), l_tilde.copy()]
     for i in range(2, k):
@@ -56,9 +34,6 @@ def cheb_polynomial(l_tilde, k):
 
 
 class SpatialAttentionLayer(nn.Cell):
-    """
-    compute spatial attention scores
-    """
 
     def __init__(self, in_channels, num_of_vertices, num_of_timesteps):
         super(SpatialAttentionLayer, self).__init__()
@@ -70,17 +45,10 @@ class SpatialAttentionLayer(nn.Cell):
         self.transpose=ops.Transpose()
 
     def construct(self, x):
-        """
-        Args:
-            x(torch.tensor): (batch_size, N, F_in, T)
-
-        Returns:
-            torch.tensor: (B,N,N)
-        """
         lhs = ops.matmul(x, self.W1)
         lhs = ops.matmul(lhs, self.W2)  # (b,N,F,T)(T)->(b,N,F)(F,T)->(b,N,T)
 
-        rhs = ops.matmul(self.W3, x)#.transpose(-1, -2)  # (F)(b,N,F,T)->(b,N,T)->(b,T,N)
+        rhs = ops.matmul(self.W3, x)  # (F)(b,N,F,T)->(b,N,T)->(b,T,N)
         rhs = self.transpose(rhs,(0,2,1))
         product = ops.matmul(lhs, rhs)  # (b,N,T)(b,T,N) -> (B, N, N)
 
@@ -117,8 +85,6 @@ class ChebConvWithSAt(nn.Cell):
                 theta_k = self.Theta[k]
                 t_k_with_at = self.transpose(t_k_with_at, (0, 2, 1))
                 rhs = ops.matmul(t_k_with_at,graph_signal)
-                #rhs = ops.matmul(self.transpose(graph_signal, (0, 2, 1)), t_k)
-                # rhs = self.transpose(rhs, (0, 2, 1))
                 output = output+ops.matmul(rhs, theta_k)
             outputs.append(ops.unsqueeze(output, -1))
         output = ops.concat(outputs, axis=-1)
@@ -136,26 +102,12 @@ class TemporalAttentionLayer(nn.Cell):
         self.be = Parameter(initializer(XavierUniform(), shape=[1, num_of_timesteps, num_of_timesteps], dtype=ms.float32))
         self.Ve = Parameter(initializer(XavierUniform(), shape=[num_of_timesteps, num_of_timesteps], dtype=ms.float32))
         self.transpose = ops.Transpose()
-        # self.U1 = nn.Parameter(torch.FloatTensor(num_of_vertices).to(device))
-        # self.U2 = nn.Parameter(torch.FloatTensor(in_channels, num_of_vertices).to(device))
-        # self.U3 = nn.Parameter(torch.FloatTensor(in_channels).to(device))
-        # self.be = nn.Parameter(torch.FloatTensor(1, num_of_timesteps, num_of_timesteps).to(device))
-        # self.Ve = nn.Parameter(torch.FloatTensor(num_of_timesteps, num_of_timesteps).to(device))
 
     def construct(self, x):
-        """
-        Args:
-            x: (batch_size, N, F_in, T)
 
-        Returns:
-            torch.tensor: (B, T, T)
-        """
         _, num_of_vertices, num_of_features, num_of_timesteps = x.shape
 
         lhs = ops.matmul(ops.matmul(self.transpose(x,(0, 3, 2, 1)), self.U1), self.U2)
-        # x:(B, N, F_in, T) -> (B, T, F_in, N)
-        # (B, T, F_in, N)(N) -> (B,T,F_in)
-        # (B,T,F_in)(F_in,N)->(B,T,N)
 
         rhs = ops.matmul(self.U3, x)  # (F)(B,N,F,T)->(B, N, T)
 
@@ -178,27 +130,16 @@ class ASTGCNBlock(nn.Cell):
         self.time_conv = nn.Conv2d(
             nb_chev_filter, nb_time_filter, kernel_size=(1, 3), stride=(1, time_strides),
             pad_mode='pad', padding=(0, 0, 1, 1),
-            #weight_init=XavierUniform(), bias_init=Uniform()
         )
         self.residual_conv = nn.Conv2d(
             in_channels, nb_time_filter, kernel_size=(1, 1), stride=(1, time_strides),
             pad_mode='valid',
-            #weight_init=XavierUniform(), bias_init=Uniform()
         )
-        # self.time_conv = nn.Conv2d(nb_chev_filter, nb_time_filter, kernel_size=(1, 3),
-        #                            stride=(1, time_strides), padding=(0, 1))
-        # self.residual_conv = nn.Conv2d(in_channels, nb_time_filter, kernel_size=(1, 1), stride=(1, time_strides))
-        self.ln = nn.LayerNorm((nb_time_filter,))  # 需要将channel放到最后一个维度上
+        self.ln = nn.LayerNorm((nb_time_filter,))
         self.transpose=ops.Transpose()
         self.relu=nn.ReLU()
-    def construct(self, x):
-        """
-        Args:
-            x: (batch_size, N, F_in, T)
 
-        Returns:
-            torch.tensor: (batch_size, N, nb_time_filter, output_window)
-        """
+    def construct(self, x):
         batch_size, num_of_vertices, num_of_features, num_of_timesteps = x.shape
 
         # TAt
@@ -222,7 +163,6 @@ class ASTGCNBlock(nn.Cell):
         x_residual = self.residual_conv(self.transpose(x,(0, 2, 1, 3)))
         # (B, N, F_in, T) -> (B, F_in, N, T) 用(1,1)的卷积核去做->(B, F_out', N, T') F_out'=nb_time_filter
 
-        #x_residual = self.ln(ops.relu(x_residual + time_conv_output).permute(0, 3, 2, 1)).permute(0, 2, 3, 1)
         x_residual = self.relu(x_residual + time_conv_output)
         x_residual = self.transpose(x_residual,(0, 3, 2, 1))
         x_residual = self.ln(x_residual)
@@ -253,14 +193,8 @@ class ASTGCNSubmodule(nn.Cell):
                                     )
 
         self.transpose = ops.Transpose()
-    def construct(self, x):
-        """
-        Args:
-            x: (B, T_in, N_nodes, F_in)
 
-        Returns:
-            torch.tensor: (B, T_out, N_nodes, out_dim)
-        """
+    def construct(self, x):
         x = self.transpose(x,(0, 2, 3, 1))  # (B, N, F_in(feature_dim), T_in)
         for block in self.BlockList:
             x = block(x)

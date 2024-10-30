@@ -1,24 +1,21 @@
 import os
 import random
+
+import mindspore.numpy as mnp
 import networkx as nx
 import numpy as np
 import pandas as pd
 import scipy.sparse as sp
-from mindspore import Tensor
-import mindspore.numpy as mnp
-from gensim.models import Word2Vec
 from data.dataset import TrafficStatePointDataset
-#from data.utils import generate_dataloader
+from gensim.models import Word2Vec
+from mindspore import Tensor
+# from data.utils import generate_dataloader
 from utils import NormalScaler, StandardScaler, MinMax01Scaler, MinMax11Scaler, LogScaler, NoneScaler, \
     ensure_dir
 
 
 def alias_setup(probs):
-    '''
-    Compute utility lists for non-uniform sampling from discrete distributions.
-    Refer to https://hips.seas.harvard.edu/blog/2013/03/03/the-alias-method-efficient-sampling-with-many-discrete-outcomes/
-    for details
-    '''
+
     K = len(probs)
     q = np.zeros(K)
     J = np.zeros(K, dtype=np.int32)
@@ -26,7 +23,7 @@ def alias_setup(probs):
     smaller = []
     larger = []
     for kk, prob in enumerate(probs):
-        q[kk] = K*prob
+        q[kk] = K * prob
         if q[kk] < 1.0:
             smaller.append(kk)
         else:
@@ -45,17 +42,16 @@ def alias_setup(probs):
 
     return J, q
 
+
 def alias_draw(J, q):
-    '''
-    Draw sample from a non-uniform discrete distribution using alias sampling.
-    '''
     K = len(J)
 
-    kk = int(np.floor(np.random.rand()*K))
+    kk = int(np.floor(np.random.rand() * K))
     if np.random.rand() < q[kk]:
         return kk
     else:
         return J[kk]
+
 
 class TraGraph:
     def __init__(self, nx_G, T, is_directed, p, q, thres=20):
@@ -67,9 +63,6 @@ class TraGraph:
         self.thres = thres
 
     def node2vec_walk(self, walk_length, start_node):
-        '''
-        Simulate a random walk starting from start node.
-        '''
         G = self.G
         alias_nodes = self.alias_nodes
         alias_edges = self.alias_edges
@@ -83,16 +76,16 @@ class TraGraph:
                 if len(walk) == 1:
                     next = cur_nbrs[alias_draw(alias_nodes[cur][0], alias_nodes[cur][1])]
                     count = 0
-                    while next != start_node and not self.T[start_node,next] and count < self.thres:
+                    while next != start_node and not self.T[start_node, next] and count < self.thres:
                         count += 1
                         next = cur_nbrs[alias_draw(alias_nodes[cur][0], alias_nodes[cur][1])]
                     walk.append(next)
                 else:
                     prev = walk[-2]
                     next = cur_nbrs[alias_draw(alias_edges[(prev, cur)][0],
-                        alias_edges[(prev, cur)][1])]
+                                               alias_edges[(prev, cur)][1])]
                     count = 0
-                    while next != start_node and not self.T[start_node,next] and count < self.thres:
+                    while next != start_node and not self.T[start_node, next] and count < self.thres:
                         count += 1
                         next = cur_nbrs[alias_draw(alias_nodes[cur][0], alias_nodes[cur][1])]
                     walk.append(next)
@@ -102,9 +95,6 @@ class TraGraph:
         return walk
 
     def simulate_walks(self, num_walks, walk_length):
-        '''
-        Repeatedly simulate random walks from each node.
-        '''
         G = self.G
         walks = []
         nodes = list(G.nodes())
@@ -116,9 +106,6 @@ class TraGraph:
         return walks
 
     def get_alias_edge(self, src, dst):
-        '''
-        Get the alias edge setup lists for a given edge.
-        '''
         G = self.G
         p = self.p
         q = self.q
@@ -126,20 +113,17 @@ class TraGraph:
         unnormalized_probs = []
         for dst_nbr in sorted(G.neighbors(dst)):
             if dst_nbr == src:
-                unnormalized_probs.append(G[dst][dst_nbr]['weight']/p)
+                unnormalized_probs.append(G[dst][dst_nbr]['weight'] / p)
             elif G.has_edge(dst_nbr, src):
                 unnormalized_probs.append(G[dst][dst_nbr]['weight'])
             else:
-                unnormalized_probs.append(G[dst][dst_nbr]['weight']/q)
+                unnormalized_probs.append(G[dst][dst_nbr]['weight'] / q)
         norm_const = sum(unnormalized_probs)
-        normalized_probs = [float(u_prob)/norm_const for u_prob in unnormalized_probs]
+        normalized_probs = [float(u_prob) / norm_const for u_prob in unnormalized_probs]
 
         return alias_setup(normalized_probs)
 
     def preprocess_transition_probs(self):
-        '''
-        Preprocessing of transition probabilities for guiding the random walks.
-        '''
         G = self.G
         is_directed = self.is_directed
 
@@ -147,7 +131,7 @@ class TraGraph:
         for node in G.nodes():
             unnormalized_probs = [G[node][nbr]['weight'] for nbr in sorted(G.neighbors(node))]
             norm_const = sum(unnormalized_probs)
-            normalized_probs =  [float(u_prob)/norm_const for u_prob in unnormalized_probs]
+            normalized_probs = [float(u_prob) / norm_const for u_prob in unnormalized_probs]
             alias_nodes[node] = alias_setup(normalized_probs)
 
         alias_edges = {}
@@ -194,23 +178,12 @@ class FOGSDataset(TrafficStatePointDataset):
         self.dataset_df = self.load_dataset_df()
 
     def _load_rel(self):
-        """
-        加载 rel 文件
-        @return:
-        """
         relfile = pd.read_csv(self.data_path + self.rel_file + '.rel')
         self.distance_df = relfile.iloc[:, 2:5]
 
     def construct_learn_mx(self):
-        """
-        构建 learn mx
-        @return:
-        """
 
         def construct_T(threshold, direct, sim_mx):
-            """
-            构建时间相似性矩阵 T
-            """
             # 用W_V构造T,用knn原理选择每行前threshold为True
             num_nodes = sim_mx.shape[0]
             temporal_graph = np.zeros((num_nodes, num_nodes), dtype=bool)
@@ -224,11 +197,7 @@ class FOGSDataset(TrafficStatePointDataset):
             return temporal_graph
 
         def consrtuct_edgelist(distance_df, sensor_ids, weighted=False):
-            """
-            根据距离数据构建空间图的边缘列表
-            """
             G = nx.DiGraph()
-            # Builds sensor id to index map.
             sensor_id_to_ind = {}
             for i, sensor_id in enumerate(sensor_ids):
                 sensor_id_to_ind[sensor_id] = i
@@ -250,14 +219,12 @@ class FOGSDataset(TrafficStatePointDataset):
             return G
 
         def get_cos_similar(v1, v2):
-            num = float(np.dot(v1, v2))  # 向量点乘
-            denom = np.linalg.norm(v1) * np.linalg.norm(v2)  # 求模长的乘积
-            return 0.5 + 0.5 * (num / denom) if denom != 0 else 0  # 转换为[0,1]之间
+            num = float(np.dot(v1, v2))
+            denom = np.linalg.norm(v1) * np.linalg.norm(v2)
+            return 0.5 + 0.5 * (num / denom) if denom != 0 else 0
 
         def learn_embeddings(walks):
-            '''
-            Learn embeddings by optimizing the Skipgram objective using SGD.
-            '''
+
             walks = [list(map(str, walk)) for walk in walks]
             model = Word2Vec(walks, vector_size=self.dimensions, window=self.window_size, min_count=0, sg=1,
                              workers=self.workers,
@@ -272,7 +239,7 @@ class FOGSDataset(TrafficStatePointDataset):
             num_nodes = len(index_list)
             cos_mx = np.zeros((num_nodes, num_nodes), dtype=np.float32)
 
-            for i in range(num_nodes):  # 主对角线为0
+            for i in range(num_nodes):
                 for j in range(i + 1, num_nodes):
                     embedding_i = np.asarray(embeddings[i])
                     embedding_j = np.asarray(embeddings[j])
@@ -280,8 +247,8 @@ class FOGSDataset(TrafficStatePointDataset):
                     cos_mx[i][j] = cos_mx[j][i] = cos_value
 
             learn_mx = np.zeros((num_nodes, num_nodes), dtype=np.float32)
-            for row in range(num_nodes):  # 有向图
-                indices = np.argsort(cos_mx[row])[::-1][:threshold]  # 每行取前top k个最大值，返回对应的一维索引数组
+            for row in range(num_nodes):
+                indices = np.argsort(cos_mx[row])[::-1][:threshold]
                 norm = cos_mx[row, indices].sum()
                 for index in indices:
                     learn_mx[row, index] = cos_mx[row, index] / norm
@@ -292,14 +259,9 @@ class FOGSDataset(TrafficStatePointDataset):
             return learn_mx
 
         def get_adjacency_matrix(distance_df, num_of_vertices, geo_ids):
-            """
-            :param distance_df_filename: str, csv边信息文件路径
-            :param num_of_vertices:int, 节点数量
-            :param type_:str, {connectivity, distance}
-            :param id_filename:str 节点信息文件， 有的话需要构建字典
-            """
+
             A = np.zeros((int(num_of_vertices), int(num_of_vertices)), dtype=np.float32)
-            id_dict = {int(i): idx for idx, i in enumerate(geo_ids)}  # 建立映射列表
+            id_dict = {int(i): idx for idx, i in enumerate(geo_ids)}
             df = distance_df
             for row in df.values:
                 if len(row) != 3:
@@ -310,28 +272,6 @@ class FOGSDataset(TrafficStatePointDataset):
             return A
 
         def construct_adj_fusion(A, A_dtw, steps):
-            '''
-            construct a bigger adjacency matrix using the given matrix
-
-            Parameters
-            ----------
-            A: np.ndarray, adjacency matrix, shape is (N, N)
-
-            steps: how many times of the does the new adj mx bigger than A
-
-            Returns
-            ----------
-            new adjacency matrix: csr_matrix, shape is (N * steps, N * steps)
-
-            ----------
-            This is 4N_1 mode:
-
-            [T, 1, 1, T
-             1, S, 1, 1
-             1, 1, S, 1
-             T, 1, 1, T]
-
-            '''
 
             N = len(A)
             adj = np.zeros([N * steps] * 2)  # "steps" = 4 !!!
@@ -374,9 +314,8 @@ class FOGSDataset(TrafficStatePointDataset):
             adj_dtw = np.maximum.reduce([adj_dtw, adj_dtw.T])
         adj = get_adjacency_matrix(self.distance_df, self.num_nodes, self.geo_ids)
         local_adj = construct_adj_fusion(adj, adj_dtw, steps=self.strides)
-        print("local_adj",local_adj.shape)
-        # initializer('zeros',shape=[in_channels, out_channels], dtype=mnp.float32)
-        return Tensor(local_adj, mnp.float32)#torch.FloatTensor(local_adj)
+
+        return Tensor(local_adj, mnp.float32)
 
     def get_data_feature(self):
         """
@@ -434,7 +373,7 @@ class FOGSDataset(TrafficStatePointDataset):
                 y.append(y_t)
 
                 x_timeslot.append((t + x_offsets) % 288)
-                y_timeslot.append((t + y_offsets) % 288)  # 记录label的first observation属于哪个时间段
+                y_timeslot.append((t + y_offsets) % 288)
 
             x = np.stack(x, axis=0)  # [B, T, N ,C]
             y = np.stack(y, axis=0)  # [B ,T, N, C]
@@ -491,9 +430,9 @@ class FOGSDataset(TrafficStatePointDataset):
                     time_volume = time_volume[time_volume != 0.]
                     if len(time_volume) != 0:
                         time_volume_mx[node][i][t] = time_volume.mean()
-                    else:  # all zeros
+                    else:
                         time_volume_mx[node][i][t] = 0.
-                        # time_volume_mx[node][i][t] = np.array(time_volume).mean()
+
 
         time_volume_mx = time_volume_mx.reshape(num_nodes, -1)  # (num_nodes, 7*288)
 
@@ -670,29 +609,16 @@ class FOGSDataset(TrafficStatePointDataset):
             self._logger.info('Saved at ' + self.cache_file_name)
 
         return x_train, y_train, x_timeslot_train, y_timeslot_train, x_val, y_val, x_timeslot_val, y_timeslot_val, \
-            x_test, y_test, x_timeslot_test, y_timeslot_test
+               x_test, y_test, x_timeslot_test, y_timeslot_test
 
     def _generate_train_val_test(self):
-        """
-        生成 train val test 数据
-        @return: x_train, y_train, x_timeslot_train, y_timeslot_train, x_val, y_val, x_timeslot_val, y_timeslot_val,\
-            x_test, y_test, x_timeslot_test, y_timeslot_test
-        """
+
         x, y, x_timeslot, y_timeslot, df = self._generate_data()
         self.data_df = df
         return self.split_train_val_test(x, y, x_timeslot, y_timeslot, df)
 
     def _get_scalar(self, scaler_type, x_train, y_train):
-        """
-        根据全局参数`scaler_type`选择数据归一化方法
 
-        Args:
-            x_train: 训练数据X
-            y_train: 训练数据y
-
-        Returns:
-            Scaler: 归一化对象
-        """
         if scaler_type == "normal":
             scaler = NormalScaler(maxx=max(x_train.max()))
             self._logger.info('NormalScaler max: ' + str(scaler.max))
@@ -718,18 +644,7 @@ class FOGSDataset(TrafficStatePointDataset):
         return scaler
 
     def _load_cache_train_val_test(self):
-        """
-        加载之前缓存好的训练集、测试集、验证集
 
-        Returns:
-            tuple: tuple contains:
-                x_train: (num_samples, input_length, ..., feature_dim) \n
-                y_train: (num_samples, input_length, ..., feature_dim) \n
-                x_val: (num_samples, input_length, ..., feature_dim) \n
-                y_val: (num_samples, input_length, ..., feature_dim) \n
-                x_test: (num_samples, input_length, ..., feature_dim) \n
-                y_test: (num_samples, input_length, ..., feature_dim)
-        """
         self._logger.info('Loading ' + self.cache_file_name)
         cat_data = np.load(self.cache_file_name)
         x_train = cat_data['x_train']
@@ -754,20 +669,20 @@ class FOGSDataset(TrafficStatePointDataset):
                           ", x_timeslot_test: " + str(x_timeslot_test.shape) +
                           ", y_timeslot_test: " + str(y_timeslot_test.shape))
         return x_train, y_train, x_timeslot_train, y_timeslot_train, x_val, y_val, x_timeslot_val, y_timeslot_val, \
-            x_test, y_test, x_timeslot_test, y_timeslot_test
+               x_test, y_test, x_timeslot_test, y_timeslot_test
 
     def get_data(self):
         x_train, y_train, x_timeslot_train, y_timeslot_train, x_val, y_val, x_timeslot_val, y_timeslot_val, \
-            x_test, y_test, x_timeslot_test, y_timeslot_test = [], [], [], [], [], [], [], [], [], [], [], []
+        x_test, y_test, x_timeslot_test, y_timeslot_test = [], [], [], [], [], [], [], [], [], [], [], []
         # 生成/加载 train val test 数据
         if self.data is None:
             self.data = {}
             if self.cache_dataset and os.path.exists(self.cache_file_name):
                 x_train, y_train, x_timeslot_train, y_timeslot_train, x_val, y_val, x_timeslot_val, y_timeslot_val, \
-                    x_test, y_test, x_timeslot_test, y_timeslot_test = self._load_cache_train_val_test()
+                x_test, y_test, x_timeslot_test, y_timeslot_test = self._load_cache_train_val_test()
             else:
                 x_train, y_train, x_timeslot_train, y_timeslot_train, x_val, y_val, x_timeslot_val, y_timeslot_val, \
-                    x_test, y_test, x_timeslot_test, y_timeslot_test = self._generate_train_val_test()
+                x_test, y_test, x_timeslot_test, y_timeslot_test = self._generate_train_val_test()
         self.feature_dim = x_train.shape[-1]
         # 获取归一化的方式
         self.scaler = self._get_scalar(self.scaler_type, x_train, y_train)
@@ -786,25 +701,21 @@ class FOGSDataset(TrafficStatePointDataset):
         return self.train_dataloader, self.eval_dataloader, self.test_dataloader
 
 
-#补充utils
+# 补充utils
 import mindspore.dataset as ds
-from mindspore.communication.management import get_rank, get_group_size  # 多卡
-from data.batch import Batch, BatchPAD
+from mindspore.communication.management import get_rank  # 多卡
+from data.batch import Batch
+
 
 def l2l(origin_len):
-    """
-        输入的origin_len包括4个key，'history_loc', 'history_tim', 'current_loc', 'current_tim'
-        该方法需要将其转换成history_len,current_len
-    """
+
     loc_len = origin_len['current_loc']
     history_len = origin_len['history_loc']
     return loc_len, history_len
 
 
 def padding(pad_item, pad_max_len, feature_name, data):
-    """
-    只提供对一维数组的特征进行补齐
-    """
+
     pad_len = {}
     f2indx = {}
     origin_len = {}
@@ -856,9 +767,6 @@ def padding(pad_item, pad_max_len, feature_name, data):
 
 class ListDataset:
     def __init__(self, data, feature_name):
-        """
-        data: 必须是一个 list
-        """
         self.data = data
         self.feature_name = feature_name
 
@@ -872,26 +780,6 @@ class ListDataset:
 def generate_dataloader(train_data, eval_data, test_data, feature_name,
                         batch_size, num_workers, shuffle=True,
                         pad_with_last_sample=False, rank_size=1):
-    """
-    create dataloader(train/test/eval)
-
-    Args:
-        train_data(list of input): 训练数据，data 中每个元素是模型单次的输入，input 是一个 list，里面存放单次输入和 target
-        eval_data(list of input): 验证数据，data 中每个元素是模型单次的输入，input 是一个 list，里面存放单次输入和 target
-        test_data(list of input): 测试数据，data 中每个元素是模型单次的输入，input 是一个 list，里面存放单次输入和 target
-        feature_name(dict): 描述上面 input 每个元素对应的特征名, 应保证len(feature_name) = len(input)
-        batch_size(int): batch_size
-        num_workers(int): num_workers
-        shuffle(bool): shuffle
-        pad_with_last_sample(bool): 对于若最后一个 batch 不满足 batch_size的情况，是否进行补齐（使用最后一个元素反复填充补齐）。
-
-    Returns:
-        tuple: tuple contains:
-            train_dataloader: Dataloader composed of Batch (class) \n
-            eval_dataloader: Dataloader composed of Batch (class) \n
-            test_dataloader: Dataloader composed of Batch (class)
-    """
-
     if os.getenv('RANK_SIZE'):
         rank_size = int(os.getenv('RANK_SIZE'))
         try:
@@ -902,7 +790,6 @@ def generate_dataloader(train_data, eval_data, test_data, feature_name,
             batch_size = 16
             print('Step size is lower than rank size, change the Batch Size to 16.')
 
-    # print("rank_size:".format(rank_size))
     train_data_me = []
     for i1 in range(len(train_data)):
         tuple_me = ()
@@ -933,13 +820,12 @@ def generate_dataloader(train_data, eval_data, test_data, feature_name,
     _feature_types = list(feature_name.values())
 
     def collaensure_dirtor(X, y, x_slot, y_slot, BatchInfo):
-        # 创建一个包含所有特征名称的列表
+
         feature_name = {
             'X': type(X),
             'y': type(y),
             'x_slot': type(x_slot),
             'y_slot': type(y_slot),
-            #    'BatchInfo':BatchInfo
         }
         batch = Batch(feature_name)
 
@@ -947,7 +833,7 @@ def generate_dataloader(train_data, eval_data, test_data, feature_name,
         for i in range(num_samples):
             sample = {'X': X[i], 'y': y[i], 'x_slot': x_slot[i], 'y_slot': y_slot[i]}
             batch.append(list(sample.values()))
-        # 重新组织数据，使得每个特征的数据被打包成一个列表
+
         batch_data = {
             'X': batch['X'],
             'y': batch['y'],
@@ -957,6 +843,7 @@ def generate_dataloader(train_data, eval_data, test_data, feature_name,
         return batch_data['X'], batch_data['y'], batch_data['x_slot'], batch_data['y_slot']
 
     train_dataloader, eval_dataloader, test_dataload = None, None, None
+
     if rank_size > 1:
         rank_id = get_rank()
 
@@ -976,8 +863,6 @@ def generate_dataloader(train_data, eval_data, test_data, feature_name,
                                               , shuffle=False).batch(batch_size, drop_remainder=True,
                                                                      per_batch_map=collaensure_dirtor)
     else:
-        # 单卡
-        # print("_feature_names",_feature_names)
 
         train_dataloader = ds.GeneratorDataset(source=train_dataset, column_names=_feature_names,
                                                num_parallel_workers=num_workers,
@@ -998,26 +883,6 @@ def generate_dataloader(train_data, eval_data, test_data, feature_name,
 def generate_dataloader_pad(train_data, eval_data, test_data, feature_name,
                             batch_size, num_workers, pad_item=None,
                             pad_max_len=None, shuffle=True, rank_size=1):
-    """
-    create dataloader(train/test/eval)
-
-    Args:
-        train_data(list of input): 训练数据，data 中每个元素是模型单次的输入，input 是一个 list，里面存放单次输入和 target
-        eval_data(list of input): 验证数据，data 中每个元素是模型单次的输入，input 是一个 list，里面存放单次输入和 target
-        test_data(list of input): 测试数据，data 中每个元素是模型单次的输入，input 是一个 list，里面存放单次输入和 target
-        feature_name(dict): 描述上面 input 每个元素对应的特征名, 应保证len(feature_name) = len(input)
-        batch_size(int): batch_size
-        num_workers(int): num_workers
-        pad_item(dict): 用于将不定长的特征补齐到一样的长度，每个特征名作为 key，若某特征名不在该 dict 内则不进行补齐。
-        pad_max_len(dict): 用于截取不定长的特征，对于过长的特征进行剪切
-        shuffle(bool): shuffle
-    Returns:
-        tuple: tuple contains:
-            train_dataloader: Dataloader composed of Batch (class) \n
-            eval_dataloader: Dataloader composed of Batch (class) \n
-            test_dataloader: Dataloader composed of Batch (class)
-    """
-
     if os.getenv('RANK_SIZE'):
         rank_size = int(os.getenv('RANK_SIZE'))
 
@@ -1038,13 +903,11 @@ def generate_dataloader_pad(train_data, eval_data, test_data, feature_name,
     _feature_types = list(feature_name.values())
 
     def collaensure_dirtor(X, y, x_slot, y_slot, BatchInfo):
-        # 创建一个包含所有特征名称的列表
         feature_name = {
             'X': type(X),
             'y': type(y),
             'x_slot': type(x_slot),
             'y_slot': type(y_slot),
-            #    'BatchInfo':BatchInfo
         }
         batch = Batch(feature_name)
 
@@ -1052,7 +915,7 @@ def generate_dataloader_pad(train_data, eval_data, test_data, feature_name,
         for i in range(num_samples):
             sample = {'X': X[i], 'y': y[i], 'x_slot': x_slot[i], 'y_slot': y_slot[i]}
             batch.append(list(sample.values()))
-        # 重新组织数据，使得每个特征的数据被打包成一个列表
+
         batch_data = {
             'X': batch['X'],
             'y': batch['y'],
@@ -1081,8 +944,6 @@ def generate_dataloader_pad(train_data, eval_data, test_data, feature_name,
                                               , shuffle=False).batch(batch_size, drop_remainder=True,
                                                                      per_batch_map=collaensure_dirtor)
     else:
-        # 单卡
-        # print("_feature_names",_feature_names)
 
         train_dataloader = ds.GeneratorDataset(source=train_dataset, column_names=_feature_names,
                                                num_parallel_workers=num_workers,
