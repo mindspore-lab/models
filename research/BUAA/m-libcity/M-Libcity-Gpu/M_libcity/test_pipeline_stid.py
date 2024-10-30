@@ -15,7 +15,6 @@ train_dir = getRelatedPath('cache')
 data_dir = getRelatedPath('raw_data')
 context.set_context(mode=context.PYNATIVE_MODE, device_target='GPU',max_call_depth=20000, device_id=0)
 
-# task=None, model_name=None, dataset_name=None, config_file=None,saved_model=True, train=True, other_args=None
 task = 'traffic_state_pred'  # 可选择的有：traffic_state_pred, traj_loc_pred, eta
 model_name = 'STID'  # 填写model名字，可从model目录下查找
 dataset_name = 'PEMSD4'  # 填写对应的数据集名字

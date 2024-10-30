@@ -38,7 +38,6 @@ class TrafficStateExecutor(AbstractExecutor):
         ensure_dir(self.evaluate_res_dir)
         ensure_dir(self.summary_writer_dir)
 
-        # self._writer = SummaryWriter(self.summary_writer_dir)
         self._logger = getLogger()
         self._scaler = self.data_feature.get('scaler')
         self.num_batches    = self.data_feature.get('num_batches', 1000)

@@ -17,17 +17,14 @@ class EvalCallBack(Callback):
         self.optim=optim
 
     def epoch_end(self, run_context):
-        # 获取到现在的epoch数
         if self.optim!=None:
             self._logger.info("learning rate is: {}".format(self.optim.get_lr().asnumpy()))
         cb_param = run_context.original_args()
         cur_epoch = cb_param.cur_epoch_num
-        # 如果达到进行验证的epoch数，则进行以下验证操作
         if cur_epoch % self.epochs_to_eval == 0:
             if hasattr(self.model, 'validate') and callable(getattr(self.model, 'validate')):
                 self.model.validate()
                 self._logger.info("validating...")
-            # 此处model设定的metrics是准确率Accuracy
             losses = []
             for batch in self.eval_dataloader:
                 loss = self.model(*batch)
