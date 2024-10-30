@@ -9,7 +9,6 @@ import scipy.sparse as sp
 from data.dataset import TrafficStatePointDataset
 from gensim.models import Word2Vec
 from mindspore import Tensor
-# from data.utils import generate_dataloader
 from utils import NormalScaler, StandardScaler, MinMax01Scaler, MinMax11Scaler, LogScaler, NoneScaler, \
     ensure_dir
 
@@ -318,13 +317,7 @@ class FOGSDataset(TrafficStatePointDataset):
         return Tensor(local_adj, mnp.float32)
 
     def get_data_feature(self):
-        """
-        返回数据集特征，scaler是归一化方法，adj_mx是邻接矩阵，num_nodes是点的个数，
-        feature_dim是输入数据的维度，output_dim是模型输出的维度
 
-        Returns:
-            dict: 包含数据集的相关特征的字典
-        """
         # 构建 learn mx
         self.adj_mx = self.construct_learn_mx()
         return {"scaler": self.scaler, "adj_mx": self.adj_mx, "ext_dim": self.ext_dim,
@@ -343,19 +336,9 @@ class FOGSDataset(TrafficStatePointDataset):
         return np.concatenate(df_list)
 
     def _generate_data(self):
-        """
-        加载并生成数据 x, y, x_timeslot, y_timeslot
-        @return: x, y, x_timeslot, y_timeslot
-        """
 
         def generate_graph_seq2seq_io_data(data, x_offsets, y_offsets):
-            """
-            生成seq2seq样本数据
-            :param data: np数据 [B, N, D]
-            :param x_offsets:
-            :param y_offsets:
-            :return:
-            """
+
             num_samples, num_nodes, _ = data.shape
             data = data[:, :, 0:1]  # 只取第一维度的特征
 
@@ -408,9 +391,7 @@ class FOGSDataset(TrafficStatePointDataset):
         return x, y, x_timeslot, y_timeslot, df
 
     def get_time_volume_matrix(self, df, period=12 * 24 * 7):
-        """
-        从数据文件中构建时间-流量矩阵
-        """
+
         # 用W_v表示
         data = df[:, :, 0]
         num_samples, num_nodes = data.shape
@@ -451,15 +432,7 @@ class FOGSDataset(TrafficStatePointDataset):
         return time_volume_mx, similarity_mx
 
     def split_train_val_test(self, x, y, x_timeslot, y_timeslot, df):
-        """
-        切分数据 train val test
-        @param x:
-        @param y:
-        @param x_timeslot:
-        @param y_timeslot:
-        @return: x_train, y_train, x_timeslot_train, y_timeslot_train, x_val, y_val, x_timeslot_val, y_timeslot_val,\
-            x_test, y_test, x_timeslot_test, y_timeslot_test
-        """
+
         # 处理均值数据
         time_volume_mx, _ = self.get_time_volume_matrix(df)
         num_nodes, timeslot = time_volume_mx.shape

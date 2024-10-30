@@ -203,8 +203,6 @@ class ASTGCNSubmodule(nn.Cell):
         # (B,N,F_out,T_out)->(B,T_out,N,F_out)-conv<1,F_out-out_dim+1>->(B,T_out,N,out_dim)
         return output
 
-
-# 适配最一般的TrafficStateGridDataset和TrafficStatePointDataset
 class ASTGCNCommon_model(AbstractTrafficStateModel):
     def __init__(self, config, data_feature):
         super().__init__(config, data_feature)
