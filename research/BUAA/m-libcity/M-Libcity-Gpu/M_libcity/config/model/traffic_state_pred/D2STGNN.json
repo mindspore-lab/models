@@ -34,5 +34,7 @@
     "clip_grad_norm": true,
     "max_grad_norm": 5,
     "use_early_stop": true,
-    "patience": 30
+    "patience": 30,
+    "input_dim": 3,
+    "output_dim": 3
 }
