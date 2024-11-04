@@ -151,7 +151,7 @@ class DenseLayer(nn.Cell):
 
 class DeepFMModel(nn.Cell):
     """
-    From paper: "DeepFM: A Factorization-Machine based Neural Network for CTR Prediction"
+    From paper: "DeepFM_Criteo: A Factorization-Machine based Neural Network for CTR Prediction"
     Args:
         batch_size(int):  smaple_number of per step in training; (int, batch_size=128)
         filed_size(int):  input filed number, or called id_feature number; (int, filed_size=39)
@@ -312,7 +312,7 @@ class PredictWithSigmoid(nn.Cell):
 
 class ModelBuilder():
     """
-    Model builder for DeepFM.
+    Model builder for DeepFM_Criteo.
 
     Args:
         model_config (ModelConfig): Model configuration.

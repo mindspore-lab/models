@@ -13,7 +13,7 @@
 # limitations under the License.
 # ============================================================================
 """
-Defined callback for DeepFM.
+Defined callback for DeepFM_Criteo.
 """
 import time
 from mindspore.train.callback import Callback
