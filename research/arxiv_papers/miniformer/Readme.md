@@ -1,4 +1,4 @@
-# Readme
+# README
 
 code中为gpu上可以直接运行的代码，环境如下：
 
@@ -9,6 +9,8 @@ mindnlp=0.3.1
 ```
 
 NPU_code为可以在npu上运行的代码，环境一样，其余的训练测试等指令也一样。
+
+数据集NMT14可从这里下载：https://aistudio.baidu.com/datasetdetail/1999
 
 - 训练：
 
@@ -34,4 +36,4 @@ python eval.py
 
 - 对比：
 
-对比的Transformer可见：https://github.com/Veteranback/transformer
+对比的Transformer（包括数据集处理代码）可见：https://github.com/Veteranback/transformer

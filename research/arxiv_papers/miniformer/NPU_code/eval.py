@@ -18,9 +18,6 @@ def rouge_score(src, tgt):
     tgt = ' '.join(tgt)
 
     rouge_re = rouge.get_scores(hyps=src, refs=tgt)
-    # print(rouge_re[0]["rouge-1"])
-    # print(rouge_re[0]["rouge-2"]) #ROUGE-2
-    # print(rouge_re[0]["rouge-l"]) #ROUGE-L
     return rouge_re
 
 path='./output/WMT14_output.txt'

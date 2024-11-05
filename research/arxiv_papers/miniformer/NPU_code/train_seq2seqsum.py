@@ -10,17 +10,7 @@ from data import GigaDataset, prepro_batch
 from Seq2Seq import Seq2SeqSum
 from training import Trainer
 
-#For Training
-# 构建vocab
-# word2id = {}
-# word2id['<pad>'] = 0
-# word2id['<unk>'] = 1
-# word2id['<start>'] = 2
-# word2id['<end>'] = 3
-# ind = 4
-# for i in range(32, 127):
-#     word2id[chr(i)] = ind
-#     ind += 1
+
 with open(os.path.join('WMT14', 'raw', 'src_vocab.pkl'), "rb") as f:
     src_vocab = pickle.load(f)
 with open(os.path.join('WMT14', 'raw', 'tgt_vocab.pkl'), "rb") as f:
@@ -69,35 +59,8 @@ def main():
     if not os.path.exists(save_dir):
         os.mkdir(save_dir)
 
-
-    # make vocab
-   # word2id = make_word2id(args.vocab_path, args.vocab_size)
-    # id2word = {value:key for key, value in word2id.items()}
-
-    # init data loader
     train_loader=GigaDataset(args.data_path, 'train',args.batch_size,src_vocab,tgt_vocab)
-
     val_loader=GigaDataset(args.data_path, 'val',args.batch_size,src_vocab,tgt_vocab)
-
-    # train_loader = GeneratorDataset(
-    #     GigaDataset(args.data_path, 'train'),
-    #     batch_size=args.batch_size,
-    #     collate_fn=partial(
-    #         prepro_batch,  src_vocab,tgt_vocab
-    #         )
-    #     )
-
-    # val_loader = DataLoader(
-    #     GigaDataset(args.data_path, 'val'),
-    #     batch_size=args.batch_size,
-    #     collate_fn=partial(
-    #         prepro_batch, src_vocab,tgt_vocab
-    #         )
-    #     )
-
-
-    # init model
-
 
     model = Seq2SeqSum(
         len(src_vocab),len(tgt_vocab), args.emb_dim,

@@ -47,7 +47,6 @@ class GigaDataset():
 
         source_data=[list(x.rstrip('\r\n').split(' ')) for x in source_data]
         target_data=[list(x.rstrip('\r\n').split(' ')) for x in target_data]
-
         self.path = path
         self.src = source_data
         self.tgt = target_data
@@ -72,21 +71,13 @@ class GigaDataset():
         return src, tgt
 
 def prepro_batch( src_word,tgt_word, batch,):
-
-
-
     sources, abstract = batch
-
     inp_lengths = mindspore.Tensor([len(s) for s in sources],dtype=mindspore.int64)
-
     tgt = [[tgt_word["<s>"]] + t for t in abstract]
     target = [t + [tgt_word["</s>"]] for t in abstract]
-
-
     sources = tensorized(sources, src_word)
     tgt = tensorized(tgt, tgt_word)
     target = tensorized(target, tgt_word)
-
     return (sources, inp_lengths, tgt), target
 
 def tensorized(sents_batch, word2id):
@@ -111,25 +102,20 @@ if __name__=='__main__':
                         default="./WMT14/")
     parser.add_argument("--name", type=str,
                         default="WMT14")
-
     parser.add_argument("--emb_dim", type=int, default=128)  # 128
     parser.add_argument("--n_hidden", type=int, default=256)  # 256
     parser.add_argument("--n_layer", type=int, default=1)
-
     parser.add_argument("--max_src_len", type=int, default=32)
     parser.add_argument("--max_tgt_len", type=int, default=32)
-
     # training args
     parser.add_argument("--cuda", action='store_true', default=True)
     parser.add_argument("--batch_size", type=int, default=32)  # 32
     parser.add_argument("--epoch", type=int, default=10)
     parser.add_argument("--lr", type=float, default=0.001)
     parser.add_argument("--clip", type=float, default=5.0)
-
     parser.add_argument("--print_freq", type=int, default=1000)
     parser.add_argument("--ckpt_freq", type=int, default=500)
     parser.add_argument("--patience", type=int, default=5)
-
     args = parser.parse_args()
     with open(os.path.join('WMT14', 'raw', 'src_vocab.pkl'), "rb") as f:
         src_vocab = pickle.load(f)

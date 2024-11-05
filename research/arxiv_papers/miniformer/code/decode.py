@@ -20,22 +20,15 @@ def bleu(src,tgt):
 def rouge_score(src,tgt):
     rouge = Rouge()
     rouge_score = rouge.get_scores(hyps=src, refs=tgt)
-    # print(rouge_score[0]["rouge-1"])
-    # print(rouge_score[0]["rouge-2"]) #ROUGE-2
-    # print(rouge_score[0]["rouge-l"]) #ROUGE-L
     return rouge_score
 
 # load model and use beam search
 # to generate sentence summary
 def beam_search(model_path, src_vocab,tgt_vocab,test,tgt,fout, beam_size=50):
-
-
     #load model
     model = MiniFormer(len(src_vocab),len(tgt_vocab), 128, 256, 1)
     param_dict=mindspore.load_checkpoint(model_path)
     param_not_load,_=mindspore.load_param_into_net(model,param_dict)
-
-
     tgt_idx={}
     for key in tgt_vocab:
         tgt_idx[tgt_vocab[key]]=key
@@ -59,28 +52,19 @@ def beam_search(model_path, src_vocab,tgt_vocab,test,tgt,fout, beam_size=50):
 
 
 if __name__ == "__main__":
-
-
     model_path = "./model_WMT14/ckpt-6e-0s.ckpt"
     file_1 = open('./WMT14/raw/src_test.txt', 'r')
     file_2 = open('./WMT14/raw/tgt_test.txt', 'r')
     out_path='./output/WMT14_output.txt'
- 
-
     fout=open(out_path,'w',encoding='ISO-8859-1')
-
-
     test = []
     while True:
         line = file_1.readline().rstrip('\r\n')
-
         if not line:
             break
-
         line = [int(x) for x in line.split(' ')]
         test.append(line)
     file_1.close()
-
     tgt=[]
     while True:
         line = file_2.readline().rstrip('\r\n')
@@ -89,5 +73,4 @@ if __name__ == "__main__":
         line = [int(x) for x in line.split(' ')]
         tgt.append(line)
     file_2.close()
-
     beam_search(model_path, src_vocab,tgt_vocab,test[:],tgt,fout)
