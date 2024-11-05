@@ -412,6 +412,8 @@ Data storage method is the same as training
 | Optimizer                  | Momentum                                                   |
 | Loss Function              | Softmax Cross Entropy                                      |
 | outputs                    | probability                                                |
+| Loss                    | 0.055498276                                                |
+| Checkpoint for Fine tuning             | 3.19M(.ckpt file)                    |
 
 ### Inference Performance
 
@@ -422,6 +424,7 @@ Data storage method is the same as training
 | Dataset             | Turkish speech command dataset |
 | Training Parameters          | src/config.py                  |
 | outputs             | probability                    |
+| Checkpoint for Fine tuning             | 3.19M(.ckpt file)                    |
 
 # [Description of Random Situation](#contents)
 
