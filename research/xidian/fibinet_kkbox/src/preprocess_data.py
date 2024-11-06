@@ -174,7 +174,6 @@ def random_split_trans2mindrecord(input_file_path, output_file_path, recommendat
     """Random split data and save mindrecord"""
     if train_line_count is None:
         raise ValueError("Please provide training file line count")
-    max_lines = 1000000
     eval_size = int(train_line_count * eval_size)
     all_indices = [i for i in range(train_line_count)]
     np.random.seed(seed)
