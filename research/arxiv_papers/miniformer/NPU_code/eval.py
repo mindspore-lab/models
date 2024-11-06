@@ -1,25 +1,19 @@
 from nltk.translate.bleu_score import  sentence_bleu
 from rouge import Rouge
 from collections import defaultdict
-
 def bleu(src, tgt):
     src = [str(x) for x in src]
     score1 = sentence_bleu([src], tgt, weights=(1, 0, 0, 0))
     score2 = sentence_bleu([src], tgt, weights=(0, 1, 0, 0))
     score3 = sentence_bleu([src], tgt, weights=(0, 0, 1, 0))
     score4 = sentence_bleu([src], tgt, weights=(0, 0, 0, 1))
-
     return score1, score2, score3, score4
-
-
 def rouge_score(src, tgt):
     rouge = Rouge()
     src = ' '.join([str(x) for x in src])
     tgt = ' '.join(tgt)
-
     rouge_re = rouge.get_scores(hyps=src, refs=tgt)
     return rouge_re
-
 path='./output/WMT14_output.txt'
 out_path='./output/WMT14_result.txt'
 fin=open(path,'r',encoding='ISO-8859-1')

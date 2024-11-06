@@ -1,5 +1,4 @@
 from os.path import join
-
 import argparse
 import mindspore
 import pickle
@@ -10,20 +9,13 @@ from functools import partial
 
 class GigaDataset():
     def __init__(self, path, split,batch_size,src_word,tgt_word):
-        """
-        args:
-        path: path to dataset
-        split: train/val/test
-        """
         self.batch_size=batch_size
         self.src_word=src_word
         self.tgt_word=tgt_word
-
         assert split in ['train', 'val', 'test']
         if split=='train':
             with codecs.open(os.path.join(path, 'raw','src_train.txt'), "r", encoding="utf-8") as f:
                 source_data = f.readlines()[:]
-            
             with codecs.open(os.path.join(path, 'raw','tgt_train.txt'), "r", encoding="utf-8") as f:
                 target_data = f.readlines()[:]
             source_lengths = [len(s) for s in source_data]  
@@ -35,13 +27,11 @@ class GigaDataset():
         elif split=='val':
             with codecs.open(os.path.join(path, 'raw','src_val.txt'), "r", encoding="utf-8") as f:
                 source_data = f.readlines()[:]
-            
             with codecs.open(os.path.join(path, 'raw','tgt_val.txt'), "r", encoding="utf-8") as f:
                 target_data = f.readlines()[:]
         elif split=='test':
             with codecs.open(os.path.join(path, 'raw','src_test.txt'), "r", encoding="utf-8") as f:
                 source_data = f.readlines()[:]
-            
             with codecs.open(os.path.join(path, 'raw','tgt_test.txt'), "r", encoding="utf-8") as f:
                 target_data = f.readlines()[:]
 
@@ -53,10 +43,8 @@ class GigaDataset():
         assert len(self.src) == len(self.tgt)
         self.cur_ind=0
         self.tot_batch=len(self.src)//self.batch_size
-
     def __len__(self):
         return len(self.src)
-
     def next_batch(self):
         src,tgt=[],[]
         upper=min(self.cur_ind+64,len(self.src))
@@ -69,7 +57,6 @@ class GigaDataset():
             self.cur_ind+=64
         src,tgt=prepro_batch(self.src_word,self.tgt_word,[src,tgt])
         return src, tgt
-
 def prepro_batch( src_word,tgt_word, batch,):
     sources, abstract = batch
     inp_lengths = mindspore.Tensor([len(s) for s in sources],dtype=mindspore.int64)
@@ -79,25 +66,18 @@ def prepro_batch( src_word,tgt_word, batch,):
     tgt = tensorized(tgt, tgt_word)
     target = tensorized(target, tgt_word)
     return (sources, inp_lengths, tgt), target
-
 def tensorized(sents_batch, word2id):
-    """return [batch_size, max_lengths] tensor"""
-
     batch_size = len(sents_batch)
     max_lengths = max(len(sent) for sent in sents_batch)
     PAD, UNK = word2id['<pad>'], word2id['<unk>']
     batch = mindspore.ops.ones((batch_size, max_lengths), dtype=mindspore.int64) * PAD
-
     for sent_i, sent in enumerate(sents_batch):
         for word_i, word in enumerate(sent):
             batch[sent_i, word_i] =mindspore.Tensor(word, dtype=mindspore.int64)
-
     return batch
 
 if __name__=='__main__':
-    # get args
     parser = argparse.ArgumentParser(description="MiniFormer Training Program")
-
     parser.add_argument("--data_path", type=str,
                         default="./WMT14/")
     parser.add_argument("--name", type=str,
@@ -107,7 +87,6 @@ if __name__=='__main__':
     parser.add_argument("--n_layer", type=int, default=1)
     parser.add_argument("--max_src_len", type=int, default=32)
     parser.add_argument("--max_tgt_len", type=int, default=32)
-    # training args
     parser.add_argument("--cuda", action='store_true', default=True)
     parser.add_argument("--batch_size", type=int, default=32)  # 32
     parser.add_argument("--epoch", type=int, default=10)

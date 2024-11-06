@@ -1,4 +1,3 @@
-
 from Seq2Seq import MiniFormer
 import mindspore
 from train_MiniFormer import src_vocab,tgt_vocab
@@ -6,26 +5,18 @@ import os
 from nltk.translate.bleu_score import  sentence_bleu
 from rouge import Rouge
 from collections import defaultdict
-
-
 if not os.path.exists('./output/'):
     os.mkdir('./output/')
-
 def bleu(src,tgt):
     if src==[[]]:
         return 0
     score = sentence_bleu(src, tgt)
     return score
-
 def rouge_score(src,tgt):
     rouge = Rouge()
     rouge_score = rouge.get_scores(hyps=src, refs=tgt)
     return rouge_score
-
-# load model and use beam search
-# to generate sentence summary
 def beam_search(model_path, src_vocab,tgt_vocab,test,tgt,fout, beam_size=50):
-    #load model
     model = MiniFormer(len(src_vocab),len(tgt_vocab), 128, 256, 1)
     param_dict=mindspore.load_checkpoint(model_path)
     param_not_load,_=mindspore.load_param_into_net(model,param_dict)
@@ -43,14 +34,11 @@ def beam_search(model_path, src_vocab,tgt_vocab,test,tgt,fout, beam_size=50):
         if len(SENT)<1:
             pred=[]
         else:
-            #print('cnt:%d gen:%d'%(cnt,len(SENT)))
             pred=[tgt_idx[x] for x in SENT[0][0]]
             pred=pred[1:-1]
         tgt_str=[tgt_idx[x] for x in cur_tgt]
         fout.write('%s\n%s\n' % (str(pred), str(tgt_str)))
         print('%d pred:%s \ntgt:%s\n' % (idx,str(pred), str(tgt_str)))
-
-
 if __name__ == "__main__":
     model_path = "./model_WMT14/ckpt-6e-0s.ckpt"
     file_1 = open('./WMT14/raw/src_test.txt', 'r')

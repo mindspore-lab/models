@@ -1,19 +1,14 @@
-
-
 import mindspore
 import mindspore.nn as nn
 from mindspore.common.initializer import One, Normal
 import numpy as np
-
 class MiniFormer(nn.Cell):
     def __init__(self, src_vocab_size,tgt_vocab_size, emb_dim,
                  n_hidden, n_layer=1, bi_enc=True, dropout=0.0):
         super(MiniFormer, self).__init__()
-
         self.n_layer = n_layer
         self.bi_enc = bi_enc  # whether encoder is bidirectional
         self.embedding = nn.Embedding(src_vocab_size, emb_dim, padding_idx=0)
-
         self.encoder = nn.LSTM(
             emb_dim, n_hidden, n_layer,
             bidirectional  = bi_enc,
@@ -25,26 +20,17 @@ class MiniFormer(nn.Cell):
         self.enc_out_dim = n_hidden * (2 if bi_enc else 1)
         self._dec_h = nn.Dense(self.enc_out_dim, n_hidden, has_bias=False)
         self._dec_c = nn.Dense(self.enc_out_dim, n_hidden, has_bias=False)
-
         self.decoder = Decoder(
             self.embedding, n_hidden, tgt_vocab_size,
             self.enc_out_dim, n_layer,
             dropout=dropout
             )
-
     def construct(self, src, src_lengths, tgt):
-        """args:
-            src: [batch_size, max_len]
-            src_lengths: [batch_size]
-            tgt: [batch_size, max_len]
-        """
         enc_outs, init_dec_states = self.encode(src, src_lengths)
         attn_mask = len_mask(src_lengths)
         logit = self.decoder(tgt, init_dec_states, enc_outs, attn_mask)
         return logit
-
     def encode(self, src, src_lengths):
-        """run encoding"""
         size = (
             self.enc_init_c.shape[0],
             len(src_lengths),
@@ -64,9 +50,6 @@ class MiniFormer(nn.Cell):
         init_dec_states = (self._dec_h(h).squeeze(0),
                             self._dec_c(c).squeeze(0))
         return outputs, init_dec_states
-
-
-
     def bs_decode(self, inp, src_vocab,tgt_vocab, bsize=4):
         inp = mindspore.Tensor([[int(word) for word in inp]],dtype=mindspore.int64)
         inp_len = mindspore.Tensor([inp.shape[1]],dtype=mindspore.int64)
@@ -95,13 +78,8 @@ class MiniFormer(nn.Cell):
             else:
                 cur_beam = min(logit.view(-1).shape[0], bsize)
                 top_k_scores, ctop_k_words = logit.view(-1).topk(cur_beam, dim=0)
-
-            #prev words sequence index in top_k_words
             pw_inds_tk = ctop_k_words // tgt_vocab_size
-            #next word index in vocab
             next_word_inds = ctop_k_words % tgt_vocab_size
-            #add new words to sequences
-            #breakpoint()
             top_k_words = mindspore.ops.cat([top_k_words[pw_inds_tk],
                                     next_word_inds.unsqueeze(1)],
                                     axis=1)
@@ -109,7 +87,6 @@ class MiniFormer(nn.Cell):
                                     if word_ind != tgt_vocab['</s>']]
             complete_word_ind = [ind for ind in range(len(next_word_inds))
                                     if ind not in incomplete_word_ind]
-
             if len(complete_word_ind):
                 completed_seqs.extend(top_k_words[complete_word_ind].tolist())
                 completed_seqs_score.extend(top_k_scores[complete_word_ind])
@@ -134,7 +111,6 @@ class MiniFormer(nn.Cell):
             ind+=1
         SENT=sorted(SENT,key=lambda x:x[1],reverse=True)
         return SENT
-
 class Decoder(nn.Cell):
     def __init__(self, embedding, hidden_size,
                  output_size, enc_out_dim, n_layers=1, dropout=0.1):
@@ -146,7 +122,6 @@ class Decoder(nn.Cell):
         self.attn = nn.Dense(enc_out_dim, hidden_size)
         self.concat = nn.Dense(enc_out_dim+hidden_size, hidden_size)
         self.out = nn.Dense(hidden_size, output_size)
-
     def construct(self, target, init_states, enc_outs, attn_mask):
         max_len = target.shape[1]
         states = init_states
@@ -156,9 +131,7 @@ class Decoder(nn.Cell):
             logit, states = self._step(target_i, states, enc_outs, attn_mask)
             logits.append(logit)
         logits = mindspore.ops.stack(logits, axis=1)
-
         return logits
-
     def _step(self, inp, last_hidden, enc_outs, attn_mask):
         embed = self.embedding(inp).squeeze(1)
         h_t, c_t = self.decoder_cell(embed, last_hidden)
@@ -169,11 +142,8 @@ class Decoder(nn.Cell):
         concat_out = mindspore.ops.tanh(self.concat(
             mindspore.ops.cat([context, h_t], axis=1)
         ))
-
         logit = mindspore.ops.log_softmax(self.out(concat_out), axis=-1)
         return logit, (h_t, c_t)
-
-
     def get_attn(self, dec_out, enc_outs, attn_mask):
         keys = values = enc_outs
         query = dec_out.unsqueeze(0)
@@ -181,10 +151,7 @@ class Decoder(nn.Cell):
         weights = weights.swapaxes(0, 1)
         weights = weights.masked_fill(attn_mask==0, -1e18)
         weights = weights.unsqueeze(1)
-
         return mindspore.ops.softmax(weights, axis=2)
-
-#helper function
 def len_mask(lens):
     max_len = max(lens)
     batch_size = len(lens)
@@ -194,27 +161,3 @@ def len_mask(lens):
         for j in range(l):
             mask[i,j]=1
     return mask
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    #

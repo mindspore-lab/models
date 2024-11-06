@@ -1,16 +1,12 @@
 import argparse
 from functools import partial
 import os
-
 from mindspore.nn import Adam
 from mindspore.dataset import GeneratorDataset
-
 import pickle
 from data import GigaDataset, prepro_batch
 from Seq2Seq import MiniFormer
 from utils import Trainer
-
-
 with open(os.path.join('WMT14', 'raw', 'src_vocab.pkl'), "rb") as f:
     src_vocab = pickle.load(f)
 with open(os.path.join('WMT14', 'raw', 'tgt_vocab.pkl'), "rb") as f:
@@ -52,6 +48,5 @@ def main():
                       args.clip, args.print_freq, args.ckpt_freq,
                       args.patience,args.epoch )
     trainer.train()
-
 if __name__ == "__main__":
     main()

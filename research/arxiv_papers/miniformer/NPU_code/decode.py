@@ -1,36 +1,23 @@
-
 from Seq2Seq import Seq2SeqSum
 import mindspore
-#from utils import make_word2id
-#from CopySeq2Seq import CopySeq2SeqSum
-# import time
-# import eventlet
 from train_seq2seqsum import src_vocab,tgt_vocab
 import os
 from nltk.translate.bleu_score import  sentence_bleu
 from rouge import Rouge
 from collections import defaultdict
 from mindspore.amp import auto_mixed_precision
-
 if not os.path.exists('./output/'):
     os.mkdir('./output/')
-
 def bleu(src,tgt):
     if src==[[]]:
         return 0
     score = sentence_bleu(src, tgt)
     return score
-
 def rouge_score(src,tgt):
     rouge = Rouge()
     rouge_score = rouge.get_scores(hyps=src, refs=tgt)
     return rouge_score
-
-
-
-
 def beam_search(model_path, src_vocab,tgt_vocab,test,tgt,fout, beam_size=50):
-
     model = Seq2SeqSum(len(src_vocab),len(tgt_vocab), 128, 256, 1)
     param_dict=mindspore.load_checkpoint(model_path)
     param_not_load,_=mindspore.load_param_into_net(model,param_dict)
@@ -55,32 +42,20 @@ def beam_search(model_path, src_vocab,tgt_vocab,test,tgt,fout, beam_size=50):
         tgt_str=[tgt_idx[x] for x in cur_tgt]
         fout.write('%s\n%s\n' % (str(pred), str(tgt_str)))
         print('%d pred:%s \ntgt:%s\n' % (idx,str(pred), str(tgt_str)))
-
-
-
 if __name__ == "__main__":
-
     model_path = "./model_WMT14/ckpt-6e-0s.ckpt"
     file_1 = open('./WMT14/raw/src_test.txt', 'r')
     file_2 = open('./WMT14/raw/tgt_test.txt', 'r')
     out_path='./output/WMT14_output.txt'
-    # out_path2 = './output/WMT14_re.txt'
-
-
     fout=open(out_path,'w',encoding='ISO-8859-1')
-
-    #fout2=open(out_path2,'w')
     test = []
     while True:
         line = file_1.readline().rstrip('\r\n')
-
         if not line:
             break
-
         line = [int(x) for x in line.split(' ')]
         test.append(line)
     file_1.close()
-
     tgt=[]
     while True:
         line = file_2.readline().rstrip('\r\n')
@@ -89,5 +64,4 @@ if __name__ == "__main__":
         line = [int(x) for x in line.split(' ')]
         tgt.append(line)
     file_2.close()
-
     beam_search(model_path, src_vocab,tgt_vocab,test[:],tgt,fout)

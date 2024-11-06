@@ -1,11 +1,6 @@
 from os.path import join
 from functools import partial
-
 import mindspore
-
-
-
-
 class Trainer(object):
     def __init__(self, optimizer, model, train_loader,
                  val_loader, save_dir, clip,
@@ -15,23 +10,19 @@ class Trainer(object):
         self.train_loader = train_loader
         self.val_loader = val_loader
         self.save_dir = save_dir
-
         self.clip = clip
         self.print_freq = print_freq
         self.ckpt_freq = ckpt_freq
         self.patience = patience
         self.model_is_copy = copy
-
         self.step = 0
         self.cur_epoch=1
         self.epoch = epoch
-
         self.current_p = 0
         self.best_val = 1e18
         self.current_val_loss = 1e18
 
     def validate(self):
-        # cal val loss
         print('start val')
         self.model.set_train(False)
         val_total_loss = 0.0
@@ -39,21 +30,17 @@ class Trainer(object):
         for i in range(val_batch):
             srcs, targets = self.val_loader.next_batch()
             src, src_lens, tgt = srcs
-
             logit = self.model(src, src_lens, tgt)
             val_loss = self.cal_loss(logit, targets)
             val_total_loss += val_loss.item()
-
         avg_loss = val_total_loss / val_batch
         print("Epoch {}, validation average loss: {:.4f}".format(
             self.cur_epoch, avg_loss
         ))
         self.current_val_loss = avg_loss
         return avg_loss
-
     def checkpoint(self):
         save_dict = {}
-
         name= 'ckpt-{}e-{}s'.format( self.cur_epoch, self.step
         )
         mindspore.save_checkpoint(self.model, join(self.save_dir, name))
@@ -80,7 +67,6 @@ class Trainer(object):
         logits = self.model(src, src_lens, tgt)
         target_ori=targets
         logits_ori=logits
-        #loss = self.cal_loss(logits, targets)
         pad_idx=0
         mask = (targets != pad_idx)
         mask=mask.view(-1)
@@ -88,10 +74,7 @@ class Trainer(object):
         logits=logits.view(-1, logits.shape[2])[mask]
         loss = mindspore.ops.nll_loss(logits, targets)
         return loss
-
-
     def clip_by_norm(self,clip_norm, t, axis=None):
-
         t2 = t * t
         l2sum = t2.sum(axis=axis, keepdims=True)
         pred = l2sum > 0
@@ -100,7 +83,6 @@ class Trainer(object):
         intermediate = t * clip_norm
         cond = l2norm > clip_norm
         t_clip =  mindspore.ops.identity(intermediate /  mindspore.ops.select(cond, l2norm, clip_norm))
-
         return t_clip
 
     def train_step(self, srcs, targets):
@@ -115,18 +97,12 @@ class Trainer(object):
             self.model.set_train()
             losses = 0.0
             for i in range(self.train_loader.tot_batch):
-            #for srcs, targets in self.train_loader:
                 srcs, targets = self.train_loader.next_batch()
-                
                 step_loss = self.train_step(srcs, targets)
                 losses += step_loss
-
                 if self.step % self.print_freq == 0:
                     self.log_info(losses)
                     losses = 0.0
-
-
-
             self.step = 0
             val_loss = self.validate()
             self.checkpoint()
