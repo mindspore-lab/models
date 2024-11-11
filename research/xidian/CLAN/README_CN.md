@@ -38,14 +38,15 @@ data
 ## 指标描述
 
 
-| 参数          | Ascend          |
-| ------------- |-----------------|
-| 模型版本      | CLAN            |
-| MindSpore版本 | 2.2             |
-| 数据集        | GTA5/Cityscapes |
-| 优化器        | Momentum        |
-| 损失函数      | 多分类交叉熵          |
-| 速度          | 10毫秒/步;         |
+| 参数          | Ascend           |
+|-------------|------------------|
+| 模型版本        | CLAN             |
+| MindSpore版本 | 2.2              |
+| 数据集         | GTA5/Cityscapes  |
+| 优化器         | Momentum         |
+| 损失函数        | 多分类交叉熵           |
+| 速度          | 10毫秒/步;          |
+| 精度(MIoU)    | 42.25(原论文中为43.2) |
 
 
 ## 项目目录结构
@@ -87,7 +88,7 @@ python CLAN_train_gta5_2_city.py
 
 ### 测试
 ```
-python CLAN_evaluate_city.py --restore-from  ./snapshots/GTA2Cityscapes/GTA5_best.pth 
+python CLAN_evaluate_city.py --restore-from  ./checkpoint/GTA5_best.pth 
 ```
 
 点击[链接]( ./model/DeepLab_resnet_pretrained_init-f81d91e8(1).ckpt )获取预训练模型 
