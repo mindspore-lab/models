@@ -65,11 +65,8 @@ data
 |   |-- evaluate_options.py
 |   `-- train_options.py
 |-- model
-|   |-- __init__.py
 |   |-- CLAN_D.py
 |   |-- CLAN_D.py
-|   |-- DeepLab_resnet_pretrained_init-f81d91e8(1).ckpt
-|   `-- Pretrain_DeeplabMulti.ckpt
 |-- figure
 |   |-- clan_pipline.png
 |-- dataset
@@ -77,6 +74,10 @@ data
 |   |-- cityscapes_list
 |   |-- gta5_dataset.py
 |   `-- cityscapes_dataset.py
+|-- pretrained
+|   |-- DeepLab_resnet_pretrained_init-f81d91e8(1).ckpt
+|-- checkpoint
+|   |-- GTA5_best.ckpt
 |-- CLAN_train_gta5_2_city.py
 `-- CLAN_evaluate_city.py
 ```
@@ -91,4 +92,5 @@ python CLAN_train_gta5_2_city.py
 python CLAN_evaluate_city.py --restore-from  ./checkpoint/GTA5_best.pth 
 ```
 
-点击[链接]( ./model/DeepLab_resnet_pretrained_init-f81d91e8(1).ckpt )获取预训练模型 
+点击[链接](https://drive.google.com/drive/folders/13kjtX481LdtgJcpqD3oROabZyhGLSBm2 )获取预训练模型
+
