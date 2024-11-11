@@ -7,7 +7,7 @@ from mindspore import Parameter, Tensor
 import mindspore.common.dtype as mstype
 from mindspore.ops import operations as P
 
-context.set_context(mode=context.PYNATIVE_MODE)
+#context.set_context(mode=context.PYNATIVE_MODE)
 
 class SoftmaxCrossEntropyLoss(nn.Cell):
     def __init__(self, num_cls=19, ignore_label=255):
@@ -33,8 +33,6 @@ class SoftmaxCrossEntropyLoss(nn.Cell):
         labels_int = self.reshape(labels_int, (-1,))
         logits_ = self.transpose(logits, (0, 2, 3, 1))
         logits_ = self.reshape(logits_, (-1, self.num_cls))
-        # ops.Print()(self.greater_equal(labels_int, 0))
-        # ops.Print()(self.not_equal(labels_int, self.ignore_label))
         weights = self.logical_and(self.greater_equal(labels_int, 0), self.not_equal(labels_int, self.ignore_label))
         weights = self.cast(weights, mstype.float32)
         one_hot_labels = self.one_hot(labels_int, self.num_cls, self.on_value, self.off_value)
@@ -50,11 +48,11 @@ class WeightedBCEWithLogitsLoss(nn.Cell):
         self.size_average = size_average
         
     def weighted(self, input, target, weight, alpha, beta):
-        if not (target.size() == input.size()):
+        if not (ops.Size()(target) == ops.Size()(input)):
             raise ValueError("Target size ({}) must be the same as input size ({})".format(target.size(), input.size()))
 
         # max_val = (-input).clamp(min=0) change
-        max_val = ops.clip_by_value((-input), min=0, max=1)
+        max_val = ops.clip_by_value((-input), 0, 1)
 
         # loss = input - input * target + max_val + ((-max_val).exp() + (-input - max_val).exp()).log() change
         exp = ops.Exp()

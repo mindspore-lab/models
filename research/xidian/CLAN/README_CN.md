@@ -38,15 +38,15 @@ data
 ## 指标描述
 
 
-| 参数          | Ascend   | GPU      |
-| ------------- |----------|----------|
-| 模型版本      | CLAN     | CLAN     |
-| MindSpore版本 | 1.7.0    | 1.7.0    |
-| 数据集        | GTA5/Cityscapes  |    GTA5/Cityscapes      |
-| 优化器        | Momentum | Momentum |
-| 损失函数      | 多分类交叉熵   | 多分类交叉熵   |
-| 速度          | xxx毫秒/步; | xxx毫秒/步; |
-| 总时长        | xxx分钟;   | xxx分钟;   |
+| 参数          | Ascend          |
+| ------------- |-----------------|
+| 模型版本      | CLAN            |
+| MindSpore版本 | 2.2             |
+| 数据集        | GTA5/Cityscapes |
+| 优化器        | Momentum        |
+| 损失函数      | 多分类交叉熵          |
+| 速度          | 10毫秒/步;         |
+
 
 ## 项目目录结构
 
