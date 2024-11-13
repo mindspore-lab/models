@@ -1,5 +1,5 @@
 
-# CGL-MHA：集成GCN、LSTM和多头注意力的谎言检测模型
+# CGL-MHA：集成GCN、LSTM和多头注意力的讽刺检测模型
 
 论文“An Innovative CGL-MHA Model for Sarcasm Sentiment Recognition Using the MindSpore Framework”源码
 这是我们的论文：https://arxiv.org/abs/2411.01264
