@@ -1,0 +1,73 @@
+2024-10-25 09:06:09,480:INFO:Args:
+2024-10-25 09:06:09,480:INFO:--> enable_modelarts: False
+2024-10-25 09:06:09,481:INFO:--> data_url: 
+2024-10-25 09:06:09,481:INFO:--> train_url: 
+2024-10-25 09:06:09,481:INFO:--> checkpoint_url: 
+2024-10-25 09:06:09,481:INFO:--> data_path: /cache/data_speechv2
+2024-10-25 09:06:09,481:INFO:--> output_path: /cache/train
+2024-10-25 09:06:09,481:INFO:--> load_path: /cache/checkpoint_path
+2024-10-25 09:06:09,481:INFO:--> device_target: Ascend
+2024-10-25 09:06:09,481:INFO:--> enable_profiling: False
+2024-10-25 09:06:09,481:INFO:--> device_id: 4
+2024-10-25 09:06:09,481:INFO:--> is_distributed: False
+2024-10-25 09:06:09,481:INFO:--> wanted_words: yes,no,up,down,left,right,on,off,stop,go
+2024-10-25 09:06:09,481:INFO:--> sample_rate: 16000
+2024-10-25 09:06:09,481:INFO:--> clip_duration_ms: 1000
+2024-10-25 09:06:09,482:INFO:--> window_size_ms: 40.0
+2024-10-25 09:06:09,482:INFO:--> window_stride_ms: 20.0
+2024-10-25 09:06:09,482:INFO:--> dct_coefficient_count: 20
+2024-10-25 09:06:09,482:INFO:--> drop: 0.6
+2024-10-25 09:06:09,482:INFO:--> per_batch_size: 200
+2024-10-25 09:06:09,482:INFO:--> model_size_info: [6, 276, 10, 4, 2, 1, 276, 3, 3, 2, 2, 276, 3, 3, 1, 1, 276, 3, 3, 1, 1, 276, 3, 3, 1, 1, 276, 3, 3, 1, 1]
+2024-10-25 09:06:09,482:INFO:--> amp_level: O0
+2024-10-25 09:06:09,482:INFO:--> download_data_url: http://download.tensorflow.org/data/speech_commands_v0.02.tar.gz
+2024-10-25 09:06:09,482:INFO:--> data_dir: data_speechv2
+2024-10-25 09:06:09,482:INFO:--> download_feat_dir: ./dscnn_dataset_speechv2
+2024-10-25 09:06:09,482:INFO:--> train_feat_dir: ./dscnn_dataset_speechv2
+2024-10-25 09:06:09,482:INFO:--> background_volume: 0.1
+2024-10-25 09:06:09,482:INFO:--> background_frequency: 0.8
+2024-10-25 09:06:09,482:INFO:--> silence_percentage: 10.0
+2024-10-25 09:06:09,483:INFO:--> unknown_percentage: 10.0
+2024-10-25 09:06:09,483:INFO:--> time_shift_ms: 100.0
+2024-10-25 09:06:09,483:INFO:--> testing_percentage: 10
+2024-10-25 09:06:09,483:INFO:--> validation_percentage: 10
+2024-10-25 09:06:09,483:INFO:--> pretrained: 
+2024-10-25 09:06:09,483:INFO:--> use_graph_mode: 1
+2024-10-25 09:06:09,483:INFO:--> val_interval: 1
+2024-10-25 09:06:09,483:INFO:--> lr_scheduler: multistep
+2024-10-25 09:06:09,483:INFO:--> lr: 0.1
+2024-10-25 09:06:09,483:INFO:--> lr_epochs: [20, 40, 60, 80]
+2024-10-25 09:06:09,483:INFO:--> lr_gamma: 0.1
+2024-10-25 09:06:09,483:INFO:--> eta_min: 0.0
+2024-10-25 09:06:09,483:INFO:--> T_max: 80
+2024-10-25 09:06:09,483:INFO:--> max_epoch: 80
+2024-10-25 09:06:09,484:INFO:--> warmup_epochs: 0.0
+2024-10-25 09:06:09,484:INFO:--> weight_decay: 0.001
+2024-10-25 09:06:09,484:INFO:--> momentum: 0.98
+2024-10-25 09:06:09,484:INFO:--> log_interval: 100
+2024-10-25 09:06:09,484:INFO:--> save_ckpt_path: ./checkpoint_speechv2
+2024-10-25 09:06:09,484:INFO:--> ckpt_interval: 100
+2024-10-25 09:06:09,484:INFO:--> eval_feat_dir: ./dscnn_dataset_speechv2
+2024-10-25 09:06:09,484:INFO:--> model_dir: ./checkpoint/2024-10-25_time_08_54_22
+2024-10-25 09:06:09,484:INFO:--> log_path: ./eval_outputs/speechv2
+2024-10-25 09:06:09,484:INFO:--> export_ckpt_path: ./dscnn_dataset
+2024-10-25 09:06:09,484:INFO:--> file_name: dscnn
+2024-10-25 09:06:09,484:INFO:--> file_format: MINDIR
+2024-10-25 09:06:09,484:INFO:--> pre_result_path: preprocess_Result
+2024-10-25 09:06:09,484:INFO:--> pre_feat_dir: 
+2024-10-25 09:06:09,485:INFO:--> label_path: 
+2024-10-25 09:06:09,485:INFO:--> post_result_path: 
+2024-10-25 09:06:09,485:INFO:--> config_path: /data1/wkr/dscnn/src/model_utils/../../default_config.yaml
+2024-10-25 09:06:09,485:INFO:--> dataset_sink_mode: True
+2024-10-25 09:06:09,485:INFO:--> model_setting_dropout1: 0.6
+2024-10-25 09:06:09,485:INFO:--> model_setting_desired_samples: 16000
+2024-10-25 09:06:09,485:INFO:--> model_setting_window_size_samples: 640
+2024-10-25 09:06:09,485:INFO:--> model_setting_window_stride_samples: 320
+2024-10-25 09:06:09,485:INFO:--> model_setting_spectrogram_length: 49
+2024-10-25 09:06:09,485:INFO:--> model_setting_fingerprint_size: 980
+2024-10-25 09:06:09,485:INFO:--> model_setting_label_count: 12
+2024-10-25 09:06:09,485:INFO:--> model_setting_sample_rate: 16000
+2024-10-25 09:06:09,486:INFO:--> model_setting_dct_coefficient_count: 20
+2024-10-25 09:06:09,486:INFO:--> outputs_dir: ./eval_outputs/speechv2/2024-10-25_time_09_06_09
+2024-10-25 09:06:09,486:INFO:--> logger: <LOGGER ds-cnn (NOTSET)>
+2024-10-25 09:06:09,486:INFO:
