@@ -1,0 +1,5 @@
+__BASE__: [
+  'config_ocrnet_hrw32.yml',
+  '../cityscapes.yml',
+  '../optimizer_8k.yml',
+]

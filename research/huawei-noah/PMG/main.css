@@ -1,0 +1,20 @@
+#input_user, #input_scenario, #output_keyword, #output_image{
+    margin-bottom: 40px;
+}
+
+#input, #output{
+    margin: 20px 13px;
+}
+.image_class{
+    text-align: center;
+}
+p{
+    font-size: 20px;
+}
+:root{
+    --text-xl: 28px;
+    --text-xxl: 35px;
+    --block-title-text-size: 18px;
+    --section-header-text-size: 18px;
+    --input-text-size: 18px;
+}

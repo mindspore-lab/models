@@ -1,0 +1,207 @@
+# [No.1] construct_wrapper.1
+# In file E:/CLAN-master/utils/loss.py(69)/    def construct(self, predict, target):/
+funcgraph fg_1(
+        %para1 : Tensor(F32)[5, 19, 16, 16]    # predict
+        , %para2 : Tensor(F32)[5, 16, 16]    # target
+    ) {
+
+#------------------------> 0
+    %1 = FuncGraph::fg_6(%para1, %para2)    #(Tensor(F32)[5, 19, 16, 16], Tensor(F32)[5, 16, 16])    # fg_6=construct.6 #scope: Default
+#[CNode]9
+    Primitive::Return{prim_type=1}(%1)    #(Undefined) #scope: Default
+      # In file E:/CLAN-master/utils/loss.py(87)/        if self.size_average:/#[CNode]10
+}
+# order:
+#   1: construct_wrapper.1:[CNode]9{[0]: ValueNode<FuncGraph> construct.6, [1]: predict, [2]: target}
+#   2: construct_wrapper.1:[CNode]10{[0]: ValueNode<Primitive> Return, [1]: [CNode]9}
+
+
+# [No.2] construct.6
+# In file E:/CLAN-master/utils/loss.py(69)/    def construct(self, predict, target):/
+funcgraph fg_6(
+        %para3 : Tensor(F32)[5, 19, 16, 16]    # predict
+        , %para4 : Tensor(F32)[5, 16, 16]    # target
+    ) {
+    %1 : Bool = FuncGraph::fg_11(Bool(1))    #(Bool)    # fg_11=bool_.11 #scope: Default
+      # In file E:/CLAN-master/utils/loss.py(87)/        if self.size_average:/#[CNode]12
+    %2 : Func = Primitive::Switch{prim_type=1}(%1, FuncGraph::fg_7, FuncGraph::fg_13)    #(Bool, Func, Func)    # fg_7=✓construct.7, fg_13=✗construct.13 #scope: Default
+      # In file E:/CLAN-master/utils/loss.py(87)/        if self.size_average:/#[CNode]14
+
+#------------------------> 1
+    %3 = %2() #scope: Default
+      # In file E:/CLAN-master/utils/loss.py(87)/        if self.size_average:/#[CNode]15
+    Primitive::Return{prim_type=1}(%3)    #(Undefined) #scope: Default
+      # In file E:/CLAN-master/utils/loss.py(87)/        if self.size_average:/#[CNode]16
+}
+# order:
+#   1: construct.6:[CNode]17{[0]: ValueNode<Primitive> getattr, [1]: predict, [2]: ValueNode<StringImm> size}
+#   2: construct.6:[CNode]18{[0]: [CNode]17}
+#   3: construct.6:N{[0]: ValueNode<DoSignaturePrimitive> S-Prim-getitem, [1]: [CNode]18, [2]: ValueNode<Int64Imm> 0}
+#   4: construct.6:C{[0]: ValueNode<DoSignaturePrimitive> S-Prim-getitem, [1]: [CNode]18, [2]: ValueNode<Int64Imm> 1}
+#   5: construct.6:H{[0]: ValueNode<DoSignaturePrimitive> S-Prim-getitem, [1]: [CNode]18, [2]: ValueNode<Int64Imm> 2}
+#   6: construct.6:W{[0]: ValueNode<DoSignaturePrimitive> S-Prim-getitem, [1]: [CNode]18, [2]: ValueNode<Int64Imm> 3}
+#   7: construct.6:[CNode]19{[0]: ValueNode<DoSignaturePrimitive> S-Prim-MakeTuple, [1]: ValueNode<StringImm> axis}
+#   8: construct.6:[CNode]20{[0]: ValueNode<DoSignaturePrimitive> S-Prim-MakeTuple, [1]: ValueNode<Int64Imm> 1}
+#   9: construct.6:[CNode]21{[0]: ValueNode<DoSignaturePrimitive> S-Prim-make_dict, [1]: [CNode]19, [2]: [CNode]20}
+#  10: construct.6:sm{[0]: ValueNode<UnpackCall> unpack_call.22, [1]: ValueNode<ClassType> class 'mindspore.ops.operations.nn_ops.Softmax', [2]: [CNode]21}
+#  11: construct.6:P{[0]: sm, [1]: predict}
+#  12: construct.6:[CNode]23{[0]: ValueNode<DoSignaturePrimitive> S-Prim-sub, [1]: ValueNode<Int64Imm> 1, [2]: ValueNode<FP32Imm> 0.000000}
+#  13: construct.6:P{[0]: ValueNode<FuncGraph> clip_by_value.24, [1]: P, [2]: ValueNode<FP32Imm> 0.000000, [3]: [CNode]23}
+#  14: construct.6:[CNode]25{[0]: ValueNode<DoSignaturePrimitive> S-Prim-greater_equal, [1]: target, [2]: ValueNode<Int64Imm> 0}
+#  15: construct.6:[CNode]26{[0]: ValueNode<DoSignaturePrimitive> S-Prim-not_equal, [1]: target, [2]: ValueNode<Int64Imm> 255}
+#  16: construct.6:target_mask{[0]: ValueNode<DoSignaturePrimitive> S-Prim-mul, [1]: [CNode]25, [2]: [CNode]26}
+#  17: construct.6:[CNode]27{[0]: ValueNode<DoSignaturePrimitive> S-Prim-getitem, [1]: target, [2]: target_mask}
+#  18: construct.6:[CNode]28{[0]: ValueNode<Primitive> getattr, [1]: [CNode]27, [2]: ValueNode<StringImm> view}
+#  19: construct.6:[CNode]29{[0]: ValueNode<DoSignaturePrimitive> S-Prim-negative, [1]: ValueNode<Int64Imm> 1}
+#  20: construct.6:target{[0]: [CNode]28, [1]: ValueNode<Int64Imm> 1, [2]: [CNode]29}
+#  21: construct.6:[CNode]30{[0]: ValueNode<Primitive> getattr, [1]: target_mask, [2]: ValueNode<StringImm> view}
+#  22: construct.6:[CNode]31{[0]: [CNode]30, [1]: N, [2]: ValueNode<Int64Imm> 1, [3]: H, [4]: W}
+#  23: construct.6:[CNode]32{[0]: ValueNode<Primitive> getattr, [1]: [CNode]31, [2]: ValueNode<StringImm> repeat}
+#  24: construct.6:[CNode]33{[0]: [CNode]32, [1]: ValueNode<Int64Imm> 1, [2]: C, [3]: ValueNode<Int64Imm> 1, [4]: ValueNode<Int64Imm> 1}
+#  25: construct.6:[CNode]34{[0]: ValueNode<DoSignaturePrimitive> S-Prim-getitem, [1]: P, [2]: [CNode]33}
+#  26: construct.6:[CNode]35{[0]: ValueNode<Primitive> getattr, [1]: [CNode]34, [2]: ValueNode<StringImm> view}
+#  27: construct.6:[CNode]36{[0]: ValueNode<DoSignaturePrimitive> S-Prim-negative, [1]: ValueNode<Int64Imm> 1}
+#  28: construct.6:predict{[0]: [CNode]35, [1]: C, [2]: [CNode]36}
+#  29: construct.6:[CNode]37{[0]: ValueNode<DoSignaturePrimitive> S-Prim-MakeTuple, [1]: predict}
+#  30: construct.6:[CNode]38{[0]: ValueNode<DoSignaturePrimitive> S-Prim-MakeTuple, [1]: ValueNode<StringImm> dim, [2]: ValueNode<StringImm> index}
+#  31: construct.6:[CNode]39{[0]: ValueNode<DoSignaturePrimitive> S-Prim-MakeTuple, [1]: ValueNode<Int64Imm> 0, [2]: target}
+#  32: construct.6:[CNode]40{[0]: ValueNode<DoSignaturePrimitive> S-Prim-make_dict, [1]: [CNode]38, [2]: [CNode]39}
+#  33: construct.6:probs{[0]: ValueNode<UnpackCall> unpack_call.41, [1]: ValueNode<ClassType> class 'mindspore.ops.operations.array_ops.GatherD', [2]: [CNode]37, [3]: [CNode]40}
+#  34: construct.6:[CNode]42{[0]: ValueNode<Primitive> getattr, [1]: probs, [2]: ValueNode<StringImm> log}
+#  35: construct.6:log_p{[0]: [CNode]42}
+#  36: construct.6:[CNode]43{[0]: ValueNode<DoSignaturePrimitive> S-Prim-sub, [1]: ValueNode<Int64Imm> 1, [2]: probs}
+#  37: construct.6:[CNode]44{[0]: ValueNode<ClassType> class 'mindspore.ops.operations.math_ops.Pow', [1]: [CNode]43, [2]: ValueNode<Int64Imm> 2}
+#  38: construct.6:[CNode]45{[0]: ValueNode<DoSignaturePrimitive> S-Prim-negative, [1]: [CNode]44}
+#  39: construct.6:batch_loss{[0]: ValueNode<DoSignaturePrimitive> S-Prim-mul, [1]: [CNode]45, [2]: log_p}
+#  40: construct.6:[CNode]12{[0]: ValueNode<FuncGraph> bool_.11, [1]: ValueNode<BoolImm> true}
+#  41: construct.6:[CNode]14{[0]: ValueNode<Primitive> Switch, [1]: [CNode]12, [2]: ValueNode<FuncGraph> ✓construct.7, [3]: ValueNode<FuncGraph> ✗construct.13}
+#  42: construct.6:[CNode]15{[0]: [CNode]14}
+#  43: construct.6:[CNode]16{[0]: ValueNode<Primitive> Return, [1]: [CNode]15}
+
+
+# [No.3] ✓construct.7
+# In file E:/CLAN-master/utils/loss.py(87)/        if self.size_average:/
+funcgraph fg_7[fg_6](
+) {
+    %1 : $(construct.6):Tuple[String] = DoSignaturePrimitive::S-Prim-MakeTuple{prim_type=1}("axis")    #(String) #scope: Default
+      # In file E:/CLAN-master/utils/loss.py(71)/        sm = ops.Softmax(axis=1)/#[CNode]19
+    %2 : $(construct.6):Tuple[I64] = DoSignaturePrimitive::S-Prim-MakeTuple{prim_type=1}(I64(1))    #(I64) #scope: Default
+      # In file E:/CLAN-master/utils/loss.py(71)/        sm = ops.Softmax(axis=1)/#[CNode]20
+    %3 : $(construct.6):Dictionary[[axis,],[Int64]] = DoSignaturePrimitive::S-Prim-make_dict{prim_type=1}(%1, %2)    #(Tuple[String], Tuple[I64]) #scope: Default
+      # In file E:/CLAN-master/utils/loss.py(71)/        sm = ops.Softmax(axis=1)/#[CNode]21
+    %4 : $(construct.6):Func = UnpackCall::unpack_call(ClassType, %3)    #(Func, Dictionary[[axis,],[Int64]]) #scope: Default
+      # In file E:/CLAN-master/utils/loss.py(71)/        sm = ops.Softmax(axis=1)/#sm
+    %5 : $(construct.6):Tensor(F32)[5, 19, 16, 16] = %4(%para3)    #(Tensor(F32)[5, 19, 16, 16]) #scope: Default
+      # In file E:/CLAN-master/utils/loss.py(74)/        P = sm(predict)/#P
+    %6 : $(construct.6):F64 = DoSignaturePrimitive::S-Prim-sub{prim_type=1}(I64(1), F32(1e-009))    #(I64, F32) #scope: Default
+      # In file E:/CLAN-master/utils/loss.py(75)/        P = ops.clip_by_value(P, 1e-9, 1-(1e-9))/#[CNode]23
+    %7 : $(construct.6):Tensor(F32)[5, 19, 16, 16] = FuncGraph::fg_24(%5, F32(1e-009), %6)    #(Tensor(F32)[5, 19, 16, 16], F32, F64)    # fg_24=clip_by_value.24 #scope: Default
+      # In file E:/CLAN-master/utils/loss.py(75)/        P = ops.clip_by_value(P, 1e-9, 1-(1e-9))/#P
+    %8 : $(construct.6):Tensor(Bool)[5, 16, 16] = DoSignaturePrimitive::S-Prim-greater_equal{prim_type=1}(%para4, I64(0))    #(Tensor(F32)[5, 16, 16], I64) #scope: Default
+      # In file E:/CLAN-master/utils/loss.py(78)/        target_mask = (target >= 0) * (target != self.ignore_label)/#[CNode]25
+    %9 : $(construct.6):Tensor(Bool)[5, 16, 16] = DoSignaturePrimitive::S-Prim-not_equal{prim_type=1}(%para4, I64(255))    #(Tensor(F32)[5, 16, 16], I64) #scope: Default
+      # In file E:/CLAN-master/utils/loss.py(78)/        target_mask = (target >= 0) * (target != self.ignore_label)/#[CNode]26
+
+#------------------------> 2
+    %10 = $(construct.6):DoSignaturePrimitive::S-Prim-mul{prim_type=1}(%8, %9)    #(Tensor(Bool)[5, 16, 16], Tensor(Bool)[5, 16, 16]) #scope: Default
+      # In file E:/CLAN-master/utils/loss.py(78)/        target_mask = (target >= 0) * (target != self.ignore_label)/#target_mask
+    %11 = $(construct.6):Primitive::getattr{prim_type=1}(%10, "view")    #(Undefined, Undefined) #scope: Default
+      # In file E:/CLAN-master/utils/loss.py(80)/        predict = P[target_mask.view(N, 1, H, W).repeat(1, C, 1, 1)].view(C, -1)/#[CNode]30
+    %12 = $(construct.6):Primitive::getattr{prim_type=1}(%para3, "size")    #(Tensor(F32)[5, 19, 16, 16], Undefined) #scope: Default
+      # In file E:/CLAN-master/utils/loss.py(70)/        N, C, H, W = predict.size()/#[CNode]17
+    %13 = $(construct.6):%12() #scope: Default
+      # In file E:/CLAN-master/utils/loss.py(70)/        N, C, H, W = predict.size()/#[CNode]18
+    %14 = $(construct.6):DoSignaturePrimitive::S-Prim-getitem{prim_type=1}(%13, I64(0))    #(Undefined, Undefined) #scope: Default
+      # In file E:/CLAN-master/utils/loss.py(70)/        N, C, H, W = predict.size()/#N
+    %15 = $(construct.6):DoSignaturePrimitive::S-Prim-getitem{prim_type=1}(%13, I64(2))    #(Undefined, Undefined) #scope: Default
+      # In file E:/CLAN-master/utils/loss.py(70)/        N, C, H, W = predict.size()/#H
+    %16 = $(construct.6):DoSignaturePrimitive::S-Prim-getitem{prim_type=1}(%13, I64(3))    #(Undefined, Undefined) #scope: Default
+      # In file E:/CLAN-master/utils/loss.py(70)/        N, C, H, W = predict.size()/#W
+    %17 = $(construct.6):%11(%14, I64(1), %15, %16)    #(Undefined, Undefined, Undefined, Undefined) #scope: Default
+      # In file E:/CLAN-master/utils/loss.py(80)/        predict = P[target_mask.view(N, 1, H, W).repeat(1, C, 1, 1)].view(C, -1)/#[CNode]31
+    %18 = $(construct.6):Primitive::getattr{prim_type=1}(%17, "repeat")    #(Undefined, Undefined) #scope: Default
+      # In file E:/CLAN-master/utils/loss.py(80)/        predict = P[target_mask.view(N, 1, H, W).repeat(1, C, 1, 1)].view(C, -1)/#[CNode]32
+    %19 = $(construct.6):DoSignaturePrimitive::S-Prim-getitem{prim_type=1}(%13, I64(1))    #(Undefined, Undefined) #scope: Default
+      # In file E:/CLAN-master/utils/loss.py(70)/        N, C, H, W = predict.size()/#C
+    %20 = $(construct.6):%18(I64(1), %19, I64(1), I64(1))    #(Undefined, Undefined, Undefined, Undefined) #scope: Default
+      # In file E:/CLAN-master/utils/loss.py(80)/        predict = P[target_mask.view(N, 1, H, W).repeat(1, C, 1, 1)].view(C, -1)/#[CNode]33
+    %21 = $(construct.6):DoSignaturePrimitive::S-Prim-getitem{prim_type=1}(%7, %20)    #(Tensor(F32)[5, 19, 16, 16], Undefined) #scope: Default
+      # In file E:/CLAN-master/utils/loss.py(80)/        predict = P[target_mask.view(N, 1, H, W).repeat(1, C, 1, 1)].view(C, -1)/#[CNode]34
+    %22 = $(construct.6):Primitive::getattr{prim_type=1}(%21, "view")    #(Undefined, Undefined) #scope: Default
+      # In file E:/CLAN-master/utils/loss.py(80)/        predict = P[target_mask.view(N, 1, H, W).repeat(1, C, 1, 1)].view(C, -1)/#[CNode]35
+    %23 = $(construct.6):DoSignaturePrimitive::S-Prim-negative{prim_type=1}(I64(1))    #(Undefined) #scope: Default
+      # In file E:/CLAN-master/utils/loss.py(80)/        predict = P[target_mask.view(N, 1, H, W).repeat(1, C, 1, 1)].view(C, -1)/#[CNode]36
+    %24 = $(construct.6):%22(%19, %23)    #(Undefined, Undefined) #scope: Default
+      # In file E:/CLAN-master/utils/loss.py(80)/        predict = P[target_mask.view(N, 1, H, W).repeat(1, C, 1, 1)].view(C, -1)/#predict
+    %25 = $(construct.6):DoSignaturePrimitive::S-Prim-MakeTuple{prim_type=1}(%24)    #(Undefined) #scope: Default
+      # In file E:/CLAN-master/utils/loss.py(81)/        probs = ops.GatherD(predict, dim=0, index=target)/#[CNode]37
+    %26 = $(construct.6):DoSignaturePrimitive::S-Prim-MakeTuple{prim_type=1}("dim", "index")    #(Undefined, Undefined) #scope: Default
+      # In file E:/CLAN-master/utils/loss.py(81)/        probs = ops.GatherD(predict, dim=0, index=target)/#[CNode]38
+    %27 = $(construct.6):DoSignaturePrimitive::S-Prim-getitem{prim_type=1}(%para4, %10)    #(Tensor(F32)[5, 16, 16], Undefined) #scope: Default
+      # In file E:/CLAN-master/utils/loss.py(79)/        target = target[target_mask].view(1, -1)/#[CNode]27
+    %28 = $(construct.6):Primitive::getattr{prim_type=1}(%27, "view")    #(Undefined, Undefined) #scope: Default
+      # In file E:/CLAN-master/utils/loss.py(79)/        target = target[target_mask].view(1, -1)/#[CNode]28
+    %29 = $(construct.6):DoSignaturePrimitive::S-Prim-negative{prim_type=1}(I64(1))    #(Undefined) #scope: Default
+      # In file E:/CLAN-master/utils/loss.py(79)/        target = target[target_mask].view(1, -1)/#[CNode]29
+    %30 = $(construct.6):%28(I64(1), %29)    #(Undefined, Undefined) #scope: Default
+      # In file E:/CLAN-master/utils/loss.py(79)/        target = target[target_mask].view(1, -1)/#target
+    %31 = $(construct.6):DoSignaturePrimitive::S-Prim-MakeTuple{prim_type=1}(I64(0), %30)    #(Undefined, Undefined) #scope: Default
+      # In file E:/CLAN-master/utils/loss.py(81)/        probs = ops.GatherD(predict, dim=0, index=target)/#[CNode]39
+    %32 = $(construct.6):DoSignaturePrimitive::S-Prim-make_dict{prim_type=1}(%26, %31)    #(Undefined, Undefined) #scope: Default
+      # In file E:/CLAN-master/utils/loss.py(81)/        probs = ops.GatherD(predict, dim=0, index=target)/#[CNode]40
+    %33 = $(construct.6):UnpackCall::unpack_call(ClassType, %25, %32)    #(Undefined, Undefined, Undefined) #scope: Default
+      # In file E:/CLAN-master/utils/loss.py(81)/        probs = ops.GatherD(predict, dim=0, index=target)/#probs
+    %34 = $(construct.6):DoSignaturePrimitive::S-Prim-sub{prim_type=1}(I64(1), %33)    #(Undefined, Undefined) #scope: Default
+      # In file E:/CLAN-master/utils/loss.py(84)/        batch_loss = -(ops.Pow((1 - probs), self.gamma)) * log_p/#[CNode]43
+    %35 = $(construct.6):ClassType(%34, I64(2))    #(Undefined, Undefined) #scope: Default
+      # In file E:/CLAN-master/utils/loss.py(84)/        batch_loss = -(ops.Pow((1 - probs), self.gamma)) * log_p/#[CNode]44
+    %36 = $(construct.6):DoSignaturePrimitive::S-Prim-negative{prim_type=1}(%35)    #(Undefined) #scope: Default
+      # In file E:/CLAN-master/utils/loss.py(84)/        batch_loss = -(ops.Pow((1 - probs), self.gamma)) * log_p/#[CNode]45
+    %37 = $(construct.6):Primitive::getattr{prim_type=1}(%33, "log")    #(Undefined, Undefined) #scope: Default
+      # In file E:/CLAN-master/utils/loss.py(83)/        log_p = probs.log()/#[CNode]42
+    %38 = $(construct.6):%37() #scope: Default
+      # In file E:/CLAN-master/utils/loss.py(83)/        log_p = probs.log()/#log_p
+    %39 = $(construct.6):DoSignaturePrimitive::S-Prim-mul{prim_type=1}(%36, %38)    #(Undefined, Undefined) #scope: Default
+      # In file E:/CLAN-master/utils/loss.py(84)/        batch_loss = -(ops.Pow((1 - probs), self.gamma)) * log_p/#batch_loss
+    %40 = Primitive::getattr{prim_type=1}(%39, "mean")    #(Undefined, Undefined) #scope: Default
+      # In file E:/CLAN-master/utils/loss.py(88)/            loss = batch_loss.mean()/#[CNode]46
+    %41 = %40() #scope: Default
+      # In file E:/CLAN-master/utils/loss.py(88)/            loss = batch_loss.mean()/#loss
+    %42 = FuncGraph::fg_47(%41)    #(Undefined)    # fg_47=↓construct.47 #scope: Default
+      # In file E:/CLAN-master/utils/loss.py(87)/        if self.size_average:/#[CNode]48
+    Primitive::Return{prim_type=1}(%42)    #(Undefined) #scope: Default
+      # In file E:/CLAN-master/utils/loss.py(87)/        if self.size_average:/#[CNode]49
+}
+# order:
+#   1: ✓construct.7:[CNode]46{[0]: ValueNode<Primitive> getattr, [1]: batch_loss, [2]: ValueNode<StringImm> mean}
+#   2: ✓construct.7:loss{[0]: [CNode]46}
+#   3: ✓construct.7:[CNode]48{[0]: ValueNode<FuncGraph> ↓construct.47, [1]: loss}
+#   4: ✓construct.7:[CNode]49{[0]: ValueNode<Primitive> Return, [1]: [CNode]48}
+
+
+# [No.4] _mul_tensor.8
+# In file E:\anconda\envs\mindspore_py38\lib\site-packages\mindspore\ops\composite\multitype_ops\mul_impl.py(42)/def _mul_tensor(x, y):/
+funcgraph fg_8(
+        %para5 : Tensor(Bool)[5, 16, 16]    # x
+        , %para6 : Tensor(Bool)[5, 16, 16]    # y
+    ) {
+    %1 : ExternalType = Primitive::resolve{prim_type=1}(NameSpace::SymbolStr, F)    #(ExternalType, ExternalType) #scope: Default
+      # In file E:/CLAN-master/utils/loss.py(78)/        target_mask = (target >= 0) * (target != self.ignore_label)/#target_mask
+    %2 : Func = Primitive::getattr{prim_type=1}(%1, "tensor_mul")    #(ExternalType, String) #scope: Default
+      # In file E:/CLAN-master/utils/loss.py(78)/        target_mask = (target >= 0) * (target != self.ignore_label)/#target_mask
+
+#------------------------> 3
+    %3 = %2(%para5, %para6)    #(Tensor(Bool)[5, 16, 16], Tensor(Bool)[5, 16, 16]) #scope: Default
+      # In file E:/CLAN-master/utils/loss.py(78)/        target_mask = (target >= 0) * (target != self.ignore_label)/#target_mask
+    Primitive::Return{prim_type=1}(%3)    #(Undefined) #scope: Default
+      # In file E:/CLAN-master/utils/loss.py(78)/        target_mask = (target >= 0) * (target != self.ignore_label)/#target_mask
+}
+# order:
+#   1: _mul_tensor.50:[CNode]51{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> CommonOPS: 'Namespace:mindspore._extends.parse.trope', [2]: ValueNode<Symbol> MakeTuple}
+#   2: _mul_tensor.50:[CNode]52{[0]: [CNode]51, [1]: x, [2]: y}
+#   3: _mul_tensor.8:target_mask{[0]: target_mask, [1]: x, [2]: y}
+#   4: _mul_tensor.8:target_mask{[0]: ValueNode<Primitive> Return, [1]: target_mask}
+
+
+#===============================================================================
+# num of function graphs in stack: 4/6 (Ignored 2 internal frames).

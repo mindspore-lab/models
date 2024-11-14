@@ -1,0 +1,11 @@
+easydict
+timm
+ftfy
+regex
+pyyaml_env_tag
+h5py
+open3d
+wandb
+termcolor
+lmdb
+mindspore==2.2.14
