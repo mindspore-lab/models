@@ -1,4 +1,4 @@
-# Copyright 2020 Huawei Technologies Co., Ltd
+# Copyright 2022 Huawei Technologies Co., Ltd
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,16 +18,9 @@ import pickle
 import collections
 import numpy as np
 from mindspore.mindrecord import FileWriter
-import sys
-# 获取当前执行脚本的绝对路径
-current_script_path = os.path.abspath(__file__)
-# 获取当前执行脚本所在的目录
-current_script_dir = os.path.dirname(current_script_path)
-# 获取项目目录，即当前脚本所在目录的上一级目录
-project_dir = os.path.dirname(current_script_dir)
-# 将项目目录添加到 sys.path
-sys.path.append(project_dir)
-from src.model_utils.config import config
+from src.model_utils.config import config, train_config
+
+
 
 class StatsDict():
     """preprocessed data"""
@@ -37,9 +30,14 @@ class StatsDict():
         self.dense_dim = dense_dim
         self.slot_dim = slot_dim
         self.skip_id_convert = bool(skip_id_convert)
+        #label	feat_1	feat_2	feat_3	feat_4	feat_5	feat_6	feat_7	feat_8	feat_9	feat_10	feat_11	feat_12	feat_13	feat_14	feat_15	feat_16	feat_17	feat_18	feat_19	feat_20	feat_21	feat_22
 
-        self.val_cols = ["val_{}".format(i + 1) for i in range(self.dense_dim)]
-        self.cat_cols = ["cat_{}".format(i + 1) for i in range(self.slot_dim)]
+
+        self.val_cols = []
+        self.cat_cols = ["feat_1", "feat_2", "feat_3",
+                         "feat_4", "feat_5", "feat_6", "feat_7",
+                         "feat_8", "feat_9", "feat_10", "feat_11",
+                         "feat_12", "feat_13", "feat_14", "feat_15", "feat_16", "feat_17", "feat_18", "feat_19", "feat_20", "feat_21", "feat_22"]
 
         self.val_min_dict = {col: 0 for col in self.val_cols}
         self.val_max_dict = {col: 0 for col in self.val_cols}
@@ -71,6 +69,8 @@ class StatsDict():
     def stats_cats(self, cat_list):
         """Handling cats column"""
 
+        # print(len(cat_list))        #15
+        # print(len(self.cat_cols))   #16  #需要去掉"click"标签
         assert len(cat_list) == len(self.cat_cols)
 
         def map_cat_count(i, cat):
@@ -95,8 +95,10 @@ class StatsDict():
             self.val_min_dict = pickle.load(file_wrt)
         with open(os.path.join(dict_path, "{}cat_count_dict.pkl".format(prefix)), "rb") as file_wrt:
             self.cat_count_dict = pickle.load(file_wrt)
-        print("val_max_dict.items()[:50]:{}".format(list(self.val_max_dict.items())))
-        print("val_min_dict.items()[:50]:{}".format(list(self.val_min_dict.items())))
+        print("val_max_dict.items()[:50]:{}".format(
+            list(self.val_max_dict.items())))
+        print("val_min_dict.items()[:50]:{}".format(
+            list(self.val_min_dict.items())))
 
     def get_cat2id(self, threshold=100):
         for key, cat_count_d in self.cat_count_dict.items():
@@ -104,13 +106,15 @@ class StatsDict():
             for cat_str, _ in new_cat_count_d.items():
                 self.cat2id_dict[key + "_" + cat_str] = len(self.cat2id_dict)
         print("cat2id_dict.size:{}".format(len(self.cat2id_dict)))
-        print("cat2id.dict.items()[:50]:{}".format(list(self.cat2id_dict.items())[:50]))
+        print("cat2id.dict.items()[:50]:{}".format(
+            list(self.cat2id_dict.items())[:50]))
 
     def map_cat2id(self, values, cats):
         """Cat to id"""
 
         def minmax_scale_value(i, val):
-            max_v = float(self.val_max_dict["val_{}".format(i + 1)])
+            # max_v = float(self.val_max_dict["val_{}".format(i + 1)])
+            max_v = float(self.val_max_dict[self.val_cols[i]])
             return float(val) * 1.0 / max_v
 
         id_list = []
@@ -120,12 +124,14 @@ class StatsDict():
                 id_list.append(i)
                 weight_list.append(0)
             else:
-                key = "val_{}".format(i + 1)
+                # key = "val_{}".format(i + 1)
+                key = self.val_cols[i]
                 id_list.append(self.cat2id_dict[key])
                 weight_list.append(minmax_scale_value(i, float(val)))
 
         for i, cat_str in enumerate(cats):
-            key = "cat_{}".format(i + 1) + "_" + cat_str
+            # key = "cat_{}".format(i + 1) + "_" + cat_str
+            key = self.cat_cols[i] + "_" + cat_str
             if key in self.cat2id_dict:
                 if self.skip_id_convert is True:
                     # For the synthetic data, if the generated id is between [0, max_vcoab], but the num examples is l
@@ -136,7 +142,8 @@ class StatsDict():
                 else:
                     id_list.append(self.cat2id_dict[key])
             else:
-                id_list.append(self.cat2id_dict[self.oov_prefix + "cat_{}".format(i + 1)])
+                # id_list.append(self.cat2id_dict[self.oov_prefix + "cat_{}".format(i + 1)])
+                id_list.append(self.cat2id_dict[self.oov_prefix + self.cat_cols[i]])
             weight_list.append(1.0)
         return id_list, weight_list
 
@@ -146,18 +153,17 @@ def mkdir_path(file_path):
         os.makedirs(file_path)
 
 
-def statsdata(file_path, dict_output_path, recommendation_dataset_stats_dict, dense_dim=13, slot_dim=26):
+def statsdata(file_path, dict_output_path, recommendation_dataset_stats_dict, dense_dim=0, slot_dim=22):
     """Preprocess data and save data"""
     with open(file_path, encoding="utf-8") as file_in:
+        next(file_in)
         errorline_list = []
         count = 0
-        next(file_in)
         for line in file_in:
             count += 1
             line = line.strip("\n")
-            items = line.split(",")
-            # 原始
             # items = line.split("\t")
+            items = line.split(",")
             if len(items) != (dense_dim + slot_dim + 1):
                 errorline_list.append(count)
                 print("Found line length: {}, suppose to be {}, the line is {}".format(len(items),
@@ -165,8 +171,11 @@ def statsdata(file_path, dict_output_path, recommendation_dataset_stats_dict, de
                 continue
             if count % 1000000 == 0:
                 print("Have handled {}w lines.".format(count // 10000))
-            values = items[1: dense_dim + 1]
-            cats = items[dense_dim + 1:]
+            label = items[0]
+            #values = items[1: dense_dim + 1]
+            values = [] 
+            #cats = items[dense_dim + 1:]
+            cats = items[1:]
 
             assert len(values) == dense_dim, "values.size: {}".format(len(values))
             assert len(cats) == slot_dim, "cats.size: {}".format(len(cats))
@@ -174,18 +183,22 @@ def statsdata(file_path, dict_output_path, recommendation_dataset_stats_dict, de
             recommendation_dataset_stats_dict.stats_cats(cats)
     recommendation_dataset_stats_dict.save_dict(dict_output_path)
 
+
 def random_split_trans2mindrecord(input_file_path, output_file_path, recommendation_dataset_stats_dict,
-                                  part_rows=2000000, line_per_sample=1000, train_line_count=None,
-                                  test_size=0.1, seed=2020, dense_dim=13, slot_dim=26):
+                                  part_rows=10, line_per_sample=1000, train_line_count=None,
+                                  eval_size=0.1, seed=2020, dense_dim=0, slot_dim=22):
     """Random split data and save mindrecord"""
     if train_line_count is None:
         raise ValueError("Please provide training file line count")
-    test_size = int(train_line_count * test_size)
+    max_lines = 1000000
+    eval_size = int(max_lines * eval_size)
+    #eval_size = int(train_line_count * eval_size)
+    #all_indices = [i for i in range(train_line_count)]
     all_indices = [i for i in range(train_line_count)]
     np.random.seed(seed)
     np.random.shuffle(all_indices)
     print("all_indices.size:{}".format(len(all_indices)))
-    test_indices_set = set(all_indices[:test_size])
+    test_indices_set = set(all_indices[:eval_size])
     print("test_indices_set.size:{}".format(len(test_indices_set)))
     print("-----------------------" * 10 + "\n" * 2)
 
@@ -204,24 +217,28 @@ def random_split_trans2mindrecord(input_file_path, output_file_path, recommendat
     writer_test.add_schema(schema, "CRITEO_TEST")
 
     with open(input_file_path, encoding="utf-8") as file_in:
+        next(file_in)
         items_error_size_lineCount = []
         count = 0
         train_part_number = 0
         test_part_number = 0
-        next(file_in)
         for i, line in enumerate(file_in):
             count += 1
             if count % 1000000 == 0:
                 print("Have handle {}w lines.".format(count // 10000))
             line = line.strip("\n")
-            items = line.split(",")
             # items = line.split("\t")
+            items = line.split(",")
             if len(items) != (1 + dense_dim + slot_dim):
+                print("Found line length: {}, suppose to be {}, the line is {}".format(len(items),
+                                                                                       1 + dense_dim + slot_dim, line))
                 items_error_size_lineCount.append(i)
                 continue
-            label = float(items[0])
-            values = items[1:1 + dense_dim]
-            cats = items[1 + dense_dim:]
+            label = items[0]
+            #values = items[1: dense_dim + 1]
+            values = [] 
+            #cats = items[dense_dim + 1:]
+            cats = items[1:]
 
             assert len(values) == dense_dim, "values.size: {}".format(len(values))
             assert len(cats) == slot_dim, "cats.size: {}".format(len(cats))
@@ -269,27 +286,28 @@ def random_split_trans2mindrecord(input_file_path, output_file_path, recommendat
     print("-------------" * 10)
     np.save("items_error_size_lineCount.npy", items_error_size_lineCount)
 
+
 if __name__ == '__main__':
     data_path = config.data_path
 
     target_field_size = config.dense_dim + config.slot_dim
     stats = StatsDict(field_size=target_field_size, dense_dim=config.dense_dim, slot_dim=config.slot_dim,
                       skip_id_convert=config.skip_id_convert)
-    data_file_path = data_path + "avazu_data/merged_data.csv"
-    stats_output_path = data_path + "avazu_stats_dict/"
-    print(data_file_path)
-    print(stats_output_path)
-    print(stats_output_path)
+    # data_file_path = data_path + "origin_data/train.txt"
+    # stats_output_path = data_path + "stats_dict/"
+    data_file_path = "data/Avazu.csv"
+    stats_output_path = "data/stats_dict"
     mkdir_path(stats_output_path)
     statsdata(data_file_path, stats_output_path, stats, dense_dim=config.dense_dim, slot_dim=config.slot_dim)
 
     stats.load_dict(dict_path=stats_output_path, prefix="")
     stats.get_cat2id(threshold=config.threshold)
 
-    in_file_path = data_path + "avazu_data/merged_data.csv"
-    # output_path = data_path + "/mindrecord/"
-    output_path = data_path + "avazu_mindrecord/"
+    # in_file_path = data_path + "origin_data/train.txt"
+    # output_path = data_path + "mindrecord/"
+    in_file_path = "data/Avazu.csv"
+    output_path =  "data/mindrecord"
     mkdir_path(output_path)
-    random_split_trans2mindrecord(in_file_path, output_path, stats, part_rows=2000000,
-                           train_line_count=config.train_line_count, line_per_sample=1000,
-                           test_size=0.1, seed=2020, dense_dim=config.dense_dim, slot_dim=config.slot_dim)
+    random_split_trans2mindrecord(in_file_path, output_path, stats, part_rows=10,
+                                  train_line_count=config.train_line_count, line_per_sample=train_config.batch_size,
+                                  eval_size=0.1, seed=2020, dense_dim=config.dense_dim, slot_dim=config.slot_dim)

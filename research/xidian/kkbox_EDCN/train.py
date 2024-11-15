@@ -58,7 +58,7 @@ def run_train():
     else:
         if config.device_target == "Ascend":
             # device_id = get_device_id()
-            device_id = 5
+            device_id = 3
             context.set_context(mode=context.GRAPH_MODE, device_target=config.device_target, device_id=device_id)
         else:
             print("Unsupported device_target ", config.device_target)

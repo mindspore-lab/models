@@ -5,23 +5,23 @@ data_url: ""
 train_url: ""
 checkpoint_url: ""
 # Path for local
-data_path: "/cache/data"
-output_path: "/cache/train"
+data_path: "data"
+output_path: "data"
 load_path: "/cache/checkpoint_path"
 device_target: "Ascend"
 enable_profiling: False
 # ==============================================================================
 # Parameters that can be modified at the terminal
 # Train
-train_data_dir: ''
+train_data_dir: 'data/mindrecord'
 ckpt_path: 'ckpts'
 eval_file_name: "./auc.log"
 loss_file_name: "./loss.log"
 epochs: 3
 do_eval: "True"
 # Test
-test_data_dir: '/data1/wkr/data/kkbox_mindrecord'
-checkpoint_path: '/data1/wkr/checkpoint/kkbox/edcn_1-3_6648.ckpt'
+test_data_dir: 'data/mindrecord'
+checkpoint_path: ''   #训练完模型，自行添加ckpt文件
 # Export
 batch_size: 16000
 ckpt_file: ''
@@ -38,7 +38,7 @@ DataConfig:
     train_num_of_parts: 24
     test_num_of_parts: 3
     batch_size: 1000
-    data_field_size: 39
+    data_field_size: 22
 #    data_field_size: 15
     # dataset format, 1: mindrecord, 2: tfrecord, 3: h5
     data_format: 1
@@ -77,8 +77,8 @@ TrainConfig:
 # src/preprocess_data.py  "Recommendation dataset"
 #dense_dim: 13
 #slot_dim: 26
-dense_dim: 3
-slot_dim: 12
+dense_dim: 0
+slot_dim: 22
 threshold: 100
 #train_line_count: 45840617
 train_line_count: 7377418

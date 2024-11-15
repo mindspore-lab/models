@@ -1,26 +1,27 @@
 # Contents
 
 - [Contents](#contents)
-- [EDCN Description](#EDCN-description)
+- [EDCN Description](#edcn-description)
 - [Model Architecture](#model-architecture)
 - [Dataset](#dataset)
 - [Environment Requirements](#environment-requirements)
 - [Quick Start](#quick-start)
+- [kkbox\_data:](#kkbox_data)
 - [Script Description](#script-description)
-    - [Script and Sample Code](#script-and-sample-code)
-    - [Script Parameters](#script-parameters)
-    - [Training Process](#training-process)
-        - [Training](#training)
-    - [Evaluation Process](#evaluation-process)
-        - [Evaluation](#evaluation)
-    - [Inference Process](#inference-process)
-        - [Export MindIR](#export-mindir)
-        - [Infer on Ascend310](#infer-on-ascend310)
-        - [result](#result)
+  - [Script and Sample Code](#script-and-sample-code)
+  - [Script Parameters](#script-parameters)
+  - [Training Process](#training-process)
+    - [Training](#training)
+  - [Evaluation Process](#evaluation-process)
+    - [Evaluation](#evaluation)
+  - [Inference Process](#inference-process)
+    - [Export MindIR](#export-mindir)
+    - [Infer on Ascend310](#infer-on-ascend310)
+    - [result](#result)
 - [Model Description](#model-description)
-    - [Performance](#performance)
-        - [Training Performance](#training-performance)
-        - [Inference Performance](#inference-performance)
+  - [Performance](#performance)
+    - [Training Performance](#training-performance)
+    - [Inference Performance](#inference-performance)
 - [Description of Random Situation](#description-of-random-situation)
 - [ModelZoo Homepage](#modelzoo-homepage)
 
@@ -55,12 +56,9 @@ After installing MindSpore via the official website, you can start training and 
 
 - preprocess dataset
 
-  # avazu_data:
-  [AVAZU](https://drive.google.com/drive/folders/15O_pSQ31abKFl6Pj_sJya3pvkJTnNeUp?usp=sharing)
-- Download it, put it in a directory and rename it: “data/avazu_data/merged_data.csv”
   # kkbox_data:
   [KKBOX](https://pan.baidu.com/s/1EFlfkVNShU4QJf8FhNoemA?pwd=xm58)
-  Download it, put it in a directory and rename it: “data/kkbox-data/train.csv”
+  Download it, put it in a directory and rename it: “data/kkbox.csv”
   ```shell
   # download dataset
   # Please refer to [1] to obtain the download link
@@ -71,59 +69,19 @@ After installing MindSpore via the official website, you can start training and 
   
 
   #preprocess dataset
-  python -m src.preprocess_data  --data_path=./data/ --dense_dim=13 --slot_dim=26 --threshold=100 --train_line_count=45840617 --skip_id_convert=0 --device_target=Ascend --data_field_size=39
-  python -m src.preprocess_data_avazu --data_path=./data/ --dense_dim=0 --slot_dim=22 --threshold=100 --train_line_count=40428965 --skip_id_convert=0 --device_target=Ascend --data_field_size=22
-  python -m src.preprocess_data_kkbox  --data_path=./data/ --dense_dim=2 --slot_dim=15 --threshold=100 --train_line_count=1760247 --skip_id_convert=0 --device_target=Ascend --data_field_size=17
-  # OR
-  python -m src.preprocess_data  --data_path=./data/ --dense_dim=13 --slot_dim=26 --threshold=100 --train_line_count=45840617 --skip_id_convert=0 --device_target=GPU
+  python preprocess_data_kkbox.py  #处理数据集命令
+
   ```
 
 - running on Ascend
 
   ```shell
   # run training example
-  python train.py \
-    --train_data_dir='./data/mindrecord' \
-    --ckpt_path='./checkpoint' \
-    --eval_file_name='auc.log' \
-    --loss_file_name='loss.log' \
-    --device_target='Ascend' \
-    --epochs=10 \
-    --do_eval=True > ms_log/output.log 2>&1 &
-  
-  python train.py \
-  --train_data_dir='./data/avazu_mindrecord' \
-  --ckpt_path='./checkpoint/avazu' \
-  --eval_file_name='avazu_auc.log' \
-  --loss_file_name='avazu_loss.log' \
-  --device_target='Ascend' \
-  --epochs=10 \
-  --do_eval=True > ms_log/avazu_output.log 2>&1
-  
-  python train.py \
-  --train_data_dir='./data/kkbox_mindrecord' \
-  --ckpt_path='./checkpoint/kkbox' \
-  --eval_file_name='kkbox_auc.log' \
-  --loss_file_name='kkbox_loss.log' \
-  --device_target='Ascend' \
-  --epochs=10 \
-  --do_eval=True > ms_log/kkbox_output.log 2>&1
+  python train.py   #网络训练命令
 
   # run evaluation example
-  python eval.py \
-    --test_data_dir='./data/mindrecord' \
-    --checkpoint_path='./checkpoint/EDCN.ckpt' \
-    --device_target='Ascend' > ms_log/eval_output.log 2>&1 &
-
-  python eval.py \
-    --test_data_dir='./data/avazu_mindrecord' \
-    --checkpoint_path='./checkpoint/avazu/EDCN.ckpt' \
-    --device_target='Ascend' > ms_log/eval_output.log 2>&1 &
+  python eval.py   #评估模型命令
   
-  python eval.py \
-    --test_data_dir='./data/kkbox_mindrecord' \
-    --checkpoint_path='./checkpoint/kkbox/EDCN.ckpt' \
-    --device_target='Ascend' > ms_log/eval_output.log 2>&1 &
 
   # OR
   bash scripts/run_eval.sh 0 Ascend /test_data_dir /checkpoint_path/edcn.ckpt
