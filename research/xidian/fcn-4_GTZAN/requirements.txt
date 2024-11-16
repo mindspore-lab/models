@@ -1,6 +1,0 @@
-pandas
-numpy
-librosa
-pyyaml
-ipdb
-
