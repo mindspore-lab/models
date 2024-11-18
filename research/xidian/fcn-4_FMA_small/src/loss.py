@@ -18,7 +18,6 @@ define loss
 from mindspore import nn
 import mindspore.common.dtype as mstype
 from mindspore.ops import operations as P
-from ipdb import set_trace
 
 
 class BCELoss(nn.Cell):
@@ -35,7 +34,6 @@ class BCELoss(nn.Cell):
 
     def construct(self, input_data, target):
         target = self.cast(target, mstype.float32)
-        # set_trace()
         loss = self.bce(input_data, target, self.weight)
         if self.record:
             self.sm_scalar("loss", loss)

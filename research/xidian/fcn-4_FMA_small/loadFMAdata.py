@@ -1,27 +1,7 @@
-import time
 import os
-import ipdb
-
 import IPython.display as ipd
-from tqdm import tqdm_notebook
-import numpy as np
 import pandas as pd
-# import keras
-# from keras.layers import Activation, Dense, Conv1D, Conv2D, MaxPooling1D, Flatten, Reshape
-
-from sklearn.utils import shuffle
 from sklearn.preprocessing import MultiLabelBinarizer, LabelEncoder, LabelBinarizer, StandardScaler
-from sklearn.linear_model import LogisticRegression
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.svm import SVC, LinearSVC
-#from sklearn.gaussian_process import GaussianProcessClassifier
-#from sklearn.gaussian_process.kernels import RBF
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier
-from sklearn.neural_network import MLPClassifier
-from sklearn.naive_bayes import GaussianNB
-from sklearn.discriminant_analysis import QuadraticDiscriminantAnalysis
-from sklearn.multiclass import OneVsRestClassifier
 
 import utils
 
@@ -57,19 +37,11 @@ print('Top genres ({}): {}'.format(len(genres), genres))
 genres = list(MultiLabelBinarizer().fit(tracks['track', 'genres_all']).classes_)
 print('All genres ({}): {}'.format(len(genres), genres))
 labels_onehot = LabelBinarizer().fit_transform(tracks['track', 'genre_top'])
-# labels_onehot = pd.DataFrame(labels_onehot, index=tracks.index)   #dataframe数据类型
 labels_onehot = pd.DataFrame(labels_onehot, index=tracks.index)
-labels_onehot.to_csv("test.csv")
-# labels_onehot.drop('track_id', axis=1, inplace=True)    #inplace=True直接在原数据上执行操作
+# labels_onehot.to_csv("test.csv")
 directory = AUDIO_DIR
 files = get_all_files(directory)
 labels_onehot['path'] = files
-
-# ipdb.set_trace()
-
-# labels_onehot.drop('0', axis=1, inplace=True)    #inplace=True直接在原数据上执行操作
-# del labels_onehot['track_id']
-
 train_file = labels_onehot.loc[train]
 
 train_file.to_csv("train.csv",index=False)

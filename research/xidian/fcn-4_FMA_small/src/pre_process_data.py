@@ -22,7 +22,6 @@ from mindspore.mindrecord import FileWriter
 from mindspore import context
 from src.model_utils.config import config as cfg
 from src.model_utils.device_adapter import get_device_id
-from ipdb import set_trace
 def compute_melgram(audio_path, save_path='', filename='', save_npy=True):
     """
     extract melgram feature from the audio and save as numpy array
@@ -160,7 +159,7 @@ def generator_md(info_name, file_path, num_classes):
     data = []
     label = []
     for i in range(len(df)):
-        # set_trace()
+        #
         try:
             data.append(np.load(file_path + df.mp3_path.values[i][:-4] +'.npy').reshape(1, 96, 1366))
             label.append(np.array(df[df.columns[:-1]][i:i + 1])[0])
@@ -188,7 +187,7 @@ def convert_to_mindrecord(info_name, file_path, store_path, mr_name,num_classes)
     }
     writer = FileWriter(os.path.join(store_path, '{}.mindrecord'.format(mr_name)), num_shard)
     datax = get_data(data, label)
-    # set_trace()
+    #
     writer.add_schema(schema_json, "music_tagger_schema")
     writer.add_index(["id"])
     writer.write_raw_data(datax)
@@ -199,7 +198,7 @@ if __name__ == "__main__":
     # if cfg.get_npy:
     #     GetLabel(cfg.info_path, cfg.info_name) #划分训练测试集
     dirname = os.listdir(cfg.audio_path)
-    # set_trace()
+    #
     for d in dirname:
         file_name = os.listdir("{}/{}".format(cfg.audio_path, d))
         #
@@ -213,7 +212,7 @@ if __name__ == "__main__":
         context.set_context(device_target='Ascend', mode=context.GRAPH_MODE, device_id=get_device_id())
 
         for cmn in cfg.mr_name:
-            # set_trace()
+            #
             if cmn in ['train', 'val']:
                 convert_to_mindrecord(cfg.info_path+'music_tagging_{}_tmp.csv'.format(cmn),
                                       cfg.npy_path, cfg.mr_path, cmn,

@@ -30,7 +30,6 @@ from src.model_utils.moxing_adapter import moxing_wrapper
 from src.dataset import create_dataset
 from src.musictagger import MusicTaggerCNN
 from src.loss import BCELoss
-from ipdb import set_trace
 
 def modelarts_pre_process():
     pass

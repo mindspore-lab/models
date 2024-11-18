@@ -60,10 +60,9 @@ After installing MindSpore via the official website, you can start training and 
 
 ### 1. Download and preprocess the dataset
 
-1. down load the classification dataset (for instance, MagnaTagATune Dataset, link: https://mirg.city.ac.uk/codeapps/the-magnatagatune-dataset, etc)
+1. down load the classification dataset (for instance, fma_small Dataset, link: https://os.unil.cloud.switch.ch/fma/fma_small.zip, etc)
 2. Extract the dataset
-3. The information file of each clip should contain the label and path. Please refer to the annotations_final.csv in MagnaTagATune Dataset.
-4. The provided pre-processing script use MagnaTagATune Dataset as an example. Please modify the code accprding to your own need.
+3. The information file of each clip should contain the label and path. 
 
 ### 2. setup parameters (src/model_utils/default_config.yaml)
 
@@ -216,7 +215,7 @@ Parameters for both training and evaluation can be set in default_config.yaml
 
   ```python
 
-  'num_classes': 50                      # number of tagging classes
+  'num_classes': 8                      # number of tagging classes
   'num_consumer': 4                      # file number for mindrecord
   'get_npy': 1 # mode for converting to npy, default 1 in this case
   'get_mindrecord': 1 # mode for converting npy file into mindrecord file，default 1 in this case
