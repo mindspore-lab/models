@@ -1,0 +1,38 @@
+# system
+model_name: "dinknet50"
+device_target: "Ascend"
+jit_level: "O0"
+run_distribute: "False"
+amp_level: "O0"
+
+# dataset
+data_dir: "/local/data"
+output_path: "/local/train"
+shuffle: True
+num_parallel_workers: 4
+dataset_sink_mode: False
+
+# ==============================================================================
+# Training options
+epoch_num: 300
+distribute_epoch_num: 300
+pretrained_ckpt: ""
+batch_size: 4
+learning_rate: 0.0002
+scale_factor: 2
+scale_window: 1000
+init_loss_scale: 16777216
+opt: "adam"
+loss: "bce"
+
+#Eval options
+trained_ckpt: "~/dlinknet50.ckpt"
+label_path: ""
+predict_path: ""
+
+# Export options
+num_channels: 3
+width: 1024
+height: 1024
+file_name: "dinknet50"
+file_format: "MINDIR"
