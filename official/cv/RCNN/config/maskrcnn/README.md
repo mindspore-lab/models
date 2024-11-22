@@ -15,6 +15,16 @@ parallel with the existing branch for bounding box recognition.
 
 <img src="https://user-images.githubusercontent.com/40661020/143967081-c2552bed-9af2-46c4-ae44-5b3b74e5679f.png"/>
 
+# Requirements
+
+| mindspore | ascend driver |  firmware   | cann toolkit/kernel |
+|:---------:|:-------------:|:-----------:|:-------------------:|
+|   2.3.1   |   24.1.rc2    | 7.3.0.1.231 |    8.0.RC2.beta1    |
+
+```shell
+pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+```
+
 ## Dataset
 
 Dataset: [COCO2017](https://cocodataset.org/)
@@ -33,24 +43,6 @@ After downloading on the official website, organize the dataset into the followi
           ├── person_keypoints_train2017.json
           └── person_keypoints_val2017.json
 ```
-
-## Environment Requirements
-
-- Hardware（Ascend/GPU/CPU）
-  - Prepare hardware environment with Ascend processor. Reference [MindSpore](https://www.mindspore.cn/install/en) Installation and operation environment
-- Dependency: MindSpore >= 2.0
-
-```shell
-pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
-```
-
-## BenchMark
-
-### mAP
-
-| Model | pretrained Model | config | Device Num | Epoch | bbox mAP(0.5~0.95) | seg mAP(0.5~0.95) | FPS |CheckPoint | Graph Train Log |
-| ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- |
-| MaskRCNN R50-FPN | [R50](https://github.com/mindspore-lab/mindcv) | [cfg](config/maskrcnn/mask_rcnn_resnet50_fpn_1x.yml) | 8 | 12 | 37.8 | 34.0 | 50 |[download](https://download.mindspore.cn/model_zoo/official/cv/rcnn/MaskRCNN_det_resnet50_epoch12_rank0.ckpt) | [download](https://download.mindspore.cn/model_zoo/official/cv/rcnn/MaskRCNN_det_resnet50_epoch12_rank0.log) |
 
 ## Quick Start
 
@@ -99,6 +91,11 @@ mpirun --allow-run-as-root -n [DEVICE_NUM] --merge-stderr-to-stdout 、
 - set OBS output results path train_url: <The path of output results in OBS>
 
 2. Refer to [ModelArts](https://support.huaweicloud.com/modelarts/index.html) start training.
+
+# Performance
+Performance tested on Ascend 910(8p) with graph mode.
+
+*coming soon*
 
 ## FAQ
 
