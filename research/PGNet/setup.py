@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup
 
-exec(open("mindocr/version.py").read())
+exec(open("pgnet/version.py").read())
 
 
 def read_requirements(fps):
@@ -13,18 +13,12 @@ def read_requirements(fps):
 
 
 setup(
-    name="mindocr",
+    name="pgnet",
     author="MindSpore Ecosystem",
     author_email="mindspore-ecosystem@example.com",
-    url="https://github.com/mindspore-lab/mindocr",
-    project_urls={
-        "Sources": "https://github.com/mindspore-lab/mindocr",
-        "Issue Tracker": "https://github.com/mindspore-lab/mindocr/issues",
-    },
-    description="A toolbox of OCR models and algorithms based on MindSpore.",
     license="Apache Software License 2.0",
     include_package_data=True,
-    packages=find_packages(include=["mindocr", "mindocr.*"]),
+    packages=find_packages(include=["pgnet", "pgnet.*"]),
     install_requires=read_requirements(["requirements.txt"]),
     python_requires=">=3.7",
     classifiers=[
