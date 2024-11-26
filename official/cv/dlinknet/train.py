@@ -1,6 +1,8 @@
 import os
 import time
 import json
+import numpy as np
+import random
 import mindspore
 import mindspore.dataset as ds
 import mindspore.context as context
@@ -15,6 +17,12 @@ from loss.loss_factory import create_loss
 from model_utils.trainer_factory import create_trainer
 from data.data import ImageFolderGenerator
 from model_utils.callback import MyCallback
+
+
+def set_seed(seed):
+    mindspore.set_seed(seed)
+    np.random.seed(seed)
+    random.seed(seed)
 
 
 def create_dataset(data_dir, shuffle, device_num, shard_id, num_parallel_workers, batch_size):
@@ -74,7 +82,7 @@ if __name__ == "__main__":
     else:
         device_num = 1
         rank_id = 0
-    mindspore.common.set_seed(2022)
+    set_seed(2022)
     local_data_url = args.data_dir
     pretrained_ckpt_path = args.pretrained_ckpt
 

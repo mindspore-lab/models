@@ -1,5 +1,5 @@
 # system
-model_name: "dinknet34"
+model_name: "dlinknet34"
 device_target: "Ascend"
 jit_level: "O0"
 run_distribute: "False"
@@ -34,5 +34,5 @@ predict_path: ""
 num_channels: 3
 width: 1024
 height: 1024
-file_name: "dinknet34"
+file_name: "dlinknet34"
 file_format: "MINDIR"

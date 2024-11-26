@@ -24,7 +24,9 @@ export HCCL_CONNECT_TIMEOUT=600
 WORKER_NUM=$1
 DATASET=$(get_real_path $2)
 CONFIG_PATH=$(get_real_path $3)
-mkdir "./output"
+if ! test -d "./output"; then
+    mkdir "./output"
+fi
 
 msrun --bind_core=True --worker_num=$WORKER_NUM --local_worker_num=$WORKER_NUM --master_port=8118 \
       --log_dir=msrun_log --join=True --cluster_time_out=300 \

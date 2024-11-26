@@ -7,7 +7,7 @@ import mindspore.context as context
 from mindspore import load_checkpoint, load_param_into_net
 from mindspore import Tensor
 
-from models.dlinknet import DinkNet34, DinkNet50
+from models.dlinknet import DLinkNet34, DLinkNet50
 from config import parse_args
 
 
@@ -79,10 +79,10 @@ if __name__ == '__main__':
     context.set_context(mode=context.GRAPH_MODE, device_target=args.device_target)
 
     val = os.listdir(args.data_dir)
-    if args.model_name == 'dinknet34':
-        solver = TTAFrame(DinkNet34)
+    if args.model_name == 'dlinknet34':
+        solver = TTAFrame(DLinkNet34)
     else:
-        solver = TTAFrame(DinkNet50)
+        solver = TTAFrame(DLinkNet50)
     solver.load(trained_ckpt_path)
     tic = time()
     for i, name in enumerate(val):
