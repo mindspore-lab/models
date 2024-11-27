@@ -17,7 +17,6 @@ The other dependent libraries has been recorded in **requirements.txt**, please 
 
 ```bash
 pip install -r requirements.txt
-pip install -e .
 ```
 
 ## Prepare images
@@ -48,8 +47,8 @@ train_data
 python tools/infer/predict_e2e.py \
     --image_dir train_data/total_text/train/rgb/img11.jpg \
     --e2e_algorithm PG \
-    --e2e_model_config configs/e2e/pgnet_r50.yaml \
-    --e2e_model_dir pretrain/pgnet/best_param.ckpt
+    --e2e_model_config configs/pgnet_r50.yaml \
+    --e2e_model_dir weight/pgnet_best_weight.ckpt
 ```
 
 All results will be saved in the `inference_results/` directory.
@@ -61,7 +60,7 @@ After downloading the dataset as described in [Prepare images], you can use the 
 ```bash
 python tools/eval.py \
     -c configs/pgnet_r50.yaml \
-    --opt eval.ckpt_load_path=pretrain/pgnet/best_param.ckpt \
+    --opt eval.ckpt_load_path=weight/pgnet_best_weight.ckpt \
 ```
 
 **Note**: Even though the random seed has been set, results may vary slightly on different hardware.
@@ -108,6 +107,18 @@ Refer to [Prepare images] to download the training data and start training. You 
 ```bash
 python tools/train.py \
     -c configs/pgnet_r50.yaml \
+```
+
+If you want to use multi-card training, you can run the following command：
+
+```bash
+bash scripts/train.sh configs/pg_r50.yaml [num_card]
+```
+
+For example, to train with 4 cards, you can run the following command：
+
+```bash
+bash scripts/train.sh configs/pg_r50.yaml 4
 ```
 
 **Note**: The training code is still being updated to ensure the training result which not performs good now.

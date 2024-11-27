@@ -15,7 +15,6 @@ PGNet是OCR领域实时任意形状文本检测与识别的新模型，避免了
 
 ```bash
 pip install -r requirements.txt
-pip install -e .
 ```
 
 ## 数据集处理
@@ -44,8 +43,8 @@ train_data
 python tools/infer/predict_e2e.py \
     --image_dir train_data/total_text/train/rgb/img11.jpg \
     --e2e_algorithm PG \
-    --e2e_model_config configs/e2e/pgnet_r50.yaml \
-    --e2e_model_dir pretrain/pgnet/best_param.ckpt
+    --e2e_model_config configs/pgnet_r50.yaml \
+    --e2e_model_dir weight/pgnet_best_weight.ckpt
 ```
 所有结果将保存在 `inference_results/` 目录中。
 
@@ -56,7 +55,7 @@ python tools/infer/predict_e2e.py \
 ```bash
 python tools/eval.py \
     -c configs/pgnet_r50.yaml \
-    --opt eval.ckpt_load_path=pretrain/pgnet/best_param.ckpt \
+    --opt eval.ckpt_load_path=weight/pgnet_best_weight.ckpt \
 ```
 
 **注意**：尽管已经设置了随机种子，不同硬件上的结果可能略有不同。
@@ -98,12 +97,26 @@ python tools/eval.py \
 ### 训练过程与示例
 
 参考[数据集处理]下载训练数据后即可开始训练，可以运行如下命令：
+
 ```bash
 python tools/train.py \
     -c configs/pgnet_r50.yaml \
 ```
-目前已支持断点续训，只需要将resume置为True。
-目前已支持断点续训，只需要将resume置为True。
+
+如果想使用多卡训练，可以运行如下命令（num_card指卡数）：
+
+```bash
+bash scripts/train.sh configs/pg_r50.yaml [num_card]
+```
+
+例如，使用4卡训练，可以运行以下命令：
+
+```bash
+bash scripts/train.sh configs/pg_r50.yaml 4
+```
+
+目前已支持断点续训，只需要将configs/pgnet_r50.yaml中的resume属性置为True。
+
 目前训练结果还有待优化，欢迎相关代码的优化建议。
 
 ## 引用

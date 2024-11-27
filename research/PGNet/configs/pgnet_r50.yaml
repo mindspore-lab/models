@@ -21,14 +21,13 @@ model:
     name: E2eFpn
   head:
     name: PGNetHead
-  pretrained: ./pretrain/pgnet/best_param.ckpt
   resume: False
 
 loss:
   name: PGLoss
   tcl_bs: 64
-  max_text_length: 50
-  max_text_nums: 30
+  max_text_length: &max_text_length 50
+  max_text_nums: &max_text_nums 30
   pad_num: 36
 loss_scaler:
   type: dynamic
@@ -39,7 +38,7 @@ loss_scaler:
 postprocess:
   name: PGPostProcess
   score_thresh: 0.5
-  point_gather_mode: align
+  point_gather_mode: &point_gather_mode align
   character_dict_path: *character_dict_path
   valid_set: totaltext
 
@@ -90,9 +89,9 @@ train:
           min_crop_size: 24
           min_text_size: 4
           max_text_size: 512
-          point_gather_mode: align
-          max_text_length: 50
-          max_text_nums: 30
+          point_gather_mode: *point_gather_mode
+          max_text_length: *max_text_length
+          max_text_nums: *max_text_nums
           tcl_len: 64
           character_dict_path: *character_dict_path
     output_columns: ['images',  'tcl_maps', 'tcl_label_maps', 'border_maps','direction_maps', 'training_masks', 'label_list', 'pos_list', 'pos_mask']
