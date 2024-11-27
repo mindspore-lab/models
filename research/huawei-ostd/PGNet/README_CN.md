@@ -39,6 +39,9 @@ train_data
 ## 快速入门
 
 ### 推理过程与示例
+
+模型的最好权重文件保存在 [checkpoint](https://download-mindspore.osinfra.cn/model_zoo/research/cv/pgnet/pgnet_best_weight.ckpt) ，您需要自行下载后放入weight目录下，之后执行以下命令：
+
 ```bash
 python tools/infer/predict_e2e.py \
     --image_dir train_data/total_text/train/rgb/img11.jpg \
@@ -106,13 +109,13 @@ python tools/train.py \
 如果想使用多卡训练，可以运行如下命令（num_card指卡数）：
 
 ```bash
-bash scripts/train.sh configs/pg_r50.yaml [num_card]
+bash scripts/train.sh configs/pgnet_r50.yaml [num_card]
 ```
 
 例如，使用4卡训练，可以运行以下命令：
 
 ```bash
-bash scripts/train.sh configs/pg_r50.yaml 4
+bash scripts/train.sh configs/pgnet_r50.yaml 4
 ```
 
 目前已支持断点续训，只需要将configs/pgnet_r50.yaml中的resume属性置为True。

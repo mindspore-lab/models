@@ -43,6 +43,8 @@ train_data
 
 ### Inference
 
+The best weight file of the model is saved in [checkpoint](https://download-mindspore.osinfra.cn/model_zoo/research/cv/pgnet/pgnet_best_weight.ckpt). You need to download it and put it in the weight directory, then execute the following command:
+
 ```bash
 python tools/infer/predict_e2e.py \
     --image_dir train_data/total_text/train/rgb/img11.jpg \
@@ -112,13 +114,13 @@ python tools/train.py \
 If you want to use multi-card training, you can run the following command：
 
 ```bash
-bash scripts/train.sh configs/pg_r50.yaml [num_card]
+bash scripts/train.sh configs/pgnet_r50.yaml [num_card]
 ```
 
 For example, to train with 4 cards, you can run the following command：
 
 ```bash
-bash scripts/train.sh configs/pg_r50.yaml 4
+bash scripts/train.sh configs/pgnet_r50.yaml 4
 ```
 
 **Note**: The training code is still being updated to ensure the training result which not performs good now.

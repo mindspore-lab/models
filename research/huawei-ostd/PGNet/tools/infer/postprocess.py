@@ -9,7 +9,7 @@ from models import build_postprocess
 
 
 class Postprocessor(object):
-    def __init__(self, task="det", algo="DB", **kwargs):
+    def __init__(self, task, algo, **kwargs):
         if task == "e2e":
             if algo.startswith("PG"):
                 postproc_cfg = dict(
