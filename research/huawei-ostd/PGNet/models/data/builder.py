@@ -4,6 +4,8 @@ import os
 
 import mindspore as ms
 
+from .pgnet_dataset import PGDataset
+
 __all__ = ["build_dataset"]
 _logger = logging.getLogger(__name__)
 

@@ -10,7 +10,7 @@ from .transforms.transforms_factory import create_transforms, run_transforms
 __all__ = ["PGDataset"]
 _logger = logging.getLogger(__name__)
 
-class PGDataSet(BaseDataset):
+class PGDataset(BaseDataset):
     img_id_map = {
         "totaltext": 3,
         "icdar2015": 3,
