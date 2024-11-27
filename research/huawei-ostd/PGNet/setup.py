@@ -1,8 +1,5 @@
 from setuptools import find_packages, setup
 
-exec(open("models/version.py").read())
-
-
 def read_requirements(fps):
     reqs = []
     for fp in fps:
@@ -31,6 +28,5 @@ setup(
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
     ],
-    version=__version__,
     zip_safe=False,
 )
