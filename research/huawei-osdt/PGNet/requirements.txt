@@ -1,0 +1,23 @@
+lmdb
+pyclipper
+shapely~=1.8.0
+addict
+matplotlib
+addict
+numpy
+tqdm>=4.64.1
+opencv-python-headless>=3.4.18.65
+rapidfuzz>=2.13.7
+Pillow>=9.1.1,<=9.5
+PyYAML>=6.0
+xml-python>=0.4.3
+packaging>=23.1
+Cython
+lanms>=1.0.2; python_version <= '3.10' and sys_platform == 'linux'
+sentencepiece>=0.1.99
+huggingface_hub>=0.16.4
+seqeval>=1.2.2
+requests>=2.31.0
+pycocotools>=2.0.2
+setuptools-scm
+albumentations
