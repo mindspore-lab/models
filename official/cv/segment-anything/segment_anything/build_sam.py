@@ -1,14 +1,13 @@
 import os.path
-
 import mindspore as ms
 from mindformers import AutoModel, Blip2Classifier
-from mindspore import nn
-
+import mindspore.mint.nn as mnn
 from functools import partial
 
 from .modeling import ImageEncoderViT, MaskDecoder, PromptEncoder, Sam, TwoWayTransformer
 from .utils import logger
 from .utils.utils import freeze_layer
+from .modeling.common import GELU
 
 
 def build_sam_vit_h(checkpoint=None, enable_text_encoder=False, text_encoder_config=None):
@@ -86,10 +85,10 @@ def _build_sam(
             embed_dim=encoder_embed_dim,
             img_size=image_size,
             mlp_ratio=4,
-            norm_layer=partial(nn.LayerNorm, epsilon=1e-6),
+            norm_layer=partial(mnn.LayerNorm, eps=1e-6),
             # use approximate=False to be close to pytorch, ref:
             # https://www.mindspore.cn/docs/zh-CN/master/note/api_mapping/pytorch_diff/GELU.html?highlight=gelu
-            act_layer=partial(nn.GELU, approximate=False),
+            act_layer=partial(GELU, approximate=False),
             num_heads=encoder_num_heads,
             patch_size=vit_patch_size,
             qkv_bias=True,

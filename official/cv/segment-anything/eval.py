@@ -29,6 +29,9 @@ def main(args) -> None:
     # create model, also freeze layer if specified
     network = create_model(args.network.model)
     network.set_train(False)
+    # 设置jitconfig
+    from mindspore import JitConfig
+    network.set_jit_config(JitConfig(jit_level=args.jit_level))
     network = amp.auto_mixed_precision(network, args.get('amp_level', 'O0'))
 
     # create evaluator

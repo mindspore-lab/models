@@ -1,21 +1,22 @@
 import numpy as np
 import mindspore as ms
-from mindspore import nn, ops
+from mindspore import nn, ops, mint
+import mindspore.mint.nn as mnn
 
-from typing import Any, Optional, Tuple, Type
+from typing import Optional, Tuple, Type
 
-from .common import LayerNorm2d
+from .common import LayerNorm2d, GELU
 
 
-class PromptEncoder(nn.Cell):
+class PromptEncoder(mnn.Cell):
     def __init__(
-        self,
-        embed_dim: int,
-        image_embedding_size: Tuple[int, int],
-        input_image_size: Tuple[int, int],
-        mask_in_chans: int,
-        activation: Type[nn.Cell] = nn.GELU,
-        text_feature_dim=256,
+            self,
+            embed_dim: int,
+            image_embedding_size: Tuple[int, int],
+            input_image_size: Tuple[int, int],
+            mask_in_chans: int,
+            activation: Type[mnn.Cell] = GELU,
+            text_feature_dim=256,
     ) -> None:
         """
         Encodes prompts for input to SAM's mask decoder.
@@ -55,7 +56,7 @@ class PromptEncoder(nn.Cell):
         self.no_mask_embed = nn.Embedding(1, embed_dim)
 
         self.text_embeddings = nn.Embedding(1, embed_dim)
-        self.text_proj = nn.Dense(in_channels=text_feature_dim, out_channels=embed_dim)
+        self.text_proj = mnn.Linear(text_feature_dim, embed_dim)
 
     def get_dense_pe(self) -> ms.Tensor:
         """
@@ -69,32 +70,32 @@ class PromptEncoder(nn.Cell):
         return self.pe_layer(self.image_embedding_size).unsqueeze(0)
 
     def _embed_points(
-        self,
-        points: ms.Tensor,
-        labels: ms.Tensor,
-        pad: bool,
+            self,
+            points: ms.Tensor,
+            labels: ms.Tensor,
+            pad: bool,
     ) -> ms.Tensor:
         """Embeds point prompts."""
         points = points + 0.5  # Shift to center of pixel
         if pad:
-            padding_point = ops.zeros((points.shape[0], 1, 2), points.dtype)
-            padding_label = -ops.ones((labels.shape[0], 1), dtype=labels.dtype)
-            points = ops.cat([points, padding_point], axis=1)
-            labels = ops.cat([labels, padding_label], axis=1)
+            padding_point = mint.zeros((points.shape[0], 1, 2), dtype=points.dtype)
+            padding_label = -mint.ones((labels.shape[0], 1), dtype=labels.dtype)
+            points = mint.cat([points, padding_point], dim=1)
+            labels = mint.cat([labels, padding_label], dim=1)
         point_embedding = self.pe_layer.forward_with_coords(points, self.input_image_size)
         # point_embedding[labels == -1] = 0.0
         # point_embedding[labels == -1] += self.not_a_point_embed.embedding_table
         # point_embedding[labels == 0] += self.point_embeddings[0].embedding_table
         # point_embedding[labels == 1] += self.point_embeddings[1].embedding_table
 
-        mask = ops.broadcast_to((labels==-1).unsqueeze(-1), point_embedding.shape).astype(ms.float32)
-        point_embedding =  point_embedding * ops.logical_not(mask).astype(ms.float32) \
-                           +  mask * ops.expand_dims(self.not_a_point_embed.embedding_table, axis=1)
+        mask = mint.broadcast_to((labels == -1).unsqueeze(-1), point_embedding.shape).astype(ms.float32)
+        point_embedding = point_embedding * mint.logical_not(mask).astype(ms.float32) \
+                          + mask * ops.expand_dims(self.not_a_point_embed.embedding_table, axis=1)
 
-        mask = ops.broadcast_to((labels==0).unsqueeze(-1), point_embedding.shape).astype(ms.float32)
+        mask = mint.broadcast_to((labels == 0).unsqueeze(-1), point_embedding.shape).astype(ms.float32)
         point_embedding += mask * ops.expand_dims(self.point_embeddings[0].embedding_table, axis=1)
 
-        mask = ops.broadcast_to((labels==1).unsqueeze(-1), point_embedding.shape).astype(ms.float32)
+        mask = mint.broadcast_to((labels == 1).unsqueeze(-1), point_embedding.shape).astype(ms.float32)
         point_embedding += mask * ops.expand_dims(self.point_embeddings[1].embedding_table, axis=1)
 
         return point_embedding
@@ -120,11 +121,11 @@ class PromptEncoder(nn.Cell):
         return text_embedding
 
     def _get_batch_size(
-        self,
-        points: Optional[Tuple[ms.Tensor, ms.Tensor]],
-        boxes: Optional[ms.Tensor],
-        masks: Optional[ms.Tensor],
-        texts: Optional[ms.Tensor] = None,
+            self,
+            points: Optional[Tuple[ms.Tensor, ms.Tensor]],
+            boxes: Optional[ms.Tensor],
+            masks: Optional[ms.Tensor],
+            texts: Optional[ms.Tensor] = None,
     ) -> int:
         """
         Gets the batch size of the output given the batch size of the input prompts.
@@ -141,11 +142,11 @@ class PromptEncoder(nn.Cell):
             return 1
 
     def construct(
-        self,
-        points: Optional[Tuple[ms.Tensor, ms.Tensor]],
-        boxes: Optional[ms.Tensor],
-        masks: Optional[ms.Tensor],
-        texts: Optional[ms.Tensor] = None,
+            self,
+            points: Optional[Tuple[ms.Tensor, ms.Tensor]],
+            boxes: Optional[ms.Tensor],
+            masks: Optional[ms.Tensor],
+            texts: Optional[ms.Tensor] = None,
     ) -> Tuple[ms.Tensor, ms.Tensor]:
         """
         Embeds different types of prompts, returning both sparse and dense
@@ -170,20 +171,21 @@ class PromptEncoder(nn.Cell):
         sparse_embeddings = None  # (bs_prompt, sum_of_prompts, embed_dim)
         if points is not None:
             coords, labels = points  # (bs_prompt, num_point, 2), multiple point a time
-            point_embeddings = self._embed_points(coords, labels, pad=(boxes is None)) # (bs_prompt, num_point, embed_dim)
+            point_embeddings = self._embed_points(coords, labels,
+                                                  pad=(boxes is None))  # (bs_prompt, num_point, embed_dim)
             sparse_embeddings = point_embeddings if sparse_embeddings is None \
-                else ops.cat([sparse_embeddings, point_embeddings], axis=1)
+                else mint.cat([sparse_embeddings, point_embeddings], dim=1)
         if boxes is not None:  # (bs_prompt, 4)  # one box a time
             box_embeddings = self._embed_boxes(boxes)  # (bs_prompt, 2, embed_dim), 1 box worth 2 points
             sparse_embeddings = box_embeddings if sparse_embeddings is None \
-                else ops.cat([sparse_embeddings, box_embeddings], axis=1)
+                else mint.cat([sparse_embeddings, box_embeddings], dim=1)
 
         if texts is not None:
             assert len(texts.shape) == 2
             texts = texts.unsqueeze(1)  # (bs_prompt, 1, embed_dim)  # one text a time
             text_embeddings = self._embed_texts(texts)  # (bs_prompt, 1, 256)
             sparse_embeddings = text_embeddings if sparse_embeddings is None \
-                else ops.cat([sparse_embeddings, text_embeddings], axis=1)
+                else mint.cat([sparse_embeddings, text_embeddings], dim=1)
 
         if masks is not None:
             dense_embeddings = self._embed_masks(masks)
@@ -196,7 +198,7 @@ class PromptEncoder(nn.Cell):
         return sparse_embeddings, dense_embeddings
 
 
-class PositionEmbeddingRandom(nn.Cell):
+class PositionEmbeddingRandom(mnn.Cell):
     """
     Positional encoding using random spatial frequencies.
     """
@@ -206,7 +208,7 @@ class PositionEmbeddingRandom(nn.Cell):
         if scale is None or scale <= 0.0:
             scale = 1.0
         self.positional_encoding_gaussian_matrix = \
-            ms.Parameter(scale * ops.randn(2, num_pos_feats), requires_grad=False)
+            ms.Parameter(scale * mint.normal(size=(2, num_pos_feats)), requires_grad=False)
 
     def _pe_encoding(self, coords: ms.Tensor) -> ms.Tensor:
         """Positionally encode points that are normalized to [0,1]."""
@@ -214,25 +216,25 @@ class PositionEmbeddingRandom(nn.Cell):
         coords = 2 * coords - 1
         # aa = coords @ self.positional_encoding_gaussian_matrix
         dtype = coords.dtype
-        coords = ops.matmul(coords, self.positional_encoding_gaussian_matrix.astype(dtype))
+        coords = mint.matmul(coords, self.positional_encoding_gaussian_matrix.astype(dtype))
         coords = 2 * np.pi * coords
         # outputs d_1 x ... x d_n x C shape
-        return ops.cat([ops.sin(coords), ops.cos(coords)], axis=-1)
+        return mint.cat([mint.sin(coords), mint.cos(coords)], dim=-1)
 
     def construct(self, size: Tuple[int, int]) -> ms.Tensor:
         """Generate positional encoding for a grid of the specified size."""
         h, w = size
-        grid = ops.ones((h, w), dtype=ms.float32)
+        grid = mint.ones((h, w), dtype=ms.float32)
         y_embed = grid.cumsum(axis=0) - 0.5
         x_embed = grid.cumsum(axis=1) - 0.5
         y_embed = y_embed / h
         x_embed = x_embed / w
 
-        pe = self._pe_encoding(ops.stack([x_embed, y_embed], axis=-1))
+        pe = self._pe_encoding(mint.stack([x_embed, y_embed], dim=-1))
         return pe.permute(2, 0, 1)  # C x H x W
 
     def forward_with_coords(
-        self, coords_input: ms.Tensor, image_size: Tuple[int, int]
+            self, coords_input: ms.Tensor, image_size: Tuple[int, int]
     ) -> ms.Tensor:
         """Positionally encode points that are not normalized to [0,1]."""
         coords = coords_input.copy()

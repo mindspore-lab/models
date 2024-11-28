@@ -34,6 +34,11 @@ def main(args) -> None:
     network = create_model(args.network.model)
     loss_fn = create_loss_fn(args.network.loss)
     network.set_train()
+
+    # 设置jitconfig
+    from mindspore import JitConfig
+    network.set_jit_config(JitConfig(jit_level=args.jit_level))
+
     network = amp.auto_mixed_precision(network, args.get('amp_level', 'O0'))
 
     # Step3: create optimizer, including learning rate scheduler and group parameter settings
@@ -76,9 +81,9 @@ if __name__ == "__main__":
                                     "For list, use number to denote position, eg: callback.1.interval=100.")
 
     # model arts
-    parser_config.add_argument("--enable_modelarts", type=ast.literal_eval, default=False)
-    parser_config.add_argument("--train_url", type=str, default="", help="obs path to output folder")
-    parser_config.add_argument("--data_url", type=str, default="", help="obs path to dataset folder")
+    parser_config.add_argument("--enable-modelarts", type=ast.literal_eval, default=False)
+    parser_config.add_argument("--train-url", type=str, default="", help="obs path to output folder")
+    parser_config.add_argument("--data-url", type=str, default="", help="obs path to dataset folder")
 
     args = parse_args(parser_config)
     main(args)

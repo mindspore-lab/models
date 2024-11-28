@@ -1,20 +1,20 @@
 import mindspore as ms
-from mindspore import Tensor, nn, ops
-
+from mindspore import Tensor, nn, mint
+import mindspore.mint.nn as mnn
 import math
 from typing import Tuple, Type
 
-from .common import MLPBlock
+from .common import MLPBlock, ReLU
 
 
-class TwoWayTransformer(nn.Cell):
+class TwoWayTransformer(mnn.Cell):
     def __init__(
         self,
         depth: int,
         embedding_dim: int,
         num_heads: int,
         mlp_dim: int,
-        activation: Type[nn.Cell] = nn.ReLU,
+        activation: Type[mnn.Cell] = ReLU,
         attention_downsample_rate: int = 2,
     ) -> None:
         """
@@ -51,7 +51,7 @@ class TwoWayTransformer(nn.Cell):
         self.final_attn_token_to_image = Attention(
             embedding_dim, num_heads, downsample_rate=attention_downsample_rate
         )
-        self.norm_final_attn = nn.LayerNorm([embedding_dim])
+        self.norm_final_attn = mnn.LayerNorm([embedding_dim])
 
     def construct(
         self,
@@ -100,13 +100,13 @@ class TwoWayTransformer(nn.Cell):
         return queries, keys
 
 
-class TwoWayAttentionBlock(nn.Cell):
+class TwoWayAttentionBlock(mnn.Cell):
     def __init__(
         self,
         embedding_dim: int,
         num_heads: int,
         mlp_dim: int = 2048,
-        activation: Type[nn.Cell] = nn.ReLU,
+        activation: Type[mnn.Cell] = ReLU,
         attention_downsample_rate: int = 2,
         skip_first_layer_pe: bool = False,
     ) -> None:
@@ -125,17 +125,17 @@ class TwoWayAttentionBlock(nn.Cell):
         """
         super().__init__()
         self.self_attn = Attention(embedding_dim, num_heads)
-        self.norm1 = nn.LayerNorm([embedding_dim])
+        self.norm1 = mnn.LayerNorm([embedding_dim])
 
         self.cross_attn_token_to_image = Attention(
             embedding_dim, num_heads, downsample_rate=attention_downsample_rate
         )
-        self.norm2 = nn.LayerNorm([embedding_dim])
+        self.norm2 = mnn.LayerNorm([embedding_dim])
 
         self.mlp = MLPBlock(embedding_dim, mlp_dim, activation)
-        self.norm3 = nn.LayerNorm([embedding_dim])
+        self.norm3 = mnn.LayerNorm([embedding_dim])
 
-        self.norm4 = nn.LayerNorm([embedding_dim])
+        self.norm4 = mnn.LayerNorm([embedding_dim])
         self.cross_attn_image_to_token = Attention(
             embedding_dim, num_heads, downsample_rate=attention_downsample_rate
         )
@@ -176,7 +176,7 @@ class TwoWayAttentionBlock(nn.Cell):
         return queries, keys
 
 
-class Attention(nn.Cell):
+class Attention(mnn.Cell):
     """
     An attention layer that allows for downscaling the size of the embedding
     after projection to queries, keys, and values.
@@ -194,10 +194,10 @@ class Attention(nn.Cell):
         self.num_heads = num_heads
         assert self.internal_dim % num_heads == 0, "num_heads must divide embedding_dim."
 
-        self.q_proj = nn.Dense(embedding_dim, self.internal_dim)
-        self.k_proj = nn.Dense(embedding_dim, self.internal_dim)
-        self.v_proj = nn.Dense(embedding_dim, self.internal_dim)
-        self.out_proj = nn.Dense(self.internal_dim, embedding_dim)
+        self.q_proj = mnn.Linear(embedding_dim, self.internal_dim)
+        self.k_proj = mnn.Linear(embedding_dim, self.internal_dim)
+        self.v_proj = mnn.Linear(embedding_dim, self.internal_dim)
+        self.out_proj = mnn.Linear(self.internal_dim, embedding_dim)
 
     def _separate_heads(self, x: Tensor, num_heads: int) -> Tensor:
         b, n, c = x.shape
@@ -225,7 +225,7 @@ class Attention(nn.Cell):
         dtype = q.dtype
         attn = q @ k.permute(0, 1, 3, 2)  # B x N_heads x N_tokens x N_tokens
         attn = attn / Tensor(math.sqrt(c_per_head), dtype)
-        attn = ops.softmax(attn, axis=-1)
+        attn = mint.softmax(attn, dim=-1)
 
         # Get output
         out = attn @ v

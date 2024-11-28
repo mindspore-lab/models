@@ -31,9 +31,6 @@ def infer(args):
 
         transformed = transform_pipeline(dict(image=image_np, boxes=boxes_np))
         image, boxes, origin_hw = transformed['image'], transformed['boxes'], transformed['origin_hw']
-        # batch_size for speed test
-        # image = ms.Tensor(np.expand_dims(image, 0).repeat(8, axis=0))  # b, 3, 1023
-        # boxes = ms.Tensor(np.expand_dims(boxes, 0).repeat(8, axis=0))  # b, n, 4
         image = ms.Tensor(image).unsqueeze(0)  # b, 3, 1023
         boxes = ms.Tensor(boxes).unsqueeze(0)  # b, n, 4
 
@@ -42,6 +39,9 @@ def infer(args):
         with Timer('load weight and build net'):
             graph = ms.load(args.model_path)
             network = nn.GraphCell(graph)
+            # 设置jitconfig
+            from mindspore import JitConfig
+            network.set_jit_config(JitConfig(jit_level=args.jit_level))
         ms.amp.auto_mixed_precision(network=network, amp_level=args.amp_level)
         mask_logits = network(image, boxes)[0]   # (1, 1, 1024, 1024)
 
@@ -65,7 +65,7 @@ def infer(args):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=("Runs inference on one image"))
-    parser.add_argument("--image_path", type=str,
+    parser.add_argument("--image-path", type=str,
                         default='https://github.com/user-attachments/assets/022bd54a-4e28-4c22-82d4-45113bbe49ee',
                         help="Path to an input image.")
     parser.add_argument(
@@ -83,8 +83,9 @@ if __name__ == '__main__':
     )
 
     parser.add_argument("--device", type=str, default="Ascend", help="The device to run generation on.")
-    parser.add_argument("--amp_level", type=str, default="O2", help="auto mixed precision level O0, O2.")
+    parser.add_argument("--amp-level", type=str, default="O2", help="auto mixed precision level O0, O2.")
     parser.add_argument("--mode", type=int, default=0, help="MindSpore context mode. 0 for graph, 1 for pynative.")
+    parser.add_argument("--jit-level", type=str, default='O1', help="O0: kbk mode, O1: dvm mode.")
 
     args = parser.parse_args()
     print(args)

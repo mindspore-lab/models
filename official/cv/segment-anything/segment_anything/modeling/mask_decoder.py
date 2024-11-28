@@ -1,19 +1,20 @@
 import mindspore as ms
-from mindspore import nn, ops
+from mindspore import nn, ops, mint
+import mindspore.mint.nn as mnn
+import mindspore.mint.nn.functional as F
+from typing import Tuple, Type
 
-from typing import List, Tuple, Type
-
-from .common import LayerNorm2d
+from .common import LayerNorm2d, GELU
 
 
-class MaskDecoder(nn.Cell):
+class MaskDecoder(mnn.Cell):
     def __init__(
         self,
         *,
         transformer_dim: int,
-        transformer: nn.Cell,
+        transformer: mnn.Cell,
         num_multimask_outputs: int = 3,
-        activation: Type[nn.Cell] = nn.GELU,
+        activation: Type[mnn.Cell] = GELU,
         iou_head_depth: int = 3,
         iou_head_hidden_dim: int = 256,
     ) -> None:
@@ -96,7 +97,7 @@ class MaskDecoder(nn.Cell):
 
         # remove dynamic shape, for training
         if output_best_mask:
-            ind = ops.stop_gradient(ops.argmax(iou_pred[:, 1:], dim=1, keepdim=True)) + 1  # (bs, 1)
+            ind = ops.stop_gradient(mint.argmax(iou_pred[:, 1:], dim=1, keepdim=True)) + 1  # (bs, 1)
             best_iou = ops.gather(iou_pred, input_indices=ind, axis=1, batch_dims=1)  # (bs, 1)
             best_mask = ops.gather(masks, input_indices=ind, axis=1, batch_dims=1) # (bs, 1, h, w)
             best_mask = int(multimask_output) * best_mask + (1 - int(multimask_output)) * masks[:, :1]  # (bs, 1, h, w)
@@ -123,14 +124,14 @@ class MaskDecoder(nn.Cell):
     ) -> Tuple[ms.Tensor, ms.Tensor]:
         """Predicts masks. See 'forward' for more details."""
         # Concatenate output tokens
-        output_tokens = ops.cat([self.iou_token.embedding_table, self.mask_tokens.embedding_table], axis=0)
+        output_tokens = mint.cat([self.iou_token.embedding_table, self.mask_tokens.embedding_table], dim=0)
         output_tokens = output_tokens.unsqueeze(0).repeat(sparse_prompt_embeddings.shape[0], axis=0)
-        tokens = ops.cat((output_tokens, sparse_prompt_embeddings), axis=1)
+        tokens = mint.cat((output_tokens, sparse_prompt_embeddings), dim=1)
 
         # Expand per-image data in batch direction to be per-mask
-        src = ops.repeat_interleave(image_embeddings, tokens.shape[0], axis=0)
+        src = mint.repeat_interleave(image_embeddings, tokens.shape[0], dim=0)
         src = src + dense_prompt_embeddings
-        pos_src = ops.repeat_interleave(image_pe, tokens.shape[0], axis=0)
+        pos_src = mint.repeat_interleave(image_pe, tokens.shape[0], dim=0)
         b, c, h, w = src.shape
 
         # Run the transformer
@@ -144,7 +145,7 @@ class MaskDecoder(nn.Cell):
         hyper_in_list = []
         for i in range(self.num_mask_tokens):
             hyper_in_list.append(self.output_hypernetworks_mlps[i](mask_tokens_out[:, i, :]))
-        hyper_in = ops.stack(hyper_in_list, axis=1)
+        hyper_in = mint.stack(hyper_in_list, dim=1)
         b, c, h, w = upscaled_embedding.shape
         masks = (hyper_in @ upscaled_embedding.view(b, c, h * w)).view(b, -1, h, w)
 
@@ -156,7 +157,7 @@ class MaskDecoder(nn.Cell):
 
 # Lightly adapted from
 # https://github.com/facebookresearch/MaskFormer/blob/main/mask_former/modeling/transformer/transformer_predictor.py # noqa
-class MLP(nn.Cell):
+class MLP(mnn.Cell):
     def __init__(
         self,
         input_dim: int,
@@ -169,13 +170,13 @@ class MLP(nn.Cell):
         self.num_layers = num_layers
         h = [hidden_dim] * (num_layers - 1)
         self.layers = nn.CellList(list(
-            nn.Dense(n, k) for n, k in zip([input_dim] + h, h + [output_dim])
+            mnn.Linear(n, k) for n, k in zip([input_dim] + h, h + [output_dim])
         ))
         self.sigmoid_output = sigmoid_output
 
     def construct(self, x):
         for i, layer in enumerate(self.layers):
-            x = ops.relu(layer(x)) if i < self.num_layers - 1 else layer(x)
+            x = F.relu(layer(x)) if i < self.num_layers - 1 else layer(x)
         if self.sigmoid_output:
-            x = ops.sigmoid(x)
+            x = mint.sigmoid(x)
         return x

@@ -1,7 +1,7 @@
 from typing import List, Tuple
 
 import mindspore as ms
-from mindspore import nn
+from mindspore.mint import nn as mnn
 from mindspore.dataset import BatchDataset
 from tqdm import tqdm
 
@@ -14,7 +14,7 @@ class Evaluator:
 
     """
     def __init__(self,
-                 network: nn.Cell,
+                 network: mnn.Cell,
                  data_loader: BatchDataset,
                  metric: List[ms.train.Metric],
                  input_column: List[List[str]],

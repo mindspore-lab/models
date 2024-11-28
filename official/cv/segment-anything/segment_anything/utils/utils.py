@@ -3,7 +3,7 @@ import time
 from datetime import datetime
 
 import mindspore as ms
-from mindspore import ops, Tensor, context, ParallelMode
+from mindspore import ops, Tensor, context, ParallelMode, mint
 from mindspore.communication import init, get_group_size, get_rank
 
 from segment_anything.utils import logger
@@ -26,14 +26,14 @@ def freeze_layer(network, specify_prefix=None, filter_prefix=None):
 
 def reduce_with_mask(input, valid_mask, reduction='mean'):
     if valid_mask is None:
-        return ops.sum(input)
+        return mint.sum(input)
     if valid_mask.dtype != input.dtype:
         valid_mask = valid_mask.astype(input.dtype)
-    num_valid = ops.sum(valid_mask)
+    num_valid = mint.sum(valid_mask)
     if reduction == 'mean':
-        return ops.sum(input * valid_mask) / num_valid
+        return mint.sum(input * valid_mask) / num_valid
     else:  # sum
-        return ops.sum(input * valid_mask)
+        return mint.sum(input * valid_mask)
 
 
 def calc_iou(pred_mask: ms.Tensor, gt_mask: ms.Tensor, epsilon=1e-7):
@@ -43,8 +43,8 @@ def calc_iou(pred_mask: ms.Tensor, gt_mask: ms.Tensor, epsilon=1e-7):
         gt_mask (ms.Tensor): gt mask, with shape (b, n, h, w), value is 0 or 1.
     """
     hw_dim = (-2, -1)
-    intersection = ops.sum(ops.mul(pred_mask, gt_mask), dim=hw_dim)  # (b, n)
-    union = ops.sum(pred_mask, dim=hw_dim) + ops.sum(gt_mask, dim=hw_dim) - intersection
+    intersection = mint.sum(mint.mul(pred_mask, gt_mask), dim=hw_dim)  # (b, n)
+    union = mint.sum(pred_mask, dim=hw_dim) + mint.sum(gt_mask, dim=hw_dim) - intersection
     batch_iou = intersection / (union + epsilon)  # (b, n)
 
     return batch_iou

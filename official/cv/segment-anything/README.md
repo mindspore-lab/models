@@ -133,9 +133,9 @@ The bellowing shows the mask quality before and after finetune.
 | pretrained_model | dataset | epochs | mIOU | ckpt |
 |:----------------:| :-----: | :----: | :---: | :---: |
 | sam-vit-b | COCO2017 | 0 (zero-shot) | 74.5 | [download](https://download.mindspore.cn/toolkits/mindone/sam/sam_vit_b-35e4849c.ckpt) |
-| sam-vit-b | COCO2017 | 8 | 80.1 | [download](https://download-mindspore.osinfra.cn/model_zoo/official/cv/sam/sam_005_coco_box.ckpt) |
+| sam-vit-b | COCO2017 | 8 | 80.07 | [download](https://download-mindspore.osinfra.cn/model_zoo/official/cv/sam/sam_008_coco_box.ckpt) |
 | sam-vit-b | FLARE22 | 0 (zero-shot) | 78.6 | [download](https://download.mindspore.cn/toolkits/mindone/sam/sam_vit_b-35e4849c.ckpt) |
-| sam-vit-b | FLARE22 |  20 | 88.4 | [download](https://download-mindspore.osinfra.cn/model_zoo/official/cv/sam/sam_020_flare_box.ckpt) |
+| sam-vit-b | FLARE22 |  20 | 88.38 | [download](https://download-mindspore.osinfra.cn/model_zoo/official/cv/sam/sam_017_flare_box.ckpt) |
 
 A machine with **32G ascend memory** is required for box-prompt finetune.
 
@@ -250,8 +250,8 @@ Experiments are tested on ascend910* with mindspore 2.3.1 graph mode.
 
 | model name | dataset | cards | batch size | graph compile | recompute | sink | jit level | s/step | img/s |
 |:----------:| :-----: | :---: | :--------: | :-----------: | :-------: | :---: | :------: | :----: | :---: |
-| sam-vit-b | COCO2017 | 1 | 16 | 3~4 mins | OFF | ON | O2 | 2.59 | 6.18 |
-| sam-vit-b | FLARE22 | 1 | 16 | 3~4 mins | OFF | ON | O2 | 2.48 | 6.45 |
+| sam-vit-b | COCO2017 | 1 | 16 | 4~5 mins | OFF | ON | O1 | 2.34 | 6.84 |
+| sam-vit-b | FLARE22 | 1 | 16 | 4~5 mins | OFF | ON | O1 | 2.24 | 7.14 |
 
 ## Inference
 

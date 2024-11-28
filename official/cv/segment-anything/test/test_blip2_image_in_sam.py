@@ -1,9 +1,7 @@
 import mindspore
 from mindformers import AutoModel, AutoProcessor
 import numpy as np
-from mindspore import ops
-from mindspore.ops import operations as P
-
+from mindspore import mint, JitConfig
 
 mindspore.set_context(mode=0)
 
@@ -11,6 +9,7 @@ mindspore.set_context(mode=0)
 model = AutoModel.from_pretrained("blip2_stage1_classification")
 # model = amp.auto_mixed_precision(model, 'O2')._backbone
 # model.set_train(False)
+model.set_jit_config(JitConfig(jit_level='O1'))
 
 # model = AutoModel.from_pretrained("itt_blip2_stage2_vit_g_llama_7b")
 processor = AutoProcessor.from_pretrained("blip2_stage1_classification")
@@ -37,9 +36,9 @@ sentences = ["This is a photo of {}.".format(candidate_label)
 input_ids = processor.tokenizer(sentences, max_length=77, padding="max_length", return_tensors="ms")["input_ids"]
 text_features = model.get_text_feature(input_ids)[:, 0]
 
-logits_per_image = ops.matmul(image_features, text_features.T) / model.temp  # (20, 5)
+logits_per_image = mint.matmul(image_features, text_features.T) / model.temp  # (20, 5)
 
-probs = P.Softmax()(logits_per_image).asnumpy() # (20, 5)
+probs = mint.softmax(logits_per_image, dim=-1).asnumpy() # (20, 5)
 
 for i in range(20):
     print(f'\n\n{i}')

@@ -3,10 +3,10 @@ from typing import Union, List
 
 import mindspore as ms
 import numpy as np
-from mindspore import nn, ops, RunContext, value_and_grad, Tensor
+from mindspore import nn, ops, value_and_grad, Tensor, mint
+import mindspore.mint.nn as mnn
 from mindspore.amp import all_finite
 from mindspore.dataset.engine.datasets import _set_training_dataset
-from mindspore.ops import composite as C
 from mindspore.ops import functional as F
 from mindspore.parallel._recovery_context import _get_recovery_context
 from mindspore.train.dataset_helper import DatasetHelper, connect_network_with_dataset
@@ -18,10 +18,10 @@ _grad_scale = ops.MultitypeFuncGraph("grad_scale")
 
 @_grad_scale.register("Tensor", "Tensor")
 def tensor_grad_scale(scale, grad):
-    return grad * ops.cast(ops.Reciprocal()(scale), ops.dtype(grad))
+    return grad * ops.cast(mint.reciprocal(scale), ops.dtype(grad))
 
 
-class NetWithLossWrapper(nn.Cell):
+class NetWithLossWrapper(mnn.Cell):
     """
     A universal wrapper for any network with any loss.
 
@@ -34,8 +34,8 @@ class NetWithLossWrapper(nn.Cell):
     """
 
     def __init__(self,
-                 net: nn.Cell,
-                 loss_fn: nn.Cell,
+                 net: mnn.Cell,
+                 loss_fn: mnn.Cell,
                  input_columns: List[List[str]],
                  all_columns: List[str],
                  ):
@@ -59,7 +59,8 @@ class NetWithLossWrapper(nn.Cell):
 
         # This is a very ugly workaround due to mindspore's disability of dict setitem and unpacking
         # pred = self.net(**select_inputs_by_indices(args, self.input_indices, self.all_columns, return_type='dict'))
-        if len(self.input_names) == 2 and self.input_names[0] == 'image' and self.input_names[1] == 'image_patches':  # text-prompt
+        if len(self.input_names) == 2 and self.input_names[0] == 'image' and self.input_names[
+            1] == 'image_patches':  # text-prompt
             pred = self.net(image=args[self.input_indices[0]], image_patches=args[self.input_indices[1]])
         elif len(self.input_names) == 2 and self.input_names[0] == 'image' and self.input_names[1] == 'boxes':
             pred = self.net(image=args[self.input_indices[0]], boxes=args[self.input_indices[1]])
@@ -67,7 +68,7 @@ class NetWithLossWrapper(nn.Cell):
             raise NotImplementedError
 
         if not isinstance(pred, tuple):
-            pred = (pred, )
+            pred = (pred,)
         loss_val = self.loss_fn(*pred, *select_inputs_by_indices(args, self.label_indices))
 
         # currently nn.TrainOneStepCell does not support loss as a tuple
@@ -93,7 +94,8 @@ def select_inputs_by_indices(inputs, indices, columns_names=None, return_type='t
 
     return new_inputs
 
-def key2index(keys: Union[List[str], str], all_keys: List[str])-> Union[List[int], int]:
+
+def key2index(keys: Union[List[str], str], all_keys: List[str]) -> Union[List[int], int]:
     """
     map keys to index of a list. Usually used in converting model and loss input str to index.
     """
@@ -155,7 +157,7 @@ class TrainOneStepCellWrapper(nn.TrainOneStepWithLossScaleCell):
         status, scaling_sens = self.start_overflow_check(loss, scaling_sens)
 
         # loss*grad_scale -> backpropagation -> grad/grad_scale
-        scaling_sens_filled = C.ones_like(loss) * F.cast(scaling_sens, F.dtype(loss))
+        scaling_sens_filled = mint.ones_like(loss) * F.cast(scaling_sens, F.dtype(loss))
         grads = self.grad(self.network, weights)(*inputs, scaling_sens_filled)
         grads = self.hyper_map(ops.partial(_grad_scale, scaling_sens), grads)
 
@@ -183,6 +185,7 @@ class SamIterativeSegModel(ms.Model):
     """
     Model specialized for iterative interactive segmentation.
     """
+
     def __init__(self, *args, num_iter=3, mask_only_iter=None, loss_scaler=None, **kwargs):
         self.loss_scaler = loss_scaler
         super(SamIterativeSegModel, self).__init__(*args, **kwargs)
@@ -220,17 +223,22 @@ class SamIterativeSegModel(ms.Model):
                           gt_mask=None, valid_boxes=None,
                           multimask_output=False, output_best_mask=True, return_low_res_mask=True):
             _pred_mask, _pred_iou, _low_res_mask = net(image, points=points, boxes=boxes, masks=masks,
-                                                       multimask_output=multimask_output, output_best_mask=output_best_mask, return_low_res_mask=return_low_res_mask)
+                                                       multimask_output=multimask_output,
+                                                       output_best_mask=output_best_mask,
+                                                       return_low_res_mask=return_low_res_mask)
             _loss = loss_fn(_pred_mask, _pred_iou, gt_mask, valid_boxes)
             return loss_scaler.scale(_loss[0]), (_pred_mask, _pred_iou, _low_res_mask)
 
         def _train_fn(*data_element):
 
             # tuple to dict
-            input_dict = select_inputs_by_indices(data_element, net_with_loss.input_indices, net_with_loss.all_columns, return_type='dict')
-            gt_dict = select_inputs_by_indices(data_element, net_with_loss.label_indices, net_with_loss.all_columns, return_type='dict')
+            input_dict = select_inputs_by_indices(data_element, net_with_loss.input_indices, net_with_loss.all_columns,
+                                                  return_type='dict')
+            gt_dict = select_inputs_by_indices(data_element, net_with_loss.label_indices, net_with_loss.all_columns,
+                                               return_type='dict')
 
-            grad_fn = ms.jit(value_and_grad(forward_point, grad_position=None, weights=weights, has_aux=True), compile_once=True)
+            grad_fn = ms.jit(value_and_grad(forward_point, grad_position=None, weights=weights, has_aux=True),
+                             compile_once=True)
 
             # 11 iteration
             # mask_only_iter = [10, np.random.randint(1, 10)]  # the last and one random iteration
@@ -244,8 +252,8 @@ class SamIterativeSegModel(ms.Model):
                 # for mask only iter, give a pad-point to keep static shape
                 # the first iteration needs a valid point
                 # the first iteration needs multi-mask output due to point ambiguity
-                return_pad_point = False if i==0 else i in self.mask_only_iter
-                multimask_output = True if i==0 else False
+                return_pad_point = False if i == 0 else i in self.mask_only_iter
+                multimask_output = True if i == 0 else False
 
                 # print(f'\nstart iter {i}, return_pad_point: {return_pad_point}, multimask_output: {multimask_output}')
                 point_and_label = self.get_next_point(gt_dict['masks'], pred_mask=previous_mask,
@@ -253,13 +261,13 @@ class SamIterativeSegModel(ms.Model):
                 s1 = time.time()
                 # print(f'get next takes: {s1-s0:.2f}s')
                 (loss, (mask, iou, low_res_mask)), grads = grad_fn(
-                                                input_dict['image'],
-                                                ms.mutable(point_and_label), # mutable tuple to prevent duplicate graph compiling
-                                                None,  # box
-                                                previous_low_mask,
-                                                gt_dict['masks'],
-                                                gt_dict['valid_boxes'],
-                                                multimask_output)
+                    input_dict['image'],
+                    ms.mutable(point_and_label),  # mutable tuple to prevent duplicate graph compiling
+                    None,  # box
+                    previous_low_mask,
+                    gt_dict['masks'],
+                    gt_dict['valid_boxes'],
+                    multimask_output)
                 # print(f'loss scale: {loss}, scale value: {loss_scaler.scale_value.value()}')
                 loss = loss_scaler.unscale(loss)
                 grads_finite = all_finite(grads)  # all finite before unscale grads
@@ -267,7 +275,7 @@ class SamIterativeSegModel(ms.Model):
                 # print(f'loss unscale: {loss}')
                 s2 = time.time()
                 # print(f'f and b takes: {s2-s1:.2f}s')
-                previous_mask = ops.stop_gradient(mask > loss_fn.mask_threshold)  #  (b, n, h, w)
+                previous_mask = ops.stop_gradient(mask > loss_fn.mask_threshold)  # (b, n, h, w)
                 previous_low_mask = ops.stop_gradient(low_res_mask.expand_dims(2))  # (b, n, h, w) -> (b, n, 1, h, w)
                 s3 = time.time()
                 # print(f'postprocess takes: {s3 - s2:.2f}s')
@@ -276,21 +284,23 @@ class SamIterativeSegModel(ms.Model):
                 loss_list.append(loss)
                 grad_finite_list.append(grads_finite)
 
-            grad_accum = tuple([sum(k)/self.num_iter for k in zip(*grad_list)])
+            grad_accum = tuple([sum(k) / self.num_iter for k in zip(*grad_list)])
 
             # print(f'loss list', loss_list)
             t0 = time.time()
-            grad_accum = grad_reducer_wrapper(ms.mutable(grad_accum)) # mutable tuple to prevent duplicate graph compiling
+            grad_accum = grad_reducer_wrapper(
+                ms.mutable(grad_accum))  # mutable tuple to prevent duplicate graph compiling
             # all finite should be after grad reduce for multi node
             grad_accum_finite = all_finite(grad_accum)
             if grad_accum_finite:
-                optimizer_wrapper(ms.mutable(grad_accum)) # mutable tuple to prevent duplicate graph compiling
+                optimizer_wrapper(ms.mutable(grad_accum))  # mutable tuple to prevent duplicate graph compiling
             else:
                 print(f'gradient overflow')
             t1 = time.time()
             # print(f'optimize takes: {t1 - t0:.2f}s\n\n\n')
 
             return loss_list[0]
+
         return _train_fn
 
     def get_next_point(self, gt_mask, pred_mask=None, return_default=False):
@@ -304,21 +314,22 @@ class SamIterativeSegModel(ms.Model):
 
         bs, n, h, w = gt_mask.shape
         if return_default:
-            points = ops.zeros((bs, n, 1, 2), dtype=ms.float32)  # (bs, bs_prompt, num_point_per_batch, 2)
-            labels = (-1 * ops.ones((bs, n, 1), dtype=ms.int32))
+            points = mint.zeros((bs, n, 1, 2), dtype=ms.float32)  # (bs, bs_prompt, num_point_per_batch, 2)
+            labels = (-1 * mint.ones((bs, n, 1), dtype=ms.int32))
             return points, labels
         # if no pred_mask provided, sample the positive area of gt_mask
         # else sample the difference area
-        triple_map = gt_mask.astype(np.int32) - pred_mask.astype(np.int32) if pred_mask is not None else gt_mask.astype(np.int32)
+        triple_map = gt_mask.astype(np.int32) - pred_mask.astype(np.int32) if pred_mask is not None else gt_mask.astype(
+            np.int32)
         # triple_map = gt_mask.astype(ms.int32)
-        triple_map = triple_map.reshape((bs*n, h, w))
+        triple_map = triple_map.reshape((bs * n, h, w))
 
         points = []
         labels = []
-        for i in range(bs*n):
+        for i in range(bs * n):
             non_zero_ind = np.transpose(np.nonzero(triple_map[i]))  # (nz, 2)
-            if len(non_zero_ind) !=0:
-                rand = np.random.randint(0, len(non_zero_ind)) # (1,)
+            if len(non_zero_ind) != 0:
+                rand = np.random.randint(0, len(non_zero_ind))  # (1,)
                 point = non_zero_ind[rand]  # (2,)
                 label = triple_map[i][point[0], point[1]]  # 1 or -1
                 label = (label > 0).astype(np.int32)  # 1 or 0
@@ -334,15 +345,6 @@ class SamIterativeSegModel(ms.Model):
         points = ms.Tensor(points, dtype=ms.float32)
         labels = ms.Tensor(labels, dtype=ms.int32)
 
-        # if debug:
-        #     import matplotlib.pyplot as plt
-        #     import numpy as np
-        #     from segment_anything.utils.visualize import show_mask, show_points, show_box
-        #     i = 0
-        #     plt.imshow(gt_mask[0, i].asnumpy())
-        #     show_points(points[0, i, 0].asnumpy(), labels[0, i, 0].asnumpy(), plt.gca())
-        #     plt.show()
-
         return points, labels
 
     def get_next_point_ms(self, gt_mask, pred_mask=None, return_default=False):
@@ -353,20 +355,21 @@ class SamIterativeSegModel(ms.Model):
 
         bs, n, h, w = gt_mask.shape
         if return_default:
-            points = ops.zeros((bs, n, 1, 2))  # (bs, bs_prompt, num_point_per_batch, 2)
-            labels = (-1 * ops.ones((bs, n, 1), dtype=ms.int32))
+            points = mint.zeros((bs, n, 1, 2))  # (bs, bs_prompt, num_point_per_batch, 2)
+            labels = (-1 * mint.ones((bs, n, 1), dtype=ms.int32))
             return points, labels
         # if no pred_mask provided, sample the positive area of gt_mask
         # else sample the difference area
-        triple_map = gt_mask.astype(ms.int32) - pred_mask.astype(ms.int32) if pred_mask is not None else gt_mask.astype(ms.int32)
+        triple_map = gt_mask.astype(ms.int32) - pred_mask.astype(ms.int32) if pred_mask is not None else gt_mask.astype(
+            ms.int32)
         # triple_map = gt_mask.astype(ms.int32)
-        triple_map = triple_map.reshape(bs*n, h, w)
+        triple_map = triple_map.reshape(bs * n, h, w)
 
         points = []
         labels = []
-        for i in range(bs*n):
-            non_zero_ind = ops.nonzero(triple_map[i])  # (nz, 2)
-            if len(non_zero_ind) !=0:
+        for i in range(bs * n):
+            non_zero_ind = mint.nonzero(triple_map[i])  # (nz, 2)
+            if len(non_zero_ind) != 0:
                 # rand = ops.randint(0, len(non_zero_ind), (1,))[0] # (1,)
                 rand = 0
                 point = non_zero_ind[rand]  # (2,)
@@ -378,17 +381,8 @@ class SamIterativeSegModel(ms.Model):
             points.append(point[::-1].astype(ms.float32))  # input point should be in (w, h) format
             labels.append(label)
 
-        points = ops.stack(points).reshape(bs, n, 1, -1)  # (bs, bs_prompt, num_point_per_batch, 2)
-        labels = ops.stack(labels).reshape(bs, n, 1)  # (bs, bs_prompt, num_point_per_batch)
-
-        # if debug:
-        #     import matplotlib.pyplot as plt
-        #     import numpy as np
-        #     from segment_anything.utils.visualize import show_mask, show_points, show_box
-        #     i = 0
-        #     plt.imshow(gt_mask[0, i].asnumpy())
-        #     show_points(points[0, i, 0].asnumpy(), labels[0, i, 0].asnumpy(), plt.gca())
-        #     plt.show()
+        points = mint.stack(points).reshape(bs, n, 1, -1)  # (bs, bs_prompt, num_point_per_batch, 2)
+        labels = mint.stack(labels).reshape(bs, n, 1)  # (bs, bs_prompt, num_point_per_batch)
 
         return points, labels
 
@@ -413,7 +407,6 @@ class SamIterativeSegModel(ms.Model):
 
         if _get_recovery_context("enable_recovery") and is_train:
             _set_training_dataset(dataset_helper)
-
 
         # network.set_train(is_train)
         # network.phase = phase

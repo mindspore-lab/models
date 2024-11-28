@@ -1,13 +1,13 @@
 import mindspore as ms
-from mindspore import nn, ops
-
+from mindspore import nn, ops, mint
+import mindspore.mint.nn as mnn
 from typing import Optional, Tuple, Type
 
-from .common import LayerNorm2d, MLPBlock
+from .common import LayerNorm2d, MLPBlock, GELU
 
 
 # This class and its supporting functions below lightly adapted from the ViTDet backbone available at: https://github.com/facebookresearch/detectron2/blob/main/detectron2/modeling/backbone/vit.py # noqa
-class ImageEncoderViT(nn.Cell):
+class ImageEncoderViT(mnn.Cell):
     def __init__(
         self,
         img_size: int = 1024,
@@ -19,8 +19,8 @@ class ImageEncoderViT(nn.Cell):
         mlp_ratio: float = 4.0,
         out_chans: int = 256,
         qkv_bias: bool = True,
-        norm_layer: Type[nn.Cell] = nn.LayerNorm,
-        act_layer: Type[nn.Cell] = nn.GELU,
+        norm_layer: Type[mnn.Cell] = mnn.LayerNorm,
+        act_layer: Type[mnn.Cell] = GELU,
         use_abs_pos: bool = True,
         use_rel_pos: bool = False,
         rel_pos_zero_init: bool = True,
@@ -59,7 +59,7 @@ class ImageEncoderViT(nn.Cell):
         if use_abs_pos:
             # Initialize absolute positional embedding with pretrain image size.
             self.pos_embed = ms.Parameter(
-                ops.zeros((1, img_size // patch_size, img_size // patch_size, embed_dim))
+                mint.zeros((1, img_size // patch_size, img_size // patch_size, embed_dim))
             )
 
         self.blocks = nn.CellList()
@@ -110,7 +110,7 @@ class ImageEncoderViT(nn.Cell):
         return x
 
 
-class Block(nn.Cell):
+class Block(mnn.Cell):
     """Transformer blocks with support of window attention and residual propagation blocks"""
 
     def __init__(
@@ -119,8 +119,8 @@ class Block(nn.Cell):
         num_heads: int,
         mlp_ratio: float = 4.0,
         qkv_bias: bool = True,
-        norm_layer: Type[nn.Cell] = nn.LayerNorm,
-        act_layer: Type[nn.Cell] = nn.GELU,
+        norm_layer: Type[mnn.Cell] = mnn.LayerNorm,
+        act_layer: Type[mnn.Cell] = GELU,
         use_rel_pos: bool = False,
         rel_pos_zero_init: bool = True,
         window_size: int = 0,
@@ -175,7 +175,7 @@ class Block(nn.Cell):
         return x
 
 
-class Attention(nn.Cell):
+class Attention(mnn.Cell):
     """Multi-head Attention block with relative position embeddings."""
 
     def __init__(
@@ -202,8 +202,8 @@ class Attention(nn.Cell):
         head_dim = dim // num_heads
         self.scale = head_dim**-0.5
 
-        self.qkv = nn.Dense(dim, dim * 3, has_bias=qkv_bias)
-        self.proj = nn.Dense(dim, dim)
+        self.qkv = mnn.Linear(dim, dim * 3, bias=qkv_bias)
+        self.proj = mnn.Linear(dim, dim)
 
         self.use_rel_pos = use_rel_pos
         if self.use_rel_pos:
@@ -211,8 +211,8 @@ class Attention(nn.Cell):
                 input_size is not None
             ), "Input size must be provided if using relative positional encoding."
             # initialize relative positional embeddings
-            self.rel_pos_h = ms.Parameter(ops.zeros((2 * input_size[0] - 1, head_dim)))
-            self.rel_pos_w = ms.Parameter(ops.zeros((2 * input_size[1] - 1, head_dim)))
+            self.rel_pos_h = ms.Parameter(mint.zeros((2 * input_size[0] - 1, head_dim)))
+            self.rel_pos_w = ms.Parameter(mint.zeros((2 * input_size[1] - 1, head_dim)))
 
     def construct(self, x: ms.Tensor) -> ms.Tensor:
         B, H, W, _ = x.shape
@@ -221,13 +221,13 @@ class Attention(nn.Cell):
         # q, k, v with shape (B * nHead, H * W, C)
         q, k, v = qkv.reshape(3, B * self.num_heads, H * W, -1).unbind(0)
 
-        attn = ops.bmm(q * self.scale, k.swapaxes(-2, -1))
+        attn = mint.bmm(q * self.scale, k.swapaxes(-2, -1))
 
         if self.use_rel_pos:
             attn = add_decomposed_rel_pos(attn, q, self.rel_pos_h, self.rel_pos_w, (H, W), (H, W))
 
-        attn = ops.softmax(attn, axis=-1)
-        x = ops.bmm(attn, v).view(B, self.num_heads, H, W, -1).permute(0, 2, 3, 1, 4).reshape(B, H, W, -1)
+        attn = mint.softmax(attn, dim=-1)
+        x = mint.bmm(attn, v).view(B, self.num_heads, H, W, -1).permute(0, 2, 3, 1, 4).reshape(B, H, W, -1)
         x = self.proj(x)
 
         return x
@@ -250,8 +250,8 @@ def window_partition(x: ms.Tensor, window_size: int) -> Tuple[ms.Tensor, Tuple[i
     pad_w = (window_size - W % window_size) % window_size
     if pad_h > 0 or pad_w > 0:
         # replace ops.pad with ops.concat for better performance
-        pad_mat1 = ops.zeros((B, H, pad_w, C), x.dtype)
-        pad_mat2 = ops.zeros((B, pad_h, W + pad_w, C), x.dtype)
+        pad_mat1 = mint.zeros((B, H, pad_w, C), dtype=x.dtype)
+        pad_mat2 = mint.zeros((B, pad_h, W + pad_w, C), dtype=x.dtype)
         x = ops.concat([ops.concat([x, pad_mat1], axis=2), pad_mat2], axis=1)
     Hp, Wp = H + pad_h, W + pad_w
 
@@ -301,7 +301,7 @@ def get_rel_pos(q_size: int, k_size: int, rel_pos: ms.Tensor) -> ms.Tensor:
     # Interpolate rel pos if needed.
     if rel_pos.shape[0] != max_rel_dist:
         # Interpolate rel pos.
-        rel_pos_resized = ops.interpolate(
+        rel_pos_resized = mint.interpolate(
             rel_pos.reshape(1, rel_pos.shape[0], -1).permute(0, 2, 1),
             size=max_rel_dist,
             mode="linear",
@@ -311,8 +311,8 @@ def get_rel_pos(q_size: int, k_size: int, rel_pos: ms.Tensor) -> ms.Tensor:
         rel_pos_resized = rel_pos
 
     # Scale the coords with short length if shapes for q and k are different.
-    q_coords = ops.arange(q_size)[:, None] * max(k_size / q_size, 1.0)
-    k_coords = ops.arange(k_size)[None, :] * max(q_size / k_size, 1.0)
+    q_coords = mint.arange(q_size)[:, None] * max(k_size / q_size, 1.0)
+    k_coords = mint.arange(k_size)[None, :] * max(q_size / k_size, 1.0)
     relative_coords = (q_coords - k_coords) + (k_size - 1) * max(q_size / k_size, 1.0)
 
     return rel_pos_resized[relative_coords.long()]
@@ -348,8 +348,10 @@ def add_decomposed_rel_pos(
     B, _, dim = q.shape
     r_q = q.reshape(B, q_h, q_w, dim)
     dtype = r_q.dtype
-    rel_h = ops.BatchMatMul(transpose_b=True)(r_q, ops.unsqueeze(Rh, 0).astype(dtype).repeat(B, axis=0))
-    rel_w = ops.ReduceSum()(ops.mul(ops.unsqueeze(r_q, -2), ops.unsqueeze(ops.unsqueeze(Rw, 0), 0).astype(dtype)), -1)
+    rel_h = mint.bmm(r_q.reshape(-1, q_w, dim),
+                     ops.unsqueeze(Rh, 0).astype(dtype).repeat(B, axis=0).reshape(-1, q_w, dim).transpose(0, 2, 1))\
+        .reshape(B, q_h, q_w)
+    rel_w = mint.sum(mint.mul(ops.unsqueeze(r_q, -2), ops.unsqueeze(ops.unsqueeze(Rw, 0), 0).astype(dtype)), -1)
 
     attn = (
         attn.view(B, q_h, q_w, k_h, k_w) + rel_h[:, :, :, :, None] + rel_w[:, :, :, None, :]
@@ -358,7 +360,7 @@ def add_decomposed_rel_pos(
     return attn
 
 
-class PatchEmbed(nn.Cell):
+class PatchEmbed(mnn.Cell):
     """
     Image to Patch Embedding.
     """
@@ -388,7 +390,7 @@ class PatchEmbed(nn.Cell):
 
     def construct(self, x: ms.Tensor) -> ms.Tensor:
         if sum(self.padding) > 0:
-            x = ops.pad(x, (self.padding[0], self.padding[0], self.padding[1], self.padding[1]))  # to align with torch
+            x = mint.pad(x, (self.padding[0], self.padding[0], self.padding[1], self.padding[1]))  # to align with torch
         x = self.proj(x)
         # B C H W -> B H W C
         x = x.permute(0, 2, 3, 1)

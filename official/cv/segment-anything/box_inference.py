@@ -64,11 +64,11 @@ def infer(args):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=("Runs inference on one image"))
-    parser.add_argument("--image_path", type=str,
+    parser.add_argument("--image-path", type=str,
                         default='https://github.com/user-attachments/assets/022bd54a-4e28-4c22-82d4-45113bbe49ee',
                         help="Path to an input image.")
 
-    parser.add_argument("--box_prompt", type=list,
+    parser.add_argument("--box-prompt", type=list,
                         default=[[425, 600, 700, 875]],
                         help="An input prompt box.")
 
@@ -87,7 +87,7 @@ if __name__ == '__main__':
     )
 
     parser.add_argument("--device", type=str, default="Ascend", help="The device to run generation on.")
-    parser.add_argument("--amp_level", type=str, default="O0", help="auto mixed precision level O0, O2.")
+    parser.add_argument("--amp-level", type=str, default="O0", help="auto mixed precision level O0, O2.")
     parser.add_argument("--mode", type=int, default=0, help="MindSpore context mode. 0 for graph, 1 for pynative.")
 
     args = parser.parse_args()
