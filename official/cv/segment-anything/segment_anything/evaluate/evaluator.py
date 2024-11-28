@@ -1,7 +1,6 @@
 from typing import List, Tuple
 
 import mindspore as ms
-from mindspore import nn
 from mindspore.dataset import BatchDataset
 from tqdm import tqdm
 

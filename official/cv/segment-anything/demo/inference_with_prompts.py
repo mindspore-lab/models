@@ -282,7 +282,7 @@ if __name__ == '__main__':
     )
 
     parser.add_argument(
-        "--output_dir",
+        "--output-dir",
         type=str,
         default='./prompt_test_img',
         help=(

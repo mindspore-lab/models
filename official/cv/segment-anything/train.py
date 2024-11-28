@@ -13,13 +13,12 @@ from segment_anything.utils import logger
 from segment_anything.utils.callbacks import create_callback
 from segment_anything.utils.config import parse_args
 from segment_anything.utils.model_wrapper import NetWithLossWrapper, TrainOneStepCellWrapper, SamIterativeSegModel
-from segment_anything.utils.utils import set_distributed, set_directory_and_log, update_rank_to_dataloader_config
+from segment_anything.utils.utils import set_distributed, set_directory_and_log, update_rank_to_dataloader_config, set_env
 
 
 def main(args) -> None:
     # Step1: initialize environment
-    ms.context.set_context(mode=args.mode, device_target=args.device)
-    ms.set_seed(42)
+    set_env(args)
 
     rank_id, rank_size, main_device = set_distributed(args.distributed)
     update_rank_to_dataloader_config(rank_id, rank_size, args.train_loader, args.eval_loader, args.callback)
@@ -76,9 +75,9 @@ if __name__ == "__main__":
                                     "For list, use number to denote position, eg: callback.1.interval=100.")
 
     # model arts
-    parser_config.add_argument("--enable_modelarts", type=ast.literal_eval, default=False)
-    parser_config.add_argument("--train_url", type=str, default="", help="obs path to output folder")
-    parser_config.add_argument("--data_url", type=str, default="", help="obs path to dataset folder")
+    parser_config.add_argument("--enable-modelarts", type=ast.literal_eval, default=False)
+    parser_config.add_argument("--train-url", type=str, default="", help="obs path to output folder")
+    parser_config.add_argument("--data-url", type=str, default="", help="obs path to dataset folder")
 
     args = parse_args(parser_config)
     main(args)

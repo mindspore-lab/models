@@ -1,6 +1,6 @@
 import numpy as np
 import mindspore as ms
-from mindspore import ops
+from mindspore import ops, mint
 
 import math
 from copy import deepcopy
@@ -56,7 +56,7 @@ class MaskData:
             if k not in self._stats or self._stats[k] is None:
                 self._stats[k] = deepcopy(v)
             elif isinstance(v, ms.Tensor):
-                self._stats[k] = ops.cat([self._stats[k], v], axis=0)
+                self._stats[k] = mint.cat([self._stats[k], v], dim=0)
             elif isinstance(v, np.ndarray):
                 self._stats[k] = np.concatenate([self._stats[k], v], axis=0)
             elif isinstance(v, list):
@@ -78,10 +78,10 @@ def is_box_near_crop_edge(
     orig_box_ms = ms.Tensor(orig_box, dtype=ms.float32)
     boxes = uncrop_boxes_xyxy(boxes, crop_box).float()
     # two nan is considered as equal. This is compat for Ascend.
-    near_crop_edge = ops.isclose(boxes, crop_box_ms[None, :], atol=atol, rtol=0.0, equal_nan=True)
-    near_image_edge = ops.isclose(boxes, orig_box_ms[None, :], atol=atol, rtol=0.0, equal_nan=True)
-    near_crop_edge = ops.logical_and(near_crop_edge, ~near_image_edge)
-    return ops.any(near_crop_edge, axis=1)
+    near_crop_edge = mint.isclose(boxes, crop_box_ms[None, :], atol=atol, rtol=0.0, equal_nan=True)
+    near_image_edge = mint.isclose(boxes, orig_box_ms[None, :], atol=atol, rtol=0.0, equal_nan=True)
+    near_crop_edge = mint.logical_and(near_crop_edge, ~near_image_edge)
+    return mint.any(near_crop_edge, dim=1)
 
 
 def box_xyxy_to_xywh(box_xyxy: ms.Tensor) -> ms.Tensor:
@@ -118,7 +118,7 @@ def mask_to_rle_ms(tensor: ms.Tensor) -> List[Dict[str, Any]]:
     out = []
     for i in range(b):
         cur_idxs = change_indices[change_indices[:, 0] == i, 1]
-        cur_idxs = ops.cat(
+        cur_idxs = mint.cat(
             [
                 ms.Tensor([0], dtype=cur_idxs.dtype),
                 cur_idxs + 1,
@@ -249,7 +249,7 @@ def uncrop_masks(
     # Coordinate transform masks
     pad_x, pad_y = orig_w - (x1 - x0), orig_h - (y1 - y0)
     pad = (x0, pad_x - x0, y0, pad_y - y0)
-    return ops.pad(masks.astype(ms.int32), pad, value=0).astype(ms.int32)
+    return mint.pad(masks.astype(ms.int32), pad, value=0).astype(ms.int32)
 
 
 def remove_small_regions(
@@ -295,7 +295,7 @@ def batched_mask_to_box(masks: ms.Tensor) -> ms.Tensor:
     """
     # ms.max below raises an error on empty inputs, just skip in this case
     if ops.numel(masks) == 0:
-        return ops.zeros((*masks.shape[:-2], 4))
+        return mint.zeros((*masks.shape[:-2], 4))
 
     # Normalize shape to CxHxW
     shape = masks.shape
@@ -307,25 +307,25 @@ def batched_mask_to_box(masks: ms.Tensor) -> ms.Tensor:
 
     # Get top and bottom edges
     masks = masks.astype(ms.int32)
-    in_height, _ = ops.max(masks, axis=-1)
+    in_height, _ = mint.max(masks, dim=-1)
 
-    in_height_coords = in_height * ops.arange(h)[None, :]
-    bottom_edges, _ = ops.max(in_height_coords, axis=-1)
+    in_height_coords = in_height * mint.arange(h)[None, :]
+    bottom_edges, _ = mint.max(in_height_coords, dim=-1)
     in_height_coords = in_height_coords + h * (1 - in_height)
-    top_edges, _ = ops.min(in_height_coords, axis=-1)
+    top_edges, _ = mint.min(in_height_coords, dim=-1)
 
     # Get left and right edges
-    in_width, _ = ops.max(masks, axis=-2)
-    in_width_coords = in_width * ops.arange(w)[None, :]
-    right_edges, _ = ops.max(in_width_coords, axis=-1)
+    in_width, _ = mint.max(masks, dim=-2)
+    in_width_coords = in_width * mint.arange(w)[None, :]
+    right_edges, _ = mint.max(in_width_coords, dim=-1)
     in_width_coords = in_width_coords + w * (1 - in_width)
-    left_edges, _ = ops.min(in_width_coords, axis=-1)
+    left_edges, _ = mint.min(in_width_coords, dim=-1)
 
     # If the mask is empty the right edge will be to the left of the left edge.
     # Replace these boxes with [0, 0, 0, 0]
     # empty_filter = (right_edges < left_edges) | (bottom_edges < top_edges)
-    empty_filter = ops.logical_or((right_edges < left_edges), (bottom_edges < top_edges))
-    out = ops.stack([left_edges, top_edges, right_edges, bottom_edges], axis=-1)
+    empty_filter = mint.logical_or((right_edges < left_edges), (bottom_edges < top_edges))
+    out = mint.stack([left_edges, top_edges, right_edges, bottom_edges], dim=-1)
     out = out * (~empty_filter).unsqueeze(-1)
 
     # Return to original shape
@@ -370,8 +370,8 @@ def box_iou(boxes1: ms.Tensor, boxes2: ms.Tensor) -> ms.Tensor:
     area1 = box_area(boxes1)  # (N,)
     area2 = box_area(boxes2)  # (M,)
 
-    lt = ops.maximum(boxes1[:, None, :2], boxes2[:, :2])  # [N,M,2]
-    rb = ops.minimum(boxes1[:, None, 2:], boxes2[:, 2:])  # [N,M,2]
+    lt = mint.maximum(boxes1[:, None, :2], boxes2[:, :2])  # [N,M,2]
+    rb = mint.minimum(boxes1[:, None, 2:], boxes2[:, 2:])  # [N,M,2]
 
     wh = (rb - lt).clamp(min=0)  # [N,M,2]
     inter = wh[:, :, 0] * wh[:, :, 1]  # [N,M]
@@ -397,5 +397,5 @@ def nms(boxes_scores, iou_threshold: float):
         ious = box_iou(max_score_box, other_boxes)  # iou between max score box(1) with other boxes(many)
         idxs = idxs[ious[0] <= iou_threshold]  # discard boxes overlap too much with max score box
 
-    keep = ops.cat(keep)
+    keep = mint.cat(keep)
     return keep
