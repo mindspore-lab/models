@@ -135,6 +135,7 @@ def main(cfg):
     if rank_id in [None, 0]:
         logger.info(f"Performance: {measures}")
 
+
 if __name__ == "__main__":
     args, config = parse_args_and_config()
     config = Dict(config)

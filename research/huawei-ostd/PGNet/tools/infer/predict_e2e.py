@@ -95,6 +95,7 @@ class TextEnd2End(object):
         dt_boxes = self.filter_tag_det_res_only_clip(points, ori_im.shape)
         return dt_boxes, strs
 
+
 if __name__ == "__main__":
     # parse args
     args = parse_args()
