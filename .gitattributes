@@ -1,2 +1,0 @@
-E10M.0* filter=lfs diff=lfs merge=lfs -text
-E3M.0 filter=lfs diff=lfs merge=lfs -text
