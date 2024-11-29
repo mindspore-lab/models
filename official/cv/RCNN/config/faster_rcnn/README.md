@@ -118,7 +118,7 @@ Performance tested on Ascend 910(8p) with graph mode.
 
 |     model name     | backbone | cards | batch size | resolution | jit level | graph compile | s/step | img/s | mAP  |                           recipe                           |                                                    weight                                                     |
 |:------------------:|:--------:|:-----:|:----------:|:----------:|:---------:|:-------------:|:------:|:-----:|:----:|:----------------------------------------------------------:|:-------------------------------------------------------------------------------------------------------------:|
-| FasterRCNN R50-FPN | resnet50 |   8   |     2      |  768x1280  |    O0     |     265s      |  0.16  | 96.00 | 37.3 | [yaml](config/faster_rcnn/faster_rcnn_resnet50_fpn_1x.yml) | [weight](https://download.mindspore.cn/model_zoo/official/cv/rcnn/FasterRCNN_det_resnet50_epoch12_rank0.ckpt) |[log](https://download.mindspore.cn/model_zoo/official/cv/rcnn/FasterRCNN_det_resnet50_epoch12_rank0.log)|
+| FasterRCNN R50-FPN | resnet50 |   8   |     2      |  768x1280  |    O0     |     265s      |  0.16  | 96.00 | 37.0 | [yaml](config/faster_rcnn/faster_rcnn_resnet50_fpn_1x.yml) | [weight](https://download-mindspore.osinfra.cn/toolkits/models/rcnn/FasterRCNN_ascend_v2_resnet50_coco2017_mAP37.0.ckpt) |
 
 
 ## Citation
