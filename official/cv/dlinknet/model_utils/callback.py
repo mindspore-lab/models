@@ -2,11 +2,11 @@ import time
 
 from mindspore import save_checkpoint, load_checkpoint, load_param_into_net
 from mindspore.train.callback import Callback
-from models.dlinknet import DinkNet34, DinkNet50
+from models.dlinknet import DLinkNet34, DLinkNet50
 
 
 class MyCallback(Callback):
-    def __init__(self, weight_file_name, rank_label, device_num, show_step=False, lr=2e-4, model_name='dinknet34'):
+    def __init__(self, weight_file_name, rank_label, device_num, show_step=False, lr=2e-4, model_name='dlinknet34'):
         super(MyCallback, self).__init__()
         self.no_optim = 0
         self.train_epoch_best_loss = 100.
@@ -68,10 +68,10 @@ class MyCallback(Callback):
                 print(self.rank_label + 'early stop at %d epoch (cause cur_lr < 5e-7)' % epoch_num)
                 run_context.request_stop()
                 return
-            if self.model_name == 'dinknet34':
-                network = DinkNet34()
+            if self.model_name == 'dlinknet34':
+                network = DLinkNet34()
             else:
-                network = DinkNet50()
+                network = DLinkNet50()
             param_dict = load_checkpoint(self.file_name)
             load_param_into_net(network, param_dict)
             cb_params.train_network = network

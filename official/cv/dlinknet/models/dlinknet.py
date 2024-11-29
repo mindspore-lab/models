@@ -92,9 +92,9 @@ class DecoderBlock(nn.Cell):
         return x
 
 
-class DinkNet34(nn.Cell):
+class DLinkNet34(nn.Cell):
     def __init__(self, num_classes=1, use_backbone=False):
-        super(DinkNet34, self).__init__()
+        super(DLinkNet34, self).__init__()
         self.args = parse_args()
 
         filters = [64, 128, 256, 512]
@@ -158,9 +158,9 @@ class DinkNet34(nn.Cell):
         return sigmoid(out)
 
 
-class DinkNet50(nn.Cell):
+class DLinkNet50(nn.Cell):
     def __init__(self, num_classes=1, use_backbone=False):
-        super(DinkNet50, self).__init__()
+        super(DLinkNet50, self).__init__()
         self.args = parse_args()
 
         filters = [256, 512, 1024, 2048]

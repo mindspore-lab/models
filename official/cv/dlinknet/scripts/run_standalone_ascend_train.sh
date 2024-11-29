@@ -23,8 +23,9 @@ if [ $# != 2 ]
 then
   export DEVICE_ID=$3
 fi
-
-mkdir "./output"
+if ! test -d "./output"; then
+    mkdir "./output"
+fi
 
 DATASET=$(get_real_path $1)
 CONFIG_PATH=$(get_real_path $2)

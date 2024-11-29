@@ -14,8 +14,8 @@ D-LinkNet模型基于LinkNet架构构建。实现方式见论文[D-LinkNet: Link
  ```
 
 ## 预训练权重
-- [Resnet34 Imagenet Checkpoint]()
-- [Resnet50 Imagenet Checkpoint]()
+- [Resnet34 Imagenet Checkpoint](https://download-mindspore.osinfra.cn/toolkits/models/dlinknet/resnet34_ascend_v130_imagenet2012_official_cv_bs256_top1acc73.83_top5acc91.61.ckpt)
+- [Resnet50 Imagenet Checkpoint](https://download-mindspore.osinfra.cn/toolkits/models/dlinknet/resnet50_ascend_v1100_imagenet2012_official_cv_top1acc76.97_top5acc93.44.ckpt)
 
 ## 数据集
 
@@ -87,3 +87,11 @@ D-LinkNet模型基于LinkNet架构构建。实现方式见论文[D-LinkNet: Link
   |:----------:|:--------:|:-----:|:----------:|:----------:|:-------------:|:---------:|:------:|:-----:|:---:|:----:|:------:|
   | dlinknet34 | resent34 | 1 | 4 | 1024x1024 |  56s | O0 | 0.17 | 23.52 | 98.34% |[yaml](./configs/dlinknet34_config.yaml)| [weight]() |
   | dlinknet50 | resent50 | 1 | 4 | 1024x1024 | 133s | O0 | 0.39 | 10.25 | 98.37% |[yaml](./configs/dlinknet50_config.yaml)| [weight]() |
+
+## 评估结果样例
+
+| 原始图像 | 标签图像 | 模型预测结果 |
+|:--------------:|:-----:|:-----------------:|
+|![dlinknet_999667_sat](https://github.com/user-attachments/assets/31b9e722-c44d-47bd-9c65-321420a2c4da)|![dlinknet_999667_mask](https://github.com/user-attachments/assets/355c4b81-5939-4cf4-ada6-ba45c8accc88)|![dlinknet_999667_predict](https://github.com/user-attachments/assets/57b7a05b-8aa8-41a8-a0f3-9843e19556da)|
+|![dlinknet_999764_sat](https://github.com/user-attachments/assets/2f86ef1d-068a-4fb4-b9fa-33d79af51f0c)|![dlinknet_999764_mask](https://github.com/user-attachments/assets/8c9fa21d-e3d8-4b3d-9b9c-5e329bd1c0fb)|![dlinknet_999764_predict](https://github.com/user-attachments/assets/176a2d95-8fb3-441b-9d20-b42f0472ecb8)|
+
