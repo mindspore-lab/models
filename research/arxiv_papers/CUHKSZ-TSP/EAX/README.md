@@ -5,12 +5,12 @@ This folder contains the source code for EAX, which was used in our experiments.
 # Folder Functions
 
 - **Detail**: Stores the final results of each execution.
-- **Error**: Contains error files from each execution.
-- **Exe_cpp**: Contains the EAX code.
+- **error**: Contains error files from each execution.
+- **exe_cpp**: Contains the EAX code.
 - **Ins**: Contains instances being tested. Due to the large size of benchmark instances, please download them from TSP websites and place them here. Refer to E10K.0 for the file format.
 - **Output**: Stores part results from each execution.
 - **Sol**: Stores part results from each execution.
-- **Summary_new**: Contains the summary of results.
+- **summary_new**: Contains the summary of results.
 
 # File Functions
 
