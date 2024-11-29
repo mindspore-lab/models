@@ -1,6 +1,6 @@
 # A Hierarchical Destroy and Repair Approach for Solving Very Large-Scale Travelling Salesman Problem
 
-This repository contains the source code and data associated with the paper [A Hierarchical Destroy and Repair Approach for Solving Very Large-Scale Travelling Salesman Problem](https://arxiv.org/abs/2308.04639).
+This repository contains the source code associated with the paper [A Hierarchical Destroy and Repair Approach for Solving Very Large-Scale Travelling Salesman Problem](https://arxiv.org/abs/2308.04639).
 
 ## Folder Descriptions
 

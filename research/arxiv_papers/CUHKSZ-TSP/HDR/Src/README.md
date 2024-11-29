@@ -1,7 +1,4 @@
-
-Function of each forder and file:
-
-***************************************************************************
+# Function of each forder and file:
 
 main.cpp :
 
