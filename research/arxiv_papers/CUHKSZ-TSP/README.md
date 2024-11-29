@@ -10,4 +10,4 @@ This repository contains the source code and data for the paper [A Hierarchical 
 
 ## Requirements
 
-An environment capable of running C++ is required.
+An environment capable of running C++ and python is required.
