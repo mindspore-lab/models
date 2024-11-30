@@ -1,0 +1,54 @@
+# Builtin Configurations(DO NOT CHANGE THESE CONFIGURATIONS unless you know exactly what you are doing)
+enable_modelarts: False
+# Url for modelarts
+data_url: ""
+train_url: ""
+checkpoint_url: ""
+# Path for local
+data_path: "/cache/data"
+output_path: "/cache/train"
+load_path: "/cache/checkpoint_path"
+device_target: "CPU" # Ascend
+need_modelarts_dataset_unzip: True
+
+# ==============================================================================
+# export option
+model_root: "checkpoint"
+ckpt_file: "model.ckpt"
+file_name: "net"
+file_format: "MINDIR" # AIR,MINDIR,ONNX
+
+####################
+
+# params for dataset and data loader
+data_root: "data"
+num_classes: 10
+imb_ratio: 100
+image_height: 32
+image_width: 32
+batch_size: 50
+
+# params for setting up models
+pretrained_model: "pretrained_weights/resnet34-f297d27e.ckpt"
+model_root: "checkpoint"
+checkpoint_path: "model.ckpt"
+
+# params for training network
+loss_type: 'focal' # softmax sigmoid focal
+beta: 0.9999
+gamma: 2
+LR: 0.01
+epoch_num: 1000
+log_step: 10
+manual_seed: null # None
+
+---
+
+# Help description for each configuration
+enable_modelarts: "Whether training on modelarts, default: False"
+data_url: "Url for modelarts"
+train_url: "Url for modelarts"
+data_path: "The location of the input data."
+output_path: "The location of the output file."
+device_target: 'Target device type'
+enable_profiling: 'Whether enable profiling while training, default: False'
