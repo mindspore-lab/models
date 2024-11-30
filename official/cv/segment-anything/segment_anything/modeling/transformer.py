@@ -13,7 +13,7 @@ class TwoWayTransformer(nn.Cell):
         embedding_dim: int,
         num_heads: int,
         mlp_dim: int,
-        activation: Type[nn.Cell] = ReLU,
+        activation: Type[nn.Cell] = nn.ReLU,
         attention_downsample_rate: int = 2,
     ) -> None:
         """
@@ -105,7 +105,7 @@ class TwoWayAttentionBlock(nn.Cell):
         embedding_dim: int,
         num_heads: int,
         mlp_dim: int = 2048,
-        activation: Type[nn.Cell] = ReLU,
+        activation: Type[nn.Cell] = nn.ReLU,
         attention_downsample_rate: int = 2,
         skip_first_layer_pe: bool = False,
     ) -> None:

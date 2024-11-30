@@ -118,8 +118,8 @@ class Block(nn.Cell):
         num_heads: int,
         mlp_ratio: float = 4.0,
         qkv_bias: bool = True,
-        norm_layer: Type[nn.Cell] = mint.nn.LayerNorm,
-        act_layer: Type[nn.Cell] = GELU,
+        norm_layer: Type[nn.Cell] = nn.LayerNorm,
+        act_layer: Type[nn.Cell] = nn.GELU,
         use_rel_pos: bool = False,
         rel_pos_zero_init: bool = True,
         window_size: int = 0,
@@ -349,7 +349,7 @@ def add_decomposed_rel_pos(
     dtype = r_q.dtype
     rel_h = mint.bmm(r_q.reshape(-1, q_w, dim),
                      ops.unsqueeze(Rh, 0).astype(dtype).repeat(B, axis=0).reshape(-1, q_w, dim).transpose(0, 2, 1))\
-        .reshape(B, q_h, q_w)
+        .reshape(B, q_h, q_w, q_w)
     rel_w = mint.sum(mint.mul(ops.unsqueeze(r_q, -2), ops.unsqueeze(ops.unsqueeze(Rw, 0), 0).astype(dtype)), -1)
 
     attn = (

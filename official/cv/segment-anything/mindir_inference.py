@@ -82,7 +82,7 @@ if __name__ == '__main__':
     parser.add_argument("--device", type=str, default="Ascend", help="The device to run generation on.")
     parser.add_argument("--amp-level", type=str, default="O2", help="auto mixed precision level O0, O2.")
     parser.add_argument("--mode", type=int, default=0, help="MindSpore context mode. 0 for graph, 1 for pynative.")
-    parser.add_argument("--jit-level", type=str, default='O1', help="O0: kbk mode, O1: dvm mode.")
+    parser.add_argument("--jit-level", type=str, default='O1', help="O0 or O1.")
 
     args = parser.parse_args()
     print(args)
