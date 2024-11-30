@@ -7,15 +7,14 @@ import sys
 from time import time
 
 import numpy as np
+import mindspore as ms
+import mindspore.ops as ops
+from mindspore.common import dtype as mstype
+
 from config import parse_args
 from postprocess import Postprocessor
 from preprocess import Preprocessor
 from utils import get_ckpt_file, get_image_paths
-
-import mindspore as ms
-import mindspore.ops as ops
-from mindspore.common import dtype as mstype
-from mindspore import mint
 
 __dir__ = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.abspath(os.path.join(__dir__, "../../../")))

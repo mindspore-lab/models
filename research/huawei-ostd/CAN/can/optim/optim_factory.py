@@ -75,10 +75,6 @@ def create_optimizer(
                 "filter_bias_and_bn (default=True) will be disabled"
             )
 
-    # opt_args = dict(**kwargs)
-    # if lr is not None:
-    #    opt_args.setdefault('lr', lr)
-
     assert (
         loss_scale == 1.0
     ), "loss scale must be 1.0 in optimizer due to gradients are already scaled previously in TrainStepWrapper."

@@ -1,11 +1,12 @@
 import sys
 import math
 import mindspore as ms
+from mindspore import ops
 
 from can.models.backbones import build_backbone
 from can.models.heads import build_head
 from can.models import build_model
-from mindspore import ops
+
 
 sys.path.append(".")
 ms.set_context(mode=ms.PYNATIVE_MODE, pynative_synchronize=True, jit_config={"jit_level": "O0"})

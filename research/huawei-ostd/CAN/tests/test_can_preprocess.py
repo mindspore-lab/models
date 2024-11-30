@@ -223,5 +223,5 @@ if __name__ == "__main__":
     """
 
     test_transform_pipeline()
-    # test_train_data_config()
-    # test_eval_data_config()
+    test_train_data_config()
+    test_eval_data_config()
