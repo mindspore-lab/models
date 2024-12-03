@@ -1,0 +1,1 @@
+test_img.jpg	 S = ( \sum _ { i = 1 } ^ { n } \theta _ { i } - ( n - 2 ) \pi ) r ^ { 2 }

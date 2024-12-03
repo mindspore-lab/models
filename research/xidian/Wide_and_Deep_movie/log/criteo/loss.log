@@ -1,0 +1,15 @@
+epoch: 1, step: 2582, wide_loss: 0.4467863, deep_loss: 0.45492005
+epoch: 2, step: 2582, wide_loss: 0.44502163, deep_loss: 0.45342356
+epoch: 3, step: 2582, wide_loss: 0.44058114, deep_loss: 0.44923043
+epoch: 4, step: 2582, wide_loss: 0.44818583, deep_loss: 0.45708147
+epoch: 5, step: 2582, wide_loss: 0.4346975, deep_loss: 0.4438171
+epoch: 6, step: 2582, wide_loss: 0.44197744, deep_loss: 0.45122612
+epoch: 7, step: 2582, wide_loss: 0.44332117, deep_loss: 0.45277545
+epoch: 8, step: 2582, wide_loss: 0.43886352, deep_loss: 0.44851917
+epoch: 9, step: 2582, wide_loss: 0.4396138, deep_loss: 0.4494523
+epoch: 10, step: 2582, wide_loss: 0.43403253, deep_loss: 0.44408944
+epoch: 11, step: 2582, wide_loss: 0.4477606, deep_loss: 0.45803535
+epoch: 12, step: 2582, wide_loss: 0.45060232, deep_loss: 0.4611343
+epoch: 13, step: 2582, wide_loss: 0.4386824, deep_loss: 0.44943956
+epoch: 14, step: 2582, wide_loss: 0.4355884, deep_loss: 0.4466366
+epoch: 15, step: 2582, wide_loss: 0.4370228, deep_loss: 0.44836158
