@@ -17,14 +17,14 @@ class EvalCallBack(Callback):
         self.optim=optim
 
     def epoch_end(self, run_context):
-        # 获取到现在的epoch数
         if self.optim!=None:
-            print(self.optim.get_lr().asnumpy())
+            self._logger.info("learning rate is: {}".format(self.optim.get_lr().asnumpy()))
         cb_param = run_context.original_args()
         cur_epoch = cb_param.cur_epoch_num
-        # 如果达到进行验证的epoch数，则进行以下验证操作
         if cur_epoch % self.epochs_to_eval == 0:
-            # 此处model设定的metrics是准确率Accuracy
+            if hasattr(self.model, 'validate') and callable(getattr(self.model, 'validate')):
+                self.model.validate()
+                self._logger.info("validating...")
             losses = []
             for batch in self.eval_dataloader:
                 loss = self.model(*batch)
@@ -33,10 +33,13 @@ class EvalCallBack(Callback):
             mean_loss = np.mean(losses)
             self.per_eval["epoch"].append(cur_epoch)
             self.per_eval["loss"].append(mean_loss)
+            self._logger.info("valid loss 为: {}".format(mean_loss))
             if mean_loss < self.per_eval['min_val_loss']:
+                self._logger.info("Val loss decrease from {} to {}".format(self.per_eval['min_val_loss'],mean_loss))
                 self.per_eval['best_epoch']=cur_epoch
                 self.per_eval['min_val_loss'] = mean_loss
-            self._logger.info("valid loss 为: {}".format(mean_loss))
+            if hasattr(self.model, 'validate') and callable(getattr(self.model, 'validate')):
+                self.model.train()
 
 
 

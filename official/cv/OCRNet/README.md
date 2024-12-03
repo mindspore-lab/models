@@ -9,8 +9,12 @@ Cityscapes leaderboard on the ECCV 2020
 
 ## Requirement
 
-- OCRNet is implemented based on  [mindspore 2.0](https://www.mindspore.cn/install/en) & [mindcv 0.2.2](https://github.com/mindspore-lab/mindcv)
-- Install dependencies: pip install -r requirements.txt
+| mindspore | ascend driver |  firmware   | cann toolkit/kernel |
+|:---------:|:-------------:|:-----------:|:-------------------:|
+|   2.3.1   |   24.1.rc2    | 7.3.0.1.231 |    8.0.RC2.beta1    |
+
+  - OCRNet is implemented based on [mindcv 0.3.0](https://github.com/mindspore-lab/mindcv)
+  - Install dependencies: pip install -r requirements.txt
 
 ## Data preparation
 
@@ -30,20 +34,7 @@ your directory tree should be look like this:：
           └── val
 ```
 
-## Performance
-
-- npu : ascend 910A
-- os: euler 2.8
-- cpu: x86 with 96 cores
-- mem: 756G
-- dataset: cityscapes
-
-| method | backbone | image size | cards | step | bs | fps | mIoU | mIoU(ms) | recipe/weights | 
-| :-: | :-:| :-: | :-:| :-: | :-:| :-: | :-:| :-: | :-: |
-| OCRNet | [hrnet_w48](https://github.com/mindspore-lab/mindcv) | [1024, 2048] | 8 | 16k | 2 | 72.39 | 82.07 | 82.96 |[yaml](config/ocrnet/config_ocrnet_hrw48_16k.yml)/ [ckpt](https://download.mindspore.cn/model_zoo/official/cv/ocrnet/OCRNet_hrw48_16k.ckpt) |
-| OCRNet | [hrnet_w32](https://github.com/mindspore-lab/mindcv) | [1024, 2048] | 8 | 16k | 2 | 85.10 | 81.13 | 82.27 |[yaml](config/ocrnet/config_ocrnet_hrw32_16k.yml)/ [ckpt](https://download.mindspore.cn/model_zoo/official/cv/ocrnet/OCRNet_hrw32_16k.ckpt) |
-
-### Training
+## Training
 
 ```shell
 # single card
@@ -68,7 +59,7 @@ Training on modelarts:
 2. Refer to [ModelArts](https://support.huaweicloud.com/modelarts/index.html) start training.
 ```
 
-### evaluation
+## evaluation
 
 ```shell
 # single card
@@ -79,11 +70,19 @@ mpirun --allow-run-as-root -n 8
     python eval.py --config config/ocrnet/config_ocrnet_hrw32_16k.yml --ckpt_path [downloaded_ckpt]
 ```
 
-### resume training
+## resume training
 
 ```shell
 python train.py --config config/ocrnet/config_ocrnet_hrw32_16k.yml --resume_ckpt [ckpt_to_resume]
 ```
+
+## Performance
+Performance tested on Ascend 910(8p) with graph mode.
+
+| model name | backbone  | cards | batch size | resolution | jit level | graph compile | s/step | img/s | mIoU  | mIoU(ms) |                      recipe                       |                                          weights                                           |
+|:----------:|:---------:|:-----:|:----------:|:----------:|:---------:|:-------------:|:------:|:-----:|:-----:|:--------:|:-------------------------------------------------:|:------------------------------------------------------------------------------------------:|
+| OCRNet_w48 | hrnet_w48 |   8   |     2      | 1024x2048  |    O0     |     549s      |  0.21  | 75.00 | 82.07 |  82.96   | [yaml](config/ocrnet/config_ocrnet_hrw48_16k.yml) | [weight](https://download.mindspore.cn/model_zoo/official/cv/ocrnet/OCRNet_hrw48_16k.ckpt) |
+| OCRNet_w32 | hrnet_w32 |   8   |     2      | 1024x2048  |    O0     |     553s      |  0.20  | 79.00 | 81.13 |  82.27   | [yaml](config/ocrnet/config_ocrnet_hrw32_16k.yml) | [weight](https://download.mindspore.cn/model_zoo/official/cv/ocrnet/OCRNet_hrw32_16k.ckpt) |
 
 ## Citation
 
