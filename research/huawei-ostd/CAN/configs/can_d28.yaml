@@ -1,0 +1,158 @@
+system:
+  mode: 1 # 0 for graph mode, 1 for pynative mode in MindSpore
+  distribute: False
+  amp_level: O0
+  amp_level_infer: O0 # running inference in O2 mode
+  seed: 42
+  log_interval: 100
+  val_while_train: False
+  drop_overflow_update: True
+  ckpt_max_keep: 5
+
+common:
+  character_dict_path: &character_dict_path /home/nginx/work/zhangjunlong/CAN/can/utils/dict/latex_symbol_dict.txt
+  ckpt_load_path: &ckpt_load_path /home/nginx/work/zhangjunlong/CAN/configs/can_params_from_paddle.ckpt
+  num_classes: &num_classes 111 # num_chars_in_dict + 1
+  max_text_len: &max_text_len 36
+  infer_mode: &infer_mode False
+  use_space_char: &use_space_char False
+  batch_size: &batch_size 8
+
+model:
+  type: rec
+  transform: null
+  pretrained: *ckpt_load_path
+  backbone:
+    name: rec_can_densenet
+    pretrained: False
+    growth_rate: 24
+    reduction: 0.5
+    bottleneck: True
+    use_dropout: True
+    input_channels: 1
+  head:
+    name: CANHead
+    out_channels: 111
+    ratio: 16
+    attdecoder: 
+      is_train: False #修改
+      input_size: 256
+      hidden_size: 256
+      encoder_out_channel: 684
+      dropout: True
+      dropout_ratio: 0.5
+      word_num: 111
+      counting_decoder_out_channel: 111
+      attention: 
+        attention_dim: 512
+        word_conv_kernel: 1
+
+postprocess:
+  name: CANLabelDecode
+  character_dict_path: *character_dict_path
+  use_space_char: *use_space_char
+
+loss:
+  name: CANLoss
+
+scheduler:
+  scheduler: warmup_cosine_decay
+  min_lr: 0.0
+  lr: 0.01
+  num_epochs: 8
+  warmup_epochs: 1
+  decay_epochs: 1
+
+optimizer:
+  opt: momentum
+  momentum: 0.9
+  weight_decay: 0.0001
+
+metric:
+  name: RecMetric
+  main_indicator: acc
+  character_dict_path: *character_dict_path
+  ignore_space: True
+  print_flag: False
+  filter_ood: False
+
+train:
+  ckpt_save_dir: './tmp_rec'
+  dataset_sink_mode: False
+  pred_cast_fp32: False
+  clip_grad: True
+  clip_norm: 0.1
+  dataset:
+    type: RecDataset
+    dataset_root: /home/nginx/work/zhangjunlong/mindocr_mm/myds
+    data_dir: /home/nginx/work/zhangjunlong/mindocr_mm/myds/training
+    label_file: /home/nginx/work/zhangjunlong/mindocr_mm/myds/gt_training.txt
+    sample_ratio: 1.0
+    shuffle: False
+    transform_pipeline:
+      - DecodeImage:
+          img_mode: BGR
+          channel_first: False
+      - CANImageNormalize:
+          mean: [0,0,0]
+          std: [1,1,1]
+          order: "hwc"
+      - GrayImageChannelFormat:
+          inverse: True
+      - CANLabelEncode:
+          task: "train"
+          lower: False
+          character_dict_path: *character_dict_path
+    output_columns: ["image", "label"]
+    net_input_column_index: [0,1,2]
+    label_column_index: [2,3]
+
+  loader:
+    shuffle: False
+    batch_size: *batch_size
+    drop_remainder: True
+    max_rowsize: 64
+    num_workers: 1
+    collate_fn: can_collator
+    output_columns: ["images", "image_masks", "labels", "label_masks"]
+
+
+eval:
+  ckpt_load_path: *ckpt_load_path
+  dataset_sink_mode: False
+  pred_cast_fp32: False
+  clip_grad: True
+  clip_norm: 0.1
+  dataset:
+    type: RecDataset
+    dataset_root: /home/nginx/work/zhangjunlong/myds
+    data_dir: /home/nginx/work/zhangjunlong/myds/training
+    label_file: /home/nginx/work/zhangjunlong/myds/gt_training.txt
+    sample_ratio: 1.0
+    shuffle: False
+    transform_pipeline:
+      - DecodeImage:
+          img_mode: BGR
+          channel_first: False
+      - CANImageNormalize:
+          mean: [0,0,0]
+          std: [1,1,1]
+          order: "hwc"
+      - GrayImageChannelFormat:
+          inverse: True
+      - CANLabelEncode:
+          task: "eval"
+          lower: False
+          character_dict_path: *character_dict_path
+    output_columns: ["image", "image_mask","ones_label","label","label_len"]
+    net_input_column_index: [0, 1, 2]
+    label_column_index: [3,4]
+
+  loader:
+    shuffle: False
+    batch_size: 1
+    drop_remainder: False
+    num_workers: 1
+
+
+

@@ -112,7 +112,7 @@ if __name__ == "__main__":
     network = OCRNet(config).set_train(False)
     if config.mix:
         ms.amp.auto_mixed_precision(network, config.amp_level)
-    ms.load_checkpoint(config.checkpoint_path, network)
+    ms.load_checkpoint(config.ckpt_path, network)
     eval_net = MultiScaleInfer(
         network,
         num_classes=config.num_classes,
@@ -121,7 +121,7 @@ if __name__ == "__main__":
         multi_out=len(config.loss_weight) > 1,
     )
 
-    logger.info(f"success to load pretrained ckpt {config.checkpoint_path}")
+    logger.info(f"success to load pretrained ckpt {config.ckpt_path}")
     try:
         run_eval(config, eval_net, dataset)
     except:
