@@ -366,3 +366,14 @@ python3 export.py
 # ModelZoo主页  
 
  请浏览官网[主页](https://gitee.com/mindspore/models)。
+
+
+# 补充
+## 数据集
+先前提供的voxceleb1数据集下载地址已经不可用,请使用以下链接[voxceleb1](<https://www.kaggle.com/datasets/tnginhnht/voxceleb1>),
+测试数据请使用以下链接[voxceleb1_test](<https://www.kaggle.com/datasets/kryakrya/voxceleb1test?resource=download>)
+## 模型训练
+考虑到存储限制，使用1.3TB的数据集进行训练超出许多研究者能力,这里提供使用voxceleb1数据集进行训练(约200g)的权重[ckpt](<https://pan.baidu.com/s/10ffx5iR7ANAOnGhlbt9NCw?pwd=g39w>)，数据集格式、放置位置和config文件的使用同上。
+
+
+
