@@ -9,13 +9,12 @@ from segment_anything.evaluate.evaluator import Evaluator
 from segment_anything.evaluate.metrics import create_metric
 from segment_anything.utils import logger
 from segment_anything.utils.config import parse_args
-from segment_anything.utils.utils import set_directory_and_log, set_distributed, update_rank_to_dataloader_config
+from segment_anything.utils.utils import set_directory_and_log, set_distributed, update_rank_to_dataloader_config, set_env
 
 
 def main(args) -> None:
     # initialize environment
-    ms.context.set_context(mode=args.mode, device_target=args.device, pynative_synchronize=False)
-    ms.set_seed(42)
+    set_env(args)
 
     rank_id, rank_size, main_device = set_distributed(args.distributed)
     update_rank_to_dataloader_config(rank_id, rank_size, args.train_loader, args.eval_loader)

@@ -1,7 +1,7 @@
 import mindformers
 import mindspore as ms
 from mindformers import Blip2Classifier
-from mindspore import nn, ops
+from mindspore import nn, mint
 
 from typing import List, Tuple
 
@@ -149,16 +149,16 @@ class Sam(nn.Cell):
             )
             # low_res_masks (n, 4, h, w) if multimask_output else (n, 1, h, w)
             # iou_predictions (n, 4) if multimask_output else (n, 1)
-            pred_mask = ops.interpolate(low_res_masks, (h, w), mode='bilinear', align_corners=False)
+            pred_mask = mint.interpolate(low_res_masks, (h, w), mode='bilinear', align_corners=False)
 
             pred_masks.append(pred_mask)
             pred_ious.append(iou_predictions)
             pred_low_res_masks.append(low_res_masks)
 
         # stack along batch dimension
-        pred_masks = ops.stack(pred_masks).squeeze(2)  # -> (b, n, 1, h, w)  -> (b, n, h, w)
-        pred_ious = ops.stack(pred_ious).squeeze(2)  # -> (b, n, 1) -> (b, n,)
-        pred_low_res_masks = ops.stack(pred_low_res_masks).squeeze(2)  # -> (b, n, 1, h, w)
+        pred_masks = mint.stack(pred_masks).squeeze(2)  # -> (b, n, 1, h, w)  -> (b, n, h, w)
+        pred_ious = mint.stack(pred_ious).squeeze(2)  # -> (b, n, 1) -> (b, n,)
+        pred_low_res_masks = mint.stack(pred_low_res_masks).squeeze(2)  # -> (b, n, 1, h, w)
         if return_low_res_mask:
             return pred_masks, pred_ious, pred_low_res_masks
 
@@ -185,14 +185,14 @@ class Sam(nn.Cell):
           (ms.Tensor): Batched masks in BxCxHxW format, where (H, W)
             is given by original_size.
         """
-        masks = ops.interpolate(
+        masks = mint.interpolate(
             masks,
             (self.image_encoder.img_size, self.image_encoder.img_size),
             mode="bilinear",
             align_corners=False,
         )
         masks = masks[..., : input_size[0], : input_size[1]]
-        masks = ops.interpolate(masks, original_size, mode="bilinear", align_corners=False)
+        masks = mint.interpolate(masks, original_size, mode="bilinear", align_corners=False)
         return masks
 
     def preprocess(self, x: ms.Tensor) -> ms.Tensor:
@@ -204,5 +204,5 @@ class Sam(nn.Cell):
         h, w = x.shape[-2:]
         padh = self.image_encoder.img_size - h
         padw = self.image_encoder.img_size - w
-        x = ops.pad(x, (0, padw, 0, padh))
+        x = mint.pad(x, (0, padw, 0, padh))
         return x

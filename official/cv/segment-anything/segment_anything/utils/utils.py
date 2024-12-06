@@ -3,12 +3,12 @@ import time
 from datetime import datetime
 
 import mindspore as ms
-from mindspore import ops, Tensor, context, ParallelMode
+from mindspore import ops, Tensor, context, ParallelMode, mint
 from mindspore.communication import init, get_group_size, get_rank
+from mindspore import JitConfig
 
 from segment_anything.utils import logger
 from segment_anything.utils.logger import setup_logging
-
 
 RANK_SIZE = 1
 RANK_ID = 0
@@ -26,14 +26,14 @@ def freeze_layer(network, specify_prefix=None, filter_prefix=None):
 
 def reduce_with_mask(input, valid_mask, reduction='mean'):
     if valid_mask is None:
-        return ops.sum(input)
+        return mint.sum(input)
     if valid_mask.dtype != input.dtype:
         valid_mask = valid_mask.astype(input.dtype)
-    num_valid = ops.sum(valid_mask)
+    num_valid = mint.sum(valid_mask)
     if reduction == 'mean':
-        return ops.sum(input * valid_mask) / num_valid
+        return mint.sum(input * valid_mask) / num_valid
     else:  # sum
-        return ops.sum(input * valid_mask)
+        return mint.sum(input * valid_mask)
 
 
 def calc_iou(pred_mask: ms.Tensor, gt_mask: ms.Tensor, epsilon=1e-7):
@@ -43,8 +43,8 @@ def calc_iou(pred_mask: ms.Tensor, gt_mask: ms.Tensor, epsilon=1e-7):
         gt_mask (ms.Tensor): gt mask, with shape (b, n, h, w), value is 0 or 1.
     """
     hw_dim = (-2, -1)
-    intersection = ops.sum(ops.mul(pred_mask, gt_mask), dim=hw_dim)  # (b, n)
-    union = ops.sum(pred_mask, dim=hw_dim) + ops.sum(gt_mask, dim=hw_dim) - intersection
+    intersection = mint.sum(mint.mul(pred_mask, gt_mask), dim=hw_dim)  # (b, n)
+    union = mint.sum(pred_mask, dim=hw_dim) + mint.sum(gt_mask, dim=hw_dim) - intersection
     batch_iou = intersection / (union + epsilon)  # (b, n)
 
     return batch_iou
@@ -63,10 +63,11 @@ def all_reduce(x):
         return x
     return ops.AllReduce()(x)
 
+
 def get_broadcast_datetime(rank_size=1, root_rank=0):
     time = datetime.now()
     time_list = [time.year, time.month, time.day, time.hour, time.minute, time.second, time.microsecond]
-    if rank_size <=1:
+    if rank_size <= 1:
         return time_list
 
     # only broadcast in distribution mode
@@ -91,7 +92,7 @@ def set_distributed(distributed):
 
     # This is the only palace where global rank_id and rank_size can be modified
     global RANK_ID, RANK_SIZE
-    RANK_ID, RANK_SIZE= rank_id, rank_size
+    RANK_ID, RANK_SIZE = rank_id, rank_size
 
     print(f'rank {rank_id}/{rank_size}, main_device: {main_device}')
 
@@ -114,7 +115,6 @@ def update_rank_to_dataloader_config(rank_id, rank_size, args_train_loader, args
         for cb in arg_callback:
             if cb.type.endswith('EvalWhileTrain'):
                 cb.data_loader = args_eval_loader
-
 
 
 def set_directory_and_log(main_device, rank_id, rank_size, work_root, log_level, args_callback=None):
@@ -155,3 +155,13 @@ class Timer:
     def __exit__(self, exc_type, exc_val, exc_tb):
         self.end = time.time()
         print(f'{self.name} cost time {self.end - self.start:.3f}')
+
+
+def set_env(args):
+    ms.context.set_context(mode=args.mode, device_target=args.device)
+    ms.set_seed(42)
+    if args.mode == 0:
+        ms.set_context(jit_config={'jit_level': args.jit_level})
+    elif args.mode == 1:
+        ms.set_context(pynative_synchronize=True)
+    return

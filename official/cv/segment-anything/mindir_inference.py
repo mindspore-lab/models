@@ -9,12 +9,12 @@ from mindspore import nn
 from segment_anything.dataset.transform import TransformPipeline, ImageNorm, ImageResizeAndPad
 import matplotlib.pyplot as plt
 
-from segment_anything.utils.utils import Timer
+from segment_anything.utils.utils import Timer, set_env
 from segment_anything.utils.visualize import show_box, show_mask
 
 
 def infer(args):
-    ms.context.set_context(mode=args.mode, device_target=args.device)
+    set_env(args)
 
     # Step1: data preparation
     with Timer('preprocess'):
@@ -31,9 +31,6 @@ def infer(args):
 
         transformed = transform_pipeline(dict(image=image_np, boxes=boxes_np))
         image, boxes, origin_hw = transformed['image'], transformed['boxes'], transformed['origin_hw']
-        # batch_size for speed test
-        # image = ms.Tensor(np.expand_dims(image, 0).repeat(8, axis=0))  # b, 3, 1023
-        # boxes = ms.Tensor(np.expand_dims(boxes, 0).repeat(8, axis=0))  # b, n, 4
         image = ms.Tensor(image).unsqueeze(0)  # b, 3, 1023
         boxes = ms.Tensor(boxes).unsqueeze(0)  # b, n, 4
 
@@ -43,7 +40,7 @@ def infer(args):
             graph = ms.load(args.model_path)
             network = nn.GraphCell(graph)
         ms.amp.auto_mixed_precision(network=network, amp_level=args.amp_level)
-        mask_logits = network(image, boxes)[0]   # (1, 1, 1024, 1024)
+        network(image, boxes)   # (1, 1, 1024, 1024)
 
     with Timer('Second time inference'):
         mask_logits = network(image, boxes)[0]  # (1, 1, 1024, 1024)
@@ -65,7 +62,7 @@ def infer(args):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=("Runs inference on one image"))
-    parser.add_argument("--image_path", type=str,
+    parser.add_argument("--image-path", type=str,
                         default='https://github.com/user-attachments/assets/022bd54a-4e28-4c22-82d4-45113bbe49ee',
                         help="Path to an input image.")
     parser.add_argument(
@@ -83,8 +80,9 @@ if __name__ == '__main__':
     )
 
     parser.add_argument("--device", type=str, default="Ascend", help="The device to run generation on.")
-    parser.add_argument("--amp_level", type=str, default="O2", help="auto mixed precision level O0, O2.")
+    parser.add_argument("--amp-level", type=str, default="O2", help="auto mixed precision level O0, O2.")
     parser.add_argument("--mode", type=int, default=0, help="MindSpore context mode. 0 for graph, 1 for pynative.")
+    parser.add_argument("--jit-level", type=str, default='O1', help="O0 or O1.")
 
     args = parser.parse_args()
     print(args)

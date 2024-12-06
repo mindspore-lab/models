@@ -1,6 +1,6 @@
 import numpy as np
 import mindspore as ms
-from mindspore import ops
+from mindspore import ops, mint
 
 from typing import Any, Dict, List, Optional, Tuple
 
@@ -205,8 +205,8 @@ class SamAutomaticMaskGenerator:
             # NMS result here maybe slightly different with torchvision. This may due to the difference of sort algrithm
             # under the same value input
             scores = 1.0 / box_area(data["crop_boxes"])
-            keep_by_nms = nms(ops.cat([data["boxes"].astype(ms.float32),
-                                       scores.astype(ms.float32).unsqueeze(-1)], axis=-1),
+            keep_by_nms = nms(mint.cat([data["boxes"].astype(ms.float32),
+                                       scores.astype(ms.float32).unsqueeze(-1)], dim=-1),
                               self.crop_nms_thresh)
             data.filter(keep_by_nms)
 
@@ -240,22 +240,8 @@ class SamAutomaticMaskGenerator:
             data.cat(batch_data)
             del batch_data
         self.predictor.reset_image()
-
-        # Remove duplicates within this crop.
-        # out_boxes, out_indices, out_masks = ops.NMSWithMask(self.box_nms_thresh)(
-        #     ops.cat([data["boxes"].astype(ms.float32), data["iou_preds"].unsqueeze(-1)], axis=-1)
-        # )
-        # keep_by_nms = ops.masked_select(out_indices, out_masks)
         
-        keep_by_nms = nms(ops.cat([data["boxes"].astype(ms.float32), data["iou_preds"].unsqueeze(-1)], axis=-1), self.box_nms_thresh)
-        # import torch, torchvision
-        # keep_by_nms_torch = torchvision.ops.batched_nms(
-        #     torch.from_numpy(data["boxes"].astype(ms.float32).asnumpy()),
-        #     torch.from_numpy(data["iou_preds"].asnumpy()),
-        #     torch.zeros_like(torch.from_numpy(data["boxes"][:, 0].asnumpy())),  # categories
-        #     iou_threshold=self.box_nms_thresh,
-        # )
-        # keep_by_nms = ms.Tensor(keep_by_nms_torch.cpu().numpy())
+        keep_by_nms = nms(mint.cat([data["boxes"].astype(ms.float32), data["iou_preds"].unsqueeze(-1)], dim=-1), self.box_nms_thresh)
 
         data.filter(keep_by_nms)
 
@@ -278,7 +264,7 @@ class SamAutomaticMaskGenerator:
         # Run model on this batch
         transformed_points = self.predictor.transform.apply_coords(points, im_size)
         in_points = ms.Tensor(transformed_points, dtype=ms.float32)
-        in_labels = ops.ones(in_points.shape[0], dtype=ms.int32)
+        in_labels = mint.ones(in_points.shape[0], dtype=ms.int32)
         masks, iou_preds, _ = self.predictor.predict_mask_and_iou(
             in_points[:, None, :],
             in_labels[:, None],
@@ -288,8 +274,8 @@ class SamAutomaticMaskGenerator:
 
         # Serialize predictions and store in MaskData
         data = MaskData(
-            masks=ops.flatten(masks, start_dim=0, end_dim=1),
-            iou_preds=ops.flatten(iou_preds, start_dim=0, end_dim=1),
+            masks=mint.flatten(masks, start_dim=0, end_dim=1),
+            iou_preds=mint.flatten(iou_preds, start_dim=0, end_dim=1),
             points=ms.Tensor(points.astype(np.float32).repeat(masks.shape[1], axis=0)),
         )
         del masks
@@ -318,7 +304,7 @@ class SamAutomaticMaskGenerator:
 
         # Filter boxes that touch crop boundaries
         keep_mask = ~is_box_near_crop_edge(data["boxes"], crop_box, [0, 0, orig_w, orig_h])
-        if not ops.all(keep_mask):
+        if not mint.all(keep_mask):
             data.filter(keep_mask)
 
         # ms.max and ops.pad below raises an error on empty inputs, just return in this case
@@ -364,9 +350,9 @@ class SamAutomaticMaskGenerator:
             scores.append(float(unchanged))
 
         # Recalculate boxes and remove any new duplicates
-        masks = ops.cat(new_masks, axis=0)
+        masks = mint.cat(new_masks, dim=0)
         boxes = batched_mask_to_box(masks)
-        keep_by_nms = nms(ops.cat([boxes.astype(ms.float32), ms.Tensor(scores).unsqueeze(-1)], axis=-1), nms_thresh)
+        keep_by_nms = nms(mint.cat([boxes.astype(ms.float32), ms.Tensor(scores).unsqueeze(-1)], dim=-1), nms_thresh)
         # Only recalculate RLEs for masks that have changed
         for i_mask in keep_by_nms:
             if scores[i_mask] == 0.0:

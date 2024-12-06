@@ -1,6 +1,5 @@
 import mindspore as ms
-from mindspore import nn, ops
-from mindspore.nn import LossBase
+from mindspore import nn, ops, mint
 
 from segment_anything.utils.registry import LOSS_REGISTRY
 from segment_anything.utils.utils import calc_iou, reduce_with_mask
@@ -46,12 +45,6 @@ class SAMLoss(nn.Cell):
         pred_mask_01 = (pred_mask > self.mask_threshold).astype(ms.float32)
         gt_iou = ops.stop_gradient(calc_iou(pred_mask_01, gt_mask))  # (b, n)
 
-        # if False: # show pred and gt mask for debug
-        #     import matplotlib.pyplot as plt
-        #     plt.imshow(pred_mask_01[0, 3].asnumpy())
-        #     plt.show()
-        #     plt.imshow(gt_mask[0, 3].asnumpy())
-        #     plt.show()
         focal_loss = reduce_with_mask(self.focal_loss(pred_mask, gt_mask), valid_boxes)   # (b, n) -> (1,)
         dice_loss = reduce_with_mask(self.dice_loss(pred_mask, gt_mask), valid_boxes)
         mse_loss = reduce_with_mask(self.mse_loss(pred_iou, gt_iou), valid_boxes)
@@ -60,7 +53,7 @@ class SAMLoss(nn.Cell):
         return loss, ops.stop_gradient(focal_loss), ops.stop_gradient(dice_loss), ops.stop_gradient(mse_loss)
 
 
-class DiceLoss(LossBase):
+class DiceLoss(nn.LossBase):
     def __init__(self, reduction='none', smooth=1e-5):
         """Dice loss for 2d segmentation. a replacement for mindspore.nn.DiceLoss that does not
         support reduction 'none' type."""
@@ -68,7 +61,7 @@ class DiceLoss(LossBase):
         self.smooth = smooth
 
     def construct(self, logits, labels):
-        logits = ops.sigmoid(logits)
+        logits = mint.sigmoid(logits)
 
         shape = logits.shape  # (b, n, h, w)
         # new_shape = (shape[0], shape[1], -1)  # (b, n, s)
@@ -84,7 +77,7 @@ class DiceLoss(LossBase):
         return dice_loss
 
 
-class FocalLoss(LossBase):
+class FocalLoss(nn.LossBase):
     def __init__(self, alpha=0.8, gamma=2, reduction='none'):
         """
         Focal loss for 2D binary segmentation. a replacement for mindspore.nn.DiceLoss that only support multi-class.
@@ -95,13 +88,13 @@ class FocalLoss(LossBase):
         self.gamma = gamma
 
     def construct(self, logits, labels):
-        logits = ops.sigmoid(logits)
+        logits = mint.sigmoid(logits)
         shape = logits.shape  # (b, n, h, w)
         # new_shape = (shape[0], shape[1], -1)  # (b, n, s)
         new_shape = (shape[0], shape[1], shape[2]*shape[3])  # (b, n, s)
         logits = logits.view(new_shape)
         labels = labels.view(new_shape)
-        bce = ops.binary_cross_entropy(logits, labels, reduction='none').mean(-1)  # (b, n) equals to -log(pt)
-        pt = ops.exp(-bce)  # pt
+        bce = mint.nn.functional.binary_cross_entropy(logits, labels, reduction='none').mean(-1)  # (b, n) equals to -log(pt)
+        pt = mint.exp(-bce)  # pt
         focal_loss = self.alpha * (1- pt)**self.gamma * bce  # (b, n)
         return focal_loss
