@@ -9,6 +9,7 @@ D-LinkNet模型基于LinkNet架构构建。实现方式见论文[D-LinkNet: Link
  | mindspore | ascend driver | firmware | cann toolkit/kernel |
  |:---------:|:-------------:|:--------:|:-------------------:|
  | 2.3.1 | 24.1.rc2 | 7.3.0.2.220 | 8.0.RC2.beta1 |
+ | 2.4.0 | 24.1.rc3 | 7.5.0.1.129 | 8.0.RC3.beta1 |
  ```shell
  pip install -r requirement.txt
  ```
@@ -81,7 +82,7 @@ D-LinkNet模型基于LinkNet架构构建。实现方式见论文[D-LinkNet: Link
   - config: 训练配置路径
 
 ## Performance
-- 基于Ascend 910测试的性能指标
+- 在Ascend 910*上使用mindspore 2.3.1图模式测试的实验数据。
 
   | model name | backbone | cards | batch size | resolution | graph compile | jit level | s/step | img/s | IoU | yaml | weight |
   |:----------:|:--------:|:-----:|:----------:|:----------:|:-------------:|:---------:|:------:|:-----:|:---:|:----:|:------:|
