@@ -1,0 +1,30 @@
+[ERROR] ME(1916056:281473409396768,MainProcess):2024-11-10-13:31:00.760.229 [mindspore/run_check/_check_version.py:388] CheckFailed: cannot import name 'utils' from partially initialized module 'tbe.common' (most likely due to a circular import) (/home/miniconda3/envs/ms2.2/lib/python3.8/site-packages/tbe/common/__init__.py)
+[ERROR] ME(1916056:281473409396768,MainProcess):2024-11-10-13:31:00.760.485 [mindspore/run_check/_check_version.py:389] MindSpore relies on whl packages of "te" and "hccl" in the "latest" folder of the Ascend AI software package (Ascend Data Center Solution). Please check whether they are installed correctly or not, refer to the match info on: https://www.mindspore.cn/install
+Traceback (most recent call last):
+  File "../eval.py", line 109, in <module>
+    eval_file(_feature_file, _out_file, _model, _enc, _dec)
+  File "../eval.py", line 45, in eval_file
+    state1 = mnp.zeros((1, 1, model.rnn_units1))
+  File "/home/miniconda3/envs/ms2.2/lib/python3.8/site-packages/mindspore/numpy/array_creations.py", line 334, in zeros
+    output = F.fill(dtype, shape, 0)
+  File "/home/miniconda3/envs/ms2.2/lib/python3.8/site-packages/mindspore/ops/function/array_func.py", line 746, in fill
+    return _get_cache_prim(P.FillV2)()(shape, value)
+  File "/home/miniconda3/envs/ms2.2/lib/python3.8/site-packages/mindspore/ops/primitive.py", line 314, in __call__
+    return _run_op(self, self.name, args)
+  File "/home/miniconda3/envs/ms2.2/lib/python3.8/site-packages/mindspore/ops/primitive.py", line 913, in _run_op
+    stub = _pynative_executor.run_op_async(obj, op_name, args)
+  File "/home/miniconda3/envs/ms2.2/lib/python3.8/site-packages/mindspore/common/api.py", line 1186, in run_op_async
+    return self._executor.run_op_async(*args)
+RuntimeError: Ascend kernel runtime initialization failed. The details refer to 'Ascend Error Message'.
+
+----------------------------------------------------
+- Framework Error Message:
+----------------------------------------------------
+Malloc device memory failed, free memory size is less than half of total memory size.Device 0 Device HBM total size:34359738368 Device HBM free size:2113929216 may be other processes occupying this card, check as: ps -ef|grep python
+
+----------------------------------------------------
+- C++ Call Stack: (For framework developers)
+----------------------------------------------------
+mindspore/ccsrc/plugin/device/ascend/hal/device/ascend_kernel_runtime.cc:389 Init
+mindspore/ccsrc/plugin/device/ascend/hal/device/ascend_memory_adapter.cc:73 Initialize
+

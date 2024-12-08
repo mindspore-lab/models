@@ -1,0 +1,13 @@
+[ERROR] ME(1137877:281473092636704,MainProcess):2024-10-28-12:44:27.919.851 [mindspore/run_check/_check_version.py:388] CheckFailed: cannot import name 'utils' from partially initialized module 'tbe.common' (most likely due to a circular import) (/home/miniconda3/envs/ms2.2/lib/python3.8/site-packages/tbe/common/__init__.py)
+[ERROR] ME(1137877:281473092636704,MainProcess):2024-10-28-12:44:27.920.159 [mindspore/run_check/_check_version.py:389] MindSpore relies on whl packages of "te" and "hccl" in the "latest" folder of the Ascend AI software package (Ascend Data Center Solution). Please check whether they are installed correctly or not, refer to the match info on: https://www.mindspore.cn/install
+[WARNING] ME(1139098:281473092636704,GeneratorWorkerProcess):2024-10-28-12:44:56.367.28 [mindspore/dataset/engine/queue.py:121] Using shared memory queue, but rowsize is larger than allocated memory max_rowsize: 6.0MB, current rowsize: 114.9365234375MB.
+[WARNING] MD(1137877,fffc915ff120,python):2024-10-28-13:14:05.447.832 [mindspore/ccsrc/minddata/dataset/engine/datasetops/source/generator_op.cc:231] operator()] Bad performance attention, it takes more than 25 seconds to generator.__next__ new row, which might cause `GetNext` timeout problem when sink_mode=True. You can increase the parameter num_parallel_workers in GeneratorDataset / optimize the efficiency of obtaining samples in the user-defined generator function.
+[WARNING] MD(1137877,fffc90def120,python):2024-10-28-13:14:05.448.539 [mindspore/ccsrc/minddata/dataset/engine/datasetops/data_queue_op.cc:1179] DetectPerBatchTime] Bad performance attention, it takes more than 25 seconds to fetch a batch of data from dataset pipeline, which might result `GetNext` timeout problem. You may test dataset processing performance(with creating dataset iterator) and optimize it.
+epoch: 1 step: 5208, loss is 2.7347280979156494
+Train epoch time: 4285519.222 ms, per step time: 822.872 ms
+epoch: 2 step: 5208, loss is 3.2232699394226074
+Train epoch time: 2497094.078 ms, per step time: 479.473 ms
+epoch: 3 step: 5208, loss is 2.829972505569458
+Train epoch time: 2502129.985 ms, per step time: 480.440 ms
+epoch: 4 step: 5208, loss is 3.0139689445495605
+Train epoch time: 2451852.131 ms, per step time: 470.786 ms
