@@ -8,7 +8,7 @@ from mindspore.ops import operations as P
 
 import numpy as np
 
-context.set_context(mode=context.PYNATIVE_MODE)
+#context.set_context(mode=context.PYNATIVE_MODE)
 
 
 def softmax(x, axis=1):

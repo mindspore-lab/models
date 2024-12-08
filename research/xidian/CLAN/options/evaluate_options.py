@@ -14,7 +14,7 @@
 # ============================================================================
 import argparse
 
-DATA_DIRECTORY = r"E:\datasets\Cityscapes\leftImg8bit_trainvaltest"
+DATA_DIRECTORY = '/media/data2/xidian/data/Cityscapes/'
 DATA_LIST_PATH = './dataset/cityscapes_list/val.txt'
 SAVE_PATH = './result/cityscapes'
 
@@ -41,7 +41,7 @@ class TestOptions():
                             help="The index of the label to ignore during the training.")
         parser.add_argument("--num-classes", type=int, default=NUM_CLASSES,
                             help="Number of classes to predict (including background).")
-        parser.add_argument("--restore-from", type=str, default='',
+        parser.add_argument("--restore-from", type=str, default='/media/data3/hy/CLAN/checkpoint/2024-09-14-08-04-48/GTA5_best.ckpt',
                             help="Where restore model parameters from.")
         parser.add_argument('--input_size', type=str, default=INPUT_SIZE,
                             help='the image input crop size.')

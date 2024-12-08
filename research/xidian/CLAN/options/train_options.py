@@ -18,13 +18,13 @@ MODEL = 'DeepLab'
 BATCH_SIZE = 1
 ITER_SIZE = 1
 NUM_WORKERS = 4
-DATA_DIRECTORY = '/home/ma-user/work/data/gta5/'
+DATA_DIRECTORY = '/media/data2/xidian/data/GTA5/'
 DATA_LIST_PATH = './dataset/gta5_list/train.txt'
 IGNORE_LABEL = 255
 INPUT_SIZE = '1280,720'
 # INPUT_SIZE = '256,256'
 # DATA_DIRECTORY_TARGET = '/data/zd/data/cityscape/cityscapes/Cityscapes'
-DATA_DIRECTORY_TARGET = '/home/ma-user/work/data/Cityscapes/leftImg8bit_trainvaltest/'
+DATA_DIRECTORY_TARGET = '/media/data2/xidian/data/Cityscapes/'
 DATA_LIST_PATH_TARGET = './dataset/cityscapes_list/train.txt'
 DEVKIT_DIR = './dataset/cityscapes_list'
 INPUT_SIZE_TARGET = '1024,512'
@@ -33,12 +33,14 @@ INPUT_SIZE_TARGET = '1024,512'
 LEARNING_RATE = 2.5e-4
 MOMENTUM = 0.9
 NUM_CLASSES = 19
-NUM_STEPS = 250000
-NUM_STEPS_STOP = 250000  # early stopping
+NUM_STEPS = 100000
+NUM_STEPS_STOP = 100000  # early stopping
 POWER = 0.9
 RANDOM_SEED = 1234
 
-RESTORE_FROM = './model/DeepLab_resnet_pretrained_init-f81d91e8(1).ckpt'
+
+#RESTORE_FROM = './model/DeepLab_resnet_pretrained_init-f81d91e8(1).ckpt'
+RESTORE_FROM = '/media/data3/hy/CLAN/model/pretrained.ckpt'
 SAVE_NUM_IMAGES = 2
 SAVE_PRED_EVERY = 2000
 SNAPSHOT_DIR = './checkpoint/'
@@ -106,6 +108,10 @@ class TrainOptions():
                             help="Number of training steps.")
         parser.add_argument("--num-steps-stop", type=int, default=NUM_STEPS_STOP,
                             help="Number of training steps for early stopping.")
+        parser.add_argument("--preheat-steps", type=int, default=PREHEAT_STEPS,
+                            help="Number of training steps for preheat steps.")
+        parser.add_argument("--epsilon", type=float, default=Epsilon,
+                            help="Parameter to compute the loss.")
         parser.add_argument("--power", type=float, default=POWER,
                             help="Decay parameter to compute the learning rate.")
         parser.add_argument("--random-mirror", action="store_true",
@@ -134,8 +140,9 @@ class TrainOptions():
                             help="choose the GAN objective.")
         parser.add_argument('--debug', action='store_true', default=False,
                             help='whether use debug mode.')
-        parser.add_argument('--continue-train', type=str, default=None,
+        parser.add_argument('--continue-train', type=str, default='/media/data3/hy/CLAN/checkpoint/2024-09-14-08-04-48/GTA5_54000.ckpt',
                             help='whether use continue train.')
+        #parser.add_argument('--continue-train', type=str, default=False, help='continue training from saved model')
         parser.add_argument('--not-val', action='store_false', default=True,
                             help='whether processing validation during the  training.')
 

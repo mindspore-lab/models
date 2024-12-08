@@ -17,7 +17,7 @@ import mindspore.nn as nn
 from mindspore import Tensor,context
 
 
-context.set_context(mode=context.PYNATIVE_MODE)
+#context.set_context(mode=context.PYNATIVE_MODE)
 
 
 class FCDiscriminator(nn.Cell):

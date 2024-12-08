@@ -63,16 +63,27 @@ class cityscapesDataSet():
 
 
 if __name__ == '__main__':
-    dataset_generator = cityscapesDataSet(r"E:\datasets\Cityscapes\leftImg8bit_trainvaltest",
-                                          './cityscapes_list/val.txt',
+    dataset_generator = cityscapesDataSet(r"/media/data2/xidian/data/Cityscapes/",
+                                          '/media/data3/hy/CLAN/dataset/cityscapes_list/val.txt',
                                           crop_size=(1024, 512))
+    data = iter(dataset_generator).__next__()
     dataset = ds.GeneratorDataset(dataset_generator, column_names=['image', 'size'], shuffle=False)
     dataset = dataset.batch(batch_size=2)
 
-    dataset_iterator = dataset.create_tuple_iterator()
-    for i in range(10):
-        data = next(dataset_iterator)
-        img, size = data
-        print(img.shape)
-        print(dataset_generator.files[i]['name'])
+    for i, data in enumerate(dataset.create_dict_iterator()):
+        # 检查数据是否为None
+        if data is None:
+            print(f"在第{i}个数据点处发现空数据")
+            continue  # 或者可以选择退出循环，例如使用break
+
+        image, label, size = data['image'], data['label'], data['size']
+
+        # 检查image, label, size是否为空或异常
+        if image is None or label is None or size is None:
+            print(f"在第{i}个数据点处发现缺失的数据项")
+            continue  # 或者可以选择退出循环，例如使用break
+
+        if image.shape == () or label.shape == () or size.shape == ():
+            print(f"在第{i}个数据点处发现异常的数据形状")
+            continue  # 或者可以选择退出循环，例如使用break
 

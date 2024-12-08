@@ -29,11 +29,17 @@ from dataset.gta5_dataset import GTA5DataSet
 from dataset.cityscapes_dataset import cityscapesDataSet
 from CLAN_evaluate_city import evaluation
 from utils.loss import WeightedBCEWithLogitsLoss
+from mindspore import dtype as mstype
 
-# context.set_context(mode=context.PYNATIVE_MODE)
-context.set_context(mode=context.GRAPH_MODE, save_graphs=False, device_target='Ascend')
 
 IMG_MEAN = np.array((104.00698793, 116.66876762, 122.67891434), dtype=np.float32)
+
+
+NUM_STEPS = 100000
+NUM_STEPS_STOP = 100000  # early stopping
+PREHEAT_STEPS = int(NUM_STEPS_STOP / 20)
+Epsilon = 0.4
+
 
 def split_checkpoint(checkpoint, split_list=None):
     if split_list == None:
@@ -56,8 +62,6 @@ class WithLossCellG(nn.Cell):
         self.lambda_ = lambda_
         self.net_G = net_G
         self.net_D = net_D
-        self.net_G.set_grad(True)
-        self.net_D.set_grad(False)
         self.batch_size = batch_size
         self.num_classes = num_classes
         self.size_source = size_source
@@ -74,6 +78,7 @@ class WithLossCellG(nn.Cell):
         self.norm_1 = ops.LpNorm(axis=1, p=2)
         self.norm_0 = ops.LpNorm(axis=0, p=2)
         self.mul = ops.Mul()
+        self.cast = ops.Cast()
 
     # @staticmethod
     def module_param_flatten(self, module):
@@ -81,19 +86,24 @@ class WithLossCellG(nn.Cell):
         return ops.Concat(axis=0)([self.reshape(param, (-1,)) for param in module.get_parameters()])
 
     # @staticmethod
-    def weightmap(self, pred1, pred2):
+    def weightmap(self, pred1, pred2, out_D):
         output = 1.0 - self.reshape(self.sum((pred1 * pred2), 1), (1, 1, pred1.shape[2], pred1.shape[3])) \
                  / self.reshape((self.norm_1(pred1) * self.norm_1(pred2)), (1, 1, pred1.shape[2], pred1.shape[3]))
+
+        output = ops.ResizeBilinear(size=(out_D.shape[2], out_D.shape[3]))(output)
 
         return output
 
     def construct(self, image_source, label, image_target, i_iter):
-        # time_1 = time.time()
+
+        self.net_G.requires_grad = True
+        self.net_D.requires_grad = False
         pred1, pred2 = self.net_G(image_source)
         pred1 = self.interp_source(pred1)
         pred2 = self.interp_source(pred2)
         loss_seg_1 = self.loss_seg(pred1, label)
         loss_seg_2 = self.loss_seg(pred2, label)
+
         loss_seg = loss_seg_1 + loss_seg_2
 
         pred1_target, pred2_target = self.net_G(image_target)
@@ -102,27 +112,29 @@ class WithLossCellG(nn.Cell):
 
         pred_target = self.softmax(pred1_target + pred2_target)
 
+        W5 = self.module_param_flatten(self.net_G.layer5)
+        W6 = self.module_param_flatten(self.net_G.layer6)
+
+        loss_weight = 1 - ops.cosine_similarity(W5, W6, dim=0)
+        # loss_weight = (self.sum(self.mul(W5, W6))  # todo
+        #                / (self.norm_0(W5) * self.norm_0(W6)) + 1)  # +1 is for a positive loss
+
         pred1_target_sm = self.softmax(pred1_target)
         pred2_target_sm = self.softmax(pred2_target)
-
-        weight_map = self.weightmap(pred1_target_sm, pred2_target_sm)
 
         out_D = self.net_D(pred_target)
         source_label = self.zeros_like(out_D)
 
-        if (i_iter > PREHEAT_STEPS):
-            loss_adv_G = self.loss_weight_bce(out_D, source_label, weight_map, Epsilon, self.Lambda_[2])
+        weight_map = self.weightmap(pred1_target_sm, pred2_target_sm, out_D)
+
+
+        if (i_iter > 2000):
+            loss_adv_G = self.loss_weight_bce(out_D, source_label, weight_map, Epsilon, self.lambda_[2])
         else:
             loss_adv_G = self.loss_bce(out_D, source_label)
 
-        W5 = self.module_param_flatten(self.net_G.layer5)
-        W6 = self.module_param_flatten(self.net_G.layer6)
+        loss = loss_seg + self.lambda_[1] * loss_adv_G + loss_weight * self.lambda_[0]
 
-        loss_weight = (self.sum(self.mul(W5, W6))  # todo
-                       / (self.norm_0(W5) * self.norm_0(W6)) + 1)  # +1 is for a positive loss
-
-        damping = (1 - i_iter / NUM_STEPS)
-        loss = loss_seg + self.lambda_[1] * loss_adv_G + loss_weight * self.lambda_[0] * damping * 2
 
         loss_seg = ops.stop_gradient(loss_seg)
         loss_adv_G = ops.stop_gradient(loss_adv_G)
@@ -137,8 +149,6 @@ class WithLossCellD(nn.Cell):
         self.lambda_ = lambda_
         self.net_G = net_G
         self.net_D = net_D
-        self.net_G.set_grad(False)
-        self.net_D.set_grad(True)
         self.size_source = size_source
         self.size_target = size_target
         self.interp_source = ops.ResizeBilinear(size=(size_source[1], size_source[0]))
@@ -154,13 +164,19 @@ class WithLossCellD(nn.Cell):
         self.norm_0 = ops.LpNorm(axis=0, p=2)
         self.mul = ops.Mul()
 
-    def weightmap(self, pred1, pred2):
+    def weightmap(self, pred1, pred2, out_t):
         output = 1.0 - self.reshape(self.sum((pred1 * pred2), 1), (1, 1, pred1.shape[2], pred1.shape[3])) \
                  / self.reshape((self.norm_1(pred1) * self.norm_1(pred2)), (1, 1, pred1.shape[2], pred1.shape[3]))
 
+        output = ops.ResizeBilinear(size=(out_t.shape[2], out_t.shape[3]))(output)
+
         return output
 
-    def construct(self, image_source, label, image_target, i_iter):
+    def construct(self, image_source, image_target, i_iter):
+
+        self.net_G.requires_grad = False
+        self.net_D.requires_grad = True
+
         pred1, pred2 = self.net_G(image_source)
         pred1 = self.interp_source(pred1)
         pred2 = self.interp_source(pred2)
@@ -176,15 +192,16 @@ class WithLossCellD(nn.Cell):
         pred1_target_sm = self.softmax(pred1_target)
         pred2_target_sm = self.softmax(pred2_target)
 
-        weight_map = self.weightmap(pred1_target_sm, pred2_target_sm)
-
         out_s, out_t = self.net_D(pred), self.net_D(pred_target)
         label_s, label_t = self.zeros_like(out_s), self.ones_like(out_t)
 
         loss_D_s = self.loss_bce(out_s, label_s)
 
-        if (i_iter > PREHEAT_STEPS):
-            loss_adv_D = self.loss_weight_bce(out_t, label_t, weight_map, Epsilon, self.Lambda_[2])
+        weight_map = self.weightmap(pred1_target_sm, pred2_target_sm, out_t)
+
+
+        if (i_iter > 2000):
+            loss_adv_D = self.loss_weight_bce(out_t, label_t, weight_map, Epsilon, self.lambda_[2])
         else:
             loss_adv_D = self.loss_bce(out_t, label_t)
 
@@ -216,7 +233,6 @@ class TrainOneStepCellD(nn.Cell):
     def __init__(self, network, optimizer):
         super(TrainOneStepCellD, self).__init__(auto_prefix=False)
         self.network = network  # 定义前向网络
-        # self.network.set_grad()  # 构建反向网络图
         self.optimizer = optimizer  # 定义优化器
         self.weight = self.optimizer.parameters  # 获取更新的权重
         self.grad = ops.GradOperation(get_by_list=True)  # 定义梯度计算方法
@@ -238,15 +254,16 @@ def main():
     w, h = map(int, args.input_size_target.split(','))
     input_size_target = (w, h)
 
+
+
     if args.device == 'ascend':
-        # os.environ['CUDA_VISIBLE_DEVICES'] = f'{gpu}'
-        # context.set_context(mode=context.PYNATIVE_MODE, save_graphs=False, device_target="Ascend")
-        context.set_context(mode=context.GRAPH_MODE, save_graphs=False, device_target="Ascend")
+        mindspore.set_context(mode=mindspore.GRAPH_MODE, device_id=5, device_target="Ascend")
+
     elif args.device == 'gpu':
         context.set_context(mode=context.GRAPH_MODE, save_graphs=False, device_target="GPU")
     else:
         context.set_context(mode=context.PYNATIVE_MODE, save_graphs=False, device_target="CPU")
-        # context.set_context(mode=context.GRAPH_MODE, save_graphs=False, device_target="CPU")
+
     print('设备：', args.device)
 
     if args.debug:
@@ -259,19 +276,28 @@ def main():
 
 
     # [Part 1: 加载模型]
-
-    # Create network and load pretrain resnet parameters.
     model = Res_Deeplab(num_classes=args.num_classes)
 
     #加载预训练模型
-    saved_state_dict = mindspore.load_checkpoint(args.restore_from)
-    mindspore.load_param_into_net(model,saved_state_dict)
     if args.restore_from:
-        saved_state_dict = mindspore.load_checkpoint(args.restore_from)
+
+        param_dict = mindspore.load_checkpoint(args.restore_from)
+        net_params = model.parameters_dict()
+
+        filtered_param_dict = {}
+        for param_name, param_value in param_dict.items():
+            param_shape = param_value.shape
+            matching_params = [p for p in net_params.values() if p.shape == param_shape]
+
+            if matching_params:
+                filtered_param_dict[param_name] = param_value
+            else:
+                print(f"Warning: Parameter shape mismatch. Skipping parameter with shape {param_shape}.")
+
         split_list = ['net_G', 'net_D']
-        train_state_dict = split_checkpoint(saved_state_dict, split_list=split_list)
+        train_state_dict = split_checkpoint(filtered_param_dict, split_list=split_list)
+
         mindspore.load_param_into_net(model, train_state_dict['net_G'])
-        # mindspore.load_param_into_net(model, saved_state_dict)
         print('success load model !')
 
     #初始化判别器
@@ -296,11 +322,13 @@ def main():
     loss_weight_bce = WeightedBCEWithLogitsLoss()
     loss_bce = nn.BCEWithLogitsLoss()
 
-    #  [Whether continue train]
     iter_start = 0
     best_iou = 0.0
     if args.continue_train:
+        print('continue training')
         filepath, filename = os.path.split(args.continue_train)
+        print('filepath :', filepath)
+        print('filename :', filename)
         target_path = filepath
         os.makedirs(target_path, exist_ok=True)
         logger = open(os.path.join(target_path, 'Train_log.log'), 'a')
@@ -323,8 +351,8 @@ def main():
     # [Part 3: 加载数据]
     gta_genarator = GTA5DataSet(args.data_dir, args.data_list,
                                 max_iters=args.num_steps * args.iter_size * args.batch_size,
-                                crop_size=input_size, scale=args.random_scale,
-                                mirror=args.random_mirror, mean=IMG_MEAN)
+                                crop_size=input_size,
+                                mean=IMG_MEAN)
     gta_dataset = ds.GeneratorDataset(gta_genarator, shuffle=True, column_names=['image', 'label', 'size'])
     gta_dataset = gta_dataset.batch(batch_size=args.batch_size)
     train_iterator = gta_dataset.create_dict_iterator()
@@ -332,7 +360,7 @@ def main():
     cityscapes_generator = cityscapesDataSet(args.data_dir_target, os.path.join(args.devkit_dir, f'{args.set}.txt'),
                                              max_iters=args.num_steps * args.iter_size * args.batch_size,
                                              crop_size=input_size_target, scale=False,
-                                             mirror=args.random_mirror, mean=IMG_MEAN,
+                                             mean=IMG_MEAN,
                                              set=args.set)
     cityscapes_dataset = ds.GeneratorDataset(cityscapes_generator, shuffle=True,
                                              column_names=['image', 'size'])
@@ -341,7 +369,7 @@ def main():
 
     evaluation_generator = cityscapesDataSet(args.data_dir_target, os.path.join(args.devkit_dir, 'val.txt'),
                                              crop_size=input_size_target, scale=False,
-                                             mirror=False, mean=IMG_MEAN,
+                                             mean=IMG_MEAN,
                                              set='val')
     evaluation_dataset = ds.GeneratorDataset(evaluation_generator, shuffle=False,
                                              column_names=['image', 'size'])
@@ -360,14 +388,16 @@ def main():
                                       size_source=input_size,
                                       size_target=input_size_target,
                                       batch_size=args.batch_size,
-                                      num_classes=args.num_classes)
+                                      num_classes=args.num_classes).set_grad()
     model_D_with_loss = WithLossCellD(lambda_=lambda_,
                                       net_G=model,
                                       net_D=model_D,
                                       loss_bce=loss_bce,
                                       loss_weight_bce=loss_weight_bce,
                                       size_source=input_size,
-                                      size_target=input_size_target)
+                                      size_target=input_size_target).set_grad()
+
+
 
 
     model_G_train = TrainOneStepCellG(model_G_with_loss, optimizer)
@@ -389,6 +419,8 @@ def main():
 
     for i_iter in range(iter_start, args.num_steps):
 
+        damping = (1 - i_iter / NUM_STEPS)
+
         s_data = next(train_iterator)
         image_s, label_s = s_data['image'], s_data['label']
         t_data = next(target_iterator)
@@ -397,12 +429,13 @@ def main():
         image_s, label_s = Tensor(image_s), Tensor(label_s)
         image_t = Tensor(image_t)
 
-        _, (loss_seg, loss_adv_G, loss_weight) = model_G_train(image_s, label_s, image_t, i_iter)
+        _, (loss_seg, loss_adv_G, loss_weight) = model_G_train(image_s, label_s, image_t, i_iter, damping)
 
         (loss_seg, loss_adv_G, loss_weight) = \
             map(lambda x: x.asnumpy(), (loss_seg, loss_adv_G, loss_weight))
 
-        _, (loss_D_s, loss_adv_D) = model_D_train(image_s, label_s, image_t, i_iter)
+
+        _, (loss_D_s, loss_adv_D) = model_D_train(image_s, image_t, i_iter)
 
         (loss_D_s, loss_adv_D) = \
             map(lambda x: x.asnumpy(), (loss_D_s, loss_adv_D))
