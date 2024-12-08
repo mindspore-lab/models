@@ -1,0 +1,13 @@
+Exception ignored in: <function SamplerFn.__del__ at 0xfffee49c3830>
+Traceback (most recent call last):
+  File "/root/miniconda3/envs/mindspore_py37/lib/python3.7/site-packages/mindspore/dataset/engine/datasets_user_defined.py", line 345, in __del__
+    self._stop_subprocess()
+  File "/root/miniconda3/envs/mindspore_py37/lib/python3.7/site-packages/mindspore/dataset/engine/datasets_user_defined.py", line 323, in _stop_subprocess
+    w.join()
+  File "/root/miniconda3/envs/mindspore_py37/lib/python3.7/multiprocessing/process.py", line 140, in join
+    res = self._popen.wait(timeout)
+  File "/root/miniconda3/envs/mindspore_py37/lib/python3.7/multiprocessing/popen_fork.py", line 48, in wait
+    return self.poll(os.WNOHANG if timeout == 0.0 else 0)
+  File "/root/miniconda3/envs/mindspore_py37/lib/python3.7/multiprocessing/popen_fork.py", line 28, in poll
+    pid, sts = os.waitpid(self.pid, flag)
+KeyboardInterrupt: 
