@@ -1,0 +1,5 @@
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /media/data1/xidian/xy/models/official/audio/LPCNet/third_party/out
+[ 52%] Built target dump_data
+[100%] Built target lpcnet_demo
