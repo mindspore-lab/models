@@ -1,0 +1,234 @@
+2024-10-25 09:07:28,706:INFO:Args:
+2024-10-25 09:07:28,706:INFO:--> enable_modelarts: False
+2024-10-25 09:07:28,706:INFO:--> data_url: 
+2024-10-25 09:07:28,706:INFO:--> train_url: 
+2024-10-25 09:07:28,706:INFO:--> checkpoint_url: 
+2024-10-25 09:07:28,706:INFO:--> data_path: /cache/data_speechv2
+2024-10-25 09:07:28,706:INFO:--> output_path: /cache/train
+2024-10-25 09:07:28,706:INFO:--> load_path: /cache/checkpoint_path
+2024-10-25 09:07:28,706:INFO:--> device_target: Ascend
+2024-10-25 09:07:28,706:INFO:--> enable_profiling: False
+2024-10-25 09:07:28,706:INFO:--> device_id: 4
+2024-10-25 09:07:28,707:INFO:--> is_distributed: False
+2024-10-25 09:07:28,707:INFO:--> wanted_words: yes,no,up,down,left,right,on,off,stop,go
+2024-10-25 09:07:28,707:INFO:--> sample_rate: 16000
+2024-10-25 09:07:28,707:INFO:--> clip_duration_ms: 1000
+2024-10-25 09:07:28,707:INFO:--> window_size_ms: 40.0
+2024-10-25 09:07:28,707:INFO:--> window_stride_ms: 20.0
+2024-10-25 09:07:28,707:INFO:--> dct_coefficient_count: 20
+2024-10-25 09:07:28,707:INFO:--> drop: 0.6
+2024-10-25 09:07:28,707:INFO:--> per_batch_size: 200
+2024-10-25 09:07:28,707:INFO:--> model_size_info: [6, 276, 10, 4, 2, 1, 276, 3, 3, 2, 2, 276, 3, 3, 1, 1, 276, 3, 3, 1, 1, 276, 3, 3, 1, 1, 276, 3, 3, 1, 1]
+2024-10-25 09:07:28,707:INFO:--> amp_level: O0
+2024-10-25 09:07:28,707:INFO:--> download_data_url: http://download.tensorflow.org/data/speech_commands_v0.02.tar.gz
+2024-10-25 09:07:28,707:INFO:--> data_dir: data_speechv2
+2024-10-25 09:07:28,708:INFO:--> download_feat_dir: ./dscnn_dataset_speechv2
+2024-10-25 09:07:28,708:INFO:--> train_feat_dir: ./dscnn_dataset_speechv2
+2024-10-25 09:07:28,708:INFO:--> background_volume: 0.1
+2024-10-25 09:07:28,708:INFO:--> background_frequency: 0.8
+2024-10-25 09:07:28,708:INFO:--> silence_percentage: 10.0
+2024-10-25 09:07:28,708:INFO:--> unknown_percentage: 10.0
+2024-10-25 09:07:28,708:INFO:--> time_shift_ms: 100.0
+2024-10-25 09:07:28,708:INFO:--> testing_percentage: 10
+2024-10-25 09:07:28,708:INFO:--> validation_percentage: 10
+2024-10-25 09:07:28,708:INFO:--> pretrained: 
+2024-10-25 09:07:28,708:INFO:--> use_graph_mode: 1
+2024-10-25 09:07:28,708:INFO:--> val_interval: 1
+2024-10-25 09:07:28,708:INFO:--> lr_scheduler: multistep
+2024-10-25 09:07:28,708:INFO:--> lr: 0.1
+2024-10-25 09:07:28,709:INFO:--> lr_epochs: [20, 40, 60, 80]
+2024-10-25 09:07:28,709:INFO:--> lr_gamma: 0.1
+2024-10-25 09:07:28,709:INFO:--> eta_min: 0.0
+2024-10-25 09:07:28,709:INFO:--> T_max: 80
+2024-10-25 09:07:28,709:INFO:--> max_epoch: 80
+2024-10-25 09:07:28,709:INFO:--> warmup_epochs: 0.0
+2024-10-25 09:07:28,709:INFO:--> weight_decay: 0.001
+2024-10-25 09:07:28,709:INFO:--> momentum: 0.98
+2024-10-25 09:07:28,709:INFO:--> log_interval: 100
+2024-10-25 09:07:28,709:INFO:--> save_ckpt_path: ./checkpoint_speechv2
+2024-10-25 09:07:28,709:INFO:--> ckpt_interval: 100
+2024-10-25 09:07:28,709:INFO:--> eval_feat_dir: ./dscnn_dataset_speechv2
+2024-10-25 09:07:28,709:INFO:--> model_dir: ./checkpoint_speechv2/2024-10-25_time_08_54_22
+2024-10-25 09:07:28,709:INFO:--> log_path: ./eval_outputs/speechv2
+2024-10-25 09:07:28,710:INFO:--> export_ckpt_path: ./dscnn_dataset
+2024-10-25 09:07:28,710:INFO:--> file_name: dscnn
+2024-10-25 09:07:28,710:INFO:--> file_format: MINDIR
+2024-10-25 09:07:28,710:INFO:--> pre_result_path: preprocess_Result
+2024-10-25 09:07:28,710:INFO:--> pre_feat_dir: 
+2024-10-25 09:07:28,710:INFO:--> label_path: 
+2024-10-25 09:07:28,710:INFO:--> post_result_path: 
+2024-10-25 09:07:28,710:INFO:--> config_path: /data1/wkr/dscnn/src/model_utils/../../default_config.yaml
+2024-10-25 09:07:28,710:INFO:--> dataset_sink_mode: True
+2024-10-25 09:07:28,710:INFO:--> model_setting_dropout1: 0.6
+2024-10-25 09:07:28,710:INFO:--> model_setting_desired_samples: 16000
+2024-10-25 09:07:28,710:INFO:--> model_setting_window_size_samples: 640
+2024-10-25 09:07:28,710:INFO:--> model_setting_window_stride_samples: 320
+2024-10-25 09:07:28,710:INFO:--> model_setting_spectrogram_length: 49
+2024-10-25 09:07:28,711:INFO:--> model_setting_fingerprint_size: 980
+2024-10-25 09:07:28,711:INFO:--> model_setting_label_count: 12
+2024-10-25 09:07:28,711:INFO:--> model_setting_sample_rate: 16000
+2024-10-25 09:07:28,711:INFO:--> model_setting_dct_coefficient_count: 20
+2024-10-25 09:07:28,711:INFO:--> outputs_dir: ./eval_outputs/speechv2/2024-10-25_time_09_07_28
+2024-10-25 09:07:28,711:INFO:--> logger: <LOGGER ds-cnn (NOTSET)>
+2024-10-25 09:07:28,711:INFO:
+2024-10-25 09:07:29,260:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch79-1_36.ckpt success
+2024-10-25 09:07:56,637:INFO:Eval: top1_cor:4180, top5_cor:4723, tot:4800, acc@1=87.08%, acc@5=98.40%
+2024-10-25 09:07:56,955:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch78-1_36.ckpt success
+2024-10-25 09:08:00,703:INFO:Eval: top1_cor:4181, top5_cor:4723, tot:4800, acc@1=87.10%, acc@5=98.40%
+2024-10-25 09:08:00,987:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch77-1_36.ckpt success
+2024-10-25 09:08:04,500:INFO:Eval: top1_cor:4181, top5_cor:4724, tot:4800, acc@1=87.10%, acc@5=98.42%
+2024-10-25 09:08:04,785:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch76-1_36.ckpt success
+2024-10-25 09:08:08,916:INFO:Eval: top1_cor:4181, top5_cor:4724, tot:4800, acc@1=87.10%, acc@5=98.42%
+2024-10-25 09:08:09,196:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch75-1_36.ckpt success
+2024-10-25 09:08:12,732:INFO:Eval: top1_cor:4181, top5_cor:4724, tot:4800, acc@1=87.10%, acc@5=98.42%
+2024-10-25 09:08:13,033:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch74-1_36.ckpt success
+2024-10-25 09:08:16,716:INFO:Eval: top1_cor:4180, top5_cor:4724, tot:4800, acc@1=87.08%, acc@5=98.42%
+2024-10-25 09:08:17,093:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch73-1_36.ckpt success
+2024-10-25 09:08:20,989:INFO:Eval: top1_cor:4180, top5_cor:4725, tot:4800, acc@1=87.08%, acc@5=98.44%
+2024-10-25 09:08:21,302:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch72-1_36.ckpt success
+2024-10-25 09:08:25,040:INFO:Eval: top1_cor:4180, top5_cor:4724, tot:4800, acc@1=87.08%, acc@5=98.42%
+2024-10-25 09:08:25,319:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch71-1_36.ckpt success
+2024-10-25 09:08:28,798:INFO:Eval: top1_cor:4180, top5_cor:4725, tot:4800, acc@1=87.08%, acc@5=98.44%
+2024-10-25 09:08:29,053:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch70-1_36.ckpt success
+2024-10-25 09:08:32,564:INFO:Eval: top1_cor:4181, top5_cor:4725, tot:4800, acc@1=87.10%, acc@5=98.44%
+2024-10-25 09:08:32,842:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch69-1_36.ckpt success
+2024-10-25 09:08:36,917:INFO:Eval: top1_cor:4181, top5_cor:4724, tot:4800, acc@1=87.10%, acc@5=98.42%
+2024-10-25 09:08:37,180:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch68-1_36.ckpt success
+2024-10-25 09:08:40,677:INFO:Eval: top1_cor:4182, top5_cor:4724, tot:4800, acc@1=87.12%, acc@5=98.42%
+2024-10-25 09:08:40,937:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch67-1_36.ckpt success
+2024-10-25 09:08:44,505:INFO:Eval: top1_cor:4180, top5_cor:4724, tot:4800, acc@1=87.08%, acc@5=98.42%
+2024-10-25 09:08:44,783:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch66-1_36.ckpt success
+2024-10-25 09:08:48,358:INFO:Eval: top1_cor:4180, top5_cor:4724, tot:4800, acc@1=87.08%, acc@5=98.42%
+2024-10-25 09:08:48,634:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch65-1_36.ckpt success
+2024-10-25 09:08:52,915:INFO:Eval: top1_cor:4180, top5_cor:4724, tot:4800, acc@1=87.08%, acc@5=98.42%
+2024-10-25 09:08:53,198:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch64-1_36.ckpt success
+2024-10-25 09:08:56,764:INFO:Eval: top1_cor:4176, top5_cor:4724, tot:4800, acc@1=87.00%, acc@5=98.42%
+2024-10-25 09:08:57,041:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch63-1_36.ckpt success
+2024-10-25 09:09:00,675:INFO:Eval: top1_cor:4179, top5_cor:4724, tot:4800, acc@1=87.06%, acc@5=98.42%
+2024-10-25 09:09:00,929:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch62-1_36.ckpt success
+2024-10-25 09:09:04,438:INFO:Eval: top1_cor:4179, top5_cor:4724, tot:4800, acc@1=87.06%, acc@5=98.42%
+2024-10-25 09:09:04,707:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch61-1_36.ckpt success
+2024-10-25 09:09:08,192:INFO:Eval: top1_cor:4179, top5_cor:4724, tot:4800, acc@1=87.06%, acc@5=98.42%
+2024-10-25 09:09:08,460:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch60-1_36.ckpt success
+2024-10-25 09:09:11,962:INFO:Eval: top1_cor:4180, top5_cor:4724, tot:4800, acc@1=87.08%, acc@5=98.42%
+2024-10-25 09:09:12,211:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch59-1_36.ckpt success
+2024-10-25 09:09:16,357:INFO:Eval: top1_cor:4181, top5_cor:4725, tot:4800, acc@1=87.10%, acc@5=98.44%
+2024-10-25 09:09:16,622:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch58-1_36.ckpt success
+2024-10-25 09:09:20,123:INFO:Eval: top1_cor:4178, top5_cor:4725, tot:4800, acc@1=87.04%, acc@5=98.44%
+2024-10-25 09:09:20,378:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch57-1_36.ckpt success
+2024-10-25 09:09:23,912:INFO:Eval: top1_cor:4184, top5_cor:4726, tot:4800, acc@1=87.17%, acc@5=98.46%
+2024-10-25 09:09:24,207:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch56-1_36.ckpt success
+2024-10-25 09:09:27,994:INFO:Eval: top1_cor:4184, top5_cor:4726, tot:4800, acc@1=87.17%, acc@5=98.46%
+2024-10-25 09:09:28,285:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch55-1_36.ckpt success
+2024-10-25 09:09:31,937:INFO:Eval: top1_cor:4183, top5_cor:4725, tot:4800, acc@1=87.15%, acc@5=98.44%
+2024-10-25 09:09:32,322:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch54-1_36.ckpt success
+2024-10-25 09:09:35,820:INFO:Eval: top1_cor:4181, top5_cor:4725, tot:4800, acc@1=87.10%, acc@5=98.44%
+2024-10-25 09:09:36,092:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch53-1_36.ckpt success
+2024-10-25 09:09:39,578:INFO:Eval: top1_cor:4182, top5_cor:4724, tot:4800, acc@1=87.12%, acc@5=98.42%
+2024-10-25 09:09:39,855:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch52-1_36.ckpt success
+2024-10-25 09:09:44,065:INFO:Eval: top1_cor:4182, top5_cor:4723, tot:4800, acc@1=87.12%, acc@5=98.40%
+2024-10-25 09:09:44,357:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch51-1_36.ckpt success
+2024-10-25 09:09:48,106:INFO:Eval: top1_cor:4184, top5_cor:4723, tot:4800, acc@1=87.17%, acc@5=98.40%
+2024-10-25 09:09:48,378:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch50-1_36.ckpt success
+2024-10-25 09:09:51,875:INFO:Eval: top1_cor:4187, top5_cor:4722, tot:4800, acc@1=87.23%, acc@5=98.38%
+2024-10-25 09:09:52,143:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch49-1_36.ckpt success
+2024-10-25 09:09:55,664:INFO:Eval: top1_cor:4186, top5_cor:4722, tot:4800, acc@1=87.21%, acc@5=98.38%
+2024-10-25 09:09:55,920:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch48-1_36.ckpt success
+2024-10-25 09:09:59,491:INFO:Eval: top1_cor:4184, top5_cor:4723, tot:4800, acc@1=87.17%, acc@5=98.40%
+2024-10-25 09:09:59,775:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch47-1_36.ckpt success
+2024-10-25 09:10:03,321:INFO:Eval: top1_cor:4180, top5_cor:4725, tot:4800, acc@1=87.08%, acc@5=98.44%
+2024-10-25 09:10:03,608:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch46-1_36.ckpt success
+2024-10-25 09:10:07,195:INFO:Eval: top1_cor:4184, top5_cor:4725, tot:4800, acc@1=87.17%, acc@5=98.44%
+2024-10-25 09:10:07,454:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch45-1_36.ckpt success
+2024-10-25 09:10:10,974:INFO:Eval: top1_cor:4182, top5_cor:4723, tot:4800, acc@1=87.12%, acc@5=98.40%
+2024-10-25 09:10:11,231:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch44-1_36.ckpt success
+2024-10-25 09:10:16,085:INFO:Eval: top1_cor:4182, top5_cor:4719, tot:4800, acc@1=87.12%, acc@5=98.31%
+2024-10-25 09:10:16,351:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch43-1_36.ckpt success
+2024-10-25 09:10:19,891:INFO:Eval: top1_cor:4175, top5_cor:4721, tot:4800, acc@1=86.98%, acc@5=98.35%
+2024-10-25 09:10:20,181:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch42-1_36.ckpt success
+2024-10-25 09:10:23,845:INFO:Eval: top1_cor:4173, top5_cor:4722, tot:4800, acc@1=86.94%, acc@5=98.38%
+2024-10-25 09:10:24,111:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch41-1_36.ckpt success
+2024-10-25 09:10:27,706:INFO:Eval: top1_cor:4164, top5_cor:4719, tot:4800, acc@1=86.75%, acc@5=98.31%
+2024-10-25 09:10:27,976:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch40-1_36.ckpt success
+2024-10-25 09:10:31,495:INFO:Eval: top1_cor:4166, top5_cor:4719, tot:4800, acc@1=86.79%, acc@5=98.31%
+2024-10-25 09:10:31,798:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch39-1_36.ckpt success
+2024-10-25 09:10:35,506:INFO:Eval: top1_cor:4146, top5_cor:4716, tot:4800, acc@1=86.38%, acc@5=98.25%
+2024-10-25 09:10:35,773:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch38-1_36.ckpt success
+2024-10-25 09:10:39,325:INFO:Eval: top1_cor:4161, top5_cor:4711, tot:4800, acc@1=86.69%, acc@5=98.15%
+2024-10-25 09:10:39,604:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch37-1_36.ckpt success
+2024-10-25 09:10:43,145:INFO:Eval: top1_cor:4158, top5_cor:4703, tot:4800, acc@1=86.62%, acc@5=97.98%
+2024-10-25 09:10:43,435:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch36-1_36.ckpt success
+2024-10-25 09:10:47,014:INFO:Eval: top1_cor:4173, top5_cor:4704, tot:4800, acc@1=86.94%, acc@5=98.00%
+2024-10-25 09:10:47,290:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch35-1_36.ckpt success
+2024-10-25 09:10:50,989:INFO:Eval: top1_cor:4155, top5_cor:4706, tot:4800, acc@1=86.56%, acc@5=98.04%
+2024-10-25 09:10:51,243:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch34-1_36.ckpt success
+2024-10-25 09:10:54,800:INFO:Eval: top1_cor:4166, top5_cor:4714, tot:4800, acc@1=86.79%, acc@5=98.21%
+2024-10-25 09:10:55,188:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch33-1_36.ckpt success
+2024-10-25 09:11:00,772:INFO:Eval: top1_cor:4183, top5_cor:4711, tot:4800, acc@1=87.15%, acc@5=98.15%
+2024-10-25 09:11:01,100:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch32-1_36.ckpt success
+2024-10-25 09:11:04,800:INFO:Eval: top1_cor:4190, top5_cor:4720, tot:4800, acc@1=87.29%, acc@5=98.33%
+2024-10-25 09:11:05,066:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch31-1_36.ckpt success
+2024-10-25 09:11:08,596:INFO:Eval: top1_cor:4182, top5_cor:4723, tot:4800, acc@1=87.12%, acc@5=98.40%
+2024-10-25 09:11:08,869:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch30-1_36.ckpt success
+2024-10-25 09:11:12,437:INFO:Eval: top1_cor:4196, top5_cor:4731, tot:4800, acc@1=87.42%, acc@5=98.56%
+2024-10-25 09:11:12,698:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch29-1_36.ckpt success
+2024-10-25 09:11:16,379:INFO:Eval: top1_cor:4187, top5_cor:4729, tot:4800, acc@1=87.23%, acc@5=98.52%
+2024-10-25 09:11:16,659:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch28-1_36.ckpt success
+2024-10-25 09:11:20,321:INFO:Eval: top1_cor:4199, top5_cor:4735, tot:4800, acc@1=87.48%, acc@5=98.65%
+2024-10-25 09:11:20,629:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch27-1_36.ckpt success
+2024-10-25 09:11:24,332:INFO:Eval: top1_cor:4185, top5_cor:4721, tot:4800, acc@1=87.19%, acc@5=98.35%
+2024-10-25 09:11:24,586:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch26-1_36.ckpt success
+2024-10-25 09:11:28,334:INFO:Eval: top1_cor:4194, top5_cor:4730, tot:4800, acc@1=87.38%, acc@5=98.54%
+2024-10-25 09:11:28,636:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch25-1_36.ckpt success
+2024-10-25 09:11:32,419:INFO:Eval: top1_cor:4218, top5_cor:4737, tot:4800, acc@1=87.88%, acc@5=98.69%
+2024-10-25 09:11:32,680:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch24-1_36.ckpt success
+2024-10-25 09:11:36,249:INFO:Eval: top1_cor:4187, top5_cor:4736, tot:4800, acc@1=87.23%, acc@5=98.67%
+2024-10-25 09:11:36,562:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch23-1_36.ckpt success
+2024-10-25 09:11:40,320:INFO:Eval: top1_cor:4226, top5_cor:4742, tot:4800, acc@1=88.04%, acc@5=98.79%
+2024-10-25 09:11:40,615:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch22-1_36.ckpt success
+2024-10-25 09:11:44,115:INFO:Eval: top1_cor:4211, top5_cor:4743, tot:4800, acc@1=87.73%, acc@5=98.81%
+2024-10-25 09:11:44,396:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch21-1_36.ckpt success
+2024-10-25 09:11:47,935:INFO:Eval: top1_cor:4149, top5_cor:4737, tot:4800, acc@1=86.44%, acc@5=98.69%
+2024-10-25 09:11:48,204:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch20-1_36.ckpt success
+2024-10-25 09:11:51,774:INFO:Eval: top1_cor:3633, top5_cor:4716, tot:4800, acc@1=75.69%, acc@5=98.25%
+2024-10-25 09:11:52,044:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch19-1_36.ckpt success
+2024-10-25 09:11:57,415:INFO:Eval: top1_cor:3041, top5_cor:4623, tot:4800, acc@1=63.35%, acc@5=96.31%
+2024-10-25 09:11:57,700:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch18-1_36.ckpt success
+2024-10-25 09:12:01,245:INFO:Eval: top1_cor:2445, top5_cor:3866, tot:4800, acc@1=50.94%, acc@5=80.54%
+2024-10-25 09:12:01,508:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch17-1_36.ckpt success
+2024-10-25 09:12:05,290:INFO:Eval: top1_cor:3080, top5_cor:4239, tot:4800, acc@1=64.17%, acc@5=88.31%
+2024-10-25 09:12:05,559:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch16-1_36.ckpt success
+2024-10-25 09:12:09,085:INFO:Eval: top1_cor:2716, top5_cor:4099, tot:4800, acc@1=56.58%, acc@5=85.40%
+2024-10-25 09:12:09,577:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch15-1_36.ckpt success
+2024-10-25 09:12:13,371:INFO:Eval: top1_cor:2691, top5_cor:4105, tot:4800, acc@1=56.06%, acc@5=85.52%
+2024-10-25 09:12:13,635:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch14-1_36.ckpt success
+2024-10-25 09:12:17,146:INFO:Eval: top1_cor:1971, top5_cor:4125, tot:4800, acc@1=41.06%, acc@5=85.94%
+2024-10-25 09:12:17,447:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch13-1_36.ckpt success
+2024-10-25 09:12:21,155:INFO:Eval: top1_cor:510, top5_cor:3453, tot:4800, acc@1=10.62%, acc@5=71.94%
+2024-10-25 09:12:21,420:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch12-1_36.ckpt success
+2024-10-25 09:12:24,945:INFO:Eval: top1_cor:555, top5_cor:2976, tot:4800, acc@1=11.56%, acc@5=62.00%
+2024-10-25 09:12:25,209:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch11-1_36.ckpt success
+2024-10-25 09:12:28,847:INFO:Eval: top1_cor:401, top5_cor:2432, tot:4800, acc@1=8.35%, acc@5=50.67%
+2024-10-25 09:12:29,117:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch10-1_36.ckpt success
+2024-10-25 09:12:32,685:INFO:Eval: top1_cor:401, top5_cor:2011, tot:4800, acc@1=8.35%, acc@5=41.90%
+2024-10-25 09:12:32,956:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch9-1_36.ckpt success
+2024-10-25 09:12:36,454:INFO:Eval: top1_cor:401, top5_cor:2008, tot:4800, acc@1=8.35%, acc@5=41.83%
+2024-10-25 09:12:36,723:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch8-1_36.ckpt success
+2024-10-25 09:12:40,262:INFO:Eval: top1_cor:401, top5_cor:2008, tot:4800, acc@1=8.35%, acc@5=41.83%
+2024-10-25 09:12:40,543:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch7-1_36.ckpt success
+2024-10-25 09:12:44,042:INFO:Eval: top1_cor:401, top5_cor:2045, tot:4800, acc@1=8.35%, acc@5=42.60%
+2024-10-25 09:12:44,300:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch6-1_36.ckpt success
+2024-10-25 09:12:47,966:INFO:Eval: top1_cor:401, top5_cor:2015, tot:4800, acc@1=8.35%, acc@5=41.98%
+2024-10-25 09:12:48,245:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch5-1_36.ckpt success
+2024-10-25 09:12:51,759:INFO:Eval: top1_cor:403, top5_cor:2181, tot:4800, acc@1=8.40%, acc@5=45.44%
+2024-10-25 09:12:52,038:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch4-1_36.ckpt success
+2024-10-25 09:12:55,534:INFO:Eval: top1_cor:479, top5_cor:2461, tot:4800, acc@1=9.98%, acc@5=51.27%
+2024-10-25 09:12:55,823:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch3-1_36.ckpt success
+2024-10-25 09:12:59,280:INFO:Eval: top1_cor:930, top5_cor:3226, tot:4800, acc@1=19.38%, acc@5=67.21%
+2024-10-25 09:12:59,547:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch2-1_36.ckpt success
+2024-10-25 09:13:05,410:INFO:Eval: top1_cor:937, top5_cor:3071, tot:4800, acc@1=19.52%, acc@5=63.98%
+2024-10-25 09:13:05,671:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch1-1_36.ckpt success
+2024-10-25 09:13:09,193:INFO:Eval: top1_cor:1200, top5_cor:3329, tot:4800, acc@1=25.00%, acc@5=69.35%
+2024-10-25 09:13:09,466:INFO:load model ./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch0-1_36.ckpt success
+2024-10-25 09:13:12,998:INFO:Eval: top1_cor:855, top5_cor:2805, tot:4800, acc@1=17.81%, acc@5=58.44%
+2024-10-25 09:13:13,000:INFO:Best model:./checkpoint_speechv2/2024-10-25_time_08_54_22/epoch23-1_36.ckpt acc:88.04%

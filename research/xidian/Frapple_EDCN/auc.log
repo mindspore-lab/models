@@ -1,0 +1,4 @@
+2024-11-14 09:35:24 EvalCallBack metricdict_values([0.6611951622312048]); eval_time8s
+2024-11-14 09:38:49 EvalCallBack metricdict_values([0.7881504920629281]); eval_time0s
+2024-11-14 09:42:13 EvalCallBack metricdict_values([0.8426687952910489]); eval_time0s
+2024-11-14 12:23:43 AUC: 0.8426687952910489, eval time: 15.034957647323608s.
