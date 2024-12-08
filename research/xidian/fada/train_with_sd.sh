@@ -13,8 +13,6 @@
 # limitations under the License.
 # ============================================================================
 
-# train on source data
-# python train_src.py -cfg configs/deeplabv2_r101_src.yaml --device_target Ascend OUTPUT_DIR results/src_r101_try_d6/
 
 # resume_f ./results/src_r101_try/model_iter020000_feature_extractor.ckpt resume_c ./results/src_r101_try/model_iter020000_classifier.ckpt
 

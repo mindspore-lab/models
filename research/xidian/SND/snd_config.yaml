@@ -1,0 +1,86 @@
+# global config
+seed: 42
+debug: False
+parallel_mode: 'DATA_PARALLEL'
+gradients_mean: False
+parameter_broadcast: True
+amp_level: 'O2'
+
+device_target: "Ascend"
+context_mode: 0
+device_id: 3
+device_num: 1
+output_dir: './output'
+
+
+model_arts: False
+openi: False
+platform: "ZS" #[QZ ZS] it work when openi == True,  QZ:启智集群, ZS:智算集群
+# 两个集群首先是输入超参的差别，其次在导入数据集上有区别，两者同样从obs桶当中导入，但是智算集群不会自动解压zip，启智集群就是已经将数据解压好放入到桶中了，不需要自己些解压操作，用ln映射一下即可。
+# 智算集群: output path : /cache/output
+multi_data_url: '' # 有用的：1
+pretrain_url: '' # 有用的：2
+model_url: '' # 没用
+grampus_code_file_name: '' # 没用
+# 启智集群，多了这部分参数，但是并不需要使用，需要设置一个容纳一下
+ckpt_url: ''
+data_url: ''
+train_url: '' # output url 有用，输出的时候，需要用moxing将输出转移到这里
+work_root: ''
+
+# model export and infer_310
+file_format: "MINDIR"
+file_name: "./ascend310_infer/model"
+output_path: "./preprocess_Result"
+predict_path: "./result_Files"
+
+
+# local descriptions
+model: 'DeepLab v2'
+
+# URL for model train and eval todo need modified according to the experimental environment
+data_dir: "./data/GTA5"
+data_dir_target: "./data/Cityscapes"
+restore_from: "./checkpoint/Source_only_best_35.93.ckpt"
+#restore_from: "./src/advnet/Multi_adv_best_41.8.ckpt"
+snapshot_dir: "./checkpoint/"
+save_result: "./result/cityscapes"
+
+
+data_list: "./src/dataset/gta5_list/train.txt"
+data_list_target: "./src/dataset/cityscapes_list"
+
+
+
+
+# ==================================================================
+# Options
+set: "train"
+# Options: images setting
+input_size: [ 1280,720 ]
+input_size_target: [ 1024,512 ]
+output_size: [ 1024,2048 ]
+# Options: train setting
+batch_size: 2
+iter_size: 1
+num_workers: 8
+num_steps: 30000
+save_pred_every: 2000
+# Options: models setting
+num_classes: 19
+# Options: SGD and learning rate setting
+learning_rate: 0.00025 #2.5e-4
+power: 0.9
+momentum: 0.9
+weight_decay: 0.0005
+# Options: Adam and learning rate
+learning_rate_D: 0.0001 #1e-4
+# Options: loss
+lambda_: [ 0.1, 0.0002, 0.01 ]
+
+
+
+
+
+
+
