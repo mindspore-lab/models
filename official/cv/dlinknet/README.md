@@ -9,6 +9,7 @@ The model performed best in the 2018 DeepGlobe Road Extraction Challenge. The ne
  | mindspore | ascend driver | firmware | cann toolkit/kernel |
  |:---------:|:-------------:|:--------:|:-------------------:|
  | 2.3.1 | 24.1.rc2 | 7.3.0.2.220 | 8.0.RC2.beta1 |
+ | 2.4.0 | 24.1.rc3 | 7.5.0.1.129 | 8.0.RC3.beta1 |
  ```shell
  pip install -r requirement.txt
  ```
@@ -81,12 +82,12 @@ Dataset used： [DeepGlobe Road Extraction Dataset](https://www.kaggle.com/balra
   - config: The training configuration path
 
 ## Performance
-- Performance tested on Ascend 910 with graph mode
+- Experiments are tested on Ascend 910* with mindspore 2.4 graph mode.
 
   | model name | backbone | cards | batch size | resolution | graph compile | jit level | s/step | img/s | IoU | yaml | weight |
   |:----------:|:--------:|:-----:|:----------:|:----------:|:-------------:|:---------:|:------:|:-----:|:---:|:----:|:------:|
-  | dlinknet34 | resent34 | 1 | 4 | 1024x1024 |  56s | O0 | 0.17 | 23.52 | 98.34% |[yaml](./configs/dlinknet34_config.yaml)| [weight](https://download-mindspore.osinfra.cn/toolkits/models/dlinknet/dlinknet34_ascend_v2_resnet34_bs4_iou98.34.ckpt) |
-  | dlinknet50 | resent50 | 1 | 4 | 1024x1024 | 133s | O0 | 0.39 | 10.25 | 98.37% |[yaml](./configs/dlinknet50_config.yaml)| [weight](https://download-mindspore.osinfra.cn/toolkits/models/dlinknet/dlinknet50_ascend_v2_resnet50_bs4_iou98.37.ckpt) |
+  | dlinknet34 | resent34 | 1 | 4 | 1024x1024 |  56s | O0 | 0.16 | 25.00 | 98.39% |[yaml](./configs/dlinknet34_config.yaml)| [weight](https://download-mindspore.osinfra.cn/toolkits/models/dlinknet/dlinknet34_ascend_v3_ms2.4_resnet34_bs4_iou98.39.ckpt) |
+  | dlinknet50 | resent50 | 1 | 4 | 1024x1024 | 133s | O0 | 0.38 | 10.52 | 98.37% |[yaml](./configs/dlinknet50_config.yaml)| [weight](https://download-mindspore.osinfra.cn/toolkits/models/dlinknet/dlinknet50_ascend_v3_ms2.4_resnet50_bs4_iou98.37.ckpt) |
 
 ## Some Examples Of Predicted Results
 
