@@ -1,6 +1,6 @@
 # 🌟 基于视频的跨模态行人重识别的骨架引导时空特征学习方法
 
-该仓库为论文：“**Skeleton-Guided Spatial-Temporal Feature Learning for Video-Based Visible-Infrared Person Re-Identification**” 的代码仓库。该版本代码的框架基于 **MindSpore**。
+该仓库为论文：“**Skeleton-Guided Spatial-Temporal Feature Learning for Video-Based Visible-Infrared Person Re-Identification**” 的代码仓库。
 
 ![框架图](./Fig/framework.jpg)
 
@@ -13,7 +13,12 @@ Specifically:
 1. 🖼️ **Frame level**: The robust structured skeleton information refines the visual features of individual frames.
 2. 🔄 **Sequence level**: A feature aggregation mechanism based on a skeleton key points graph learns the contribution of different body parts to spatial-temporal features, further enhancing global features.
 
-📊 **Experiments on benchmark datasets** demonstrate that STAR outperforms state-of-the-art methods.
+📊 **Experiments on benchmark datasets** demonstrate that STAR outperforms state-of-the-art methods (based on MindSpore).
+
+|            | Infrared to Visible (mAP) | Visible to Infrared (mAP) |
+| ---------- | ------------------------- | ------------------------- |
+| Baseline   | 54.97%                    | 55.86%                    |
+| STAR(Ours) | **56.01%**                | **58.56%**                |
 
 ---
 
