@@ -43,52 +43,40 @@ pip install git+https://github.com/lvyufeng/einops
 
 ## 📂 数据集
 
-### 数据集下载
-
 我们采用以下公开数据集进行实验：
 
-- 🌌 **SYSU-MM01**: 下载链接 [SYSU-MM01](https://github.com/link-to-sysumm01)
-- 🔥 **RegDB**: 下载链接 [RegDB](https://github.com/link-to-regdb)
+- 🌌 **HITSZ-VCM**: 下载链接 [VCM](https://github.com/link-to-sysumm01)
 
-将数据集下载后，按以下结构组织：
+请将下载后的代码按照下面的组织形式：
 
-````
-datasets/
-├── SYSU-MM01/
-│   ├── visible/
-│   ├── infrared/
-├── RegDB/
-    ├── visible/
-    ├── infrared/
-
----
-
-## 🧪 实验运行
-
-### 训练
-
-```sh
-python train.py --config config.yaml
-````
-
-### 测试
-
-```sh
-python test.py --model_path checkpoints/best_model.pth
+```
+  |____ data/
+       |____ 0001/
+            |____ ir/
+            |____ rgb/
+       |____ 0002/
+       …
+       |____ 0927/
+       |____test_name.txt
+       |____track_test_info.txt
+       |____query_IDX.txt
+       |____train_name.txt
+       |____track_train_info.txt
 ```
 
 ---
 
 ## 📖 引用
 
-如果您在研究中使用了我们的代码或方法，请引用以下论文：
-
 ```bibtex
-@inproceedings{Jiang2024SkeletonGuidedSF,
-  title={Skeleton-Guided Spatial-Temporal Feature Learning for Video-Based Visible-Infrared Person Re-Identification},
-  author={Wenjia Jiang and Xiaoke Zhu and Jiakang Gao and Di Liao},
-  year={2024},
-  url={https://arxiv.org/abs/}
+@misc{jiang2024skeletonguidedspatialtemporalfeaturelearning,
+      title={Skeleton-Guided Spatial-Temporal Feature Learning for Video-Based Visible-Infrared Person Re-Identification},
+      author={Wenjia Jiang and Xiaoke Zhu and Jiakang Gao and Di Liao},
+      year={2024},
+      eprint={2411.11069},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2411.11069},
 }
 ```
 
