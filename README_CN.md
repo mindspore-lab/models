@@ -1,26 +1,20 @@
 # ![MindSpore Logo](https://gitee.com/mindspore/mindspore/raw/master/docs/MindSpore-logo.png)
 
-## 欢迎来到MindSpore ModelZoo
-
+## 欢迎来到 MindSpore Model Zoo
 | 目录  | 描述 |
-|--|-|
-| [official](official)   | • 业界SOTA算法模型实现<br/> • MindSpore团队官方维护|
-| [research](research)   | • 业界前沿研究类算法模型实现 <br/> • 研究人员/机构维护 |
-| [community](community) | • github/gitee 生态AI/ML repos powered by MindSpore | 
-
+|:--|:--|
+| [official](official)   | • SOTA算法模型列表<br/> • MindSpore团队维护|
 
 ### MindSpore Lab:
 | 套件模型库 | 说明 |  
 |:--:|:-- |
-| mindformers | • transformers类大模型套件，包含llama/qwen等模型 <br/> • https://github.com/mindspore-lab/mindformers |
-| mindone     | • 生成式模型套件，包含sd/sora/dit等模型   <br/> • https://github.com/mindspore-lab/mindone     | 
-| mindcv      | • cv模型库包含vgg/resnet/vit等          <br/> •  https://github.com/mindspore-lab/mindcv    | 
-| mindnlp     | • nlp类模型库包含bert/roberta等         <br/> • https://github.com/mindspore-lab/mindnlp    | 
-| mindaudio   | • audio模型库包含deepspeech/conformer等 <br/> • https://github.com/mindspore-lab/mindaudio |
-| mindocr     | • ocr任务模型库包含dbnet/crnn等          <br/> • https://github.com/mindspore-lab/mindocr   | 
-| mindyolo    | • yolo模型库包含yolov3~v8等             <br/> • https://github.com/mindspore-lab/mindyolo  |
-
-
+| mindformers | • 大模型模型套件，包含llama/qwen等模型          <br/> • https://github.com/mindspore-lab/mindformers   |
+| mindone     | • 多模态模型套件，包含sd/sora/dit等模型         <br/> • https://github.com/mindspore-lab/mindone       | 
+| mindcv      | • cv模型套件，包含vgg/resnet/vit等             <br/> •  https://github.com/mindspore-lab/mindcv      | 
+| mindnlp     | • nlp模型套件，包含bert/roberta等             <br/> • https://github.com/mindspore-lab/mindnlp       | 
+| mindaudio   | • audio模型套件，包含deepspeech/conformer等   <br/> • https://github.com/mindspore-lab/mindaudio     |
+| mindocr     | • ocr任务模型套件，包含dbnet/crnn等           <br/> • https://github.com/mindspore-lab/mindocr        | 
+| mindyolo    | • yolo模型套件，包含yolov3~v10等              <br/> • https://github.com/mindspore-lab/mindyolo      |
 
 ## 免责声明
 
