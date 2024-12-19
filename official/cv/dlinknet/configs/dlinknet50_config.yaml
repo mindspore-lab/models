@@ -14,9 +14,9 @@ dataset_sink_mode: False
 
 # ==============================================================================
 # Training options
-epoch_num: 300
-distribute_epoch_num: 300
-pretrained_ckpt: ""
+epoch_size: 300
+distribute_epoch_size: 300
+pretrained_ckpt: "../resnet50.ckpt"
 batch_size: 4
 learning_rate: 0.0002
 scale_factor: 2
