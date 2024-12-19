@@ -4,6 +4,7 @@ import numpy as np
 from mindspore.dataset.vision import Inter
 from mindspore.dataset.transforms import Compose
 
+
 class Random2DTranslation:
     """
     With a probability, first increase image size to (1 + 1/8), and then perform random crop.
@@ -14,6 +15,7 @@ class Random2DTranslation:
         p (float): probability of performing this transformation. Default: 0.5.
         interpolation (mindspore.dataset.vision.Inter): interpolation method. Default: Inter.BILINEAR.
     """
+
     def __init__(self, height, width, p=0.5, interpolation=Inter.BILINEAR):
         self.height = height
         self.width = width
@@ -31,7 +33,9 @@ class Random2DTranslation:
         if random.random() < self.p:
             return img.resize((self.width, self.height), resample=self.interpolation)
 
-        new_width, new_height = int(round(self.width * 1.125)), int(round(self.height * 1.125))
+        new_width, new_height = int(round(self.width * 1.125)), int(
+            round(self.height * 1.125)
+        )
         resized_img = img.resize((new_width, new_height), resample=self.interpolation)
         x_maxrange = new_width - self.width
         y_maxrange = new_height - self.height
@@ -40,12 +44,12 @@ class Random2DTranslation:
         cropped_img = resized_img.crop((x1, y1, x1 + self.width, y1 + self.height))
         return cropped_img
 
-# Example of integration into a MindSpore pipeline
+
 def apply_random_2d_translation(img, height, width, p=0.5):
     transform = Random2DTranslation(height, width, p)
     return transform(img)
 
-# Example usage
+
 if __name__ == "__main__":
     img = Image.open("example.jpg").convert("RGB")
     transformer = Random2DTranslation(height=224, width=224, p=0.5)

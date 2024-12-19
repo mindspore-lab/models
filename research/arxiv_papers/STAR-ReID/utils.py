@@ -13,11 +13,12 @@ from mindspore.nn import Cell
 from mindspore import Tensor, ops
 from mindspore.common import Parameter
 
+
 def load_data(input_data_path):
     with open(input_data_path) as f:
         data_file_list = f.read().splitlines()
-        file_image = [s.split(' ')[0] for s in data_file_list]
-        file_label = [int(s.split(' ')[1]) for s in data_file_list]
+        file_image = [s.split(" ")[0] for s in data_file_list]
+        file_label = [int(s.split(" ")[1]) for s in data_file_list]
     return file_image, file_label
 
 
@@ -37,14 +38,18 @@ def GenIdx(train_color_label, train_thermal_label):
 
 
 def GenCamIdx(gall_img, gall_label, mode):
-    camIdx = [1, 2] if mode == 'indoor' else [1, 2, 4, 5]
+    camIdx = [1, 2] if mode == "indoor" else [1, 2, 4, 5]
     gall_cam = [int(img[-10]) for img in gall_img]
 
     sample_pos = []
     unique_label = np.unique(gall_label)
     for label in unique_label:
         for cam in camIdx:
-            id_pos = [idx for idx, val in enumerate(gall_label) if val == label and gall_cam[idx] == cam]
+            id_pos = [
+                idx
+                for idx, val in enumerate(gall_label)
+                if val == label and gall_cam[idx] == cam
+            ]
             if id_pos:
                 sample_pos.append(id_pos)
     return sample_pos
@@ -61,7 +66,16 @@ class IdentitySampler(Cell):
         color_pos, thermal_pos: positions of each identity
         batchSize: the number of pids
     """
-    def __init__(self, train_thermal_label, train_color_label, color_pos, thermal_pos, num_pos, batchSize):
+
+    def __init__(
+        self,
+        train_thermal_label,
+        train_color_label,
+        color_pos,
+        thermal_pos,
+        num_pos,
+        batchSize,
+    ):
         super(IdentitySampler, self).__init__()
         uni_label = np.unique(train_color_label)
         self.n_classes = len(uni_label)
@@ -90,6 +104,7 @@ class IdentitySampler(Cell):
 
 class AverageMeter:
     """Computes and stores the average and current value"""
+
     def __init__(self):
         self.reset()
 
@@ -117,12 +132,13 @@ def mkdir_if_missing(directory):
 
 class Logger:
     """Write console output to external text file."""
+
     def __init__(self, fpath=None):
         self.console = sys.stdout
         self.file = None
         if fpath is not None:
             mkdir_if_missing(osp.dirname(fpath))
-            self.file = open(fpath, 'w')
+            self.file = open(fpath, "w")
 
     def __del__(self):
         self.close()
@@ -147,13 +163,17 @@ class Logger:
 def set_seed(seed, cuda=True):
     np.random.seed(seed)
     if cuda:
-        # MindSpore seeds can be set via `context` configurations
-        print(f"MindSpore doesn't require explicit cuda seed configuration. Setting numpy seed: {seed}")
+        print(
+            f"MindSpore doesn't require explicit cuda seed configuration. Setting numpy seed: {seed}"
+        )
 
 
 def get_dir(src_point, rot_rad):
     sn, cs = np.sin(rot_rad), np.cos(rot_rad)
-    return [src_point[0] * cs - src_point[1] * sn, src_point[0] * sn + src_point[1] * cs]
+    return [
+        src_point[0] * cs - src_point[1] * sn,
+        src_point[0] * sn + src_point[1] * cs,
+    ]
 
 
 def get_3rd_point(a, b):
@@ -161,7 +181,9 @@ def get_3rd_point(a, b):
     return b + np.array([-direct[1], direct[0]], dtype=np.float32)
 
 
-def get_affine_transform(center, scale, rot, output_size, shift=np.array([0, 0], dtype=np.float32), inv=0):
+def get_affine_transform(
+    center, scale, rot, output_size, shift=np.array([0, 0], dtype=np.float32), inv=0
+):
     if not isinstance(scale, (np.ndarray, list)):
         scale = np.array([scale, scale])
 
@@ -202,7 +224,7 @@ def transform_logits(logits, center, scale, width, height, input_size):
             (int(width), int(height)),
             flags=cv2.INTER_LINEAR,
             borderMode=cv2.BORDER_CONSTANT,
-            borderValue=0
+            borderValue=0,
         )
         target_logits.append(target_logit)
     return np.stack(target_logits, axis=2)
