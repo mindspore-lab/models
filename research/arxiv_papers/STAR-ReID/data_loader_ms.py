@@ -9,8 +9,8 @@ from PIL import Image
 from mindspore.dataset import Dataset
 from mindspore import Tensor, ops
 import mindspore
-train_hdf_ = '/root/autodl-tmp/VCM-POSE/dataset-train.h5'
-test_hdf_ = '/root/autodl-tmp/VCM-POSE/dataset-test.h5'
+train_hdf_ = '../VCM-POSE/dataset-train.h5'
+test_hdf_ = '../VCM-POSE/dataset-test.h5'
 
 
 def read_image(img_path):
