@@ -34,7 +34,7 @@ msrun --worker_num=2 --local_worker_num=2 --master_port=8118 --log_dir=msrun_log
 
 - MindSpore >= 2.3.0
 - Python >= 3.8
-- Ascend: 2\*ascend-snt9b3|ARM: 48 核 384GB
+- Ascend: 2\*ascend-910
 
 ### 安装依赖
 
