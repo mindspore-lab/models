@@ -375,3 +375,29 @@ For test data, please use the following link: [voxceleb1_test](<https://www.kagg
 
 ## Model Training
 Considering storage limitations, training with a 1.3TB dataset exceeds the capability of many researchers. Here we provide weights trained using the VoxCeleb1 dataset(about 200G):[ckpt](<https://pan.baidu.com/s/10ffx5iR7ANAOnGhlbt9NCw?pwd=g39w>). The dataset format, placement, and use of the config file remain consistent with the instructions above.
+
+## datapreprocess
+```bash
+bash data_prepare.sh
+```
+
+## train
+```bash
+python train.py > train.log 2>&1 &
+```
+
+### train_log
+```text
+epoch[29], 300.29 imgs/sec
+Train Loss: 0.008824656
+Train Accuracy: 100.0 %
+```
+
+## eval
+```bash
+bash run_eval_ascend.sh 0 checkpoint/vox1.ckpt
+```
+### eval_log
+```text
+eer with norm:0.0095
+```

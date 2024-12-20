@@ -14,8 +14,8 @@
 # limitations under the License.
 # ============================================================================
 
-# python3 official/audio/EcapaTDNN/train_data_prepare.py official/audio/EcapaTDNN/hparams/prepare_train_local.yaml
-# python3 eval_data_prepare.py hparams/prepare_eval.yaml
+python3 train_data_prepare.py hparams/prepare_train.yaml
+python3 eval_data_prepare.py hparams/prepare_eval.yaml
 # if you want to accelerate dataload io, run script below
 python3 official/audio/EcapaTDNN/merge_data.py official/audio/EcapaTDNN/hparams/prepare_train_local.yaml
 # official/audio/EcapaTDNN/train.py

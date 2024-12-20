@@ -369,11 +369,41 @@ python3 export.py
 
 
 # 补充
-## 数据集
+
+## voxceleb1训练数据集
 先前提供的voxceleb1数据集下载地址已经不可用,请使用以下链接[voxceleb1](<https://www.kaggle.com/datasets/tnginhnht/voxceleb1>),
 测试数据请使用以下链接[voxceleb1_test](<https://www.kaggle.com/datasets/kryakrya/voxceleb1test?resource=download>)
 ## 模型训练
 考虑到存储限制，使用1.3TB的数据集进行训练超出许多研究者能力,这里提供使用voxceleb1数据集进行训练(约200g)的权重[ckpt](<https://pan.baidu.com/s/10ffx5iR7ANAOnGhlbt9NCw?pwd=g39w>)，数据集格式、放置位置和config文件的使用同上。
+
+## 数据预处理
+```bash
+bash data_prepare.sh
+```
+
+## 训练
+```bash
+python train.py > train.log 2>&1 &
+```
+
+### log
+```text
+epoch[29], 300.29 imgs/sec
+Train Loss: 0.008824656
+Train Accuracy: 100.0 %
+```
+
+## 评估
+```bash
+bash run_eval_ascend.sh 0 checkpoint/vox1.ckpt
+```
+### log
+```text
+eer with norm:0.0095
+```
+
+
+
 
 
 
