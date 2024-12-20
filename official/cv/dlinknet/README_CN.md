@@ -15,8 +15,8 @@ D-LinkNet模型基于LinkNet架构构建。实现方式见论文[D-LinkNet: Link
  ```
 
 ## 预训练权重
-- [Resnet34 Imagenet Checkpoint](https://download-mindspore.osinfra.cn/toolkits/models/dlinknet/resnet34_ascend_v130_imagenet2012_official_cv_bs256_top1acc73.83_top5acc91.61.ckpt)
-- [Resnet50 Imagenet Checkpoint](https://download-mindspore.osinfra.cn/toolkits/models/dlinknet/resnet50_ascend_v1100_imagenet2012_official_cv_top1acc76.97_top5acc93.44.ckpt)
+- [Resnet34 Imagenet Checkpoint](https://download-mindspore.osinfra.cn/toolkits/mindcv/resnet/resnet34-f297d27e.ckpt)
+- [Resnet50 Imagenet Checkpoint](https://download-mindspore.osinfra.cn/toolkits/mindcv/resnet/resnet50-f369a08d-910v2.ckpt)
 
 ## 数据集
 
@@ -86,8 +86,8 @@ D-LinkNet模型基于LinkNet架构构建。实现方式见论文[D-LinkNet: Link
 
   | model name | backbone | cards | batch size | resolution | graph compile | jit level | s/step | img/s | IoU | yaml | weight |
   |:----------:|:--------:|:-----:|:----------:|:----------:|:-------------:|:---------:|:------:|:-----:|:---:|:----:|:------:|
-  | dlinknet34 | resent34 | 1 | 4 | 1024x1024 |  56s | O0 | 0.16 | 25.00 | 98.39% |[yaml](./configs/dlinknet34_config.yaml)| [weight](https://download-mindspore.osinfra.cn/toolkits/models/dlinknet/dlinknet34_ascend_v3_ms2.4_resnet34_bs4_iou98.39.ckpt) |
-  | dlinknet50 | resent50 | 1 | 4 | 1024x1024 | 133s | O0 | 0.38 | 10.52 | 98.37% |[yaml](./configs/dlinknet50_config.yaml)| [weight](https://download-mindspore.osinfra.cn/toolkits/models/dlinknet/dlinknet50_ascend_v3_ms2.4_resnet50_bs4_iou98.37.ckpt) |
+  | dlinknet34 | resent34 | 1 | 4 | 1024x1024 |  56s | O0 | 0.16 | 25.00 | 98.19% |[yaml](./configs/dlinknet34_config.yaml)| [weight](https://download-mindspore.osinfra.cn/toolkits/models/dlinknet/dlinknet34_ascend_v4_ms2.4_resnet34_bs4_iou98.19.ckpt) |
+  | dlinknet50 | resent50 | 1 | 4 | 1024x1024 | 133s | O0 | 0.38 | 10.52 | 98.18% |[yaml](./configs/dlinknet50_config.yaml)| [weight](https://download-mindspore.osinfra.cn/toolkits/models/dlinknet/dlinknet50_ascend_v4_ms2.4_resnet50_bs4_iou98.18.ckpt) |
 
 ## 评估结果样例
 
