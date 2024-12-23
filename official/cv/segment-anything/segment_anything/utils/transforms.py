@@ -101,7 +101,7 @@ class ResizeLongestSide:
         target_size = self.get_preprocess_shape(image.shape[2], image.shape[3], self.target_length)
         # TODO note original version has antialias=True, ref:
         # https://stackoverflow.com/questions/60949936/why-bilinear-scaling-of-images-with-pil-and-pytorch-produces-different-results
-        return mint.interpolate(
+        return mint.nn.functional.interpolate(
             image, target_size, mode="bilinear", align_corners=False
         )
 

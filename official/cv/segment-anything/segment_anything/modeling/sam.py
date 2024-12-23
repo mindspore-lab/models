@@ -149,7 +149,7 @@ class Sam(nn.Cell):
             )
             # low_res_masks (n, 4, h, w) if multimask_output else (n, 1, h, w)
             # iou_predictions (n, 4) if multimask_output else (n, 1)
-            pred_mask = mint.interpolate(low_res_masks, (h, w), mode='bilinear', align_corners=False)
+            pred_mask = mint.nn.functional.interpolate(low_res_masks, (h, w), mode='bilinear', align_corners=False)
 
             pred_masks.append(pred_mask)
             pred_ious.append(iou_predictions)
@@ -185,14 +185,14 @@ class Sam(nn.Cell):
           (ms.Tensor): Batched masks in BxCxHxW format, where (H, W)
             is given by original_size.
         """
-        masks = mint.interpolate(
+        masks = mint.nn.functional.interpolate(
             masks,
             (self.image_encoder.img_size, self.image_encoder.img_size),
             mode="bilinear",
             align_corners=False,
         )
         masks = masks[..., : input_size[0], : input_size[1]]
-        masks = mint.interpolate(masks, original_size, mode="bilinear", align_corners=False)
+        masks = mint.nn.functional.interpolate(masks, original_size, mode="bilinear", align_corners=False)
         return masks
 
     def preprocess(self, x: ms.Tensor) -> ms.Tensor:

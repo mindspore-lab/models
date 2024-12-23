@@ -37,7 +37,7 @@ text_features = model.get_text_feature(input_ids)[:, 0]
 
 logits_per_image = mint.matmul(image_features, text_features.T) / model.temp  # (20, 5)
 
-probs = mint.softmax(logits_per_image, dim=-1).asnumpy() # (20, 5)
+probs = mint.nn.functional.softmax(logits_per_image, dim=-1).asnumpy() # (20, 5)
 
 for i in range(20):
     print(f'\n\n{i}')
