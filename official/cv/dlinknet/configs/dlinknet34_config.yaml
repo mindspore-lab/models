@@ -14,9 +14,9 @@ dataset_sink_mode: False
 
 # ==============================================================================
 # Training options
-epoch_num: 300
-distribute_epoch_num: 300
-pretrained_ckpt: "../resnet34_ascend_v130_imagenet2012_official_cv_bs256_top1acc73.83__top5acc91.61.ckpt"
+epoch_size: 300
+distribute_epoch_size: 300
+pretrained_ckpt: "../resnet34.ckpt"
 batch_size: 4
 learning_rate: 0.0002
 scale_factor: 2
