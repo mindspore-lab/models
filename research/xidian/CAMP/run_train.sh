@@ -1,0 +1,1 @@
+nohup python -u train.py --config config.yaml  > train.log 2>&1 &
