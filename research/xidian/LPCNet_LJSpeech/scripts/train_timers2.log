@@ -1,0 +1,36 @@
+[WARNING] ME(1362746:281473581338656,_GeneratorWorkerMp-12):2024-11-01-01:04:22.687.263 [mindspore/dataset/engine/queue.py:125] Using shared memory queue, but rowsize is larger than allocated memory max_rowsize 6291456 current rowsize 120519680
+[WARNING] ME(1362783:281473581338656,_GeneratorWorkerMp-19):2024-11-01-01:04:25.838.639 [mindspore/dataset/engine/queue.py:125] Using shared memory queue, but rowsize is larger than allocated memory max_rowsize 6291456 current rowsize 120519680
+[WARNING] ME(1362981:281473581338656,_GeneratorWorkerMp-48):2024-11-01-01:04:38.963.219 [mindspore/dataset/engine/queue.py:125] Using shared memory queue, but rowsize is larger than allocated memory max_rowsize 6291456 current rowsize 120519680
+[WARNING] DEVICE(1362541,ffffacd45020,python):2024-11-01-01:05:15.416.793 [mindspore/ccsrc/plugin/device/ascend/hal/device/kernel_select_ascend.cc:330] FilterRaisedOrReducePrecisionMatchedKernelInfo] Operator:[Gradients/Default/network-MyTrainStep/network-WithLossLPCNet/backbone-LPCNet/decoder-Decoder/gradStridedSlice/StridedSliceGrad-op940] don't support int64, reduce precision from int64 to int32.
+[WARNING] DEVICE(1362541,ffffacd45020,python):2024-11-01-01:05:15.438.768 [mindspore/ccsrc/plugin/device/ascend/hal/device/kernel_select_ascend.cc:330] FilterRaisedOrReducePrecisionMatchedKernelInfo] Operator:[Gradients/Default/network-MyTrainStep/network-WithLossLPCNet/backbone-LPCNet/decoder-Decoder/gradStridedSlice/StridedSliceGrad-op946] don't support int64, reduce precision from int64 to int32.
+[WARNING] DEVICE(1362541,ffffacd45020,python):2024-11-01-01:05:15.467.097 [mindspore/ccsrc/plugin/device/ascend/hal/device/kernel_select_ascend.cc:330] FilterRaisedOrReducePrecisionMatchedKernelInfo] Operator:[Gradients/Default/network-MyTrainStep/network-WithLossLPCNet/backbone-LPCNet/decoder-Decoder/gradStridedSlice/StridedSliceGrad-op948] don't support int64, reduce precision from int64 to int32.
+[WARNING] DEVICE(1362541,ffffacd45020,python):2024-11-01-01:05:15.472.466 [mindspore/ccsrc/plugin/device/ascend/hal/device/kernel_select_ascend.cc:330] FilterRaisedOrReducePrecisionMatchedKernelInfo] Operator:[Gradients/Default/network-MyTrainStep/network-WithLossLPCNet/backbone-LPCNet/decoder-Decoder/gradStridedSlice/StridedSliceGrad-op950] don't support int64, reduce precision from int64 to int32.
+[WARNING] DEVICE(1362541,ffffacd45020,python):2024-11-01-01:05:15.478.715 [mindspore/ccsrc/plugin/device/ascend/hal/device/kernel_select_ascend.cc:330] FilterRaisedOrReducePrecisionMatchedKernelInfo] Operator:[Gradients/Default/network-MyTrainStep/network-WithLossLPCNet/backbone-LPCNet/decoder-Decoder/gradStridedSlice/StridedSliceGrad-op952] don't support int64, reduce precision from int64 to int32.
+[WARNING] DEVICE(1362541,ffffacd45020,python):2024-11-01-01:05:15.485.140 [mindspore/ccsrc/plugin/device/ascend/hal/device/kernel_select_ascend.cc:330] FilterRaisedOrReducePrecisionMatchedKernelInfo] Operator:[Gradients/Default/network-MyTrainStep/network-WithLossLPCNet/backbone-LPCNet/decoder-Decoder/gradStridedSlice/StridedSliceGrad-op955] don't support int64, reduce precision from int64 to int32.
+[WARNING] DEVICE(1362541,ffffacd45020,python):2024-11-01-01:05:15.487.752 [mindspore/ccsrc/plugin/device/ascend/hal/device/kernel_select_ascend.cc:330] FilterRaisedOrReducePrecisionMatchedKernelInfo] Operator:[Gradients/Default/network-MyTrainStep/network-WithLossLPCNet/backbone-LPCNet/decoder-Decoder/gradStridedSlice/StridedSliceGrad-op956] don't support int64, reduce precision from int64 to int32.
+[WARNING] DEVICE(1362541,ffffacd45020,python):2024-11-01-01:05:15.489.580 [mindspore/ccsrc/plugin/device/ascend/hal/device/kernel_select_ascend.cc:330] FilterRaisedOrReducePrecisionMatchedKernelInfo] Operator:[Gradients/Default/network-MyTrainStep/network-WithLossLPCNet/backbone-LPCNet/decoder-Decoder/gradStridedSlice/StridedSliceGrad-op957] don't support int64, reduce precision from int64 to int32.
+[WARNING] DEVICE(1362541,ffffacd45020,python):2024-11-01-01:12:29.042.121 [mindspore/ccsrc/plugin/device/ascend/hal/device/ascend_stream_assign.cc:1944] InsertEventForCallCommSubGraph] Cannot find comm group for sub comm graph label id 2
+[WARNING] DEVICE(1362541,ffffacd45020,python):2024-11-01-01:12:29.042.309 [mindspore/ccsrc/plugin/device/ascend/hal/device/ascend_stream_assign.cc:1944] InsertEventForCallCommSubGraph] Cannot find comm group for sub comm graph label id 5
+[WARNING] DEVICE(1362541,ffffacd45020,python):2024-11-01-01:12:29.042.365 [mindspore/ccsrc/plugin/device/ascend/hal/device/ascend_stream_assign.cc:1944] InsertEventForCallCommSubGraph] Cannot find comm group for sub comm graph label id 11
+[WARNING] DEVICE(1362541,ffffacd45020,python):2024-11-01-01:12:29.042.416 [mindspore/ccsrc/plugin/device/ascend/hal/device/ascend_stream_assign.cc:1944] InsertEventForCallCommSubGraph] Cannot find comm group for sub comm graph label id 14
+[WARNING] DEVICE(1362541,ffffacd45020,python):2024-11-01-01:12:29.042.465 [mindspore/ccsrc/plugin/device/ascend/hal/device/ascend_stream_assign.cc:1944] InsertEventForCallCommSubGraph] Cannot find comm group for sub comm graph label id 17
+[WARNING] DEVICE(1362541,ffffacd45020,python):2024-11-01-01:12:29.042.606 [mindspore/ccsrc/plugin/device/ascend/hal/device/ascend_stream_assign.cc:1944] InsertEventForCallCommSubGraph] Cannot find comm group for sub comm graph label id 8
+[WARNING] MD(1362541,fff6827cf080,python):2024-11-01-01:12:43.967.836 [mindspore/ccsrc/minddata/dataset/engine/datasetops/source/generator_op.cc:195] operator()] Bad performance attention, it takes more than 25 seconds to generator.__next__ new row, which might cause `GetNext` timeout problem when sink_mode=True. You can increase the parameter num_parallel_workers in GeneratorDataset / optimize the efficiency of obtaining samples in the user-defined generator function.
+[WARNING] MD(1362541,fff681fbf080,python):2024-11-01-01:12:43.968.200 [mindspore/ccsrc/minddata/dataset/engine/datasetops/device_queue_op.cc:752] DetectPerBatchTime] Bad performance attention, it takes more than 25 seconds to fetch a batch of data from dataset pipeline, which might result `GetNext` timeout problem. You may test dataset processing performance(with creating dataset iterator) and optimize it.
+epoch: 1 step: 40587, loss is 2.6979730129241943
+Train epoch time: 16664923.051 ms, per step time: 410.598 ms
+epoch: 2 step: 40587, loss is 2.8308990001678467
+Train epoch time: 16852325.564 ms, per step time: 415.215 ms
+epoch: 3 step: 40587, loss is 2.729581832885742
+Train epoch time: 15930612.209 ms, per step time: 392.505 ms
+epoch: 4 step: 40587, loss is 2.685264825820923
+Train epoch time: 16586526.947 ms, per step time: 408.666 ms
+epoch: 5 step: 40587, loss is 2.633479356765747
+Train epoch time: 16716638.538 ms, per step time: 411.872 ms
+epoch: 6 step: 40587, loss is 2.8814430236816406
+Train epoch time: 16760630.042 ms, per step time: 412.956 ms
+epoch: 7 step: 40587, loss is 2.618682622909546
+Train epoch time: 16033369.931 ms, per step time: 395.037 ms
+epoch: 8 step: 40587, loss is 2.677452325820923
+Train epoch time: 16457550.716 ms, per step time: 405.488 ms
+
