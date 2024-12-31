@@ -19,6 +19,7 @@ import mindspore.dataset as ds
 import mindspore.ops as ops
 from options.evaluate_options import TestOptions
 from dataset.cityscapes_dataset import cityscapesDataSet
+from model.CLAN_G import Res_Deeplab
 import os
 from PIL import Image
 from os.path import join
@@ -74,7 +75,6 @@ def evaluation(model, testloader, interp, data_dir, save_path, devkit_dir, logge
         preds_list.append(output)
 
     gt_path = os.path.join(data_dir, 'gtFine', 'val')
-    # print(preds_dict.keys())
     mIoUs, log = compute_mIoU(gt_dir=gt_path, preds=preds_list, devkit_dir=devkit_dir)
     if logger:
         logger.write(log + '\n')
@@ -166,39 +166,41 @@ def main():
     w, h = map(int, args.output_size.split(','))
     output_size = (w, h)
 
-    if not os.path.exists(args.save_path):
-        os.makedirs(args.save_path)
 
-    # model = DeeplabMulti(num_classes=args.num_classes)
-    model = get_deeplab_v2(num_classes=args.num_classes)
+
+
+    model = Res_Deeplab(num_classes=args.num_classes)
 
     print('model path:',args.restore_from)
     if args.restore_from:
         saved_state_dict = mindspore.load_checkpoint(args.restore_from)
-        split_list = ['net_G', 'net_D1', 'net_D2']
+        split_list = ['net_G', 'net_D']
         train_state_dict = split_checkpoint(saved_state_dict, split_list=split_list)
         mindspore.load_param_into_net(model, train_state_dict['net_G'])
+
         print('success load model !')
 
-    # print(model)
-    cityscapes_generator = cityscapesDataSet(args.data_dir, args.data_list,
+
+    evaluation_generator = cityscapesDataSet(args.data_dir, os.path.join(args.devkit_dir, 'val.txt'),
                                              crop_size=input_size, scale=False,
-                                             mirror=False, mean=IMG_MEAN,
-                                             set=args.set)
-    cityscapes_dataset = ds.GeneratorDataset(cityscapes_generator, shuffle=True,
+                                             mean=IMG_MEAN,
+                                             set='val')
+    cityscapes_dataset = ds.GeneratorDataset(evaluation_generator, shuffle=False,
                                              column_names=['image', 'size'])
     cityscapes_dataset = cityscapes_dataset.batch(batch_size=1)
+
+
+
     target_iterator = cityscapes_dataset.create_dict_iterator()
-    interp = ops.ResizeBilinear(size=output_size)
+
     model.set_train(False)
+
     evaluation(model=model,
                testloader=target_iterator,
-               interp=interp,
+               interp=ops.ResizeBilinear(size=(1024, 2048)),
                data_dir=args.data_dir,
                save_path=args.save_path,
                devkit_dir=args.devkit_dir, save=False)
 
-
-# evaluation(model, testloader, interp, data_dir, save_path, devkit_dir, logger=None, save=True):
 if __name__ == '__main__':
     main()

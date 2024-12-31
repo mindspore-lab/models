@@ -1,20 +1,11 @@
-# Copyright 2023 Xidian University
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-# http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-# ============================================================================
 import mindspore.nn as nn
 import mindspore
 from mindspore.common import initializer as init
+
+# import math
+# import torch.nn as nn
+# import torch.utils.model_zoo as model_zoo
+# import torch
 
 import numpy as np
 
@@ -123,6 +114,9 @@ class Classifier_Module(nn.Cell):
                 nn.Conv2d(inplanes, num_classes, kernel_size=3, stride=1, padding=padding, pad_mode='pad', dilation=dilation, has_bias=True,
                           weight_init=init.Normal(0.01, 0)))
 
+        # for m in self.conv2d_list:
+        #     m.weight.data.normal_(0, 0.01)
+
     def construct(self, x):
         out = self.conv2d_list[0](x)
         for i in range(len(self.conv2d_list) - 1):
@@ -149,6 +143,15 @@ class ResNet(nn.Cell):
         self.layer5 = self._make_pred_layer(Classifier_Module, 2048, [6, 12, 18, 24], [6, 12, 18, 24], num_classes)
         self.layer6 = self._make_pred_layer(Classifier_Module, 2048, [6, 12, 18, 24], [6, 12, 18, 24], num_classes)
 
+        # for m in self.cells():
+        #     if isinstance(m, nn.Conv2d):
+        #         n = m.kernel_size[0] * m.kernel_size[1] * m.out_channels
+        #         m.weight.data.normal_(0, 0.01)
+        #     elif isinstance(m, nn.BatchNorm2d):
+        #         m.weight.data.fill_(1)
+        #         m.bias.data.zero_()
+                #        for i in m.parameters():
+                #            i.requires_grad = False
 
     def _make_layer(self, block, planes, blocks, stride=1, dilation=1):
         downsample = None
@@ -186,7 +189,12 @@ class ResNet(nn.Cell):
 
 
     def get_1x_lr_params_NOscale(self):
-
+        """
+        This generator returns all the parameters of the net except for
+        the last classification layer. Note that for each batchnorm layer,
+        requires_grad is set to False in deeplab_resnet.py, therefore this function does not return
+        any batchnorm parameter
+        """
         b = []
 
         b.append(self.conv1)
@@ -205,15 +213,17 @@ class ResNet(nn.Cell):
                         yield k
 
     def get_10x_lr_params(self):
-
+        """
+        This generator returns all the parameters for the last layer of the net,
+        which does the classification of pixel into classes
+        """
         b = []
-        b.append(self.layer5.parameters())
-        b.append(self.layer6.parameters())
-        #b.append(self.layer7.parameters())
+        b.extend(self.layer5.trainable_params())
+        b.extend(self.layer6.trainable_params())
+        # b.append(self.layer7.parameters())
 
-        for j in range(len(b)):
-            for i in b[j]:
-                yield i
+        for param in b:
+            yield param
 
     def optim_parameters(self, args):
         return [{'params': self.get_1x_lr_params_NOscale(), 'lr': args.learning_rate},
@@ -226,6 +236,11 @@ def Res_Deeplab(num_classes=19):
 
 
 if __name__ == '__main__':
+    # data = np.random.random((10, 3, 512, 512))
+    # data = mindspore.Tensor(data, mindspore.float32)
+    # model = Res_Deeplab()
+    # # print(model)
+    # print(type(data))
     model = Res_Deeplab()
     input = np.random.random((2, 3, 512, 512))
     input = mindspore.Tensor(input, mindspore.float32)
