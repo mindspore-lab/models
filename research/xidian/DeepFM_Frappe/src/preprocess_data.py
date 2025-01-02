@@ -18,10 +18,11 @@ import pickle
 import collections
 import numpy as np
 from mindspore.mindrecord import FileWriter
+import sys
 # 获取当前执行脚本的绝对路径
 current_script_path = os.path.abspath(__file__)
 # 获取当前执行脚本所在的目录
-current_script_dir = os.path.dirname(current_script_path
+current_script_dir = os.path.dirname(current_script_path)
 # 获取项目目录，即当前脚本所在目录的上一级目录
 project_dir = os.path.dirname(current_script_dir)
 # 将项目目录添加到 sys.path
