@@ -218,6 +218,7 @@ class PositionEmbeddingRandom(nn.Cell):
         coords = mint.matmul(coords, self.positional_encoding_gaussian_matrix.astype(dtype))
         coords = 2 * np.pi * coords
         # outputs d_1 x ... x d_n x C shape
+        coords = coords.to(ms.float32)
         return mint.cat([mint.sin(coords), mint.cos(coords)], dim=-1)
 
     def construct(self, size: Tuple[int, int]) -> ms.Tensor:
