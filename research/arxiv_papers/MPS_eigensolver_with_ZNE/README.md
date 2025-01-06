@@ -15,7 +15,7 @@ The MPS-VQE algorithm is designed to compute molecular ground state energies on 
 To run the code, ensure you have the following dependencies installed:
 
 - Python 3.8
-- [[MindQuantum](https://mindspore.cn/mindquantum/)](https://www.mindspore.cn/mindquantum/docs/zh-CN/r0.9/index.html) (Quantum computing framework)
+- [MindQuantum 0.9.11](https://www.mindspore.cn/mindquantum/docs/zh-CN/r0.9/index.html)
 - NumPy
 - SciPy
 
