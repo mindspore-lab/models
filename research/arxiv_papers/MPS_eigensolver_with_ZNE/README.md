@@ -3,7 +3,6 @@
 This repository contains the implementation of the **Noise-Mitigated Variational Quantum Eigensolver (MPS-VQE)** algorithm, as described in the paper:
 
 **"Noise-Mitigated Variational Quantum Eigensolver with Pre-training and Zero-Noise Extrapolation"**  
-Authors: Wanqi Sun, Chenghua Duan, Jungang Xu  
 Link: *[arXiv:2501.01646v1 [quant-ph]](https://arxiv.org/abs/2501.01646)*  
 
 The MPS-VQE algorithm is designed to compute molecular ground state energies on noisy intermediate-scale quantum (NISQ) devices. It incorporates **Matrix Product States (MPS)** for circuit design, **pre-training** for parameter initialization, and **zero-noise extrapolation (ZNE)** combined with neural networks for noise mitigation.
