@@ -12,7 +12,7 @@ The MPS-VQE algorithm is designed to compute molecular ground state energies on 
 
 ## Experimental Results
 
-The experiments were conducted using the quantum computing toolkit [**MindQuantum**](https://www.mindspore.cn/mindquantum/docs/zh-CN/r0.9/parameterized_quantum_circuit.html) within the [**MindSpore**](https://www.mindspore.cn/) framework. 
+The experiments were conducted using the quantum computing toolkit [**MindQuantum**](https://www.mindspore.cn/mindquantum/docs/zh-CN/r0.9/parameterized_quantum_circuit.html) within the [**MindSpore**](https://www.mindspore.cn/) framework, which provides a wide range of interfaces for model building, training, and inference.
 The following table summarizes the performance of the MPS-VQE algorithm compared to other methods for the H₄ molecule:
 
 | Model          | Noiseless (Hartree) | Noisy (Hartree) |
@@ -28,6 +28,27 @@ The molecular configuration used in this experiment is:
 
 ```
 ['H 0 0 1 Å', 'H 0 0 2 Å', 'H 0 0 3 Å', 'H 0 0 4 Å']
+```
+
+---
+## Project Structure
+
+```
+mps-vqe/  
+├── VQE_with_mps_circ.py       # Main script for running MPS-VQE experiments  
+├── VQE_with_different_circs.py # Script for comparing different VQE circuit designs  
+├── noise_model.py             # Noise model definitions for simulations  
+├── simulator.py               # Quantum simulator for running experiments  
+├── utils.py                   # Utility functions for data processing and visualization  
+├── data_mol/                  # Input molecular data for experiments  
+│   ├── mol.csv                # Molecular data for H_4 
+│   ├── mol_H2O.csv            # Molecular data for H2O  
+│   ├── mol_H4.csv             # Molecular data for H_4  
+│   ├── mol_LiH.csv            # Molecular data for LiH  
+│   └── mol_test.csv           # Test molecular data for debugging  
+├── results/                   # Output results and visualizations  
+├── requirements.txt           # Python dependencies  
+└── README.md                  # Project documentation
 ```
 
 ---
@@ -62,29 +83,4 @@ To compare the performance of different VQE circuit designs, use the script `VQE
 ```bash
 python VQE_with_different_circs.py
 ```
-
-## Project Structure
-
-```
-mps-vqe/  
-├── VQE_with_mps_circ.py       # Main script for running MPS-VQE experiments  
-├── VQE_with_different_circs.py # Script for comparing different VQE circuit designs  
-├── mps_reference_code.py      # Reference implementation of MPS  
-├── noise_model.py             # Noise model definitions for simulations  
-├── simulator.py               # Quantum simulator for running experiments  
-├── utils.py                   # Utility functions for data processing and visualization  
-├── data_mol/                  # Input molecular data for experiments  
-│   ├── mol.csv                # Molecular data for H_4 
-│   ├── mol_H2O.csv            # Molecular data for H2O  
-│   ├── mol_H4.csv             # Molecular data for H_4  
-│   ├── mol_LiH.csv            # Molecular data for LiH  
-│   └── mol_test.csv           # Test molecular data for debugging  
-├── results/                   # Output results and visualizations  
-├── requirements.txt           # Python dependencies  
-└── README.md                  # Project documentation
-```
-
-
----
-
 
