@@ -62,12 +62,6 @@ To run the code, ensure you have the following dependencies installed:
 - NumPy
 - SciPy
 
-You can install the required dependencies using:
-
-```bash
-pip install -r requirements.txt
-```
-
 ---
 
 ## Running the Experiment
