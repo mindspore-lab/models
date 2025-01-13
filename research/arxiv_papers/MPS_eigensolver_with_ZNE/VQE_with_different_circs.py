@@ -133,12 +133,4 @@ if __name__ == '__main__':
                         Simulator_energy.append(result)
                 print(f"finished {num}th for {Ansatz}")
 
-            # save_path = 'Qubit_UCC_results'
-            # save_path = 'HardwareEfficient_results'
-            # save_path = 'UCCSD_results'
-            # save_path = 'StronglyEntangling_results'
-            # save_path = 'results/' + mol_name + '/' + Ansatz + '_results'
-            # if not os.path.exists(save_path):
-            #     os.makedirs(save_path)
-            # np.save(f'{save_path}/HKSSimulator_energy.npy', HKSSimulator_energy)
-            # np.save(f'{save_path}/Simulator_energy.npy', Simulator_energy)
+
