@@ -1,4 +1,4 @@
-# Copyright 2024 Xidian University
+# Copyright 2023 Xidian University
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -20,8 +20,7 @@ import functools
 from mindspore import context
 from .config import config
 
-SYNC_COUNT = 0
-
+_global_sync_count = 0
 
 def get_device_id():
     device_id = os.getenv('DEVICE_ID', '0')
@@ -43,7 +42,6 @@ def get_job_id():
     job_id = job_id if job_id != "" else "default"
     return job_id
 
-
 def sync_data(from_path, to_path):
     """
     Download data from remote obs to local directory if the first url is remote url and the second one is local path
@@ -51,9 +49,9 @@ def sync_data(from_path, to_path):
     """
     import moxing as mox
     import time
-    global SYNC_COUNT
-    sync_lock = "/tmp/copy_sync.lock" + str(SYNC_COUNT)
-    SYNC_COUNT += 1
+    global _global_sync_count
+    sync_lock = "/tmp/copy_sync.lock" + str(_global_sync_count)
+    _global_sync_count += 1
 
     # Each server contains 8 devices as most.
     if get_device_id() % min(get_device_num(), 8) == 0 and not os.path.exists(sync_lock):
