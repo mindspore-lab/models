@@ -1,6 +1,0 @@
-mindspore==2.2.0
-numpy==1.24.2
-pandas==1.5.3
-Pillow==10.1.0
-torch==2.0.0
-tqdm==4.65.0

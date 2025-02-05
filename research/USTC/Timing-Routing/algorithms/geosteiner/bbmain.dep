@@ -1,2 +1,0 @@
-bbmain.o bbmain.lo bbmain.dep : bbmain.c config.h genps.h bitmaskmacros.h gsttypes.h \
- geosteiner.h logic.h memory.h solver.h cputime.h

@@ -1,1 +1,0 @@
-python ./test.py --test_model_path  logs/checkpoint_best.ckpt --test_config_path config.yaml  > test.log 2>&1 &

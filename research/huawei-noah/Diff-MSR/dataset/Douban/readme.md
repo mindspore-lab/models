@@ -1,1 +1,0 @@
-You can download the douban data from [here](https://github.com/wyhwhy/WSDM24_Diff-MSR/tree/main/dataset/Douban).

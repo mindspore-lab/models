@@ -1,5 +1,0 @@
-{
-  "metrics": ["RMSE","Recall", "MAP"],
-  "evaluator_mode": "single",
-  "save_mode": ["csv"]
-}

@@ -1,4 +1,0 @@
-metric.o metric.lo metric.dep : metric.c metric.h geomtypes.h gsttypes.h efuncs.h logic.h \
- point.h fatal.h geosteiner.h memory.h prepostlude.h environment.h \
- config.h lpsolver.h $(LP_DEPS)  fputils.h \
- steiner.h bitmaskmacros.h

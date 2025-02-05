@@ -1,2 +1,0 @@
-machine.o machine.lo machine.dep : machine.c machine.h config.h logic.h memory.h steiner.h \
- bitmaskmacros.h gsttypes.h geomtypes.h utils.h

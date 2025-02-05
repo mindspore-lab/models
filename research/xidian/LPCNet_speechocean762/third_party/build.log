@@ -1,5 +1,0 @@
-CMake Error: The current CMakeCache.txt directory /data1/ycb/LPCNet/third_party/out/CMakeCache.txt is different than the directory /media/data1/xidian/lyh/LPCNet/third_party/out where CMakeCache.txt was created. This may result in binaries being created in the wrong place. If you are not sure, reedit the CMakeCache.txt
-CMake Error: The source "/data1/ycb/LPCNet/third_party/CMakeLists.txt" does not match the source "/media/data1/xidian/lyh/LPCNet/third_party/CMakeLists.txt" used to generate cache.  Re-run cmake with a different source directory.
-CMake Error: The source directory "/media/data1/xidian/lyh/LPCNet/third_party" does not exist.
-Specify --help for usage, or press the help button on the CMake GUI.
-make: *** [Makefile:457: cmake_check_build_system] Error 1

@@ -1,5 +1,0 @@
-2024-08-24 14:1307 == Rank: 0 == EvalCallBack model.eval(): dict_values([0.5222050836493789]); eval_time: 16s
-2024-08-24 14:1809 == Rank: 0 == EvalCallBack model.eval(): dict_values([0.5220903455446243]); eval_time: 15s
-2024-08-24 15:0738 == Rank: 0 == EvalCallBack model.eval(): dict_values([0.5259444872179746]); eval_time: 12s
-2024-08-25 02:0810 == Rank: 0 == EvalCallBack model.eval(): dict_values([0.5345021223868033]); eval_time: 15s
-2024-08-25 09:4351 == Rank: 0 == EvalCallBack model.eval(): dict_values([0.4853157986892204]); eval_time: 14s

@@ -1,2 +1,0 @@
-genps.o genps.lo genps.dep : genps.c genps.h bitmaskmacros.h gsttypes.h geosteiner.h logic.h \
- memory.h

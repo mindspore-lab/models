@@ -1,2 +1,0 @@
-utils.o utils.lo utils.dep : utils.c utils.h bitmaskmacros.h gsttypes.h geosteiner.h logic.h \
- memory.h

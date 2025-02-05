@@ -1,1 +1,0 @@
-sortints.o sortints.lo sortints.dep : sortints.c sortfuncs.h

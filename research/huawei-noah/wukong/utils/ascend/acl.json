@@ -1,7 +1,0 @@
-{
-  "profiler": {
-    "switch": "on",
-    "output": "output",
-    "aicpu": "on"
-  }
-}

@@ -1,8 +1,0 @@
-# Base
-mindspore>=2.0
-mindcv
-opencv-python>=4.7.0.68
-opencv-python-headless>=4.7.0.68
-
-# Extras
-pycocotools>=2.0.2

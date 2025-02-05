@@ -1,6 +1,0 @@
-__BASE__: [
-  'data.yml',
-  'mask_rcnn_resnet50_fpn.yml',
-  '../optimizer_1x.yml',
-  '../inference.yml'
-]

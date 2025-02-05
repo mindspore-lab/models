@@ -1,5 +1,0 @@
-mindnlp>=0.2.4
-mindspore>=2.2.11
-datasets==2.18.0
-numpy
-faiss-cpu

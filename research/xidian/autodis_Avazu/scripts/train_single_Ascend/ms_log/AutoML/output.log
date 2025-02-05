@@ -1,4 +1,0 @@
-Traceback (most recent call last):
-  File "train.py", line 19, in <module>
-    from mindspore import context
-ModuleNotFoundError: No module named 'mindspore'

@@ -1,1 +1,0 @@
-new.o new.lo new.dep : new.c memory.h logic.h

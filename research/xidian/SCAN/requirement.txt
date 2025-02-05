@@ -1,3 +1,0 @@
-ipdb
-nltk
-tensorboard_logger

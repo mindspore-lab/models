@@ -1,4 +1,0 @@
-mindspore==2.2.0
-mindnlp==0.2.0
-scikit-learn==1.2.2
-sentencepiece==0.1.99

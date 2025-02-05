@@ -1,6 +1,0 @@
-﻿mindspore_ascend==2.2.0
-moxing_framework==2.0.0.rc2.4b57a67b
-numpy >= 1.17.0
-PyYAML==6.0
-scikit-learn==1.3.2
-

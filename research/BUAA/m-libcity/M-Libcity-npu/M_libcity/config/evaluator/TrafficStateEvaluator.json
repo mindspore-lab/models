@@ -1,5 +1,0 @@
-{
-  "metrics": ["MAE", "MAPE","RMSE"],
-  "evaluator_mode": "single",
-  "save_mode": ["csv"]
-}

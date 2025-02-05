@@ -1,1 +1,0 @@
-polltime.o polltime.lo polltime.dep : polltime.c polltime.h cputime.h gsttypes.h logic.h

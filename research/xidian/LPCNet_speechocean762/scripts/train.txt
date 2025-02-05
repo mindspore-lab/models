@@ -1,7 +1,0 @@
-bash run_process_train_data.sh ../data/Mini-LibriSpeech/train-clean-5 ../data/Mini-LibriSpeech_output
-
-bash run_stanalone_train_ascend.sh ../data/Mini-LibriSpeech_output ../train_result
-
-nohup bash run_stanalone_train_ascend.sh ../data/Mini-LibriSpeech_output ../train_result
-
-ps -p PID -o args=

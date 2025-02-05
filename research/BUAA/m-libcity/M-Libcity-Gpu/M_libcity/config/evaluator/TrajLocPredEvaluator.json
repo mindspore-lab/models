@@ -1,5 +1,0 @@
-{
-  "metrics": ["Precision","Recall"],
-  "evaluate_method": "popularity",
-  "topk": 1
-}
