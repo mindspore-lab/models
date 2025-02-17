@@ -40,7 +40,22 @@ class Preprocessor(object):
                 {"ToCHWImage": None},
             ]
             _logger.info(f"Pick optimal preprocess hyper-params for det algo {algo}:\n {pipeline[1]}")
-
+        elif task == "e2e":
+            limit_side_len = kwargs.get("e2e_limit_side_len", 768)
+            limit_type = kwargs.get("e2e_limit_type", "max")
+            pipeline = [
+                {"DecodeImage": {"img_mode": "BGR", "to_float32": False}},
+                {"E2EResizeForTest": {"max_side_len": limit_side_len, "dataset": "totaltext"}},
+                {
+                    "NormalizeImage": {
+                        "bgr_to_rgb": False,
+                        "is_hwc": True,
+                        "mean": IMAGENET_DEFAULT_MEAN,
+                        "std": IMAGENET_DEFAULT_STD,
+                    }
+                },
+                {"ToCHWImage": None},
+            ]
         self.pipeline = pipeline
         self.transforms = create_transforms(pipeline)
 

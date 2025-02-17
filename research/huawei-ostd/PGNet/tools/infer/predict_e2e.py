@@ -50,10 +50,10 @@ class TextEnd2End(object):
 
         # build preprocess and postprocess
         self.preprocess = Preprocessor(
-            task="det",
+            task="e2e",
             algo=args.e2e_algorithm,
-            det_limit_side_len=args.e2e_limit_side_len,
-            det_limit_type=args.e2e_limit_type,
+            e2e_limit_side_len=args.e2e_limit_side_len,
+            e2e_limit_type=args.e2e_limit_type,
         )
 
         self.postprocess = Postprocessor(task="e2e", algo=args.e2e_algorithm)
