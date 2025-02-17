@@ -13,24 +13,19 @@
 # limitations under the License.
 # ============================================================================
 
-"""Local adapter"""
-
-import os
-
-def get_device_id():
-    device_id = os.getenv('DEVICE_ID', '0')
-    return int(device_id)
-
-
-def get_device_num():
-    device_num = os.getenv('RANK_SIZE', '1')
-    return int(device_num)
+import math
+import warnings
+import numpy as np
+import pdb
+import mindspore.nn as nn
+import mindspore
+from mindspore import ops
+from mindspore.ops import operations as P
+from mindspore.common import initializer as init
+from core.models import build_feature_extractor, build_classifier
 
 
-def get_rank_id():
-    global_rank_id = os.getenv('RANK_ID', '0')
-    return int(global_rank_id)
 
 
-def get_job_id():
-    return "Local Job"
+
+

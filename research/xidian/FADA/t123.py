@@ -13,24 +13,15 @@
 # limitations under the License.
 # ============================================================================
 
-"""Local adapter"""
+# import numpy as np
+# from mindspore import Tensor
+# a = Tensor(np.arange(10, 16).reshape(2, 3).astype("float32"))
+# print(a)
+# print(a.argmax(axis=1))
 
 import os
 
-def get_device_id():
-    device_id = os.getenv('DEVICE_ID', '0')
-    return int(device_id)
+lst = os.listdir('./datasets/cityscapes/soft_labels/inference/cityscapes_train')
 
+print(len(lst))
 
-def get_device_num():
-    device_num = os.getenv('RANK_SIZE', '1')
-    return int(device_num)
-
-
-def get_rank_id():
-    global_rank_id = os.getenv('RANK_ID', '0')
-    return int(global_rank_id)
-
-
-def get_job_id():
-    return "Local Job"
