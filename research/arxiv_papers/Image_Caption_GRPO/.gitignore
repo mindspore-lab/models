@@ -1,0 +1,6 @@
+# Applies only to the Image_Caption_GRPO directory
+*__pycache__*
+*.ckpt
+*.log
+data/
+evaluation/

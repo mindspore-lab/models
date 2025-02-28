@@ -199,7 +199,7 @@ def train(config):
                 experience_list = []
 
             if ((i + 1) % (all_steps // config.grpo_save_frequency) == 0) or ((i + 1) == all_steps):
-                ms.save_checkpoint(model, os.path.join(config.model_save_path, 'rl_epoch_{}_i_{}.pt'.format(epoch, i + 1)))
+                ms.save_checkpoint(model, os.path.join(config.model_save_path, 'rl_epoch_{}_i_{}.ckpt'.format(epoch, i + 1)))
                 print("test:", end = ' ')
                 with ms._no_grad():
                     eval(configVal, model, val_data, val_dict)
