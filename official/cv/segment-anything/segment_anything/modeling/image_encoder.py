@@ -18,7 +18,7 @@ class ImageEncoderViT(nn.Cell):
         mlp_ratio: float = 4.0,
         out_chans: int = 256,
         qkv_bias: bool = True,
-        norm_layer: Type[nn.Cell] = mint.nn.LayerNorm,
+        norm_layer: Type[nn.Cell] = nn.LayerNorm,
         act_layer: Type[nn.Cell] = GELU,
         use_abs_pos: bool = True,
         use_rel_pos: bool = False,
@@ -225,7 +225,7 @@ class Attention(nn.Cell):
         if self.use_rel_pos:
             attn = add_decomposed_rel_pos(attn, q, self.rel_pos_h, self.rel_pos_w, (H, W), (H, W))
 
-        attn = mint.softmax(attn, dim=-1)
+        attn = mint.nn.functional.softmax(attn, dim=-1)
         x = mint.bmm(attn, v).view(B, self.num_heads, H, W, -1).permute(0, 2, 3, 1, 4).reshape(B, H, W, -1)
         x = self.proj(x)
 
@@ -300,7 +300,7 @@ def get_rel_pos(q_size: int, k_size: int, rel_pos: ms.Tensor) -> ms.Tensor:
     # Interpolate rel pos if needed.
     if rel_pos.shape[0] != max_rel_dist:
         # Interpolate rel pos.
-        rel_pos_resized = mint.interpolate(
+        rel_pos_resized = mint.nn.functional.interpolate(
             rel_pos.reshape(1, rel_pos.shape[0], -1).permute(0, 2, 1),
             size=max_rel_dist,
             mode="linear",
