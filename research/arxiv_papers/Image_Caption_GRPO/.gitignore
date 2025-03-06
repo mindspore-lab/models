@@ -4,3 +4,4 @@
 *.log
 data/
 evaluation/
+PreTrainedModel/

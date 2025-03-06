@@ -10,6 +10,7 @@ RTX 3090
 python==3.8.10
 mindspore==2.2.14
 mindnlp==0.4.0
+modelscope==1.23.2
 ```
 
 ## 项目结构
@@ -28,7 +29,12 @@ train.py: 基于交叉熵的训练
 
 ## 项目使用
 1. 从此[链接](https://pan.baidu.com/s/1NT3Og0NQBGL4Kfca7Rc52w)下载数据集, 评测文件, 以及java包, 将数据集与评测文件解压到该项目目录下, 密码为fs2x  
-2. 从此[链接](https://mindspore-website.obs.cn-north-4.myhuaweicloud.com/notebook/models/application/resnet50_224_new.ckpt)下载resnet预训练权重并放入PreTrainedModel目录下  
+2. 在项目中创建PreTrainedModel目录, 并从此[链接](https://modelscope.cn/models/liangxuone/resnet50_with_bert_tokenizer)下载resnet预训练权重以及相关词表, 命令如下:  
+```bash
+mkdir PreTrainedModel
+cd PreTrainedModel
+modelscope download --model liangxuone/resnet50_with_bert_tokenizer --local_dir ./
+```
 3. 评测需要java环境, 从1中下载的java包进行解压获得java目录, 解压后将"You Java Path"替换为java目录所在路径, 本实验在Linux-ubuntu系统下进行, 因此可以将下面内容复制到/etc/profile文件中, 然后执行source /etc/profile命令完成java环境配置(其他系统请查阅相关资料, 可以通过java -version判断java环境是否配置成功)  
 ```bash
 #set java env  
@@ -37,7 +43,7 @@ export JRE_HOME=${JAVA_HOME}/jre
 export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib
 export PATH=${JAVA_HOME}/bin:$PATH
 ```
-4. 训练命令:   
+4. 训练命令(请预先在项目中创建log目录):   
     (a) 第一阶段交叉熵优化训练命令:  
     ```bash
     nohup python -u train.py > log/train.log 2>&1 &

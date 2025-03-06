@@ -12,7 +12,7 @@ class Config():
         self.decode_method = 'greedy'
         self.beam_size = 3
 
-        self.PreTrainedModel = ['bert-base-uncased', 'resnet50_224_new.ckpt']
+        self.PreTrainedModel = ['bert_base_uncased', 'resnet50_224_new.ckpt']
 
         self.tokenizer = AutoTokenizer.from_pretrained(os.path.join(sys.path[0], 'PreTrainedModel', self.PreTrainedModel[0]))
         self.resnet_model = os.path.join(sys.path[0], 'PreTrainedModel', self.PreTrainedModel[1])
@@ -42,6 +42,10 @@ class Config():
         self.image_name = os.path.join(sys.path[0], 'data/{}/{}_{}.txt'.format(self.dataset, self.dataset, self.TrainOrVal))
 
         self.model_save_path = os.path.join(sys.path[0], 'model_save/train_{}'.format(self.dataset))
+        if not os.path.exists(self.model_save_path):
+            os.makedirs(self.model_save_path)
+        else:
+            print('模型保存目录已存在')
         self.ck = 'epoch_0.ckpt'
 
         self.grpo_lr = 1e-5
