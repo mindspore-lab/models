@@ -1,5 +1,18 @@
 # 项目名称：基于MACD指标的交易策略分析与回测
 
+## 数据集下载
+```
+git lfs install
+git clone https://oauth2:gmHyBqRtscFaMUsztxfQ@www.modelscope.cn/datasets/ccccccwy/stock_data.git
+```
+其中data文件夹为数据文件
+## 运行结果
+result文件夹为运行结果文件，其中：
+trading_strategies.xlsx 为小波分析和背离分析的运行结果
+x1.xlsx 为原始策略交易量化指标
+x2.xlsx 为小波分析后交易量化指标
+x3.xlsx 为背离分析后交易量化指标
+
 ## 代码功能解释
 raw_draw.py 为MACD买入卖出图
 little_wave.py 为小波分析结果
@@ -7,10 +20,7 @@ divergence.py 为背离分析结果
 end_1.py 为小波分析和背离分析
 end2_mindspore.py 为遗传算法测定买入点
 end_2_draw.py 为遗传算法测定买入点最终结果的画图程序
-trading_strategies.xlsx 为小波分析和背离分析的运行结果
-x1.xlsx 为原始策略交易量化指标
-x2.xlsx 为小波分析后交易量化指标
-x3.xlsx 为背离分析后交易量化指标
+
 
 ## 项目简介
 本项目旨在通过分析MACD指标（移动平均收敛散度）来构建一个简单的交易策略，并使用历史数据进行回测。项目结合了技术分析中的MACD指标、小波变换（Wavelet Transform）以及MindSpore框架，对股票价格数据进行分析，生成买卖信号，并计算策略的表现指标。
