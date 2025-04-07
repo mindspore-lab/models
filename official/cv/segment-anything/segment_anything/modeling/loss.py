@@ -29,7 +29,7 @@ class SAMLoss(nn.Cell):
 
         self.focal_loss = FocalLoss(reduction='none')
         self.dice_loss = DiceLoss(reduction='none')
-        self.mse_loss = nn.MSELoss(reduction='none')
+        self.mse_loss = mint.nn.MSELoss(reduction='none')
 
     def construct(self, pred_mask, pred_iou, gt_mask, valid_boxes):
         """
