@@ -2,10 +2,7 @@
 
 ### **Thanks for the support provided by MindSpore Community.**
 
-- **Thanks to the editor and professional reviewers of *"Applied Soft Computing"* for providing valuable comments on our paper!**
-
 <img src=https://github.com/WangYH-BUPT/DAIRstega/blob/master/figs/1.jpg width=83% />
-<img src=https://github.com/WangYH-BUPT/DAIRstega/blob/master/figs/3.jpg width=100% />
 
 ## 1. Conda Environment
 
