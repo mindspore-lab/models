@@ -1,4 +1,4 @@
-# Copyright 2024 Xidian University
+# Copyright 2023 Xidian University
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,9 +15,11 @@
 
 """Device adapter for ModelArts"""
 
-from .config import config
+# from .config import config
 
-if config.enable_modelarts:
+enable_modelarts = False
+
+if enable_modelarts:
     from .moxing_adapter import get_device_id, get_device_num, get_rank_id, get_job_id
 else:
     from .local_adapter import get_device_id, get_device_num, get_rank_id, get_job_id
