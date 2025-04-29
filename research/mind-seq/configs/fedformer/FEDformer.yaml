@@ -1,0 +1,65 @@
+# Autoformer & Transformer family for Time Series Forecasting
+
+# Basic Config
+do_train: False
+task_id: test
+model: FEDformer
+ckpt_path: ./checkpoints/test_ckpt/fedformer.ckpt
+seed: 2021
+
+# Supplementary Config for FEDformer model
+version: Fourier
+mode_select: random
+modes: 64
+L: 3
+base: legendre
+cross_activation: tanh
+
+# Data Loader
+data: ETTh1
+root_path: ./mindseq/data/ETT/
+data_path: ETTh1.csv
+features: M
+target: OT
+freq: h
+checkpoints: ./checkpoints/
+
+# Forecasting Task
+seq_len: 96
+label_len: 48
+pred_len: 96
+
+# Model Define
+enc_in: 7
+dec_in: 7
+c_out: 7
+d_model: 512
+n_heads: 8
+e_layers: 2
+d_layers: 1
+d_ff: 2048
+moving_avg:
+  - 24
+factor: 1
+distil: true
+dropout: 0.05
+embed: timeF
+activation: gelu
+output_attention: false
+
+# Optimization
+num_workers: 10
+itr: 1
+train_epochs: 10
+batch_size: 32
+patience: 3
+learning_rate: 0.0001
+des: test
+loss: mse
+lradj: type1
+use_amp: false
+inverse: false
+cols: null
+
+# GPU
+device: GPU
