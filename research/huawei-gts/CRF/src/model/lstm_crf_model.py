@@ -180,7 +180,8 @@ class CRF(nn.Cell):
         score += self.end_transitions
         return score, history
 
-    def post_decode(self, score, history, seq_length):
+    @staticmethod
+    def post_decode(score, history, seq_length):
         # 使用Score和History计算最佳预测序列
         batch_size = seq_length.shape[0]
         seq_ends = seq_length - 1
