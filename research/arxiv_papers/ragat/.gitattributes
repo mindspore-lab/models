@@ -1,0 +1,20 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Python bytecode files
+*.pyc
+*.pyo
+__pycache__/
+
+# Jupyter notebook checkpoints
+.ipynb_checkpoints/
+
+# Virtualenv directories
+env/
+venv/
+
+# Data files
+data/
+
+# Logs
+*.log
