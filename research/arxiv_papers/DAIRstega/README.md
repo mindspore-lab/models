@@ -20,6 +20,9 @@
 ├── LLMs               #(Selection of base LLMs. This paper uses LLaMA2-7B and LLaMA2-13B models for experiments.)
 │   └── README.md
 │
+├── Stegos             #(DAIRstega generates steganotext with different payloads.)
+│   └── README.md
+|
 ├── bert-base-uncased  #(The BERTscore evaluation index requires the model to be loaded.)
 │   └── README.md
 │
