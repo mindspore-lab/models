@@ -20,15 +20,6 @@
 ├── LLMs               #(Selection of base LLMs. This paper uses LLaMA2-7B and LLaMA2-13B models for experiments.)
 │   └── README.md
 │
-├── Stegos             #(DAIRstega generates steganotext with different payloads.)
-│   ├── a8_b10_bpw110.csv
-│   ├── a8_b05_bpw189.csv
-│   ├── a16_b10_bpw113.csv
-│   ├── a16_b05_bpw244.csv
-│   ├── a32_b10_bpw111.csv
-│   ├── a32_b05_bpw256.csv
-│   └── README.md
-│
 ├── bert-base-uncased  #(The BERTscore evaluation index requires the model to be loaded.)
 │   └── README.md
 │
@@ -41,7 +32,6 @@
 │   └── 2.jpg
 │
 ├── finetune_data      #(Data for fine-tuning LLMs, not necessary)
-│   ├── data.zip
 │   └── README.md
 │
 ├── ft-model           #(Fine-tuned LLMs, not necessary)
