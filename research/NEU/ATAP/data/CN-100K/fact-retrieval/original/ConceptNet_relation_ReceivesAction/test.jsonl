@@ -1,0 +1,11 @@
+{"obj_label": "read", "sub_label": "book", "predicate": "ReceivesAction"}
+{"obj_label": "eat", "sub_label": "food", "predicate": "ReceivesAction"}
+{"obj_label": "wear on head", "sub_label": "hat", "predicate": "ReceivesAction"}
+{"obj_label": "drive", "sub_label": "car", "predicate": "ReceivesAction"}
+{"obj_label": "write", "sub_label": "book", "predicate": "ReceivesAction"}
+{"obj_label": "eat", "sub_label": "apple", "predicate": "ReceivesAction"}
+{"obj_label": "ride", "sub_label": "horse", "predicate": "ReceivesAction"}
+{"obj_label": "wear on foot", "sub_label": "shoe", "predicate": "ReceivesAction"}
+{"obj_label": "use in war", "sub_label": "tank", "predicate": "ReceivesAction"}
+{"obj_label": "recycle", "sub_label": "some plastic", "predicate": "ReceivesAction"}
+{"obj_label": "propel by wind", "sub_label": "sailboat", "predicate": "ReceivesAction"}

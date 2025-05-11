@@ -1,0 +1,19 @@
+{"obj_label": "human experience", "sub_label": "sex", "predicate": "PartOf"}
+{"obj_label": "word", "sub_label": "letter", "predicate": "PartOf"}
+{"obj_label": "computer", "sub_label": "ram", "predicate": "PartOf"}
+{"obj_label": "tree", "sub_label": "bark", "predicate": "PartOf"}
+{"obj_label": "atom", "sub_label": "electron", "predicate": "PartOf"}
+{"obj_label": "family", "sub_label": "father", "predicate": "PartOf"}
+{"obj_label": "bed", "sub_label": "mattress", "predicate": "PartOf"}
+{"obj_label": "body", "sub_label": "leg", "predicate": "PartOf"}
+{"obj_label": "book", "sub_label": "cover", "predicate": "PartOf"}
+{"obj_label": "reproductive cycle", "sub_label": "sex", "predicate": "PartOf"}
+{"obj_label": "book", "sub_label": "chapter", "predicate": "PartOf"}
+{"obj_label": "atom", "sub_label": "proton", "predicate": "PartOf"}
+{"obj_label": "sentence", "sub_label": "word", "predicate": "PartOf"}
+{"obj_label": "head", "sub_label": "eye", "predicate": "PartOf"}
+{"obj_label": "face", "sub_label": "eye", "predicate": "PartOf"}
+{"obj_label": "universe", "sub_label": "earth", "predicate": "PartOf"}
+{"obj_label": "whole", "sub_label": "piece", "predicate": "PartOf"}
+{"obj_label": "head", "sub_label": "ear", "predicate": "PartOf"}
+{"obj_label": "body", "sub_label": "head", "predicate": "PartOf"}

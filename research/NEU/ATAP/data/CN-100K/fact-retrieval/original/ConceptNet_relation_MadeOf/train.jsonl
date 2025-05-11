@@ -1,0 +1,597 @@
+{"obj_label": "clay", "sub_label": "clay pot", "predicate": "MadeOf"}
+{"obj_label": "orange", "sub_label": "orange juice", "predicate": "MadeOf"}
+{"obj_label": "combination of element", "sub_label": "all physical thing", "predicate": "MadeOf"}
+{"obj_label": "ideal", "sub_label": "system of abstract think", "predicate": "MadeOf"}
+{"obj_label": "neighborhood", "sub_label": "seattle", "predicate": "MadeOf"}
+{"obj_label": "bean", "sub_label": "korean miso", "predicate": "MadeOf"}
+{"obj_label": "celluloid", "sub_label": "movie", "predicate": "MadeOf"}
+{"obj_label": "handle and blade", "sub_label": "knife", "predicate": "MadeOf"}
+{"obj_label": "plastic", "sub_label": "tv", "predicate": "MadeOf"}
+{"obj_label": "water", "sub_label": "steam", "predicate": "MadeOf"}
+{"obj_label": "flower", "sub_label": "lace", "predicate": "MadeOf"}
+{"obj_label": "clothe", "sub_label": "outfit", "predicate": "MadeOf"}
+{"obj_label": "metal", "sub_label": "robot", "predicate": "MadeOf"}
+{"obj_label": "grind coffee bean and boil water", "sub_label": "beverage coffee", "predicate": "MadeOf"}
+{"obj_label": "musical composition", "sub_label": "mozart music", "predicate": "MadeOf"}
+{"obj_label": "glass", "sub_label": "some lense", "predicate": "MadeOf"}
+{"obj_label": "silicon", "sub_label": "chip", "predicate": "MadeOf"}
+{"obj_label": "molecule", "sub_label": "human body", "predicate": "MadeOf"}
+{"obj_label": "hair", "sub_label": "horse have coat and mane both", "predicate": "MadeOf"}
+{"obj_label": "coffee bean", "sub_label": "energy-boosting drink", "predicate": "MadeOf"}
+{"obj_label": "rubber", "sub_label": "toy balloon", "predicate": "MadeOf"}
+{"obj_label": "china", "sub_label": "plate", "predicate": "MadeOf"}
+{"obj_label": "protoplasm", "sub_label": "human", "predicate": "MadeOf"}
+{"obj_label": "mushroom", "sub_label": "mushroom stew", "predicate": "MadeOf"}
+{"obj_label": "metal", "sub_label": "tank", "predicate": "MadeOf"}
+{"obj_label": "slate", "sub_label": "chalkboard", "predicate": "MadeOf"}
+{"obj_label": "gold", "sub_label": "some watch", "predicate": "MadeOf"}
+{"obj_label": "iron", "sub_label": "some tool", "predicate": "MadeOf"}
+{"obj_label": "water", "sub_label": "ocean", "predicate": "MadeOf"}
+{"obj_label": "flour", "sub_label": "pancake", "predicate": "MadeOf"}
+{"obj_label": "carbon", "sub_label": "diamond", "predicate": "MadeOf"}
+{"obj_label": "beef", "sub_label": "most hotdog", "predicate": "MadeOf"}
+{"obj_label": "spring", "sub_label": "slinky", "predicate": "MadeOf"}
+{"obj_label": "layer of rock", "sub_label": "earth", "predicate": "MadeOf"}
+{"obj_label": "iron", "sub_label": "horseshoe be very heavy they", "predicate": "MadeOf"}
+{"obj_label": "valuable metal", "sub_label": "jewelry", "predicate": "MadeOf"}
+{"obj_label": "sand", "sub_label": "glas", "predicate": "MadeOf"}
+{"obj_label": "glass", "sub_label": "lens", "predicate": "MadeOf"}
+{"obj_label": "steel", "sub_label": "tool", "predicate": "MadeOf"}
+{"obj_label": "glass", "sub_label": "abottle", "predicate": "MadeOf"}
+{"obj_label": "silicon", "sub_label": "glass", "predicate": "MadeOf"}
+{"obj_label": "energy", "sub_label": "light", "predicate": "MadeOf"}
+{"obj_label": "ink and paper", "sub_label": "newspaper", "predicate": "MadeOf"}
+{"obj_label": "flower", "sub_label": "flower basket", "predicate": "MadeOf"}
+{"obj_label": "malt", "sub_label": "beer", "predicate": "MadeOf"}
+{"obj_label": "political ideology", "sub_label": "community", "predicate": "MadeOf"}
+{"obj_label": "leather", "sub_label": "smooth brown car seat may", "predicate": "MadeOf"}
+{"obj_label": "soil", "sub_label": "house", "predicate": "MadeOf"}
+{"obj_label": "wood", "sub_label": "clipboard", "predicate": "MadeOf"}
+{"obj_label": "wine", "sub_label": "vinegar", "predicate": "MadeOf"}
+{"obj_label": "plastic", "sub_label": "carton be thing which", "predicate": "MadeOf"}
+{"obj_label": "bi-products", "sub_label": "some hot dog", "predicate": "MadeOf"}
+{"obj_label": "ceramic", "sub_label": "spaceship", "predicate": "MadeOf"}
+{"obj_label": "sugarcane", "sub_label": "sugar", "predicate": "MadeOf"}
+{"obj_label": "element", "sub_label": "set", "predicate": "MadeOf"}
+{"obj_label": "tree", "sub_label": "paper", "predicate": "MadeOf"}
+{"obj_label": "silver", "sub_label": "knife", "predicate": "MadeOf"}
+{"obj_label": "soil", "sub_label": "clay", "predicate": "MadeOf"}
+{"obj_label": "fruit", "sub_label": "jam", "predicate": "MadeOf"}
+{"obj_label": "rice grain", "sub_label": "rice", "predicate": "MadeOf"}
+{"obj_label": "iron and coat with porcelain", "sub_label": "bath tub", "predicate": "MadeOf"}
+{"obj_label": "glass", "sub_label": "plate", "predicate": "MadeOf"}
+{"obj_label": "rubber", "sub_label": "hot-water bottle", "predicate": "MadeOf"}
+{"obj_label": "flower", "sub_label": "bascket of flower", "predicate": "MadeOf"}
+{"obj_label": "iron", "sub_label": "steel", "predicate": "MadeOf"}
+{"obj_label": "bit", "sub_label": "digital data", "predicate": "MadeOf"}
+{"obj_label": "many bone", "sub_label": "skeleton", "predicate": "MadeOf"}
+{"obj_label": "fiber", "sub_label": "fabric", "predicate": "MadeOf"}
+{"obj_label": "men rib", "sub_label": "woman", "predicate": "MadeOf"}
+{"obj_label": "raw fish", "sub_label": "sushi", "predicate": "MadeOf"}
+{"obj_label": "sugar", "sub_label": "cotton candy", "predicate": "MadeOf"}
+{"obj_label": "red pepper", "sub_label": "powder pepper", "predicate": "MadeOf"}
+{"obj_label": "meat", "sub_label": "frog", "predicate": "MadeOf"}
+{"obj_label": "particle", "sub_label": "matter", "predicate": "MadeOf"}
+{"obj_label": "wood metal or plastic", "sub_label": "coat hanger", "predicate": "MadeOf"}
+{"obj_label": "tomato sauce cheese and crust", "sub_label": "pizza usually", "predicate": "MadeOf"}
+{"obj_label": "foam", "sub_label": "hair roller", "predicate": "MadeOf"}
+{"obj_label": "wool", "sub_label": "carpet", "predicate": "MadeOf"}
+{"obj_label": "flexible cloth", "sub_label": "flag", "predicate": "MadeOf"}
+{"obj_label": "paper", "sub_label": "page of book", "predicate": "MadeOf"}
+{"obj_label": "potato", "sub_label": "potate chip", "predicate": "MadeOf"}
+{"obj_label": "synthetic material", "sub_label": "modern furniture", "predicate": "MadeOf"}
+{"obj_label": "plastic", "sub_label": "lead", "predicate": "MadeOf"}
+{"obj_label": "cherry", "sub_label": "cherry juice", "predicate": "MadeOf"}
+{"obj_label": "wood", "sub_label": "telephone pole", "predicate": "MadeOf"}
+{"obj_label": "wood", "sub_label": "bridge", "predicate": "MadeOf"}
+{"obj_label": "wood", "sub_label": "bookshelf", "predicate": "MadeOf"}
+{"obj_label": "paper", "sub_label": "paper cup", "predicate": "MadeOf"}
+{"obj_label": "flour", "sub_label": "cookie", "predicate": "MadeOf"}
+{"obj_label": "gravel", "sub_label": "sand", "predicate": "MadeOf"}
+{"obj_label": "water", "sub_label": "river", "predicate": "MadeOf"}
+{"obj_label": "chicken", "sub_label": "roast chicken", "predicate": "MadeOf"}
+{"obj_label": "thread", "sub_label": "sock", "predicate": "MadeOf"}
+{"obj_label": "paper with word on it", "sub_label": "page", "predicate": "MadeOf"}
+{"obj_label": "rice", "sub_label": "rice cake", "predicate": "MadeOf"}
+{"obj_label": "metal", "sub_label": "triangle", "predicate": "MadeOf"}
+{"obj_label": "mostly hydrogen and helium", "sub_label": "star", "predicate": "MadeOf"}
+{"obj_label": "many recyclable material", "sub_label": "car", "predicate": "MadeOf"}
+{"obj_label": "aluminium", "sub_label": "can", "predicate": "MadeOf"}
+{"obj_label": "wood", "sub_label": "most church", "predicate": "MadeOf"}
+{"obj_label": "honesty", "sub_label": "trust", "predicate": "MadeOf"}
+{"obj_label": "soy bean", "sub_label": "soy bean paste", "predicate": "MadeOf"}
+{"obj_label": "silk", "sub_label": "clothe", "predicate": "MadeOf"}
+{"obj_label": "plastic", "sub_label": "plastic knife", "predicate": "MadeOf"}
+{"obj_label": "department", "sub_label": "mit", "predicate": "MadeOf"}
+{"obj_label": "cell", "sub_label": "penis", "predicate": "MadeOf"}
+{"obj_label": "computer software", "sub_label": "openmind", "predicate": "MadeOf"}
+{"obj_label": "plastic these day", "sub_label": "comb", "predicate": "MadeOf"}
+{"obj_label": "nickel", "sub_label": "can", "predicate": "MadeOf"}
+{"obj_label": "pork", "sub_label": "sweet and sour pork", "predicate": "MadeOf"}
+{"obj_label": "latex", "sub_label": "mattress", "predicate": "MadeOf"}
+{"obj_label": "iron", "sub_label": "desk", "predicate": "MadeOf"}
+{"obj_label": "hydrogen", "sub_label": "star", "predicate": "MadeOf"}
+{"obj_label": "small stone", "sub_label": "gravel", "predicate": "MadeOf"}
+{"obj_label": "member", "sub_label": "set", "predicate": "MadeOf"}
+{"obj_label": "rubber", "sub_label": "basketball", "predicate": "MadeOf"}
+{"obj_label": "sentient be", "sub_label": "revolution", "predicate": "MadeOf"}
+{"obj_label": "bean", "sub_label": "tofu", "predicate": "MadeOf"}
+{"obj_label": "coffee bean", "sub_label": "caffeinated beverage", "predicate": "MadeOf"}
+{"obj_label": "stone", "sub_label": "castle", "predicate": "MadeOf"}
+{"obj_label": "metal", "sub_label": "key", "predicate": "MadeOf"}
+{"obj_label": "rice", "sub_label": "rice ball", "predicate": "MadeOf"}
+{"obj_label": "grain", "sub_label": "bread", "predicate": "MadeOf"}
+{"obj_label": "precieuses stone", "sub_label": "jewel", "predicate": "MadeOf"}
+{"obj_label": "metal", "sub_label": "trophy", "predicate": "MadeOf"}
+{"obj_label": "string of pearl", "sub_label": "choker", "predicate": "MadeOf"}
+{"obj_label": "ananas", "sub_label": "ananas juice", "predicate": "MadeOf"}
+{"obj_label": "cool idea", "sub_label": "conecept design", "predicate": "MadeOf"}
+{"obj_label": "wheat", "sub_label": "chinese noodle", "predicate": "MadeOf"}
+{"obj_label": "flour", "sub_label": "noodle", "predicate": "MadeOf"}
+{"obj_label": "coffee bean", "sub_label": "aromatic drink", "predicate": "MadeOf"}
+{"obj_label": "paper", "sub_label": "mail", "predicate": "MadeOf"}
+{"obj_label": "rice cake", "sub_label": "rice cake soup", "predicate": "MadeOf"}
+{"obj_label": "happiness", "sub_label": "smile", "predicate": "MadeOf"}
+{"obj_label": "plastic", "sub_label": "comb", "predicate": "MadeOf"}
+{"obj_label": "neutron", "sub_label": "oxygen", "predicate": "MadeOf"}
+{"obj_label": "brass or steel", "sub_label": "key", "predicate": "MadeOf"}
+{"obj_label": "photon", "sub_label": "laser", "predicate": "MadeOf"}
+{"obj_label": "cotton", "sub_label": "duvet", "predicate": "MadeOf"}
+{"obj_label": "atom", "sub_label": "doormat", "predicate": "MadeOf"}
+{"obj_label": "dry grape", "sub_label": "raisin", "predicate": "MadeOf"}
+{"obj_label": "mushroom", "sub_label": "mushroom casserole", "predicate": "MadeOf"}
+{"obj_label": "rice", "sub_label": "fry rice", "predicate": "MadeOf"}
+{"obj_label": "coffee bean", "sub_label": "brewed beverage", "predicate": "MadeOf"}
+{"obj_label": "ceramic", "sub_label": "space shuttle", "predicate": "MadeOf"}
+{"obj_label": "person", "sub_label": "crowd", "predicate": "MadeOf"}
+{"obj_label": "steel", "sub_label": "desk", "predicate": "MadeOf"}
+{"obj_label": "chemical", "sub_label": "tie-dye", "predicate": "MadeOf"}
+{"obj_label": "pork be fact", "sub_label": "information state that sausage", "predicate": "MadeOf"}
+{"obj_label": "wood", "sub_label": "picture frame", "predicate": "MadeOf"}
+{"obj_label": "egg", "sub_label": "cake", "predicate": "MadeOf"}
+{"obj_label": "wood", "sub_label": "wind instrument", "predicate": "MadeOf"}
+{"obj_label": "rock", "sub_label": "granite", "predicate": "MadeOf"}
+{"obj_label": "metal", "sub_label": "horseshoe", "predicate": "MadeOf"}
+{"obj_label": "vinyl", "sub_label": "album", "predicate": "MadeOf"}
+{"obj_label": "steel", "sub_label": "skyscraper", "predicate": "MadeOf"}
+{"obj_label": "h2o", "sub_label": "water", "predicate": "MadeOf"}
+{"obj_label": "milk", "sub_label": "butter", "predicate": "MadeOf"}
+{"obj_label": "3 branch juducial legislative and executive", "sub_label": "us government", "predicate": "MadeOf"}
+{"obj_label": "soy bean", "sub_label": "soymilk", "predicate": "MadeOf"}
+{"obj_label": "leather", "sub_label": "coin purse", "predicate": "MadeOf"}
+{"obj_label": "wood", "sub_label": "many useful thing", "predicate": "MadeOf"}
+{"obj_label": "silicon", "sub_label": "microchip", "predicate": "MadeOf"}
+{"obj_label": "glass", "sub_label": "light bulb", "predicate": "MadeOf"}
+{"obj_label": "glass", "sub_label": "some bin", "predicate": "MadeOf"}
+{"obj_label": "glass", "sub_label": "jar", "predicate": "MadeOf"}
+{"obj_label": "rayon", "sub_label": "yarn", "predicate": "MadeOf"}
+{"obj_label": "wood", "sub_label": "desk", "predicate": "MadeOf"}
+{"obj_label": "wood", "sub_label": "handel", "predicate": "MadeOf"}
+{"obj_label": "wood", "sub_label": "board", "predicate": "MadeOf"}
+{"obj_label": "sugar", "sub_label": "pudding", "predicate": "MadeOf"}
+{"obj_label": "silicon", "sub_label": "sand", "predicate": "MadeOf"}
+{"obj_label": "corn", "sub_label": "chicken", "predicate": "MadeOf"}
+{"obj_label": "wood or metal or plastic", "sub_label": "coat hanger", "predicate": "MadeOf"}
+{"obj_label": "churn milk", "sub_label": "butter", "predicate": "MadeOf"}
+{"obj_label": "wood", "sub_label": "coffin", "predicate": "MadeOf"}
+{"obj_label": "glass", "sub_label": "tv", "predicate": "MadeOf"}
+{"obj_label": "steel", "sub_label": "knife", "predicate": "MadeOf"}
+{"obj_label": "oil", "sub_label": "gas", "predicate": "MadeOf"}
+{"obj_label": "paper", "sub_label": "envelope", "predicate": "MadeOf"}
+{"obj_label": "metal", "sub_label": "safety-pins", "predicate": "MadeOf"}
+{"obj_label": "metal or stone", "sub_label": "statue", "predicate": "MadeOf"}
+{"obj_label": "diamorphine", "sub_label": "heroin", "predicate": "MadeOf"}
+{"obj_label": "cotton", "sub_label": "clothe", "predicate": "MadeOf"}
+{"obj_label": "metal", "sub_label": "bicycle", "predicate": "MadeOf"}
+{"obj_label": "steel", "sub_label": "sword", "predicate": "MadeOf"}
+{"obj_label": "iron", "sub_label": "capitol dome", "predicate": "MadeOf"}
+{"obj_label": "plastic", "sub_label": "eyeglass", "predicate": "MadeOf"}
+{"obj_label": "flesh", "sub_label": "penis", "predicate": "MadeOf"}
+{"obj_label": "wood", "sub_label": "witch", "predicate": "MadeOf"}
+{"obj_label": "denim", "sub_label": "blue jeans", "predicate": "MadeOf"}
+{"obj_label": "plastic", "sub_label": "lawn furniture", "predicate": "MadeOf"}
+{"obj_label": "hardware", "sub_label": "computer", "predicate": "MadeOf"}
+{"obj_label": "microchip and plastic", "sub_label": "ipod", "predicate": "MadeOf"}
+{"obj_label": "wood", "sub_label": "some instrument", "predicate": "MadeOf"}
+{"obj_label": "guitar", "sub_label": "music", "predicate": "MadeOf"}
+{"obj_label": "paper", "sub_label": "magazine", "predicate": "MadeOf"}
+{"obj_label": "leather", "sub_label": "shoe", "predicate": "MadeOf"}
+{"obj_label": "leather", "sub_label": "bag", "predicate": "MadeOf"}
+{"obj_label": "organism", "sub_label": "society", "predicate": "MadeOf"}
+{"obj_label": "cell", "sub_label": "animate flesh of dead person", "predicate": "MadeOf"}
+{"obj_label": "electron", "sub_label": "oxygen", "predicate": "MadeOf"}
+{"obj_label": "steel", "sub_label": "bridge", "predicate": "MadeOf"}
+{"obj_label": "tree", "sub_label": "pencil", "predicate": "MadeOf"}
+{"obj_label": "condense water", "sub_label": "cloud", "predicate": "MadeOf"}
+{"obj_label": "cotton", "sub_label": "towel", "predicate": "MadeOf"}
+{"obj_label": "space", "sub_label": "outerspace", "predicate": "MadeOf"}
+{"obj_label": "stone", "sub_label": "house", "predicate": "MadeOf"}
+{"obj_label": "silica sort of glass", "sub_label": "sand", "predicate": "MadeOf"}
+{"obj_label": "soba flour", "sub_label": "soba", "predicate": "MadeOf"}
+{"obj_label": "naked person", "sub_label": "porn", "predicate": "MadeOf"}
+{"obj_label": "steel", "sub_label": "katana", "predicate": "MadeOf"}
+{"obj_label": "potato", "sub_label": "gnocchi", "predicate": "MadeOf"}
+{"obj_label": "flour", "sub_label": "dumpling", "predicate": "MadeOf"}
+{"obj_label": "wood", "sub_label": "tree", "predicate": "MadeOf"}
+{"obj_label": "ceramic", "sub_label": "china", "predicate": "MadeOf"}
+{"obj_label": "cell", "sub_label": "organism", "predicate": "MadeOf"}
+{"obj_label": "polymer", "sub_label": "vinyl", "predicate": "MadeOf"}
+{"obj_label": "neuron", "sub_label": "brain", "predicate": "MadeOf"}
+{"obj_label": "silk", "sub_label": "wed gown", "predicate": "MadeOf"}
+{"obj_label": "plastic", "sub_label": "disposable fork", "predicate": "MadeOf"}
+{"obj_label": "cell", "sub_label": "zombie", "predicate": "MadeOf"}
+{"obj_label": "wool", "sub_label": "sock", "predicate": "MadeOf"}
+{"obj_label": "electron", "sub_label": "energy", "predicate": "MadeOf"}
+{"obj_label": "meat", "sub_label": "sausage", "predicate": "MadeOf"}
+{"obj_label": "aluminum", "sub_label": "soda", "predicate": "MadeOf"}
+{"obj_label": "fruit", "sub_label": "wine", "predicate": "MadeOf"}
+{"obj_label": "glass", "sub_label": "many container", "predicate": "MadeOf"}
+{"obj_label": "brick", "sub_label": "town house", "predicate": "MadeOf"}
+{"obj_label": "silver", "sub_label": "flute", "predicate": "MadeOf"}
+{"obj_label": "plastic", "sub_label": "computer mouse", "predicate": "MadeOf"}
+{"obj_label": "egg", "sub_label": "omelette", "predicate": "MadeOf"}
+{"obj_label": "pair of short pantlegs", "sub_label": "short", "predicate": "MadeOf"}
+{"obj_label": "plaster", "sub_label": "sculpture", "predicate": "MadeOf"}
+{"obj_label": "petroleum", "sub_label": "plastic", "predicate": "MadeOf"}
+{"obj_label": "cardboard", "sub_label": "box", "predicate": "MadeOf"}
+{"obj_label": "paper", "sub_label": "letter", "predicate": "MadeOf"}
+{"obj_label": "note", "sub_label": "music", "predicate": "MadeOf"}
+{"obj_label": "tortoise shell", "sub_label": "some eyeglass frame", "predicate": "MadeOf"}
+{"obj_label": "apple", "sub_label": "apple jam", "predicate": "MadeOf"}
+{"obj_label": "cell", "sub_label": "skin", "predicate": "MadeOf"}
+{"obj_label": "bit", "sub_label": "data", "predicate": "MadeOf"}
+{"obj_label": "wheat", "sub_label": "flour", "predicate": "MadeOf"}
+{"obj_label": "sand", "sub_label": "glass", "predicate": "MadeOf"}
+{"obj_label": "milk", "sub_label": "pudding", "predicate": "MadeOf"}
+{"obj_label": "string", "sub_label": "universe", "predicate": "MadeOf"}
+{"obj_label": "community", "sub_label": "utopia", "predicate": "MadeOf"}
+{"obj_label": "wood", "sub_label": "many kitchen utensil", "predicate": "MadeOf"}
+{"obj_label": "gold", "sub_label": "watch", "predicate": "MadeOf"}
+{"obj_label": "steel", "sub_label": "wrench", "predicate": "MadeOf"}
+{"obj_label": "rubber", "sub_label": "ball bounce because they", "predicate": "MadeOf"}
+{"obj_label": "wood", "sub_label": "hanger", "predicate": "MadeOf"}
+{"obj_label": "metal", "sub_label": "statue", "predicate": "MadeOf"}
+{"obj_label": "glass", "sub_label": "crystal goblet", "predicate": "MadeOf"}
+{"obj_label": "denim", "sub_label": "trousers", "predicate": "MadeOf"}
+{"obj_label": "water", "sub_label": "snowman", "predicate": "MadeOf"}
+{"obj_label": "metal", "sub_label": "this", "predicate": "MadeOf"}
+{"obj_label": "cow skin", "sub_label": "leather", "predicate": "MadeOf"}
+{"obj_label": "sound", "sub_label": "music", "predicate": "MadeOf"}
+{"obj_label": "bronze", "sub_label": "sculpture", "predicate": "MadeOf"}
+{"obj_label": "water", "sub_label": "human body", "predicate": "MadeOf"}
+{"obj_label": "cocoa bean", "sub_label": "chocolate", "predicate": "MadeOf"}
+{"obj_label": "metal", "sub_label": "percussion instrument", "predicate": "MadeOf"}
+{"obj_label": "cannabis", "sub_label": "sativa", "predicate": "MadeOf"}
+{"obj_label": "paper", "sub_label": "disposable plate", "predicate": "MadeOf"}
+{"obj_label": "ice", "sub_label": "ice shave", "predicate": "MadeOf"}
+{"obj_label": "soy bean", "sub_label": "soy source", "predicate": "MadeOf"}
+{"obj_label": "pig part", "sub_label": "hot dog", "predicate": "MadeOf"}
+{"obj_label": "cannabis", "sub_label": "indica", "predicate": "MadeOf"}
+{"obj_label": "copper", "sub_label": "statue of liberty", "predicate": "MadeOf"}
+{"obj_label": "flow of electron", "sub_label": "electricity", "predicate": "MadeOf"}
+{"obj_label": "leather", "sub_label": "glove", "predicate": "MadeOf"}
+{"obj_label": "false assumption", "sub_label": "evolution", "predicate": "MadeOf"}
+{"obj_label": "metal", "sub_label": "ax", "predicate": "MadeOf"}
+{"obj_label": "cotton fabric", "sub_label": "cloth diaper", "predicate": "MadeOf"}
+{"obj_label": "polyester", "sub_label": "cloth of seventy", "predicate": "MadeOf"}
+{"obj_label": "gloutinous rice", "sub_label": "mochi", "predicate": "MadeOf"}
+{"obj_label": "leather", "sub_label": "belt", "predicate": "MadeOf"}
+{"obj_label": "denim", "sub_label": "garment", "predicate": "MadeOf"}
+{"obj_label": "steel", "sub_label": "ship", "predicate": "MadeOf"}
+{"obj_label": "denim", "sub_label": "clothing item", "predicate": "MadeOf"}
+{"obj_label": "metal", "sub_label": "roboter", "predicate": "MadeOf"}
+{"obj_label": "wood", "sub_label": "tree be plant and", "predicate": "MadeOf"}
+{"obj_label": "metal", "sub_label": "golf club", "predicate": "MadeOf"}
+{"obj_label": "denim", "sub_label": "pants", "predicate": "MadeOf"}
+{"obj_label": "cow hide", "sub_label": "leather", "predicate": "MadeOf"}
+{"obj_label": "electronics", "sub_label": "telephone", "predicate": "MadeOf"}
+{"obj_label": "precious metal and gem", "sub_label": "jewelry", "predicate": "MadeOf"}
+{"obj_label": "meat take from disassemble animal", "sub_label": "hot-dog", "predicate": "MadeOf"}
+{"obj_label": "ferment milk and bacteria`", "sub_label": "cheese", "predicate": "MadeOf"}
+{"obj_label": "fabric", "sub_label": "blanket", "predicate": "MadeOf"}
+{"obj_label": "paper", "sub_label": "index card", "predicate": "MadeOf"}
+{"obj_label": "wood", "sub_label": "coathanger", "predicate": "MadeOf"}
+{"obj_label": "ash or hickory", "sub_label": "handle of axe", "predicate": "MadeOf"}
+{"obj_label": "green glass", "sub_label": "some bottle", "predicate": "MadeOf"}
+{"obj_label": "plum", "sub_label": "prune", "predicate": "MadeOf"}
+{"obj_label": "metal", "sub_label": "tv", "predicate": "MadeOf"}
+{"obj_label": "cotton", "sub_label": "sock", "predicate": "MadeOf"}
+{"obj_label": "four wall", "sub_label": "room", "predicate": "MadeOf"}
+{"obj_label": "milk", "sub_label": "pancake", "predicate": "MadeOf"}
+{"obj_label": "experience", "sub_label": "memory", "predicate": "MadeOf"}
+{"obj_label": "wood", "sub_label": "many cook utensil", "predicate": "MadeOf"}
+{"obj_label": "electron", "sub_label": "electricity", "predicate": "MadeOf"}
+{"obj_label": "wood", "sub_label": "plank", "predicate": "MadeOf"}
+{"obj_label": "many still picture show very quickly", "sub_label": "movie", "predicate": "MadeOf"}
+{"obj_label": "concrete", "sub_label": "floor", "predicate": "MadeOf"}
+{"obj_label": "chicken", "sub_label": "steamedchicken", "predicate": "MadeOf"}
+{"obj_label": "fiberglass", "sub_label": "some boat", "predicate": "MadeOf"}
+{"obj_label": "colour plastic", "sub_label": "lego", "predicate": "MadeOf"}
+{"obj_label": "denim", "sub_label": "bottoms", "predicate": "MadeOf"}
+{"obj_label": "banana", "sub_label": "banana pudding", "predicate": "MadeOf"}
+{"obj_label": "nitrogen and hydrogen", "sub_label": "ammonia", "predicate": "MadeOf"}
+{"obj_label": "paper", "sub_label": "papercups", "predicate": "MadeOf"}
+{"obj_label": "metal", "sub_label": "catwalk", "predicate": "MadeOf"}
+{"obj_label": "aluminum", "sub_label": "horse box", "predicate": "MadeOf"}
+{"obj_label": "slot card and computer chip", "sub_label": "computer", "predicate": "MadeOf"}
+{"obj_label": "stone", "sub_label": "statue", "predicate": "MadeOf"}
+{"obj_label": "stone", "sub_label": "bridge", "predicate": "MadeOf"}
+{"obj_label": "sugar", "sub_label": "cake", "predicate": "MadeOf"}
+{"obj_label": "this and that", "sub_label": "world", "predicate": "MadeOf"}
+{"obj_label": "plastic", "sub_label": "much furniture", "predicate": "MadeOf"}
+{"obj_label": "copper", "sub_label": "penny", "predicate": "MadeOf"}
+{"obj_label": "coffee bean", "sub_label": "drink", "predicate": "MadeOf"}
+{"obj_label": "timber", "sub_label": "page", "predicate": "MadeOf"}
+{"obj_label": "same chemical stuff", "sub_label": "person and planet", "predicate": "MadeOf"}
+{"obj_label": "flower", "sub_label": "bouquet", "predicate": "MadeOf"}
+{"obj_label": "silicon", "sub_label": "computer memory", "predicate": "MadeOf"}
+{"obj_label": "wood", "sub_label": "this model duck", "predicate": "MadeOf"}
+{"obj_label": "bread", "sub_label": "toast", "predicate": "MadeOf"}
+{"obj_label": "water", "sub_label": "coffee", "predicate": "MadeOf"}
+{"obj_label": "concrete", "sub_label": "freeway", "predicate": "MadeOf"}
+{"obj_label": "many different material", "sub_label": "glove may", "predicate": "MadeOf"}
+{"obj_label": "proton", "sub_label": "oxygen", "predicate": "MadeOf"}
+{"obj_label": "gold", "sub_label": "wed ring", "predicate": "MadeOf"}
+{"obj_label": "rubber or plastic", "sub_label": "dart board may", "predicate": "MadeOf"}
+{"obj_label": "lime", "sub_label": "limestone", "predicate": "MadeOf"}
+{"obj_label": "flour", "sub_label": "ramen", "predicate": "MadeOf"}
+{"obj_label": "feel", "sub_label": "hat", "predicate": "MadeOf"}
+{"obj_label": "material", "sub_label": "world", "predicate": "MadeOf"}
+{"obj_label": "metal", "sub_label": "many object", "predicate": "MadeOf"}
+{"obj_label": "glass", "sub_label": "magnify glass", "predicate": "MadeOf"}
+{"obj_label": "wood", "sub_label": "clotheshaner", "predicate": "MadeOf"}
+{"obj_label": "metal", "sub_label": "fork", "predicate": "MadeOf"}
+{"obj_label": "metal", "sub_label": "fence", "predicate": "MadeOf"}
+{"obj_label": "rubber", "sub_label": "tire", "predicate": "MadeOf"}
+{"obj_label": "wood", "sub_label": "violin", "predicate": "MadeOf"}
+{"obj_label": "polish chrome", "sub_label": "ticket turnstile", "predicate": "MadeOf"}
+{"obj_label": "metal", "sub_label": "computer", "predicate": "MadeOf"}
+{"obj_label": "metal", "sub_label": "motorcycle", "predicate": "MadeOf"}
+{"obj_label": "ice", "sub_label": "snowcone", "predicate": "MadeOf"}
+{"obj_label": "character", "sub_label": "write word", "predicate": "MadeOf"}
+{"obj_label": "glutinous rice", "sub_label": "rice ckae", "predicate": "MadeOf"}
+{"obj_label": "wood", "sub_label": "furniture", "predicate": "MadeOf"}
+{"obj_label": "leather because it sturdy", "sub_label": "boot", "predicate": "MadeOf"}
+{"obj_label": "raw seafood", "sub_label": "sushi", "predicate": "MadeOf"}
+{"obj_label": "subatomic particle", "sub_label": "atom", "predicate": "MadeOf"}
+{"obj_label": "rock", "sub_label": "moon", "predicate": "MadeOf"}
+{"obj_label": "steel", "sub_label": "automobile", "predicate": "MadeOf"}
+{"obj_label": "metal", "sub_label": "tool", "predicate": "MadeOf"}
+{"obj_label": "coffee bean", "sub_label": "beverage made from beans", "predicate": "MadeOf"}
+{"obj_label": "glass", "sub_label": "mirror", "predicate": "MadeOf"}
+{"obj_label": "glutinous rice", "sub_label": "cake", "predicate": "MadeOf"}
+{"obj_label": "silk fabric", "sub_label": "sari", "predicate": "MadeOf"}
+{"obj_label": "metal", "sub_label": "sword", "predicate": "MadeOf"}
+{"obj_label": "chicken", "sub_label": "chicken soup", "predicate": "MadeOf"}
+{"obj_label": "wood", "sub_label": "percussion instrument", "predicate": "MadeOf"}
+{"obj_label": "snowflake", "sub_label": "snow", "predicate": "MadeOf"}
+{"obj_label": "mostly water", "sub_label": "earth", "predicate": "MadeOf"}
+{"obj_label": "plastic", "sub_label": "disposable knife", "predicate": "MadeOf"}
+{"obj_label": "fruit", "sub_label": "juice", "predicate": "MadeOf"}
+{"obj_label": "metal", "sub_label": "spring", "predicate": "MadeOf"}
+{"obj_label": "cell", "sub_label": "john safran", "predicate": "MadeOf"}
+{"obj_label": "plastic", "sub_label": "bag", "predicate": "MadeOf"}
+{"obj_label": "wood", "sub_label": "some closet", "predicate": "MadeOf"}
+{"obj_label": "oil", "sub_label": "lubrication", "predicate": "MadeOf"}
+{"obj_label": "same material as it cup", "sub_label": "saucer", "predicate": "MadeOf"}
+{"obj_label": "flower", "sub_label": "flower bouquet", "predicate": "MadeOf"}
+{"obj_label": "abstraction", "sub_label": "system of abstract think", "predicate": "MadeOf"}
+{"obj_label": "wood", "sub_label": "door", "predicate": "MadeOf"}
+{"obj_label": "sugar and starch", "sub_label": "cookie", "predicate": "MadeOf"}
+{"obj_label": "metal", "sub_label": "outdoor statue", "predicate": "MadeOf"}
+{"obj_label": "metal becasue metal be strong", "sub_label": "tool", "predicate": "MadeOf"}
+{"obj_label": "chicken", "sub_label": "chicken broth", "predicate": "MadeOf"}
+{"obj_label": "hard plastic and they bounce", "sub_label": "ping pong ball", "predicate": "MadeOf"}
+{"obj_label": "metal", "sub_label": "paper clip", "predicate": "MadeOf"}
+{"obj_label": "marble", "sub_label": "statue", "predicate": "MadeOf"}
+{"obj_label": "live cell", "sub_label": "person", "predicate": "MadeOf"}
+{"obj_label": "ice", "sub_label": "shave ice with syrup", "predicate": "MadeOf"}
+{"obj_label": "country", "sub_label": "world", "predicate": "MadeOf"}
+{"obj_label": "plastic", "sub_label": "basket", "predicate": "MadeOf"}
+{"obj_label": "milk", "sub_label": "cake", "predicate": "MadeOf"}
+{"obj_label": "different person", "sub_label": "population", "predicate": "MadeOf"}
+{"obj_label": "metal not wood", "sub_label": "most clothe hanger", "predicate": "MadeOf"}
+{"obj_label": "apple", "sub_label": "cider", "predicate": "MadeOf"}
+{"obj_label": "leather", "sub_label": "jacket", "predicate": "MadeOf"}
+{"obj_label": "metal wood or plastic", "sub_label": "coat hanger", "predicate": "MadeOf"}
+{"obj_label": "clay", "sub_label": "bowl", "predicate": "MadeOf"}
+{"obj_label": "source code", "sub_label": "computer program", "predicate": "MadeOf"}
+{"obj_label": "oxygen", "sub_label": "water", "predicate": "MadeOf"}
+{"obj_label": "wood some metal and some plastic", "sub_label": "some coat hanger", "predicate": "MadeOf"}
+{"obj_label": "water", "sub_label": "soup", "predicate": "MadeOf"}
+{"obj_label": "bakerlite", "sub_label": "old telephone", "predicate": "MadeOf"}
+{"obj_label": "soil", "sub_label": "pot", "predicate": "MadeOf"}
+{"obj_label": "hydrogen and oxygen", "sub_label": "water", "predicate": "MadeOf"}
+{"obj_label": "coffee bean", "sub_label": "black liquid", "predicate": "MadeOf"}
+{"obj_label": "subjective thought", "sub_label": "mind", "predicate": "MadeOf"}
+{"obj_label": "denim", "sub_label": "fashion item", "predicate": "MadeOf"}
+{"obj_label": "stone", "sub_label": "sculpture", "predicate": "MadeOf"}
+{"obj_label": "meat", "sub_label": "hamburger", "predicate": "MadeOf"}
+{"obj_label": "soy bean", "sub_label": "soy sause paste", "predicate": "MadeOf"}
+{"obj_label": "oxygen", "sub_label": "air", "predicate": "MadeOf"}
+{"obj_label": "straw", "sub_label": "bed", "predicate": "MadeOf"}
+{"obj_label": "straw", "sub_label": "straw doll", "predicate": "MadeOf"}
+{"obj_label": "corn or flour", "sub_label": "tortilla", "predicate": "MadeOf"}
+{"obj_label": "happiness", "sub_label": "your smile", "predicate": "MadeOf"}
+{"obj_label": "leather", "sub_label": "nice jacket", "predicate": "MadeOf"}
+{"obj_label": "kimchi", "sub_label": "kimchi pancake", "predicate": "MadeOf"}
+{"obj_label": "wood", "sub_label": "game piece", "predicate": "MadeOf"}
+{"obj_label": "egg", "sub_label": "pudding", "predicate": "MadeOf"}
+{"obj_label": "animal skin", "sub_label": "boot", "predicate": "MadeOf"}
+{"obj_label": "velvet", "sub_label": "stage curtain", "predicate": "MadeOf"}
+{"obj_label": "bean", "sub_label": "coffee", "predicate": "MadeOf"}
+{"obj_label": "wood", "sub_label": "closet", "predicate": "MadeOf"}
+{"obj_label": "metal", "sub_label": "nail", "predicate": "MadeOf"}
+{"obj_label": "electronic part", "sub_label": "telephone", "predicate": "MadeOf"}
+{"obj_label": "country", "sub_label": "continent", "predicate": "MadeOf"}
+{"obj_label": "metal", "sub_label": "medal", "predicate": "MadeOf"}
+{"obj_label": "salary", "sub_label": "save", "predicate": "MadeOf"}
+{"obj_label": "plastic", "sub_label": "plasticbags", "predicate": "MadeOf"}
+{"obj_label": "transparent glass or plastic", "sub_label": "glass lense", "predicate": "MadeOf"}
+{"obj_label": "iron", "sub_label": "railroad", "predicate": "MadeOf"}
+{"obj_label": "mushroom", "sub_label": "mushroom noodle", "predicate": "MadeOf"}
+{"obj_label": "gold", "sub_label": "gild", "predicate": "MadeOf"}
+{"obj_label": "metal and stone", "sub_label": "jewelry", "predicate": "MadeOf"}
+{"obj_label": "metal", "sub_label": "stove", "predicate": "MadeOf"}
+{"obj_label": "ferment honey water", "sub_label": "mead", "predicate": "MadeOf"}
+{"obj_label": "electricity", "sub_label": "lightning", "predicate": "MadeOf"}
+{"obj_label": "brick", "sub_label": "many home", "predicate": "MadeOf"}
+{"obj_label": "denim", "sub_label": "apparel", "predicate": "MadeOf"}
+{"obj_label": "precious jewel", "sub_label": "choker", "predicate": "MadeOf"}
+{"obj_label": "sugar", "sub_label": "sweet", "predicate": "MadeOf"}
+{"obj_label": "metal", "sub_label": "hammer", "predicate": "MadeOf"}
+{"obj_label": "equality for everyone", "sub_label": "utopia", "predicate": "MadeOf"}
+{"obj_label": "sticky rice", "sub_label": "sweat rice cake", "predicate": "MadeOf"}
+{"obj_label": "wood", "sub_label": "house", "predicate": "MadeOf"}
+{"obj_label": "theory", "sub_label": "psychology", "predicate": "MadeOf"}
+{"obj_label": "metal", "sub_label": "most tool", "predicate": "MadeOf"}
+{"obj_label": "meat", "sub_label": "food", "predicate": "MadeOf"}
+{"obj_label": "water", "sub_label": "hydroelectricity", "predicate": "MadeOf"}
+{"obj_label": "wood", "sub_label": "axe handle", "predicate": "MadeOf"}
+{"obj_label": "glass", "sub_label": "dine table might", "predicate": "MadeOf"}
+{"obj_label": "bird", "sub_label": "flock", "predicate": "MadeOf"}
+{"obj_label": "metal", "sub_label": "saw", "predicate": "MadeOf"}
+{"obj_label": "metal", "sub_label": "cabinet", "predicate": "MadeOf"}
+{"obj_label": "alien material", "sub_label": "u.f.o", "predicate": "MadeOf"}
+{"obj_label": "wood", "sub_label": "wardrobe", "predicate": "MadeOf"}
+{"obj_label": "water", "sub_label": "ice", "predicate": "MadeOf"}
+{"obj_label": "granite", "sub_label": "couter top", "predicate": "MadeOf"}
+{"obj_label": "wood", "sub_label": "battledore", "predicate": "MadeOf"}
+{"obj_label": "brick", "sub_label": "house", "predicate": "MadeOf"}
+{"obj_label": "rice", "sub_label": "alcohol", "predicate": "MadeOf"}
+{"obj_label": "clay", "sub_label": "jar", "predicate": "MadeOf"}
+{"obj_label": "soybean paste", "sub_label": "soy and bean paste", "predicate": "MadeOf"}
+{"obj_label": "wood", "sub_label": "most table", "predicate": "MadeOf"}
+{"obj_label": "clay", "sub_label": "pot", "predicate": "MadeOf"}
+{"obj_label": "metal", "sub_label": "container", "predicate": "MadeOf"}
+{"obj_label": "metal", "sub_label": "sculpture", "predicate": "MadeOf"}
+{"obj_label": "clay", "sub_label": "tool", "predicate": "MadeOf"}
+{"obj_label": "less material than large automobile", "sub_label": "small automobile", "predicate": "MadeOf"}
+{"obj_label": "rice", "sub_label": "ricecake", "predicate": "MadeOf"}
+{"obj_label": "clay", "sub_label": "crockery", "predicate": "MadeOf"}
+{"obj_label": "iron", "sub_label": "car", "predicate": "MadeOf"}
+{"obj_label": "alpalca hair", "sub_label": "yarn", "predicate": "MadeOf"}
+{"obj_label": "vapor", "sub_label": "cloud", "predicate": "MadeOf"}
+{"obj_label": "steel", "sub_label": "stool", "predicate": "MadeOf"}
+{"obj_label": "plastic", "sub_label": "billiard ball", "predicate": "MadeOf"}
+{"obj_label": "political ideology", "sub_label": "government", "predicate": "MadeOf"}
+{"obj_label": "bronze", "sub_label": "statue", "predicate": "MadeOf"}
+{"obj_label": "paper", "sub_label": "card", "predicate": "MadeOf"}
+{"obj_label": "apple", "sub_label": "apple pie", "predicate": "MadeOf"}
+{"obj_label": "wood", "sub_label": "handle", "predicate": "MadeOf"}
+{"obj_label": "wool or cotton", "sub_label": "yarn", "predicate": "MadeOf"}
+{"obj_label": "silicon", "sub_label": "computer chip", "predicate": "MadeOf"}
+{"obj_label": "plastic", "sub_label": "horse shoe use for game", "predicate": "MadeOf"}
+{"obj_label": "sperm cell", "sub_label": "semen", "predicate": "MadeOf"}
+{"obj_label": "fabric", "sub_label": "bag", "predicate": "MadeOf"}
+{"obj_label": "korean rice cake", "sub_label": "cake", "predicate": "MadeOf"}
+{"obj_label": "wood", "sub_label": "piano", "predicate": "MadeOf"}
+{"obj_label": "plastic", "sub_label": "credit card", "predicate": "MadeOf"}
+{"obj_label": "plastic and metal", "sub_label": "computer", "predicate": "MadeOf"}
+{"obj_label": "metal wood or plastic", "sub_label": "playground equipment", "predicate": "MadeOf"}
+{"obj_label": "glass", "sub_label": "many bottle", "predicate": "MadeOf"}
+{"obj_label": "word and music", "sub_label": "sing", "predicate": "MadeOf"}
+{"obj_label": "metal", "sub_label": "nut and bolt", "predicate": "MadeOf"}
+{"obj_label": "plastic", "sub_label": "hose", "predicate": "MadeOf"}
+{"obj_label": "fiberglass and mould into shape", "sub_label": "bath tub", "predicate": "MadeOf"}
+{"obj_label": "chikens", "sub_label": "daktoritang", "predicate": "MadeOf"}
+{"obj_label": "sugar", "sub_label": "candy", "predicate": "MadeOf"}
+{"obj_label": "keratin", "sub_label": "nail", "predicate": "MadeOf"}
+{"obj_label": "very fast-moving wind", "sub_label": "tornado", "predicate": "MadeOf"}
+{"obj_label": "live and non live thing", "sub_label": "matter", "predicate": "MadeOf"}
+{"obj_label": "bamboo", "sub_label": "cricket cage", "predicate": "MadeOf"}
+{"obj_label": "steel", "sub_label": "clamp", "predicate": "MadeOf"}
+{"obj_label": "plastic", "sub_label": "outdoor furniture", "predicate": "MadeOf"}
+{"obj_label": "wood and string", "sub_label": "many instrument", "predicate": "MadeOf"}
+{"obj_label": "air", "sub_label": "wind", "predicate": "MadeOf"}
+{"obj_label": "poppy flower", "sub_label": "heroin", "predicate": "MadeOf"}
+{"obj_label": "plastic", "sub_label": "pen", "predicate": "MadeOf"}
+{"obj_label": "cacao", "sub_label": "hot chocolate", "predicate": "MadeOf"}
+{"obj_label": "water", "sub_label": "human beeings", "predicate": "MadeOf"}
+{"obj_label": "metal", "sub_label": "silverware", "predicate": "MadeOf"}
+{"obj_label": "metal", "sub_label": "guitar", "predicate": "MadeOf"}
+{"obj_label": "metal", "sub_label": "saxophone", "predicate": "MadeOf"}
+{"obj_label": "melt sand", "sub_label": "glass", "predicate": "MadeOf"}
+{"obj_label": "rubber and wood", "sub_label": "plunger", "predicate": "MadeOf"}
+{"obj_label": "many frame", "sub_label": "movie", "predicate": "MadeOf"}
+{"obj_label": "wood or metal", "sub_label": "balcony rail", "predicate": "MadeOf"}
+{"obj_label": "metal", "sub_label": "wheel", "predicate": "MadeOf"}
+{"obj_label": "sugar", "sub_label": "bread", "predicate": "MadeOf"}
+{"obj_label": "paper", "sub_label": "brochure", "predicate": "MadeOf"}
+{"obj_label": "sugar", "sub_label": "chocolate", "predicate": "MadeOf"}
+{"obj_label": "plastic", "sub_label": "plastic wrap", "predicate": "MadeOf"}
+{"obj_label": "denim", "sub_label": "casual wear", "predicate": "MadeOf"}
+{"obj_label": "steel", "sub_label": "cabinet", "predicate": "MadeOf"}
+{"obj_label": "calcium", "sub_label": "tooth", "predicate": "MadeOf"}
+{"obj_label": "leather", "sub_label": "sofa", "predicate": "MadeOf"}
+{"obj_label": "coffee bean", "sub_label": "stimulating drink", "predicate": "MadeOf"}
+{"obj_label": "white flour", "sub_label": "soojaebi", "predicate": "MadeOf"}
+{"obj_label": "gold", "sub_label": "ring", "predicate": "MadeOf"}
+{"obj_label": "plastic", "sub_label": "lot of jug", "predicate": "MadeOf"}
+{"obj_label": "concrete", "sub_label": "sidewalk", "predicate": "MadeOf"}
+{"obj_label": "copper", "sub_label": "kettle", "predicate": "MadeOf"}
+{"obj_label": "flour", "sub_label": "muffin", "predicate": "MadeOf"}
+{"obj_label": "soil", "sub_label": "pottery", "predicate": "MadeOf"}
+{"obj_label": "leather", "sub_label": "soccer ball", "predicate": "MadeOf"}
+{"obj_label": "wood", "sub_label": "barn", "predicate": "MadeOf"}
+{"obj_label": "clay", "sub_label": "pottery", "predicate": "MadeOf"}
+{"obj_label": "socialist", "sub_label": "socialism", "predicate": "MadeOf"}
+{"obj_label": "glass and break easily", "sub_label": "lightbulb", "predicate": "MadeOf"}
+{"obj_label": "apple", "sub_label": "apple juice", "predicate": "MadeOf"}
+{"obj_label": "pigskin", "sub_label": "football", "predicate": "MadeOf"}
+{"obj_label": "grain", "sub_label": "sand", "predicate": "MadeOf"}
+{"obj_label": "metal", "sub_label": "many trash can", "predicate": "MadeOf"}
+{"obj_label": "beef", "sub_label": "steak", "predicate": "MadeOf"}
+{"obj_label": "glass", "sub_label": "glass", "predicate": "MadeOf"}
+{"obj_label": "flour and water", "sub_label": "glue", "predicate": "MadeOf"}
+{"obj_label": "explosive gun cotton", "sub_label": "early billiard ball", "predicate": "MadeOf"}
+{"obj_label": "glass", "sub_label": "crt", "predicate": "MadeOf"}
+{"obj_label": "tin", "sub_label": "some can", "predicate": "MadeOf"}
+{"obj_label": "steel", "sub_label": "steel railroad", "predicate": "MadeOf"}
+{"obj_label": "denim", "sub_label": "wardrobe essential", "predicate": "MadeOf"}
+{"obj_label": "rubber", "sub_label": "balloon", "predicate": "MadeOf"}
+{"obj_label": "recycle paper", "sub_label": "all toilet paper", "predicate": "MadeOf"}
+{"obj_label": "crude oil", "sub_label": "gasolene", "predicate": "MadeOf"}
+{"obj_label": "clay", "sub_label": "brick", "predicate": "MadeOf"}
+{"obj_label": "room", "sub_label": "whorehouse", "predicate": "MadeOf"}
+{"obj_label": "grind almond and sugar", "sub_label": "marzipan", "predicate": "MadeOf"}
+{"obj_label": "worm and dust", "sub_label": "book", "predicate": "MadeOf"}
+{"obj_label": "person", "sub_label": "team", "predicate": "MadeOf"}
+{"obj_label": "denim", "sub_label": "overall", "predicate": "MadeOf"}
+{"obj_label": "bamboo", "sub_label": "chopstick", "predicate": "MadeOf"}
+{"obj_label": "prehistoric snail", "sub_label": "chalk", "predicate": "MadeOf"}
+{"obj_label": "black lead", "sub_label": "pencil", "predicate": "MadeOf"}
+{"obj_label": "limestone", "sub_label": "small stone", "predicate": "MadeOf"}
+{"obj_label": "steel", "sub_label": "nail", "predicate": "MadeOf"}
+{"obj_label": "carbon", "sub_label": "food", "predicate": "MadeOf"}
+{"obj_label": "plastic and rubber", "sub_label": "comb", "predicate": "MadeOf"}
+{"obj_label": "little piece of seashell", "sub_label": "sand", "predicate": "MadeOf"}
+{"obj_label": "tile", "sub_label": "shower wall", "predicate": "MadeOf"}
+{"obj_label": "person thought", "sub_label": "common sense", "predicate": "MadeOf"}
+{"obj_label": "denim", "sub_label": "blue jean", "predicate": "MadeOf"}
+{"obj_label": "coffee bean", "sub_label": "hot beverage", "predicate": "MadeOf"}
+{"obj_label": "bamboo", "sub_label": "yarn", "predicate": "MadeOf"}
+{"obj_label": "cow", "sub_label": "hot dog", "predicate": "MadeOf"}
+{"obj_label": "egg", "sub_label": "pancake", "predicate": "MadeOf"}
+{"obj_label": "wood", "sub_label": "early roller coaster", "predicate": "MadeOf"}
+{"obj_label": "step", "sub_label": "plan", "predicate": "MadeOf"}
+{"obj_label": "wheat", "sub_label": "noodle", "predicate": "MadeOf"}
+{"obj_label": "plastic", "sub_label": "pacifier", "predicate": "MadeOf"}
+{"obj_label": "peanut", "sub_label": "peanut butter", "predicate": "MadeOf"}
+{"obj_label": "fiber", "sub_label": "cloth", "predicate": "MadeOf"}
+{"obj_label": "room", "sub_label": "house", "predicate": "MadeOf"}
+{"obj_label": "feather", "sub_label": "pillow", "predicate": "MadeOf"}
+{"obj_label": "mostly plastic", "sub_label": "cheap dart", "predicate": "MadeOf"}
+{"obj_label": "atom", "sub_label": "molecule", "predicate": "MadeOf"}
+{"obj_label": "material", "sub_label": "surface", "predicate": "MadeOf"}
+{"obj_label": "wood", "sub_label": "some ship", "predicate": "MadeOf"}
+{"obj_label": "gum rubber", "sub_label": "eraser", "predicate": "MadeOf"}
+{"obj_label": "aluminum", "sub_label": "soda can", "predicate": "MadeOf"}
+{"obj_label": "string", "sub_label": "guitar", "predicate": "MadeOf"}
+{"obj_label": "bone", "sub_label": "gelatine", "predicate": "MadeOf"}
+{"obj_label": "aluminium", "sub_label": "motorcylces", "predicate": "MadeOf"}
+{"obj_label": "meat", "sub_label": "duck", "predicate": "MadeOf"}
+{"obj_label": "coffee bean", "sub_label": "morning drink", "predicate": "MadeOf"}
+{"obj_label": "sand", "sub_label": "silicon", "predicate": "MadeOf"}
+{"obj_label": "wood or brick", "sub_label": "house", "predicate": "MadeOf"}
+{"obj_label": "silver", "sub_label": "some hairbrush", "predicate": "MadeOf"}
