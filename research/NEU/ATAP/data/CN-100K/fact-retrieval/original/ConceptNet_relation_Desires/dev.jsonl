@@ -1,0 +1,20 @@
+{"obj_label": "privacy", "sub_label": "person", "predicate": "Desires"}
+{"obj_label": "their own house", "sub_label": "person", "predicate": "Desires"}
+{"obj_label": "be knowledgeable", "sub_label": "person", "predicate": "Desires"}
+{"obj_label": "eat", "sub_label": "animal", "predicate": "Desires"}
+{"obj_label": "gnaw on bone", "sub_label": "dog", "predicate": "Desires"}
+{"obj_label": "ride in car", "sub_label": "dog", "predicate": "Desires"}
+{"obj_label": "catch frisbee", "sub_label": "dog", "predicate": "Desires"}
+{"obj_label": "solve problem", "sub_label": "person", "predicate": "Desires"}
+{"obj_label": "play with frisbee", "sub_label": "dog", "predicate": "Desires"}
+{"obj_label": "play game", "sub_label": "child", "predicate": "Desires"}
+{"obj_label": "headache", "sub_label": "person", "predicate": "Desires"}
+{"obj_label": "chew bone", "sub_label": "dog", "predicate": "Desires"}
+{"obj_label": "ride horse", "sub_label": "person", "predicate": "Desires"}
+{"obj_label": "be pet", "sub_label": "dog", "predicate": "Desires"}
+{"obj_label": "bone", "sub_label": "dog", "predicate": "Desires"}
+{"obj_label": "compliment", "sub_label": "person", "predicate": "Desires"}
+{"obj_label": "sleep", "sub_label": "cat", "predicate": "Desires"}
+{"obj_label": "play", "sub_label": "cat", "predicate": "Desires"}
+{"obj_label": "play", "sub_label": "dog", "predicate": "Desires"}
+{"obj_label": "chase mouse", "sub_label": "cat", "predicate": "Desires"}
