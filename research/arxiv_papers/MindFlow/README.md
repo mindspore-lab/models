@@ -112,4 +112,4 @@
      ```bash
      pip install numpy pandas scikit-learn
      ```
-     
+ ## 感谢MindSpore社区提供的支持
