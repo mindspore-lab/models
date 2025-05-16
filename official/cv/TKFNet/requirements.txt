@@ -1,0 +1,116 @@
+absl-py==2.0.0
+argon2-cffi==21.3.0
+argon2-cffi-bindings==21.2.0
+asttokens==2.4.1
+astunparse==1.6.3
+attrs==21.4.0
+backcall @ file:///home/ktietz/src/ci/backcall_1611930011877/work
+beautifulsoup4 @ file:///tmp/build/80754af9/beautifulsoup4_1631874778482/work
+bleach==5.0.0
+brotlipy==0.7.0
+c2net @ file:///tmp/sdk/c2net-0.2.0-py3-none-any.whl
+certifi==2021.10.8
+cffi @ file:///tmp/build/80754af9/cffi_1625814693446/work
+chardet @ file:///tmp/build/80754af9/chardet_1607706768982/work
+conda==4.10.3
+conda-build==3.21.5
+conda-package-handling @ file:///tmp/build/80754af9/conda-package-handling_1618262151086/work
+contextlib2==21.6.0
+cryptography @ file:///tmp/build/80754af9/cryptography_1635354891583/work
+cycler==0.11.0
+debugpy==1.6.0
+decorator @ file:///tmp/build/80754af9/decorator_1632776554403/work
+defusedxml==0.7.1
+dnspython==2.1.0
+download==0.3.5
+easydict==1.11
+entrypoints==0.4
+exceptiongroup==1.2.0
+fastjsonschema==2.15.3
+filelock @ file:///tmp/build/80754af9/filelock_1635402558181/work
+fonttools==4.38.0
+glob2 @ file:///home/linux1/recipes/ci/glob2_1610991677669/work
+idna @ file:///home/linux1/recipes/ci/idna_1610986105248/work
+importlib-metadata==4.11.3
+importlib-resources==5.7.1
+iniconfig==2.0.0
+ipykernel==6.13.0
+ipython @ file:///tmp/build/80754af9/ipython_1635944172793/work
+ipython-genutils==0.2.0
+jedi @ file:///tmp/build/80754af9/jedi_1611333758854/work
+Jinja2==3.1.1
+joblib==1.3.2
+json5==0.9.6
+jsonschema==4.4.0
+jupyter-client==7.3.0
+jupyter-core==4.10.0
+jupyterlab==2.2.5
+jupyterlab-pygments==0.2.2
+jupyterlab-server==1.2.0
+kiwisolver==1.4.5
+libarchive-c @ file:///tmp/build/80754af9/python-libarchive-c_1617780486945/work
+MarkupSafe @ file:///tmp/build/80754af9/markupsafe_1621528142364/work
+matplotlib==3.5.3
+matplotlib-inline @ file:///tmp/build/80754af9/matplotlib-inline_1628242447089/work
+mindspore==2.2.0
+mindvision==0.1.0
+mistune==0.8.4
+mkl-fft==1.3.1
+mkl-random @ file:///tmp/build/80754af9/mkl_random_1626179032232/work
+mkl-service==2.4.0
+ml-collections==0.1.1
+nbclient==0.6.0
+nbconvert==6.5.0
+nbformat==5.3.0
+nest-asyncio==1.5.5
+notebook==6.4.11
+numpy @ file:///tmp/build/80754af9/numpy_and_numpy_base_1634106693478/work
+olefile==0.46
+opencv-contrib-python-headless==4.8.1.78
+opencv-python-headless==4.8.1.78
+packaging==21.3
+pandas==1.3.5
+pandocfilters==1.5.0
+parso @ file:///tmp/build/80754af9/parso_1617223946239/work
+pexpect @ file:///tmp/build/80754af9/pexpect_1605563209008/work
+pickleshare @ file:///tmp/build/80754af9/pickleshare_1606932040724/work
+Pillow==8.4.0
+pkginfo==1.7.1
+pluggy==1.2.0
+prometheus-client==0.14.1
+prompt-toolkit @ file:///tmp/build/80754af9/prompt-toolkit_1633440160888/work
+protobuf==4.24.4
+psutil @ file:///tmp/build/80754af9/psutil_1612298016854/work
+ptyprocess @ file:///tmp/build/80754af9/ptyprocess_1609355006118/work/dist/ptyprocess-0.7.0-py2.py3-none-any.whl
+pycosat==0.6.3
+pycparser @ file:///tmp/build/80754af9/pycparser_1594388511720/work
+Pygments @ file:///tmp/build/80754af9/pygments_1629234116488/work
+pyOpenSSL @ file:///tmp/build/80754af9/pyopenssl_1608057966937/work
+pyparsing==3.0.8
+pyrsistent==0.18.1
+PySocks @ file:///tmp/build/80754af9/pysocks_1594394576006/work
+pytest==7.4.3
+python-dateutil==2.8.2
+python-etcd==0.4.5
+pytz==2021.3
+PyYAML==6.0
+pyzmq==22.3.0
+requests @ file:///tmp/build/80754af9/requests_1608241421344/work
+ruamel-yaml-conda @ file:///tmp/build/80754af9/ruamel_yaml_1616016701961/work
+scikit-learn==1.0.2
+scipy==1.7.3
+Send2Trash==1.8.0
+six @ file:///tmp/build/80754af9/six_1623709665295/work
+soupsieve @ file:///tmp/build/80754af9/soupsieve_1616183228191/work
+terminado==0.13.3
+threadpoolctl==3.1.0
+tinycss2==1.1.1
+tomli==2.0.1
+tornado==6.1
+tqdm @ file:///tmp/build/80754af9/tqdm_1625563689033/work
+traitlets @ file:///tmp/build/80754af9/traitlets_1632522747050/work
+typing-extensions @ file:///tmp/build/80754af9/typing_extensions_1631814937681/work
+urllib3 @ file:///tmp/build/80754af9/urllib3_1625084269274/work
+wcwidth @ file:///Users/ktietz/demo/mc3/conda-bld/wcwidth_1629357192024/work
+webencodings==0.5.1
+zipp==3.8.0
