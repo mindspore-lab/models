@@ -1,0 +1,13 @@
+os
+platform
+mindspore.dataset
+numpy
+pandas
+sklearn.preprocessing 
+gc
+psutil
+mindspore.nn
+sklearn.model_selection
+model
+mindspore.ops
+mindspore
