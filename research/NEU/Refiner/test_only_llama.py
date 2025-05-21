@@ -3,8 +3,8 @@
 
 import warnings
 import random
-import torch
-from transformers import AutoTokenizer, AutoModelForCausalLM
+from mindformers import build_context
+from mindformers import AutoModel, AutoTokenizer, pipeline, TextStreamer
 import pandas as pd
 from tqdm import tqdm
 from c2net.context import prepare
@@ -21,7 +21,7 @@ c2net_context = prepare()
 dataset_path = c2net_context.dataset_path + "/" + "dataset"
 rel_templates_path = c2net_context.dataset_path + "/" + "rel_templates"
 docred_logits_path = c2net_context.dataset_path + "/" + "docred-logits"
-meta_llama_3_8b_instruct_path = c2net_context.pretrain_model_path + "/" + "Meta-Llama-3-8B-Instruct"
+meta_llama_2_7b_path = c2net_context.pretrain_model_path + "/" + "Meta-Llama-2-7B"
 output_path = c2net_context.output_path
 
 # Load relation and template data
@@ -83,28 +83,26 @@ for i in range(len(documents_raw)):
 print(inputs[0][1] + ", ".join(completions[0][1]))
 print(statements[0][0])
 
-# Load model and tokenizer
-model = AutoModelForCausalLM.from_pretrained(
-    meta_llama_3_8b_instruct_path,
-    use_cache=False,
-    use_flash_attention_2=False,
-    device_map="auto"
-)
-model.config.pretraining_tp = 1
-tokenizer = AutoTokenizer.from_pretrained(meta_llama_3_8b_instruct_path)
-tokenizer.pad_token = tokenizer.eos_token
-tokenizer.padding_side = "right"
-model.config.pad_token_id = model.config.eos_token_id
+
+
+# 实例化tokenizer
+tokenizer = AutoTokenizer.from_pretrained(meta_llama_2_7b_path)
+
+# 模型实例化，需要提前将模型转成 ckpt 的，可以参考 https://www.mindspore.cn/mindformers/docs/zh-CN/dev/function/weight_conversion.html
+# 修改成本地的权重路径
+model = AutoModel.from_pretrained('llama2_7b', checkpoint_name_or_path= meta_llama_2_7b_path + "/llama2_7b.ckpt", use_past=True)
+
 
 # Evaluate model
 final_titles, final_h_idxs, final_t_idxs, final_rs = [], [], [], []
 
 for prompts, answers, questions in tqdm(zip(inputs, completions, statements), total=len(inputs), desc="Testing..."):
     for prompt, answer, question in zip(prompts, answers, questions):
-        input_ids = tokenizer(prompt, return_tensors="pt", truncation=True).input_ids.cuda()
-        with torch.inference_mode():
-            outputs = model.generate(input_ids=input_ids, max_new_tokens=1, top_p=0.9, temperature=0)
-        predicts = tokenizer.batch_decode(outputs.detach().cpu().numpy(), skip_special_tokens=True)[0][len(prompt):]
+        # pipeline启动非流式推理任务
+        text_generation_pipeline = pipeline(task="text_generation", model=model, tokenizer=tokenizer)
+        output = text_generation_pipeline([prompt], do_sample=False, top_p=0.9)
+        
+        predicts = output[0][len(prompt):]
         predicts = predicts.replace(' ', '').split(',')
 
         for predict in predicts:
@@ -115,13 +113,13 @@ for prompts, answers, questions in tqdm(zip(inputs, completions, statements), to
                 final_rs.append(question[ord(predict) - ord('A')][0]['r'])
 
 df_result = pd.DataFrame(zip(final_titles, final_h_idxs, final_t_idxs, final_rs), columns=['title', 'h_idx', 't_idx', 'r'])
-df_result.to_json("dev_result_llama3_instruct_atlop.json", orient='records')
+df_result.to_json("dev_result_llama2_atlop.json", orient='records')
 
 from docre.evaluation import evaluate
 
 evaluate(
     data_path=dataset_path + "/docred",
     test_data="dev.json",
-    result_data="./dev_result_llama3_instruct_atlop.json",
+    result_data="./dev_result_llama2_atlop.json",
     output_path="./"
 )
