@@ -68,6 +68,3 @@ pip install yfinance statsmodels matplotlib pandas numpy mindspore mindnlp
 
 特别感谢 **MindSpore 团队** 以及 **MindNLP 项目**的开源贡献，使我们能够将深度学习与资产定价模型无缝集成，极大地提升了研究的效率与质量。
 
----
-
-如需我进一步美化格式或补充图示、运行示例等内容，也可以告诉我！
