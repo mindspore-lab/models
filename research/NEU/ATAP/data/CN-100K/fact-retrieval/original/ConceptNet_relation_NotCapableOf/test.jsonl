@@ -1,0 +1,11 @@
+{"obj_label": "fly", "sub_label": "person", "predicate": "NotCapableOf"}
+{"obj_label": "fly", "sub_label": "penguin", "predicate": "NotCapableOf"}
+{"obj_label": "live out of water", "sub_label": "fish", "predicate": "NotCapableOf"}
+{"obj_label": "fly", "sub_label": "dog", "predicate": "NotCapableOf"}
+{"obj_label": "eat meat", "sub_label": "vegetarian", "predicate": "NotCapableOf"}
+{"obj_label": "mix", "sub_label": "water and oil", "predicate": "NotCapableOf"}
+{"obj_label": "talk", "sub_label": "dog", "predicate": "NotCapableOf"}
+{"obj_label": "fly", "sub_label": "pig", "predicate": "NotCapableOf"}
+{"obj_label": "hear", "sub_label": "deaf person", "predicate": "NotCapableOf"}
+{"obj_label": "sweat", "sub_label": "dog", "predicate": "NotCapableOf"}
+{"obj_label": "believe in god", "sub_label": "atheist", "predicate": "NotCapableOf"}

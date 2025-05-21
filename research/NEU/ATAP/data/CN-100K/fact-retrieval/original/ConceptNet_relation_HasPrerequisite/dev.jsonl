@@ -1,0 +1,116 @@
+{"obj_label": "turn on your computer", "sub_label": "get onto web", "predicate": "HasPrerequisite"}
+{"obj_label": "water", "sub_label": "bathe", "predicate": "HasPrerequisite"}
+{"obj_label": "go to art museum", "sub_label": "see art", "predicate": "HasPrerequisite"}
+{"obj_label": "hire lawyer", "sub_label": "bring suit", "predicate": "HasPrerequisite"}
+{"obj_label": "make reservation", "sub_label": "go to restaurant", "predicate": "HasPrerequisite"}
+{"obj_label": "get weapon", "sub_label": "kill someone", "predicate": "HasPrerequisite"}
+{"obj_label": "mop", "sub_label": "do housework", "predicate": "HasPrerequisite"}
+{"obj_label": "know rule", "sub_label": "play game", "predicate": "HasPrerequisite"}
+{"obj_label": "study hard", "sub_label": "pass class", "predicate": "HasPrerequisite"}
+{"obj_label": "money", "sub_label": "buy present for others", "predicate": "HasPrerequisite"}
+{"obj_label": "have imagination", "sub_label": "pretend", "predicate": "HasPrerequisite"}
+{"obj_label": "set alarm", "sub_label": "get up early", "predicate": "HasPrerequisite"}
+{"obj_label": "light cigarette", "sub_label": "smoke", "predicate": "HasPrerequisite"}
+{"obj_label": "ear", "sub_label": "listen to music", "predicate": "HasPrerequisite"}
+{"obj_label": "enroll", "sub_label": "go to school", "predicate": "HasPrerequisite"}
+{"obj_label": "inhale", "sub_label": "breathe", "predicate": "HasPrerequisite"}
+{"obj_label": "judgement", "sub_label": "bring in verdict", "predicate": "HasPrerequisite"}
+{"obj_label": "have radio", "sub_label": "listen to radio", "predicate": "HasPrerequisite"}
+{"obj_label": "swallow", "sub_label": "drink", "predicate": "HasPrerequisite"}
+{"obj_label": "go to bar", "sub_label": "meet person", "predicate": "HasPrerequisite"}
+{"obj_label": "have newspaper", "sub_label": "read newspaper", "predicate": "HasPrerequisite"}
+{"obj_label": "open envelope", "sub_label": "read letter", "predicate": "HasPrerequisite"}
+{"obj_label": "wash it", "sub_label": "eat apple", "predicate": "HasPrerequisite"}
+{"obj_label": "turn on television", "sub_label": "watch tv show", "predicate": "HasPrerequisite"}
+{"obj_label": "match", "sub_label": "light fire", "predicate": "HasPrerequisite"}
+{"obj_label": "start car", "sub_label": "drive to work", "predicate": "HasPrerequisite"}
+{"obj_label": "eat less", "sub_label": "lose weight", "predicate": "HasPrerequisite"}
+{"obj_label": "ticket", "sub_label": "go to play", "predicate": "HasPrerequisite"}
+{"obj_label": "turn on music", "sub_label": "dance", "predicate": "HasPrerequisite"}
+{"obj_label": "get license", "sub_label": "drive car", "predicate": "HasPrerequisite"}
+{"obj_label": "have money", "sub_label": "spend money", "predicate": "HasPrerequisite"}
+{"obj_label": "attend class", "sub_label": "take final", "predicate": "HasPrerequisite"}
+{"obj_label": "play game", "sub_label": "have fun", "predicate": "HasPrerequisite"}
+{"obj_label": "use brake", "sub_label": "stop your car", "predicate": "HasPrerequisite"}
+{"obj_label": "go to fish market", "sub_label": "bring home some fish", "predicate": "HasPrerequisite"}
+{"obj_label": "just study", "sub_label": "pass your university exam", "predicate": "HasPrerequisite"}
+{"obj_label": "turn on radio", "sub_label": "hear news", "predicate": "HasPrerequisite"}
+{"obj_label": "open book", "sub_label": "read", "predicate": "HasPrerequisite"}
+{"obj_label": "change yourself", "sub_label": "change society", "predicate": "HasPrerequisite"}
+{"obj_label": "find bus stop", "sub_label": "take bus", "predicate": "HasPrerequisite"}
+{"obj_label": "ticket", "sub_label": "attend classical concert", "predicate": "HasPrerequisite"}
+{"obj_label": "pick it up", "sub_label": "examine thing", "predicate": "HasPrerequisite"}
+{"obj_label": "take off your clothe", "sub_label": "have shower", "predicate": "HasPrerequisite"}
+{"obj_label": "preheat oven", "sub_label": "bake cake", "predicate": "HasPrerequisite"}
+{"obj_label": "ask question", "sub_label": "discover truth", "predicate": "HasPrerequisite"}
+{"obj_label": "go to hairdresser", "sub_label": "have haircut", "predicate": "HasPrerequisite"}
+{"obj_label": "apply for job", "sub_label": "get job", "predicate": "HasPrerequisite"}
+{"obj_label": "train", "sub_label": "compete", "predicate": "HasPrerequisite"}
+{"obj_label": "turn off alarm clock", "sub_label": "stay in bed", "predicate": "HasPrerequisite"}
+{"obj_label": "go to movie", "sub_label": "watch film", "predicate": "HasPrerequisite"}
+{"obj_label": "turn on television", "sub_label": "see your favorite show", "predicate": "HasPrerequisite"}
+{"obj_label": "turn on water", "sub_label": "have shower", "predicate": "HasPrerequisite"}
+{"obj_label": "go to grocery store", "sub_label": "buy food", "predicate": "HasPrerequisite"}
+{"obj_label": "run marathon", "sub_label": "prove your physical endurance", "predicate": "HasPrerequisite"}
+{"obj_label": "sit on bike", "sub_label": "ride bike", "predicate": "HasPrerequisite"}
+{"obj_label": "have vcr", "sub_label": "view video", "predicate": "HasPrerequisite"}
+{"obj_label": "get saddle", "sub_label": "ride horse", "predicate": "HasPrerequisite"}
+{"obj_label": "vacuum", "sub_label": "do housework", "predicate": "HasPrerequisite"}
+{"obj_label": "go to library", "sub_label": "read book", "predicate": "HasPrerequisite"}
+{"obj_label": "know answer", "sub_label": "answer question", "predicate": "HasPrerequisite"}
+{"obj_label": "make fist", "sub_label": "punch someone", "predicate": "HasPrerequisite"}
+{"obj_label": "pedal", "sub_label": "ride bike", "predicate": "HasPrerequisite"}
+{"obj_label": "go to cinema", "sub_label": "see movie", "predicate": "HasPrerequisite"}
+{"obj_label": "go to hairdresser", "sub_label": "go to get haircut", "predicate": "HasPrerequisite"}
+{"obj_label": "make appointment with doctor", "sub_label": "have checkup", "predicate": "HasPrerequisite"}
+{"obj_label": "use telephone", "sub_label": "talk with someone far away", "predicate": "HasPrerequisite"}
+{"obj_label": "put on run shoe", "sub_label": "go for run", "predicate": "HasPrerequisite"}
+{"obj_label": "go to court", "sub_label": "hear testimony", "predicate": "HasPrerequisite"}
+{"obj_label": "eat something", "sub_label": "sate your hunger", "predicate": "HasPrerequisite"}
+{"obj_label": "ask them", "sub_label": "get some money from someone", "predicate": "HasPrerequisite"}
+{"obj_label": "go to bed", "sub_label": "sleep", "predicate": "HasPrerequisite"}
+{"obj_label": "wash them", "sub_label": "clean clothe", "predicate": "HasPrerequisite"}
+{"obj_label": "go to cinema", "sub_label": "enjoy film", "predicate": "HasPrerequisite"}
+{"obj_label": "money", "sub_label": "buy shirt", "predicate": "HasPrerequisite"}
+{"obj_label": "work for someone", "sub_label": "get pay", "predicate": "HasPrerequisite"}
+{"obj_label": "get divorce", "sub_label": "stop be marry to someone", "predicate": "HasPrerequisite"}
+{"obj_label": "be judge", "sub_label": "pass sentence", "predicate": "HasPrerequisite"}
+{"obj_label": "meditate", "sub_label": "go into trance", "predicate": "HasPrerequisite"}
+{"obj_label": "go to bar", "sub_label": "hit bottle", "predicate": "HasPrerequisite"}
+{"obj_label": "use your brake", "sub_label": "stop your bicycle", "predicate": "HasPrerequisite"}
+{"obj_label": "tell lie", "sub_label": "commit perjury", "predicate": "HasPrerequisite"}
+{"obj_label": "get marry", "sub_label": "get divorce", "predicate": "HasPrerequisite"}
+{"obj_label": "have keyboard", "sub_label": "type", "predicate": "HasPrerequisite"}
+{"obj_label": "stand up", "sub_label": "go for walk", "predicate": "HasPrerequisite"}
+{"obj_label": "step on brake", "sub_label": "stop your car", "predicate": "HasPrerequisite"}
+{"obj_label": "make list", "sub_label": "run errand", "predicate": "HasPrerequisite"}
+{"obj_label": "turn on television", "sub_label": "watch television show", "predicate": "HasPrerequisite"}
+{"obj_label": "go to movie theater", "sub_label": "go to film", "predicate": "HasPrerequisite"}
+{"obj_label": "turn on tv", "sub_label": "see your favorite show", "predicate": "HasPrerequisite"}
+{"obj_label": "turn radio on", "sub_label": "listen to radio", "predicate": "HasPrerequisite"}
+{"obj_label": "pucker up", "sub_label": "kiss someone", "predicate": "HasPrerequisite"}
+{"obj_label": "raise your right hand", "sub_label": "take oath", "predicate": "HasPrerequisite"}
+{"obj_label": "purchase ticket", "sub_label": "attend rock concert", "predicate": "HasPrerequisite"}
+{"obj_label": "divorce", "sub_label": "stop be marry to someone", "predicate": "HasPrerequisite"}
+{"obj_label": "take lesson", "sub_label": "play violin", "predicate": "HasPrerequisite"}
+{"obj_label": "go to pool", "sub_label": "dive", "predicate": "HasPrerequisite"}
+{"obj_label": "eat", "sub_label": "have food", "predicate": "HasPrerequisite"}
+{"obj_label": "visit museum", "sub_label": "see old thing", "predicate": "HasPrerequisite"}
+{"obj_label": "make reservation", "sub_label": "eat in restaurant", "predicate": "HasPrerequisite"}
+{"obj_label": "enlist", "sub_label": "join army", "predicate": "HasPrerequisite"}
+{"obj_label": "literacy", "sub_label": "read newspaper", "predicate": "HasPrerequisite"}
+{"obj_label": "play cd", "sub_label": "listen to music", "predicate": "HasPrerequisite"}
+{"obj_label": "turn printer on", "sub_label": "print on printer", "predicate": "HasPrerequisite"}
+{"obj_label": "go outside", "sub_label": "fly kite", "predicate": "HasPrerequisite"}
+{"obj_label": "plug it in", "sub_label": "use television", "predicate": "HasPrerequisite"}
+{"obj_label": "connect to internet", "sub_label": "surf web", "predicate": "HasPrerequisite"}
+{"obj_label": "buy ticket", "sub_label": "see movie", "predicate": "HasPrerequisite"}
+{"obj_label": "buy ticket", "sub_label": "enjoy film", "predicate": "HasPrerequisite"}
+{"obj_label": "get drill", "sub_label": "drill hole", "predicate": "HasPrerequisite"}
+{"obj_label": "get water", "sub_label": "water plant", "predicate": "HasPrerequisite"}
+{"obj_label": "put on clothe", "sub_label": "get warm", "predicate": "HasPrerequisite"}
+{"obj_label": "be born", "sub_label": "live", "predicate": "HasPrerequisite"}
+{"obj_label": "work out", "sub_label": "get in shape", "predicate": "HasPrerequisite"}
+{"obj_label": "brush your tooth", "sub_label": "sleep", "predicate": "HasPrerequisite"}
+{"obj_label": "put on shoe", "sub_label": "go jog", "predicate": "HasPrerequisite"}
+{"obj_label": "go to school", "sub_label": "receive degree", "predicate": "HasPrerequisite"}

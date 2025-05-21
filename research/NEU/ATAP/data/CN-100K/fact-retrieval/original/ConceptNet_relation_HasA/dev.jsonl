@@ -1,0 +1,43 @@
+{"obj_label": "two leg", "sub_label": "human", "predicate": "HasA"}
+{"obj_label": "four side", "sub_label": "square", "predicate": "HasA"}
+{"obj_label": "engine", "sub_label": "all car", "predicate": "HasA"}
+{"obj_label": "information", "sub_label": "book", "predicate": "HasA"}
+{"obj_label": "two wheel", "sub_label": "bike", "predicate": "HasA"}
+{"obj_label": "name", "sub_label": "person", "predicate": "HasA"}
+{"obj_label": "wing", "sub_label": "airplane", "predicate": "HasA"}
+{"obj_label": "melt core", "sub_label": "earth", "predicate": "HasA"}
+{"obj_label": "flavor", "sub_label": "cheese", "predicate": "HasA"}
+{"obj_label": "brain", "sub_label": "human", "predicate": "HasA"}
+{"obj_label": "two arm", "sub_label": "human", "predicate": "HasA"}
+{"obj_label": "tooth", "sub_label": "saw", "predicate": "HasA"}
+{"obj_label": "4 leg", "sub_label": "horse", "predicate": "HasA"}
+{"obj_label": "sex in bed", "sub_label": "person", "predicate": "HasA"}
+{"obj_label": "vitamin", "sub_label": "fruit", "predicate": "HasA"}
+{"obj_label": "caffeine", "sub_label": "coffee", "predicate": "HasA"}
+{"obj_label": "wax", "sub_label": "ear", "predicate": "HasA"}
+{"obj_label": "word", "sub_label": "book", "predicate": "HasA"}
+{"obj_label": "bristle", "sub_label": "toothbrush", "predicate": "HasA"}
+{"obj_label": "opposable thumb", "sub_label": "human", "predicate": "HasA"}
+{"obj_label": "four stomach", "sub_label": "cow", "predicate": "HasA"}
+{"obj_label": "sharp claw", "sub_label": "cat", "predicate": "HasA"}
+{"obj_label": "core", "sub_label": "apple", "predicate": "HasA"}
+{"obj_label": "gill", "sub_label": "fish", "predicate": "HasA"}
+{"obj_label": "window", "sub_label": "car", "predicate": "HasA"}
+{"obj_label": "five finger on each hand", "sub_label": "person", "predicate": "HasA"}
+{"obj_label": "shell", "sub_label": "turtle", "predicate": "HasA"}
+{"obj_label": "sex", "sub_label": "human", "predicate": "HasA"}
+{"obj_label": "tree", "sub_label": "forest", "predicate": "HasA"}
+{"obj_label": "two ear", "sub_label": "person", "predicate": "HasA"}
+{"obj_label": "many book", "sub_label": "library", "predicate": "HasA"}
+{"obj_label": "radio", "sub_label": "car", "predicate": "HasA"}
+{"obj_label": "roof", "sub_label": "house", "predicate": "HasA"}
+{"obj_label": "child", "sub_label": "parent", "predicate": "HasA"}
+{"obj_label": "feel", "sub_label": "person", "predicate": "HasA"}
+{"obj_label": "string", "sub_label": "violin", "predicate": "HasA"}
+{"obj_label": "atmosphere", "sub_label": "earth", "predicate": "HasA"}
+{"obj_label": "yard", "sub_label": "house", "predicate": "HasA"}
+{"obj_label": "wing", "sub_label": "most bird", "predicate": "HasA"}
+{"obj_label": "wing", "sub_label": "bird", "predicate": "HasA"}
+{"obj_label": "two leg", "sub_label": "bird", "predicate": "HasA"}
+{"obj_label": "cause many war", "sub_label": "religion", "predicate": "HasA"}
+{"obj_label": "one hand", "sub_label": "arm", "predicate": "HasA"}

@@ -1,0 +1,1199 @@
+{"obj_label": "water", "sub_label": "fish", "predicate": "AtLocation"}
+{"obj_label": "sky", "sub_label": "cloud", "predicate": "AtLocation"}
+{"obj_label": "school", "sub_label": "child", "predicate": "AtLocation"}
+{"obj_label": "office", "sub_label": "computer", "predicate": "AtLocation"}
+{"obj_label": "closet", "sub_label": "clothe", "predicate": "AtLocation"}
+{"obj_label": "shelf", "sub_label": "book", "predicate": "AtLocation"}
+{"obj_label": "closet", "sub_label": "coat", "predicate": "AtLocation"}
+{"obj_label": "library", "sub_label": "computer", "predicate": "AtLocation"}
+{"obj_label": "desk", "sub_label": "paper clip", "predicate": "AtLocation"}
+{"obj_label": "any ocean", "sub_label": "shark", "predicate": "AtLocation"}
+{"obj_label": "book", "sub_label": "word", "predicate": "AtLocation"}
+{"obj_label": "zoo", "sub_label": "animal", "predicate": "AtLocation"}
+{"obj_label": "kennel", "sub_label": "dog", "predicate": "AtLocation"}
+{"obj_label": "library", "sub_label": "librarian", "predicate": "AtLocation"}
+{"obj_label": "lake", "sub_label": "water", "predicate": "AtLocation"}
+{"obj_label": "closet", "sub_label": "shoe", "predicate": "AtLocation"}
+{"obj_label": "office", "sub_label": "chair", "predicate": "AtLocation"}
+{"obj_label": "refrigerator", "sub_label": "food", "predicate": "AtLocation"}
+{"obj_label": "kitchen", "sub_label": "knife", "predicate": "AtLocation"}
+{"obj_label": "office", "sub_label": "pen", "predicate": "AtLocation"}
+{"obj_label": "park lot", "sub_label": "car", "predicate": "AtLocation"}
+{"obj_label": "sky", "sub_label": "bird", "predicate": "AtLocation"}
+{"obj_label": "library", "sub_label": "book", "predicate": "AtLocation"}
+{"obj_label": "week", "sub_label": "seven day", "predicate": "AtLocation"}
+{"obj_label": "library", "sub_label": "bookshelf", "predicate": "AtLocation"}
+{"obj_label": "house", "sub_label": "carpet", "predicate": "AtLocation"}
+{"obj_label": "cupboard", "sub_label": "glass", "predicate": "AtLocation"}
+{"obj_label": "closet", "sub_label": "shirt", "predicate": "AtLocation"}
+{"obj_label": "earth", "sub_label": "seven continent", "predicate": "AtLocation"}
+{"obj_label": "roof", "sub_label": "shingle", "predicate": "AtLocation"}
+{"obj_label": "hospital", "sub_label": "someone", "predicate": "AtLocation"}
+{"obj_label": "garage", "sub_label": "bicycle", "predicate": "AtLocation"}
+{"obj_label": "bank", "sub_label": "money", "predicate": "AtLocation"}
+{"obj_label": "bed", "sub_label": "cat", "predicate": "AtLocation"}
+{"obj_label": "river", "sub_label": "water", "predicate": "AtLocation"}
+{"obj_label": "bedroom", "sub_label": "bed", "predicate": "AtLocation"}
+{"obj_label": "most ocean", "sub_label": "jellyfish", "predicate": "AtLocation"}
+{"obj_label": "water", "sub_label": "boat", "predicate": "AtLocation"}
+{"obj_label": "zoo", "sub_label": "elephant", "predicate": "AtLocation"}
+{"obj_label": "jail", "sub_label": "prisoner", "predicate": "AtLocation"}
+{"obj_label": "sky", "sub_label": "airplane", "predicate": "AtLocation"}
+{"obj_label": "roof", "sub_label": "tile", "predicate": "AtLocation"}
+{"obj_label": "cupboard", "sub_label": "plate", "predicate": "AtLocation"}
+{"obj_label": "school", "sub_label": "human", "predicate": "AtLocation"}
+{"obj_label": "library", "sub_label": "literature", "predicate": "AtLocation"}
+{"obj_label": "cabinet", "sub_label": "glass", "predicate": "AtLocation"}
+{"obj_label": "lap", "sub_label": "cat", "predicate": "AtLocation"}
+{"obj_label": "hospital", "sub_label": "nurse", "predicate": "AtLocation"}
+{"obj_label": "space", "sub_label": "star", "predicate": "AtLocation"}
+{"obj_label": "roof", "sub_label": "chimney", "predicate": "AtLocation"}
+{"obj_label": "street", "sub_label": "bicycle", "predicate": "AtLocation"}
+{"obj_label": "garage", "sub_label": "lawn mower", "predicate": "AtLocation"}
+{"obj_label": "table", "sub_label": "tablecloth", "predicate": "AtLocation"}
+{"obj_label": "universe", "sub_label": "galaxy", "predicate": "AtLocation"}
+{"obj_label": "windowsill", "sub_label": "cat", "predicate": "AtLocation"}
+{"obj_label": "wed", "sub_label": "bride", "predicate": "AtLocation"}
+{"obj_label": "sky", "sub_label": "star", "predicate": "AtLocation"}
+{"obj_label": "breadbox", "sub_label": "bread", "predicate": "AtLocation"}
+{"obj_label": "bedroom", "sub_label": "dresser", "predicate": "AtLocation"}
+{"obj_label": "bathroom", "sub_label": "toilet", "predicate": "AtLocation"}
+{"obj_label": "house", "sub_label": "window", "predicate": "AtLocation"}
+{"obj_label": "door", "sub_label": "neighbour", "predicate": "AtLocation"}
+{"obj_label": "jar", "sub_label": "pickle", "predicate": "AtLocation"}
+{"obj_label": "opera", "sub_label": "opera singer", "predicate": "AtLocation"}
+{"obj_label": "something else", "sub_label": "something", "predicate": "AtLocation"}
+{"obj_label": "roof", "sub_label": "bird", "predicate": "AtLocation"}
+{"obj_label": "table", "sub_label": "plate", "predicate": "AtLocation"}
+{"obj_label": "pocket", "sub_label": "key", "predicate": "AtLocation"}
+{"obj_label": "aquarium", "sub_label": "jellyfish", "predicate": "AtLocation"}
+{"obj_label": "kitchen", "sub_label": "potato", "predicate": "AtLocation"}
+{"obj_label": "kitchen", "sub_label": "sink", "predicate": "AtLocation"}
+{"obj_label": "pocket", "sub_label": "wallet", "predicate": "AtLocation"}
+{"obj_label": "wallet", "sub_label": "money", "predicate": "AtLocation"}
+{"obj_label": "city", "sub_label": "build", "predicate": "AtLocation"}
+{"obj_label": "bookshelf", "sub_label": "book", "predicate": "AtLocation"}
+{"obj_label": "love", "sub_label": "human", "predicate": "AtLocation"}
+{"obj_label": "freeway", "sub_label": "car", "predicate": "AtLocation"}
+{"obj_label": "park", "sub_label": "frisbee", "predicate": "AtLocation"}
+{"obj_label": "your desk", "sub_label": "stapler", "predicate": "AtLocation"}
+{"obj_label": "classroom", "sub_label": "student", "predicate": "AtLocation"}
+{"obj_label": "country", "sub_label": "human", "predicate": "AtLocation"}
+{"obj_label": "home", "sub_label": "human", "predicate": "AtLocation"}
+{"obj_label": "restaurant", "sub_label": "potato", "predicate": "AtLocation"}
+{"obj_label": "country", "sub_label": "state", "predicate": "AtLocation"}
+{"obj_label": "desk", "sub_label": "stapler", "predicate": "AtLocation"}
+{"obj_label": "bathroom", "sub_label": "toilet paper", "predicate": "AtLocation"}
+{"obj_label": "zoo", "sub_label": "giraffe", "predicate": "AtLocation"}
+{"obj_label": "bedroom", "sub_label": "pillow", "predicate": "AtLocation"}
+{"obj_label": "supermarket", "sub_label": "food", "predicate": "AtLocation"}
+{"obj_label": "paris", "sub_label": "eiffel tower", "predicate": "AtLocation"}
+{"obj_label": "table", "sub_label": "food", "predicate": "AtLocation"}
+{"obj_label": "park", "sub_label": "grass", "predicate": "AtLocation"}
+{"obj_label": "fridge", "sub_label": "milk", "predicate": "AtLocation"}
+{"obj_label": "space", "sub_label": "black hole", "predicate": "AtLocation"}
+{"obj_label": "jail", "sub_label": "criminal", "predicate": "AtLocation"}
+{"obj_label": "car show", "sub_label": "car", "predicate": "AtLocation"}
+{"obj_label": "forest", "sub_label": "creek", "predicate": "AtLocation"}
+{"obj_label": "cupboard", "sub_label": "bowl", "predicate": "AtLocation"}
+{"obj_label": "desk", "sub_label": "coffee cup", "predicate": "AtLocation"}
+{"obj_label": "jar", "sub_label": "peanut butter", "predicate": "AtLocation"}
+{"obj_label": "theatre", "sub_label": "seat", "predicate": "AtLocation"}
+{"obj_label": "museum", "sub_label": "someone", "predicate": "AtLocation"}
+{"obj_label": "post office", "sub_label": "letter", "predicate": "AtLocation"}
+{"obj_label": "computer", "sub_label": "motherboard", "predicate": "AtLocation"}
+{"obj_label": "earth", "sub_label": "7 continent", "predicate": "AtLocation"}
+{"obj_label": "country", "sub_label": "capital", "predicate": "AtLocation"}
+{"obj_label": "pool", "sub_label": "water", "predicate": "AtLocation"}
+{"obj_label": "mountain", "sub_label": "snow", "predicate": "AtLocation"}
+{"obj_label": "dessert", "sub_label": "lizard", "predicate": "AtLocation"}
+{"obj_label": "ocean", "sub_label": "whale", "predicate": "AtLocation"}
+{"obj_label": "school", "sub_label": "student", "predicate": "AtLocation"}
+{"obj_label": "your desk", "sub_label": "telephone", "predicate": "AtLocation"}
+{"obj_label": "build", "sub_label": "door", "predicate": "AtLocation"}
+{"obj_label": "bed", "sub_label": "dust bunny", "predicate": "AtLocation"}
+{"obj_label": "university", "sub_label": "student", "predicate": "AtLocation"}
+{"obj_label": "desk", "sub_label": "chair", "predicate": "AtLocation"}
+{"obj_label": "park", "sub_label": "slide", "predicate": "AtLocation"}
+{"obj_label": "mountain", "sub_label": "rock", "predicate": "AtLocation"}
+{"obj_label": "garage", "sub_label": "tool", "predicate": "AtLocation"}
+{"obj_label": "desert", "sub_label": "sand", "predicate": "AtLocation"}
+{"obj_label": "garage", "sub_label": "mouse", "predicate": "AtLocation"}
+{"obj_label": "door", "sub_label": "lock", "predicate": "AtLocation"}
+{"obj_label": "sand", "sub_label": "crab", "predicate": "AtLocation"}
+{"obj_label": "kitchen", "sub_label": "corner cupboard", "predicate": "AtLocation"}
+{"obj_label": "waterfall", "sub_label": "water", "predicate": "AtLocation"}
+{"obj_label": "tree", "sub_label": "leaf", "predicate": "AtLocation"}
+{"obj_label": "zoo", "sub_label": "lion", "predicate": "AtLocation"}
+{"obj_label": "head", "sub_label": "brain", "predicate": "AtLocation"}
+{"obj_label": "door", "sub_label": "neighbor", "predicate": "AtLocation"}
+{"obj_label": "closet", "sub_label": "hanger", "predicate": "AtLocation"}
+{"obj_label": "television", "sub_label": "program", "predicate": "AtLocation"}
+{"obj_label": "classroom", "sub_label": "teacher", "predicate": "AtLocation"}
+{"obj_label": "your desk", "sub_label": "book", "predicate": "AtLocation"}
+{"obj_label": "television", "sub_label": "commercial", "predicate": "AtLocation"}
+{"obj_label": "post office", "sub_label": "someone", "predicate": "AtLocation"}
+{"obj_label": "zoo", "sub_label": "weasel", "predicate": "AtLocation"}
+{"obj_label": "bush", "sub_label": "lizard", "predicate": "AtLocation"}
+{"obj_label": "laboratory", "sub_label": "mouse", "predicate": "AtLocation"}
+{"obj_label": "lawn", "sub_label": "grass", "predicate": "AtLocation"}
+{"obj_label": "your mouth", "sub_label": "your tooth", "predicate": "AtLocation"}
+{"obj_label": "oven", "sub_label": "food", "predicate": "AtLocation"}
+{"obj_label": "your house", "sub_label": "computer", "predicate": "AtLocation"}
+{"obj_label": "theater", "sub_label": "seat", "predicate": "AtLocation"}
+{"obj_label": "city", "sub_label": "car", "predicate": "AtLocation"}
+{"obj_label": "fridge", "sub_label": "food", "predicate": "AtLocation"}
+{"obj_label": "school", "sub_label": "computer", "predicate": "AtLocation"}
+{"obj_label": "ocean", "sub_label": "fish", "predicate": "AtLocation"}
+{"obj_label": "classroom", "sub_label": "book", "predicate": "AtLocation"}
+{"obj_label": "table", "sub_label": "floor", "predicate": "AtLocation"}
+{"obj_label": "pantry", "sub_label": "can food", "predicate": "AtLocation"}
+{"obj_label": "school", "sub_label": "something", "predicate": "AtLocation"}
+{"obj_label": "office", "sub_label": "telephone", "predicate": "AtLocation"}
+{"obj_label": "table", "sub_label": "fork", "predicate": "AtLocation"}
+{"obj_label": "night sky", "sub_label": "star", "predicate": "AtLocation"}
+{"obj_label": "air", "sub_label": "bird", "predicate": "AtLocation"}
+{"obj_label": "kitchen", "sub_label": "pantry", "predicate": "AtLocation"}
+{"obj_label": "bathroom", "sub_label": "towel rack", "predicate": "AtLocation"}
+{"obj_label": "desk", "sub_label": "drawer", "predicate": "AtLocation"}
+{"obj_label": "zoo", "sub_label": "tiger", "predicate": "AtLocation"}
+{"obj_label": "internet", "sub_label": "information", "predicate": "AtLocation"}
+{"obj_label": "library", "sub_label": "something", "predicate": "AtLocation"}
+{"obj_label": "store", "sub_label": "something", "predicate": "AtLocation"}
+{"obj_label": "door", "sub_label": "your neighbor", "predicate": "AtLocation"}
+{"obj_label": "kitchen", "sub_label": "food", "predicate": "AtLocation"}
+{"obj_label": "space", "sub_label": "moon", "predicate": "AtLocation"}
+{"obj_label": "park", "sub_label": "flower", "predicate": "AtLocation"}
+{"obj_label": "park", "sub_label": "human", "predicate": "AtLocation"}
+{"obj_label": "synagogue", "sub_label": "jewish person", "predicate": "AtLocation"}
+{"obj_label": "workplace", "sub_label": "human", "predicate": "AtLocation"}
+{"obj_label": "bedroom", "sub_label": "mirror", "predicate": "AtLocation"}
+{"obj_label": "school", "sub_label": "girl", "predicate": "AtLocation"}
+{"obj_label": "zoo", "sub_label": "someone", "predicate": "AtLocation"}
+{"obj_label": "water", "sub_label": "submarine", "predicate": "AtLocation"}
+{"obj_label": "fast-food restaurant", "sub_label": "hamburger", "predicate": "AtLocation"}
+{"obj_label": "carpet", "sub_label": "carpet pad", "predicate": "AtLocation"}
+{"obj_label": "lake", "sub_label": "someone", "predicate": "AtLocation"}
+{"obj_label": "beach", "sub_label": "something", "predicate": "AtLocation"}
+{"obj_label": "forest", "sub_label": "bird", "predicate": "AtLocation"}
+{"obj_label": "airport", "sub_label": "traveller", "predicate": "AtLocation"}
+{"obj_label": "tree", "sub_label": "something", "predicate": "AtLocation"}
+{"obj_label": "mall", "sub_label": "something", "predicate": "AtLocation"}
+{"obj_label": "theater", "sub_label": "someone", "predicate": "AtLocation"}
+{"obj_label": "oven", "sub_label": "cake", "predicate": "AtLocation"}
+{"obj_label": "river", "sub_label": "fish", "predicate": "AtLocation"}
+{"obj_label": "ocean", "sub_label": "salt", "predicate": "AtLocation"}
+{"obj_label": "library", "sub_label": "card catalog", "predicate": "AtLocation"}
+{"obj_label": "cd player", "sub_label": "cd", "predicate": "AtLocation"}
+{"obj_label": "space", "sub_label": "planet", "predicate": "AtLocation"}
+{"obj_label": "orchestra", "sub_label": "clarinet", "predicate": "AtLocation"}
+{"obj_label": "restaurant", "sub_label": "wine list", "predicate": "AtLocation"}
+{"obj_label": "bathroom", "sub_label": "mouthwash", "predicate": "AtLocation"}
+{"obj_label": "backyard", "sub_label": "rosebush", "predicate": "AtLocation"}
+{"obj_label": "circus", "sub_label": "elephant", "predicate": "AtLocation"}
+{"obj_label": "at school", "sub_label": "student", "predicate": "AtLocation"}
+{"obj_label": "desk", "sub_label": "notebook", "predicate": "AtLocation"}
+{"obj_label": "face", "sub_label": "nose", "predicate": "AtLocation"}
+{"obj_label": "drawer", "sub_label": "clothe", "predicate": "AtLocation"}
+{"obj_label": "drawer", "sub_label": "sock", "predicate": "AtLocation"}
+{"obj_label": "sock drawer", "sub_label": "sock", "predicate": "AtLocation"}
+{"obj_label": "carpet", "sub_label": "floor", "predicate": "AtLocation"}
+{"obj_label": "chemistry lab", "sub_label": "bunsen burner", "predicate": "AtLocation"}
+{"obj_label": "race track", "sub_label": "horse", "predicate": "AtLocation"}
+{"obj_label": "boat", "sub_label": "rope", "predicate": "AtLocation"}
+{"obj_label": "hockey game", "sub_label": "puck", "predicate": "AtLocation"}
+{"obj_label": "mail box", "sub_label": "bill", "predicate": "AtLocation"}
+{"obj_label": "church", "sub_label": "bell", "predicate": "AtLocation"}
+{"obj_label": "backpack", "sub_label": "book", "predicate": "AtLocation"}
+{"obj_label": "theater", "sub_label": "movie", "predicate": "AtLocation"}
+{"obj_label": "movie", "sub_label": "actor", "predicate": "AtLocation"}
+{"obj_label": "drawer", "sub_label": "knife", "predicate": "AtLocation"}
+{"obj_label": "motel", "sub_label": "gideon bible", "predicate": "AtLocation"}
+{"obj_label": "store", "sub_label": "clothe", "predicate": "AtLocation"}
+{"obj_label": "oven", "sub_label": "rack", "predicate": "AtLocation"}
+{"obj_label": "sea", "sub_label": "something", "predicate": "AtLocation"}
+{"obj_label": "refrigerator", "sub_label": "something", "predicate": "AtLocation"}
+{"obj_label": "shop", "sub_label": "someone", "predicate": "AtLocation"}
+{"obj_label": "supermarket", "sub_label": "egg", "predicate": "AtLocation"}
+{"obj_label": "center of solar system", "sub_label": "sun", "predicate": "AtLocation"}
+{"obj_label": "opera", "sub_label": "tenor", "predicate": "AtLocation"}
+{"obj_label": "theatre", "sub_label": "audience", "predicate": "AtLocation"}
+{"obj_label": "church", "sub_label": "human", "predicate": "AtLocation"}
+{"obj_label": "stapler", "sub_label": "staple", "predicate": "AtLocation"}
+{"obj_label": "purse", "sub_label": "key", "predicate": "AtLocation"}
+{"obj_label": "dumpster", "sub_label": "trash", "predicate": "AtLocation"}
+{"obj_label": "county", "sub_label": "city", "predicate": "AtLocation"}
+{"obj_label": "supermarket", "sub_label": "shop basket", "predicate": "AtLocation"}
+{"obj_label": "university", "sub_label": "science", "predicate": "AtLocation"}
+{"obj_label": "bedroom", "sub_label": "closet", "predicate": "AtLocation"}
+{"obj_label": "shoe", "sub_label": "foot", "predicate": "AtLocation"}
+{"obj_label": "tooth", "sub_label": "cavity", "predicate": "AtLocation"}
+{"obj_label": "museum", "sub_label": "statue", "predicate": "AtLocation"}
+{"obj_label": "kitchen", "sub_label": "table", "predicate": "AtLocation"}
+{"obj_label": "forest", "sub_label": "tree", "predicate": "AtLocation"}
+{"obj_label": "aquarium", "sub_label": "fish", "predicate": "AtLocation"}
+{"obj_label": "day", "sub_label": "twenty four hour", "predicate": "AtLocation"}
+{"obj_label": "your desk", "sub_label": "phone", "predicate": "AtLocation"}
+{"obj_label": "city", "sub_label": "college", "predicate": "AtLocation"}
+{"obj_label": "bird", "sub_label": "feather", "predicate": "AtLocation"}
+{"obj_label": "your mouth", "sub_label": "tongue", "predicate": "AtLocation"}
+{"obj_label": "kitchen", "sub_label": "plate", "predicate": "AtLocation"}
+{"obj_label": "roof", "sub_label": "roof tile", "predicate": "AtLocation"}
+{"obj_label": "desk", "sub_label": "foot", "predicate": "AtLocation"}
+{"obj_label": "apple tree", "sub_label": "apple", "predicate": "AtLocation"}
+{"obj_label": "city", "sub_label": "school", "predicate": "AtLocation"}
+{"obj_label": "airport", "sub_label": "baggage", "predicate": "AtLocation"}
+{"obj_label": "jar", "sub_label": "cookie", "predicate": "AtLocation"}
+{"obj_label": "day", "sub_label": "twenty-four hour", "predicate": "AtLocation"}
+{"obj_label": "basement", "sub_label": "furnace", "predicate": "AtLocation"}
+{"obj_label": "doctor", "sub_label": "stethoscope", "predicate": "AtLocation"}
+{"obj_label": "tree", "sub_label": "leave", "predicate": "AtLocation"}
+{"obj_label": "bark", "sub_label": "dog", "predicate": "CapableOf"}
+{"obj_label": "hunt mouse", "sub_label": "cat", "predicate": "CapableOf"}
+{"obj_label": "cross road", "sub_label": "chicken", "predicate": "CapableOf"}
+{"obj_label": "go fast", "sub_label": "car", "predicate": "CapableOf"}
+{"obj_label": "spread butter", "sub_label": "knife", "predicate": "CapableOf"}
+{"obj_label": "school student", "sub_label": "teacher", "predicate": "CapableOf"}
+{"obj_label": "die only once", "sub_label": "human", "predicate": "CapableOf"}
+{"obj_label": "land plane", "sub_label": "pilot", "predicate": "CapableOf"}
+{"obj_label": "hold liquid", "sub_label": "cup", "predicate": "CapableOf"}
+{"obj_label": "date girl", "sub_label": "boy", "predicate": "CapableOf"}
+{"obj_label": "fly airplane", "sub_label": "pilot", "predicate": "CapableOf"}
+{"obj_label": "fool audience", "sub_label": "magician", "predicate": "CapableOf"}
+{"obj_label": "open door", "sub_label": "key", "predicate": "CapableOf"}
+{"obj_label": "study", "sub_label": "student", "predicate": "CapableOf"}
+{"obj_label": "welcome guest", "sub_label": "host", "predicate": "CapableOf"}
+{"obj_label": "open lock", "sub_label": "key", "predicate": "CapableOf"}
+{"obj_label": "drink water", "sub_label": "cat", "predicate": "CapableOf"}
+{"obj_label": "lie egg", "sub_label": "chicken", "predicate": "CapableOf"}
+{"obj_label": "guide blind person", "sub_label": "dog", "predicate": "CapableOf"}
+{"obj_label": "deal card", "sub_label": "dealer", "predicate": "CapableOf"}
+{"obj_label": "father child", "sub_label": "man", "predicate": "CapableOf"}
+{"obj_label": "guard house", "sub_label": "dog", "predicate": "CapableOf"}
+{"obj_label": "tell time", "sub_label": "clock", "predicate": "CapableOf"}
+{"obj_label": "eat mouse", "sub_label": "cat", "predicate": "CapableOf"}
+{"obj_label": "land airplane", "sub_label": "pilot", "predicate": "CapableOf"}
+{"obj_label": "voice opinion", "sub_label": "person", "predicate": "CapableOf"}
+{"obj_label": "fly plane", "sub_label": "pilot", "predicate": "CapableOf"}
+{"obj_label": "help sick person", "sub_label": "doctor", "predicate": "CapableOf"}
+{"obj_label": "eat", "sub_label": "person", "predicate": "CapableOf"}
+{"obj_label": "water plant", "sub_label": "gardener", "predicate": "CapableOf"}
+{"obj_label": "be pet", "sub_label": "dog", "predicate": "CapableOf"}
+{"obj_label": "wear dress", "sub_label": "girl", "predicate": "CapableOf"}
+{"obj_label": "destroy city", "sub_label": "bomb", "predicate": "CapableOf"}
+{"obj_label": "produce egg", "sub_label": "chicken", "predicate": "CapableOf"}
+{"obj_label": "love", "sub_label": "person", "predicate": "CapableOf"}
+{"obj_label": "part hair", "sub_label": "comb", "predicate": "CapableOf"}
+{"obj_label": "catch cold", "sub_label": "person", "predicate": "CapableOf"}
+{"obj_label": "cross street", "sub_label": "person", "predicate": "CapableOf"}
+{"obj_label": "catch mouse", "sub_label": "cat", "predicate": "CapableOf"}
+{"obj_label": "coat wall", "sub_label": "paint", "predicate": "CapableOf"}
+{"obj_label": "jump fence", "sub_label": "horse", "predicate": "CapableOf"}
+{"obj_label": "share toy", "sub_label": "child", "predicate": "CapableOf"}
+{"obj_label": "bounce", "sub_label": "ball", "predicate": "CapableOf"}
+{"obj_label": "run", "sub_label": "dog", "predicate": "CapableOf"}
+{"obj_label": "fly", "sub_label": "plane", "predicate": "CapableOf"}
+{"obj_label": "teach student", "sub_label": "teacher", "predicate": "CapableOf"}
+{"obj_label": "corner mouse", "sub_label": "cat", "predicate": "CapableOf"}
+{"obj_label": "slow car", "sub_label": "brake", "predicate": "CapableOf"}
+{"obj_label": "board airplane", "sub_label": "passenger", "predicate": "CapableOf"}
+{"obj_label": "crash", "sub_label": "car", "predicate": "CapableOf"}
+{"obj_label": "mine coal", "sub_label": "miner", "predicate": "CapableOf"}
+{"obj_label": "dig hole", "sub_label": "shovel", "predicate": "CapableOf"}
+{"obj_label": "turn screw", "sub_label": "screwdriver", "predicate": "CapableOf"}
+{"obj_label": "taste food", "sub_label": "tongue", "predicate": "CapableOf"}
+{"obj_label": "play piano", "sub_label": "pianist", "predicate": "CapableOf"}
+{"obj_label": "kill person", "sub_label": "gun", "predicate": "CapableOf"}
+{"obj_label": "explode", "sub_label": "bomb", "predicate": "CapableOf"}
+{"obj_label": "grow", "sub_label": "tree", "predicate": "CapableOf"}
+{"obj_label": "build house", "sub_label": "carpenter", "predicate": "CapableOf"}
+{"obj_label": "cry", "sub_label": "baby", "predicate": "CapableOf"}
+{"obj_label": "eat", "sub_label": "human", "predicate": "CapableOf"}
+{"obj_label": "date woman", "sub_label": "man", "predicate": "CapableOf"}
+{"obj_label": "farm land", "sub_label": "farmer", "predicate": "CapableOf"}
+{"obj_label": "light candle", "sub_label": "match", "predicate": "CapableOf"}
+{"obj_label": "case house", "sub_label": "thief", "predicate": "CapableOf"}
+{"obj_label": "board plane", "sub_label": "passenger", "predicate": "CapableOf"}
+{"obj_label": "mind baby", "sub_label": "babysitter", "predicate": "CapableOf"}
+{"obj_label": "kiss girl", "sub_label": "boy", "predicate": "CapableOf"}
+{"obj_label": "wind clock", "sub_label": "person", "predicate": "CapableOf"}
+{"obj_label": "case joint", "sub_label": "thief", "predicate": "CapableOf"}
+{"obj_label": "carry person", "sub_label": "horse", "predicate": "CapableOf"}
+{"obj_label": "prepare meal", "sub_label": "cook", "predicate": "CapableOf"}
+{"obj_label": "taste food", "sub_label": "person", "predicate": "CapableOf"}
+{"obj_label": "write book", "sub_label": "author", "predicate": "CapableOf"}
+{"obj_label": "paint portrait", "sub_label": "artist", "predicate": "CapableOf"}
+{"obj_label": "thank another person", "sub_label": "person", "predicate": "CapableOf"}
+{"obj_label": "sleep", "sub_label": "person", "predicate": "CapableOf"}
+{"obj_label": "captain ship", "sub_label": "person", "predicate": "CapableOf"}
+{"obj_label": "water plant", "sub_label": "person", "predicate": "CapableOf"}
+{"obj_label": "object in court", "sub_label": "lawyer", "predicate": "CapableOf"}
+{"obj_label": "hover", "sub_label": "hummingbird", "predicate": "CapableOf"}
+{"obj_label": "play music", "sub_label": "radio", "predicate": "CapableOf"}
+{"obj_label": "push button", "sub_label": "finger", "predicate": "CapableOf"}
+{"obj_label": "die", "sub_label": "human", "predicate": "CapableOf"}
+{"obj_label": "believe in god", "sub_label": "person", "predicate": "CapableOf"}
+{"obj_label": "compute", "sub_label": "computer", "predicate": "CapableOf"}
+{"obj_label": "think", "sub_label": "person", "predicate": "CapableOf"}
+{"obj_label": "doubt existence of god", "sub_label": "atheist", "predicate": "CapableOf"}
+{"obj_label": "piece together clue", "sub_label": "detective", "predicate": "CapableOf"}
+{"obj_label": "cloud judgement", "sub_label": "alcohol", "predicate": "CapableOf"}
+{"obj_label": "help student", "sub_label": "teacher", "predicate": "CapableOf"}
+{"obj_label": "cloud your judgement", "sub_label": "alcohol", "predicate": "CapableOf"}
+{"obj_label": "arrive late", "sub_label": "train", "predicate": "CapableOf"}
+{"obj_label": "chair committee", "sub_label": "woman", "predicate": "CapableOf"}
+{"obj_label": "shoe horse", "sub_label": "blacksmith", "predicate": "CapableOf"}
+{"obj_label": "laugh at joke", "sub_label": "person", "predicate": "CapableOf"}
+{"obj_label": "burn thing", "sub_label": "fire", "predicate": "CapableOf"}
+{"obj_label": "time race", "sub_label": "stopwatch", "predicate": "CapableOf"}
+{"obj_label": "seat guest", "sub_label": "usher", "predicate": "CapableOf"}
+{"obj_label": "talk to each other", "sub_label": "person", "predicate": "CapableOf"}
+{"obj_label": "destroy build", "sub_label": "bomb", "predicate": "CapableOf"}
+{"obj_label": "name child", "sub_label": "parent", "predicate": "CapableOf"}
+{"obj_label": "service car", "sub_label": "mechanic", "predicate": "CapableOf"}
+{"obj_label": "care for her child", "sub_label": "mother", "predicate": "CapableOf"}
+{"obj_label": "reflect image", "sub_label": "water", "predicate": "CapableOf"}
+{"obj_label": "thank god", "sub_label": "person", "predicate": "CapableOf"}
+{"obj_label": "sail boat", "sub_label": "person", "predicate": "CapableOf"}
+{"obj_label": "pay bill", "sub_label": "person", "predicate": "CapableOf"}
+{"obj_label": "sail ship", "sub_label": "sailor", "predicate": "CapableOf"}
+{"obj_label": "fail test", "sub_label": "student", "predicate": "CapableOf"}
+{"obj_label": "measure distance", "sub_label": "ruler", "predicate": "CapableOf"}
+{"obj_label": "process information", "sub_label": "computer", "predicate": "CapableOf"}
+{"obj_label": "master subject", "sub_label": "student", "predicate": "CapableOf"}
+{"obj_label": "direct traffic", "sub_label": "policeman", "predicate": "CapableOf"}
+{"obj_label": "spread peanut butter", "sub_label": "knife", "predicate": "CapableOf"}
+{"obj_label": "stock shelve", "sub_label": "clerk", "predicate": "CapableOf"}
+{"obj_label": "direct traffic", "sub_label": "police officer", "predicate": "CapableOf"}
+{"obj_label": "stock shelve", "sub_label": "grocer", "predicate": "CapableOf"}
+{"obj_label": "shoulder burden", "sub_label": "person", "predicate": "CapableOf"}
+{"obj_label": "mother child", "sub_label": "woman", "predicate": "CapableOf"}
+{"obj_label": "light fire", "sub_label": "match", "predicate": "CapableOf"}
+{"obj_label": "slow down", "sub_label": "car", "predicate": "CapableOf"}
+{"obj_label": "care for patient", "sub_label": "nurse", "predicate": "CapableOf"}
+{"obj_label": "tail suspect", "sub_label": "detective", "predicate": "CapableOf"}
+{"obj_label": "ring doorbell", "sub_label": "visitor", "predicate": "CapableOf"}
+{"obj_label": "board train", "sub_label": "passenger", "predicate": "CapableOf"}
+{"obj_label": "bottle wine", "sub_label": "vintner", "predicate": "CapableOf"}
+{"obj_label": "guard your house", "sub_label": "dog", "predicate": "CapableOf"}
+{"obj_label": "crash", "sub_label": "plane", "predicate": "CapableOf"}
+{"obj_label": "arrive at airport", "sub_label": "plane", "predicate": "CapableOf"}
+{"obj_label": "sleep in tent", "sub_label": "camper", "predicate": "CapableOf"}
+{"obj_label": "live long time", "sub_label": "turtle", "predicate": "CapableOf"}
+{"obj_label": "wear dress", "sub_label": "woman", "predicate": "CapableOf"}
+{"obj_label": "govern country", "sub_label": "president", "predicate": "CapableOf"}
+{"obj_label": "settle lawsuit", "sub_label": "lawyer", "predicate": "CapableOf"}
+{"obj_label": "play", "sub_label": "child", "predicate": "CapableOf"}
+{"obj_label": "fly helicopter", "sub_label": "pilot", "predicate": "CapableOf"}
+{"obj_label": "sing", "sub_label": "bird", "predicate": "CapableOf"}
+{"obj_label": "travel under water", "sub_label": "submarine", "predicate": "CapableOf"}
+{"obj_label": "cry loud", "sub_label": "baby", "predicate": "CapableOf"}
+{"obj_label": "lend money", "sub_label": "banker", "predicate": "CapableOf"}
+{"obj_label": "board plane", "sub_label": "person", "predicate": "CapableOf"}
+{"obj_label": "arm bomb", "sub_label": "terrorist", "predicate": "CapableOf"}
+{"obj_label": "roll down hill", "sub_label": "ball", "predicate": "CapableOf"}
+{"obj_label": "clean house", "sub_label": "do housework", "predicate": "Causes"}
+{"obj_label": "learn", "sub_label": "read", "predicate": "Causes"}
+{"obj_label": "have clean house", "sub_label": "do housework", "predicate": "Causes"}
+{"obj_label": "lung cancer", "sub_label": "smoke", "predicate": "Causes"}
+{"obj_label": "sweat", "sub_label": "exercise", "predicate": "Causes"}
+{"obj_label": "fire", "sub_label": "light match", "predicate": "Causes"}
+{"obj_label": "your hair will be short", "sub_label": "go to get haircut", "predicate": "Causes"}
+{"obj_label": "injury", "sub_label": "fall", "predicate": "Causes"}
+{"obj_label": "fun", "sub_label": "play", "predicate": "Causes"}
+{"obj_label": "death", "sub_label": "kill", "predicate": "Causes"}
+{"obj_label": "relaxation", "sub_label": "go on vacation", "predicate": "Causes"}
+{"obj_label": "child", "sub_label": "sex", "predicate": "Causes"}
+{"obj_label": "learn something", "sub_label": "read", "predicate": "Causes"}
+{"obj_label": "have short hair", "sub_label": "have haircut", "predicate": "Causes"}
+{"obj_label": "laughter", "sub_label": "tickle", "predicate": "Causes"}
+{"obj_label": "cancer", "sub_label": "smoke", "predicate": "Causes"}
+{"obj_label": "fun", "sub_label": "play game with your friend", "predicate": "Causes"}
+{"obj_label": "get job", "sub_label": "apply for job", "predicate": "Causes"}
+{"obj_label": "long life", "sub_label": "maintain good health", "predicate": "Causes"}
+{"obj_label": "have child", "sub_label": "procreate", "predicate": "Causes"}
+{"obj_label": "see animal", "sub_label": "go to zoo", "predicate": "Causes"}
+{"obj_label": "clean clothe", "sub_label": "go to laundromat", "predicate": "Causes"}
+{"obj_label": "music", "sub_label": "play violin", "predicate": "Causes"}
+{"obj_label": "long life", "sub_label": "stay healthy", "predicate": "Causes"}
+{"obj_label": "laugh", "sub_label": "see your favorite show", "predicate": "Causes"}
+{"obj_label": "be entertain", "sub_label": "go to play", "predicate": "Causes"}
+{"obj_label": "sore throat", "sub_label": "sing", "predicate": "Causes"}
+{"obj_label": "get to other side", "sub_label": "cross street", "predicate": "Causes"}
+{"obj_label": "good digestion", "sub_label": "chew your food", "predicate": "Causes"}
+{"obj_label": "surprise", "sub_label": "open gift", "predicate": "Causes"}
+{"obj_label": "baby", "sub_label": "have sex", "predicate": "Causes"}
+{"obj_label": "accident", "sub_label": "move car", "predicate": "Causes"}
+{"obj_label": "you get wet", "sub_label": "walk in rain", "predicate": "Causes"}
+{"obj_label": "sleep", "sub_label": "go to bed", "predicate": "Causes"}
+{"obj_label": "laugh", "sub_label": "tickle", "predicate": "Causes"}
+{"obj_label": "marriage", "sub_label": "propose to woman", "predicate": "Causes"}
+{"obj_label": "boredom", "sub_label": "wait in line", "predicate": "Causes"}
+{"obj_label": "laughter", "sub_label": "chat with friend", "predicate": "Causes"}
+{"obj_label": "sleep", "sub_label": "relax", "predicate": "Causes"}
+{"obj_label": "be clean", "sub_label": "bathe", "predicate": "Causes"}
+{"obj_label": "child", "sub_label": "reproduce", "predicate": "Causes"}
+{"obj_label": "orgasm", "sub_label": "sex", "predicate": "Causes"}
+{"obj_label": "bad smell", "sub_label": "fart", "predicate": "Causes"}
+{"obj_label": "lung cancer", "sub_label": "smoke cigarette", "predicate": "Causes"}
+{"obj_label": "fire", "sub_label": "strike match", "predicate": "Causes"}
+{"obj_label": "kiss someone", "sub_label": "love", "predicate": "CausesDesire"}
+{"obj_label": "have rest", "sub_label": "be tire", "predicate": "CausesDesire"}
+{"obj_label": "propose to woman", "sub_label": "love", "predicate": "CausesDesire"}
+{"obj_label": "light fire", "sub_label": "cold", "predicate": "CausesDesire"}
+{"obj_label": "urinate", "sub_label": "full bladder", "predicate": "CausesDesire"}
+{"obj_label": "composer", "sub_label": "music", "predicate": "CreatedBy"}
+{"obj_label": "writer", "sub_label": "book", "predicate": "CreatedBy"}
+{"obj_label": "baby cat", "sub_label": "kitten", "predicate": "DefinedAs"}
+{"obj_label": "play with toy", "sub_label": "child", "predicate": "Desires"}
+{"obj_label": "clothe", "sub_label": "person", "predicate": "Desires"}
+{"obj_label": "woman", "sub_label": "man", "predicate": "Desires"}
+{"obj_label": "eat banana", "sub_label": "monkey", "predicate": "Desires"}
+{"obj_label": "dance", "sub_label": "person", "predicate": "Desires"}
+{"obj_label": "laugh", "sub_label": "person", "predicate": "Desires"}
+{"obj_label": "feel important", "sub_label": "person", "predicate": "Desires"}
+{"obj_label": "chew on bone", "sub_label": "dog", "predicate": "Desires"}
+{"obj_label": "feather", "sub_label": "bird", "predicate": "HasA"}
+{"obj_label": "leave", "sub_label": "plant", "predicate": "HasA"}
+{"obj_label": "seat", "sub_label": "car", "predicate": "HasA"}
+{"obj_label": "six string", "sub_label": "guitar", "predicate": "HasA"}
+{"obj_label": "salt water", "sub_label": "ocean", "predicate": "HasA"}
+{"obj_label": "hole", "sub_label": "swiss cheese", "predicate": "HasA"}
+{"obj_label": "leave", "sub_label": "tree", "predicate": "HasA"}
+{"obj_label": "four leg", "sub_label": "horse", "predicate": "HasA"}
+{"obj_label": "window", "sub_label": "house", "predicate": "HasA"}
+{"obj_label": "four wheel", "sub_label": "car", "predicate": "HasA"}
+{"obj_label": "one moon", "sub_label": "earth", "predicate": "HasA"}
+{"obj_label": "two wheel", "sub_label": "bicycle", "predicate": "HasA"}
+{"obj_label": "seed", "sub_label": "fruit", "predicate": "HasA"}
+{"obj_label": "six side", "sub_label": "dice", "predicate": "HasA"}
+{"obj_label": "whisker", "sub_label": "cat", "predicate": "HasA"}
+{"obj_label": "liquid", "sub_label": "bottle", "predicate": "HasA"}
+{"obj_label": "four leg", "sub_label": "cat", "predicate": "HasA"}
+{"obj_label": "knowledge", "sub_label": "book", "predicate": "HasA"}
+{"obj_label": "baby", "sub_label": "woman", "predicate": "HasA"}
+{"obj_label": "6 string", "sub_label": "guitar", "predicate": "HasA"}
+{"obj_label": "three side", "sub_label": "triangle", "predicate": "HasA"}
+{"obj_label": "four leg", "sub_label": "dog", "predicate": "HasA"}
+{"obj_label": "ink", "sub_label": "pen", "predicate": "HasA"}
+{"obj_label": "fur", "sub_label": "dog", "predicate": "HasA"}
+{"obj_label": "five finger on each hand", "sub_label": "human", "predicate": "HasA"}
+{"obj_label": "book", "sub_label": "library", "predicate": "HasA"}
+{"obj_label": "story", "sub_label": "book", "predicate": "HasA"}
+{"obj_label": "fur", "sub_label": "cat", "predicate": "HasA"}
+{"obj_label": "cheese on it", "sub_label": "most pizza", "predicate": "HasA"}
+{"obj_label": "door", "sub_label": "house", "predicate": "HasA"}
+{"obj_label": "alcohol", "sub_label": "wine", "predicate": "HasA"}
+{"obj_label": "thorn", "sub_label": "rose", "predicate": "HasA"}
+{"obj_label": "bill", "sub_label": "duck", "predicate": "HasA"}
+{"obj_label": "penis", "sub_label": "man", "predicate": "HasA"}
+{"obj_label": "headlight", "sub_label": "car", "predicate": "HasA"}
+{"obj_label": "room", "sub_label": "house", "predicate": "HasA"}
+{"obj_label": "claw", "sub_label": "cat", "predicate": "HasA"}
+{"obj_label": "sex", "sub_label": "two person", "predicate": "HasA"}
+{"obj_label": "64 square", "sub_label": "chess board", "predicate": "HasA"}
+{"obj_label": "web foot", "sub_label": "duck", "predicate": "HasA"}
+{"obj_label": "green leave", "sub_label": "plant", "predicate": "HasA"}
+{"obj_label": "open your eye", "sub_label": "wake up", "predicate": "HasFirstSubevent"}
+{"obj_label": "go to doctor", "sub_label": "have checkup", "predicate": "HasPrerequisite"}
+{"obj_label": "go to barber", "sub_label": "have haircut", "predicate": "HasPrerequisite"}
+{"obj_label": "go to museum", "sub_label": "see exhibit", "predicate": "HasPrerequisite"}
+{"obj_label": "buy ticket", "sub_label": "see band", "predicate": "HasPrerequisite"}
+{"obj_label": "exercise", "sub_label": "maintain muscle strength", "predicate": "HasPrerequisite"}
+{"obj_label": "turn on radio", "sub_label": "listen to music", "predicate": "HasPrerequisite"}
+{"obj_label": "lie", "sub_label": "commit perjury", "predicate": "HasPrerequisite"}
+{"obj_label": "have money", "sub_label": "buy something", "predicate": "HasPrerequisite"}
+{"obj_label": "close your eye", "sub_label": "sleep", "predicate": "HasPrerequisite"}
+{"obj_label": "go to doctor", "sub_label": "have physical exam", "predicate": "HasPrerequisite"}
+{"obj_label": "eat", "sub_label": "diminish your own hunger", "predicate": "HasPrerequisite"}
+{"obj_label": "make doctor appointment", "sub_label": "have checkup", "predicate": "HasPrerequisite"}
+{"obj_label": "buy ticket", "sub_label": "go to sport event", "predicate": "HasPrerequisite"}
+{"obj_label": "sleep", "sub_label": "dream", "predicate": "HasPrerequisite"}
+{"obj_label": "turn off light", "sub_label": "go to bed", "predicate": "HasPrerequisite"}
+{"obj_label": "energy", "sub_label": "exercise", "predicate": "HasPrerequisite"}
+{"obj_label": "believe in god", "sub_label": "pray", "predicate": "HasPrerequisite"}
+{"obj_label": "search", "sub_label": "find lose item", "predicate": "HasPrerequisite"}
+{"obj_label": "buy ticket", "sub_label": "watch movie", "predicate": "HasPrerequisite"}
+{"obj_label": "buy ticket", "sub_label": "go to opera", "predicate": "HasPrerequisite"}
+{"obj_label": "get into car", "sub_label": "go for drive", "predicate": "HasPrerequisite"}
+{"obj_label": "turn out light", "sub_label": "go to bed", "predicate": "HasPrerequisite"}
+{"obj_label": "apply brake", "sub_label": "stop your car", "predicate": "HasPrerequisite"}
+{"obj_label": "imagine", "sub_label": "pretend", "predicate": "HasPrerequisite"}
+{"obj_label": "tell joke", "sub_label": "make person laugh", "predicate": "HasPrerequisite"}
+{"obj_label": "get newspaper", "sub_label": "read newspaper", "predicate": "HasPrerequisite"}
+{"obj_label": "go to barber", "sub_label": "go for haircut", "predicate": "HasPrerequisite"}
+{"obj_label": "lie down", "sub_label": "rest", "predicate": "HasPrerequisite"}
+{"obj_label": "think", "sub_label": "contemplate", "predicate": "HasPrerequisite"}
+{"obj_label": "study", "sub_label": "pass your university exam", "predicate": "HasPrerequisite"}
+{"obj_label": "set alarm clock", "sub_label": "get up early", "predicate": "HasPrerequisite"}
+{"obj_label": "buy ticket", "sub_label": "go see play", "predicate": "HasPrerequisite"}
+{"obj_label": "open window", "sub_label": "jump out of window", "predicate": "HasPrerequisite"}
+{"obj_label": "study", "sub_label": "pass course", "predicate": "HasPrerequisite"}
+{"obj_label": "get car", "sub_label": "go for drive", "predicate": "HasPrerequisite"}
+{"obj_label": "close eye", "sub_label": "sleep", "predicate": "HasPrerequisite"}
+{"obj_label": "study", "sub_label": "pass class", "predicate": "HasPrerequisite"}
+{"obj_label": "go to museum", "sub_label": "see old thing", "predicate": "HasPrerequisite"}
+{"obj_label": "buy ticket", "sub_label": "go to movie", "predicate": "HasPrerequisite"}
+{"obj_label": "sleep", "sub_label": "snore", "predicate": "HasPrerequisite"}
+{"obj_label": "get in car", "sub_label": "drive", "predicate": "HasPrerequisite"}
+{"obj_label": "travel", "sub_label": "visit other country", "predicate": "HasPrerequisite"}
+{"obj_label": "go to bathroom", "sub_label": "empty your bladder", "predicate": "HasPrerequisite"}
+{"obj_label": "set your alarm clock", "sub_label": "get up early", "predicate": "HasPrerequisite"}
+{"obj_label": "go to barber", "sub_label": "cut your hair", "predicate": "HasPrerequisite"}
+{"obj_label": "take your clothe off", "sub_label": "bathe", "predicate": "HasPrerequisite"}
+{"obj_label": "have sex", "sub_label": "reproduce", "predicate": "HasPrerequisite"}
+{"obj_label": "buy ticket", "sub_label": "fly in airplane", "predicate": "HasPrerequisite"}
+{"obj_label": "get into water", "sub_label": "swim", "predicate": "HasPrerequisite"}
+{"obj_label": "ask for it", "sub_label": "get something", "predicate": "HasPrerequisite"}
+{"obj_label": "work", "sub_label": "get pay", "predicate": "HasPrerequisite"}
+{"obj_label": "use your imagination", "sub_label": "pretend", "predicate": "HasPrerequisite"}
+{"obj_label": "open your mouth", "sub_label": "drink", "predicate": "HasPrerequisite"}
+{"obj_label": "buy newspaper", "sub_label": "read news", "predicate": "HasPrerequisite"}
+{"obj_label": "think", "sub_label": "answer question", "predicate": "HasPrerequisite"}
+{"obj_label": "fall asleep", "sub_label": "dream", "predicate": "HasPrerequisite"}
+{"obj_label": "bend your knee", "sub_label": "sit down", "predicate": "HasPrerequisite"}
+{"obj_label": "repeat it to yourself", "sub_label": "remember phone number", "predicate": "HasPrerequisite"}
+{"obj_label": "get passport", "sub_label": "visit other country", "predicate": "HasPrerequisite"}
+{"obj_label": "go to bus stop", "sub_label": "take bus", "predicate": "HasPrerequisite"}
+{"obj_label": "drink alcohol", "sub_label": "get drunk", "predicate": "HasPrerequisite"}
+{"obj_label": "eat", "sub_label": "sate your hunger", "predicate": "HasPrerequisite"}
+{"obj_label": "look both way", "sub_label": "cross street", "predicate": "HasPrerequisite"}
+{"obj_label": "take lesson", "sub_label": "play piano", "predicate": "HasPrerequisite"}
+{"obj_label": "buy ticket", "sub_label": "attend classical concert", "predicate": "HasPrerequisite"}
+{"obj_label": "buy magazine", "sub_label": "read magazine", "predicate": "HasPrerequisite"}
+{"obj_label": "have asthma", "sub_label": "have asthma attack", "predicate": "HasPrerequisite"}
+{"obj_label": "look for it", "sub_label": "find lose item", "predicate": "HasPrerequisite"}
+{"obj_label": "wake up", "sub_label": "eat breakfast", "predicate": "HasPrerequisite"}
+{"obj_label": "learn program language", "sub_label": "program", "predicate": "HasPrerequisite"}
+{"obj_label": "go to museum", "sub_label": "see art", "predicate": "HasPrerequisite"}
+{"obj_label": "find barber", "sub_label": "go for haircut", "predicate": "HasPrerequisite"}
+{"obj_label": "turn on tv", "sub_label": "watch even news", "predicate": "HasPrerequisite"}
+{"obj_label": "find mate", "sub_label": "reproduce", "predicate": "HasPrerequisite"}
+{"obj_label": "ask", "sub_label": "get some money from someone", "predicate": "HasPrerequisite"}
+{"obj_label": "go to toilet", "sub_label": "empty your bladder", "predicate": "HasPrerequisite"}
+{"obj_label": "thread needle", "sub_label": "sew", "predicate": "HasPrerequisite"}
+{"obj_label": "brain", "sub_label": "think", "predicate": "HasPrerequisite"}
+{"obj_label": "turn on tv", "sub_label": "watch television show", "predicate": "HasPrerequisite"}
+{"obj_label": "snow", "sub_label": "ski", "predicate": "HasPrerequisite"}
+{"obj_label": "axe", "sub_label": "chop firewood", "predicate": "HasPrerequisite"}
+{"obj_label": "press brake", "sub_label": "stop your car", "predicate": "HasPrerequisite"}
+{"obj_label": "sleep", "sub_label": "gather energy for tomorrow", "predicate": "HasPrerequisite"}
+{"obj_label": "see doctor", "sub_label": "have examination", "predicate": "HasPrerequisite"}
+{"obj_label": "go to bed early", "sub_label": "get up early", "predicate": "HasPrerequisite"}
+{"obj_label": "smile", "sub_label": "make friend", "predicate": "HasPrerequisite"}
+{"obj_label": "turn on tv", "sub_label": "hear news", "predicate": "HasPrerequisite"}
+{"obj_label": "ladder", "sub_label": "paint house", "predicate": "HasPrerequisite"}
+{"obj_label": "turn television on", "sub_label": "watch television", "predicate": "HasPrerequisite"}
+{"obj_label": "go to store", "sub_label": "buy food", "predicate": "HasPrerequisite"}
+{"obj_label": "have money", "sub_label": "buy present for others", "predicate": "HasPrerequisite"}
+{"obj_label": "study", "sub_label": "learn", "predicate": "HasPrerequisite"}
+{"obj_label": "research", "sub_label": "write term paper", "predicate": "HasPrerequisite"}
+{"obj_label": "have money", "sub_label": "shop", "predicate": "HasPrerequisite"}
+{"obj_label": "get in bed", "sub_label": "sleep", "predicate": "HasPrerequisite"}
+{"obj_label": "drink alcohol", "sub_label": "become inebriate", "predicate": "HasPrerequisite"}
+{"obj_label": "concentration", "sub_label": "study", "predicate": "HasPrerequisite"}
+{"obj_label": "enter competition", "sub_label": "compete against someone", "predicate": "HasPrerequisite"}
+{"obj_label": "buy ticket", "sub_label": "go to performance", "predicate": "HasPrerequisite"}
+{"obj_label": "think", "sub_label": "create idea", "predicate": "HasPrerequisite"}
+{"obj_label": "hide", "sub_label": "surprise someone", "predicate": "HasPrerequisite"}
+{"obj_label": "pick up phone", "sub_label": "take phone call", "predicate": "HasPrerequisite"}
+{"obj_label": "compromise", "sub_label": "reach tentative agreement", "predicate": "HasPrerequisite"}
+{"obj_label": "turn on television", "sub_label": "watch even news", "predicate": "HasPrerequisite"}
+{"obj_label": "fill tub with water", "sub_label": "have bath", "predicate": "HasPrerequisite"}
+{"obj_label": "dig hole", "sub_label": "bury cat", "predicate": "HasPrerequisite"}
+{"obj_label": "work", "sub_label": "earn live", "predicate": "HasPrerequisite"}
+{"obj_label": "learn rule", "sub_label": "play game", "predicate": "HasPrerequisite"}
+{"obj_label": "have money", "sub_label": "pay bill", "predicate": "HasPrerequisite"}
+{"obj_label": "good", "sub_label": "something that be very good", "predicate": "HasProperty"}
+{"obj_label": "fun", "sub_label": "sex", "predicate": "HasProperty"}
+{"obj_label": "red", "sub_label": "apple", "predicate": "HasProperty"}
+{"obj_label": "tall", "sub_label": "basketball player", "predicate": "HasProperty"}
+{"obj_label": "blue", "sub_label": "sky", "predicate": "HasProperty"}
+{"obj_label": "soothe", "sub_label": "music", "predicate": "HasProperty"}
+{"obj_label": "round", "sub_label": "ball", "predicate": "HasProperty"}
+{"obj_label": "smart", "sub_label": "doctor", "predicate": "HasProperty"}
+{"obj_label": "pretty", "sub_label": "sunset", "predicate": "HasProperty"}
+{"obj_label": "good for you", "sub_label": "fruit", "predicate": "HasProperty"}
+{"obj_label": "green", "sub_label": "apple", "predicate": "HasProperty"}
+{"obj_label": "spherical", "sub_label": "earth", "predicate": "HasProperty"}
+{"obj_label": "round", "sub_label": "circle", "predicate": "HasProperty"}
+{"obj_label": "enjoyable", "sub_label": "sex", "predicate": "HasProperty"}
+{"obj_label": "essential to all life", "sub_label": "water", "predicate": "HasProperty"}
+{"obj_label": "liquid", "sub_label": "water", "predicate": "HasProperty"}
+{"obj_label": "brown", "sub_label": "horse", "predicate": "HasProperty"}
+{"obj_label": "sticky", "sub_label": "glue", "predicate": "HasProperty"}
+{"obj_label": "round", "sub_label": "world", "predicate": "HasProperty"}
+{"obj_label": "round", "sub_label": "wheel", "predicate": "HasProperty"}
+{"obj_label": "pleasurable", "sub_label": "sex", "predicate": "HasProperty"}
+{"obj_label": "crumple", "sub_label": "paper", "predicate": "HasProperty"}
+{"obj_label": "bright", "sub_label": "day", "predicate": "HasProperty"}
+{"obj_label": "healthy", "sub_label": "fruit", "predicate": "HasProperty"}
+{"obj_label": "cute", "sub_label": "puppy", "predicate": "HasProperty"}
+{"obj_label": "good", "sub_label": "sex", "predicate": "HasProperty"}
+{"obj_label": "round", "sub_label": "planet earth", "predicate": "HasProperty"}
+{"obj_label": "serve hot", "sub_label": "coffee", "predicate": "HasProperty"}
+{"obj_label": "round", "sub_label": "basketball", "predicate": "HasProperty"}
+{"obj_label": "sharp", "sub_label": "needle", "predicate": "HasProperty"}
+{"obj_label": "sweet", "sub_label": "cookie", "predicate": "HasProperty"}
+{"obj_label": "sharp", "sub_label": "tack", "predicate": "HasProperty"}
+{"obj_label": "yellow", "sub_label": "school bus", "predicate": "HasProperty"}
+{"obj_label": "fun", "sub_label": "sport", "predicate": "HasProperty"}
+{"obj_label": "comfortable", "sub_label": "chair", "predicate": "HasProperty"}
+{"obj_label": "sweet", "sub_label": "cake", "predicate": "HasProperty"}
+{"obj_label": "good for you", "sub_label": "exercise", "predicate": "HasProperty"}
+{"obj_label": "big", "sub_label": "build", "predicate": "HasProperty"}
+{"obj_label": "addictive", "sub_label": "gamble", "predicate": "HasProperty"}
+{"obj_label": "cold blood", "sub_label": "lizard", "predicate": "HasProperty"}
+{"obj_label": "cold", "sub_label": "winter", "predicate": "HasProperty"}
+{"obj_label": "yellow", "sub_label": "banana", "predicate": "HasProperty"}
+{"obj_label": "expensive", "sub_label": "some car", "predicate": "HasProperty"}
+{"obj_label": "round", "sub_label": "frisbee", "predicate": "HasProperty"}
+{"obj_label": "green", "sub_label": "plant", "predicate": "HasProperty"}
+{"obj_label": "sweet", "sub_label": "fruit", "predicate": "HasProperty"}
+{"obj_label": "dark", "sub_label": "night", "predicate": "HasProperty"}
+{"obj_label": "sharp", "sub_label": "sword", "predicate": "HasProperty"}
+{"obj_label": "right hand", "sub_label": "most person", "predicate": "HasProperty"}
+{"obj_label": "right-handed", "sub_label": "most person", "predicate": "HasProperty"}
+{"obj_label": "good for you", "sub_label": "apple", "predicate": "HasProperty"}
+{"obj_label": "half full", "sub_label": "glass", "predicate": "HasProperty"}
+{"obj_label": "recyclable", "sub_label": "paper", "predicate": "HasProperty"}
+{"obj_label": "very loyal", "sub_label": "dog", "predicate": "HasProperty"}
+{"obj_label": "very small", "sub_label": "grain of sand", "predicate": "HasProperty"}
+{"obj_label": "fun", "sub_label": "party", "predicate": "HasProperty"}
+{"obj_label": "red", "sub_label": "fire engine", "predicate": "HasProperty"}
+{"obj_label": "north of unite state", "sub_label": "canada", "predicate": "HasProperty"}
+{"obj_label": "yellow", "sub_label": "rubber duck", "predicate": "HasProperty"}
+{"obj_label": "cute", "sub_label": "baby animal", "predicate": "HasProperty"}
+{"obj_label": "sour", "sub_label": "lemon", "predicate": "HasProperty"}
+{"obj_label": "slippery", "sub_label": "oil", "predicate": "HasProperty"}
+{"obj_label": "heavy", "sub_label": "rock", "predicate": "HasProperty"}
+{"obj_label": "white", "sub_label": "paper", "predicate": "HasProperty"}
+{"obj_label": "edible", "sub_label": "fruit", "predicate": "HasProperty"}
+{"obj_label": "good to eat", "sub_label": "apple", "predicate": "HasProperty"}
+{"obj_label": "wrong", "sub_label": "kill", "predicate": "HasProperty"}
+{"obj_label": "relax", "sub_label": "music", "predicate": "HasProperty"}
+{"obj_label": "different", "sub_label": "men and woman", "predicate": "HasProperty"}
+{"obj_label": "fun", "sub_label": "sail", "predicate": "HasProperty"}
+{"obj_label": "dream", "sub_label": "sleep", "predicate": "HasSubevent"}
+{"obj_label": "learn", "sub_label": "attend school", "predicate": "HasSubevent"}
+{"obj_label": "snore", "sub_label": "sleep", "predicate": "HasSubevent"}
+{"obj_label": "chew", "sub_label": "eat", "predicate": "HasSubevent"}
+{"obj_label": "laugh", "sub_label": "tickle", "predicate": "HasSubevent"}
+{"obj_label": "have sex", "sub_label": "start family", "predicate": "HasSubevent"}
+{"obj_label": "apply brake", "sub_label": "stop your bicycle", "predicate": "HasSubevent"}
+{"obj_label": "sweat", "sub_label": "run", "predicate": "HasSubevent"}
+{"obj_label": "dig hole", "sub_label": "bury cat", "predicate": "HasSubevent"}
+{"obj_label": "strike match", "sub_label": "light fire", "predicate": "HasSubevent"}
+{"obj_label": "get wet", "sub_label": "wash your car", "predicate": "HasSubevent"}
+{"obj_label": "type on keyboard", "sub_label": "use computer", "predicate": "HasSubevent"}
+{"obj_label": "lie", "sub_label": "commit perjury", "predicate": "HasSubevent"}
+{"obj_label": "sleep", "sub_label": "gather energy for tomorrow", "predicate": "HasSubevent"}
+{"obj_label": "turn page", "sub_label": "read", "predicate": "HasSubevent"}
+{"obj_label": "inhale", "sub_label": "breathe", "predicate": "HasSubevent"}
+{"obj_label": "fall", "sub_label": "climb", "predicate": "HasSubevent"}
+{"obj_label": "dance", "sub_label": "listen to music", "predicate": "HasSubevent"}
+{"obj_label": "close your eye", "sub_label": "have rest", "predicate": "HasSubevent"}
+{"obj_label": "get wet", "sub_label": "walk in rain", "predicate": "HasSubevent"}
+{"obj_label": "yawn", "sub_label": "awake", "predicate": "HasSubevent"}
+{"obj_label": "fun", "sub_label": "play game", "predicate": "HasSubevent"}
+{"obj_label": "shake their hand", "sub_label": "meet person", "predicate": "HasSubevent"}
+{"obj_label": "win", "sub_label": "play game", "predicate": "HasSubevent"}
+{"obj_label": "interview", "sub_label": "get job", "predicate": "HasSubevent"}
+{"obj_label": "die", "sub_label": "commit suicide", "predicate": "HasSubevent"}
+{"obj_label": "laugh", "sub_label": "enjoy film", "predicate": "HasSubevent"}
+{"obj_label": "sleep", "sub_label": "dream", "predicate": "HasSubevent"}
+{"obj_label": "nod", "sub_label": "agree with someone", "predicate": "HasSubevent"}
+{"obj_label": "stop breathe", "sub_label": "die", "predicate": "HasSubevent"}
+{"obj_label": "have orgasm", "sub_label": "have sex", "predicate": "HasSubevent"}
+{"obj_label": "turn page", "sub_label": "read magazine", "predicate": "HasSubevent"}
+{"obj_label": "fall down", "sub_label": "skate", "predicate": "HasSubevent"}
+{"obj_label": "hit ball", "sub_label": "play tennis", "predicate": "HasSubevent"}
+{"obj_label": "smile", "sub_label": "have fun", "predicate": "HasSubevent"}
+{"obj_label": "sleep", "sub_label": "rest", "predicate": "HasSubevent"}
+{"obj_label": "have sex", "sub_label": "reproduce", "predicate": "HasSubevent"}
+{"obj_label": "use soap", "sub_label": "bathe", "predicate": "HasSubevent"}
+{"obj_label": "wash your hair", "sub_label": "take shower", "predicate": "HasSubevent"}
+{"obj_label": "fall off", "sub_label": "ride horse", "predicate": "HasSubevent"}
+{"obj_label": "think", "sub_label": "write", "predicate": "HasSubevent"}
+{"obj_label": "get wet", "sub_label": "go for swim", "predicate": "HasSubevent"}
+{"obj_label": "win", "sub_label": "compete", "predicate": "HasSubevent"}
+{"obj_label": "sing", "sub_label": "play guitar", "predicate": "HasSubevent"}
+{"obj_label": "take note", "sub_label": "attend lecture", "predicate": "HasSubevent"}
+{"obj_label": "get drunk", "sub_label": "drink alcohol", "predicate": "HasSubevent"}
+{"obj_label": "bluff", "sub_label": "play poker", "predicate": "HasSubevent"}
+{"obj_label": "read", "sub_label": "study", "predicate": "HasSubevent"}
+{"obj_label": "run", "sub_label": "play sport", "predicate": "HasSubevent"}
+{"obj_label": "learn", "sub_label": "go to school", "predicate": "HasSubevent"}
+{"obj_label": "die", "sub_label": "jump out of window", "predicate": "HasSubevent"}
+{"obj_label": "have fun", "sub_label": "play sport", "predicate": "HasSubevent"}
+{"obj_label": "read book", "sub_label": "study", "predicate": "HasSubevent"}
+{"obj_label": "hear music", "sub_label": "listen to radio", "predicate": "HasSubevent"}
+{"obj_label": "breathe", "sub_label": "live", "predicate": "HasSubevent"}
+{"obj_label": "have fun", "sub_label": "play game", "predicate": "HasSubevent"}
+{"obj_label": "sweat", "sub_label": "have sex", "predicate": "HasSubevent"}
+{"obj_label": "learn", "sub_label": "read", "predicate": "HasSubevent"}
+{"obj_label": "fall down", "sub_label": "have epileptic fit", "predicate": "HasSubevent"}
+{"obj_label": "cry", "sub_label": "have nervous breakdown", "predicate": "HasSubevent"}
+{"obj_label": "drown", "sub_label": "go for swim", "predicate": "HasSubevent"}
+{"obj_label": "get haircut", "sub_label": "go to hairdresser", "predicate": "HasSubevent"}
+{"obj_label": "eat popcorn", "sub_label": "enjoy film", "predicate": "HasSubevent"}
+{"obj_label": "fall asleep", "sub_label": "watch tv", "predicate": "HasSubevent"}
+{"obj_label": "eat", "sub_label": "diminish your own hunger", "predicate": "HasSubevent"}
+{"obj_label": "be laugh", "sub_label": "express how funny something", "predicate": "HasSubevent"}
+{"obj_label": "catch frisbee", "sub_label": "play frisbee", "predicate": "HasSubevent"}
+{"obj_label": "catch ball", "sub_label": "play ball", "predicate": "HasSubevent"}
+{"obj_label": "dribble", "sub_label": "play basketball", "predicate": "HasSubevent"}
+{"obj_label": "watch tv", "sub_label": "eat breakfast in bed", "predicate": "HasSubevent"}
+{"obj_label": "repeat", "sub_label": "commit to memory", "predicate": "HasSubevent"}
+{"obj_label": "kneel down", "sub_label": "pray", "predicate": "HasSubevent"}
+{"obj_label": "talk to them", "sub_label": "meet interest person", "predicate": "HasSubevent"}
+{"obj_label": "you feel guilty", "sub_label": "lie", "predicate": "HasSubevent"}
+{"obj_label": "you lose", "sub_label": "compete", "predicate": "HasSubevent"}
+{"obj_label": "have fun", "sub_label": "play", "predicate": "HasSubevent"}
+{"obj_label": "listen to radio", "sub_label": "drive", "predicate": "HasSubevent"}
+{"obj_label": "laugh", "sub_label": "chat with friend", "predicate": "HasSubevent"}
+{"obj_label": "get wet", "sub_label": "have bath", "predicate": "HasSubevent"}
+{"obj_label": "look at model", "sub_label": "paint picture", "predicate": "HasSubevent"}
+{"obj_label": "sleep", "sub_label": "relax", "predicate": "HasSubevent"}
+{"obj_label": "score point", "sub_label": "play basketball", "predicate": "HasSubevent"}
+{"obj_label": "sew", "sub_label": "make patchwork quilt", "predicate": "HasSubevent"}
+{"obj_label": "sport", "sub_label": "baseball", "predicate": "IsA"}
+{"obj_label": "toy", "sub_label": "yo-yo", "predicate": "IsA"}
+{"obj_label": "mammal", "sub_label": "dog", "predicate": "IsA"}
+{"obj_label": "game", "sub_label": "polo", "predicate": "IsA"}
+{"obj_label": "metal", "sub_label": "gold", "predicate": "IsA"}
+{"obj_label": "food", "sub_label": "sushi", "predicate": "IsA"}
+{"obj_label": "sport", "sub_label": "soccer", "predicate": "IsA"}
+{"obj_label": "flower", "sub_label": "rose", "predicate": "IsA"}
+{"obj_label": "operate system", "sub_label": "linux", "predicate": "IsA"}
+{"obj_label": "insect", "sub_label": "fly", "predicate": "IsA"}
+{"obj_label": "string instrument", "sub_label": "violin", "predicate": "IsA"}
+{"obj_label": "fish", "sub_label": "bass", "predicate": "IsA"}
+{"obj_label": "animal", "sub_label": "dog", "predicate": "IsA"}
+{"obj_label": "game", "sub_label": "football", "predicate": "IsA"}
+{"obj_label": "sport", "sub_label": "football", "predicate": "IsA"}
+{"obj_label": "emotion", "sub_label": "love", "predicate": "IsA"}
+{"obj_label": "tool", "sub_label": "see", "predicate": "IsA"}
+{"obj_label": "pet", "sub_label": "dog", "predicate": "IsA"}
+{"obj_label": "sport", "sub_label": "tennis", "predicate": "IsA"}
+{"obj_label": "animal", "sub_label": "lion", "predicate": "IsA"}
+{"obj_label": "gift from france", "sub_label": "statue of liberty", "predicate": "IsA"}
+{"obj_label": "fish", "sub_label": "trout", "predicate": "IsA"}
+{"obj_label": "reptile", "sub_label": "turtle", "predicate": "IsA"}
+{"obj_label": "activity", "sub_label": "sex", "predicate": "IsA"}
+{"obj_label": "food", "sub_label": "vegetable", "predicate": "IsA"}
+{"obj_label": "in new york", "sub_label": "statue of liberty", "predicate": "IsA"}
+{"obj_label": "toy", "sub_label": "doll", "predicate": "IsA"}
+{"obj_label": "music", "sub_label": "rock", "predicate": "IsA"}
+{"obj_label": "planet", "sub_label": "venus", "predicate": "IsA"}
+{"obj_label": "water", "sub_label": "rain", "predicate": "IsA"}
+{"obj_label": "fruit", "sub_label": "peach", "predicate": "IsA"}
+{"obj_label": "metal", "sub_label": "silver", "predicate": "IsA"}
+{"obj_label": "bird", "sub_label": "finch", "predicate": "IsA"}
+{"obj_label": "vegetable", "sub_label": "corn", "predicate": "IsA"}
+{"obj_label": "crime", "sub_label": "murder", "predicate": "IsA"}
+{"obj_label": "dog", "sub_label": "golden retriever", "predicate": "IsA"}
+{"obj_label": "color", "sub_label": "blue", "predicate": "IsA"}
+{"obj_label": "metal", "sub_label": "iron", "predicate": "IsA"}
+{"obj_label": "program language", "sub_label": "java", "predicate": "IsA"}
+{"obj_label": "bird", "sub_label": "ostrich", "predicate": "IsA"}
+{"obj_label": "insect", "sub_label": "ant", "predicate": "IsA"}
+{"obj_label": "sound", "sub_label": "music", "predicate": "IsA"}
+{"obj_label": "musical instrument", "sub_label": "saxophone", "predicate": "IsA"}
+{"obj_label": "food", "sub_label": "chicken", "predicate": "IsA"}
+{"obj_label": "fruit", "sub_label": "apple", "predicate": "IsA"}
+{"obj_label": "science", "sub_label": "biology", "predicate": "IsA"}
+{"obj_label": "communication device", "sub_label": "telephone", "predicate": "IsA"}
+{"obj_label": "credit card", "sub_label": "mastercard", "predicate": "IsA"}
+{"obj_label": "fungus", "sub_label": "mushroom", "predicate": "IsA"}
+{"obj_label": "gun", "sub_label": "pistol", "predicate": "IsA"}
+{"obj_label": "dog", "sub_label": "poodle", "predicate": "IsA"}
+{"obj_label": "mammal", "sub_label": "dolphin", "predicate": "IsA"}
+{"obj_label": "fruit", "sub_label": "pineapple", "predicate": "IsA"}
+{"obj_label": "carp", "sub_label": "goldfish", "predicate": "IsA"}
+{"obj_label": "electronic device", "sub_label": "computer", "predicate": "IsA"}
+{"obj_label": "musical instrument", "sub_label": "tuba", "predicate": "IsA"}
+{"obj_label": "flower", "sub_label": "orchid", "predicate": "IsA"}
+{"obj_label": "sport", "sub_label": "badminton", "predicate": "IsA"}
+{"obj_label": "sport", "sub_label": "golf", "predicate": "IsA"}
+{"obj_label": "country", "sub_label": "canada", "predicate": "IsA"}
+{"obj_label": "bird", "sub_label": "parakeet", "predicate": "IsA"}
+{"obj_label": "toy", "sub_label": "yoyo", "predicate": "IsA"}
+{"obj_label": "musical instrument", "sub_label": "horn", "predicate": "IsA"}
+{"obj_label": "plant", "sub_label": "tree", "predicate": "IsA"}
+{"obj_label": "game", "sub_label": "baseball", "predicate": "IsA"}
+{"obj_label": "in paris", "sub_label": "eiffel tower", "predicate": "IsA"}
+{"obj_label": "japanese food", "sub_label": "sushi", "predicate": "IsA"}
+{"obj_label": "game", "sub_label": "ping pong", "predicate": "IsA"}
+{"obj_label": "force", "sub_label": "gravity", "predicate": "IsA"}
+{"obj_label": "instrument", "sub_label": "woodwind", "predicate": "IsA"}
+{"obj_label": "instrument", "sub_label": "piano", "predicate": "IsA"}
+{"obj_label": "string instrument", "sub_label": "guitar", "predicate": "IsA"}
+{"obj_label": "emotion", "sub_label": "anger", "predicate": "IsA"}
+{"obj_label": "country", "sub_label": "china", "predicate": "IsA"}
+{"obj_label": "fruit", "sub_label": "banana", "predicate": "IsA"}
+{"obj_label": "religion", "sub_label": "christianity", "predicate": "IsA"}
+{"obj_label": "material", "sub_label": "plastic", "predicate": "IsA"}
+{"obj_label": "place", "sub_label": "college", "predicate": "IsA"}
+{"obj_label": "sign of affection", "sub_label": "kiss", "predicate": "IsA"}
+{"obj_label": "jewelry", "sub_label": "necklace", "predicate": "IsA"}
+{"obj_label": "carnivore", "sub_label": "lion", "predicate": "IsA"}
+{"obj_label": "man best friend", "sub_label": "dog", "predicate": "IsA"}
+{"obj_label": "school", "sub_label": "elementary school", "predicate": "IsA"}
+{"obj_label": "food", "sub_label": "soup", "predicate": "IsA"}
+{"obj_label": "game", "sub_label": "chess", "predicate": "IsA"}
+{"obj_label": "mammal", "sub_label": "rabbit", "predicate": "IsA"}
+{"obj_label": "animal", "sub_label": "cat", "predicate": "IsA"}
+{"obj_label": "insect", "sub_label": "butterfly", "predicate": "IsA"}
+{"obj_label": "gun", "sub_label": "rifle", "predicate": "IsA"}
+{"obj_label": "bird", "sub_label": "robin", "predicate": "IsA"}
+{"obj_label": "road", "sub_label": "highway", "predicate": "IsA"}
+{"obj_label": "toy", "sub_label": "ball", "predicate": "IsA"}
+{"obj_label": "food", "sub_label": "butter", "predicate": "IsA"}
+{"obj_label": "container", "sub_label": "bottle", "predicate": "IsA"}
+{"obj_label": "place", "sub_label": "restaurant", "predicate": "IsA"}
+{"obj_label": "food", "sub_label": "salad", "predicate": "IsA"}
+{"obj_label": "vegetable", "sub_label": "tomato", "predicate": "IsA"}
+{"obj_label": "food", "sub_label": "egg", "predicate": "IsA"}
+{"obj_label": "color", "sub_label": "green", "predicate": "IsA"}
+{"obj_label": "religion", "sub_label": "islam", "predicate": "IsA"}
+{"obj_label": "city", "sub_label": "san francisco", "predicate": "IsA"}
+{"obj_label": "on water", "sub_label": "boat", "predicate": "IsA"}
+{"obj_label": "gas", "sub_label": "air", "predicate": "IsA"}
+{"obj_label": "doctor", "sub_label": "dentist", "predicate": "IsA"}
+{"obj_label": "sport", "sub_label": "hockey", "predicate": "IsA"}
+{"obj_label": "language", "sub_label": "french", "predicate": "IsA"}
+{"obj_label": "percussion instrument", "sub_label": "drum", "predicate": "IsA"}
+{"obj_label": "instrument", "sub_label": "viola", "predicate": "IsA"}
+{"obj_label": "mammal", "sub_label": "human", "predicate": "IsA"}
+{"obj_label": "food", "sub_label": "rice", "predicate": "IsA"}
+{"obj_label": "planet", "sub_label": "saturn", "predicate": "IsA"}
+{"obj_label": "planet", "sub_label": "mar", "predicate": "IsA"}
+{"obj_label": "mammal", "sub_label": "mouse", "predicate": "IsA"}
+{"obj_label": "child game", "sub_label": "jack", "predicate": "IsA"}
+{"obj_label": "game", "sub_label": "jack", "predicate": "IsA"}
+{"obj_label": "state", "sub_label": "colorado", "predicate": "IsA"}
+{"obj_label": "state", "sub_label": "california", "predicate": "IsA"}
+{"obj_label": "drug", "sub_label": "marijuana", "predicate": "IsA"}
+{"obj_label": "container", "sub_label": "box", "predicate": "IsA"}
+{"obj_label": "soda", "sub_label": "coke", "predicate": "IsA"}
+{"obj_label": "head", "sub_label": "brain", "predicate": "IsA"}
+{"obj_label": "curious animal", "sub_label": "cat", "predicate": "IsA"}
+{"obj_label": "popular television show", "sub_label": "star trek", "predicate": "IsA"}
+{"obj_label": "science", "sub_label": "physic", "predicate": "IsA"}
+{"obj_label": "beverage", "sub_label": "wine", "predicate": "IsA"}
+{"obj_label": "vegetable", "sub_label": "cucumber", "predicate": "IsA"}
+{"obj_label": "color", "sub_label": "red", "predicate": "IsA"}
+{"obj_label": "fabric", "sub_label": "denim", "predicate": "IsA"}
+{"obj_label": "music", "sub_label": "metal", "predicate": "IsA"}
+{"obj_label": "country", "sub_label": "france", "predicate": "IsA"}
+{"obj_label": "amphibian", "sub_label": "frog", "predicate": "IsA"}
+{"obj_label": "book", "sub_label": "novel", "predicate": "IsA"}
+{"obj_label": "country", "sub_label": "brazil", "predicate": "IsA"}
+{"obj_label": "horse", "sub_label": "pony", "predicate": "IsA"}
+{"obj_label": "card game", "sub_label": "poker", "predicate": "IsA"}
+{"obj_label": "gas", "sub_label": "oxygen", "predicate": "IsA"}
+{"obj_label": "food", "sub_label": "cheese", "predicate": "IsA"}
+{"obj_label": "two wheel vehicle", "sub_label": "bicycle", "predicate": "IsA"}
+{"obj_label": "clothe", "sub_label": "shirt", "predicate": "IsA"}
+{"obj_label": "dry grape", "sub_label": "raisin", "predicate": "IsA"}
+{"obj_label": "abbreviation for television", "sub_label": "tv", "predicate": "IsA"}
+{"obj_label": "instrument", "sub_label": "saxophone", "predicate": "IsA"}
+{"obj_label": "build", "sub_label": "skyscraper", "predicate": "IsA"}
+{"obj_label": "ship", "sub_label": "submarine", "predicate": "IsA"}
+{"obj_label": "loyal friend", "sub_label": "dog", "predicate": "IsA"}
+{"obj_label": "vegetable", "sub_label": "potato", "predicate": "IsA"}
+{"obj_label": "meal", "sub_label": "dinner", "predicate": "IsA"}
+{"obj_label": "food", "sub_label": "chocolate", "predicate": "IsA"}
+{"obj_label": "weapon", "sub_label": "gun", "predicate": "IsA"}
+{"obj_label": "vegetable", "sub_label": "lettuce", "predicate": "IsA"}
+{"obj_label": "vehicle", "sub_label": "car", "predicate": "IsA"}
+{"obj_label": "animal", "sub_label": "human", "predicate": "IsA"}
+{"obj_label": "season", "sub_label": "fall", "predicate": "IsA"}
+{"obj_label": "metal", "sub_label": "steel", "predicate": "IsA"}
+{"obj_label": "candy", "sub_label": "chocolate", "predicate": "IsA"}
+{"obj_label": "fish", "sub_label": "crappie", "predicate": "IsA"}
+{"obj_label": "amphibian", "sub_label": "salamander", "predicate": "IsA"}
+{"obj_label": "sport", "sub_label": "table tennis", "predicate": "IsA"}
+{"obj_label": "bird", "sub_label": "pelican", "predicate": "IsA"}
+{"obj_label": "city", "sub_label": "paris", "predicate": "IsA"}
+{"obj_label": "form of art", "sub_label": "music", "predicate": "IsA"}
+{"obj_label": "hold puppy", "sub_label": "girl", "predicate": "IsA"}
+{"obj_label": "form of transportation", "sub_label": "bicycle", "predicate": "IsA"}
+{"obj_label": "food at grocery store", "sub_label": "there", "predicate": "IsA"}
+{"obj_label": "raw fish", "sub_label": "sushi", "predicate": "IsA"}
+{"obj_label": "food", "sub_label": "corn", "predicate": "IsA"}
+{"obj_label": "build", "sub_label": "high rise", "predicate": "IsA"}
+{"obj_label": "meat", "sub_label": "chicken", "predicate": "IsA"}
+{"obj_label": "sit on", "sub_label": "sofa", "predicate": "IsA"}
+{"obj_label": "in school", "sub_label": "classroom", "predicate": "IsA"}
+{"obj_label": "canine", "sub_label": "dog", "predicate": "IsA"}
+{"obj_label": "drink", "sub_label": "soda", "predicate": "IsA"}
+{"obj_label": "useful tool", "sub_label": "pocket knife", "predicate": "IsA"}
+{"obj_label": "feel", "sub_label": "love", "predicate": "IsA"}
+{"obj_label": "string instrument", "sub_label": "banjo", "predicate": "IsA"}
+{"obj_label": "instrument", "sub_label": "guitare", "predicate": "IsA"}
+{"obj_label": "another word for rock", "sub_label": "stone", "predicate": "IsA"}
+{"obj_label": "american pastime", "sub_label": "baseball", "predicate": "IsA"}
+{"obj_label": "hat", "sub_label": "beanie", "predicate": "IsA"}
+{"obj_label": "hat", "sub_label": "fedora", "predicate": "IsA"}
+{"obj_label": "gun", "sub_label": "shotgun", "predicate": "IsA"}
+{"obj_label": "state", "sub_label": "new york", "predicate": "IsA"}
+{"obj_label": "instrument", "sub_label": "clarinet", "predicate": "IsA"}
+{"obj_label": "vegetable", "sub_label": "bean", "predicate": "IsA"}
+{"obj_label": "percussion instrument", "sub_label": "xylophone", "predicate": "IsA"}
+{"obj_label": "language", "sub_label": "english", "predicate": "IsA"}
+{"obj_label": "city", "sub_label": "london", "predicate": "IsA"}
+{"obj_label": "sport", "sub_label": "swim", "predicate": "IsA"}
+{"obj_label": "animal", "sub_label": "fish", "predicate": "IsA"}
+{"obj_label": "machine", "sub_label": "robot", "predicate": "IsA"}
+{"obj_label": "game", "sub_label": "backgammon", "predicate": "IsA"}
+{"obj_label": "planet", "sub_label": "jupiter", "predicate": "IsA"}
+{"obj_label": "body of water", "sub_label": "lake", "predicate": "IsA"}
+{"obj_label": "arachnid", "sub_label": "spider", "predicate": "IsA"}
+{"obj_label": "mammal", "sub_label": "whale", "predicate": "IsA"}
+{"obj_label": "mammal", "sub_label": "beaver", "predicate": "IsA"}
+{"obj_label": "bird", "sub_label": "pheasant", "predicate": "IsA"}
+{"obj_label": "bird", "sub_label": "crow", "predicate": "IsA"}
+{"obj_label": "bird", "sub_label": "hawk", "predicate": "IsA"}
+{"obj_label": "bird", "sub_label": "goose", "predicate": "IsA"}
+{"obj_label": "program language", "sub_label": "perl", "predicate": "IsA"}
+{"obj_label": "program language", "sub_label": "c", "predicate": "IsA"}
+{"obj_label": "carnivore", "sub_label": "cat", "predicate": "IsA"}
+{"obj_label": "operate system", "sub_label": "unix", "predicate": "IsA"}
+{"obj_label": "system", "sub_label": "unix", "predicate": "IsA"}
+{"obj_label": "young man", "sub_label": "boy", "predicate": "IsA"}
+{"obj_label": "alcoholic beverage", "sub_label": "beer", "predicate": "IsA"}
+{"obj_label": "place", "sub_label": "city", "predicate": "IsA"}
+{"obj_label": "vegetable", "sub_label": "pea", "predicate": "IsA"}
+{"obj_label": "person", "sub_label": "slave", "predicate": "IsA"}
+{"obj_label": "language", "sub_label": "spanish", "predicate": "IsA"}
+{"obj_label": "plastic", "sub_label": "bottle", "predicate": "MadeOf"}
+{"obj_label": "paper", "sub_label": "book", "predicate": "MadeOf"}
+{"obj_label": "glass", "sub_label": "bottle", "predicate": "MadeOf"}
+{"obj_label": "wood", "sub_label": "paper", "predicate": "MadeOf"}
+{"obj_label": "glass", "sub_label": "window", "predicate": "MadeOf"}
+{"obj_label": "metal", "sub_label": "car", "predicate": "MadeOf"}
+{"obj_label": "milk", "sub_label": "cheese", "predicate": "MadeOf"}
+{"obj_label": "snow", "sub_label": "snowman", "predicate": "MadeOf"}
+{"obj_label": "flour", "sub_label": "bread", "predicate": "MadeOf"}
+{"obj_label": "rubber", "sub_label": "eraser", "predicate": "MadeOf"}
+{"obj_label": "leather", "sub_label": "cowboy boot", "predicate": "MadeOf"}
+{"obj_label": "wood", "sub_label": "pencil", "predicate": "MadeOf"}
+{"obj_label": "coffee bean", "sub_label": "coffee", "predicate": "MadeOf"}
+{"obj_label": "denim", "sub_label": "jean", "predicate": "MadeOf"}
+{"obj_label": "have some fun", "sub_label": "play", "predicate": "MotivatedByGoal"}
+{"obj_label": "be inform", "sub_label": "read newspaper", "predicate": "MotivatedByGoal"}
+{"obj_label": "your bladder be full", "sub_label": "urinate", "predicate": "MotivatedByGoal"}
+{"obj_label": "rest", "sub_label": "sleep", "predicate": "MotivatedByGoal"}
+{"obj_label": "learn", "sub_label": "read", "predicate": "MotivatedByGoal"}
+{"obj_label": "win", "sub_label": "compete", "predicate": "MotivatedByGoal"}
+{"obj_label": "you be very tire", "sub_label": "have rest", "predicate": "MotivatedByGoal"}
+{"obj_label": "you love her", "sub_label": "propose to woman", "predicate": "MotivatedByGoal"}
+{"obj_label": "fly", "sub_label": "person", "predicate": "NotCapableOf"}
+{"obj_label": "fly", "sub_label": "penguin", "predicate": "NotCapableOf"}
+{"obj_label": "live out of water", "sub_label": "fish", "predicate": "NotCapableOf"}
+{"obj_label": "fly", "sub_label": "dog", "predicate": "NotCapableOf"}
+{"obj_label": "eat meat", "sub_label": "vegetarian", "predicate": "NotCapableOf"}
+{"obj_label": "mix", "sub_label": "water and oil", "predicate": "NotCapableOf"}
+{"obj_label": "talk", "sub_label": "dog", "predicate": "NotCapableOf"}
+{"obj_label": "fly", "sub_label": "pig", "predicate": "NotCapableOf"}
+{"obj_label": "hear", "sub_label": "deaf person", "predicate": "NotCapableOf"}
+{"obj_label": "sweat", "sub_label": "dog", "predicate": "NotCapableOf"}
+{"obj_label": "believe in god", "sub_label": "atheist", "predicate": "NotCapableOf"}
+{"obj_label": "fun", "sub_label": "work", "predicate": "NotHasProperty"}
+{"obj_label": "perfect sphere", "sub_label": "earth", "predicate": "NotIsA"}
+{"obj_label": "computer", "sub_label": "keyboard", "predicate": "PartOf"}
+{"obj_label": "foot", "sub_label": "toe", "predicate": "PartOf"}
+{"obj_label": "hand", "sub_label": "finger", "predicate": "PartOf"}
+{"obj_label": "book", "sub_label": "page", "predicate": "PartOf"}
+{"obj_label": "car", "sub_label": "tire", "predicate": "PartOf"}
+{"obj_label": "library", "sub_label": "book", "predicate": "PartOf"}
+{"obj_label": "computer", "sub_label": "cpu", "predicate": "PartOf"}
+{"obj_label": "face", "sub_label": "nose", "predicate": "PartOf"}
+{"obj_label": "eye", "sub_label": "cornea", "predicate": "PartOf"}
+{"obj_label": "body", "sub_label": "arm", "predicate": "PartOf"}
+{"obj_label": "computer", "sub_label": "monitor", "predicate": "PartOf"}
+{"obj_label": "usenet", "sub_label": "usenet newsgroup", "predicate": "PartOf"}
+{"obj_label": "life", "sub_label": "death", "predicate": "PartOf"}
+{"obj_label": "car", "sub_label": "wheel", "predicate": "PartOf"}
+{"obj_label": "universe", "sub_label": "galaxy", "predicate": "PartOf"}
+{"obj_label": "society", "sub_label": "person", "predicate": "PartOf"}
+{"obj_label": "family", "sub_label": "son", "predicate": "PartOf"}
+{"obj_label": "tree", "sub_label": "leaf", "predicate": "PartOf"}
+{"obj_label": "religion", "sub_label": "god", "predicate": "PartOf"}
+{"obj_label": "gun", "sub_label": "trigger", "predicate": "PartOf"}
+{"obj_label": "house", "sub_label": "door", "predicate": "PartOf"}
+{"obj_label": "hand", "sub_label": "palm", "predicate": "PartOf"}
+{"obj_label": "read", "sub_label": "book", "predicate": "ReceivesAction"}
+{"obj_label": "eat", "sub_label": "food", "predicate": "ReceivesAction"}
+{"obj_label": "wear on head", "sub_label": "hat", "predicate": "ReceivesAction"}
+{"obj_label": "drive", "sub_label": "car", "predicate": "ReceivesAction"}
+{"obj_label": "write", "sub_label": "book", "predicate": "ReceivesAction"}
+{"obj_label": "eat", "sub_label": "apple", "predicate": "ReceivesAction"}
+{"obj_label": "ride", "sub_label": "horse", "predicate": "ReceivesAction"}
+{"obj_label": "wear on foot", "sub_label": "shoe", "predicate": "ReceivesAction"}
+{"obj_label": "use in war", "sub_label": "tank", "predicate": "ReceivesAction"}
+{"obj_label": "recycle", "sub_label": "some plastic", "predicate": "ReceivesAction"}
+{"obj_label": "propel by wind", "sub_label": "sailboat", "predicate": "ReceivesAction"}
+{"obj_label": "write", "sub_label": "pen", "predicate": "UsedFor"}
+{"obj_label": "communicate", "sub_label": "telephone", "predicate": "UsedFor"}
+{"obj_label": "open lock", "sub_label": "key", "predicate": "UsedFor"}
+{"obj_label": "take picture", "sub_label": "camera", "predicate": "UsedFor"}
+{"obj_label": "eat", "sub_label": "spoon", "predicate": "UsedFor"}
+{"obj_label": "work", "sub_label": "computer", "predicate": "UsedFor"}
+{"obj_label": "drive nail", "sub_label": "hammer", "predicate": "UsedFor"}
+{"obj_label": "type", "sub_label": "keyboard", "predicate": "UsedFor"}
+{"obj_label": "drink", "sub_label": "water", "predicate": "UsedFor"}
+{"obj_label": "catch fish", "sub_label": "net", "predicate": "UsedFor"}
+{"obj_label": "swim", "sub_label": "pool", "predicate": "UsedFor"}
+{"obj_label": "fly", "sub_label": "wing", "predicate": "UsedFor"}
+{"obj_label": "wait for bus", "sub_label": "bus stop", "predicate": "UsedFor"}
+{"obj_label": "learn", "sub_label": "book", "predicate": "UsedFor"}
+{"obj_label": "cut wood", "sub_label": "see", "predicate": "UsedFor"}
+{"obj_label": "have sex", "sub_label": "bed", "predicate": "UsedFor"}
+{"obj_label": "start fire", "sub_label": "match", "predicate": "UsedFor"}
+{"obj_label": "cover floor", "sub_label": "carpet", "predicate": "UsedFor"}
+{"obj_label": "read", "sub_label": "book", "predicate": "UsedFor"}
+{"obj_label": "clean", "sub_label": "cloth", "predicate": "UsedFor"}
+{"obj_label": "make clothe", "sub_label": "cloth", "predicate": "UsedFor"}
+{"obj_label": "cook", "sub_label": "pan", "predicate": "UsedFor"}
+{"obj_label": "travel on water", "sub_label": "boat", "predicate": "UsedFor"}
+{"obj_label": "ride horse", "sub_label": "saddle", "predicate": "UsedFor"}
+{"obj_label": "study", "sub_label": "book", "predicate": "UsedFor"}
+{"obj_label": "eat", "sub_label": "fruit", "predicate": "UsedFor"}
+{"obj_label": "sing", "sub_label": "voice", "predicate": "UsedFor"}
+{"obj_label": "play game", "sub_label": "computer", "predicate": "UsedFor"}
+{"obj_label": "open door", "sub_label": "key", "predicate": "UsedFor"}
+{"obj_label": "drink", "sub_label": "glass", "predicate": "UsedFor"}
+{"obj_label": "fun", "sub_label": "play sport", "predicate": "UsedFor"}
+{"obj_label": "exercise", "sub_label": "jump rope", "predicate": "UsedFor"}
+{"obj_label": "sew", "sub_label": "needle", "predicate": "UsedFor"}
+{"obj_label": "store bicycle", "sub_label": "bicycle storage area", "predicate": "UsedFor"}
+{"obj_label": "boil water", "sub_label": "kettle", "predicate": "UsedFor"}
+{"obj_label": "cut wood", "sub_label": "saw", "predicate": "UsedFor"}
+{"obj_label": "put thing on", "sub_label": "table", "predicate": "UsedFor"}
+{"obj_label": "kill", "sub_label": "weapon", "predicate": "UsedFor"}
+{"obj_label": "make music", "sub_label": "guitar", "predicate": "UsedFor"}
+{"obj_label": "shave", "sub_label": "double edge razor", "predicate": "UsedFor"}
+{"obj_label": "rest", "sub_label": "go to sleep", "predicate": "UsedFor"}
+{"obj_label": "play chess", "sub_label": "chess board", "predicate": "UsedFor"}
+{"obj_label": "park car", "sub_label": "park area", "predicate": "UsedFor"}
+{"obj_label": "ride", "sub_label": "horse", "predicate": "UsedFor"}
+{"obj_label": "learn", "sub_label": "school", "predicate": "UsedFor"}
+{"obj_label": "drink", "sub_label": "wine", "predicate": "UsedFor"}
+{"obj_label": "paint on", "sub_label": "canvas", "predicate": "UsedFor"}
+{"obj_label": "store clothe", "sub_label": "chest of drawer", "predicate": "UsedFor"}
+{"obj_label": "tighten bolt", "sub_label": "wrench", "predicate": "UsedFor"}
+{"obj_label": "hold tissue", "sub_label": "tissue holder", "predicate": "UsedFor"}
+{"obj_label": "write", "sub_label": "pencil", "predicate": "UsedFor"}
+{"obj_label": "pound nail", "sub_label": "hammer", "predicate": "UsedFor"}
+{"obj_label": "sail", "sub_label": "ocean", "predicate": "UsedFor"}
+{"obj_label": "store money", "sub_label": "bank", "predicate": "UsedFor"}
+{"obj_label": "write", "sub_label": "write instrument", "predicate": "UsedFor"}
+{"obj_label": "have drink", "sub_label": "pub", "predicate": "UsedFor"}
+{"obj_label": "eat", "sub_label": "meat", "predicate": "UsedFor"}
+{"obj_label": "sit", "sub_label": "chair", "predicate": "UsedFor"}
+{"obj_label": "cook", "sub_label": "fry pan", "predicate": "UsedFor"}
+{"obj_label": "sleep", "sub_label": "bed", "predicate": "UsedFor"}
+{"obj_label": "sleep", "sub_label": "blanket", "predicate": "UsedFor"}
+{"obj_label": "communication", "sub_label": "computer", "predicate": "UsedFor"}
+{"obj_label": "sit on", "sub_label": "bar stool", "predicate": "UsedFor"}
+{"obj_label": "research", "sub_label": "internet", "predicate": "UsedFor"}
+{"obj_label": "move air", "sub_label": "fan", "predicate": "UsedFor"}
+{"obj_label": "travel", "sub_label": "highway", "predicate": "UsedFor"}
+{"obj_label": "have fun", "sub_label": "play game", "predicate": "UsedFor"}
+{"obj_label": "bathe", "sub_label": "bathtub", "predicate": "UsedFor"}
+{"obj_label": "write on blackboard", "sub_label": "chalk", "predicate": "UsedFor"}
+{"obj_label": "walk on", "sub_label": "floor", "predicate": "UsedFor"}
+{"obj_label": "cut", "sub_label": "scissor", "predicate": "UsedFor"}
+{"obj_label": "clean", "sub_label": "soap", "predicate": "UsedFor"}
+{"obj_label": "eat", "sub_label": "food", "predicate": "UsedFor"}
+{"obj_label": "eat", "sub_label": "chopstick", "predicate": "UsedFor"}
+{"obj_label": "cut", "sub_label": "knife", "predicate": "UsedFor"}
+{"obj_label": "keep food cold", "sub_label": "refrigerator", "predicate": "UsedFor"}
+{"obj_label": "dance", "sub_label": "disco", "predicate": "UsedFor"}
+{"obj_label": "hold liquid", "sub_label": "flask", "predicate": "UsedFor"}
+{"obj_label": "write", "sub_label": "quill", "predicate": "UsedFor"}
+{"obj_label": "tell time", "sub_label": "wristwatch", "predicate": "UsedFor"}
+{"obj_label": "season food", "sub_label": "pepper and salt", "predicate": "UsedFor"}
+{"obj_label": "eat cereal", "sub_label": "cereal bowl", "predicate": "UsedFor"}
+{"obj_label": "read", "sub_label": "literature", "predicate": "UsedFor"}
+{"obj_label": "play", "sub_label": "stage", "predicate": "UsedFor"}
+{"obj_label": "keep animal warm", "sub_label": "fur", "predicate": "UsedFor"}
+{"obj_label": "play baseball", "sub_label": "baseball field", "predicate": "UsedFor"}
+{"obj_label": "cover pillow", "sub_label": "pillow case", "predicate": "UsedFor"}
+{"obj_label": "communication", "sub_label": "telephone", "predicate": "UsedFor"}
+{"obj_label": "play music", "sub_label": "violin", "predicate": "UsedFor"}
+{"obj_label": "melt ice", "sub_label": "salt", "predicate": "UsedFor"}
+{"obj_label": "see", "sub_label": "eye", "predicate": "UsedFor"}
+{"obj_label": "transportation", "sub_label": "bicycle", "predicate": "UsedFor"}
+{"obj_label": "protect foot", "sub_label": "shoe", "predicate": "UsedFor"}
+{"obj_label": "make paper airplane", "sub_label": "paper", "predicate": "UsedFor"}
+{"obj_label": "kill someone", "sub_label": "gun", "predicate": "UsedFor"}
+{"obj_label": "cook food", "sub_label": "kitchen", "predicate": "UsedFor"}
+{"obj_label": "live in", "sub_label": "condominium", "predicate": "UsedFor"}
+{"obj_label": "drink from", "sub_label": "cup", "predicate": "UsedFor"}
+{"obj_label": "circulate air", "sub_label": "fan", "predicate": "UsedFor"}
+{"obj_label": "blow thing up", "sub_label": "bomb", "predicate": "UsedFor"}
+{"obj_label": "smoke tobacco", "sub_label": "pipe", "predicate": "UsedFor"}
+{"obj_label": "fix thing", "sub_label": "tool", "predicate": "UsedFor"}
+{"obj_label": "kill person", "sub_label": "bomb", "predicate": "UsedFor"}
+{"obj_label": "wash your hand", "sub_label": "soap", "predicate": "UsedFor"}
+{"obj_label": "sleep", "sub_label": "master bedroom", "predicate": "UsedFor"}
+{"obj_label": "buy ticket", "sub_label": "ticket office", "predicate": "UsedFor"}
+{"obj_label": "buy book", "sub_label": "bookstore", "predicate": "UsedFor"}
+{"obj_label": "eat", "sub_label": "diner", "predicate": "UsedFor"}
+{"obj_label": "eat", "sub_label": "have food", "predicate": "UsedFor"}
+{"obj_label": "chew food", "sub_label": "tooth", "predicate": "UsedFor"}
+{"obj_label": "teach", "sub_label": "classroom", "predicate": "UsedFor"}
+{"obj_label": "travel", "sub_label": "airplane", "predicate": "UsedFor"}
+{"obj_label": "store clothe", "sub_label": "dresser", "predicate": "UsedFor"}
+{"obj_label": "tickle someone", "sub_label": "feather", "predicate": "UsedFor"}
+{"obj_label": "look outside", "sub_label": "window", "predicate": "UsedFor"}
+{"obj_label": "play music", "sub_label": "bagpipe", "predicate": "UsedFor"}
+{"obj_label": "preach", "sub_label": "pulpit", "predicate": "UsedFor"}
+{"obj_label": "cover bed", "sub_label": "sheet", "predicate": "UsedFor"}
+{"obj_label": "eat", "sub_label": "bread", "predicate": "UsedFor"}
+{"obj_label": "hold music", "sub_label": "music stand", "predicate": "UsedFor"}
+{"obj_label": "shave", "sub_label": "razor", "predicate": "UsedFor"}
+{"obj_label": "throw", "sub_label": "ball", "predicate": "UsedFor"}
+{"obj_label": "hear", "sub_label": "ear", "predicate": "UsedFor"}
+{"obj_label": "eat", "sub_label": "fork", "predicate": "UsedFor"}
+{"obj_label": "write something on paper", "sub_label": "pencil", "predicate": "UsedFor"}
+{"obj_label": "do research", "sub_label": "library", "predicate": "UsedFor"}
+{"obj_label": "wash yourself", "sub_label": "soap", "predicate": "UsedFor"}
+{"obj_label": "fun", "sub_label": "go to party", "predicate": "UsedFor"}
+{"obj_label": "cross river", "sub_label": "bridge", "predicate": "UsedFor"}
+{"obj_label": "walk", "sub_label": "floor", "predicate": "UsedFor"}
+{"obj_label": "prevent pregnancy", "sub_label": "contraceptive", "predicate": "UsedFor"}
+{"obj_label": "hang towel", "sub_label": "towel bar", "predicate": "UsedFor"}
+{"obj_label": "type letter", "sub_label": "typewriter", "predicate": "UsedFor"}
+{"obj_label": "eat spanish food", "sub_label": "spanish restaurant", "predicate": "UsedFor"}
+{"obj_label": "climb", "sub_label": "hill", "predicate": "UsedFor"}
+{"obj_label": "style hair", "sub_label": "comb", "predicate": "UsedFor"}
+{"obj_label": "keep your shoe on", "sub_label": "tie your shoelace", "predicate": "UsedFor"}
+{"obj_label": "save money", "sub_label": "piggy bank", "predicate": "UsedFor"}
+{"obj_label": "solve problem", "sub_label": "think", "predicate": "UsedFor"}
+{"obj_label": "sleep on", "sub_label": "sofa bed", "predicate": "UsedFor"}
+{"obj_label": "hold towel", "sub_label": "towel rack", "predicate": "UsedFor"}
+{"obj_label": "live in", "sub_label": "brownstone", "predicate": "UsedFor"}
+{"obj_label": "eat food", "sub_label": "fork", "predicate": "UsedFor"}
+{"obj_label": "sweep", "sub_label": "broom", "predicate": "UsedFor"}
+{"obj_label": "stab", "sub_label": "knife", "predicate": "UsedFor"}
+{"obj_label": "play baseball", "sub_label": "baseball", "predicate": "UsedFor"}
+{"obj_label": "drink", "sub_label": "cup", "predicate": "UsedFor"}
+{"obj_label": "cook", "sub_label": "pot", "predicate": "UsedFor"}
+{"obj_label": "companionship", "sub_label": "dog", "predicate": "UsedFor"}
+{"obj_label": "dig hole", "sub_label": "shovel", "predicate": "UsedFor"}
+{"obj_label": "clean something", "sub_label": "soap", "predicate": "UsedFor"}
+{"obj_label": "store liquid", "sub_label": "bottle", "predicate": "UsedFor"}
+{"obj_label": "clean your tooth", "sub_label": "toothbrush", "predicate": "UsedFor"}
+{"obj_label": "keep key together", "sub_label": "key chain", "predicate": "UsedFor"}
+{"obj_label": "eat out", "sub_label": "restaurant", "predicate": "UsedFor"}
+{"obj_label": "competition", "sub_label": "play sport", "predicate": "UsedFor"}
+{"obj_label": "climb", "sub_label": "stair", "predicate": "UsedFor"}
+{"obj_label": "park car", "sub_label": "park lot", "predicate": "UsedFor"}
+{"obj_label": "fence in property", "sub_label": "wood", "predicate": "UsedFor"}
+{"obj_label": "get out of heat", "sub_label": "pool", "predicate": "UsedFor"}
+{"obj_label": "cover body", "sub_label": "skin", "predicate": "UsedFor"}

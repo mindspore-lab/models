@@ -1,0 +1,22 @@
+{"obj_label": "computer", "sub_label": "keyboard", "predicate": "PartOf"}
+{"obj_label": "foot", "sub_label": "toe", "predicate": "PartOf"}
+{"obj_label": "hand", "sub_label": "finger", "predicate": "PartOf"}
+{"obj_label": "book", "sub_label": "page", "predicate": "PartOf"}
+{"obj_label": "car", "sub_label": "tire", "predicate": "PartOf"}
+{"obj_label": "library", "sub_label": "book", "predicate": "PartOf"}
+{"obj_label": "computer", "sub_label": "cpu", "predicate": "PartOf"}
+{"obj_label": "face", "sub_label": "nose", "predicate": "PartOf"}
+{"obj_label": "eye", "sub_label": "cornea", "predicate": "PartOf"}
+{"obj_label": "body", "sub_label": "arm", "predicate": "PartOf"}
+{"obj_label": "computer", "sub_label": "monitor", "predicate": "PartOf"}
+{"obj_label": "usenet", "sub_label": "usenet newsgroup", "predicate": "PartOf"}
+{"obj_label": "life", "sub_label": "death", "predicate": "PartOf"}
+{"obj_label": "car", "sub_label": "wheel", "predicate": "PartOf"}
+{"obj_label": "universe", "sub_label": "galaxy", "predicate": "PartOf"}
+{"obj_label": "society", "sub_label": "person", "predicate": "PartOf"}
+{"obj_label": "family", "sub_label": "son", "predicate": "PartOf"}
+{"obj_label": "tree", "sub_label": "leaf", "predicate": "PartOf"}
+{"obj_label": "religion", "sub_label": "god", "predicate": "PartOf"}
+{"obj_label": "gun", "sub_label": "trigger", "predicate": "PartOf"}
+{"obj_label": "house", "sub_label": "door", "predicate": "PartOf"}
+{"obj_label": "hand", "sub_label": "palm", "predicate": "PartOf"}
