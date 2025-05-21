@@ -1,0 +1,6 @@
+numpy
+pandas
+scikit-learn
+tifffile
+tqdm
+mindspore-2.5.0
