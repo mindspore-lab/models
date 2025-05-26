@@ -1,0 +1,7 @@
+transformers
+numpy
+pulp
+attrs
+datasets
+pytest-shutil
+GPUtil
