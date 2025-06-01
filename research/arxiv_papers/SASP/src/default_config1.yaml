@@ -1,0 +1,41 @@
+enable_modelarts: False
+data_url: ""
+train_url: ""
+checkpoint_url: ""
+data_path: ""
+output_path: ""
+load_path: ""
+device_target: GPU
+enable_profiling: False
+
+# ---------------------
+# Training options
+# ---------------------
+epoch_size: 60
+save_checkpoint: True
+keep_checkpoint_max: 10
+save_checkpoint_epochs: 2
+save_checkpoint_steps: 1875
+ckpt_path: ""
+lr: 1
+momentum: 0.9
+cub_root: "/tmp/code/Bird/CUB200-2011"
+batch_size: 64
+buffer_size: 1000
+dataset_name: mnist
+
+# ---------------------
+# Model Description
+# ---------------------
+model_name: FineB
+image_height: 224
+image_width: 224
+num_classes: 7
+
+# ---------------------
+# Extra Options
+# ---------------------
+seed: 42
+weight_decay: 0.0001
+
+device_num: 1
