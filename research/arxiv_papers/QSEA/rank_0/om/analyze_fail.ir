@@ -1,0 +1,301 @@
+# ===============================================================================================
+# The following shows the last analyze fail log message.
+# ===============================================================================================
+
+----------------------------------------------------
+- Caught exception:
+----------------------------------------------------
+External object has no attribute required_params
+
+----------------------------------------------------
+- C++ Call Stack: (For framework developers)
+----------------------------------------------------
+mindspore\ccsrc\pipeline\jit\ps\static_analysis\prim.cc:1968 mindspore::abstract::`anonymous-namespace'::GetEvaluatedValueForNameSpaceString
+
+----------------------------------------------------
+- The Traceback of Net Construct Code:
+----------------------------------------------------
+# 0 In file E:\博一\2023-3\PYcharm\Qhssl\test.py:103, 25~45
+        if x.shape[-1] < self.required_params:
+                         ^~~~~~~~~~~~~~~~~~~~
+
+# ===============================================================================================
+# The following shows the IR when the function graphs evaluation fails to help locate the problem.
+# You can search the last ------------------------> to the node which is evaluated failure.
+# Refer to https://www.mindspore.cn/search?inputValue=analyze_fail.ir to get more instructions.
+# ===============================================================================================
+
+# IR entry: @__main___QuantumLayer_construct_15
+# Total subgraphs: 0
+
+# Total params: 1
+# Params:
+%para1_x: <null>
+
+subgraph attr:
+subgraph instance: __main___QuantumLayer_construct_15 : 000001BF84C9C2B0
+# In file E:\博一\2023-3\PYcharm\Qhssl\test.py:97~111, 4~56/    def construct(self, x):/
+subgraph @__main___QuantumLayer_construct_15() {
+  %0(CNode_17) = resolve(NameSpace[Entry: '__main__.QuantumLayer.construct'], __main__.QuantumLayer.construct, (InterpretedObject[PythonObject(type: <class 'numpy.ndarray'>, value: [[ 0.3648535  -0.11072441  0.1472168   0.65172666  0.6389064 ]
+ [-0.42498195 -0.5473982  -0.23277797  0.65509456  0.1908171 ]
+ [ 0.15320803 -0.00152984  0.54371095 -0.5732023   0.5935843 ]
+ [ 0.28413182  0.2786671  -0.3788776  -0.8016647  -0.23537032]
+ [-0.00851941 -0.60386944  0.5116728  -0.375664    0.48201308]
+ [-0.35228837  0.10050116 -0.03996349 -0.20674506 -0.90633976]
+ [ 0.3817302  -0.10352477  0.11811705  0.32243097 -0.85185164]
+ [-0.58833957 -0.2636474   0.29789025  0.46761352  0.5262562 ]
+ [ 0.69393265 -0.62961614  0.3086091  -0.15240988 -0.05977072]
+ [ 0.2675433   0.2612891   0.7142405   0.05833028 -0.58873314]
+ [ 0.22020344 -0.93286574  0.10238189 -0.04724914  0.26183444]
+ [ 0.10347108  0.26583144  0.14763626 -0.87640715 -0.35880557]
+ [-0.29138723 -0.38986033  0.43606496  0.749455    0.10614657]
+ [ 0.23230058 -0.29945582  0.5592651  -0.67050755  0.30660203]
+ [ 0.8948335   0.19034407  0.304913    0.17489909 -0.19869736]
+ [-0.305379    0.31519175  0.8810841  -0.10540945 -0.14134191]
+ [ 0.5500695   0.3577226   0.60438657 -0.35489315 -0.2796887 ]
+ [ 0.9190958  -0.27209404  0.16663444  0.12582347  0.19398205]
+ [ 0.22730511  0.4612962   0.02036561 -0.59323645 -0.6190266 ]
+ [ 0.03748806 -0.44592422  0.45200843  0.72012943  0.27721533]
+ [-0.5046126   0.31276587  0.34726575  0.07651206  0.7218698 ]
+ [-0.2827436  -0.6341924   0.15977141 -0.20983225  0.6695518 ]
+ [ 0.57872844 -0.4389917   0.03173807 -0.5139672   0.4551813 ]
+ [ 0.69711465  0.5570458   0.44944006 -0.03161495 -0.02711422]
+ [ 0.00392287 -0.44684184 -0.6367097   0.13405493  0.61396015]
+ [-0.03988709 -0.50513226 -0.19607262  0.83699244  0.06518863]
+ [-0.6123258  -0.22478612 -0.7342617   0.13047187  0.13551772]
+ [ 0.48930222  0.09280804 -0.01800481 -0.859083   -0.11671446]
+ [ 0.05257896 -0.46963748  0.7467617  -0.32538956 -0.3363699 ]
+ [ 0.42786166 -0.0405944   0.83774734 -0.20692942 -0.26579362]
+ [-0.58008265  0.69958234  0.20295547  0.28506458  0.22723539]
+ [-0.22304013 -0.21451737  0.5599682  -0.09710318 -0.76239234]])]))
+      : (<External, NoShape>, <External, NoShape>, <Tuple[External], TupleShape(NoShape)>) -> (<Func, NoShape>)
+      #scope: (Default)
+
+#------------------------> 0
+  %1(CNode_18) = %0(%para1_x)
+      : (<External, NoShape>) -> (<null>)
+      #scope: (Default)
+  Return(%1)
+      : (<null>)
+      #scope: (Default)
+      # In file E:\博一\2023-3\PYcharm\Qhssl\test.py:99~100, 8~27/        if isinstance(x, ms.Tensor):/
+}
+# Order:
+#   1: @__main___QuantumLayer_construct_15:CNode_17{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> Entry: '__main__.QuantumLayer.construct', [2]: ValueNode<Symbol> __main__.QuantumLayer.construct, [3]: ValueNode<ValueTuple> (PythonObject(type: <class 'numpy.ndarray'>, value: [[ 0.3648535  -0.11072441  0.1472168   0.65172666  0.6389064 ]
+ [-0.42498195 -0.5473982  -0.23277797  0.65509456  0.1908171 ]
+ [ 0.15320803 -0.00152984  0.54371095 -0.5732023   0.5935843 ]
+ [ 0.28413182  0.2786671  -0.3788776  -0.8016647  -0.23537032]
+ [-0.00851941 -0.60386944  0.5116728  -0.375664    0.48201308]
+ [-0.35228837  0.10050116 -0.03996349 -0.20674506 -0.90633976]
+ [ 0.3817302  -0.10352477  0.11811705  0.32243097 -0.85185164]
+ [-0.58833957 -0.2636474   0.29789025  0.46761352  0.5262562 ]
+ [ 0.69393265 -0.62961614  0.3086091  -0.15240988 -0.05977072]
+ [ 0.2675433   0.2612891   0.7142405   0.05833028 -0.58873314]
+ [ 0.22020344 -0.93286574  0.10238189 -0.04724914  0.26183444]
+ [ 0.10347108  0.26583144  0.14763626 -0.87640715 -0.35880557]
+ [-0.29138723 -0.38986033  0.43606496  0.749455    0.10614657]
+ [ 0.23230058 -0.29945582  0.5592651  -0.67050755  0.30660203]
+ [ 0.8948335   0.19034407  0.304913    0.17489909 -0.19869736]
+ [-0.305379    0.31519175  0.8810841  -0.10540945 -0.14134191]
+ [ 0.5500695   0.3577226   0.60438657 -0.35489315 -0.2796887 ]
+ [ 0.9190958  -0.27209404  0.16663444  0.12582347  0.19398205]
+ [ 0.22730511  0.4612962   0.02036561 -0.59323645 -0.6190266 ]
+ [ 0.03748806 -0.44592422  0.45200843  0.72012943  0.27721533]
+ [-0.5046126   0.31276587  0.34726575  0.07651206  0.7218698 ]
+ [-0.2827436  -0.6341924   0.15977141 -0.20983225  0.6695518 ]
+ [ 0.57872844 -0.4389917   0.03173807 -0.5139672   0.4551813 ]
+ [ 0.69711465  0.5570458   0.44944006 -0.03161495 -0.02711422]
+ [ 0.00392287 -0.44684184 -0.6367097   0.13405493  0.61396015]
+ [-0.03988709 -0.50513226 -0.19607262  0.83699244  0.06518863]
+ [-0.6123258  -0.22478612 -0.7342617   0.13047187  0.13551772]
+ [ 0.48930222  0.09280804 -0.01800481 -0.859083   -0.11671446]
+ [ 0.05257896 -0.46963748  0.7467617  -0.32538956 -0.3363699 ]
+ [ 0.42786166 -0.0405944   0.83774734 -0.20692942 -0.26579362]
+ [-0.58008265  0.69958234  0.20295547  0.28506458  0.22723539]
+ [-0.22304013 -0.21451737  0.5599682  -0.09710318 -0.76239234]]))}
+#   2: @__main___QuantumLayer_construct_15:CNode_18{[0]: CNode_17, [1]: param_x}
+#   3: @__main___QuantumLayer_construct_15:CNode_19{[0]: ValueNode<Primitive> Return, [1]: CNode_18}
+
+
+subgraph attr:
+subgraph instance: __main___QuantumLayer_construct_15 : 000001BF84C9C840
+# In file E:\博一\2023-3\PYcharm\Qhssl\test.py:97~111, 4~56/    def construct(self, x):/
+subgraph @__main___QuantumLayer_construct_15(%para0_x) {
+  %0(CNode_20) = resolve(NameSpace[SymbolStr: 'Namespace:__main__'], isinstance)
+      : (<External, NoShape>, <External, NoShape>) -> (<Func, NoShape>)
+      #scope: (Default)
+      # In file E:\博一\2023-3\PYcharm\Qhssl\test.py:99, 11~21/        if isinstance(x, ms.Tensor):/
+  %1(CNode_21) = resolve(NameSpace[CommonOPS: 'Namespace:mindspore._extends.parse.trope'], make_dict)
+      : (<External, NoShape>, <External, NoShape>) -> (<Func, NoShape>)
+      #scope: (Default)
+      # In file E:\博一\2023-3\PYcharm\Qhssl\test.py:99, 25~34/        if isinstance(x, ms.Tensor):/
+  %2(CNode_22) = resolve(NameSpace[CommonOPS: 'Namespace:mindspore._extends.parse.trope'], MakeTuple)
+      : (<External, NoShape>, <External, NoShape>) -> (<Func, NoShape>)
+      #scope: (Default)
+      # In file E:\博一\2023-3\PYcharm\Qhssl\test.py:99, 25~34/        if isinstance(x, ms.Tensor):/
+  %3(CNode_23) = %2()
+      #scope: (Default)
+      # In file E:\博一\2023-3\PYcharm\Qhssl\test.py:99, 25~34/        if isinstance(x, ms.Tensor):/
+  %4(CNode_24) = resolve(NameSpace[CommonOPS: 'Namespace:mindspore._extends.parse.trope'], MakeTuple)
+      : (<External, NoShape>, <External, NoShape>) -> (<Func, NoShape>)
+      #scope: (Default)
+      # In file E:\博一\2023-3\PYcharm\Qhssl\test.py:99, 25~34/        if isinstance(x, ms.Tensor):/
+  %5(CNode_25) = %4()
+      #scope: (Default)
+      # In file E:\博一\2023-3\PYcharm\Qhssl\test.py:99, 25~34/        if isinstance(x, ms.Tensor):/
+  %6(CNode_26) = %1(%3, %5)
+      : (<Tuple[], TupleShape()>, <Tuple[], TupleShape()>) -> (<Dictionary[[],[]], NoShape>)
+      #scope: (Default)
+      # In file E:\博一\2023-3\PYcharm\Qhssl\test.py:99, 25~34/        if isinstance(x, ms.Tensor):/
+  %7(CNode_27) = PyInterpret(Script['ms.Tensor'], InterpretedObject[PythonObject(type: <class 'dict'>, value: {'isinstance': <built-in function isinstance>, 'ms': <module 'mindspore' from 'D:\\Anaconda3\\lib\\site-packages\\mindspore\\__init__.py'>})], %6) primitive_attrs: {side_effect_io: Bool(1)}
+      : (<String, NoShape>, <External, NoShape>, <Dictionary[[],[]], NoShape>) -> (<TypeType, NoShape>)
+      #scope: (Default)
+      # In file E:\博一\2023-3\PYcharm\Qhssl\test.py:99, 25~27/        if isinstance(x, ms.Tensor):/
+  %8(CNode_28) = %0(%para0_x, %7)
+      : (<External, NoShape>, <TypeType, NoShape>) -> (<Bool, NoShape>)
+      #scope: (Default)
+      # In file E:\博一\2023-3\PYcharm\Qhssl\test.py:99, 11~35/        if isinstance(x, ms.Tensor):/
+  %9(CNode_29) = Cond(%8, Bool(0))
+      : (<Bool, NoShape>, <Bool, NoShape>) -> (<Bool, NoShape>)
+      #scope: (Default)
+      # In file E:\博一\2023-3\PYcharm\Qhssl\test.py:99~100, 8~27/        if isinstance(x, ms.Tensor):/
+  %10(CNode_30) = Switch(%9, @__main___QuantumLayer_construct_31, @__main___QuantumLayer_construct_32)
+      : (<Bool, NoShape>, <Func, NoShape>, <Func, NoShape>) -> (<Func, NoShape>)
+      #scope: (Default)
+      # In file E:\博一\2023-3\PYcharm\Qhssl\test.py:99~100, 8~27/        if isinstance(x, ms.Tensor):/
+  %11(CNode_33) = %10()
+      #scope: (Default)
+      # In file E:\博一\2023-3\PYcharm\Qhssl\test.py:99~100, 8~27/        if isinstance(x, ms.Tensor):/
+
+#------------------------> 1
+  %12(CNode_34) = call @__main___QuantumLayer_construct_16(%11)
+      : (<External, NoShape>) -> (<null>)
+      #scope: (Default)
+  Return(%12)
+      : (<null>)
+      #scope: (Default)
+      # In file E:\博一\2023-3\PYcharm\Qhssl\test.py:99~100, 8~27/        if isinstance(x, ms.Tensor):/
+}
+# Order:
+#   1: @__main___QuantumLayer_construct_15:CNode_20{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> SymbolStr: 'Namespace:__main__', [2]: ValueNode<Symbol> isinstance}
+#   2: @__main___QuantumLayer_construct_15:CNode_27{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> SymbolStr: 'Namespace:__main__', [2]: ValueNode<Symbol> ms}
+#   3: @__main___QuantumLayer_construct_15:CNode_22{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> CommonOPS: 'Namespace:mindspore._extends.parse.trope', [2]: ValueNode<Symbol> MakeTuple}
+#   4: @__main___QuantumLayer_construct_15:CNode_23{[0]: CNode_22}
+#   5: @__main___QuantumLayer_construct_15:CNode_24{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> CommonOPS: 'Namespace:mindspore._extends.parse.trope', [2]: ValueNode<Symbol> MakeTuple}
+#   6: @__main___QuantumLayer_construct_15:CNode_25{[0]: CNode_24}
+#   7: @__main___QuantumLayer_construct_15:CNode_21{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> CommonOPS: 'Namespace:mindspore._extends.parse.trope', [2]: ValueNode<Symbol> make_dict}
+#   8: @__main___QuantumLayer_construct_15:CNode_26{[0]: CNode_21, [1]: CNode_23, [2]: CNode_25}
+#   9: @__main___QuantumLayer_construct_15:CNode_27{[0]: ValueNode<Primitive> PyInterpret, [1]: ValueNode<Script> 'ms.Tensor', [2]: ValueNode<InterpretedObject> PythonObject(type: <class 'dict'>, value: {'isinstance': <built-in function isinstance>, 'ms': <module 'mindspore' from 'D:\\Anaconda3\\lib\\site-packages\\mindspore\\__init__.py'>}), [3]: CNode_26}
+#  10: @__main___QuantumLayer_construct_15:CNode_35{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> CommonOPS: 'Namespace:mindspore._extends.parse.trope', [2]: ValueNode<Symbol> MakeTuple}
+#  12: @__main___QuantumLayer_construct_15:CNode_28{[0]: CNode_20, [1]: param_x, [2]: CNode_27}
+#  13: @__main___QuantumLayer_construct_15:CNode_29{[0]: ValueNode<Primitive> Cond, [1]: CNode_28, [2]: ValueNode<BoolImm> false}
+#  14: @__main___QuantumLayer_construct_15:CNode_30{[0]: ValueNode<Primitive> Switch, [1]: CNode_29, [2]: ValueNode<FuncGraph> __main___QuantumLayer_construct_31, [3]: ValueNode<FuncGraph> __main___QuantumLayer_construct_32}
+#  15: @__main___QuantumLayer_construct_15:CNode_33{[0]: CNode_30}
+#  16: @__main___QuantumLayer_construct_15:CNode_34{[0]: ValueNode<FuncGraph> __main___QuantumLayer_construct_16, [1]: CNode_33}
+#  17: @__main___QuantumLayer_construct_15:CNode_19{[0]: ValueNode<Primitive> Return, [1]: CNode_34}
+#  18: @__main___QuantumLayer_construct_15:CNode_36{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> SymbolStr: 'Namespace:__main__', [2]: ValueNode<Symbol> print}
+#  19: @__main___QuantumLayer_construct_15:CNode_37{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> ClassMember: 'Namespace:__main__..<QuantumLayer::1922012087696>', [2]: ValueNode<Symbol> required_params}
+#  20: @__main___QuantumLayer_construct_15:CNode_38{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> SymbolStr: 'Namespace:__main__', [2]: ValueNode<Symbol> np}
+#  21: @__main___QuantumLayer_construct_15:CNode_39{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> ClassMember: 'Namespace:__main__..<QuantumLayer::1922012087696>', [2]: ValueNode<Symbol> grad_ops}
+
+
+subgraph attr:
+after_block: 1
+subgraph instance: __main___QuantumLayer_construct_16 : 000001BF84C9AC70
+# In file E:\博一\2023-3\PYcharm\Qhssl\test.py:97~111, 4~56/    def construct(self, x):/
+subgraph @__main___QuantumLayer_construct_16 parent: [subgraph @__main___QuantumLayer_construct_15](%para0_phi_x) {
+  %0(CNode_36) = resolve(NameSpace[SymbolStr: 'Namespace:__main__'], print)
+      : (<External, NoShape>, <External, NoShape>) -> (<Func, NoShape>)
+      #scope: (Default)
+      # In file E:\博一\2023-3\PYcharm\Qhssl\test.py:101, 8~13/        print("==============")/
+  %1(CNode_40) = %0("==============")
+      : (<String, NoShape>) -> (<null>)
+      #scope: (Default)
+      # In file E:\博一\2023-3\PYcharm\Qhssl\test.py:101, 8~31/        print("==============")/
+  %2(CNode_41) = StopGradient(%1)
+      : (<null>) -> (<null>)
+      #scope: (Default)
+      # In file E:\博一\2023-3\PYcharm\Qhssl\test.py:97~111, 4~56/    def construct(self, x):/
+  %3(CNode_42) = resolve(NameSpace[Ast: 'Namespace:mindspore._extends.parse.trope'], lt)
+      : (<External, NoShape>, <External, NoShape>) -> (<null>)
+      #scope: (Default)
+      # In file E:\博一\2023-3\PYcharm\Qhssl\test.py:103, 11~45/        if x.shape[-1] < self.required_params:/
+  %4(CNode_43) = resolve(NameSpace[CommonOPS: 'Namespace:mindspore._extends.parse.trope'], getitem)
+      : (<External, NoShape>, <External, NoShape>) -> (<null>)
+      #scope: (Default)
+      # In file E:\博一\2023-3\PYcharm\Qhssl\test.py:103, 11~22/        if x.shape[-1] < self.required_params:/
+  %5(CNode_44) = getattr(%para0_phi_x, "shape")
+      : (<null>, <String, NoShape>) -> (<null>)
+      #scope: (Default)
+      # In file E:\博一\2023-3\PYcharm\Qhssl\test.py:103, 11~18/        if x.shape[-1] < self.required_params:/
+  %6(CNode_45) = resolve(NameSpace[Ast: 'Namespace:mindspore._extends.parse.trope'], neg)
+      : (<External, NoShape>, <External, NoShape>) -> (<null>)
+      #scope: (Default)
+      # In file E:\博一\2023-3\PYcharm\Qhssl\test.py:103, 19~21/        if x.shape[-1] < self.required_params:/
+  %7(CNode_46) = %6(I64(1))
+      : (<Int64, NoShape>) -> (<null>)
+      #scope: (Default)
+      # In file E:\博一\2023-3\PYcharm\Qhssl\test.py:103, 19~21/        if x.shape[-1] < self.required_params:/
+  %8(CNode_47) = %4(%5, %7)
+      : (<null>, <null>) -> (<null>)
+      #scope: (Default)
+      # In file E:\博一\2023-3\PYcharm\Qhssl\test.py:103, 11~22/        if x.shape[-1] < self.required_params:/
+
+#------------------------> 2
+  %9(CNode_37) = resolve(NameSpace[ClassMember: 'Namespace:__main__..<QuantumLayer::1922012087696>'], required_params)
+      : (<External, NoShape>, <External, NoShape>) -> (<null>)
+      #scope: (Default)
+      # In file E:\博一\2023-3\PYcharm\Qhssl\test.py:103, 25~45/        if x.shape[-1] < self.required_params:/
+  %10(CNode_48) = %3(%8, %9)
+      : (<null>, <null>) -> (<null>)
+      #scope: (Default)
+      # In file E:\博一\2023-3\PYcharm\Qhssl\test.py:103, 11~45/        if x.shape[-1] < self.required_params:/
+  %11(CNode_49) = Cond(%10, Bool(0))
+      : (<null>, <null>) -> (<null>)
+      #scope: (Default)
+      # In file E:\博一\2023-3\PYcharm\Qhssl\test.py:103~104, 8~76/        if x.shape[-1] < self.required_params:/
+  %12(CNode_50) = Switch(%11, @__main___QuantumLayer_construct_51, @__main___QuantumLayer_construct_52)
+      : (<null>, <null>, <null>) -> (<null>)
+      #scope: (Default)
+      # In file E:\博一\2023-3\PYcharm\Qhssl\test.py:103~104, 8~76/        if x.shape[-1] < self.required_params:/
+  %13(CNode_53) = %12()
+      #scope: (Default)
+      # In file E:\博一\2023-3\PYcharm\Qhssl\test.py:103~104, 8~76/        if x.shape[-1] < self.required_params:/
+  %14(CNode_54) = Depend(%13, %2) primitive_attrs: {side_effect_propagate: I64(1)} cnode_attrs: {topo_sort_rhs_first: Bool(1)}
+      : (<null>, <null>) -> (<null>)
+      #scope: (Default)
+      # In file E:\博一\2023-3\PYcharm\Qhssl\test.py:103~104, 8~76/        if x.shape[-1] < self.required_params:/
+  Return(%14)
+      : (<null>)
+      #scope: (Default)
+      # In file E:\博一\2023-3\PYcharm\Qhssl\test.py:103~104, 8~76/        if x.shape[-1] < self.required_params:/
+}
+# Order:
+#   2: @__main___QuantumLayer_construct_16:CNode_55{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> CommonOPS: 'Namespace:mindspore._extends.parse.trope', [2]: ValueNode<Symbol> MakeTuple}
+#   4: @__main___QuantumLayer_construct_16:CNode_40{[0]: CNode_36, [1]: ValueNode<StringImm> ==============}
+#   5: @__main___QuantumLayer_construct_16:CNode_43{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> CommonOPS: 'Namespace:mindspore._extends.parse.trope', [2]: ValueNode<Symbol> getitem}
+#   6: @__main___QuantumLayer_construct_16:CNode_44{[0]: ValueNode<Primitive> getattr, [1]: param_phi_x, [2]: ValueNode<StringImm> shape}
+#   7: @__main___QuantumLayer_construct_16:CNode_45{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> Ast: 'Namespace:mindspore._extends.parse.trope', [2]: ValueNode<Symbol> neg}
+#   8: @__main___QuantumLayer_construct_16:CNode_46{[0]: CNode_45, [1]: ValueNode<Int64Imm> 1}
+#   9: @__main___QuantumLayer_construct_16:CNode_47{[0]: CNode_43, [1]: CNode_44, [2]: CNode_46}
+#  11: @__main___QuantumLayer_construct_16:CNode_42{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> Ast: 'Namespace:mindspore._extends.parse.trope', [2]: ValueNode<Symbol> lt}
+#  12: @__main___QuantumLayer_construct_16:CNode_48{[0]: CNode_42, [1]: CNode_47, [2]: CNode_37}
+#  13: @__main___QuantumLayer_construct_16:CNode_49{[0]: ValueNode<Primitive> Cond, [1]: CNode_48, [2]: ValueNode<BoolImm> false}
+#  14: @__main___QuantumLayer_construct_16:CNode_50{[0]: ValueNode<Primitive> Switch, [1]: CNode_49, [2]: ValueNode<FuncGraph> __main___QuantumLayer_construct_51, [3]: ValueNode<FuncGraph> __main___QuantumLayer_construct_52}
+#  15: @__main___QuantumLayer_construct_16:CNode_53{[0]: CNode_50}
+#  20: @__main___QuantumLayer_construct_16:CNode_56{[0]: ValueNode<Primitive> Return, [1]: CNode_54}
+#  21: @__main___QuantumLayer_construct_16:CNode_57{[0]: ValueNode<Primitive> MakeTuple, [1]: ValueNode<StringImm> __py_exec_index1_getattr__, [2]: ValueNode<StringImm> __py_exec_index2_getattr__}
+#  22: @__main___QuantumLayer_construct_16:CNode_58{[0]: ValueNode<Primitive> MakeTuple, [1]: param_phi_x, [2]: ValueNode<StringImm> shape}
+#  23: @__main___QuantumLayer_construct_16:CNode_59{[0]: ValueNode<Primitive> make_dict, [1]: CNode_57, [2]: CNode_58}
+
+
+# ===============================================================================================
+# The total of function graphs in evaluation stack: 3
+# ===============================================================================================
+
+
+# ===============================================================================================
+# The rest function graphs are the following:
+# ===============================================================================================
+No more function graphs.
+
