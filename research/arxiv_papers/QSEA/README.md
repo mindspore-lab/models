@@ -1,0 +1,1 @@
+The datasets used in this paper is MNIST(https://www.kaggle.com/datasets/hojjatk/mnist-dataset), Fashion-MNIST(https://github.com/fendy07/FMNIST-DeepLearning), CIFAR_10(https://www.cs.toronto.edu/~kriz/cifar.html).
