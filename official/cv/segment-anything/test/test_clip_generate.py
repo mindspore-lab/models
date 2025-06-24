@@ -23,7 +23,7 @@ input_images = processor.image_processor(load_image(filepath))
 input_images = input_images.astype(mindspore.float32)
 logits_per_image, _ = model(input_images, input_ids)
 
-probs = mint.softmax(logits_per_image, dim=-1).asnumpy()
+probs = mint.nn.functional.softmax(logits_per_image, dim=-1).asnumpy()
 
 print('logits', logits_per_image)
 print('prob', probs)
