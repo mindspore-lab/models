@@ -1,0 +1,161 @@
+{"obj_label": "write", "sub_label": "pen", "predicate": "UsedFor"}
+{"obj_label": "communicate", "sub_label": "telephone", "predicate": "UsedFor"}
+{"obj_label": "open lock", "sub_label": "key", "predicate": "UsedFor"}
+{"obj_label": "take picture", "sub_label": "camera", "predicate": "UsedFor"}
+{"obj_label": "eat", "sub_label": "spoon", "predicate": "UsedFor"}
+{"obj_label": "work", "sub_label": "computer", "predicate": "UsedFor"}
+{"obj_label": "drive nail", "sub_label": "hammer", "predicate": "UsedFor"}
+{"obj_label": "type", "sub_label": "keyboard", "predicate": "UsedFor"}
+{"obj_label": "drink", "sub_label": "water", "predicate": "UsedFor"}
+{"obj_label": "catch fish", "sub_label": "net", "predicate": "UsedFor"}
+{"obj_label": "swim", "sub_label": "pool", "predicate": "UsedFor"}
+{"obj_label": "fly", "sub_label": "wing", "predicate": "UsedFor"}
+{"obj_label": "wait for bus", "sub_label": "bus stop", "predicate": "UsedFor"}
+{"obj_label": "learn", "sub_label": "book", "predicate": "UsedFor"}
+{"obj_label": "cut wood", "sub_label": "see", "predicate": "UsedFor"}
+{"obj_label": "have sex", "sub_label": "bed", "predicate": "UsedFor"}
+{"obj_label": "start fire", "sub_label": "match", "predicate": "UsedFor"}
+{"obj_label": "cover floor", "sub_label": "carpet", "predicate": "UsedFor"}
+{"obj_label": "read", "sub_label": "book", "predicate": "UsedFor"}
+{"obj_label": "clean", "sub_label": "cloth", "predicate": "UsedFor"}
+{"obj_label": "make clothe", "sub_label": "cloth", "predicate": "UsedFor"}
+{"obj_label": "cook", "sub_label": "pan", "predicate": "UsedFor"}
+{"obj_label": "travel on water", "sub_label": "boat", "predicate": "UsedFor"}
+{"obj_label": "ride horse", "sub_label": "saddle", "predicate": "UsedFor"}
+{"obj_label": "study", "sub_label": "book", "predicate": "UsedFor"}
+{"obj_label": "eat", "sub_label": "fruit", "predicate": "UsedFor"}
+{"obj_label": "sing", "sub_label": "voice", "predicate": "UsedFor"}
+{"obj_label": "play game", "sub_label": "computer", "predicate": "UsedFor"}
+{"obj_label": "open door", "sub_label": "key", "predicate": "UsedFor"}
+{"obj_label": "drink", "sub_label": "glass", "predicate": "UsedFor"}
+{"obj_label": "fun", "sub_label": "play sport", "predicate": "UsedFor"}
+{"obj_label": "exercise", "sub_label": "jump rope", "predicate": "UsedFor"}
+{"obj_label": "sew", "sub_label": "needle", "predicate": "UsedFor"}
+{"obj_label": "store bicycle", "sub_label": "bicycle storage area", "predicate": "UsedFor"}
+{"obj_label": "boil water", "sub_label": "kettle", "predicate": "UsedFor"}
+{"obj_label": "cut wood", "sub_label": "saw", "predicate": "UsedFor"}
+{"obj_label": "put thing on", "sub_label": "table", "predicate": "UsedFor"}
+{"obj_label": "kill", "sub_label": "weapon", "predicate": "UsedFor"}
+{"obj_label": "make music", "sub_label": "guitar", "predicate": "UsedFor"}
+{"obj_label": "shave", "sub_label": "double edge razor", "predicate": "UsedFor"}
+{"obj_label": "rest", "sub_label": "go to sleep", "predicate": "UsedFor"}
+{"obj_label": "play chess", "sub_label": "chess board", "predicate": "UsedFor"}
+{"obj_label": "park car", "sub_label": "park area", "predicate": "UsedFor"}
+{"obj_label": "ride", "sub_label": "horse", "predicate": "UsedFor"}
+{"obj_label": "learn", "sub_label": "school", "predicate": "UsedFor"}
+{"obj_label": "drink", "sub_label": "wine", "predicate": "UsedFor"}
+{"obj_label": "paint on", "sub_label": "canvas", "predicate": "UsedFor"}
+{"obj_label": "store clothe", "sub_label": "chest of drawer", "predicate": "UsedFor"}
+{"obj_label": "tighten bolt", "sub_label": "wrench", "predicate": "UsedFor"}
+{"obj_label": "hold tissue", "sub_label": "tissue holder", "predicate": "UsedFor"}
+{"obj_label": "write", "sub_label": "pencil", "predicate": "UsedFor"}
+{"obj_label": "pound nail", "sub_label": "hammer", "predicate": "UsedFor"}
+{"obj_label": "sail", "sub_label": "ocean", "predicate": "UsedFor"}
+{"obj_label": "store money", "sub_label": "bank", "predicate": "UsedFor"}
+{"obj_label": "write", "sub_label": "write instrument", "predicate": "UsedFor"}
+{"obj_label": "have drink", "sub_label": "pub", "predicate": "UsedFor"}
+{"obj_label": "eat", "sub_label": "meat", "predicate": "UsedFor"}
+{"obj_label": "sit", "sub_label": "chair", "predicate": "UsedFor"}
+{"obj_label": "cook", "sub_label": "fry pan", "predicate": "UsedFor"}
+{"obj_label": "sleep", "sub_label": "bed", "predicate": "UsedFor"}
+{"obj_label": "sleep", "sub_label": "blanket", "predicate": "UsedFor"}
+{"obj_label": "communication", "sub_label": "computer", "predicate": "UsedFor"}
+{"obj_label": "sit on", "sub_label": "bar stool", "predicate": "UsedFor"}
+{"obj_label": "research", "sub_label": "internet", "predicate": "UsedFor"}
+{"obj_label": "move air", "sub_label": "fan", "predicate": "UsedFor"}
+{"obj_label": "travel", "sub_label": "highway", "predicate": "UsedFor"}
+{"obj_label": "have fun", "sub_label": "play game", "predicate": "UsedFor"}
+{"obj_label": "bathe", "sub_label": "bathtub", "predicate": "UsedFor"}
+{"obj_label": "write on blackboard", "sub_label": "chalk", "predicate": "UsedFor"}
+{"obj_label": "walk on", "sub_label": "floor", "predicate": "UsedFor"}
+{"obj_label": "cut", "sub_label": "scissor", "predicate": "UsedFor"}
+{"obj_label": "clean", "sub_label": "soap", "predicate": "UsedFor"}
+{"obj_label": "eat", "sub_label": "food", "predicate": "UsedFor"}
+{"obj_label": "eat", "sub_label": "chopstick", "predicate": "UsedFor"}
+{"obj_label": "cut", "sub_label": "knife", "predicate": "UsedFor"}
+{"obj_label": "keep food cold", "sub_label": "refrigerator", "predicate": "UsedFor"}
+{"obj_label": "dance", "sub_label": "disco", "predicate": "UsedFor"}
+{"obj_label": "hold liquid", "sub_label": "flask", "predicate": "UsedFor"}
+{"obj_label": "write", "sub_label": "quill", "predicate": "UsedFor"}
+{"obj_label": "tell time", "sub_label": "wristwatch", "predicate": "UsedFor"}
+{"obj_label": "season food", "sub_label": "pepper and salt", "predicate": "UsedFor"}
+{"obj_label": "eat cereal", "sub_label": "cereal bowl", "predicate": "UsedFor"}
+{"obj_label": "read", "sub_label": "literature", "predicate": "UsedFor"}
+{"obj_label": "play", "sub_label": "stage", "predicate": "UsedFor"}
+{"obj_label": "keep animal warm", "sub_label": "fur", "predicate": "UsedFor"}
+{"obj_label": "play baseball", "sub_label": "baseball field", "predicate": "UsedFor"}
+{"obj_label": "cover pillow", "sub_label": "pillow case", "predicate": "UsedFor"}
+{"obj_label": "communication", "sub_label": "telephone", "predicate": "UsedFor"}
+{"obj_label": "play music", "sub_label": "violin", "predicate": "UsedFor"}
+{"obj_label": "melt ice", "sub_label": "salt", "predicate": "UsedFor"}
+{"obj_label": "see", "sub_label": "eye", "predicate": "UsedFor"}
+{"obj_label": "transportation", "sub_label": "bicycle", "predicate": "UsedFor"}
+{"obj_label": "protect foot", "sub_label": "shoe", "predicate": "UsedFor"}
+{"obj_label": "make paper airplane", "sub_label": "paper", "predicate": "UsedFor"}
+{"obj_label": "kill someone", "sub_label": "gun", "predicate": "UsedFor"}
+{"obj_label": "cook food", "sub_label": "kitchen", "predicate": "UsedFor"}
+{"obj_label": "live in", "sub_label": "condominium", "predicate": "UsedFor"}
+{"obj_label": "drink from", "sub_label": "cup", "predicate": "UsedFor"}
+{"obj_label": "circulate air", "sub_label": "fan", "predicate": "UsedFor"}
+{"obj_label": "blow thing up", "sub_label": "bomb", "predicate": "UsedFor"}
+{"obj_label": "smoke tobacco", "sub_label": "pipe", "predicate": "UsedFor"}
+{"obj_label": "fix thing", "sub_label": "tool", "predicate": "UsedFor"}
+{"obj_label": "kill person", "sub_label": "bomb", "predicate": "UsedFor"}
+{"obj_label": "wash your hand", "sub_label": "soap", "predicate": "UsedFor"}
+{"obj_label": "sleep", "sub_label": "master bedroom", "predicate": "UsedFor"}
+{"obj_label": "buy ticket", "sub_label": "ticket office", "predicate": "UsedFor"}
+{"obj_label": "buy book", "sub_label": "bookstore", "predicate": "UsedFor"}
+{"obj_label": "eat", "sub_label": "diner", "predicate": "UsedFor"}
+{"obj_label": "eat", "sub_label": "have food", "predicate": "UsedFor"}
+{"obj_label": "chew food", "sub_label": "tooth", "predicate": "UsedFor"}
+{"obj_label": "teach", "sub_label": "classroom", "predicate": "UsedFor"}
+{"obj_label": "travel", "sub_label": "airplane", "predicate": "UsedFor"}
+{"obj_label": "store clothe", "sub_label": "dresser", "predicate": "UsedFor"}
+{"obj_label": "tickle someone", "sub_label": "feather", "predicate": "UsedFor"}
+{"obj_label": "look outside", "sub_label": "window", "predicate": "UsedFor"}
+{"obj_label": "play music", "sub_label": "bagpipe", "predicate": "UsedFor"}
+{"obj_label": "preach", "sub_label": "pulpit", "predicate": "UsedFor"}
+{"obj_label": "cover bed", "sub_label": "sheet", "predicate": "UsedFor"}
+{"obj_label": "eat", "sub_label": "bread", "predicate": "UsedFor"}
+{"obj_label": "hold music", "sub_label": "music stand", "predicate": "UsedFor"}
+{"obj_label": "shave", "sub_label": "razor", "predicate": "UsedFor"}
+{"obj_label": "throw", "sub_label": "ball", "predicate": "UsedFor"}
+{"obj_label": "hear", "sub_label": "ear", "predicate": "UsedFor"}
+{"obj_label": "eat", "sub_label": "fork", "predicate": "UsedFor"}
+{"obj_label": "write something on paper", "sub_label": "pencil", "predicate": "UsedFor"}
+{"obj_label": "do research", "sub_label": "library", "predicate": "UsedFor"}
+{"obj_label": "wash yourself", "sub_label": "soap", "predicate": "UsedFor"}
+{"obj_label": "fun", "sub_label": "go to party", "predicate": "UsedFor"}
+{"obj_label": "cross river", "sub_label": "bridge", "predicate": "UsedFor"}
+{"obj_label": "walk", "sub_label": "floor", "predicate": "UsedFor"}
+{"obj_label": "prevent pregnancy", "sub_label": "contraceptive", "predicate": "UsedFor"}
+{"obj_label": "hang towel", "sub_label": "towel bar", "predicate": "UsedFor"}
+{"obj_label": "type letter", "sub_label": "typewriter", "predicate": "UsedFor"}
+{"obj_label": "eat spanish food", "sub_label": "spanish restaurant", "predicate": "UsedFor"}
+{"obj_label": "climb", "sub_label": "hill", "predicate": "UsedFor"}
+{"obj_label": "style hair", "sub_label": "comb", "predicate": "UsedFor"}
+{"obj_label": "keep your shoe on", "sub_label": "tie your shoelace", "predicate": "UsedFor"}
+{"obj_label": "save money", "sub_label": "piggy bank", "predicate": "UsedFor"}
+{"obj_label": "solve problem", "sub_label": "think", "predicate": "UsedFor"}
+{"obj_label": "sleep on", "sub_label": "sofa bed", "predicate": "UsedFor"}
+{"obj_label": "hold towel", "sub_label": "towel rack", "predicate": "UsedFor"}
+{"obj_label": "live in", "sub_label": "brownstone", "predicate": "UsedFor"}
+{"obj_label": "eat food", "sub_label": "fork", "predicate": "UsedFor"}
+{"obj_label": "sweep", "sub_label": "broom", "predicate": "UsedFor"}
+{"obj_label": "stab", "sub_label": "knife", "predicate": "UsedFor"}
+{"obj_label": "play baseball", "sub_label": "baseball", "predicate": "UsedFor"}
+{"obj_label": "drink", "sub_label": "cup", "predicate": "UsedFor"}
+{"obj_label": "cook", "sub_label": "pot", "predicate": "UsedFor"}
+{"obj_label": "companionship", "sub_label": "dog", "predicate": "UsedFor"}
+{"obj_label": "dig hole", "sub_label": "shovel", "predicate": "UsedFor"}
+{"obj_label": "clean something", "sub_label": "soap", "predicate": "UsedFor"}
+{"obj_label": "store liquid", "sub_label": "bottle", "predicate": "UsedFor"}
+{"obj_label": "clean your tooth", "sub_label": "toothbrush", "predicate": "UsedFor"}
+{"obj_label": "keep key together", "sub_label": "key chain", "predicate": "UsedFor"}
+{"obj_label": "eat out", "sub_label": "restaurant", "predicate": "UsedFor"}
+{"obj_label": "competition", "sub_label": "play sport", "predicate": "UsedFor"}
+{"obj_label": "climb", "sub_label": "stair", "predicate": "UsedFor"}
+{"obj_label": "park car", "sub_label": "park lot", "predicate": "UsedFor"}
+{"obj_label": "fence in property", "sub_label": "wood", "predicate": "UsedFor"}
+{"obj_label": "get out of heat", "sub_label": "pool", "predicate": "UsedFor"}
+{"obj_label": "cover body", "sub_label": "skin", "predicate": "UsedFor"}
