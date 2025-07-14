@@ -1,0 +1,10 @@
+{"obj_label": "paper", "sub_label": "money", "predicate": "MadeOf"}
+{"obj_label": "wood", "sub_label": "table", "predicate": "MadeOf"}
+{"obj_label": "flour", "sub_label": "cake", "predicate": "MadeOf"}
+{"obj_label": "wood", "sub_label": "stick", "predicate": "MadeOf"}
+{"obj_label": "leather", "sub_label": "boot", "predicate": "MadeOf"}
+{"obj_label": "glass", "sub_label": "cup", "predicate": "MadeOf"}
+{"obj_label": "wood", "sub_label": "chair", "predicate": "MadeOf"}
+{"obj_label": "plastic", "sub_label": "cup", "predicate": "MadeOf"}
+{"obj_label": "leather", "sub_label": "wallet", "predicate": "MadeOf"}
+{"obj_label": "seaweed", "sub_label": "seaweed soup", "predicate": "MadeOf"}

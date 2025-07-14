@@ -1,0 +1,15 @@
+{"obj_label": "bathe", "sub_label": "be dirty", "predicate": "CausesDesire"}
+{"obj_label": "go for swim", "sub_label": "be hot", "predicate": "CausesDesire"}
+{"obj_label": "study for subject", "sub_label": "test", "predicate": "CausesDesire"}
+{"obj_label": "go to work", "sub_label": "need money", "predicate": "CausesDesire"}
+{"obj_label": "sing", "sub_label": "happiness", "predicate": "CausesDesire"}
+{"obj_label": "have haircut", "sub_label": "have long hair", "predicate": "CausesDesire"}
+{"obj_label": "eat", "sub_label": "hunger", "predicate": "CausesDesire"}
+{"obj_label": "have haircut", "sub_label": "too long hair", "predicate": "CausesDesire"}
+{"obj_label": "forgive someone", "sub_label": "your love", "predicate": "CausesDesire"}
+{"obj_label": "urinate", "sub_label": "drink", "predicate": "CausesDesire"}
+{"obj_label": "play game", "sub_label": "boredom", "predicate": "CausesDesire"}
+{"obj_label": "conduct trial", "sub_label": "crime", "predicate": "CausesDesire"}
+{"obj_label": "serve justice", "sub_label": "crime", "predicate": "CausesDesire"}
+{"obj_label": "dance", "sub_label": "music", "predicate": "CausesDesire"}
+{"obj_label": "sleep", "sub_label": "book", "predicate": "CausesDesire"}
