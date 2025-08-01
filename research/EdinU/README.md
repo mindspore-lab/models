@@ -31,15 +31,14 @@ Here is the development plan of the project:
 
 </div>
 1.  Install requirements
-
 `conda env create -f requirements.yaml`
 
 ## 🚀 Getting Started
 
 ### Get Data + Tokenizers
 
-Navigate to the `scripts` directory.
-
+Create a `data` directory.
+Download data from https://huggingface.co/mxuax/Banyan_model_weight_data
 We support the following languages:
 
 - Afrikaans: af
@@ -68,6 +67,7 @@ Finally, to run the retrieval eval for English, we need to get the relevant data
 ### Checkpoints
 
 In this repo, we also released the Checkpoints for en, af and te. Other languages are coming soon.
+[For the Checkpoints]: https://huggingface.co/mxuax/Banyan_model_weight_data
 
 ## Intrinsic Evaluations 
 
