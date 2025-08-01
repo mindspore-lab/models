@@ -4,9 +4,9 @@ This is a **MindSpore** implementation of the ICML 2025 paper [Banyan: Improved 
 
 If you are just interested in the implementation of the model, it is defined in:
 
-- `src/models_ms.py` (contains the core Banyan code, migrated to MindSpore)
-- `src/funcs_ms.py` (contains the diagonal message passing functions)
-- `src/model_utils_ms.py` (contains helper functions for the running encoder portion of the model)
+- `src/models.py` (contains the core Banyan code, migrated to MindSpore)
+- `src/funcs.py` (contains the diagonal message passing functions)
+- `src/model_utils.py` (contains helper functions for the running encoder portion of the model)
 
 ## 📑 Development Plan
 
