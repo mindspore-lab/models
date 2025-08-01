@@ -37,8 +37,14 @@ Here is the development plan of the project:
 
 ### Get Data + Tokenizers
 
+To simply run the inference and evaluation
+
 Create a `data` directory.
+
 Download data from https://huggingface.co/mxuax/Banyan_model_weight_data
+
+For more data
+
 We support the following languages:
 
 - Afrikaans: af
