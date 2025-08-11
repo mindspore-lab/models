@@ -29,8 +29,18 @@ Here is the development plan of the project:
 
 ## 📦 Requirements
 
+<div align="center">
+
+| MindSpore | Ascend Driver |  Firmware      | CANN toolkit/kernel |
+|:---------:|:-------------:|:--------------:|:-------------------:|
+|   2.6.0   |  24.1.RC3     | 7.5.T11.0.B088 |       8.1.RC1       |
+
 </div>
-1.  Install requirements
+
+1. Install
+   [CANN 8.1.RC1](https://www.hiascend.com/developer/download/community/result?module=cann&cann=8.1.RC1)
+   and MindSpore according to the [official instructions](https://www.mindspore.cn/install).
+2. Install requirements
 `conda env create -f requirements.yaml`
 
 ## 🚀 Getting Started
