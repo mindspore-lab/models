@@ -1,0 +1,1 @@
+mpirun -n 2 python -u train.py --model Informer --data weather -c configs/informer/informer_train.yaml --do_train --distribute
