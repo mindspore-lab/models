@@ -41,7 +41,10 @@ Here is the development plan of the project:
    [CANN 8.1.RC1](https://www.hiascend.com/developer/download/community/result?module=cann&cann=8.1.RC1)
    and MindSpore according to the [official instructions](https://www.mindspore.cn/install).
 2. Install requirements
-`conda env create -f requirements.yaml`
+    `conda env create -f requirements.yaml`
+3. If you have questions about the environment, especially some issue related to Beir, you should refer to:
+   https://github.com/mxuax/Banyan-Mindspore
+
 
 ## 🚀 Getting Started
 
@@ -51,7 +54,7 @@ To simply run the inference and evaluation
 
 Create a `data` directory.
 
-Download data from https://huggingface.co/mxuax/Banyan_model_weight_data
+Download data from https://huggingface.co/mxuax/Banyan_model_weight_data or https://github.com/mxuax/Banyan-Mindspore
 
 For more data
 
@@ -125,5 +128,6 @@ We would like to thank the authors of the original [Banyan] paper for their exce
 Banyan is available under Apache 2.0.
 
 [Banyan: Improved Representation Learning with Explicit Structure]: https://arxiv.org/abs/2407.17771
+[Original implementation]: https://github.com/exlab-research/Banyan
 [official instructions]: https://www.mindspore.cn/install/
 [official documentation]: https://www.mindspore.cn/docs/en/r2.5.0/model_train/parallel/msrun_launcher.html
