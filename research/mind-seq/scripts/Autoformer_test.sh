@@ -1,0 +1,1 @@
+python -u train.py --model Autoformer --data ETTh1 -c configs/autoformer/Autoformer.yaml
