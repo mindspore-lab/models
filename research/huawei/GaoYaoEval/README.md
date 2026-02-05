@@ -1,17 +1,27 @@
-# GaoYaoEval - 皋陶多语言大模型评测框架
+# ⚖️ GaoYaoEval - 皋陶多语言大模型评测数据集
 
-> 🌐 一站式多语言、多文化、多题型大模型能力评测框架，支持客观题、主观题、翻译题等丰富评测场景  
->   
-> 多语言评测技术报告：[./GaoYao_Multilingual_Benchmark_Technical_Report.pdf](./GaoYao_Multilingual_Benchmark_Technical_Report.pdf)
+![Status](https://img.shields.io/badge/Status-Active-success)
+![Task](https://img.shields.io/badge/Task-Multilingual_Evaluation-blue)
+![Language](https://img.shields.io/badge/Language-python-orange)
+
+> **🌐 一站式多语言、多文化、多题型大模型能力评测框架**
 >
-> 数据集开源仓库：https://github.com/zhaocorey/GaoYaoEvalDataset.git
+> 皋陶 (GaoYao) 评测集致力于构建公平、全面的评价体系，支持**客观题**、**主观题**、**翻译题**等丰富评测场景，覆盖从基础理解到跨文化适应的完整能力维度。
+
+---
+
+## 🔗 核心资源 | Resources
+
+* 📄 **技术报告 (Technical Report)**: [GaoYao_Multilingual_Benchmark_Technical_Report.pdf](./GaoYao_Multilingual_Benchmark_Technical_Report.pdf)
+* 💻 **开源代码仓 (GitHub)**: [MindSpore Lab - GaoYaoEval](https://github.com/mindspore-lab/models/tree/master/research/huawei/GaoYaoEval)
+* 📁 **数据集开源仓库**: [GaoYaoEvalDataset](https://github.com/zhaocorey/GaoYaoEvalDataset.git)
 
 ---
 
 ![](./assets/cover_iamge.png)
 
 ## 项目简介
-GaoYao是一个系统化的多语言多文化评测基准，构建了涵盖通用多语言能力、跨文化能力和单一文化能力的三维度九子项评估框架。该基准将指令遵循与多轮对话测试集通过语言专家人工精译扩展至19种语言，语言覆盖较现有工作提升111%。针对文化能力，采用专家参与的数据合成方法覆盖34种文化，文化代表性提升88%。评测整合高质量人工校验数据，避免纯机器翻译的质量缺陷。最终对20余个主流开源与商业大模型开展分层评估，为多语言多文化能力提供全面可靠的衡量标准。
+GaoYao是一个系统化的多语言多文化评测基准，构建了涵盖通用多语言能力、跨文化能力和单一文化能力的三维度九子项评估框架。该基准将指令遵循与多轮对话测试集通过语言专家人工精译扩展至19种语言，语言覆盖较现有工作提升111%。针对文化能力，采用专家参与的数据合成方法覆盖34种文化，文化代表性提升88%。评测整合高质量人工校验数据，避免纯机器翻译的质量缺陷。最终对15余个主流开源与商业大模型开展分层评估，为多语言多文化能力提供全面可靠的衡量标准。
 
 ---
 
@@ -109,20 +119,20 @@ class MyDatasetEval(BaseEval):
 
 ---
 
-## 📋 评测集说明
+## 📊 数据集全景图 | Dataset Overview
 
-| 编号 | 评测集          | 题型            | 说明                   |       评测维度(层级)        |
-|:----:|:---------------:|:---------------:|:-----------------------:|:---------------------:|
-| 1    | `belebele`      | 客观题          | 多语言阅读理解          | Reading Comprehension |
-| 2    | `mgsm`          | 客观题          | 多语言数学推理          |         Math          |
-| 3    | `mmmlu`         | 客观题          | 多学科知识              |       Reasoning       |
-| 4    | `superblend`    | 客观题          | 混合领域综合能力        |     Cross-Culture     |
-| 5    | `include`       | 客观题          | 文化包容性评测          |       Knowledge       |
-| 6    | `culture_scope` | 客观题+主观题   | 单文化场景深度评测      |     Mono-Culture      |
-| 7    | `sage`          | 客观题+主观题   | 跨文化理解与适应能力    |     Cross-Culture     |
-| 8    | `s_alpaca_eval`   | 主观题          | 指令遵循能力            |   Instructi Follow    |
-| 9    | `s_mt_bench`      | 主观题          | 多轮对话质量            |       Dialogue        |
-| 10   | `flores`        | 翻译题          | 高质量机器翻译          |      Translation      |
+| ID | 评测集名称 (Dataset) | 题型 (Type) | 核心能力 (Capability) | 评测维度 (Dimension) | 
+|:--:|:---------------------|:-----------:|:----------------------|:---------------------|
+| **01** | `belebele` | 🧩 客观题 | 多语言阅读理解 | **Reading Comprehension** |
+| **02** | `mgsm` | 🧩 客观题 | 多语言数学推理 | **Math** |
+| **03** | `mmmlu` | 🧩 客观题 | 多学科知识综合 | **Reasoning** |
+| **04** | `superblend` | 🧩 客观题 | 混合领域综合能力 | **Cross-Culture** |
+| **05** | `include` | 🧩 客观题 | 文化包容性评测 | **Knowledge** |
+| **06** | `culture_scope` | ⚖️ 混合题 | 单文化场景深度评测 | **Mono-Culture** |
+| **07** | `sage` | ⚖️ 混合题 | 跨文化理解与适应 | **Cross-Culture** |
+| **08** | `s_alpaca_eval` | 🖋️ 主观题 | 复杂指令遵循能力 | **Instruction Follow** |
+| **09** | `s_mt_bench` | 🖋️ 主观题 | 多轮对话质量评估 | **Dialogue** |
+| **10** | `flores` | 🔄 翻译题 | 高质量机器翻译 | **Translation** |
 
 ---
 
