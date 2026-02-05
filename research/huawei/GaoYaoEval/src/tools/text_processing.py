@@ -1,6 +1,6 @@
 import re
 from judger_algorithm import is_number
-from src.evaluation.config import LANG_TO_ANSWER_PREFIX, NUMBER_TO_CHOICE_M3EXAM
+from src.evaluation.config import LANG_TO_ANSWER_PREFIX, NUMBER_TO_CHOICE_1_BASE
 from src.tools.llm_request import send_chat_completion
 from src.tools.prompt_templates import CHOICE_SYSTEM_PROMPT, TRUE_OR_FALSE_SYSTEM_PROMPT
 
@@ -134,7 +134,7 @@ def parse_response_answer(answer: str, answer_prefix: str):
     prediction_numbers = prediction_numbers.replace(",", "")
     return prediction_numbers
 
-def extracted_choice_question_answer(response_text, number_to_choice=NUMBER_TO_CHOICE_M3EXAM):
+def extracted_choice_question_answer(response_text, number_to_choice=NUMBER_TO_CHOICE_1_BASE):
     # 发送请求
     extracted_answer = send_chat_completion(system_prompt=CHOICE_SYSTEM_PROMPT,
                                                      user_prompt=response_text)

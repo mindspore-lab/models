@@ -20,7 +20,7 @@ class SuperBlend(BaseEval):
             if lang not in all_dict: all_dict[lang] = {}
             all_dict[lang][country] = all_dict[lang].get(country, 0) + 1
 
-            # 判分逻辑 (同 M3Exam)
+            # 判分逻辑 (同 MCQ)
             is_correct = ...
             # GT处理
             gt = extract_general_choice(str(item['gt']))

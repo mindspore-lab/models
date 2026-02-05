@@ -2,22 +2,30 @@
 
 > 🌐 一站式多语言、多文化、多题型大模型能力评测框架，支持客观题、主观题、翻译题等丰富评测场景  
 >   
-> 多语言评测技术报告：`./GaoYao_Multilingual_Benchmark_Technical_Report.pdf`
+> 多语言评测技术报告：[./GaoYao_Multilingual_Benchmark_Technical_Report.pdf](./GaoYao_Multilingual_Benchmark_Technical_Report.pdf)
 >
 > 数据集开源仓库：https://github.com/zhaocorey/GaoYaoEvalDataset.git
+
 ---
 
-## 📁 项目架构
+![](./assets/cover_iamge.png)
+
+## 项目简介
+GaoYao是一个系统化的多语言多文化评测基准，构建了涵盖通用多语言能力、跨文化能力和单一文化能力的三维度九子项评估框架。该基准将指令遵循与多轮对话测试集通过语言专家人工精译扩展至19种语言，语言覆盖较现有工作提升111%。针对文化能力，采用专家参与的数据合成方法覆盖34种文化，文化代表性提升88%。评测整合高质量人工校验数据，避免纯机器翻译的质量缺陷。最终对20余个主流开源与商业大模型开展分层评估，为多语言多文化能力提供全面可靠的衡量标准。
+
+---
+
+## 📁 代码架构
 
 ```
 GaoYaoEval/
 ├── data/                          # 数据层
 │   ├── original/                  # 原始评测数据集
-│   │   └── m3exam/{language}.jsonl
+│   │   └── belebele/{language}.jsonl
 │   ├── inference_result/          # 模型推理结果
-│   │   └── Qwen3-32B/m3exam/infer.jsonl
+│   │   └── Qwen3-32B/belebele/infer.jsonl
 │   └── evaluation_result/         # 评测分析结果
-│       └── Qwen3-32B/m3exam/
+│       └── Qwen3-32B/belebele/
 │           ├── eval_report.jsonl  # 指标报告
 │           ├── eval.jsonl         # 评测详情
 │           ├── bad_cases.jsonl    # 异常用例
@@ -84,8 +92,8 @@ pip install -r requirements.txt
 
 ### 执行评测
 ```shell
-# 启动评测（示例：m3exam 数据集）
-python m3exam_eval.py
+# 启动评测（示例：belebele 数据集）
+python belebele_eval.py
 ```
 
 ### 自定义评测
@@ -103,20 +111,18 @@ class MyDatasetEval(BaseEval):
 
 ## 📋 评测集说明
 
-| 编号 | 评测集          | 题型               | 说明                     |
-|------|-----------------|------------------|------------------------|
-| 1    | `m3exam`        | 客观题             | 覆盖100+语言基础能力     |
-| 2    | `belebele`      | 客观题             | 多语言阅读理解           |
-| 3    | `mgsm`          | 客观题             | 多语言数学推理           |
-| 4    | `mmmlu`         | 客观题             | 多学科知识               |
-| 5    | `superblend`    | 客观题             | 混合领域综合能力         |
-| 6    | `include`       | 客观题             | 文化包容性评测           |
-| 7    | `mono_culture`  | 客观题+主观题       | 单文化场景深度评测       |
-| 8    | `cross_culture` | 客观题+主观题       | 跨文化理解与适应能力     |
-| 9    | `alpaca_eval`   | 主观题             | 指令遵循能力             |
-| 10   | `mt_bench`      | 主观题             | 多轮对话质量             |
-| 11   | `flores`        | 翻译题             | 高质量机器翻译           |
-
+| 编号 | 评测集          | 题型            | 说明                   |       评测维度(层级)        |
+|:----:|:---------------:|:---------------:|:-----------------------:|:---------------------:|
+| 1    | `belebele`      | 客观题          | 多语言阅读理解          | Reading Comprehension |
+| 2    | `mgsm`          | 客观题          | 多语言数学推理          |         Math          |
+| 3    | `mmmlu`         | 客观题          | 多学科知识              |       Reasoning       |
+| 4    | `superblend`    | 客观题          | 混合领域综合能力        |     Cross-Culture     |
+| 5    | `include`       | 客观题          | 文化包容性评测          |       Knowledge       |
+| 6    | `culture_scope` | 客观题+主观题   | 单文化场景深度评测      |     Mono-Culture      |
+| 7    | `sage`          | 客观题+主观题   | 跨文化理解与适应能力    |     Cross-Culture     |
+| 8    | `alpaca_eval`   | 主观题          | 指令遵循能力            |   Instructi Follow    |
+| 9    | `mt_bench`      | 主观题          | 多轮对话质量            |       Dialogue        |
+| 10   | `flores`        | 翻译题          | 高质量机器翻译          |      Translation      |
 ---
 
 ## 💡 核心设计

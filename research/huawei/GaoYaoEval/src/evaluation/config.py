@@ -1,6 +1,6 @@
 # 选择题
-NUMBER_TO_CHOICE_M3EXAM = {'1': 'A', '2': 'B', '3': 'C', '4': 'D'}
-NUMBER_TO_CHOICE_INCLUDE = {'0': 'A', '1': 'B', '2': 'C', '3': 'D'}
+NUMBER_TO_CHOICE_1_BASE = {'1': 'A', '2': 'B', '3': 'C', '4': 'D'}
+NUMBER_TO_CHOICE_0_BASE = {'0': 'A', '1': 'B', '2': 'C', '3': 'D'}
 
 LANG_TO_ANSWER_PREFIX = {
         "English": "Answer",
