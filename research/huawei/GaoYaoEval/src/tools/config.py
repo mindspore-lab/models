@@ -1,15 +1,10 @@
-import os
-
 # --- Model URLs ---
-EXTRACT_ANSWER_MODEL_URL = 'http://10.243.134.97:59080/qwen/v1/chat/completions'
-EXTRACT_ANSWER_MODEL_NAME = 'qwen2.5-72b-int4'
+LLM_URL = 'http://{ip}:{port}/deepseek/v1/chat/completions'
+LLM_NAME = 'deepseek-v3.1'
 
-OPEN_QUESTION_MODEL_URL = 'http://10.243.134.97:59080/qwen/v1/chat/completions'
-OPEN_QUESTION_MODEL_NAME = 'qwen2.5-72b-int4'
+COMET_URL = 'http://{ip}:{port}/eval_comet'
 
-COMET_URL = 'http://10.155.106.90:20102/eval_comet'
-
-# --- Sampling Configurations (Reference: Qwen3 Technical Report) ---
+# --- Sampling Configurations ---
 SAMPLING_CONFIGS = {
     # 思考模式默认配置
     "thinking_default": {

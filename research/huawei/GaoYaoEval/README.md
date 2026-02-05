@@ -3,7 +3,8 @@
 > 🌐 一站式多语言、多文化、多题型大模型能力评测框架，支持客观题、主观题、翻译题等丰富评测场景  
 >   
 > 多语言评测技术报告：`./GaoYao_Multilingual_Benchmark_Technical_Report.pdf`
-
+>
+> 数据集开源仓库：https://github.com/zhaocorey/GaoYaoEvalDataset.git
 ---
 
 ## 📁 项目架构
@@ -74,8 +75,8 @@ GaoYaoEval/
 ### 环境准备
 ```bash
 # 克隆仓库
-git clone https://codehub-g.huawei.com/your-team/GaoYaoEval.git
-cd GaoYaoEval
+git https://github.com/mindspore-lab/models
+cd research/huawei/GaoYaoEval
 
 # 安装依赖
 pip install -r requirements.txt
@@ -95,10 +96,6 @@ from src.evaluation.base_eval import BaseEval
 class MyDatasetEval(BaseEval):
     def evaluate(self, sample: dict) -> dict:
         # 实现单条用例评测逻辑
-        pass
-    
-    def aggregate_metrics(self, results: list) -> dict:
-        # 实现指标聚合逻辑
         pass
 ```
 

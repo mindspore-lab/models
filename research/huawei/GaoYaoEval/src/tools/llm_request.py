@@ -1,12 +1,12 @@
 import requests
 import logging
-from src.tools.config import EXTRACT_ANSWER_MODEL_NAME, EXTRACT_ANSWER_MODEL_URL, COMET_URL
+from src.tools.config import LLM_NAME, LLM_URL, COMET_URL
 
 logger = logging.getLogger('eval_logger')
 
 def send_chat_completion(system_prompt, user_prompt,
-                         model_name=EXTRACT_ANSWER_MODEL_NAME,
-                         model_url=EXTRACT_ANSWER_MODEL_URL,
+                         model_name=LLM_NAME,
+                         model_url=LLM_URL,
                          params=None):
     """Generic Chat Completion Request"""
 
