@@ -1,0 +1,211 @@
+{"obj_label": "sport", "sub_label": "baseball", "predicate": "IsA"}
+{"obj_label": "toy", "sub_label": "yo-yo", "predicate": "IsA"}
+{"obj_label": "mammal", "sub_label": "dog", "predicate": "IsA"}
+{"obj_label": "game", "sub_label": "polo", "predicate": "IsA"}
+{"obj_label": "metal", "sub_label": "gold", "predicate": "IsA"}
+{"obj_label": "food", "sub_label": "sushi", "predicate": "IsA"}
+{"obj_label": "sport", "sub_label": "soccer", "predicate": "IsA"}
+{"obj_label": "flower", "sub_label": "rose", "predicate": "IsA"}
+{"obj_label": "operate system", "sub_label": "linux", "predicate": "IsA"}
+{"obj_label": "insect", "sub_label": "fly", "predicate": "IsA"}
+{"obj_label": "string instrument", "sub_label": "violin", "predicate": "IsA"}
+{"obj_label": "fish", "sub_label": "bass", "predicate": "IsA"}
+{"obj_label": "animal", "sub_label": "dog", "predicate": "IsA"}
+{"obj_label": "game", "sub_label": "football", "predicate": "IsA"}
+{"obj_label": "sport", "sub_label": "football", "predicate": "IsA"}
+{"obj_label": "emotion", "sub_label": "love", "predicate": "IsA"}
+{"obj_label": "tool", "sub_label": "see", "predicate": "IsA"}
+{"obj_label": "pet", "sub_label": "dog", "predicate": "IsA"}
+{"obj_label": "sport", "sub_label": "tennis", "predicate": "IsA"}
+{"obj_label": "animal", "sub_label": "lion", "predicate": "IsA"}
+{"obj_label": "gift from france", "sub_label": "statue of liberty", "predicate": "IsA"}
+{"obj_label": "fish", "sub_label": "trout", "predicate": "IsA"}
+{"obj_label": "reptile", "sub_label": "turtle", "predicate": "IsA"}
+{"obj_label": "activity", "sub_label": "sex", "predicate": "IsA"}
+{"obj_label": "food", "sub_label": "vegetable", "predicate": "IsA"}
+{"obj_label": "in new york", "sub_label": "statue of liberty", "predicate": "IsA"}
+{"obj_label": "toy", "sub_label": "doll", "predicate": "IsA"}
+{"obj_label": "music", "sub_label": "rock", "predicate": "IsA"}
+{"obj_label": "planet", "sub_label": "venus", "predicate": "IsA"}
+{"obj_label": "water", "sub_label": "rain", "predicate": "IsA"}
+{"obj_label": "fruit", "sub_label": "peach", "predicate": "IsA"}
+{"obj_label": "metal", "sub_label": "silver", "predicate": "IsA"}
+{"obj_label": "bird", "sub_label": "finch", "predicate": "IsA"}
+{"obj_label": "vegetable", "sub_label": "corn", "predicate": "IsA"}
+{"obj_label": "crime", "sub_label": "murder", "predicate": "IsA"}
+{"obj_label": "dog", "sub_label": "golden retriever", "predicate": "IsA"}
+{"obj_label": "color", "sub_label": "blue", "predicate": "IsA"}
+{"obj_label": "metal", "sub_label": "iron", "predicate": "IsA"}
+{"obj_label": "program language", "sub_label": "java", "predicate": "IsA"}
+{"obj_label": "bird", "sub_label": "ostrich", "predicate": "IsA"}
+{"obj_label": "insect", "sub_label": "ant", "predicate": "IsA"}
+{"obj_label": "sound", "sub_label": "music", "predicate": "IsA"}
+{"obj_label": "musical instrument", "sub_label": "saxophone", "predicate": "IsA"}
+{"obj_label": "food", "sub_label": "chicken", "predicate": "IsA"}
+{"obj_label": "fruit", "sub_label": "apple", "predicate": "IsA"}
+{"obj_label": "science", "sub_label": "biology", "predicate": "IsA"}
+{"obj_label": "communication device", "sub_label": "telephone", "predicate": "IsA"}
+{"obj_label": "credit card", "sub_label": "mastercard", "predicate": "IsA"}
+{"obj_label": "fungus", "sub_label": "mushroom", "predicate": "IsA"}
+{"obj_label": "gun", "sub_label": "pistol", "predicate": "IsA"}
+{"obj_label": "dog", "sub_label": "poodle", "predicate": "IsA"}
+{"obj_label": "mammal", "sub_label": "dolphin", "predicate": "IsA"}
+{"obj_label": "fruit", "sub_label": "pineapple", "predicate": "IsA"}
+{"obj_label": "carp", "sub_label": "goldfish", "predicate": "IsA"}
+{"obj_label": "electronic device", "sub_label": "computer", "predicate": "IsA"}
+{"obj_label": "musical instrument", "sub_label": "tuba", "predicate": "IsA"}
+{"obj_label": "flower", "sub_label": "orchid", "predicate": "IsA"}
+{"obj_label": "sport", "sub_label": "badminton", "predicate": "IsA"}
+{"obj_label": "sport", "sub_label": "golf", "predicate": "IsA"}
+{"obj_label": "country", "sub_label": "canada", "predicate": "IsA"}
+{"obj_label": "bird", "sub_label": "parakeet", "predicate": "IsA"}
+{"obj_label": "toy", "sub_label": "yoyo", "predicate": "IsA"}
+{"obj_label": "musical instrument", "sub_label": "horn", "predicate": "IsA"}
+{"obj_label": "plant", "sub_label": "tree", "predicate": "IsA"}
+{"obj_label": "game", "sub_label": "baseball", "predicate": "IsA"}
+{"obj_label": "in paris", "sub_label": "eiffel tower", "predicate": "IsA"}
+{"obj_label": "japanese food", "sub_label": "sushi", "predicate": "IsA"}
+{"obj_label": "game", "sub_label": "ping pong", "predicate": "IsA"}
+{"obj_label": "force", "sub_label": "gravity", "predicate": "IsA"}
+{"obj_label": "instrument", "sub_label": "woodwind", "predicate": "IsA"}
+{"obj_label": "instrument", "sub_label": "piano", "predicate": "IsA"}
+{"obj_label": "string instrument", "sub_label": "guitar", "predicate": "IsA"}
+{"obj_label": "emotion", "sub_label": "anger", "predicate": "IsA"}
+{"obj_label": "country", "sub_label": "china", "predicate": "IsA"}
+{"obj_label": "fruit", "sub_label": "banana", "predicate": "IsA"}
+{"obj_label": "religion", "sub_label": "christianity", "predicate": "IsA"}
+{"obj_label": "material", "sub_label": "plastic", "predicate": "IsA"}
+{"obj_label": "place", "sub_label": "college", "predicate": "IsA"}
+{"obj_label": "sign of affection", "sub_label": "kiss", "predicate": "IsA"}
+{"obj_label": "jewelry", "sub_label": "necklace", "predicate": "IsA"}
+{"obj_label": "carnivore", "sub_label": "lion", "predicate": "IsA"}
+{"obj_label": "man best friend", "sub_label": "dog", "predicate": "IsA"}
+{"obj_label": "school", "sub_label": "elementary school", "predicate": "IsA"}
+{"obj_label": "food", "sub_label": "soup", "predicate": "IsA"}
+{"obj_label": "game", "sub_label": "chess", "predicate": "IsA"}
+{"obj_label": "mammal", "sub_label": "rabbit", "predicate": "IsA"}
+{"obj_label": "animal", "sub_label": "cat", "predicate": "IsA"}
+{"obj_label": "insect", "sub_label": "butterfly", "predicate": "IsA"}
+{"obj_label": "gun", "sub_label": "rifle", "predicate": "IsA"}
+{"obj_label": "bird", "sub_label": "robin", "predicate": "IsA"}
+{"obj_label": "road", "sub_label": "highway", "predicate": "IsA"}
+{"obj_label": "toy", "sub_label": "ball", "predicate": "IsA"}
+{"obj_label": "food", "sub_label": "butter", "predicate": "IsA"}
+{"obj_label": "container", "sub_label": "bottle", "predicate": "IsA"}
+{"obj_label": "place", "sub_label": "restaurant", "predicate": "IsA"}
+{"obj_label": "food", "sub_label": "salad", "predicate": "IsA"}
+{"obj_label": "vegetable", "sub_label": "tomato", "predicate": "IsA"}
+{"obj_label": "food", "sub_label": "egg", "predicate": "IsA"}
+{"obj_label": "color", "sub_label": "green", "predicate": "IsA"}
+{"obj_label": "religion", "sub_label": "islam", "predicate": "IsA"}
+{"obj_label": "city", "sub_label": "san francisco", "predicate": "IsA"}
+{"obj_label": "on water", "sub_label": "boat", "predicate": "IsA"}
+{"obj_label": "gas", "sub_label": "air", "predicate": "IsA"}
+{"obj_label": "doctor", "sub_label": "dentist", "predicate": "IsA"}
+{"obj_label": "sport", "sub_label": "hockey", "predicate": "IsA"}
+{"obj_label": "language", "sub_label": "french", "predicate": "IsA"}
+{"obj_label": "percussion instrument", "sub_label": "drum", "predicate": "IsA"}
+{"obj_label": "instrument", "sub_label": "viola", "predicate": "IsA"}
+{"obj_label": "mammal", "sub_label": "human", "predicate": "IsA"}
+{"obj_label": "food", "sub_label": "rice", "predicate": "IsA"}
+{"obj_label": "planet", "sub_label": "saturn", "predicate": "IsA"}
+{"obj_label": "planet", "sub_label": "mar", "predicate": "IsA"}
+{"obj_label": "mammal", "sub_label": "mouse", "predicate": "IsA"}
+{"obj_label": "child game", "sub_label": "jack", "predicate": "IsA"}
+{"obj_label": "game", "sub_label": "jack", "predicate": "IsA"}
+{"obj_label": "state", "sub_label": "colorado", "predicate": "IsA"}
+{"obj_label": "state", "sub_label": "california", "predicate": "IsA"}
+{"obj_label": "drug", "sub_label": "marijuana", "predicate": "IsA"}
+{"obj_label": "container", "sub_label": "box", "predicate": "IsA"}
+{"obj_label": "soda", "sub_label": "coke", "predicate": "IsA"}
+{"obj_label": "head", "sub_label": "brain", "predicate": "IsA"}
+{"obj_label": "curious animal", "sub_label": "cat", "predicate": "IsA"}
+{"obj_label": "popular television show", "sub_label": "star trek", "predicate": "IsA"}
+{"obj_label": "science", "sub_label": "physic", "predicate": "IsA"}
+{"obj_label": "beverage", "sub_label": "wine", "predicate": "IsA"}
+{"obj_label": "vegetable", "sub_label": "cucumber", "predicate": "IsA"}
+{"obj_label": "color", "sub_label": "red", "predicate": "IsA"}
+{"obj_label": "fabric", "sub_label": "denim", "predicate": "IsA"}
+{"obj_label": "music", "sub_label": "metal", "predicate": "IsA"}
+{"obj_label": "country", "sub_label": "france", "predicate": "IsA"}
+{"obj_label": "amphibian", "sub_label": "frog", "predicate": "IsA"}
+{"obj_label": "book", "sub_label": "novel", "predicate": "IsA"}
+{"obj_label": "country", "sub_label": "brazil", "predicate": "IsA"}
+{"obj_label": "horse", "sub_label": "pony", "predicate": "IsA"}
+{"obj_label": "card game", "sub_label": "poker", "predicate": "IsA"}
+{"obj_label": "gas", "sub_label": "oxygen", "predicate": "IsA"}
+{"obj_label": "food", "sub_label": "cheese", "predicate": "IsA"}
+{"obj_label": "two wheel vehicle", "sub_label": "bicycle", "predicate": "IsA"}
+{"obj_label": "clothe", "sub_label": "shirt", "predicate": "IsA"}
+{"obj_label": "dry grape", "sub_label": "raisin", "predicate": "IsA"}
+{"obj_label": "abbreviation for television", "sub_label": "tv", "predicate": "IsA"}
+{"obj_label": "instrument", "sub_label": "saxophone", "predicate": "IsA"}
+{"obj_label": "build", "sub_label": "skyscraper", "predicate": "IsA"}
+{"obj_label": "ship", "sub_label": "submarine", "predicate": "IsA"}
+{"obj_label": "loyal friend", "sub_label": "dog", "predicate": "IsA"}
+{"obj_label": "vegetable", "sub_label": "potato", "predicate": "IsA"}
+{"obj_label": "meal", "sub_label": "dinner", "predicate": "IsA"}
+{"obj_label": "food", "sub_label": "chocolate", "predicate": "IsA"}
+{"obj_label": "weapon", "sub_label": "gun", "predicate": "IsA"}
+{"obj_label": "vegetable", "sub_label": "lettuce", "predicate": "IsA"}
+{"obj_label": "vehicle", "sub_label": "car", "predicate": "IsA"}
+{"obj_label": "animal", "sub_label": "human", "predicate": "IsA"}
+{"obj_label": "season", "sub_label": "fall", "predicate": "IsA"}
+{"obj_label": "metal", "sub_label": "steel", "predicate": "IsA"}
+{"obj_label": "candy", "sub_label": "chocolate", "predicate": "IsA"}
+{"obj_label": "fish", "sub_label": "crappie", "predicate": "IsA"}
+{"obj_label": "amphibian", "sub_label": "salamander", "predicate": "IsA"}
+{"obj_label": "sport", "sub_label": "table tennis", "predicate": "IsA"}
+{"obj_label": "bird", "sub_label": "pelican", "predicate": "IsA"}
+{"obj_label": "city", "sub_label": "paris", "predicate": "IsA"}
+{"obj_label": "form of art", "sub_label": "music", "predicate": "IsA"}
+{"obj_label": "hold puppy", "sub_label": "girl", "predicate": "IsA"}
+{"obj_label": "form of transportation", "sub_label": "bicycle", "predicate": "IsA"}
+{"obj_label": "food at grocery store", "sub_label": "there", "predicate": "IsA"}
+{"obj_label": "raw fish", "sub_label": "sushi", "predicate": "IsA"}
+{"obj_label": "food", "sub_label": "corn", "predicate": "IsA"}
+{"obj_label": "build", "sub_label": "high rise", "predicate": "IsA"}
+{"obj_label": "meat", "sub_label": "chicken", "predicate": "IsA"}
+{"obj_label": "sit on", "sub_label": "sofa", "predicate": "IsA"}
+{"obj_label": "in school", "sub_label": "classroom", "predicate": "IsA"}
+{"obj_label": "canine", "sub_label": "dog", "predicate": "IsA"}
+{"obj_label": "drink", "sub_label": "soda", "predicate": "IsA"}
+{"obj_label": "useful tool", "sub_label": "pocket knife", "predicate": "IsA"}
+{"obj_label": "feel", "sub_label": "love", "predicate": "IsA"}
+{"obj_label": "string instrument", "sub_label": "banjo", "predicate": "IsA"}
+{"obj_label": "instrument", "sub_label": "guitare", "predicate": "IsA"}
+{"obj_label": "another word for rock", "sub_label": "stone", "predicate": "IsA"}
+{"obj_label": "american pastime", "sub_label": "baseball", "predicate": "IsA"}
+{"obj_label": "hat", "sub_label": "beanie", "predicate": "IsA"}
+{"obj_label": "hat", "sub_label": "fedora", "predicate": "IsA"}
+{"obj_label": "gun", "sub_label": "shotgun", "predicate": "IsA"}
+{"obj_label": "state", "sub_label": "new york", "predicate": "IsA"}
+{"obj_label": "instrument", "sub_label": "clarinet", "predicate": "IsA"}
+{"obj_label": "vegetable", "sub_label": "bean", "predicate": "IsA"}
+{"obj_label": "percussion instrument", "sub_label": "xylophone", "predicate": "IsA"}
+{"obj_label": "language", "sub_label": "english", "predicate": "IsA"}
+{"obj_label": "city", "sub_label": "london", "predicate": "IsA"}
+{"obj_label": "sport", "sub_label": "swim", "predicate": "IsA"}
+{"obj_label": "animal", "sub_label": "fish", "predicate": "IsA"}
+{"obj_label": "machine", "sub_label": "robot", "predicate": "IsA"}
+{"obj_label": "game", "sub_label": "backgammon", "predicate": "IsA"}
+{"obj_label": "planet", "sub_label": "jupiter", "predicate": "IsA"}
+{"obj_label": "body of water", "sub_label": "lake", "predicate": "IsA"}
+{"obj_label": "arachnid", "sub_label": "spider", "predicate": "IsA"}
+{"obj_label": "mammal", "sub_label": "whale", "predicate": "IsA"}
+{"obj_label": "mammal", "sub_label": "beaver", "predicate": "IsA"}
+{"obj_label": "bird", "sub_label": "pheasant", "predicate": "IsA"}
+{"obj_label": "bird", "sub_label": "crow", "predicate": "IsA"}
+{"obj_label": "bird", "sub_label": "hawk", "predicate": "IsA"}
+{"obj_label": "bird", "sub_label": "goose", "predicate": "IsA"}
+{"obj_label": "program language", "sub_label": "perl", "predicate": "IsA"}
+{"obj_label": "program language", "sub_label": "c", "predicate": "IsA"}
+{"obj_label": "carnivore", "sub_label": "cat", "predicate": "IsA"}
+{"obj_label": "operate system", "sub_label": "unix", "predicate": "IsA"}
+{"obj_label": "system", "sub_label": "unix", "predicate": "IsA"}
+{"obj_label": "young man", "sub_label": "boy", "predicate": "IsA"}
+{"obj_label": "alcoholic beverage", "sub_label": "beer", "predicate": "IsA"}
+{"obj_label": "place", "sub_label": "city", "predicate": "IsA"}
+{"obj_label": "vegetable", "sub_label": "pea", "predicate": "IsA"}
+{"obj_label": "person", "sub_label": "slave", "predicate": "IsA"}
+{"obj_label": "language", "sub_label": "spanish", "predicate": "IsA"}

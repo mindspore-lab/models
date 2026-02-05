@@ -1,0 +1,1010 @@
+{"obj_label": "buy something", "sub_label": "need", "predicate": "CausesDesire"}
+{"obj_label": "repair umbrella", "sub_label": "rain", "predicate": "CausesDesire"}
+{"obj_label": "urinate", "sub_label": "full bladder triggers the desire to urinate", "predicate": "CausesDesire"}
+{"obj_label": "live", "sub_label": "family", "predicate": "CausesDesire"}
+{"obj_label": "have fun", "sub_label": "music", "predicate": "CausesDesire"}
+{"obj_label": "live life", "sub_label": "have fun", "predicate": "CausesDesire"}
+{"obj_label": "stand up", "sub_label": "sore behind", "predicate": "CausesDesire"}
+{"obj_label": "surf", "sub_label": "large wave", "predicate": "CausesDesire"}
+{"obj_label": "urinate", "sub_label": "elicits desire to urinate", "predicate": "CausesDesire"}
+{"obj_label": "christmas shop", "sub_label": "commercial", "predicate": "CausesDesire"}
+{"obj_label": "go somewhere", "sub_label": "excitement", "predicate": "CausesDesire"}
+{"obj_label": "meet person", "sub_label": "loneliness", "predicate": "CausesDesire"}
+{"obj_label": "attend rock concert", "sub_label": "free ticket", "predicate": "CausesDesire"}
+{"obj_label": "light fire", "sub_label": "cold prompts desire to", "predicate": "CausesDesire"}
+{"obj_label": "watch television show", "sub_label": "boredom", "predicate": "CausesDesire"}
+{"obj_label": "cry", "sub_label": "rejection", "predicate": "CausesDesire"}
+{"obj_label": "play card", "sub_label": "bore", "predicate": "CausesDesire"}
+{"obj_label": "wait your turn", "sub_label": "checkout line", "predicate": "CausesDesire"}
+{"obj_label": "fish", "sub_label": "be hungry", "predicate": "CausesDesire"}
+{"obj_label": "smoke", "sub_label": "addiction", "predicate": "CausesDesire"}
+{"obj_label": "get something", "sub_label": "love", "predicate": "CausesDesire"}
+{"obj_label": "open bag of chip", "sub_label": "have some dip", "predicate": "CausesDesire"}
+{"obj_label": "play game of chess", "sub_label": "competitiveness", "predicate": "CausesDesire"}
+{"obj_label": "stay in bed", "sub_label": "depression", "predicate": "CausesDesire"}
+{"obj_label": "learn", "sub_label": "curiosity", "predicate": "CausesDesire"}
+{"obj_label": "hear music", "sub_label": "dance", "predicate": "CausesDesire"}
+{"obj_label": "get pay", "sub_label": "do work", "predicate": "CausesDesire"}
+{"obj_label": "answer question", "sub_label": "intrigue unsolved mystery", "predicate": "CausesDesire"}
+{"obj_label": "ski", "sub_label": "fresh snow and low price", "predicate": "CausesDesire"}
+{"obj_label": "have rest", "sub_label": "exhaustion", "predicate": "CausesDesire"}
+{"obj_label": "sleep", "sub_label": "tiredness", "predicate": "CausesDesire"}
+{"obj_label": "run errand", "sub_label": "few thing", "predicate": "CausesDesire"}
+{"obj_label": "sign contract", "sub_label": "win win opportunity", "predicate": "CausesDesire"}
+{"obj_label": "compete", "sub_label": "game", "predicate": "CausesDesire"}
+{"obj_label": "take in film", "sub_label": "be bore", "predicate": "CausesDesire"}
+{"obj_label": "find lose item", "sub_label": "lose it", "predicate": "CausesDesire"}
+{"obj_label": "eat ice cream", "sub_label": "hot weather", "predicate": "CausesDesire"}
+{"obj_label": "paint house", "sub_label": "pride", "predicate": "CausesDesire"}
+{"obj_label": "debate politics", "sub_label": "hear really stupid person", "predicate": "CausesDesire"}
+{"obj_label": "open business", "sub_label": "want to be your own boss", "predicate": "CausesDesire"}
+{"obj_label": "flirt", "sub_label": "your sexuality", "predicate": "CausesDesire"}
+{"obj_label": "set cup on table", "sub_label": "finish your drink", "predicate": "CausesDesire"}
+{"obj_label": "improve yourself", "sub_label": "failure", "predicate": "CausesDesire"}
+{"obj_label": "have heart attack", "sub_label": "be torture mercilessly", "predicate": "CausesDesire"}
+{"obj_label": "play poker", "sub_label": "friend", "predicate": "CausesDesire"}
+{"obj_label": "play sport", "sub_label": "competitive nature", "predicate": "CausesDesire"}
+{"obj_label": "kiss", "sub_label": "love for another person", "predicate": "CausesDesire"}
+{"obj_label": "entertain person", "sub_label": "be extrovert", "predicate": "CausesDesire"}
+{"obj_label": "eat quickly", "sub_label": "hunger", "predicate": "CausesDesire"}
+{"obj_label": "wash clothe", "sub_label": "dirty clothe", "predicate": "CausesDesire"}
+{"obj_label": "sing", "sub_label": "love", "predicate": "CausesDesire"}
+{"obj_label": "skateboard", "sub_label": "have fun", "predicate": "CausesDesire"}
+{"obj_label": "live", "sub_label": "love", "predicate": "CausesDesire"}
+{"obj_label": "change society", "sub_label": "ideal", "predicate": "CausesDesire"}
+{"obj_label": "find information", "sub_label": "ignorance", "predicate": "CausesDesire"}
+{"obj_label": "go for swim", "sub_label": "heat", "predicate": "CausesDesire"}
+{"obj_label": "propose to woman", "sub_label": "desire for proposing arises from love", "predicate": "CausesDesire"}
+{"obj_label": "kill", "sub_label": "self defense", "predicate": "CausesDesire"}
+{"obj_label": "comfort friend", "sub_label": "if friend be sad", "predicate": "CausesDesire"}
+{"obj_label": "water plant", "sub_label": "have plant in your house", "predicate": "CausesDesire"}
+{"obj_label": "eat quickly", "sub_label": "be in hurry", "predicate": "CausesDesire"}
+{"obj_label": "eat quickly", "sub_label": "appointment", "predicate": "CausesDesire"}
+{"obj_label": "get fit", "sub_label": "feel good", "predicate": "CausesDesire"}
+{"obj_label": "write term paper", "sub_label": "assignment", "predicate": "CausesDesire"}
+{"obj_label": "sleep at night", "sub_label": "work out", "predicate": "CausesDesire"}
+{"obj_label": "do crossword puzzle", "sub_label": "challenge", "predicate": "CausesDesire"}
+{"obj_label": "look good", "sub_label": "go on date", "predicate": "CausesDesire"}
+{"obj_label": "begin work", "sub_label": "hunger", "predicate": "CausesDesire"}
+{"obj_label": "cut your hair", "sub_label": "split end", "predicate": "CausesDesire"}
+{"obj_label": "meet friend", "sub_label": "have date", "predicate": "CausesDesire"}
+{"obj_label": "conduct trial", "sub_label": "accuse somebody of crime", "predicate": "CausesDesire"}
+{"obj_label": "climb", "sub_label": "cat stick in tree", "predicate": "CausesDesire"}
+{"obj_label": "go to school", "sub_label": "thirst for knowledge", "predicate": "CausesDesire"}
+{"obj_label": "begin work", "sub_label": "ambition", "predicate": "CausesDesire"}
+{"obj_label": "relax", "sub_label": "beautiful music", "predicate": "CausesDesire"}
+{"obj_label": "add up column of number", "sub_label": "curiousity", "predicate": "CausesDesire"}
+{"obj_label": "go to mall", "sub_label": "need new clothe", "predicate": "CausesDesire"}
+{"obj_label": "watch tv show", "sub_label": "boredom", "predicate": "CausesDesire"}
+{"obj_label": "be compulsive", "sub_label": "urge", "predicate": "CausesDesire"}
+{"obj_label": "cut your hair", "sub_label": "have too long hair", "predicate": "CausesDesire"}
+{"obj_label": "play football", "sub_label": "coach would try to", "predicate": "CausesDesire"}
+{"obj_label": "clean clothe", "sub_label": "dirt", "predicate": "CausesDesire"}
+{"obj_label": "go to zoo", "sub_label": "animal", "predicate": "CausesDesire"}
+{"obj_label": "play tennis", "sub_label": "need for exercise", "predicate": "CausesDesire"}
+{"obj_label": "sign contract", "sub_label": "get something i want", "predicate": "CausesDesire"}
+{"obj_label": "propose to woman", "sub_label": "be in love", "predicate": "CausesDesire"}
+{"obj_label": "follow recipe", "sub_label": "perfectionism", "predicate": "CausesDesire"}
+{"obj_label": "test car", "sub_label": "superior attribute", "predicate": "CausesDesire"}
+{"obj_label": "watch tv", "sub_label": "boredom", "predicate": "CausesDesire"}
+{"obj_label": "do housework", "sub_label": "self-motivation", "predicate": "CausesDesire"}
+{"obj_label": "join army", "sub_label": "patriotism", "predicate": "CausesDesire"}
+{"obj_label": "see person play game", "sub_label": "laziness", "predicate": "CausesDesire"}
+{"obj_label": "get clean", "sub_label": "sweat", "predicate": "CausesDesire"}
+{"obj_label": "wash dirt from between your toe", "sub_label": "smelly foot", "predicate": "CausesDesire"}
+{"obj_label": "go to laundromat", "sub_label": "dirty clothe or beautiful girl", "predicate": "CausesDesire"}
+{"obj_label": "taste something sweet", "sub_label": "crave for chocolate", "predicate": "CausesDesire"}
+{"obj_label": "light fire", "sub_label": "cold sparks desire for lighting a fire", "predicate": "CausesDesire"}
+{"obj_label": "buy something for love one", "sub_label": "love", "predicate": "CausesDesire"}
+{"obj_label": "bungee jump from high bridge", "sub_label": "nothing", "predicate": "CausesDesire"}
+{"obj_label": "go to school", "sub_label": "desire for education", "predicate": "CausesDesire"}
+{"obj_label": "see band", "sub_label": "enjoy particular type of music", "predicate": "CausesDesire"}
+{"obj_label": "illustrate point", "sub_label": "discussion", "predicate": "CausesDesire"}
+{"obj_label": "drink", "sub_label": "thirst", "predicate": "CausesDesire"}
+{"obj_label": "take break", "sub_label": "long period of work and tiredness", "predicate": "CausesDesire"}
+{"obj_label": "meet friend", "sub_label": "loneliness", "predicate": "CausesDesire"}
+{"obj_label": "fly kite", "sub_label": "windy day", "predicate": "CausesDesire"}
+{"obj_label": "agree with someone", "sub_label": "correct information", "predicate": "CausesDesire"}
+{"obj_label": "use calculator", "sub_label": "need to solve difficult math problem", "predicate": "CausesDesire"}
+{"obj_label": "sign contract", "sub_label": "get stable supplier", "predicate": "CausesDesire"}
+{"obj_label": "clean clothe", "sub_label": "bad smell", "predicate": "CausesDesire"}
+{"obj_label": "maintain muscle strength", "sub_label": "want to get it on", "predicate": "CausesDesire"}
+{"obj_label": "kiss someone", "sub_label": "love leads to desire for", "predicate": "CausesDesire"}
+{"obj_label": "empty your bladder", "sub_label": "drink beer", "predicate": "CausesDesire"}
+{"obj_label": "wash your hand", "sub_label": "garden", "predicate": "CausesDesire"}
+{"obj_label": "get exercise", "sub_label": "blubber", "predicate": "CausesDesire"}
+{"obj_label": "drink water", "sub_label": "salt", "predicate": "CausesDesire"}
+{"obj_label": "learn about subject", "sub_label": "make expensive mistake", "predicate": "CausesDesire"}
+{"obj_label": "cook dinner", "sub_label": "your family be hungry", "predicate": "CausesDesire"}
+{"obj_label": "sit quietly", "sub_label": "strict teacher", "predicate": "CausesDesire"}
+{"obj_label": "see person play game", "sub_label": "interest in game", "predicate": "CausesDesire"}
+{"obj_label": "go to play", "sub_label": "be bore", "predicate": "CausesDesire"}
+{"obj_label": "send criminal to prison", "sub_label": "rape", "predicate": "CausesDesire"}
+{"obj_label": "eat ice cream", "sub_label": "hot day", "predicate": "CausesDesire"}
+{"obj_label": "be in charge of project", "sub_label": "ambition", "predicate": "CausesDesire"}
+{"obj_label": "drink alcohol", "sub_label": "be at party", "predicate": "CausesDesire"}
+{"obj_label": "find truth", "sub_label": "discover falsify experimental result", "predicate": "CausesDesire"}
+{"obj_label": "kiss someone", "sub_label": "love causes longing for", "predicate": "CausesDesire"}
+{"obj_label": "hear testimony", "sub_label": "be judge", "predicate": "CausesDesire"}
+{"obj_label": "work box office", "sub_label": "passion for ticket", "predicate": "CausesDesire"}
+{"obj_label": "wash clothe", "sub_label": "common sense", "predicate": "CausesDesire"}
+{"obj_label": "cook meal", "sub_label": "be hungry", "predicate": "CausesDesire"}
+{"obj_label": "drive", "sub_label": "need to get to place", "predicate": "CausesDesire"}
+{"obj_label": "copulate", "sub_label": "want child", "predicate": "CausesDesire"}
+{"obj_label": "bathe", "sub_label": "smell bad", "predicate": "CausesDesire"}
+{"obj_label": "run after ball", "sub_label": "be dog", "predicate": "CausesDesire"}
+{"obj_label": "play game with your friend", "sub_label": "boredom", "predicate": "CausesDesire"}
+{"obj_label": "buy house", "sub_label": "have family", "predicate": "CausesDesire"}
+{"obj_label": "buy fresh fruit and vegetable", "sub_label": "hunger", "predicate": "CausesDesire"}
+{"obj_label": "study for subject", "sub_label": "get good grade", "predicate": "CausesDesire"}
+{"obj_label": "create idea", "sub_label": "problem", "predicate": "CausesDesire"}
+{"obj_label": "see excite story", "sub_label": "need for entertainment", "predicate": "CausesDesire"}
+{"obj_label": "go on internet", "sub_label": "research something", "predicate": "CausesDesire"}
+{"obj_label": "celebrate", "sub_label": "gather of old friend", "predicate": "CausesDesire"}
+{"obj_label": "jump into river", "sub_label": "hot summer day", "predicate": "CausesDesire"}
+{"obj_label": "buy something for love one", "sub_label": "affection", "predicate": "CausesDesire"}
+{"obj_label": "propose to woman", "sub_label": "desire to be marry", "predicate": "CausesDesire"}
+{"obj_label": "vomit", "sub_label": "nausea", "predicate": "CausesDesire"}
+{"obj_label": "prepare for vote", "sub_label": "know election be come", "predicate": "CausesDesire"}
+{"obj_label": "ejaculate", "sub_label": "erection", "predicate": "CausesDesire"}
+{"obj_label": "play guitar", "sub_label": "love of song", "predicate": "CausesDesire"}
+{"obj_label": "disrespect", "sub_label": "stigma", "predicate": "CausesDesire"}
+{"obj_label": "get in shape", "sub_label": "new boyfriend", "predicate": "CausesDesire"}
+{"obj_label": "howl with laughter", "sub_label": "funny joke", "predicate": "CausesDesire"}
+{"obj_label": "drink alcohol", "sub_label": "go to bar", "predicate": "CausesDesire"}
+{"obj_label": "compete", "sub_label": "be good", "predicate": "CausesDesire"}
+{"obj_label": "rebel", "sub_label": "anarchism", "predicate": "CausesDesire"}
+{"obj_label": "take exam", "sub_label": "fear of failure", "predicate": "CausesDesire"}
+{"obj_label": "fly kite", "sub_label": "wind", "predicate": "CausesDesire"}
+{"obj_label": "listen to radio", "sub_label": "drive in your car", "predicate": "CausesDesire"}
+{"obj_label": "read newspaper", "sub_label": "be curious", "predicate": "CausesDesire"}
+{"obj_label": "meet friend", "sub_label": "hear about tragedy", "predicate": "CausesDesire"}
+{"obj_label": "surf net", "sub_label": "boredom", "predicate": "CausesDesire"}
+{"obj_label": "score home run", "sub_label": "play baseball", "predicate": "CausesDesire"}
+{"obj_label": "make good world", "sub_label": "live long", "predicate": "CausesDesire"}
+{"obj_label": "climb mountain", "sub_label": "exploratory spirit", "predicate": "CausesDesire"}
+{"obj_label": "urinate", "sub_label": "full bladder leads to desire for", "predicate": "CausesDesire"}
+{"obj_label": "have food", "sub_label": "hunger", "predicate": "CausesDesire"}
+{"obj_label": "kiss someone", "sub_label": "love triggers the desire to kiss", "predicate": "CausesDesire"}
+{"obj_label": "take midterm", "sub_label": "not fail your class", "predicate": "CausesDesire"}
+{"obj_label": "thank someone", "sub_label": "favor", "predicate": "CausesDesire"}
+{"obj_label": "read book", "sub_label": "curiosity", "predicate": "CausesDesire"}
+{"obj_label": "write program", "sub_label": "repetitive task", "predicate": "CausesDesire"}
+{"obj_label": "program computer", "sub_label": "curiosity", "predicate": "CausesDesire"}
+{"obj_label": "play basketball", "sub_label": "be tall", "predicate": "CausesDesire"}
+{"obj_label": "light match", "sub_label": "really smelly fart", "predicate": "CausesDesire"}
+{"obj_label": "make good world", "sub_label": "have child", "predicate": "CausesDesire"}
+{"obj_label": "pay by check", "sub_label": "not have any cash", "predicate": "CausesDesire"}
+{"obj_label": "die", "sub_label": "big problem", "predicate": "CausesDesire"}
+{"obj_label": "sign contract", "sub_label": "sufficient profit", "predicate": "CausesDesire"}
+{"obj_label": "buy beer", "sub_label": "hard day at work", "predicate": "CausesDesire"}
+{"obj_label": "urinate", "sub_label": "full bladder causes longing for urination", "predicate": "CausesDesire"}
+{"obj_label": "take stand", "sub_label": "threat of injustice", "predicate": "CausesDesire"}
+{"obj_label": "entertain someone", "sub_label": "personal interest", "predicate": "CausesDesire"}
+{"obj_label": "paint picture", "sub_label": "artistic talent", "predicate": "CausesDesire"}
+{"obj_label": "cook dinner", "sub_label": "eat healthy", "predicate": "CausesDesire"}
+{"obj_label": "wage war", "sub_label": "insanity", "predicate": "CausesDesire"}
+{"obj_label": "return to work", "sub_label": "need for money", "predicate": "CausesDesire"}
+{"obj_label": "have party", "sub_label": "oba", "predicate": "CausesDesire"}
+{"obj_label": "comfort friend", "sub_label": "talk", "predicate": "CausesDesire"}
+{"obj_label": "determine truth", "sub_label": "mystery", "predicate": "CausesDesire"}
+{"obj_label": "clean your clothe", "sub_label": "dirt", "predicate": "CausesDesire"}
+{"obj_label": "run in marathon", "sub_label": "insanity", "predicate": "CausesDesire"}
+{"obj_label": "examine thing", "sub_label": "science", "predicate": "CausesDesire"}
+{"obj_label": "play football", "sub_label": "watch football", "predicate": "CausesDesire"}
+{"obj_label": "get job", "sub_label": "lack of money", "predicate": "CausesDesire"}
+{"obj_label": "propose to woman", "sub_label": "love sparks desire for proposing", "predicate": "CausesDesire"}
+{"obj_label": "have physical examination", "sub_label": "chronic heartburn", "predicate": "CausesDesire"}
+{"obj_label": "snore", "sub_label": "sleep", "predicate": "CausesDesire"}
+{"obj_label": "please your parent", "sub_label": "be good child", "predicate": "CausesDesire"}
+{"obj_label": "clean your room", "sub_label": "your mother", "predicate": "CausesDesire"}
+{"obj_label": "conquer your opponent", "sub_label": "self-motivation", "predicate": "CausesDesire"}
+{"obj_label": "have friend over", "sub_label": "boredom", "predicate": "CausesDesire"}
+{"obj_label": "advance into battle", "sub_label": "death wish", "predicate": "CausesDesire"}
+{"obj_label": "listen to music", "sub_label": "need to relax", "predicate": "CausesDesire"}
+{"obj_label": "satisfy appetite with minimum effort", "sub_label": "fatigue", "predicate": "CausesDesire"}
+{"obj_label": "make friend", "sub_label": "lonliness", "predicate": "CausesDesire"}
+{"obj_label": "find information", "sub_label": "question", "predicate": "CausesDesire"}
+{"obj_label": "play frisbee", "sub_label": "my dog", "predicate": "CausesDesire"}
+{"obj_label": "change society", "sub_label": "war", "predicate": "CausesDesire"}
+{"obj_label": "sleep", "sub_label": "tire", "predicate": "CausesDesire"}
+{"obj_label": "go to film", "sub_label": "date", "predicate": "CausesDesire"}
+{"obj_label": "watch tv show", "sub_label": "be bore", "predicate": "CausesDesire"}
+{"obj_label": "drink alcohol", "sub_label": "stress", "predicate": "CausesDesire"}
+{"obj_label": "print on printer", "sub_label": "need hardcopy", "predicate": "CausesDesire"}
+{"obj_label": "exercise", "sub_label": "obesity", "predicate": "CausesDesire"}
+{"obj_label": "go to market", "sub_label": "need for grocery", "predicate": "CausesDesire"}
+{"obj_label": "surf net", "sub_label": "pornography", "predicate": "CausesDesire"}
+{"obj_label": "socialize", "sub_label": "be lonely", "predicate": "CausesDesire"}
+{"obj_label": "have food", "sub_label": "be hungry", "predicate": "CausesDesire"}
+{"obj_label": "go see play", "sub_label": "advertise", "predicate": "CausesDesire"}
+{"obj_label": "look through telescope", "sub_label": "curiosity", "predicate": "CausesDesire"}
+{"obj_label": "go to concert", "sub_label": "good music", "predicate": "CausesDesire"}
+{"obj_label": "get drunk", "sub_label": "lose loved-one", "predicate": "CausesDesire"}
+{"obj_label": "take final", "sub_label": "want to pass class", "predicate": "CausesDesire"}
+{"obj_label": "get in shape", "sub_label": "flab", "predicate": "CausesDesire"}
+{"obj_label": "buy present for others", "sub_label": "birthday", "predicate": "CausesDesire"}
+{"obj_label": "become scuba diver", "sub_label": "curiosity", "predicate": "CausesDesire"}
+{"obj_label": "post message", "sub_label": "error", "predicate": "CausesDesire"}
+{"obj_label": "forgive someone", "sub_label": "have compassion", "predicate": "CausesDesire"}
+{"obj_label": "go to doctor", "sub_label": "feel sick", "predicate": "CausesDesire"}
+{"obj_label": "kill someone", "sub_label": "faith", "predicate": "CausesDesire"}
+{"obj_label": "have shower", "sub_label": "get spray by skunk", "predicate": "CausesDesire"}
+{"obj_label": "fight war", "sub_label": "terrorism", "predicate": "CausesDesire"}
+{"obj_label": "walk around lake", "sub_label": "mum", "predicate": "CausesDesire"}
+{"obj_label": "clean your room", "sub_label": "friend", "predicate": "CausesDesire"}
+{"obj_label": "lie", "sub_label": "devil", "predicate": "CausesDesire"}
+{"obj_label": "fight enemy", "sub_label": "war", "predicate": "CausesDesire"}
+{"obj_label": "surf web", "sub_label": "be bore", "predicate": "CausesDesire"}
+{"obj_label": "look through telescope", "sub_label": "woman next door get change", "predicate": "CausesDesire"}
+{"obj_label": "cook curry", "sub_label": "i trip to india", "predicate": "CausesDesire"}
+{"obj_label": "sell your new book", "sub_label": "need to make money", "predicate": "CausesDesire"}
+{"obj_label": "socialize", "sub_label": "friend", "predicate": "CausesDesire"}
+{"obj_label": "commit perjury", "sub_label": "injustice", "predicate": "CausesDesire"}
+{"obj_label": "run", "sub_label": "need for exercise", "predicate": "CausesDesire"}
+{"obj_label": "give assistance", "sub_label": "cry for help", "predicate": "CausesDesire"}
+{"obj_label": "buy something for love one", "sub_label": "need", "predicate": "CausesDesire"}
+{"obj_label": "go to get haircut", "sub_label": "have your hair in your eye", "predicate": "CausesDesire"}
+{"obj_label": "stop your car", "sub_label": "arrive at my destination", "predicate": "CausesDesire"}
+{"obj_label": "give gift", "sub_label": "love", "predicate": "CausesDesire"}
+{"obj_label": "fish", "sub_label": "own boat", "predicate": "CausesDesire"}
+{"obj_label": "see particular program", "sub_label": "trailer", "predicate": "CausesDesire"}
+{"obj_label": "light fire", "sub_label": "cold causes longing for lighting a fire", "predicate": "CausesDesire"}
+{"obj_label": "play harp", "sub_label": "be dead", "predicate": "CausesDesire"}
+{"obj_label": "extort", "sub_label": "greed", "predicate": "CausesDesire"}
+{"obj_label": "run", "sub_label": "fear", "predicate": "CausesDesire"}
+{"obj_label": "print on printer", "sub_label": "need for hardcopy", "predicate": "CausesDesire"}
+{"obj_label": "move car", "sub_label": "impend danger", "predicate": "CausesDesire"}
+{"obj_label": "stay fit", "sub_label": "magazine model", "predicate": "CausesDesire"}
+{"obj_label": "teach other person", "sub_label": "stupidity", "predicate": "CausesDesire"}
+{"obj_label": "surf", "sub_label": "ocean", "predicate": "CausesDesire"}
+{"obj_label": "listen to radio", "sub_label": "break news story", "predicate": "CausesDesire"}
+{"obj_label": "create art", "sub_label": "money", "predicate": "CausesDesire"}
+{"obj_label": "work", "sub_label": "need money", "predicate": "CausesDesire"}
+{"obj_label": "compete", "sub_label": "challenge", "predicate": "CausesDesire"}
+{"obj_label": "hurt someone else", "sub_label": "anger", "predicate": "CausesDesire"}
+{"obj_label": "go to restaurant", "sub_label": "curiosity", "predicate": "CausesDesire"}
+{"obj_label": "chat with friend", "sub_label": "own computer", "predicate": "CausesDesire"}
+{"obj_label": "fight inflation", "sub_label": "high price", "predicate": "CausesDesire"}
+{"obj_label": "go to get haircut", "sub_label": "hair in your eye", "predicate": "CausesDesire"}
+{"obj_label": "act in play", "sub_label": "pride", "predicate": "CausesDesire"}
+{"obj_label": "read news", "sub_label": "important event", "predicate": "CausesDesire"}
+{"obj_label": "open business", "sub_label": "think like entrepeneur", "predicate": "CausesDesire"}
+{"obj_label": "eat cookie", "sub_label": "crave", "predicate": "CausesDesire"}
+{"obj_label": "find information", "sub_label": "curiosity", "predicate": "CausesDesire"}
+{"obj_label": "see particular program", "sub_label": "interest", "predicate": "CausesDesire"}
+{"obj_label": "drive your car", "sub_label": "nice weather", "predicate": "CausesDesire"}
+{"obj_label": "travel", "sub_label": "fun", "predicate": "CausesDesire"}
+{"obj_label": "go to mall", "sub_label": "need to buy clothe", "predicate": "CausesDesire"}
+{"obj_label": "make friend", "sub_label": "greed", "predicate": "CausesDesire"}
+{"obj_label": "urinate", "sub_label": "full bladder instigates desire for urination", "predicate": "CausesDesire"}
+{"obj_label": "pretend", "sub_label": "act", "predicate": "CausesDesire"}
+{"obj_label": "learn about world", "sub_label": "good teacher", "predicate": "CausesDesire"}
+{"obj_label": "watch musician perform", "sub_label": "love of music", "predicate": "CausesDesire"}
+{"obj_label": "have party", "sub_label": "birthday", "predicate": "CausesDesire"}
+{"obj_label": "play football", "sub_label": "coach", "predicate": "CausesDesire"}
+{"obj_label": "paint", "sub_label": "love", "predicate": "CausesDesire"}
+{"obj_label": "reach tentative agreement", "sub_label": "threat of war", "predicate": "CausesDesire"}
+{"obj_label": "help someone", "sub_label": "be human", "predicate": "CausesDesire"}
+{"obj_label": "drive to work", "sub_label": "bus strike", "predicate": "CausesDesire"}
+{"obj_label": "use television", "sub_label": "be bore", "predicate": "CausesDesire"}
+{"obj_label": "kill someone", "sub_label": "all-consuming hatred sometimes", "predicate": "CausesDesire"}
+{"obj_label": "walk", "sub_label": "argument", "predicate": "CausesDesire"}
+{"obj_label": "urinate", "sub_label": "full bladder induces yearning to urinate", "predicate": "CausesDesire"}
+{"obj_label": "have haircut", "sub_label": "long hair", "predicate": "CausesDesire"}
+{"obj_label": "be with friend", "sub_label": "boredom", "predicate": "CausesDesire"}
+{"obj_label": "judge someone", "sub_label": "approbation", "predicate": "CausesDesire"}
+{"obj_label": "bathe", "sub_label": "bubble bath", "predicate": "CausesDesire"}
+{"obj_label": "have sex", "sub_label": "fun", "predicate": "CausesDesire"}
+{"obj_label": "urinate", "sub_label": "have lot of drink", "predicate": "CausesDesire"}
+{"obj_label": "light fire", "sub_label": "cold leads to desire for", "predicate": "CausesDesire"}
+{"obj_label": "masturbate", "sub_label": "porn", "predicate": "CausesDesire"}
+{"obj_label": "play frisbee", "sub_label": "see others play", "predicate": "CausesDesire"}
+{"obj_label": "entertain person", "sub_label": "have natural sense of humor", "predicate": "CausesDesire"}
+{"obj_label": "go to movie", "sub_label": "date", "predicate": "CausesDesire"}
+{"obj_label": "play sport", "sub_label": "be competitive", "predicate": "CausesDesire"}
+{"obj_label": "eat", "sub_label": "food", "predicate": "CausesDesire"}
+{"obj_label": "chop firewood", "sub_label": "be cold", "predicate": "CausesDesire"}
+{"obj_label": "ride horse", "sub_label": "enjoyment", "predicate": "CausesDesire"}
+{"obj_label": "gather energy for tomorrow", "sub_label": "prepare for event", "predicate": "CausesDesire"}
+{"obj_label": "judge someone", "sub_label": "see action", "predicate": "CausesDesire"}
+{"obj_label": "hear testimony", "sub_label": "trial", "predicate": "CausesDesire"}
+{"obj_label": "hear testimony", "sub_label": "curiosity", "predicate": "CausesDesire"}
+{"obj_label": "see excite story", "sub_label": "boredom", "predicate": "CausesDesire"}
+{"obj_label": "have nervous breakdown", "sub_label": "stress", "predicate": "CausesDesire"}
+{"obj_label": "agree with someone", "sub_label": "be right", "predicate": "CausesDesire"}
+{"obj_label": "remember", "sub_label": "memorable time", "predicate": "CausesDesire"}
+{"obj_label": "steal", "sub_label": "greed", "predicate": "CausesDesire"}
+{"obj_label": "clean house", "sub_label": "dust", "predicate": "CausesDesire"}
+{"obj_label": "empty your bladder", "sub_label": "drink too much", "predicate": "CausesDesire"}
+{"obj_label": "have rest", "sub_label": "get tire", "predicate": "CausesDesire"}
+{"obj_label": "kill person", "sub_label": "insanity", "predicate": "CausesDesire"}
+{"obj_label": "read letter", "sub_label": "curiosity", "predicate": "CausesDesire"}
+{"obj_label": "make person laugh", "sub_label": "loneliness", "predicate": "CausesDesire"}
+{"obj_label": "kiss someone", "sub_label": "love induces yearning to kiss", "predicate": "CausesDesire"}
+{"obj_label": "tie your shoelace", "sub_label": "trip", "predicate": "CausesDesire"}
+{"obj_label": "masturbate", "sub_label": "boredom", "predicate": "CausesDesire"}
+{"obj_label": "go to market", "sub_label": "need food", "predicate": "CausesDesire"}
+{"obj_label": "do housework", "sub_label": "have dirty house", "predicate": "CausesDesire"}
+{"obj_label": "bring in verdict", "sub_label": "strong belief in something", "predicate": "CausesDesire"}
+{"obj_label": "punch someone", "sub_label": "prejudice", "predicate": "CausesDesire"}
+{"obj_label": "commit suicide", "sub_label": "utter despair", "predicate": "CausesDesire"}
+{"obj_label": "take final exam", "sub_label": "have class over", "predicate": "CausesDesire"}
+{"obj_label": "pretend", "sub_label": "reality", "predicate": "CausesDesire"}
+{"obj_label": "start fire", "sub_label": "be cold", "predicate": "CausesDesire"}
+{"obj_label": "meet girl", "sub_label": "puberty", "predicate": "CausesDesire"}
+{"obj_label": "find information", "sub_label": "interest advertisment", "predicate": "CausesDesire"}
+{"obj_label": "memorize", "sub_label": "get part in play", "predicate": "CausesDesire"}
+{"obj_label": "talk", "sub_label": "stimulate conversation", "predicate": "CausesDesire"}
+{"obj_label": "stand in queue", "sub_label": "movie", "predicate": "CausesDesire"}
+{"obj_label": "find information", "sub_label": "problem", "predicate": "CausesDesire"}
+{"obj_label": "urinate", "sub_label": "desire for urination arises from full bladder", "predicate": "CausesDesire"}
+{"obj_label": "punch someone", "sub_label": "cruel remark", "predicate": "CausesDesire"}
+{"obj_label": "get job", "sub_label": "poverty", "predicate": "CausesDesire"}
+{"obj_label": "copulate", "sub_label": "be horny", "predicate": "CausesDesire"}
+{"obj_label": "take final", "sub_label": "nothing", "predicate": "CausesDesire"}
+{"obj_label": "compete against someone", "sub_label": "want to win contest", "predicate": "CausesDesire"}
+{"obj_label": "wash your clothe", "sub_label": "get your clothe dirty", "predicate": "CausesDesire"}
+{"obj_label": "conquer your opponent", "sub_label": "greed", "predicate": "CausesDesire"}
+{"obj_label": "comfort friend", "sub_label": "someone sad", "predicate": "CausesDesire"}
+{"obj_label": "laugh at joke", "sub_label": "reaction of others", "predicate": "CausesDesire"}
+{"obj_label": "talk to someone", "sub_label": "loneliness", "predicate": "CausesDesire"}
+{"obj_label": "have conversation", "sub_label": "interest", "predicate": "CausesDesire"}
+{"obj_label": "hit bottle", "sub_label": "feel depress", "predicate": "CausesDesire"}
+{"obj_label": "take bath", "sub_label": "dusty trip", "predicate": "CausesDesire"}
+{"obj_label": "bury cat", "sub_label": "if cat be dead", "predicate": "CausesDesire"}
+{"obj_label": "have rest", "sub_label": "work", "predicate": "CausesDesire"}
+{"obj_label": "kiss someone", "sub_label": "belief", "predicate": "CausesDesire"}
+{"obj_label": "play game", "sub_label": "bordom", "predicate": "CausesDesire"}
+{"obj_label": "become inebriate", "sub_label": "wine", "predicate": "CausesDesire"}
+{"obj_label": "have epileptic fit", "sub_label": "be epileptic", "predicate": "CausesDesire"}
+{"obj_label": "express how funny something be", "sub_label": "fun", "predicate": "CausesDesire"}
+{"obj_label": "build cathedral", "sub_label": "have religious epiphany", "predicate": "CausesDesire"}
+{"obj_label": "pretend", "sub_label": "good story", "predicate": "CausesDesire"}
+{"obj_label": "judge someone", "sub_label": "ignorance", "predicate": "CausesDesire"}
+{"obj_label": "get good grade", "sub_label": "desire to pass course", "predicate": "CausesDesire"}
+{"obj_label": "thank someone", "sub_label": "gift", "predicate": "CausesDesire"}
+{"obj_label": "bring home some fish", "sub_label": "be hungry", "predicate": "CausesDesire"}
+{"obj_label": "go to laundromat", "sub_label": "need clean clothe", "predicate": "CausesDesire"}
+{"obj_label": "get some money from someone", "sub_label": "do job", "predicate": "CausesDesire"}
+{"obj_label": "think", "sub_label": "read", "predicate": "CausesDesire"}
+{"obj_label": "light fire", "sub_label": "cold instigates desire for lighting a fire", "predicate": "CausesDesire"}
+{"obj_label": "get divorce", "sub_label": "spousal abuse", "predicate": "CausesDesire"}
+{"obj_label": "make braid", "sub_label": "very long hair", "predicate": "CausesDesire"}
+{"obj_label": "buy something", "sub_label": "experience benefit of something", "predicate": "CausesDesire"}
+{"obj_label": "eat hamburger", "sub_label": "be hungry", "predicate": "CausesDesire"}
+{"obj_label": "sit down", "sub_label": "sore leg", "predicate": "CausesDesire"}
+{"obj_label": "dance", "sub_label": "alcohol", "predicate": "CausesDesire"}
+{"obj_label": "go to play", "sub_label": "hear review", "predicate": "CausesDesire"}
+{"obj_label": "keep thing orderly and tidy", "sub_label": "live with your mom", "predicate": "CausesDesire"}
+{"obj_label": "please your parent", "sub_label": "love", "predicate": "CausesDesire"}
+{"obj_label": "have lunch", "sub_label": "be hungry", "predicate": "CausesDesire"}
+{"obj_label": "cook", "sub_label": "be hungry", "predicate": "CausesDesire"}
+{"obj_label": "do housework", "sub_label": "company come", "predicate": "CausesDesire"}
+{"obj_label": "pass class", "sub_label": "desire to get good job", "predicate": "CausesDesire"}
+{"obj_label": "go for drive", "sub_label": "need to go somewhere", "predicate": "CausesDesire"}
+{"obj_label": "have lunch", "sub_label": "hunger", "predicate": "CausesDesire"}
+{"obj_label": "swim", "sub_label": "hot sunny day", "predicate": "CausesDesire"}
+{"obj_label": "taste something sweet", "sub_label": "hunger", "predicate": "CausesDesire"}
+{"obj_label": "rest", "sub_label": "hard work", "predicate": "CausesDesire"}
+{"obj_label": "hit bottle", "sub_label": "alcoholism", "predicate": "CausesDesire"}
+{"obj_label": "have fun", "sub_label": "hard work", "predicate": "CausesDesire"}
+{"obj_label": "sleep", "sub_label": "fatigue", "predicate": "CausesDesire"}
+{"obj_label": "print on printer", "sub_label": "snap specail photograph", "predicate": "CausesDesire"}
+{"obj_label": "watch film", "sub_label": "thermonuclear war", "predicate": "CausesDesire"}
+{"obj_label": "eat", "sub_label": "advertisement", "predicate": "CausesDesire"}
+{"obj_label": "plan", "sub_label": "complex situation", "predicate": "CausesDesire"}
+{"obj_label": "pretend", "sub_label": "play game", "predicate": "CausesDesire"}
+{"obj_label": "compute sum", "sub_label": "math", "predicate": "CausesDesire"}
+{"obj_label": "clean house", "sub_label": "stress", "predicate": "CausesDesire"}
+{"obj_label": "go to bed", "sub_label": "sleepiness", "predicate": "CausesDesire"}
+{"obj_label": "gain more land", "sub_label": "overpopulation", "predicate": "CausesDesire"}
+{"obj_label": "play", "sub_label": "be bore", "predicate": "CausesDesire"}
+{"obj_label": "go somewhere", "sub_label": "solitude", "predicate": "CausesDesire"}
+{"obj_label": "visit museum", "sub_label": "desire to learn", "predicate": "CausesDesire"}
+{"obj_label": "open gift", "sub_label": "be curious", "predicate": "CausesDesire"}
+{"obj_label": "eat ice cream", "sub_label": "hot summer day", "predicate": "CausesDesire"}
+{"obj_label": "sell your new book", "sub_label": "need money", "predicate": "CausesDesire"}
+{"obj_label": "go to hairdresser", "sub_label": "wed", "predicate": "CausesDesire"}
+{"obj_label": "lie", "sub_label": "greed", "predicate": "CausesDesire"}
+{"obj_label": "take oath", "sub_label": "love", "predicate": "CausesDesire"}
+{"obj_label": "knit", "sub_label": "yarn", "predicate": "CausesDesire"}
+{"obj_label": "socialize", "sub_label": "loneliness", "predicate": "CausesDesire"}
+{"obj_label": "express information", "sub_label": "gun to my head", "predicate": "CausesDesire"}
+{"obj_label": "buy product", "sub_label": "need something", "predicate": "CausesDesire"}
+{"obj_label": "correct person do it", "sub_label": "faux pa", "predicate": "CausesDesire"}
+{"obj_label": "run", "sub_label": "wild horse", "predicate": "CausesDesire"}
+{"obj_label": "take stand", "sub_label": "honesty", "predicate": "CausesDesire"}
+{"obj_label": "wash dirt from between your toe", "sub_label": "be naked", "predicate": "CausesDesire"}
+{"obj_label": "watch film", "sub_label": "boredom", "predicate": "CausesDesire"}
+{"obj_label": "sew", "sub_label": "rip clothe", "predicate": "CausesDesire"}
+{"obj_label": "visit other country", "sub_label": "desire to travel", "predicate": "CausesDesire"}
+{"obj_label": "go to bed", "sub_label": "be tire", "predicate": "CausesDesire"}
+{"obj_label": "teach other person", "sub_label": "desire to share knowledge", "predicate": "CausesDesire"}
+{"obj_label": "have fun", "sub_label": "vacation", "predicate": "CausesDesire"}
+{"obj_label": "apply for job", "sub_label": "great benefit package", "predicate": "CausesDesire"}
+{"obj_label": "see your favorite show", "sub_label": "free time", "predicate": "CausesDesire"}
+{"obj_label": "pass sentence", "sub_label": "crime", "predicate": "CausesDesire"}
+{"obj_label": "buy house", "sub_label": "low rate", "predicate": "CausesDesire"}
+{"obj_label": "christmas shop", "sub_label": "nothing", "predicate": "CausesDesire"}
+{"obj_label": "watch film", "sub_label": "interest", "predicate": "CausesDesire"}
+{"obj_label": "move car", "sub_label": "approach hailstorm", "predicate": "CausesDesire"}
+{"obj_label": "clean your room", "sub_label": "my mother", "predicate": "CausesDesire"}
+{"obj_label": "shop", "sub_label": "acquire stuff", "predicate": "CausesDesire"}
+{"obj_label": "work box office", "sub_label": "like movie", "predicate": "CausesDesire"}
+{"obj_label": "light fire", "sub_label": "lighting a fire desire caused by cold", "predicate": "CausesDesire"}
+{"obj_label": "fee your family", "sub_label": "see hungry child", "predicate": "CausesDesire"}
+{"obj_label": "start family", "sub_label": "follow pattern of parent", "predicate": "CausesDesire"}
+{"obj_label": "write poem", "sub_label": "depression", "predicate": "CausesDesire"}
+{"obj_label": "play card", "sub_label": "boredom", "predicate": "CausesDesire"}
+{"obj_label": "thank someone", "sub_label": "appreciation", "predicate": "CausesDesire"}
+{"obj_label": "impanel jury", "sub_label": "trial", "predicate": "CausesDesire"}
+{"obj_label": "bring in verdict", "sub_label": "be on jury", "predicate": "CausesDesire"}
+{"obj_label": "cross street", "sub_label": "want to get home", "predicate": "CausesDesire"}
+{"obj_label": "watch television", "sub_label": "cartoon", "predicate": "CausesDesire"}
+{"obj_label": "get divorce", "sub_label": "your partner infidelity", "predicate": "CausesDesire"}
+{"obj_label": "test your strength", "sub_label": "challenge", "predicate": "CausesDesire"}
+{"obj_label": "open bag of chip", "sub_label": "be hungry", "predicate": "CausesDesire"}
+{"obj_label": "make phone call", "sub_label": "listen to your answer machine", "predicate": "CausesDesire"}
+{"obj_label": "watch tv show", "sub_label": "interest in subject", "predicate": "CausesDesire"}
+{"obj_label": "rest", "sub_label": "work", "predicate": "CausesDesire"}
+{"obj_label": "kill someone", "sub_label": "anger", "predicate": "CausesDesire"}
+{"obj_label": "reproduce", "sub_label": "love", "predicate": "CausesDesire"}
+{"obj_label": "contemplate", "sub_label": "confusion", "predicate": "CausesDesire"}
+{"obj_label": "play football", "sub_label": "your coach", "predicate": "CausesDesire"}
+{"obj_label": "create idea", "sub_label": "inspiration", "predicate": "CausesDesire"}
+{"obj_label": "destroy your enemy", "sub_label": "hate", "predicate": "CausesDesire"}
+{"obj_label": "go to market", "sub_label": "need grocery", "predicate": "CausesDesire"}
+{"obj_label": "conduct trial", "sub_label": "baffle case", "predicate": "CausesDesire"}
+{"obj_label": "attend class", "sub_label": "want to learn", "predicate": "CausesDesire"}
+{"obj_label": "get some money from someone", "sub_label": "poverty", "predicate": "CausesDesire"}
+{"obj_label": "go to market", "sub_label": "global thermonuclear war", "predicate": "CausesDesire"}
+{"obj_label": "wash your hand", "sub_label": "have dirty hand", "predicate": "CausesDesire"}
+{"obj_label": "check vital sign", "sub_label": "concern for health", "predicate": "CausesDesire"}
+{"obj_label": "have haircut", "sub_label": "very long hair", "predicate": "CausesDesire"}
+{"obj_label": "celebrate", "sub_label": "win", "predicate": "CausesDesire"}
+{"obj_label": "print on printer", "sub_label": "school work", "predicate": "CausesDesire"}
+{"obj_label": "have shower", "sub_label": "stink", "predicate": "CausesDesire"}
+{"obj_label": "decide criminal fate", "sub_label": "be jury", "predicate": "CausesDesire"}
+{"obj_label": "hear crowd go mad", "sub_label": "ozzy osbourne", "predicate": "CausesDesire"}
+{"obj_label": "see art", "sub_label": "go to europe", "predicate": "CausesDesire"}
+{"obj_label": "get clean", "sub_label": "get sweaty", "predicate": "CausesDesire"}
+{"obj_label": "attend school", "sub_label": "desire to learn", "predicate": "CausesDesire"}
+{"obj_label": "play tennis", "sub_label": "sexy tenniswomen", "predicate": "CausesDesire"}
+{"obj_label": "bathe", "sub_label": "get dirty", "predicate": "CausesDesire"}
+{"obj_label": "take final exam", "sub_label": "end of semester", "predicate": "CausesDesire"}
+{"obj_label": "have food", "sub_label": "hungry", "predicate": "CausesDesire"}
+{"obj_label": "express yourself", "sub_label": "creativity", "predicate": "CausesDesire"}
+{"obj_label": "procreate", "sub_label": "boredom", "predicate": "CausesDesire"}
+{"obj_label": "get pay", "sub_label": "hard work", "predicate": "CausesDesire"}
+{"obj_label": "sleep", "sub_label": "alcohol", "predicate": "CausesDesire"}
+{"obj_label": "chat with friend", "sub_label": "desire for social interaction", "predicate": "CausesDesire"}
+{"obj_label": "play game", "sub_label": "be bore", "predicate": "CausesDesire"}
+{"obj_label": "go for jog", "sub_label": "nothing", "predicate": "CausesDesire"}
+{"obj_label": "sate hunger", "sub_label": "hunger", "predicate": "CausesDesire"}
+{"obj_label": "learn about subject", "sub_label": "curiousity", "predicate": "CausesDesire"}
+{"obj_label": "surf net", "sub_label": "be bore", "predicate": "CausesDesire"}
+{"obj_label": "create art", "sub_label": "creativity", "predicate": "CausesDesire"}
+{"obj_label": "talk", "sub_label": "be with friend", "predicate": "CausesDesire"}
+{"obj_label": "play tennis", "sub_label": "like game", "predicate": "CausesDesire"}
+{"obj_label": "become inebriate", "sub_label": "have child", "predicate": "CausesDesire"}
+{"obj_label": "take bus", "sub_label": "global thermonuclear war", "predicate": "CausesDesire"}
+{"obj_label": "improve your image", "sub_label": "run for president", "predicate": "CausesDesire"}
+{"obj_label": "write letter", "sub_label": "have complaint", "predicate": "CausesDesire"}
+{"obj_label": "clean house", "sub_label": "mess", "predicate": "CausesDesire"}
+{"obj_label": "fiddle", "sub_label": "be nervous", "predicate": "CausesDesire"}
+{"obj_label": "fence", "sub_label": "insult", "predicate": "CausesDesire"}
+{"obj_label": "forgive someone", "sub_label": "love", "predicate": "CausesDesire"}
+{"obj_label": "comfort friend", "sub_label": "loss", "predicate": "CausesDesire"}
+{"obj_label": "answer question", "sub_label": "assist friend", "predicate": "CausesDesire"}
+{"obj_label": "wash your clothe", "sub_label": "dirt", "predicate": "CausesDesire"}
+{"obj_label": "attend rock concert", "sub_label": "like loud music", "predicate": "CausesDesire"}
+{"obj_label": "get onto web", "sub_label": "global thermonuclear war", "predicate": "CausesDesire"}
+{"obj_label": "start fire", "sub_label": "be catch in rain", "predicate": "CausesDesire"}
+{"obj_label": "run errand", "sub_label": "need supply", "predicate": "CausesDesire"}
+{"obj_label": "hike", "sub_label": "boot", "predicate": "CausesDesire"}
+{"obj_label": "go to movie", "sub_label": "rainy day", "predicate": "CausesDesire"}
+{"obj_label": "get clean", "sub_label": "be dirty", "predicate": "CausesDesire"}
+{"obj_label": "procreate", "sub_label": "be male", "predicate": "CausesDesire"}
+{"obj_label": "wash clothe", "sub_label": "bad smell", "predicate": "CausesDesire"}
+{"obj_label": "surf", "sub_label": "go to beach", "predicate": "CausesDesire"}
+{"obj_label": "stay healthy", "sub_label": "see someone else who be sick", "predicate": "CausesDesire"}
+{"obj_label": "take bath", "sub_label": "day without bath", "predicate": "CausesDesire"}
+{"obj_label": "lie", "sub_label": "love", "predicate": "CausesDesire"}
+{"obj_label": "study", "sub_label": "your teacher", "predicate": "CausesDesire"}
+{"obj_label": "tell many person about something", "sub_label": "good news", "predicate": "CausesDesire"}
+{"obj_label": "eat in fast food restaurant", "sub_label": "be hungry", "predicate": "CausesDesire"}
+{"obj_label": "pass course", "sub_label": "please my mother", "predicate": "CausesDesire"}
+{"obj_label": "snore", "sub_label": "be tire", "predicate": "CausesDesire"}
+{"obj_label": "drive to work", "sub_label": "train strike", "predicate": "CausesDesire"}
+{"obj_label": "forgive someone", "sub_label": "apology", "predicate": "CausesDesire"}
+{"obj_label": "act in play", "sub_label": "fame", "predicate": "CausesDesire"}
+{"obj_label": "give gift", "sub_label": "birthday", "predicate": "CausesDesire"}
+{"obj_label": "start family", "sub_label": "security", "predicate": "CausesDesire"}
+{"obj_label": "pass class", "sub_label": "need credit", "predicate": "CausesDesire"}
+{"obj_label": "eat breakfast", "sub_label": "hunger", "predicate": "CausesDesire"}
+{"obj_label": "maintain good health", "sub_label": "beautiful girl", "predicate": "CausesDesire"}
+{"obj_label": "see old thing", "sub_label": "nostalgia", "predicate": "CausesDesire"}
+{"obj_label": "eat breakfast", "sub_label": "sex", "predicate": "CausesDesire"}
+{"obj_label": "have physical examination", "sub_label": "feel ill", "predicate": "CausesDesire"}
+{"obj_label": "watch film", "sub_label": "advertisement", "predicate": "CausesDesire"}
+{"obj_label": "fuck", "sub_label": "porn", "predicate": "CausesDesire"}
+{"obj_label": "memorize", "sub_label": "prepare for test", "predicate": "CausesDesire"}
+{"obj_label": "play chess", "sub_label": "have someone to play with", "predicate": "CausesDesire"}
+{"obj_label": "bake cake", "sub_label": "be hungry", "predicate": "CausesDesire"}
+{"obj_label": "rest", "sub_label": "exercise", "predicate": "CausesDesire"}
+{"obj_label": "laugh at joke", "sub_label": "funny joke", "predicate": "CausesDesire"}
+{"obj_label": "buy house", "sub_label": "low mortgage rate", "predicate": "CausesDesire"}
+{"obj_label": "jog", "sub_label": "need exercise", "predicate": "CausesDesire"}
+{"obj_label": "sleep", "sub_label": "be tire", "predicate": "CausesDesire"}
+{"obj_label": "use calculator", "sub_label": "difficult arithmetic problem", "predicate": "CausesDesire"}
+{"obj_label": "have rest", "sub_label": "fatigue", "predicate": "CausesDesire"}
+{"obj_label": "see band", "sub_label": "listen to music", "predicate": "CausesDesire"}
+{"obj_label": "ride bike", "sub_label": "beautiful day", "predicate": "CausesDesire"}
+{"obj_label": "create art", "sub_label": "inspiration", "predicate": "CausesDesire"}
+{"obj_label": "chop firewood", "sub_label": "wear plaid shirt and workboots", "predicate": "CausesDesire"}
+{"obj_label": "procreate", "sub_label": "love", "predicate": "CausesDesire"}
+{"obj_label": "have bath", "sub_label": "dirt", "predicate": "CausesDesire"}
+{"obj_label": "celebrate", "sub_label": "birthday", "predicate": "CausesDesire"}
+{"obj_label": "cook dinner", "sub_label": "hunger", "predicate": "CausesDesire"}
+{"obj_label": "play violin", "sub_label": "love of music", "predicate": "CausesDesire"}
+{"obj_label": "forgive someone", "sub_label": "compassion", "predicate": "CausesDesire"}
+{"obj_label": "urinate", "sub_label": "full bladder sparks desire for urination", "predicate": "CausesDesire"}
+{"obj_label": "chat with friend", "sub_label": "loneliness", "predicate": "CausesDesire"}
+{"obj_label": "play game with your friend", "sub_label": "recreational desire", "predicate": "CausesDesire"}
+{"obj_label": "go on internet", "sub_label": "wikipedia", "predicate": "CausesDesire"}
+{"obj_label": "propose to woman", "sub_label": "romantic affection induces", "predicate": "CausesDesire"}
+{"obj_label": "go to opera", "sub_label": "nothing", "predicate": "CausesDesire"}
+{"obj_label": "fly in airplane", "sub_label": "faraway friend", "predicate": "CausesDesire"}
+{"obj_label": "pray", "sub_label": "death of friend", "predicate": "CausesDesire"}
+{"obj_label": "go on strike", "sub_label": "really bad management", "predicate": "CausesDesire"}
+{"obj_label": "get some money from someone", "sub_label": "be poor", "predicate": "CausesDesire"}
+{"obj_label": "stop your bicycle", "sub_label": "traffic", "predicate": "CausesDesire"}
+{"obj_label": "write story", "sub_label": "inspiration", "predicate": "CausesDesire"}
+{"obj_label": "drive car", "sub_label": "need to go somewhere", "predicate": "CausesDesire"}
+{"obj_label": "be involve in accident", "sub_label": "plan", "predicate": "CausesDesire"}
+{"obj_label": "rest", "sub_label": "be tire", "predicate": "CausesDesire"}
+{"obj_label": "take final exam", "sub_label": "want to pass class", "predicate": "CausesDesire"}
+{"obj_label": "play game of chess", "sub_label": "become good at it", "predicate": "CausesDesire"}
+{"obj_label": "kiss someone", "sub_label": "love sparks desire for kissing", "predicate": "CausesDesire"}
+{"obj_label": "see your favorite show", "sub_label": "advertisement", "predicate": "CausesDesire"}
+{"obj_label": "make shop list", "sub_label": "need grocery", "predicate": "CausesDesire"}
+{"obj_label": "take walk", "sub_label": "dog", "predicate": "CausesDesire"}
+{"obj_label": "talk to someone", "sub_label": "lonliness", "predicate": "CausesDesire"}
+{"obj_label": "win baseball game", "sub_label": "place bet", "predicate": "CausesDesire"}
+{"obj_label": "read", "sub_label": "curiosity", "predicate": "CausesDesire"}
+{"obj_label": "apply for job", "sub_label": "need for money", "predicate": "CausesDesire"}
+{"obj_label": "open gift", "sub_label": "wrap paper", "predicate": "CausesDesire"}
+{"obj_label": "open bag of chip", "sub_label": "hunger", "predicate": "CausesDesire"}
+{"obj_label": "wait on table", "sub_label": "need money", "predicate": "CausesDesire"}
+{"obj_label": "flirt", "sub_label": "stupidity", "predicate": "CausesDesire"}
+{"obj_label": "take phone call", "sub_label": "sadness", "predicate": "CausesDesire"}
+{"obj_label": "wash your clothe", "sub_label": "smell", "predicate": "CausesDesire"}
+{"obj_label": "make bread", "sub_label": "be hungry", "predicate": "CausesDesire"}
+{"obj_label": "study", "sub_label": "desire to learn new language", "predicate": "CausesDesire"}
+{"obj_label": "go to sleep", "sub_label": "exhaustion", "predicate": "CausesDesire"}
+{"obj_label": "fly kite", "sub_label": "strong wind", "predicate": "CausesDesire"}
+{"obj_label": "grow vegetable", "sub_label": "high produce price", "predicate": "CausesDesire"}
+{"obj_label": "take course", "sub_label": "promotion promise", "predicate": "CausesDesire"}
+{"obj_label": "go public", "sub_label": "scandal", "predicate": "CausesDesire"}
+{"obj_label": "stop stand in it", "sub_label": "smell dog poop", "predicate": "CausesDesire"}
+{"obj_label": "tickle", "sub_label": "baby", "predicate": "CausesDesire"}
+{"obj_label": "start family", "sub_label": "fear of miss out", "predicate": "CausesDesire"}
+{"obj_label": "sleep at night", "sub_label": "work all day", "predicate": "CausesDesire"}
+{"obj_label": "play frisbee", "sub_label": "take dog for walk", "predicate": "CausesDesire"}
+{"obj_label": "write program", "sub_label": "need", "predicate": "CausesDesire"}
+{"obj_label": "kill someone", "sub_label": "rage", "predicate": "CausesDesire"}
+{"obj_label": "propose to woman", "sub_label": "love leads to desire for", "predicate": "CausesDesire"}
+{"obj_label": "debate politics", "sub_label": "freinds", "predicate": "CausesDesire"}
+{"obj_label": "learn something new", "sub_label": "boredom", "predicate": "CausesDesire"}
+{"obj_label": "visit other country", "sub_label": "trace your family history", "predicate": "CausesDesire"}
+{"obj_label": "dream", "sub_label": "stress", "predicate": "CausesDesire"}
+{"obj_label": "see exhibit", "sub_label": "curiousity", "predicate": "CausesDesire"}
+{"obj_label": "create something to help other person", "sub_label": "idealism", "predicate": "CausesDesire"}
+{"obj_label": "go somewhere", "sub_label": "have new experience", "predicate": "CausesDesire"}
+{"obj_label": "make friend", "sub_label": "feel leave out", "predicate": "CausesDesire"}
+{"obj_label": "propose to woman", "sub_label": "elicits desire to propose", "predicate": "CausesDesire"}
+{"obj_label": "eat in restaurant", "sub_label": "be hungry", "predicate": "CausesDesire"}
+{"obj_label": "memorize", "sub_label": "spell test", "predicate": "CausesDesire"}
+{"obj_label": "propose to woman", "sub_label": "love instigates desire for proposing", "predicate": "CausesDesire"}
+{"obj_label": "take final", "sub_label": "need to graduate", "predicate": "CausesDesire"}
+{"obj_label": "clean house", "sub_label": "expect copany", "predicate": "CausesDesire"}
+{"obj_label": "have fun", "sub_label": "boredom", "predicate": "CausesDesire"}
+{"obj_label": "play chess", "sub_label": "be bore", "predicate": "CausesDesire"}
+{"obj_label": "have sex", "sub_label": "lust", "predicate": "CausesDesire"}
+{"obj_label": "pay by check", "sub_label": "non-acceptance of cash for payment", "predicate": "CausesDesire"}
+{"obj_label": "hit bottle", "sub_label": "be depress", "predicate": "CausesDesire"}
+{"obj_label": "take phone call", "sub_label": "lonelyness", "predicate": "CausesDesire"}
+{"obj_label": "relax", "sub_label": "hot bath", "predicate": "CausesDesire"}
+{"obj_label": "watch television", "sub_label": "special on ai", "predicate": "CausesDesire"}
+{"obj_label": "use computer", "sub_label": "want to get on internet", "predicate": "CausesDesire"}
+{"obj_label": "catch mumps", "sub_label": "avoid social contact", "predicate": "CausesDesire"}
+{"obj_label": "add up number", "sub_label": "itemize bill", "predicate": "CausesDesire"}
+{"obj_label": "buy beer", "sub_label": "attend bar", "predicate": "CausesDesire"}
+{"obj_label": "sew", "sub_label": "tear in your shirt", "predicate": "CausesDesire"}
+{"obj_label": "program", "sub_label": "need computer program", "predicate": "CausesDesire"}
+{"obj_label": "go to party", "sub_label": "invitation", "predicate": "CausesDesire"}
+{"obj_label": "kill", "sub_label": "anger", "predicate": "CausesDesire"}
+{"obj_label": "stop your car", "sub_label": "see that road be block", "predicate": "CausesDesire"}
+{"obj_label": "play sport", "sub_label": "want exercise", "predicate": "CausesDesire"}
+{"obj_label": "listen to radio", "sub_label": "silence", "predicate": "CausesDesire"}
+{"obj_label": "hit bottle", "sub_label": "your wife leave you", "predicate": "CausesDesire"}
+{"obj_label": "bury cat", "sub_label": "find your cat dead", "predicate": "CausesDesire"}
+{"obj_label": "commit perjury", "sub_label": "want to protect your interest", "predicate": "CausesDesire"}
+{"obj_label": "please your parent", "sub_label": "money problem", "predicate": "CausesDesire"}
+{"obj_label": "entertain person", "sub_label": "huge ego", "predicate": "CausesDesire"}
+{"obj_label": "go fish", "sub_label": "thermonuclear war", "predicate": "CausesDesire"}
+{"obj_label": "learn", "sub_label": "book", "predicate": "CausesDesire"}
+{"obj_label": "test car", "sub_label": "cloud of smoke", "predicate": "CausesDesire"}
+{"obj_label": "change your appearance", "sub_label": "go to church", "predicate": "CausesDesire"}
+{"obj_label": "talk", "sub_label": "need to give information", "predicate": "CausesDesire"}
+{"obj_label": "fish", "sub_label": "hunger", "predicate": "CausesDesire"}
+{"obj_label": "have friend over", "sub_label": "want to socialize", "predicate": "CausesDesire"}
+{"obj_label": "light fire", "sub_label": "cold triggers the desire to light a fire", "predicate": "CausesDesire"}
+{"obj_label": "talk to woman", "sub_label": "eye contact", "predicate": "CausesDesire"}
+{"obj_label": "hear news", "sub_label": "sight of pregnant friend", "predicate": "CausesDesire"}
+{"obj_label": "sign contract", "sub_label": "lock in good price", "predicate": "CausesDesire"}
+{"obj_label": "have fun", "sub_label": "soccer", "predicate": "CausesDesire"}
+{"obj_label": "light fire", "sub_label": "cold induces yearning to light a fire", "predicate": "CausesDesire"}
+{"obj_label": "kiss someone", "sub_label": "elicits desire to kiss", "predicate": "CausesDesire"}
+{"obj_label": "eat hamburger", "sub_label": "hunger", "predicate": "CausesDesire"}
+{"obj_label": "kiss", "sub_label": "love", "predicate": "CausesDesire"}
+{"obj_label": "gain more land", "sub_label": "selfish greed", "predicate": "CausesDesire"}
+{"obj_label": "listen to radio", "sub_label": "bad tv", "predicate": "CausesDesire"}
+{"obj_label": "have checkup", "sub_label": "pain", "predicate": "CausesDesire"}
+{"obj_label": "propose to woman", "sub_label": "be single man", "predicate": "CausesDesire"}
+{"obj_label": "have friend over", "sub_label": "be lonely", "predicate": "CausesDesire"}
+{"obj_label": "learn about world", "sub_label": "curiousity", "predicate": "CausesDesire"}
+{"obj_label": "invent", "sub_label": "idea", "predicate": "CausesDesire"}
+{"obj_label": "blush", "sub_label": "embarrassment", "predicate": "CausesDesire"}
+{"obj_label": "reach tentative agreement", "sub_label": "like other person involve", "predicate": "CausesDesire"}
+{"obj_label": "pass class", "sub_label": "illness", "predicate": "CausesDesire"}
+{"obj_label": "buy present", "sub_label": "media hype about holiday season", "predicate": "CausesDesire"}
+{"obj_label": "spit", "sub_label": "taste something bad", "predicate": "CausesDesire"}
+{"obj_label": "fee your family", "sub_label": "love", "predicate": "CausesDesire"}
+{"obj_label": "make shop list", "sub_label": "hunger", "predicate": "CausesDesire"}
+{"obj_label": "rest", "sub_label": "exhaustion", "predicate": "CausesDesire"}
+{"obj_label": "ritualise", "sub_label": "compulsion", "predicate": "CausesDesire"}
+{"obj_label": "paint picture", "sub_label": "something beautiful", "predicate": "CausesDesire"}
+{"obj_label": "gather energy for tomorrow", "sub_label": "work", "predicate": "CausesDesire"}
+{"obj_label": "sit on chair", "sub_label": "have sore foot", "predicate": "CausesDesire"}
+{"obj_label": "memorize", "sub_label": "be in play", "predicate": "CausesDesire"}
+{"obj_label": "write program", "sub_label": "goal", "predicate": "CausesDesire"}
+{"obj_label": "urinate", "sub_label": "full bladder prompts desire to", "predicate": "CausesDesire"}
+{"obj_label": "lose consciousness", "sub_label": "tiredness", "predicate": "CausesDesire"}
+{"obj_label": "become inebriate", "sub_label": "alcohol", "predicate": "CausesDesire"}
+{"obj_label": "clean your clothe", "sub_label": "be dirty", "predicate": "CausesDesire"}
+{"obj_label": "attend school", "sub_label": "desire to learn more thing", "predicate": "CausesDesire"}
+{"obj_label": "change your appearance", "sub_label": "be ugly", "predicate": "CausesDesire"}
+{"obj_label": "see artifact", "sub_label": "curiousity", "predicate": "CausesDesire"}
+{"obj_label": "listen to music", "sub_label": "miss friend or love one", "predicate": "CausesDesire"}
+{"obj_label": "eat breakfast in bed", "sub_label": "tiffany", "predicate": "CausesDesire"}
+{"obj_label": "socialize", "sub_label": "alcohol", "predicate": "CausesDesire"}
+{"obj_label": "propose to woman", "sub_label": "love triggers the desire to propose", "predicate": "CausesDesire"}
+{"obj_label": "use calculator", "sub_label": "algebra", "predicate": "CausesDesire"}
+{"obj_label": "reach advantage", "sub_label": "ambition", "predicate": "CausesDesire"}
+{"obj_label": "eat it", "sub_label": "cupcake", "predicate": "CausesDesire"}
+{"obj_label": "read newspaper", "sub_label": "boredom", "predicate": "CausesDesire"}
+{"obj_label": "know how stock market perform", "sub_label": "own stock", "predicate": "CausesDesire"}
+{"obj_label": "make patchwork quilt", "sub_label": "be old and bore", "predicate": "CausesDesire"}
+{"obj_label": "open gift", "sub_label": "have birthday", "predicate": "CausesDesire"}
+{"obj_label": "go to film", "sub_label": "good actor", "predicate": "CausesDesire"}
+{"obj_label": "create something to help other person", "sub_label": "compassion", "predicate": "CausesDesire"}
+{"obj_label": "go to film", "sub_label": "advertisement", "predicate": "CausesDesire"}
+{"obj_label": "take stand", "sub_label": "be witness in trial", "predicate": "CausesDesire"}
+{"obj_label": "memorize", "sub_label": "upcoming exam", "predicate": "CausesDesire"}
+{"obj_label": "buy something for love one", "sub_label": "birthday", "predicate": "CausesDesire"}
+{"obj_label": "go to opera", "sub_label": "free ticket", "predicate": "CausesDesire"}
+{"obj_label": "start fire", "sub_label": "cold weather", "predicate": "CausesDesire"}
+{"obj_label": "sing", "sub_label": "joy", "predicate": "CausesDesire"}
+{"obj_label": "sit down", "sub_label": "exhaustion", "predicate": "CausesDesire"}
+{"obj_label": "weed garden", "sub_label": "weed", "predicate": "CausesDesire"}
+{"obj_label": "run", "sub_label": "big monster", "predicate": "CausesDesire"}
+{"obj_label": "get good grade", "sub_label": "study", "predicate": "CausesDesire"}
+{"obj_label": "visit art gallery", "sub_label": "interest in paint", "predicate": "CausesDesire"}
+{"obj_label": "sit down", "sub_label": "be tire", "predicate": "CausesDesire"}
+{"obj_label": "talk", "sub_label": "friend", "predicate": "CausesDesire"}
+{"obj_label": "see your favorite show", "sub_label": "desire for closure", "predicate": "CausesDesire"}
+{"obj_label": "have physical examination", "sub_label": "pain", "predicate": "CausesDesire"}
+{"obj_label": "see exhibit", "sub_label": "interest", "predicate": "CausesDesire"}
+{"obj_label": "take stand", "sub_label": "witness crime", "predicate": "CausesDesire"}
+{"obj_label": "christmas shop", "sub_label": "feel love for your family", "predicate": "CausesDesire"}
+{"obj_label": "take bath", "sub_label": "few day of plumb problem", "predicate": "CausesDesire"}
+{"obj_label": "soak in hotspring", "sub_label": "filth", "predicate": "CausesDesire"}
+{"obj_label": "move car", "sub_label": "block another car", "predicate": "CausesDesire"}
+{"obj_label": "propose to woman", "sub_label": "love induces yearning to propose", "predicate": "CausesDesire"}
+{"obj_label": "take break", "sub_label": "frustration", "predicate": "CausesDesire"}
+{"obj_label": "do crossword puzzle", "sub_label": "tedium", "predicate": "CausesDesire"}
+{"obj_label": "eat breakfast in bed", "sub_label": "laziness", "predicate": "CausesDesire"}
+{"obj_label": "hear news", "sub_label": "see ring on finger", "predicate": "CausesDesire"}
+{"obj_label": "learn about world", "sub_label": "travel", "predicate": "CausesDesire"}
+{"obj_label": "learn about science", "sub_label": "want to become doctor", "predicate": "CausesDesire"}
+{"obj_label": "have haircut", "sub_label": "global thermonuclear war", "predicate": "CausesDesire"}
+{"obj_label": "attend rock concert", "sub_label": "hear band on radio", "predicate": "CausesDesire"}
+{"obj_label": "spend money", "sub_label": "shop", "predicate": "CausesDesire"}
+{"obj_label": "wage war", "sub_label": "hatred", "predicate": "CausesDesire"}
+{"obj_label": "obstruct justice", "sub_label": "be bad", "predicate": "CausesDesire"}
+{"obj_label": "tie your shoelace", "sub_label": "global thermonuclear war", "predicate": "CausesDesire"}
+{"obj_label": "rest", "sub_label": "over-work", "predicate": "CausesDesire"}
+{"obj_label": "attend lecture", "sub_label": "chance to hear marvin minsky", "predicate": "CausesDesire"}
+{"obj_label": "rest", "sub_label": "fatigue", "predicate": "CausesDesire"}
+{"obj_label": "become more clean", "sub_label": "smell bad", "predicate": "CausesDesire"}
+{"obj_label": "take bath", "sub_label": "long bike ride", "predicate": "CausesDesire"}
+{"obj_label": "ride horse", "sub_label": "like horse", "predicate": "CausesDesire"}
+{"obj_label": "find information", "sub_label": "curiousity", "predicate": "CausesDesire"}
+{"obj_label": "tape television show", "sub_label": "like television show", "predicate": "CausesDesire"}
+{"obj_label": "fart", "sub_label": "flatuence", "predicate": "CausesDesire"}
+{"obj_label": "use it", "sub_label": "have penis", "predicate": "CausesDesire"}
+{"obj_label": "kiss someone", "sub_label": "desire for kissing arises from love", "predicate": "CausesDesire"}
+{"obj_label": "surf web", "sub_label": "boredom", "predicate": "CausesDesire"}
+{"obj_label": "drink", "sub_label": "be thirsty", "predicate": "CausesDesire"}
+{"obj_label": "masturbate", "sub_label": "erection", "predicate": "CausesDesire"}
+{"obj_label": "go to store", "sub_label": "exausting your food supply", "predicate": "CausesDesire"}
+{"obj_label": "examine thing", "sub_label": "curiosity", "predicate": "CausesDesire"}
+{"obj_label": "scuba dive", "sub_label": "want to see coral reef", "predicate": "CausesDesire"}
+{"obj_label": "light fire", "sub_label": "coldness", "predicate": "CausesDesire"}
+{"obj_label": "set cup on table", "sub_label": "empty cup in your hand", "predicate": "CausesDesire"}
+{"obj_label": "sit on chair", "sub_label": "be tire", "predicate": "CausesDesire"}
+{"obj_label": "take final exam", "sub_label": "want good grade", "predicate": "CausesDesire"}
+{"obj_label": "take oath", "sub_label": "secret organization", "predicate": "CausesDesire"}
+{"obj_label": "have physical exam", "sub_label": "change in body condition", "predicate": "CausesDesire"}
+{"obj_label": "get drunk", "sub_label": "sadness", "predicate": "CausesDesire"}
+{"obj_label": "use vcr", "sub_label": "rare film", "predicate": "CausesDesire"}
+{"obj_label": "read to your child", "sub_label": "bedtime", "predicate": "CausesDesire"}
+{"obj_label": "sleep", "sub_label": "warm glass of milk", "predicate": "CausesDesire"}
+{"obj_label": "cook meal", "sub_label": "hunger", "predicate": "CausesDesire"}
+{"obj_label": "go to store", "sub_label": "hunger", "predicate": "CausesDesire"}
+{"obj_label": "take final exam", "sub_label": "stupidity", "predicate": "CausesDesire"}
+{"obj_label": "fly kite", "sub_label": "wind blow", "predicate": "CausesDesire"}
+{"obj_label": "know how stock market perform", "sub_label": "hold stock", "predicate": "CausesDesire"}
+{"obj_label": "eat quickly", "sub_label": "short lunch break", "predicate": "CausesDesire"}
+{"obj_label": "kill person", "sub_label": "anger", "predicate": "CausesDesire"}
+{"obj_label": "surprise someone", "sub_label": "opportunity", "predicate": "CausesDesire"}
+{"obj_label": "design software", "sub_label": "talent", "predicate": "CausesDesire"}
+{"obj_label": "advance into battle", "sub_label": "insanity", "predicate": "CausesDesire"}
+{"obj_label": "have lunch", "sub_label": "noon whistle", "predicate": "CausesDesire"}
+{"obj_label": "climb", "sub_label": "cafe at top mountain", "predicate": "CausesDesire"}
+{"obj_label": "jog", "sub_label": "dog", "predicate": "CausesDesire"}
+{"obj_label": "run", "sub_label": "big hairy monster", "predicate": "CausesDesire"}
+{"obj_label": "attend classical concert", "sub_label": "bach music", "predicate": "CausesDesire"}
+{"obj_label": "dance", "sub_label": "great music", "predicate": "CausesDesire"}
+{"obj_label": "howl with laughter", "sub_label": "funny movie", "predicate": "CausesDesire"}
+{"obj_label": "send e-mail", "sub_label": "good news", "predicate": "CausesDesire"}
+{"obj_label": "watch tv", "sub_label": "be bore", "predicate": "CausesDesire"}
+{"obj_label": "fix computer", "sub_label": "query for assistance", "predicate": "CausesDesire"}
+{"obj_label": "start flame or fire", "sub_label": "feel cold", "predicate": "CausesDesire"}
+{"obj_label": "attend class", "sub_label": "thirst for knowledge", "predicate": "CausesDesire"}
+{"obj_label": "kiss someone", "sub_label": "kissing someone desire caused by love", "predicate": "CausesDesire"}
+{"obj_label": "scratch", "sub_label": "have flea", "predicate": "CausesDesire"}
+{"obj_label": "attend lecture", "sub_label": "thirst for knowledge", "predicate": "CausesDesire"}
+{"obj_label": "get exercise", "sub_label": "be out of shape", "predicate": "CausesDesire"}
+{"obj_label": "improve your image", "sub_label": "other person", "predicate": "CausesDesire"}
+{"obj_label": "surf", "sub_label": "boredom", "predicate": "CausesDesire"}
+{"obj_label": "mail letter", "sub_label": "need to communicate", "predicate": "CausesDesire"}
+{"obj_label": "have food", "sub_label": "lunchtime", "predicate": "CausesDesire"}
+{"obj_label": "swim", "sub_label": "heat", "predicate": "CausesDesire"}
+{"obj_label": "eat apple", "sub_label": "be hungry", "predicate": "CausesDesire"}
+{"obj_label": "cook meal", "sub_label": "love", "predicate": "CausesDesire"}
+{"obj_label": "drink alcohol", "sub_label": "party", "predicate": "CausesDesire"}
+{"obj_label": "attend classical concert", "sub_label": "love of music", "predicate": "CausesDesire"}
+{"obj_label": "create idea", "sub_label": "creativity", "predicate": "CausesDesire"}
+{"obj_label": "procreate", "sub_label": "horniness", "predicate": "CausesDesire"}
+{"obj_label": "stop your car", "sub_label": "red traffic light", "predicate": "CausesDesire"}
+{"obj_label": "drink", "sub_label": "depression", "predicate": "CausesDesire"}
+{"obj_label": "have food", "sub_label": "growl stomach", "predicate": "CausesDesire"}
+{"obj_label": "scuba dive", "sub_label": "feel adventerous", "predicate": "CausesDesire"}
+{"obj_label": "hit bottle", "sub_label": "death of spouse", "predicate": "CausesDesire"}
+{"obj_label": "compete against someone", "sub_label": "self-confidence", "predicate": "CausesDesire"}
+{"obj_label": "earn live", "sub_label": "need for money", "predicate": "CausesDesire"}
+{"obj_label": "have rest", "sub_label": "hard labor", "predicate": "CausesDesire"}
+{"obj_label": "exercise", "sub_label": "thermonuclear war", "predicate": "CausesDesire"}
+{"obj_label": "go to sleep", "sub_label": "be tire", "predicate": "CausesDesire"}
+{"obj_label": "go for walk", "sub_label": "heavy meal", "predicate": "CausesDesire"}
+{"obj_label": "wash your clothe", "sub_label": "semen", "predicate": "CausesDesire"}
+{"obj_label": "talk with someone far away", "sub_label": "have telephone nearby", "predicate": "CausesDesire"}
+{"obj_label": "rest", "sub_label": "bed", "predicate": "CausesDesire"}
+{"obj_label": "play chess", "sub_label": "boredom", "predicate": "CausesDesire"}
+{"obj_label": "swim", "sub_label": "be hot", "predicate": "CausesDesire"}
+{"obj_label": "change society", "sub_label": "discrimination", "predicate": "CausesDesire"}
+{"obj_label": "have party", "sub_label": "loneliness", "predicate": "CausesDesire"}
+{"obj_label": "run after ball", "sub_label": "competition", "predicate": "CausesDesire"}
+{"obj_label": "analyse something", "sub_label": "conflict data", "predicate": "CausesDesire"}
+{"obj_label": "attend rock concert", "sub_label": "like music", "predicate": "CausesDesire"}
+{"obj_label": "laugh at joke", "sub_label": "be in happy mood", "predicate": "CausesDesire"}
+{"obj_label": "make person laugh", "sub_label": "have someone love you", "predicate": "CausesDesire"}
+{"obj_label": "make good world", "sub_label": "cruelty", "predicate": "CausesDesire"}
+{"obj_label": "learn about science", "sub_label": "beautiful mind", "predicate": "CausesDesire"}
+{"obj_label": "eat breakfast in bed", "sub_label": "be sick", "predicate": "CausesDesire"}
+{"obj_label": "play game with your friend", "sub_label": "download online game", "predicate": "CausesDesire"}
+{"obj_label": "have shower", "sub_label": "dirt in your hair", "predicate": "CausesDesire"}
+{"obj_label": "cook curry", "sub_label": "hunger", "predicate": "CausesDesire"}
+{"obj_label": "cogitate", "sub_label": "problem", "predicate": "CausesDesire"}
+{"obj_label": "make friend", "sub_label": "loneliness", "predicate": "CausesDesire"}
+{"obj_label": "wait your turn", "sub_label": "be polite", "predicate": "CausesDesire"}
+{"obj_label": "wait in line", "sub_label": "good movie", "predicate": "CausesDesire"}
+{"obj_label": "do housework", "sub_label": "messy house", "predicate": "CausesDesire"}
+{"obj_label": "leave line", "sub_label": "impatience", "predicate": "CausesDesire"}
+{"obj_label": "celebrate", "sub_label": "equality for everyone", "predicate": "CausesDesire"}
+{"obj_label": "play piano", "sub_label": "music", "predicate": "CausesDesire"}
+{"obj_label": "wait for someone", "sub_label": "need someone", "predicate": "CausesDesire"}
+{"obj_label": "stay fit", "sub_label": "try on bathe suit", "predicate": "CausesDesire"}
+{"obj_label": "wait for someone", "sub_label": "sex", "predicate": "CausesDesire"}
+{"obj_label": "mail letter", "sub_label": "birthday", "predicate": "CausesDesire"}
+{"obj_label": "have examination", "sub_label": "pain", "predicate": "CausesDesire"}
+{"obj_label": "cook dinner", "sub_label": "be hungry", "predicate": "CausesDesire"}
+{"obj_label": "climb mountain", "sub_label": "insanity or adventurous spirit", "predicate": "CausesDesire"}
+{"obj_label": "ride bike", "sub_label": "watch tour de france", "predicate": "CausesDesire"}
+{"obj_label": "go to sport event", "sub_label": "boredom", "predicate": "CausesDesire"}
+{"obj_label": "print on printer", "sub_label": "need hard copy", "predicate": "CausesDesire"}
+{"obj_label": "make good world", "sub_label": "love of life", "predicate": "CausesDesire"}
+{"obj_label": "climb", "sub_label": "cliff", "predicate": "CausesDesire"}
+{"obj_label": "hear sing", "sub_label": "be at concert", "predicate": "CausesDesire"}
+{"obj_label": "sate your hunger", "sub_label": "lunch break", "predicate": "CausesDesire"}
+{"obj_label": "watch even news", "sub_label": "habit and civil responsibility", "predicate": "CausesDesire"}
+{"obj_label": "attend meet", "sub_label": "be alcoholic", "predicate": "CausesDesire"}
+{"obj_label": "make sure you healthy", "sub_label": "be parent", "predicate": "CausesDesire"}
+{"obj_label": "buy product", "sub_label": "advertise", "predicate": "CausesDesire"}
+{"obj_label": "have shower", "sub_label": "sex", "predicate": "CausesDesire"}
+{"obj_label": "socialize", "sub_label": "pair of dance ticket", "predicate": "CausesDesire"}
+{"obj_label": "buy product", "sub_label": "sale", "predicate": "CausesDesire"}
+{"obj_label": "stop your car", "sub_label": "object obsructing road", "predicate": "CausesDesire"}
+{"obj_label": "have checkup", "sub_label": "lump or lump especially asymmetric lump", "predicate": "CausesDesire"}
+{"obj_label": "take bath", "sub_label": "be dirty", "predicate": "CausesDesire"}
+{"obj_label": "communicate", "sub_label": "have problem", "predicate": "CausesDesire"}
+{"obj_label": "celebrate", "sub_label": "victory", "predicate": "CausesDesire"}
+{"obj_label": "have physical exam", "sub_label": "pain", "predicate": "CausesDesire"}
+{"obj_label": "visit art gallery", "sub_label": "special exhibit", "predicate": "CausesDesire"}
+{"obj_label": "go to opera", "sub_label": "appreciation for opera", "predicate": "CausesDesire"}
+{"obj_label": "socialize", "sub_label": "lonliness and sadness", "predicate": "CausesDesire"}
+{"obj_label": "chat with friend", "sub_label": "have some news to tell", "predicate": "CausesDesire"}
+{"obj_label": "play game", "sub_label": "be child", "predicate": "CausesDesire"}
+{"obj_label": "find truth", "sub_label": "curiousity", "predicate": "CausesDesire"}
+{"obj_label": "wash your hand", "sub_label": "dirty hand", "predicate": "CausesDesire"}
+{"obj_label": "buy present", "sub_label": "christmas", "predicate": "CausesDesire"}
+{"obj_label": "stop your car", "sub_label": "red light", "predicate": "CausesDesire"}
+{"obj_label": "see something new", "sub_label": "boredom", "predicate": "CausesDesire"}
+{"obj_label": "repair umbrella", "sub_label": "break umbrella", "predicate": "CausesDesire"}
+{"obj_label": "light fire", "sub_label": "desire for lighting a fire arises from cold", "predicate": "CausesDesire"}
+{"obj_label": "propose to woman", "sub_label": "love causes longing for proposing", "predicate": "CausesDesire"}
+{"obj_label": "hike", "sub_label": "not have to go very far", "predicate": "CausesDesire"}
+{"obj_label": "fix computer", "sub_label": "frustration with malfunction", "predicate": "CausesDesire"}
+{"obj_label": "conduct trial", "sub_label": "murder", "predicate": "CausesDesire"}
+{"obj_label": "bury cat", "sub_label": "cat be dead", "predicate": "CausesDesire"}
+{"obj_label": "clean", "sub_label": "dirtiness", "predicate": "CausesDesire"}
+{"obj_label": "compete", "sub_label": "win", "predicate": "CausesDesire"}
+{"obj_label": "see person play game", "sub_label": "boredom", "predicate": "CausesDesire"}
+{"obj_label": "lose weight", "sub_label": "high blood pressure", "predicate": "CausesDesire"}
+{"obj_label": "kiss someone", "sub_label": "praise", "predicate": "CausesDesire"}
+{"obj_label": "get fit", "sub_label": "be overweight", "predicate": "CausesDesire"}
+{"obj_label": "make sure you healthy", "sub_label": "your mother", "predicate": "CausesDesire"}
+{"obj_label": "socialize", "sub_label": "ecstasy", "predicate": "CausesDesire"}
+{"obj_label": "analyse something", "sub_label": "description", "predicate": "CausesDesire"}
+{"obj_label": "read book", "sub_label": "what", "predicate": "CausesDesire"}
+{"obj_label": "bake cake", "sub_label": "birthday", "predicate": "CausesDesire"}
+{"obj_label": "meet person", "sub_label": "be lonely", "predicate": "CausesDesire"}
+{"obj_label": "find information", "sub_label": "wonder", "predicate": "CausesDesire"}
+{"obj_label": "hit bottle", "sub_label": "frustration", "predicate": "CausesDesire"}
+{"obj_label": "eat dinner", "sub_label": "be hungry", "predicate": "CausesDesire"}
+{"obj_label": "spit", "sub_label": "bug in your mouth", "predicate": "CausesDesire"}
+{"obj_label": "go on internet", "sub_label": "be curious about something", "predicate": "CausesDesire"}
+{"obj_label": "sign contract", "sub_label": "buy house", "predicate": "CausesDesire"}
+{"obj_label": "live life", "sub_label": "love", "predicate": "CausesDesire"}
+{"obj_label": "jump out of window", "sub_label": "feel suicidal", "predicate": "CausesDesire"}
+{"obj_label": "give gift", "sub_label": "love someone", "predicate": "CausesDesire"}
+{"obj_label": "jump out of window", "sub_label": "fire", "predicate": "CausesDesire"}
+{"obj_label": "fix computer", "sub_label": "money", "predicate": "CausesDesire"}
+{"obj_label": "cool off", "sub_label": "hot day", "predicate": "CausesDesire"}
+{"obj_label": "have shower", "sub_label": "sweat", "predicate": "CausesDesire"}
+{"obj_label": "lose consciousness", "sub_label": "pain", "predicate": "CausesDesire"}
+{"obj_label": "send e-mail", "sub_label": "need to communicate", "predicate": "CausesDesire"}
+{"obj_label": "start family", "sub_label": "your biological timeclock", "predicate": "CausesDesire"}
+{"obj_label": "kill", "sub_label": "insanity", "predicate": "CausesDesire"}
+{"obj_label": "mail letter", "sub_label": "win prize", "predicate": "CausesDesire"}
+{"obj_label": "go to movie", "sub_label": "your favorite actor", "predicate": "CausesDesire"}
+{"obj_label": "go to market", "sub_label": "need grape", "predicate": "CausesDesire"}
+{"obj_label": "die", "sub_label": "anger", "predicate": "CausesDesire"}
+{"obj_label": "run marathon", "sub_label": "be competitive", "predicate": "CausesDesire"}
+{"obj_label": "kiss them", "sub_label": "girl", "predicate": "CausesDesire"}
+{"obj_label": "have shower", "sub_label": "smell like dog", "predicate": "CausesDesire"}
+{"obj_label": "go to restaurant", "sub_label": "be hungry", "predicate": "CausesDesire"}
+{"obj_label": "serve customer", "sub_label": "good job ethos", "predicate": "CausesDesire"}
+{"obj_label": "record somethign", "sub_label": "idea and thought", "predicate": "CausesDesire"}
+{"obj_label": "study", "sub_label": "interest in subject", "predicate": "CausesDesire"}
+{"obj_label": "travel", "sub_label": "free plane ticket", "predicate": "CausesDesire"}
+{"obj_label": "lie", "sub_label": "peer pressure", "predicate": "CausesDesire"}
+{"obj_label": "beat off", "sub_label": "you be bore", "predicate": "CausesDesire"}
+{"obj_label": "play baseball", "sub_label": "watch baseball game", "predicate": "CausesDesire"}
+{"obj_label": "make patchwork quilt", "sub_label": "be bore", "predicate": "CausesDesire"}
+{"obj_label": "watch tv", "sub_label": "softness", "predicate": "CausesDesire"}
+{"obj_label": "eat sandwich", "sub_label": "be drunk", "predicate": "CausesDesire"}
+{"obj_label": "find information", "sub_label": "thirst for knowledge", "predicate": "CausesDesire"}
+{"obj_label": "jump out of window", "sub_label": "bad news", "predicate": "CausesDesire"}
+{"obj_label": "apply for job", "sub_label": "be unemployed", "predicate": "CausesDesire"}
+{"obj_label": "tape television show", "sub_label": "go out for dinner", "predicate": "CausesDesire"}
+{"obj_label": "conquer your opponent", "sub_label": "play game", "predicate": "CausesDesire"}
+{"obj_label": "light fire", "sub_label": "be cold", "predicate": "CausesDesire"}
+{"obj_label": "buy present for others", "sub_label": "good intention", "predicate": "CausesDesire"}
+{"obj_label": "get some money from someone", "sub_label": "pay bill", "predicate": "CausesDesire"}
+{"obj_label": "commit suicide", "sub_label": "be last person on earth", "predicate": "CausesDesire"}
+{"obj_label": "go on strike", "sub_label": "overwork", "predicate": "CausesDesire"}
+{"obj_label": "give assistance", "sub_label": "see someone hurt", "predicate": "CausesDesire"}
+{"obj_label": "pray", "sub_label": "faith", "predicate": "CausesDesire"}
+{"obj_label": "have rest", "sub_label": "recover from illness", "predicate": "CausesDesire"}
+{"obj_label": "hear music", "sub_label": "feel", "predicate": "CausesDesire"}
+{"obj_label": "skate", "sub_label": "watch ice capades", "predicate": "CausesDesire"}
+{"obj_label": "go to play", "sub_label": "favorable review", "predicate": "CausesDesire"}
+{"obj_label": "wash your clothe", "sub_label": "smelly and wear clothe", "predicate": "CausesDesire"}
+{"obj_label": "drill hole", "sub_label": "have picture to hang", "predicate": "CausesDesire"}
+{"obj_label": "add up column of number", "sub_label": "balance checkbook", "predicate": "CausesDesire"}
+{"obj_label": "find information", "sub_label": "false charge", "predicate": "CausesDesire"}
+{"obj_label": "eat in fast food restaurant", "sub_label": "short lunch hour", "predicate": "CausesDesire"}
+{"obj_label": "do housework", "sub_label": "find cockroach in kitchen", "predicate": "CausesDesire"}
+{"obj_label": "surf", "sub_label": "watch ocean wave", "predicate": "CausesDesire"}
+{"obj_label": "die", "sub_label": "severe pain", "predicate": "CausesDesire"}
+{"obj_label": "chop firewood", "sub_label": "own woodstove", "predicate": "CausesDesire"}
+{"obj_label": "change your appearance", "sub_label": "be seek for by fbi", "predicate": "CausesDesire"}
+{"obj_label": "get some physical activity", "sub_label": "become fat-ass", "predicate": "CausesDesire"}
+{"obj_label": "turn up heat", "sub_label": "cold", "predicate": "CausesDesire"}
+{"obj_label": "get warm", "sub_label": "be cold", "predicate": "CausesDesire"}
+{"obj_label": "cook dinner", "sub_label": "romance", "predicate": "CausesDesire"}
+{"obj_label": "fee your family", "sub_label": "care about your love one", "predicate": "CausesDesire"}
+{"obj_label": "laugh", "sub_label": "humor", "predicate": "CausesDesire"}
+{"obj_label": "hear sing", "sub_label": "love", "predicate": "CausesDesire"}
+{"obj_label": "get good grade", "sub_label": "prospect of good job", "predicate": "CausesDesire"}
+{"obj_label": "light fire", "sub_label": "elicits desire to light a fire", "predicate": "CausesDesire"}
+{"obj_label": "run marathon", "sub_label": "friend who run marathon", "predicate": "CausesDesire"}
+{"obj_label": "commit suicide", "sub_label": "unhappiness", "predicate": "CausesDesire"}
+{"obj_label": "read letter", "sub_label": "boredom", "predicate": "CausesDesire"}
+{"obj_label": "become more clean", "sub_label": "become dirty", "predicate": "CausesDesire"}
+{"obj_label": "punch someone", "sub_label": "anger", "predicate": "CausesDesire"}
+{"obj_label": "breathe some fresh air", "sub_label": "stress", "predicate": "CausesDesire"}
+{"obj_label": "leave line", "sub_label": "lack of time", "predicate": "CausesDesire"}
+{"obj_label": "procreate", "sub_label": "lust", "predicate": "CausesDesire"}
+{"obj_label": "do some exercise", "sub_label": "be able to sit down", "predicate": "CausesDesire"}
+{"obj_label": "judge someone", "sub_label": "be judge", "predicate": "CausesDesire"}
+{"obj_label": "buy food", "sub_label": "hunger", "predicate": "CausesDesire"}
+{"obj_label": "use it", "sub_label": "have something", "predicate": "CausesDesire"}
+{"obj_label": "relax", "sub_label": "orgasm", "predicate": "CausesDesire"}
+{"obj_label": "create art", "sub_label": "be artistic", "predicate": "CausesDesire"}
+{"obj_label": "fence", "sub_label": "attack", "predicate": "CausesDesire"}
+{"obj_label": "view film at home", "sub_label": "rent dvd", "predicate": "CausesDesire"}
+{"obj_label": "surf", "sub_label": "big wave", "predicate": "CausesDesire"}
+{"obj_label": "read", "sub_label": "boredom", "predicate": "CausesDesire"}
+{"obj_label": "urinate", "sub_label": "urination desire caused by full bladder", "predicate": "CausesDesire"}
+{"obj_label": "buy shirt", "sub_label": "teenybopper", "predicate": "CausesDesire"}
+{"obj_label": "go to work", "sub_label": "fear of punishment", "predicate": "CausesDesire"}
+{"obj_label": "paint", "sub_label": "restore old house", "predicate": "CausesDesire"}
+{"obj_label": "fee your family", "sub_label": "hunger", "predicate": "CausesDesire"}
+{"obj_label": "buy christmas present", "sub_label": "money", "predicate": "CausesDesire"}
+{"obj_label": "get something", "sub_label": "want something", "predicate": "CausesDesire"}
+{"obj_label": "fight enemy", "sub_label": "hate", "predicate": "CausesDesire"}
+{"obj_label": "play football", "sub_label": "too much energy", "predicate": "CausesDesire"}
+{"obj_label": "satisfy appetite with minimum effort", "sub_label": "laziness", "predicate": "CausesDesire"}
+{"obj_label": "meet friend", "sub_label": "be lonely", "predicate": "CausesDesire"}
+{"obj_label": "walk in rain", "sub_label": "warm temperature", "predicate": "CausesDesire"}
+{"obj_label": "attend meet", "sub_label": "interest", "predicate": "CausesDesire"}
+{"obj_label": "make bread", "sub_label": "it be sunday", "predicate": "CausesDesire"}
+{"obj_label": "sex", "sub_label": "boredom", "predicate": "CausesDesire"}
+{"obj_label": "sleep at night", "sub_label": "alcohol", "predicate": "CausesDesire"}
+{"obj_label": "entertain someone", "sub_label": "love", "predicate": "CausesDesire"}
+{"obj_label": "attend classical concert", "sub_label": "like classical music", "predicate": "CausesDesire"}
+{"obj_label": "communicate", "sub_label": "need information", "predicate": "CausesDesire"}
+{"obj_label": "kiss someone", "sub_label": "romantic affection induces", "predicate": "CausesDesire"}
+{"obj_label": "hang out at bar", "sub_label": "stress", "predicate": "CausesDesire"}
+{"obj_label": "propose to woman", "sub_label": "proposing to woman desire caused by love", "predicate": "CausesDesire"}
+{"obj_label": "kiss someone", "sub_label": "instigates desire for kissing", "predicate": "CausesDesire"}
+{"obj_label": "go on internet", "sub_label": "need for information", "predicate": "CausesDesire"}
+{"obj_label": "know how stock market perform", "sub_label": "have investment", "predicate": "CausesDesire"}
+{"obj_label": "sleep", "sub_label": "exhaustion", "predicate": "CausesDesire"}
+{"obj_label": "play sport", "sub_label": "want to exercise", "predicate": "CausesDesire"}
+{"obj_label": "take walk", "sub_label": "be restless", "predicate": "CausesDesire"}
+{"obj_label": "play game with your friend", "sub_label": "be bore", "predicate": "CausesDesire"}
+{"obj_label": "diminish your own hunger", "sub_label": "look picture of well-prepared food", "predicate": "CausesDesire"}
+{"obj_label": "compete against someone", "sub_label": "pride", "predicate": "CausesDesire"}
+{"obj_label": "play game", "sub_label": "be with child", "predicate": "CausesDesire"}
+{"obj_label": "remember something", "sub_label": "pleasuarable experience", "predicate": "CausesDesire"}
+{"obj_label": "fly in airplane", "sub_label": "travel", "predicate": "CausesDesire"}
+{"obj_label": "celebrate when specific group be dead", "sub_label": "hatred", "predicate": "CausesDesire"}
+{"obj_label": "improve society", "sub_label": "government", "predicate": "CausesDesire"}
+{"obj_label": "lose weight", "sub_label": "be fat", "predicate": "CausesDesire"}
+{"obj_label": "eat in fast food restaurant", "sub_label": "be in hurry", "predicate": "CausesDesire"}

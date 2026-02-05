@@ -1,0 +1,3 @@
+{"relation": "P19", "template": "[X] was born in [Y] .", "label": "place of birth", "description": "most specific known (e.g. city instead of country, or hospital instead of city) birth location of a person, animal or fictional character", "type": "N-1"}
+{"relation": "P20", "template": "[X] died in [Y] .", "label": "place of death", "description": "most specific known (e.g. city instead of country, or hospital instead of city) death location of a person, animal or fictional character", "type": "N-1"}
+{"relation": "P279", "template": "[X] is a subclass of [Y] .", "label": "subclass of", "description": "all instances of these items are instances of those items; this item is a class (subset) of that item. Not to be confused with P31 (instance of)", "type": "N-1"}

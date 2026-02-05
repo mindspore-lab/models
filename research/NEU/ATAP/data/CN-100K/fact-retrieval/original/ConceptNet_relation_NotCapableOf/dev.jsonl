@@ -1,0 +1,5 @@
+{"obj_label": "walk on water", "sub_label": "person", "predicate": "NotCapableOf"}
+{"obj_label": "travel in space", "sub_label": "sound", "predicate": "NotCapableOf"}
+{"obj_label": "talk", "sub_label": "cat", "predicate": "NotCapableOf"}
+{"obj_label": "mix", "sub_label": "oil and water", "predicate": "NotCapableOf"}
+{"obj_label": "exist", "sub_label": "god", "predicate": "NotCapableOf"}

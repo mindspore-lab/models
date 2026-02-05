@@ -1,0 +1,82 @@
+{"obj_label": "run", "sub_label": "play lacrosse", "predicate": "HasSubevent"}
+{"obj_label": "have drink", "sub_label": "go to pub", "predicate": "HasSubevent"}
+{"obj_label": "exercise", "sub_label": "maintain good health", "predicate": "HasSubevent"}
+{"obj_label": "cry", "sub_label": "watch film", "predicate": "HasSubevent"}
+{"obj_label": "laugh", "sub_label": "have fun", "predicate": "HasSubevent"}
+{"obj_label": "cheer", "sub_label": "win baseball game", "predicate": "HasSubevent"}
+{"obj_label": "receive money", "sub_label": "cash in", "predicate": "HasSubevent"}
+{"obj_label": "eat popcorn", "sub_label": "see movie", "predicate": "HasSubevent"}
+{"obj_label": "hold your breath", "sub_label": "dive", "predicate": "HasSubevent"}
+{"obj_label": "you fall over", "sub_label": "ski", "predicate": "HasSubevent"}
+{"obj_label": "knead of dough", "sub_label": "make bread", "predicate": "HasSubevent"}
+{"obj_label": "read magazine", "sub_label": "go to get haircut", "predicate": "HasSubevent"}
+{"obj_label": "dance", "sub_label": "listen to radio", "predicate": "HasSubevent"}
+{"obj_label": "kill someone", "sub_label": "commit murder", "predicate": "HasSubevent"}
+{"obj_label": "talk", "sub_label": "make friend", "predicate": "HasSubevent"}
+{"obj_label": "listen to music", "sub_label": "see band", "predicate": "HasSubevent"}
+{"obj_label": "catch fish", "sub_label": "fish", "predicate": "HasSubevent"}
+{"obj_label": "get tip", "sub_label": "serve customer", "predicate": "HasSubevent"}
+{"obj_label": "smoke cigarette", "sub_label": "take break", "predicate": "HasSubevent"}
+{"obj_label": "fall to grind", "sub_label": "jump out of window", "predicate": "HasSubevent"}
+{"obj_label": "sightsee", "sub_label": "visit other country", "predicate": "HasSubevent"}
+{"obj_label": "drink", "sub_label": "enjoy company of your friend", "predicate": "HasSubevent"}
+{"obj_label": "buy popcorn", "sub_label": "go see film", "predicate": "HasSubevent"}
+{"obj_label": "get wet", "sub_label": "surf", "predicate": "HasSubevent"}
+{"obj_label": "knead dough", "sub_label": "make bread", "predicate": "HasSubevent"}
+{"obj_label": "smile", "sub_label": "flirt", "predicate": "HasSubevent"}
+{"obj_label": "sleep", "sub_label": "stay in bed", "predicate": "HasSubevent"}
+{"obj_label": "get sick", "sub_label": "catch mumps", "predicate": "HasSubevent"}
+{"obj_label": "light match", "sub_label": "start fire", "predicate": "HasSubevent"}
+{"obj_label": "paint", "sub_label": "create art", "predicate": "HasSubevent"}
+{"obj_label": "listen to music", "sub_label": "attend classical concert", "predicate": "HasSubevent"}
+{"obj_label": "swallow", "sub_label": "eat", "predicate": "HasSubevent"}
+{"obj_label": "close your eye", "sub_label": "kiss", "predicate": "HasSubevent"}
+{"obj_label": "look at paint", "sub_label": "visit art gallery", "predicate": "HasSubevent"}
+{"obj_label": "score goal", "sub_label": "play hockey", "predicate": "HasSubevent"}
+{"obj_label": "have sex", "sub_label": "meet friend", "predicate": "HasSubevent"}
+{"obj_label": "study", "sub_label": "pass course", "predicate": "HasSubevent"}
+{"obj_label": "chew", "sub_label": "eat apple", "predicate": "HasSubevent"}
+{"obj_label": "you lose your place", "sub_label": "leave line", "predicate": "HasSubevent"}
+{"obj_label": "drink", "sub_label": "have lunch", "predicate": "HasSubevent"}
+{"obj_label": "sleep in", "sub_label": "stay in bed", "predicate": "HasSubevent"}
+{"obj_label": "read", "sub_label": "relax", "predicate": "HasSubevent"}
+{"obj_label": "yawn", "sub_label": "wake up in morning", "predicate": "HasSubevent"}
+{"obj_label": "catch fish", "sub_label": "go fish", "predicate": "HasSubevent"}
+{"obj_label": "sit down", "sub_label": "take bus", "predicate": "HasSubevent"}
+{"obj_label": "relax", "sub_label": "soak in hotspring", "predicate": "HasSubevent"}
+{"obj_label": "return to work", "sub_label": "go off strike", "predicate": "HasSubevent"}
+{"obj_label": "win", "sub_label": "play chess", "predicate": "HasSubevent"}
+{"obj_label": "change channel", "sub_label": "use television", "predicate": "HasSubevent"}
+{"obj_label": "exercise", "sub_label": "maintain muscle strength", "predicate": "HasSubevent"}
+{"obj_label": "eat food", "sub_label": "go to restaurant", "predicate": "HasSubevent"}
+{"obj_label": "cry", "sub_label": "be sad", "predicate": "HasSubevent"}
+{"obj_label": "you fall down", "sub_label": "get drunk", "predicate": "HasSubevent"}
+{"obj_label": "learn", "sub_label": "see exhibit", "predicate": "HasSubevent"}
+{"obj_label": "dance", "sub_label": "hear music", "predicate": "HasSubevent"}
+{"obj_label": "you get catch", "sub_label": "lie", "predicate": "HasSubevent"}
+{"obj_label": "bait hook", "sub_label": "fish", "predicate": "HasSubevent"}
+{"obj_label": "hug", "sub_label": "comfort friend", "predicate": "HasSubevent"}
+{"obj_label": "talk", "sub_label": "communicate", "predicate": "HasSubevent"}
+{"obj_label": "get change", "sub_label": "pay cash", "predicate": "HasSubevent"}
+{"obj_label": "fall asleep", "sub_label": "attend lecture", "predicate": "HasSubevent"}
+{"obj_label": "sleep", "sub_label": "snore", "predicate": "HasSubevent"}
+{"obj_label": "drink coffee", "sub_label": "read newspaper", "predicate": "HasSubevent"}
+{"obj_label": "eat", "sub_label": "sate your hunger", "predicate": "HasSubevent"}
+{"obj_label": "act", "sub_label": "go on stage", "predicate": "HasSubevent"}
+{"obj_label": "testify", "sub_label": "take stand", "predicate": "HasSubevent"}
+{"obj_label": "strum string", "sub_label": "play guitar", "predicate": "HasSubevent"}
+{"obj_label": "rapid eye movement", "sub_label": "dream", "predicate": "HasSubevent"}
+{"obj_label": "get marry", "sub_label": "start family", "predicate": "HasSubevent"}
+{"obj_label": "get wet", "sub_label": "take bath", "predicate": "HasSubevent"}
+{"obj_label": "type", "sub_label": "use computer", "predicate": "HasSubevent"}
+{"obj_label": "eat", "sub_label": "go to restaurant", "predicate": "HasSubevent"}
+{"obj_label": "you get tip", "sub_label": "wait on table", "predicate": "HasSubevent"}
+{"obj_label": "open your mouth", "sub_label": "sing", "predicate": "HasSubevent"}
+{"obj_label": "swallow", "sub_label": "chew your food", "predicate": "HasSubevent"}
+{"obj_label": "exercise", "sub_label": "get fit", "predicate": "HasSubevent"}
+{"obj_label": "get wet", "sub_label": "swim", "predicate": "HasSubevent"}
+{"obj_label": "type", "sub_label": "program", "predicate": "HasSubevent"}
+{"obj_label": "kiss your partner", "sub_label": "have sex", "predicate": "HasSubevent"}
+{"obj_label": "nod of head", "sub_label": "agree with someone", "predicate": "HasSubevent"}
+{"obj_label": "someone nod", "sub_label": "agree with someone", "predicate": "HasSubevent"}
+{"obj_label": "wash my hair", "sub_label": "bathe", "predicate": "HasSubevent"}

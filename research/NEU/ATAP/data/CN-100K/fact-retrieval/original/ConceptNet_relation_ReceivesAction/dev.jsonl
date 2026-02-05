@@ -1,0 +1,15 @@
+{"obj_label": "wear around neck", "sub_label": "necklace", "predicate": "ReceivesAction"}
+{"obj_label": "recycle", "sub_label": "all paper", "predicate": "ReceivesAction"}
+{"obj_label": "find in library", "sub_label": "book", "predicate": "ReceivesAction"}
+{"obj_label": "write by author", "sub_label": "book", "predicate": "ReceivesAction"}
+{"obj_label": "record on film", "sub_label": "movie", "predicate": "ReceivesAction"}
+{"obj_label": "recycle", "sub_label": "paper", "predicate": "ReceivesAction"}
+{"obj_label": "make from milk", "sub_label": "butter", "predicate": "ReceivesAction"}
+{"obj_label": "surround by water", "sub_label": "island", "predicate": "ReceivesAction"}
+{"obj_label": "hang on hanger", "sub_label": "clothe", "predicate": "ReceivesAction"}
+{"obj_label": "make for walk", "sub_label": "boot", "predicate": "ReceivesAction"}
+{"obj_label": "fill with air", "sub_label": "basketball", "predicate": "ReceivesAction"}
+{"obj_label": "break", "sub_label": "glass", "predicate": "ReceivesAction"}
+{"obj_label": "fill with air", "sub_label": "tire", "predicate": "ReceivesAction"}
+{"obj_label": "eat", "sub_label": "fruit", "predicate": "ReceivesAction"}
+{"obj_label": "kill", "sub_label": "person", "predicate": "ReceivesAction"}
