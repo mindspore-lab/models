@@ -120,9 +120,10 @@ class MyDatasetEval(BaseEval):
 | 5    | `include`       | 客观题          | 文化包容性评测          |       Knowledge       |
 | 6    | `culture_scope` | 客观题+主观题   | 单文化场景深度评测      |     Mono-Culture      |
 | 7    | `sage`          | 客观题+主观题   | 跨文化理解与适应能力    |     Cross-Culture     |
-| 8    | `alpaca_eval`   | 主观题          | 指令遵循能力            |   Instructi Follow    |
-| 9    | `mt_bench`      | 主观题          | 多轮对话质量            |       Dialogue        |
+| 8    | `s_alpaca_eval`   | 主观题          | 指令遵循能力            |   Instructi Follow    |
+| 9    | `s_mt_bench`      | 主观题          | 多轮对话质量            |       Dialogue        |
 | 10   | `flores`        | 翻译题          | 高质量机器翻译          |      Translation      |
+
 ---
 
 ## 💡 核心设计
