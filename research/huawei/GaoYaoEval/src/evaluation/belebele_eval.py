@@ -1,3 +1,3 @@
-from src.evaluation.m3exam_eval import M3Exam
-class Belebele(M3Exam):
+from src.evaluation.multi_choice_eval import MultiChoiceQuestion
+class Belebele(MultiChoiceQuestion):
     pass
