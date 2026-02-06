@@ -1,26 +1,36 @@
+# --------------------------------------------------
 # Builtin Configurations
-data_path: "../conll2003"
+# 训练数据存储的地方
+data_path: '../conll2003'
+# 输出ckpt文件的名称
 ckpt_save_path: '../ckpt_lstm_crf'
+# 设备类型： Ascend, CPU。默认Ascend
 device_target: 'CPU'
-device_id: 1
-enable_profiling: False
+# 在device_target位Ascend时，指定参与计算的NPU
+device_id: 2
+# 导出文件的前缀
+export_prefix: 'model-crf'
+export_suffix: ''
 
+# --------------------------------------------------
 # LSTM_CRF CONFIG
-num_epochs: 20
-batch_size: 20
-embed_size: 300
-num_hidden: 320
+# 训练的轮数，默认20轮
+num_epochs: 2
+# 单次处理数据量的大小，默认16
+batch_size: 16
+# 组成最大长度
+vocab_max_length: 113
+# embedding_dim数量，默认384
+embedding_dim: 128
+# hidden_dim数量，默认384
+hidden_dim: 128
 num_layers: 2
-bidirectional: True
-
-# train.py
-device_num: 1
-data_CoNLL_path: "../data/conll2003"
+learning_ratelearning_rate: True
+# 学习率过小会导致loss不容易对其，学习率过大会导致预测准确率位0（可以加大epoch解决）
+learning_rate: 0.00001
 
 # export.py
-model_format: "MINDIR"
 model_path: "./"
-ckpt_path: "./lstm-crf.ckpt"
 
 ---
 device_target: ['Ascend', 'CPU']
