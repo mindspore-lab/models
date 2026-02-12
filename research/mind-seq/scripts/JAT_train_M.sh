@@ -1,0 +1,1 @@
+python -u train.py --model JAT --data ETTh1 -c configs/jat/JAT_train_M.yaml --do_train

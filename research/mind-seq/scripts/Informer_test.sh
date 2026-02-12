@@ -1,0 +1,1 @@
+python -u train.py --model Informer --data weather -c configs/informer/informer_test.yaml

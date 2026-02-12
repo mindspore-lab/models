@@ -1,0 +1,14 @@
+---
+
+model: 'nbeats'
+data: 'M3C'
+root_path: './mindseq/data/M3C/'
+data_path: 'M3_Year.csv'
+device: "GPU"
+freq: 'Y'
+train_epochs: 200
+batch_size: 1024
+seq_len: 5
+pred_len: 1
+seed: 42
+do_train: True

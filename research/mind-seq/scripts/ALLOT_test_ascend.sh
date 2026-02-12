@@ -1,0 +1,1 @@
+python -u train.py --model ALLOT --data PEMS08 -c ./configs/allot/ALLOT_test.yaml --device Ascend
