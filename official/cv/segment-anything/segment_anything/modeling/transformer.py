@@ -50,7 +50,7 @@ class TwoWayTransformer(nn.Cell):
         self.final_attn_token_to_image = Attention(
             embedding_dim, num_heads, downsample_rate=attention_downsample_rate
         )
-        self.norm_final_attn = mint.nn.LayerNorm([embedding_dim])
+        self.norm_final_attn = nn.LayerNorm([embedding_dim])
 
     def construct(
         self,
@@ -124,17 +124,17 @@ class TwoWayAttentionBlock(nn.Cell):
         """
         super().__init__()
         self.self_attn = Attention(embedding_dim, num_heads)
-        self.norm1 = mint.nn.LayerNorm([embedding_dim])
+        self.norm1 = nn.LayerNorm([embedding_dim])
 
         self.cross_attn_token_to_image = Attention(
             embedding_dim, num_heads, downsample_rate=attention_downsample_rate
         )
-        self.norm2 = mint.nn.LayerNorm([embedding_dim])
+        self.norm2 = nn.LayerNorm([embedding_dim])
 
         self.mlp = MLPBlock(embedding_dim, mlp_dim, activation)
-        self.norm3 = mint.nn.LayerNorm([embedding_dim])
+        self.norm3 = nn.LayerNorm([embedding_dim])
 
-        self.norm4 = mint.nn.LayerNorm([embedding_dim])
+        self.norm4 = nn.LayerNorm([embedding_dim])
         self.cross_attn_image_to_token = Attention(
             embedding_dim, num_heads, downsample_rate=attention_downsample_rate
         )
@@ -224,7 +224,7 @@ class Attention(nn.Cell):
         dtype = q.dtype
         attn = q @ k.permute(0, 1, 3, 2)  # B x N_heads x N_tokens x N_tokens
         attn = attn / Tensor(math.sqrt(c_per_head), dtype)
-        attn = mint.softmax(attn, dim=-1)
+        attn = mint.nn.functional.softmax(attn, dim=-1)
 
         # Get output
         out = attn @ v

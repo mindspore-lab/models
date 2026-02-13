@@ -85,7 +85,7 @@ def _build_sam(
             embed_dim=encoder_embed_dim,
             img_size=image_size,
             mlp_ratio=4,
-            norm_layer=partial(mint.nn.LayerNorm, eps=1e-6),
+            norm_layer=partial(nn.LayerNorm, epsilon=1e-6),
             # use approximate=False to be close to pytorch, ref:
             # https://www.mindspore.cn/docs/zh-CN/master/note/api_mapping/pytorch_diff/GELU.html?highlight=gelu
             act_layer=partial(GELU, approximate=False),

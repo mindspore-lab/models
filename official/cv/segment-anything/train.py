@@ -34,6 +34,7 @@ def main(args) -> None:
     loss_fn = create_loss_fn(args.network.loss)
     network.set_train()
     network = amp.auto_mixed_precision(network, args.get('amp_level', 'O0'))
+    loss_fn = amp.auto_mixed_precision(loss_fn, args.get('amp_level', 'O0'))
 
     # Step3: create optimizer, including learning rate scheduler and group parameter settings
     optimizer = create_optimizer(params=network.trainable_params(), args=args.optimizer,
